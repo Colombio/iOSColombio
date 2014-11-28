@@ -35,6 +35,9 @@
 		BBCF58A21A29395400CE64B4 /* Validation.m in Sources */ = {isa = PBXBuildFile; fileRef = BBCF589C1A29395400CE64B4 /* Validation.m */; };
 		BBCF58A31A29395400CE64B4 /* YourInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = BBCF589E1A29395400CE64B4 /* YourInfo.m */; };
 		BBCF58DC1A293DD200CE64B4 /* Database.m in Sources */ = {isa = PBXBuildFile; fileRef = BBCF58DB1A293DD200CE64B4 /* Database.m */; };
+		BBCF58E61A293F6700CE64B4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = BBCF58E81A293F6700CE64B4 /* Localizable.strings */; };
+		BBCF58ED1A29401700CE64B4 /* Localized.m in Sources */ = {isa = PBXBuildFile; fileRef = BBCF58EC1A29401700CE64B4 /* Localized.m */; };
+		BBCF58EF1A29412100CE64B4 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BBCF58EE1A29412100CE64B4 /* libsqlite3.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -91,6 +94,11 @@
 		BBCF58D81A293C0A00CE64B4 /* colombio-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "colombio-Prefix.pch"; sourceTree = "<group>"; };
 		BBCF58DA1A293DD200CE64B4 /* Database.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Database.h; sourceTree = "<group>"; };
 		BBCF58DB1A293DD200CE64B4 /* Database.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Database.m; sourceTree = "<group>"; };
+		BBCF58E91A293F9500CE64B4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		BBCF58EA1A293FB100CE64B4 /* hr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hr; path = hr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		BBCF58EB1A29401700CE64B4 /* Localized.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Localized.h; sourceTree = "<group>"; };
+		BBCF58EC1A29401700CE64B4 /* Localized.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Localized.m; sourceTree = "<group>"; };
+		BBCF58EE1A29412100CE64B4 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +106,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BBCF58EF1A29412100CE64B4 /* libsqlite3.dylib in Frameworks */,
 				BBCF58801A29309A00CE64B4 /* FBUserSettingsViewResources.bundle in Frameworks */,
 				BBCF587E1A29308A00CE64B4 /* FacebookSDK.framework in Frameworks */,
 				BBB33B091A27E1AF008D0E26 /* MapKit.framework in Frameworks */,
@@ -166,6 +175,7 @@
 				BBB33AC11A27D9EE008D0E26 /* Colombio-Info.plist */,
 				BBB33AC21A27D9EE008D0E26 /* main.m */,
 				BBCF58D81A293C0A00CE64B4 /* colombio-Prefix.pch */,
+				BBCF58E81A293F6700CE64B4 /* Localizable.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -190,6 +200,7 @@
 		BBB33AE81A27DF13008D0E26 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BBCF58EE1A29412100CE64B4 /* libsqlite3.dylib */,
 				BBCF587F1A29309A00CE64B4 /* FBUserSettingsViewResources.bundle */,
 				BBCF587D1A29308A00CE64B4 /* FacebookSDK.framework */,
 				BBB33B011A27E007008D0E26 /* Foundation.framework */,
@@ -224,6 +235,8 @@
 				BBCF589C1A29395400CE64B4 /* Validation.m */,
 				BBCF589D1A29395400CE64B4 /* YourInfo.h */,
 				BBCF589E1A29395400CE64B4 /* YourInfo.m */,
+				BBCF58EB1A29401700CE64B4 /* Localized.h */,
+				BBCF58EC1A29401700CE64B4 /* Localized.m */,
 			);
 			path = CustomClasses;
 			sourceTree = "<group>";
@@ -334,6 +347,8 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				Base,
+				en,
+				hr,
 			);
 			mainGroup = BBB33AB41A27D9EE008D0E26;
 			productRefGroup = BBB33ABE1A27D9EE008D0E26 /* Products */;
@@ -352,6 +367,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BBB33ACE1A27D9EE008D0E26 /* Images.xcassets in Resources */,
+				BBCF58E61A293F6700CE64B4 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -373,6 +389,7 @@
 				BBCF58921A2938B400CE64B4 /* CustomField.m in Sources */,
 				BBCF58A31A29395400CE64B4 /* YourInfo.m in Sources */,
 				BBB33AC61A27D9EE008D0E26 /* AppDelegate.m in Sources */,
+				BBCF58ED1A29401700CE64B4 /* Localized.m in Sources */,
 				BBCF58A11A29395400CE64B4 /* Reachability.m in Sources */,
 				BBB33AC31A27D9EE008D0E26 /* main.m in Sources */,
 				BBCF58DC1A293DD200CE64B4 /* Database.m in Sources */,
@@ -399,6 +416,18 @@
 			targetProxy = BBB33AD71A27D9EE008D0E26 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		BBCF58E81A293F6700CE64B4 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BBCF58E91A293F9500CE64B4 /* en */,
+				BBCF58EA1A293FB100CE64B4 /* hr */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		BBB33ADE1A27D9EE008D0E26 /* Debug */ = {
