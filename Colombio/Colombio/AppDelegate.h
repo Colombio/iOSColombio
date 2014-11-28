@@ -6,7 +6,6 @@
 //  Copyright (c) 2014 Colombio. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 

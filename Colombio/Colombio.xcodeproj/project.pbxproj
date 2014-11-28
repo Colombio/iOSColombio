@@ -9,10 +9,7 @@
 /* Begin PBXBuildFile section */
 		BBB33AC31A27D9EE008D0E26 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB33AC21A27D9EE008D0E26 /* main.m */; };
 		BBB33AC61A27D9EE008D0E26 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB33AC51A27D9EE008D0E26 /* AppDelegate.m */; };
-		BBB33AC91A27D9EE008D0E26 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB33AC81A27D9EE008D0E26 /* ViewController.m */; };
-		BBB33ACC1A27D9EE008D0E26 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BBB33ACA1A27D9EE008D0E26 /* Main.storyboard */; };
 		BBB33ACE1A27D9EE008D0E26 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BBB33ACD1A27D9EE008D0E26 /* Images.xcassets */; };
-		BBB33AD11A27D9EE008D0E26 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBB33ACF1A27D9EE008D0E26 /* LaunchScreen.xib */; };
 		BBB33ADD1A27D9EE008D0E26 /* ColombioTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB33ADC1A27D9EE008D0E26 /* ColombioTests.m */; };
 		BBB33AEB1A27DF6D008D0E26 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBB33AE91A27DF6D008D0E26 /* CoreLocation.framework */; };
 		BBB33AEC1A27DF6D008D0E26 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBB33AEA1A27DF6D008D0E26 /* QuartzCore.framework */; };
@@ -30,6 +27,13 @@
 		BBB33B091A27E1AF008D0E26 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBB33AE61A27DF0A008D0E26 /* MapKit.framework */; };
 		BBCF587E1A29308A00CE64B4 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBCF587D1A29308A00CE64B4 /* FacebookSDK.framework */; };
 		BBCF58801A29309A00CE64B4 /* FBUserSettingsViewResources.bundle in Frameworks */ = {isa = PBXBuildFile; fileRef = BBCF587F1A29309A00CE64B4 /* FBUserSettingsViewResources.bundle */; };
+		BBCF58911A2938B400CE64B4 /* CountriesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BBCF588E1A2938B400CE64B4 /* CountriesCell.m */; };
+		BBCF58921A2938B400CE64B4 /* CustomField.m in Sources */ = {isa = PBXBuildFile; fileRef = BBCF58901A2938B400CE64B4 /* CustomField.m */; };
+		BBCF589F1A29395400CE64B4 /* CryptoClass.m in Sources */ = {isa = PBXBuildFile; fileRef = BBCF58951A29395400CE64B4 /* CryptoClass.m */; };
+		BBCF58A01A29395400CE64B4 /* Messages.m in Sources */ = {isa = PBXBuildFile; fileRef = BBCF58971A29395400CE64B4 /* Messages.m */; };
+		BBCF58A11A29395400CE64B4 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = BBCF589A1A29395400CE64B4 /* Reachability.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		BBCF58A21A29395400CE64B4 /* Validation.m in Sources */ = {isa = PBXBuildFile; fileRef = BBCF589C1A29395400CE64B4 /* Validation.m */; };
+		BBCF58A31A29395400CE64B4 /* YourInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = BBCF589E1A29395400CE64B4 /* YourInfo.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,15 +48,11 @@
 
 /* Begin PBXFileReference section */
 		BBB33ABD1A27D9EE008D0E26 /* Colombio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Colombio.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		BBB33AC11A27D9EE008D0E26 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BBB33AC11A27D9EE008D0E26 /* Colombio-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Colombio-Info.plist"; sourceTree = "<group>"; };
 		BBB33AC21A27D9EE008D0E26 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		BBB33AC41A27D9EE008D0E26 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		BBB33AC51A27D9EE008D0E26 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		BBB33AC71A27D9EE008D0E26 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		BBB33AC81A27D9EE008D0E26 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		BBB33ACB1A27D9EE008D0E26 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		BBB33ACD1A27D9EE008D0E26 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		BBB33AD01A27D9EE008D0E26 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		BBB33AD61A27D9EE008D0E26 /* ColombioTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ColombioTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BBB33ADB1A27D9EE008D0E26 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BBB33ADC1A27D9EE008D0E26 /* ColombioTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ColombioTests.m; sourceTree = "<group>"; };
@@ -72,6 +72,22 @@
 		BBB33B011A27E007008D0E26 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		BBCF587D1A29308A00CE64B4 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../FacebookSDK.framework; sourceTree = "<group>"; };
 		BBCF587F1A29309A00CE64B4 /* FBUserSettingsViewResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = FBUserSettingsViewResources.bundle; path = ../../FacebookSDK.framework/Versions/A/Resources/FBUserSettingsViewResources.bundle; sourceTree = "<group>"; };
+		BBCF588D1A2938B400CE64B4 /* CountriesCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CountriesCell.h; sourceTree = "<group>"; };
+		BBCF588E1A2938B400CE64B4 /* CountriesCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CountriesCell.m; sourceTree = "<group>"; };
+		BBCF588F1A2938B400CE64B4 /* CustomField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomField.h; sourceTree = "<group>"; };
+		BBCF58901A2938B400CE64B4 /* CustomField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomField.m; sourceTree = "<group>"; };
+		BBCF58931A29395400CE64B4 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		BBCF58941A29395400CE64B4 /* CryptoClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CryptoClass.h; sourceTree = "<group>"; };
+		BBCF58951A29395400CE64B4 /* CryptoClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CryptoClass.m; sourceTree = "<group>"; };
+		BBCF58961A29395400CE64B4 /* Messages.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Messages.h; sourceTree = "<group>"; };
+		BBCF58971A29395400CE64B4 /* Messages.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Messages.m; sourceTree = "<group>"; };
+		BBCF58991A29395400CE64B4 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		BBCF589A1A29395400CE64B4 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		BBCF589B1A29395400CE64B4 /* Validation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Validation.h; sourceTree = "<group>"; };
+		BBCF589C1A29395400CE64B4 /* Validation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Validation.m; sourceTree = "<group>"; };
+		BBCF589D1A29395400CE64B4 /* YourInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YourInfo.h; sourceTree = "<group>"; };
+		BBCF589E1A29395400CE64B4 /* YourInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YourInfo.m; sourceTree = "<group>"; };
+		BBCF58D81A293C0A00CE64B4 /* colombio-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "colombio-Prefix.pch"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,13 +146,12 @@
 		BBB33ABF1A27D9EE008D0E26 /* Colombio */ = {
 			isa = PBXGroup;
 			children = (
+				BBCF58811A29357400CE64B4 /* CustomClasses */,
+				BBCF58821A29357400CE64B4 /* CustomViews */,
+				BBCF58831A29357400CE64B4 /* VIewControllers */,
 				BBB33AC41A27D9EE008D0E26 /* AppDelegate.h */,
 				BBB33AC51A27D9EE008D0E26 /* AppDelegate.m */,
-				BBB33AC71A27D9EE008D0E26 /* ViewController.h */,
-				BBB33AC81A27D9EE008D0E26 /* ViewController.m */,
-				BBB33ACA1A27D9EE008D0E26 /* Main.storyboard */,
 				BBB33ACD1A27D9EE008D0E26 /* Images.xcassets */,
-				BBB33ACF1A27D9EE008D0E26 /* LaunchScreen.xib */,
 				BBB33AC01A27D9EE008D0E26 /* Supporting Files */,
 			);
 			path = Colombio;
@@ -145,8 +160,9 @@
 		BBB33AC01A27D9EE008D0E26 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				BBB33AC11A27D9EE008D0E26 /* Info.plist */,
+				BBB33AC11A27D9EE008D0E26 /* Colombio-Info.plist */,
 				BBB33AC21A27D9EE008D0E26 /* main.m */,
+				BBCF58D81A293C0A00CE64B4 /* colombio-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -189,6 +205,58 @@
 				BBB33AE61A27DF0A008D0E26 /* MapKit.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BBCF58811A29357400CE64B4 /* CustomClasses */ = {
+			isa = PBXGroup;
+			children = (
+				BBCF58931A29395400CE64B4 /* Constants.h */,
+				BBCF58941A29395400CE64B4 /* CryptoClass.h */,
+				BBCF58951A29395400CE64B4 /* CryptoClass.m */,
+				BBCF58961A29395400CE64B4 /* Messages.h */,
+				BBCF58971A29395400CE64B4 /* Messages.m */,
+				BBCF58981A29395400CE64B4 /* Reachability */,
+				BBCF589B1A29395400CE64B4 /* Validation.h */,
+				BBCF589C1A29395400CE64B4 /* Validation.m */,
+				BBCF589D1A29395400CE64B4 /* YourInfo.h */,
+				BBCF589E1A29395400CE64B4 /* YourInfo.m */,
+			);
+			path = CustomClasses;
+			sourceTree = "<group>";
+		};
+		BBCF58821A29357400CE64B4 /* CustomViews */ = {
+			isa = PBXGroup;
+			children = (
+				BBCF588D1A2938B400CE64B4 /* CountriesCell.h */,
+				BBCF588E1A2938B400CE64B4 /* CountriesCell.m */,
+				BBCF588F1A2938B400CE64B4 /* CustomField.h */,
+				BBCF58901A2938B400CE64B4 /* CustomField.m */,
+			);
+			path = CustomViews;
+			sourceTree = "<group>";
+		};
+		BBCF58831A29357400CE64B4 /* VIewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				BBCF58871A29389100CE64B4 /* Login */,
+			);
+			path = VIewControllers;
+			sourceTree = "<group>";
+		};
+		BBCF58871A29389100CE64B4 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		BBCF58981A29395400CE64B4 /* Reachability */ = {
+			isa = PBXGroup;
+			children = (
+				BBCF58991A29395400CE64B4 /* Reachability.h */,
+				BBCF589A1A29395400CE64B4 /* Reachability.m */,
+			);
+			path = Reachability;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -252,7 +320,6 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				en,
 				Base,
 			);
 			mainGroup = BBB33AB41A27D9EE008D0E26;
@@ -271,8 +338,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BBB33ACC1A27D9EE008D0E26 /* Main.storyboard in Resources */,
-				BBB33AD11A27D9EE008D0E26 /* LaunchScreen.xib in Resources */,
 				BBB33ACE1A27D9EE008D0E26 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -291,9 +356,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BBB33AC91A27D9EE008D0E26 /* ViewController.m in Sources */,
+				BBCF58A21A29395400CE64B4 /* Validation.m in Sources */,
+				BBCF58921A2938B400CE64B4 /* CustomField.m in Sources */,
+				BBCF58A31A29395400CE64B4 /* YourInfo.m in Sources */,
 				BBB33AC61A27D9EE008D0E26 /* AppDelegate.m in Sources */,
+				BBCF58A11A29395400CE64B4 /* Reachability.m in Sources */,
 				BBB33AC31A27D9EE008D0E26 /* main.m in Sources */,
+				BBCF58911A2938B400CE64B4 /* CountriesCell.m in Sources */,
+				BBCF58A01A29395400CE64B4 /* Messages.m in Sources */,
+				BBCF589F1A29395400CE64B4 /* CryptoClass.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -314,25 +385,6 @@
 			targetProxy = BBB33AD71A27D9EE008D0E26 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		BBB33ACA1A27D9EE008D0E26 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				BBB33ACB1A27D9EE008D0E26 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		BBB33ACF1A27D9EE008D0E26 /* LaunchScreen.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				BBB33AD01A27D9EE008D0E26 /* Base */,
-			);
-			name = LaunchScreen.xib;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		BBB33ADE1A27D9EE008D0E26 /* Debug */ = {
@@ -369,7 +421,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -404,7 +456,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -424,7 +476,8 @@
 					stuff/Software,
 					development/Colombio,
 				);
-				INFOPLIST_FILE = Colombio/Info.plist;
+				GCC_PREFIX_HEADER = "colombio/colombio-Prefix.pch";
+				INFOPLIST_FILE = "Colombio/Colombio-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
@@ -450,7 +503,8 @@
 					stuff/Software,
 					development/Colombio,
 				);
-				INFOPLIST_FILE = Colombio/Info.plist;
+				GCC_PREFIX_HEADER = "colombio/colombio-Prefix.pch";
+				INFOPLIST_FILE = "Colombio/Colombio-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
