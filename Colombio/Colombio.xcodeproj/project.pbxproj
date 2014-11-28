@@ -27,9 +27,9 @@
 		BBB33AFE1A27DFF1008D0E26 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBB33AFD1A27DFF1008D0E26 /* Social.framework */; };
 		BBB33B001A27DFF9008D0E26 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBB33AFF1A27DFF9008D0E26 /* UIKit.framework */; };
 		BBB33B021A27E007008D0E26 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBB33B011A27E007008D0E26 /* Foundation.framework */; };
-		BBB33B061A27E06E008D0E26 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBB33B051A27E06E008D0E26 /* FacebookSDK.framework */; };
-		BBB33B081A27E171008D0E26 /* FBUserSettingsViewResources.bundle in Frameworks */ = {isa = PBXBuildFile; fileRef = BBB33B071A27E171008D0E26 /* FBUserSettingsViewResources.bundle */; };
 		BBB33B091A27E1AF008D0E26 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBB33AE61A27DF0A008D0E26 /* MapKit.framework */; };
+		BBCF587E1A29308A00CE64B4 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBCF587D1A29308A00CE64B4 /* FacebookSDK.framework */; };
+		BBCF58801A29309A00CE64B4 /* FBUserSettingsViewResources.bundle in Frameworks */ = {isa = PBXBuildFile; fileRef = BBCF587F1A29309A00CE64B4 /* FBUserSettingsViewResources.bundle */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,9 +70,8 @@
 		BBB33AFD1A27DFF1008D0E26 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		BBB33AFF1A27DFF9008D0E26 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		BBB33B011A27E007008D0E26 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		BBB33B031A27E036008D0E26 /* FacebookSDK */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = FacebookSDK; path = ../../../ProperColombio/FacebookSDK.framework/Versions/A/FacebookSDK; sourceTree = "<group>"; };
-		BBB33B051A27E06E008D0E26 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../../FacebookSDK.framework; sourceTree = "<group>"; };
-		BBB33B071A27E171008D0E26 /* FBUserSettingsViewResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = FBUserSettingsViewResources.bundle; path = ../../../FacebookSDK.framework/Versions/A/Resources/FBUserSettingsViewResources.bundle; sourceTree = "<group>"; };
+		BBCF587D1A29308A00CE64B4 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../FacebookSDK.framework; sourceTree = "<group>"; };
+		BBCF587F1A29309A00CE64B4 /* FBUserSettingsViewResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = FBUserSettingsViewResources.bundle; path = ../../FacebookSDK.framework/Versions/A/Resources/FBUserSettingsViewResources.bundle; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,9 +79,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BBCF58801A29309A00CE64B4 /* FBUserSettingsViewResources.bundle in Frameworks */,
+				BBCF587E1A29308A00CE64B4 /* FacebookSDK.framework in Frameworks */,
 				BBB33B091A27E1AF008D0E26 /* MapKit.framework in Frameworks */,
-				BBB33B081A27E171008D0E26 /* FBUserSettingsViewResources.bundle in Frameworks */,
-				BBB33B061A27E06E008D0E26 /* FacebookSDK.framework in Frameworks */,
 				BBB33B021A27E007008D0E26 /* Foundation.framework in Frameworks */,
 				BBB33B001A27DFF9008D0E26 /* UIKit.framework in Frameworks */,
 				BBB33AFE1A27DFF1008D0E26 /* Social.framework in Frameworks */,
@@ -172,9 +171,8 @@
 		BBB33AE81A27DF13008D0E26 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				BBB33B071A27E171008D0E26 /* FBUserSettingsViewResources.bundle */,
-				BBB33B051A27E06E008D0E26 /* FacebookSDK.framework */,
-				BBB33B031A27E036008D0E26 /* FacebookSDK */,
+				BBCF587F1A29309A00CE64B4 /* FBUserSettingsViewResources.bundle */,
+				BBCF587D1A29308A00CE64B4 /* FacebookSDK.framework */,
 				BBB33B011A27E007008D0E26 /* Foundation.framework */,
 				BBB33AFF1A27DFF9008D0E26 /* UIKit.framework */,
 				BBB33AFD1A27DFF1008D0E26 /* Social.framework */,
@@ -422,6 +420,9 @@
 					/Users/vsprem/Documents/Private,
 					stuff/Software,
 					development/Colombio,
+					/Users/vsprem/Documents/Private,
+					stuff/Software,
+					development/Colombio,
 				);
 				INFOPLIST_FILE = Colombio/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
@@ -442,6 +443,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
+					/Users/vsprem/Documents/Private,
+					stuff/Software,
+					development/Colombio,
 					/Users/vsprem/Documents/Private,
 					stuff/Software,
 					development/Colombio,
@@ -512,6 +516,7 @@
 				BBB33AE21A27D9EE008D0E26 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		BBB33AE31A27D9EE008D0E26 /* Build configuration list for PBXNativeTarget "ColombioTests" */ = {
 			isa = XCConfigurationList;
@@ -520,6 +525,7 @@
 				BBB33AE51A27D9EE008D0E26 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
