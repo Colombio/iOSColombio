@@ -34,6 +34,7 @@
 		BBCF58A11A29395400CE64B4 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = BBCF589A1A29395400CE64B4 /* Reachability.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		BBCF58A21A29395400CE64B4 /* Validation.m in Sources */ = {isa = PBXBuildFile; fileRef = BBCF589C1A29395400CE64B4 /* Validation.m */; };
 		BBCF58A31A29395400CE64B4 /* YourInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = BBCF589E1A29395400CE64B4 /* YourInfo.m */; };
+		BBCF58DC1A293DD200CE64B4 /* Database.m in Sources */ = {isa = PBXBuildFile; fileRef = BBCF58DB1A293DD200CE64B4 /* Database.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,6 +89,8 @@
 		BBCF589D1A29395400CE64B4 /* YourInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YourInfo.h; sourceTree = "<group>"; };
 		BBCF589E1A29395400CE64B4 /* YourInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YourInfo.m; sourceTree = "<group>"; };
 		BBCF58D81A293C0A00CE64B4 /* colombio-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "colombio-Prefix.pch"; sourceTree = "<group>"; };
+		BBCF58DA1A293DD200CE64B4 /* Database.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Database.h; sourceTree = "<group>"; };
+		BBCF58DB1A293DD200CE64B4 /* Database.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Database.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -210,6 +213,7 @@
 		BBCF58811A29357400CE64B4 /* CustomClasses */ = {
 			isa = PBXGroup;
 			children = (
+				BBCF58D91A293DD200CE64B4 /* Database */,
 				BBCF58931A29395400CE64B4 /* Constants.h */,
 				BBCF58941A29395400CE64B4 /* CryptoClass.h */,
 				BBCF58951A29395400CE64B4 /* CryptoClass.m */,
@@ -257,6 +261,15 @@
 				BBCF589A1A29395400CE64B4 /* Reachability.m */,
 			);
 			path = Reachability;
+			sourceTree = "<group>";
+		};
+		BBCF58D91A293DD200CE64B4 /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				BBCF58DA1A293DD200CE64B4 /* Database.h */,
+				BBCF58DB1A293DD200CE64B4 /* Database.m */,
+			);
+			path = Database;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -362,6 +375,7 @@
 				BBB33AC61A27D9EE008D0E26 /* AppDelegate.m in Sources */,
 				BBCF58A11A29395400CE64B4 /* Reachability.m in Sources */,
 				BBB33AC31A27D9EE008D0E26 /* main.m in Sources */,
+				BBCF58DC1A293DD200CE64B4 /* Database.m in Sources */,
 				BBCF58911A2938B400CE64B4 /* CountriesCell.m in Sources */,
 				BBCF58A01A29395400CE64B4 /* Messages.m in Sources */,
 				BBCF589F1A29395400CE64B4 /* CryptoClass.m in Sources */,
