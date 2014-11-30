@@ -97,18 +97,6 @@
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    if(scrollView.contentOffset.x<0){
-        [scrollView setScrollEnabled:NO];
-        [scrollView setContentOffset:CGPointMake(0, 0)];
-        [scrollView setScrollEnabled:YES];
-        return;
-    }
-    else if(scrollView.contentOffset.x>640){
-        [scrollView setScrollEnabled:NO];
-        [scrollView setContentOffset:CGPointMake(640, 0)];
-        [scrollView setScrollEnabled:YES];
-        return;
-    }
     if (!pageControlBeingUsed) {
         // Switch the indicator when more than 50% of the previous/next page is visible
         CGFloat pageWidth = scrollView.frame.size.width;
@@ -125,7 +113,6 @@
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
     pageControlBeingUsed = NO;
-    NSLog(@"test");
 }
 
 - (void)scrollHappened{

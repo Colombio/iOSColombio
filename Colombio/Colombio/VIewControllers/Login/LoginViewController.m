@@ -106,6 +106,7 @@
         scrollBox.contentSize = CGSizeMake(scrollBox.frame.size.width, scrollBox.frame.size.height+300);
         [self.scrollBox setContentOffset:CGPointMake(0, 80)];
     }
+    scrollView.bounces=NO;
     [scrollView setDelegate:scrollableHeader];
 }
 
