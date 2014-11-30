@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		583572071A2B4B7400F6EA17 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 583572041A2B4B7400F6EA17 /* LoginViewController.m */; };
 		583572081A2B4B7400F6EA17 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 583572051A2B4B7400F6EA17 /* LoginViewController.xib */; };
+		5835720B1A2B705100F6EA17 /* BottomNav.m in Sources */ = {isa = PBXBuildFile; fileRef = 5835720A1A2B705100F6EA17 /* BottomNav.m */; };
+		5835720E1A2B70C000F6EA17 /* ScrollableHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 5835720D1A2B70C000F6EA17 /* ScrollableHeader.m */; };
+		583572131A2B71B900F6EA17 /* ColombioServiceCommunicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 583572121A2B71B900F6EA17 /* ColombioServiceCommunicator.m */; };
+		583572191A2B72BB00F6EA17 /* Tools.m in Sources */ = {isa = PBXBuildFile; fileRef = 583572181A2B72BB00F6EA17 /* Tools.m */; };
 		BBB33AC31A27D9EE008D0E26 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB33AC21A27D9EE008D0E26 /* main.m */; };
 		BBB33AC61A27D9EE008D0E26 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB33AC51A27D9EE008D0E26 /* AppDelegate.m */; };
 		BBB33ACE1A27D9EE008D0E26 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BBB33ACD1A27D9EE008D0E26 /* Images.xcassets */; };
@@ -56,6 +60,14 @@
 		583572031A2B4B7400F6EA17 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		583572041A2B4B7400F6EA17 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		583572051A2B4B7400F6EA17 /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
+		583572091A2B705100F6EA17 /* BottomNav.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "\bBottomNav.h"; sourceTree = "<group>"; };
+		5835720A1A2B705100F6EA17 /* BottomNav.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "\bBottomNav.m"; sourceTree = "<group>"; };
+		5835720C1A2B70C000F6EA17 /* ScrollableHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollableHeader.h; sourceTree = "<group>"; };
+		5835720D1A2B70C000F6EA17 /* ScrollableHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollableHeader.m; sourceTree = "<group>"; };
+		583572111A2B71B900F6EA17 /* ColombioServiceCommunicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "\bColombioServiceCommunicator.h"; sourceTree = "<group>"; };
+		583572121A2B71B900F6EA17 /* ColombioServiceCommunicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "\bColombioServiceCommunicator.m"; sourceTree = "<group>"; };
+		583572171A2B72BB00F6EA17 /* Tools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tools.h; sourceTree = "<group>"; };
+		583572181A2B72BB00F6EA17 /* Tools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tools.m; sourceTree = "<group>"; };
 		BBB33ABD1A27D9EE008D0E26 /* Colombio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Colombio.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BBB33AC11A27D9EE008D0E26 /* Colombio-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Colombio-Info.plist"; sourceTree = "<group>"; };
 		BBB33AC21A27D9EE008D0E26 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -165,6 +177,15 @@
 			path = SignUp;
 			sourceTree = "<group>";
 		};
+		583572101A2B71B900F6EA17 /* WebService */ = {
+			isa = PBXGroup;
+			children = (
+				583572111A2B71B900F6EA17 /* ColombioServiceCommunicator.h */,
+				583572121A2B71B900F6EA17 /* ColombioServiceCommunicator.m */,
+			);
+			path = WebService;
+			sourceTree = "<group>";
+		};
 		BBB33AB41A27D9EE008D0E26 = {
 			isa = PBXGroup;
 			children = (
@@ -252,6 +273,7 @@
 		BBCF58811A29357400CE64B4 /* CustomClasses */ = {
 			isa = PBXGroup;
 			children = (
+				583572101A2B71B900F6EA17 /* WebService */,
 				BBCF58F21A2AA3CD00CE64B4 /* Utility */,
 				BBCF58D91A293DD200CE64B4 /* Database */,
 				BBCF58931A29395400CE64B4 /* Constants.h */,
@@ -266,6 +288,8 @@
 				BBCF589E1A29395400CE64B4 /* YourInfo.m */,
 				BBCF58EB1A29401700CE64B4 /* Localized.h */,
 				BBCF58EC1A29401700CE64B4 /* Localized.m */,
+				583572171A2B72BB00F6EA17 /* Tools.h */,
+				583572181A2B72BB00F6EA17 /* Tools.m */,
 			);
 			path = CustomClasses;
 			sourceTree = "<group>";
@@ -273,10 +297,14 @@
 		BBCF58821A29357400CE64B4 /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
+				583572091A2B705100F6EA17 /* BottomNav.h */,
+				5835720A1A2B705100F6EA17 /* BottomNav.m */,
 				BBCF588D1A2938B400CE64B4 /* CountriesCell.h */,
 				BBCF588E1A2938B400CE64B4 /* CountriesCell.m */,
 				BBCF588F1A2938B400CE64B4 /* CustomField.h */,
 				BBCF58901A2938B400CE64B4 /* CustomField.m */,
+				5835720C1A2B70C000F6EA17 /* ScrollableHeader.h */,
+				5835720D1A2B70C000F6EA17 /* ScrollableHeader.m */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -422,11 +450,15 @@
 				BBCF58A21A29395400CE64B4 /* Validation.m in Sources */,
 				BBCF58921A2938B400CE64B4 /* CustomField.m in Sources */,
 				583572071A2B4B7400F6EA17 /* LoginViewController.m in Sources */,
+				5835720B1A2B705100F6EA17 /* BottomNav.m in Sources */,
 				BBCF58A31A29395400CE64B4 /* YourInfo.m in Sources */,
 				BBB33AC61A27D9EE008D0E26 /* AppDelegate.m in Sources */,
+				5835720E1A2B70C000F6EA17 /* ScrollableHeader.m in Sources */,
+				583572131A2B71B900F6EA17 /* ColombioServiceCommunicator.m in Sources */,
 				BBCF58ED1A29401700CE64B4 /* Localized.m in Sources */,
 				BBCF58A11A29395400CE64B4 /* Reachability.m in Sources */,
 				BBB33AC31A27D9EE008D0E26 /* main.m in Sources */,
+				583572191A2B72BB00F6EA17 /* Tools.m in Sources */,
 				BBCF58DC1A293DD200CE64B4 /* Database.m in Sources */,
 				BBCF58911A2938B400CE64B4 /* CountriesCell.m in Sources */,
 				BBCF58A01A29395400CE64B4 /* Messages.m in Sources */,
