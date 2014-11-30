@@ -19,6 +19,7 @@
                 <outlet property="scrollView" destination="TZf-dr-QQu" id="0fD-jg-FZs"/>
                 <outlet property="txtEmail" destination="v8a-w6-JT2" id="aFu-Pk-Xdu"/>
                 <outlet property="txtPassword" destination="lfu-yI-seS" id="lXB-m6-qt5"/>
+                <outlet property="view" destination="JbC-MO-kBi" id="JGk-6X-hgW"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -31,6 +32,7 @@
                     <subviews>
                         <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TZf-dr-QQu">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="267"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </scrollView>
                         <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="5a3-CF-J4M">
                             <rect key="frame" x="141" y="230" width="39" height="37"/>
@@ -42,7 +44,7 @@
                                 <action selector="changePage:" destination="-1" eventType="valueChanged" id="jb8-86-XS2"/>
                             </connections>
                         </pageControl>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="appbgarrow.png" translatesAutoresizingMaskIntoConstraints="NO" id="9HT-pO-kZI">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="appbgarrow" translatesAutoresizingMaskIntoConstraints="NO" id="9HT-pO-kZI">
                             <rect key="frame" x="141" y="245" width="40" height="22"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="40" id="5CH-MV-Hbe"/>
@@ -52,7 +54,7 @@
                         <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y07-Ow-nQH">
                             <rect key="frame" x="10" y="275" width="150" height="44"/>
                             <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
-                            <state key="normal" image="facebook.png" backgroundImage="text.png">
+                            <state key="normal" image="facebook" backgroundImage="text">
                                 <color key="titleColor" red="0.1960784314" green="0.30980392159999998" blue="0.52156862749999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
@@ -67,7 +69,7 @@
                             <rect key="frame" x="160" y="275" width="150" height="44"/>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                             <inset key="contentEdgeInsets" minX="0.0" minY="4" maxX="0.0" maxY="0.0"/>
-                            <state key="normal" image="google.png" backgroundImage="text.png">
+                            <state key="normal" image="google" backgroundImage="text">
                                 <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
@@ -87,7 +89,7 @@
                             <color key="textColor" red="0.28832116790000001" green="0.28832116790000001" blue="0.28832116790000001" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <imageView userInteractionEnabled="NO" contentMode="top" image="logininputbg.png" translatesAutoresizingMaskIntoConstraints="NO" id="WSn-1o-Ly7">
+                        <imageView userInteractionEnabled="NO" contentMode="top" image="logininputbg" translatesAutoresizingMaskIntoConstraints="NO" id="WSn-1o-Ly7">
                             <rect key="frame" x="10" y="350" width="300" height="88"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="88" id="aLe-q1-fJi"/>
@@ -137,11 +139,12 @@
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m1N-eh-l8B">
                             <rect key="frame" x="10" y="478" width="300" height="43"/>
+                            <color key="backgroundColor" red="0.14509803921568626" green="0.47450980392156861" blue="0.71764705882352942" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="43" id="Aw9-qm-Lsa"/>
                             </constraints>
                             <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
-                            <state key="normal" title="Log In" backgroundImage="button.png">
+                            <state key="normal" title="Log In">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
@@ -174,29 +177,29 @@
                                 <action selector="setSign:" destination="-1" eventType="touchUpInside" id="hJg-11-dQR"/>
                             </connections>
                         </button>
-                        <imageView userInteractionEnabled="NO" contentMode="center" fixedFrame="YES" image="wrong.png" translatesAutoresizingMaskIntoConstraints="NO" id="TIT-Y2-NSw">
+                        <imageView userInteractionEnabled="NO" contentMode="center" fixedFrame="YES" image="wrong" translatesAutoresizingMaskIntoConstraints="NO" id="TIT-Y2-NSw">
                             <rect key="frame" x="276" y="348" width="25" height="43"/>
                         </imageView>
-                        <imageView userInteractionEnabled="NO" contentMode="center" fixedFrame="YES" image="wrong.png" translatesAutoresizingMaskIntoConstraints="NO" id="O4s-Mf-iQU">
+                        <imageView userInteractionEnabled="NO" contentMode="center" fixedFrame="YES" image="wrong" translatesAutoresizingMaskIntoConstraints="NO" id="O4s-Mf-iQU">
                             <rect key="frame" x="276" y="392" width="25" height="43"/>
                         </imageView>
-                        <imageView userInteractionEnabled="NO" contentMode="center" fixedFrame="YES" image="pass.png" translatesAutoresizingMaskIntoConstraints="NO" id="U5R-O1-39n">
+                        <imageView userInteractionEnabled="NO" contentMode="center" fixedFrame="YES" image="pass" translatesAutoresizingMaskIntoConstraints="NO" id="U5R-O1-39n">
                             <rect key="frame" x="276" y="348" width="25" height="43"/>
                         </imageView>
-                        <imageView userInteractionEnabled="NO" contentMode="center" fixedFrame="YES" image="pass.png" translatesAutoresizingMaskIntoConstraints="NO" id="pLz-Rz-Tuc">
+                        <imageView userInteractionEnabled="NO" contentMode="center" fixedFrame="YES" image="pass" translatesAutoresizingMaskIntoConstraints="NO" id="pLz-Rz-Tuc">
                             <rect key="frame" x="276" y="390" width="25" height="48"/>
                         </imageView>
-                        <imageView userInteractionEnabled="NO" contentMode="center" fixedFrame="YES" image="inputicon.png" translatesAutoresizingMaskIntoConstraints="NO" id="BR6-tD-6fr">
+                        <imageView userInteractionEnabled="NO" contentMode="center" fixedFrame="YES" image="inputicon" translatesAutoresizingMaskIntoConstraints="NO" id="BR6-tD-6fr">
                             <rect key="frame" x="276" y="354" width="25" height="31"/>
                         </imageView>
-                        <imageView userInteractionEnabled="NO" contentMode="center" fixedFrame="YES" image="inputicon.png" translatesAutoresizingMaskIntoConstraints="NO" id="F8o-bb-AMr">
+                        <imageView userInteractionEnabled="NO" contentMode="center" fixedFrame="YES" image="inputicon" translatesAutoresizingMaskIntoConstraints="NO" id="F8o-bb-AMr">
                             <rect key="frame" x="276" y="393" width="25" height="42"/>
                         </imageView>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" image="forgotPass.png" translatesAutoresizingMaskIntoConstraints="NO" id="AXy-gW-Ekt">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" image="forgotPass" translatesAutoresizingMaskIntoConstraints="NO" id="AXy-gW-Ekt">
                             <rect key="frame" x="173" y="452" width="12" height="13"/>
                         </imageView>
                     </subviews>
-                    <color key="backgroundColor" red="0.9215686917" green="0.9215686917" blue="0.9215686917" alpha="1" colorSpace="deviceRGB"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="TZf-dr-QQu" secondAttribute="trailing" id="0dN-2F-Lya"/>
                         <constraint firstItem="WSn-1o-Ly7" firstAttribute="top" secondItem="Wlq-tq-YAE" secondAttribute="bottom" constant="8" id="0dr-im-LUs"/>
@@ -247,7 +250,7 @@
                     </constraints>
                 </scrollView>
             </subviews>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="4iR-nR-xmb" secondAttribute="trailing" id="Ati-Eb-qy3"/>
                 <constraint firstItem="4iR-nR-xmb" firstAttribute="top" secondItem="JbC-MO-kBi" secondAttribute="top" id="a3E-c8-Ib3"/>
@@ -261,16 +264,15 @@
         </view>
     </objects>
     <resources>
-        <image name="appbgarrow.png" width="33" height="12"/>
-        <image name="button.png" width="301" height="44"/>
-        <image name="facebook.png" width="78" height="16"/>
-        <image name="forgotPass.png" width="12" height="13"/>
-        <image name="google.png" width="60" height="21"/>
-        <image name="inputicon.png" width="8" height="12"/>
-        <image name="logininputbg.png" width="302" height="90"/>
-        <image name="pass.png" width="19" height="19"/>
-        <image name="text.png" width="301" height="44"/>
-        <image name="wrong.png" width="19" height="19"/>
+        <image name="appbgarrow" width="33" height="12"/>
+        <image name="facebook" width="78" height="16"/>
+        <image name="forgotPass" width="12" height="13"/>
+        <image name="google" width="60" height="21"/>
+        <image name="inputicon" width="8" height="12"/>
+        <image name="logininputbg" width="302" height="90"/>
+        <image name="pass" width="19" height="19"/>
+        <image name="text" width="301" height="44"/>
+        <image name="wrong" width="19" height="19"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

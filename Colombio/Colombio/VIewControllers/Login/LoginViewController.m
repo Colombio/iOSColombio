@@ -55,10 +55,10 @@
     txtPassword.secureTextEntry = YES;
     
     //Provjeravanje tokena, ako je korisnik vec logiran u sustavu, proslijedi ga na home
-    timer = [NSTimer scheduledTimerWithTimeInterval:0.4 target:self selector:@selector(provjeriToken) userInfo:nil repeats:NO];
+    //timer = [NSTimer scheduledTimerWithTimeInterval:0.4 target:self selector:@selector(provjeriToken) userInfo:nil repeats:NO];
     
     //Testiranje lokalizacije
-    [txtPassword setPlaceholder:NSLocalizedString(@"T", nil)];
+    //[txtPassword setPlaceholder:NSLocalizedString(@"T", nil)];
     
     //Dodavanje sličica za swipe
     pageControlBeingUsed = NO;
