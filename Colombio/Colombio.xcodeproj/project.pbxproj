@@ -37,6 +37,7 @@
 		BBCF58E61A293F6700CE64B4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = BBCF58E81A293F6700CE64B4 /* Localizable.strings */; };
 		BBCF58ED1A29401700CE64B4 /* Localized.m in Sources */ = {isa = PBXBuildFile; fileRef = BBCF58EC1A29401700CE64B4 /* Localized.m */; };
 		BBCF58EF1A29412100CE64B4 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BBCF58EE1A29412100CE64B4 /* libsqlite3.dylib */; };
+		BBCF58F11A2AA2B000CE64B4 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBCF58F01A2AA2B000CE64B4 /* FacebookSDK.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -97,6 +98,7 @@
 		BBCF58EB1A29401700CE64B4 /* Localized.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Localized.h; sourceTree = "<group>"; };
 		BBCF58EC1A29401700CE64B4 /* Localized.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Localized.m; sourceTree = "<group>"; };
 		BBCF58EE1A29412100CE64B4 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		BBCF58F01A2AA2B000CE64B4 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../FacebookSDK.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +106,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BBCF58F11A2AA2B000CE64B4 /* FacebookSDK.framework in Frameworks */,
 				BBCF58EF1A29412100CE64B4 /* libsqlite3.dylib in Frameworks */,
 				BBB33B091A27E1AF008D0E26 /* MapKit.framework in Frameworks */,
 				BBB33B021A27E007008D0E26 /* Foundation.framework in Frameworks */,
@@ -197,6 +200,7 @@
 		BBB33AE81A27DF13008D0E26 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BBCF58F01A2AA2B000CE64B4 /* FacebookSDK.framework */,
 				583571F71A2A21DC00F6EA17 /* FacebookSDK.framework */,
 				BBCF58EE1A29412100CE64B4 /* libsqlite3.dylib */,
 				BBB33B011A27E007008D0E26 /* Foundation.framework */,
@@ -516,6 +520,9 @@
 					development/Colombio,
 					"$(PROJECT_DIR)/Colombio/ExternalFrameworks",
 					/Users/Colombio/Documents/FacebookSDK,
+					/Users/vsprem/Documents/Private,
+					stuff/Software,
+					development/Colombio,
 				);
 				GCC_PREFIX_HEADER = "colombio/colombio-Prefix.pch";
 				INFOPLIST_FILE = "Colombio/Colombio-Info.plist";
@@ -545,6 +552,9 @@
 					development/Colombio,
 					"$(PROJECT_DIR)/Colombio/ExternalFrameworks",
 					/Users/Colombio/Documents/FacebookSDK,
+					/Users/vsprem/Documents/Private,
+					stuff/Software,
+					development/Colombio,
 				);
 				GCC_PREFIX_HEADER = "colombio/colombio-Prefix.pch";
 				INFOPLIST_FILE = "Colombio/Colombio-Info.plist";
