@@ -8,16 +8,17 @@
 
 #import "LoginViewController.h"
 #import "AppDelegate.h"
-#import <FacebookSDK/FBSession.h>
 #import "Messages.h"
 #import "CryptoClass.h"
 #import "Validation.h"
+
+/*
 #import "Countries.h"
 #import "CreateAcc.h"
 #import "ForgotPassword.h"
 #import "GoogleLogin.h"
 #import "Home.h"
-
+*/
 
 @interface LoginViewController ()
 
@@ -210,6 +211,8 @@
     return NO;
 }
 
+
+/*
 //Provjeravanje da li je pohranjeni token još uvijek aktivan na serveru
 - (void)provjeriToken{
     @try {
@@ -274,6 +277,7 @@
     }
 }
 
+ 
 //Google login gumb
 - (IBAction)setGoogle:(id)sender{
     [txtPassword resignFirstResponder];
@@ -281,6 +285,7 @@
     GoogleLogin *gg = [[GoogleLogin alloc]init];
     [self presentViewController:gg animated:YES completion:nil];
 }
+*/
 
 //Ako je pritisnuo korisnik na background, makni tipkovnicu
 //odnosno scrollaj view
@@ -316,6 +321,7 @@
     [btnLogin setTitle:@"Log In" forState:UIControlStateNormal];
 }
 
+/*
 //Provjera ako se korisnik odlucio na normalni login
 -(void)checkLoginNormal{
     imgFailEmail.hidden=YES;
@@ -403,6 +409,7 @@
     timer = [NSTimer scheduledTimerWithTimeInterval:0 target:self selector:@selector(toggleLoginOff) userInfo:nil repeats:NO];
     timer=nil;
 }
+
 
 //Login gumb
 - (IBAction)setLogin:(id)sender {
@@ -538,5 +545,5 @@
 - (IBAction)changePage:(id)sender {
     pageControl.currentPage=lastPage;
 }
-
+*/
 @end

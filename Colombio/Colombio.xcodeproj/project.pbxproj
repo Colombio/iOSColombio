@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		583572071A2B4B7400F6EA17 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 583572041A2B4B7400F6EA17 /* LoginViewController.m */; };
+		583572081A2B4B7400F6EA17 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 583572051A2B4B7400F6EA17 /* LoginViewController.xib */; };
 		BBB33AC31A27D9EE008D0E26 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB33AC21A27D9EE008D0E26 /* main.m */; };
 		BBB33AC61A27D9EE008D0E26 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB33AC51A27D9EE008D0E26 /* AppDelegate.m */; };
 		BBB33ACE1A27D9EE008D0E26 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BBB33ACD1A27D9EE008D0E26 /* Images.xcassets */; };
@@ -51,6 +53,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		583572031A2B4B7400F6EA17 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		583572041A2B4B7400F6EA17 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		583572051A2B4B7400F6EA17 /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
 		BBB33ABD1A27D9EE008D0E26 /* Colombio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Colombio.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BBB33AC11A27D9EE008D0E26 /* Colombio-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Colombio-Info.plist"; sourceTree = "<group>"; };
 		BBB33AC21A27D9EE008D0E26 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -136,6 +141,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		583572011A2B4B7400F6EA17 /* ForgotPassword */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ForgotPassword;
+			sourceTree = "<group>";
+		};
+		583572021A2B4B7400F6EA17 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				583572031A2B4B7400F6EA17 /* LoginViewController.h */,
+				583572041A2B4B7400F6EA17 /* LoginViewController.m */,
+				583572051A2B4B7400F6EA17 /* LoginViewController.xib */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		583572061A2B4B7400F6EA17 /* SignUp */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = SignUp;
+			sourceTree = "<group>";
+		};
 		BBB33AB41A27D9EE008D0E26 = {
 			isa = PBXGroup;
 			children = (
@@ -255,16 +284,11 @@
 		BBCF58831A29357400CE64B4 /* VIewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				BBCF58871A29389100CE64B4 /* Login */,
+				583572011A2B4B7400F6EA17 /* ForgotPassword */,
+				583572021A2B4B7400F6EA17 /* Login */,
+				583572061A2B4B7400F6EA17 /* SignUp */,
 			);
 			path = VIewControllers;
-			sourceTree = "<group>";
-		};
-		BBCF58871A29389100CE64B4 /* Login */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Login;
 			sourceTree = "<group>";
 		};
 		BBCF58981A29395400CE64B4 /* Reachability */ = {
@@ -377,6 +401,7 @@
 			files = (
 				BBB33ACE1A27D9EE008D0E26 /* Images.xcassets in Resources */,
 				BBCF58E61A293F6700CE64B4 /* Localizable.strings in Resources */,
+				583572081A2B4B7400F6EA17 /* LoginViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -396,6 +421,7 @@
 			files = (
 				BBCF58A21A29395400CE64B4 /* Validation.m in Sources */,
 				BBCF58921A2938B400CE64B4 /* CustomField.m in Sources */,
+				583572071A2B4B7400F6EA17 /* LoginViewController.m in Sources */,
 				BBCF58A31A29395400CE64B4 /* YourInfo.m in Sources */,
 				BBB33AC61A27D9EE008D0E26 /* AppDelegate.m in Sources */,
 				BBCF58ED1A29401700CE64B4 /* Localized.m in Sources */,
