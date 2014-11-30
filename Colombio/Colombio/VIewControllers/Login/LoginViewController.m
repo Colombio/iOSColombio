@@ -11,7 +11,6 @@
 #import "Messages.h"
 #import "CryptoClass.h"
 #import "Validation.h"
-
 /*
 #import "Countries.h"
 #import "CreateAcc.h"
@@ -37,20 +36,17 @@
 @synthesize imgPassPassword;
 @synthesize btnLogin;
 @synthesize scrollView;
-@synthesize pageControl;
-@synthesize pageImages;
-@synthesize pageViews;
+@synthesize scrollableHeader;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    lastPage=0;
     //Skrivanje slicica da li su pogresni inputi
     imgPassEmail.hidden = YES;
     imgFailEmail.hidden = YES;
     imgPassPassword.hidden = YES;
     imgFailPassword.hidden = YES;
-    
+    NSLog(@"load");
     //Skrivanje inputa
     txtPassword.secureTextEntry = YES;
     
@@ -61,75 +57,10 @@
     //[txtPassword setPlaceholder:NSLocalizedString(@"T", nil)];
     
     //Dodavanje sličica za swipe
-    pageControlBeingUsed = NO;
-    int xPosition=0;
-    NSArray *colors;
+    scrollableHeader = [[ScrollableHeader alloc] init];
+    [scrollableHeader addHeader:self.view self:self headerScroll:scrollView viewScroll:scrollBox];
+    
     CGRect screenBounds = [[UIScreen mainScreen]bounds];
-    if(screenBounds.size.height == 568.0f){
-        colors = [NSArray arrayWithObjects:
-                  @"swipelogin1_iphone5@2x.png",
-                  @"swipelogin2_iphone5@2x.png",
-                  @"swipelogin3_iphone5@2x.png", nil];
-    }
-    else{
-        colors = [NSArray arrayWithObjects:
-                  @"loginswipe1.png",
-                  @"loginswipe2.png",
-                  @"loginswipe3.png", nil];
-    }
-    for (int i = 0; i < colors.count; i++) {
-        CGRect frame;
-        frame.origin.x = xPosition;
-        xPosition+=320;
-        float imageSize;
-        float headerOffset=0;
-        frame.origin.y = 0;
-        if(screenBounds.size.height == 568.0f){
-            frame.size.height = 267;
-            imageSize=267;
-        }
-        /*else{
-         frame.size.height = 215;
-         imageSize=215;
-         }*/
-        else{
-            frame.size.height = 267;
-            imageSize=187;
-            headerOffset=80;
-        }
-        frame.size.width=320;
-        
-        UIGraphicsBeginImageContextWithOptions(self.view.frame.size, NO, 0.f);
-        UIImage *targetImage = [UIImage imageNamed:[colors objectAtIndex:i]];
-        [targetImage drawInRect:CGRectMake(0.f, headerOffset, self.view.frame.size.width, imageSize)];
-        UIImage *resultImage = UIGraphicsGetImageFromCurrentImageContext();
-        UIGraphicsEndImageContext();
-        
-        UIView *subview = [[UIView alloc] initWithFrame:frame];
-        subview.backgroundColor = [UIColor colorWithPatternImage:resultImage];
-        [self.scrollView addSubview:subview];
-    }
-    
-    self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width * colors.count, self.scrollView.frame.size.height);
-    
-    self.pageControl.currentPage = 0;
-    self.pageControl.numberOfPages = colors.count;
-    
-    [pageControl removeFromSuperview];
-    
-    //Manualno pozicioniranje pageControl kontrole
-    if(screenBounds.size.height == 568.0f){
-        pageControl = [[UIPageControl alloc]initWithFrame:CGRectMake(141, 226, 38, 36)];
-    }
-    /*else{
-     pageControl = [[UIPageControl alloc]initWithFrame:CGRectMake(141, 157, 38, 36)];
-     }*/
-    else{
-        pageControl = [[UIPageControl alloc]initWithFrame:CGRectMake(141, 226, 38, 36)];
-    }
-    [pageControl setNumberOfPages:3];
-    [pageControl addTarget:self action:@selector(changePage:) forControlEvents:UIControlEventValueChanged];
-    [self.scrollBox addSubview:pageControl];
     timer=nil;
     [scrollBox setDelegate:self];
     if(screenBounds.size.height == 568.0f){
@@ -141,19 +72,6 @@
 //Da se zastopa skrol ako otide lijevo ili desno
 //Da se pomakne slicica ako se prijede polovicu
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    if(self.scrollView.contentOffset.x<0){
-        [self.scrollView setScrollEnabled:NO];
-        [self.scrollView setContentOffset:CGPointMake(0, 0)];
-        [self.scrollView setScrollEnabled:YES];
-        return;
-    }
-    
-    else if(self.scrollView.contentOffset.x>640){
-        [self.scrollView setScrollEnabled:NO];
-        [self.scrollView setContentOffset:CGPointMake(640, 0)];
-        [self.scrollView setScrollEnabled:YES];
-        return;
-    }
     
     CGRect screenBounds = [[UIScreen mainScreen]bounds];
     if(screenBounds.size.height != 568.0f){
@@ -180,13 +98,6 @@
         [self.scrollBox setScrollEnabled:YES];
         return;
     }
-    if (!pageControlBeingUsed) {
-        // Switch the indicator when more than 50% of the previous/next page is visible
-        CGFloat pageWidth = self.scrollView.frame.size.width;
-        int page = floor((self.scrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
-        self.pageControl.currentPage = page;
-        lastPage=pageControl.currentPage;
-    }
 }
 
 - (void)viewDidLayoutSubviews{
@@ -195,22 +106,13 @@
         scrollBox.contentSize = CGSizeMake(scrollBox.frame.size.width, scrollBox.frame.size.height+300);
         [self.scrollBox setContentOffset:CGPointMake(0, 80)];
     }
-    [scrollView setDelegate:self];
-}
-
-- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
-    pageControlBeingUsed = NO;
-}
-
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
-    pageControlBeingUsed = NO;
+    [scrollView setDelegate:scrollableHeader];
 }
 
 //Disable longtouch itd
 - (BOOL)canBecomeFirstResponder{
     return NO;
 }
-
 
 /*
 //Provjeravanje da li je pohranjeni token još uvijek aktivan na serveru
@@ -530,20 +432,7 @@
     timer=nil;
 }
 
-- (void)scrollHappened{
-    // Update the scroll view to he appropriate page
-    CGRect frame;
-    frame.origin.x = self.scrollView.frame.size.width * self.pageControl.currentPage;
-    lastPage=pageControl.currentPage;
-    frame.origin.x = 420;
-    frame.origin.y = 0;
-    frame.size = self.scrollView.frame.size;
-    [self.scrollView scrollRectToVisible:frame animated:YES];
-    pageControlBeingUsed = YES;
-}
 
-- (IBAction)changePage:(id)sender {
-    pageControl.currentPage=lastPage;
-}
+
 */
 @end

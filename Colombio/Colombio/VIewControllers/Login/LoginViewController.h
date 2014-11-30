@@ -8,14 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import "CustomField.h"
+#import "ScrollableHeader.h"
 
 @interface LoginViewController : UIViewController<UIScrollViewDelegate>
 {
     NSTimer *timer;
-	BOOL pageControlBeingUsed;
-    NSInteger lastPage;
 }
 
+@property(strong,nonatomic) ScrollableHeader *scrollableHeader;
 @property(nonatomic,strong) IBOutlet UIScrollView *scrollView;
 @property(strong,nonatomic) IBOutlet UIScrollView *scrollBox;
 @property(strong,nonatomic) IBOutlet CustomField *txtEmail;
@@ -27,12 +27,8 @@
 @property(strong,nonatomic) IBOutlet UIImageView *imgFailPassword;
 @property(strong,nonatomic) IBOutlet UIImageView *imgInputPassword;
 @property(strong,nonatomic) IBOutlet UIButton *btnLogin;
-@property(nonatomic,strong) IBOutlet UIPageControl *pageControl;
 
-@property(nonatomic, strong) NSArray *pageImages;
-@property(nonatomic, strong) NSMutableArray *pageViews;
 
-- (IBAction)changePage:(id)sender;
 - (IBAction)setSign:(id)sender;
 - (IBAction)setForgot:(id)sender;
 - (IBAction)setEmail:(id)sender;
