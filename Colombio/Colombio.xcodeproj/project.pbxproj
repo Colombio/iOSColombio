@@ -44,6 +44,7 @@
 		BBCF58EF1A29412100CE64B4 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BBCF58EE1A29412100CE64B4 /* libsqlite3.dylib */; };
 		BBCF58F11A2AA2B000CE64B4 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBCF58F01A2AA2B000CE64B4 /* FacebookSDK.framework */; };
 		BBCF58F51A2AA47F00CE64B4 /* UIView+XibAttributes.m in Sources */ = {isa = PBXBuildFile; fileRef = BBCF58F41A2AA47F00CE64B4 /* UIView+XibAttributes.m */; };
+		BBCF58F91A2BC5FE00CE64B4 /* FBUserSettingsViewResources.bundle in Frameworks */ = {isa = PBXBuildFile; fileRef = BBCF58F81A2BC5FE00CE64B4 /* FBUserSettingsViewResources.bundle */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -117,6 +118,7 @@
 		BBCF58F01A2AA2B000CE64B4 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../FacebookSDK.framework; sourceTree = "<group>"; };
 		BBCF58F31A2AA47F00CE64B4 /* UIView+XibAttributes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+XibAttributes.h"; sourceTree = "<group>"; };
 		BBCF58F41A2AA47F00CE64B4 /* UIView+XibAttributes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+XibAttributes.m"; sourceTree = "<group>"; };
+		BBCF58F81A2BC5FE00CE64B4 /* FBUserSettingsViewResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = FBUserSettingsViewResources.bundle; path = ../../FBUserSettingsViewResources.bundle; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,6 +127,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BBCF58F11A2AA2B000CE64B4 /* FacebookSDK.framework in Frameworks */,
+				BBCF58F91A2BC5FE00CE64B4 /* FBUserSettingsViewResources.bundle in Frameworks */,
 				BBCF58EF1A29412100CE64B4 /* libsqlite3.dylib in Frameworks */,
 				BBB33B091A27E1AF008D0E26 /* MapKit.framework in Frameworks */,
 				BBB33B021A27E007008D0E26 /* Foundation.framework in Frameworks */,
@@ -250,6 +253,7 @@
 		BBB33AE81A27DF13008D0E26 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BBCF58F81A2BC5FE00CE64B4 /* FBUserSettingsViewResources.bundle */,
 				BBCF58F01A2AA2B000CE64B4 /* FacebookSDK.framework */,
 				BBCF58EE1A29412100CE64B4 /* libsqlite3.dylib */,
 				BBB33B011A27E007008D0E26 /* Foundation.framework */,
@@ -591,6 +595,9 @@
 					/Users/vsprem/Documents/Private,
 					stuff/Software,
 					development/Colombio,
+					/Users/vsprem/Documents/Private,
+					stuff/Software,
+					development/Colombio,
 				);
 				GCC_PREFIX_HEADER = "colombio/colombio-Prefix.pch";
 				INFOPLIST_FILE = "Colombio/Colombio-Info.plist";
@@ -620,6 +627,9 @@
 					development/Colombio,
 					"$(PROJECT_DIR)/Colombio/ExternalFrameworks",
 					/Users/Colombio/Documents/FacebookSDK,
+					/Users/vsprem/Documents/Private,
+					stuff/Software,
+					development/Colombio,
 					/Users/vsprem/Documents/Private,
 					stuff/Software,
 					development/Colombio,
