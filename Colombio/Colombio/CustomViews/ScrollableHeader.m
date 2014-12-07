@@ -52,7 +52,7 @@
     for (int i = 0; i < colors.count; i++) {
         CGRect frame;
         frame.origin.x = xPosition;
-        xPosition+=320;
+        xPosition+=viewWidth;
         float imageSize;
         float headerOffset=0;
         frame.origin.y = 0;
@@ -67,7 +67,7 @@
             imageSize=187;
             headerOffset=80;
         }
-        frame.size.width=320;
+        frame.size.width=viewWidth;
         
         UIGraphicsBeginImageContextWithOptions(activeView.frame.size, NO, 0.f);
         UIImage *targetImage = [UIImage imageNamed:[colors objectAtIndex:i]];

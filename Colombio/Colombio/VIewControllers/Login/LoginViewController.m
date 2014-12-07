@@ -56,6 +56,10 @@
     //Testiranje lokalizacije
     //[txtPassword setPlaceholder:NSLocalizedString(@"T", nil)];
     
+    
+}
+
+- (void)viewDidAppear:(BOOL)animated{
     //Dodavanje sličica za swipe
     scrollableHeader = [[ScrollableHeader alloc] init];
     [scrollableHeader addHeader:self.view self:self headerScroll:scrollView viewScroll:scrollBox];
