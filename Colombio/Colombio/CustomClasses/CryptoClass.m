@@ -15,7 +15,7 @@
 {
     const char *cStr = [input UTF8String];
     unsigned char digest[16];
-    CC_MD5(cStr,strlen(cStr),digest);
+    CC_MD5(cStr,(CC_LONG)strlen(cStr),digest);
     NSMutableString *output = [NSMutableString stringWithCapacity:CC_MD5_DIGEST_LENGTH * 2];
     for(int i=0; i<CC_MD5_DIGEST_LENGTH;i++){
         [output appendFormat:@"%02x", digest[i]];
@@ -30,7 +30,7 @@
         'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v',
         'w', 'x', 'y', 'z', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '+', '/'
     };
-    int length = [data length];
+    int length = (int)[data length];
     unsigned long ixtext, lentext;
     long ctremaining;
     unsigned char input[3], output[4];
