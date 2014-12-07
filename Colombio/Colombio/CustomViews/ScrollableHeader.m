@@ -35,6 +35,7 @@
     CGRect screenBounds = [[UIScreen mainScreen]bounds];
     viewWidth = screenBounds.size.width;
     
+    //TODO iphone 6
     if(screenBounds.size.height == 568.0f){
         colors = [NSArray arrayWithObjects:
                   @"swipelogin1_iphone5@2x.png",
@@ -47,6 +48,7 @@
                   @"loginswipe2.png",
                   @"loginswipe3.png", nil];
     }
+    
     for (int i = 0; i < colors.count; i++) {
         CGRect frame;
         frame.origin.x = xPosition;
@@ -54,6 +56,8 @@
         float imageSize;
         float headerOffset=0;
         frame.origin.y = 0;
+        
+        //TODO iphone 6
         if(screenBounds.size.height == 568.0f){
             frame.size.height = 267;
             imageSize=267;
@@ -78,12 +82,8 @@
     
     _scrollView.contentSize = CGSizeMake(_scrollView.frame.size.width * colors.count, self._scrollView.frame.size.height);
     
-    pageControl.currentPage = 0;
-    pageControl.numberOfPages = colors.count;
-    
-    [pageControl removeFromSuperview];
-    
     //Manualno pozicioniranje pageControl kontrole
+    //TODO iphone 6
     if(screenBounds.size.height == 568.0f){
         pageControl = [[UIPageControl alloc]initWithFrame:CGRectMake(141, 226, 38, 36)];
     }
@@ -91,14 +91,13 @@
         pageControl = [[UIPageControl alloc]initWithFrame:CGRectMake(141, 226, 38, 36)];
     }
     [pageControl setNumberOfPages:3];
-    [pageControl addTarget:self action:@selector(changePage:) forControlEvents:UIControlEventValueChanged];
     [_scrollBox addSubview:pageControl];
     [_scrollView setDelegate:activeVC];
 }
 
+// Switch the indicator when more than 50% of the previous/next page is visible
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     if (!pageControlBeingUsed) {
-        // Switch the indicator when more than 50% of the previous/next page is visible
         CGFloat pageWidth = scrollView.frame.size.width;
         int page = floor((scrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
         pageControl.currentPage = page;
@@ -113,22 +112,6 @@
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
     pageControlBeingUsed = NO;
-}
-
-- (void)scrollHappened{
-    // Update the scroll view to he appropriate page
-}
-
-- (IBAction)changePage:(id)sender {
-    CGRect frame;
-    frame.origin.x = _scrollView.frame.size.width * pageControl.currentPage;
-    lastPage=pageControl.currentPage;
-    frame.origin.x = 420;
-    frame.origin.y = 0;
-    frame.size = _scrollView.frame.size;
-    [_scrollView scrollRectToVisible:frame animated:YES];
-    pageControlBeingUsed = YES;
-    pageControl.currentPage=lastPage;
 }
 
 @end

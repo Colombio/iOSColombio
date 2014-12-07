@@ -13,6 +13,10 @@
 		5835720E1A2B70C000F6EA17 /* ScrollableHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 5835720D1A2B70C000F6EA17 /* ScrollableHeader.m */; };
 		583572131A2B71B900F6EA17 /* ColombioServiceCommunicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 583572121A2B71B900F6EA17 /* ColombioServiceCommunicator.m */; };
 		583572191A2B72BB00F6EA17 /* Tools.m in Sources */ = {isa = PBXBuildFile; fileRef = 583572181A2B72BB00F6EA17 /* Tools.m */; };
+		587EC9971A2CF4C500901752 /* CreateAcc.m in Sources */ = {isa = PBXBuildFile; fileRef = 587EC9911A2CF4C500901752 /* CreateAcc.m */; };
+		587EC9981A2CF4C500901752 /* CreateAcc.xib in Resources */ = {isa = PBXBuildFile; fileRef = 587EC9921A2CF4C500901752 /* CreateAcc.xib */; };
+		587EC9991A2CF4C500901752 /* ForgotPassword.m in Sources */ = {isa = PBXBuildFile; fileRef = 587EC9951A2CF4C500901752 /* ForgotPassword.m */; };
+		587EC99A1A2CF4C500901752 /* ForgotPassword.xib in Resources */ = {isa = PBXBuildFile; fileRef = 587EC9961A2CF4C500901752 /* ForgotPassword.xib */; };
 		BBB33AC31A27D9EE008D0E26 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB33AC21A27D9EE008D0E26 /* main.m */; };
 		BBB33AC61A27D9EE008D0E26 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB33AC51A27D9EE008D0E26 /* AppDelegate.m */; };
 		BBB33ACE1A27D9EE008D0E26 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BBB33ACD1A27D9EE008D0E26 /* Images.xcassets */; };
@@ -69,6 +73,12 @@
 		583572121A2B71B900F6EA17 /* ColombioServiceCommunicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "\bColombioServiceCommunicator.m"; sourceTree = "<group>"; };
 		583572171A2B72BB00F6EA17 /* Tools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tools.h; sourceTree = "<group>"; };
 		583572181A2B72BB00F6EA17 /* Tools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tools.m; sourceTree = "<group>"; };
+		587EC9901A2CF4C500901752 /* CreateAcc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateAcc.h; sourceTree = "<group>"; };
+		587EC9911A2CF4C500901752 /* CreateAcc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateAcc.m; sourceTree = "<group>"; };
+		587EC9921A2CF4C500901752 /* CreateAcc.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreateAcc.xib; sourceTree = "<group>"; };
+		587EC9941A2CF4C500901752 /* ForgotPassword.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForgotPassword.h; sourceTree = "<group>"; };
+		587EC9951A2CF4C500901752 /* ForgotPassword.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgotPassword.m; sourceTree = "<group>"; };
+		587EC9961A2CF4C500901752 /* ForgotPassword.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ForgotPassword.xib; sourceTree = "<group>"; };
 		BBB33ABD1A27D9EE008D0E26 /* Colombio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Colombio.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BBB33AC11A27D9EE008D0E26 /* Colombio-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Colombio-Info.plist"; sourceTree = "<group>"; };
 		BBB33AC21A27D9EE008D0E26 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -156,13 +166,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		583572011A2B4B7400F6EA17 /* ForgotPassword */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ForgotPassword;
-			sourceTree = "<group>";
-		};
 		583572021A2B4B7400F6EA17 /* Login */ = {
 			isa = PBXGroup;
 			children = (
@@ -173,13 +176,6 @@
 			path = Login;
 			sourceTree = "<group>";
 		};
-		583572061A2B4B7400F6EA17 /* SignUp */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = SignUp;
-			sourceTree = "<group>";
-		};
 		583572101A2B71B900F6EA17 /* WebService */ = {
 			isa = PBXGroup;
 			children = (
@@ -187,6 +183,26 @@
 				583572121A2B71B900F6EA17 /* ColombioServiceCommunicator.m */,
 			);
 			path = WebService;
+			sourceTree = "<group>";
+		};
+		587EC98F1A2CF4C500901752 /* CreateAcc */ = {
+			isa = PBXGroup;
+			children = (
+				587EC9901A2CF4C500901752 /* CreateAcc.h */,
+				587EC9911A2CF4C500901752 /* CreateAcc.m */,
+				587EC9921A2CF4C500901752 /* CreateAcc.xib */,
+			);
+			path = CreateAcc;
+			sourceTree = "<group>";
+		};
+		587EC9931A2CF4C500901752 /* ForgotPassword */ = {
+			isa = PBXGroup;
+			children = (
+				587EC9941A2CF4C500901752 /* ForgotPassword.h */,
+				587EC9951A2CF4C500901752 /* ForgotPassword.m */,
+				587EC9961A2CF4C500901752 /* ForgotPassword.xib */,
+			);
+			path = ForgotPassword;
 			sourceTree = "<group>";
 		};
 		BBB33AB41A27D9EE008D0E26 = {
@@ -316,9 +332,9 @@
 		BBCF58831A29357400CE64B4 /* VIewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				583572011A2B4B7400F6EA17 /* ForgotPassword */,
+				587EC98F1A2CF4C500901752 /* CreateAcc */,
+				587EC9931A2CF4C500901752 /* ForgotPassword */,
 				583572021A2B4B7400F6EA17 /* Login */,
-				583572061A2B4B7400F6EA17 /* SignUp */,
 			);
 			path = VIewControllers;
 			sourceTree = "<group>";
@@ -432,6 +448,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				BBB33ACE1A27D9EE008D0E26 /* Images.xcassets in Resources */,
+				587EC9981A2CF4C500901752 /* CreateAcc.xib in Resources */,
+				587EC99A1A2CF4C500901752 /* ForgotPassword.xib in Resources */,
 				BBCF58E61A293F6700CE64B4 /* Localizable.strings in Resources */,
 				583572081A2B4B7400F6EA17 /* LoginViewController.xib in Resources */,
 			);
@@ -452,6 +470,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BBCF58A21A29395400CE64B4 /* Validation.m in Sources */,
+				587EC9971A2CF4C500901752 /* CreateAcc.m in Sources */,
 				BBCF58921A2938B400CE64B4 /* CustomField.m in Sources */,
 				583572071A2B4B7400F6EA17 /* LoginViewController.m in Sources */,
 				5835720B1A2B705100F6EA17 /* BottomNav.m in Sources */,
@@ -463,6 +482,7 @@
 				BBCF58A11A29395400CE64B4 /* Reachability.m in Sources */,
 				BBB33AC31A27D9EE008D0E26 /* main.m in Sources */,
 				583572191A2B72BB00F6EA17 /* Tools.m in Sources */,
+				587EC9991A2CF4C500901752 /* ForgotPassword.m in Sources */,
 				BBCF58DC1A293DD200CE64B4 /* Database.m in Sources */,
 				BBCF58911A2938B400CE64B4 /* CountriesCell.m in Sources */,
 				BBCF58A01A29395400CE64B4 /* Messages.m in Sources */,

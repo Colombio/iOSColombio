@@ -11,10 +11,10 @@
 #import "Messages.h"
 #import "CryptoClass.h"
 #import "Validation.h"
-/*
-#import "Countries.h"
 #import "CreateAcc.h"
 #import "ForgotPassword.h"
+/*
+#import "Countries.h"
 #import "GoogleLogin.h"
 #import "Home.h"
 */
@@ -322,20 +322,18 @@
     timer = [NSTimer scheduledTimerWithTimeInterval:0 target:self selector:@selector(toggleLoginOn) userInfo:nil repeats:NO];
     timer = [NSTimer scheduledTimerWithTimeInterval:0.2f target:self selector:@selector(checkLoginNormal) userInfo:nil repeats:NO];
 }
-
+*/
 //Kreiranje racuna
 - (IBAction)setSign:(id)sender {
     CreateAcc *createAccount = [[CreateAcc alloc]init];
     [self presentViewController:createAccount animated:YES completion:nil];
 }
-
 //Zaboravljena lozinka
 - (IBAction)setForgot:(id)sender {
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
-    ForgotPassword *log = (ForgotPassword*)[storyboard instantiateViewControllerWithIdentifier:@"forgot"];
-    [self presentViewController:log animated:YES completion:nil];
+    ForgotPassword *forgotPassword = [[ForgotPassword alloc]init];
+    [self presentViewController:forgotPassword animated:YES completion:nil];
 }
-
+/*
 //Kada korisnik stisne na email, scrollaj view
 - (IBAction)setEmail:(id)sender{
     imgInputEmail.hidden=YES;

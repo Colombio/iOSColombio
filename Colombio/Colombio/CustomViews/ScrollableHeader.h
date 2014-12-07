@@ -11,7 +11,6 @@
 @interface ScrollableHeader : NSObject<UIScrollViewDelegate>
 
 - (void)addHeader:(UIView *)view self:(UIViewController *)viewController headerScroll:(UIScrollView *)scrollView viewScroll:(UIScrollView *)scrollBox;
-- (IBAction)changePage:(id)sender;
 
 //Lokalno se sprema aktivni viewController kako bi mogao handlati navigaciju
 @property (strong,nonatomic) UIView *activeView;
