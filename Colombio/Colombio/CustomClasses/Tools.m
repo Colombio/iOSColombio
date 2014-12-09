@@ -11,33 +11,6 @@
 
 @implementation Tools
 
-+ (NSString*)getStringFromDate:(NSDate*)date{
-    NSDateFormatter *formatter=[[NSDateFormatter alloc]init];
-    [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-    return [formatter stringFromDate:date];
-}
-
-+ (NSDate*)getDateFromAPIString:(NSString*)date{
-    NSDateFormatter *formatter=[[NSDateFormatter alloc]init];
-    [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-    return [formatter dateFromString:date];
-}
-
-+ (NSDate*)getDateFromString:(NSString*)date{
-    NSDateFormatter *formatter=[[NSDateFormatter alloc]init];
-    [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ssZZZZ"];
-    return [formatter dateFromString:date];
-}
-
-+ (NSInteger)daysDifferenceBetween:(NSDate*)startDate And:(NSDate*)endDate{
-    NSCalendar *gregorianCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-    NSDateComponents *components = [gregorianCalendar components:NSDayCalendarUnit
-                                                        fromDate:startDate
-                                                          toDate:endDate
-                                                         options:0];
-    return [components day]+1;
-}
-
 + (NSInteger)getNumberOfNewDemands{
     NSMutableString *sql = [NSMutableString stringWithFormat:@"SELECT count(*) FROM newsdemandlist where isread = 0 AND end_timestamp >= '%@' AND status = 1",[NSDate date]];
     AppDelegate *appdelegate = [[UIApplication sharedApplication] delegate];

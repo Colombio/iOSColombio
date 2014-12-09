@@ -9,8 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "CustomField.h"
 #import "ScrollableHeader.h"
+#import "BackgroundViewController.h"
 
-@interface LoginViewController : UIViewController<UIScrollViewDelegate>
+@interface LoginViewController : BackgroundViewController<UIScrollViewDelegate>
 {
     NSTimer *timer;
 }

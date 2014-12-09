@@ -10,14 +10,16 @@
 		583572071A2B4B7400F6EA17 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 583572041A2B4B7400F6EA17 /* LoginViewController.m */; };
 		5835720B1A2B705100F6EA17 /* BottomNav.m in Sources */ = {isa = PBXBuildFile; fileRef = 5835720A1A2B705100F6EA17 /* BottomNav.m */; };
 		5835720E1A2B70C000F6EA17 /* ScrollableHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 5835720D1A2B70C000F6EA17 /* ScrollableHeader.m */; };
-		583572131A2B71B900F6EA17 /* ColombioServiceCommunicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 583572121A2B71B900F6EA17 /* ColombioServiceCommunicator.m */; };
 		583572191A2B72BB00F6EA17 /* Tools.m in Sources */ = {isa = PBXBuildFile; fileRef = 583572181A2B72BB00F6EA17 /* Tools.m */; };
-		587EC9971A2CF4C500901752 /* CreateAcc.m in Sources */ = {isa = PBXBuildFile; fileRef = 587EC9911A2CF4C500901752 /* CreateAcc.m */; };
-		587EC9981A2CF4C500901752 /* CreateAcc.xib in Resources */ = {isa = PBXBuildFile; fileRef = 587EC9921A2CF4C500901752 /* CreateAcc.xib */; };
-		587EC9991A2CF4C500901752 /* ForgotPassword.m in Sources */ = {isa = PBXBuildFile; fileRef = 587EC9951A2CF4C500901752 /* ForgotPassword.m */; };
-		587EC99A1A2CF4C500901752 /* ForgotPassword.xib in Resources */ = {isa = PBXBuildFile; fileRef = 587EC9961A2CF4C500901752 /* ForgotPassword.xib */; };
-		BBB0BFA61A3504750074B20C /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBB0BFA41A3504750074B20C /* FacebookSDK.framework */; };
-		BBB0BFA71A3504750074B20C /* FBUserSettingsViewResources.bundle in Frameworks */ = {isa = PBXBuildFile; fileRef = BBB0BFA51A3504750074B20C /* FBUserSettingsViewResources.bundle */; };
+		BBAE1F191A37B49E0008B772 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBB0BFA41A3504750074B20C /* FacebookSDK.framework */; };
+		BBAE1F1A1A37B49E0008B772 /* FBUserSettingsViewResources.bundle in Frameworks */ = {isa = PBXBuildFile; fileRef = BBB0BFA51A3504750074B20C /* FBUserSettingsViewResources.bundle */; };
+		BBAE1F1D1A37B51F0008B772 /* ColombioServiceCommunicator.m in Sources */ = {isa = PBXBuildFile; fileRef = BBAE1F1C1A37B51F0008B772 /* ColombioServiceCommunicator.m */; };
+		BBAE1F201A37B5A80008B772 /* NSDate+DateHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = BBAE1F1F1A37B5A80008B772 /* NSDate+DateHandler.m */; };
+		BBAE1F241A37B68E0008B772 /* ForgotPassword.m in Sources */ = {isa = PBXBuildFile; fileRef = BBAE1F221A37B68E0008B772 /* ForgotPassword.m */; };
+		BBAE1F251A37B68E0008B772 /* ForgotPassword.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBAE1F231A37B68E0008B772 /* ForgotPassword.xib */; };
+		BBAE1F291A37B6980008B772 /* CreateAcc.m in Sources */ = {isa = PBXBuildFile; fileRef = BBAE1F271A37B6980008B772 /* CreateAcc.m */; };
+		BBAE1F2A1A37B6980008B772 /* CreateAcc.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBAE1F281A37B6980008B772 /* CreateAcc.xib */; };
+		BBAE1F2D1A37B71B0008B772 /* BackgroundViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBAE1F2C1A37B71B0008B772 /* BackgroundViewController.m */; };
 		BBB0BFA91A350F640074B20C /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBB0BFA81A350F640074B20C /* LoginViewController.xib */; };
 		BBB33AC31A27D9EE008D0E26 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB33AC21A27D9EE008D0E26 /* main.m */; };
 		BBB33AC61A27D9EE008D0E26 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB33AC51A27D9EE008D0E26 /* AppDelegate.m */; };
@@ -68,16 +70,21 @@
 		5835720A1A2B705100F6EA17 /* BottomNav.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "\bBottomNav.m"; sourceTree = "<group>"; };
 		5835720C1A2B70C000F6EA17 /* ScrollableHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollableHeader.h; sourceTree = "<group>"; };
 		5835720D1A2B70C000F6EA17 /* ScrollableHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollableHeader.m; sourceTree = "<group>"; };
-		583572111A2B71B900F6EA17 /* ColombioServiceCommunicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "\bColombioServiceCommunicator.h"; sourceTree = "<group>"; };
-		583572121A2B71B900F6EA17 /* ColombioServiceCommunicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "\bColombioServiceCommunicator.m"; sourceTree = "<group>"; };
 		583572171A2B72BB00F6EA17 /* Tools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tools.h; sourceTree = "<group>"; };
 		583572181A2B72BB00F6EA17 /* Tools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tools.m; sourceTree = "<group>"; };
-		587EC9901A2CF4C500901752 /* CreateAcc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateAcc.h; sourceTree = "<group>"; };
-		587EC9911A2CF4C500901752 /* CreateAcc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateAcc.m; sourceTree = "<group>"; };
-		587EC9921A2CF4C500901752 /* CreateAcc.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreateAcc.xib; sourceTree = "<group>"; };
-		587EC9941A2CF4C500901752 /* ForgotPassword.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForgotPassword.h; sourceTree = "<group>"; };
-		587EC9951A2CF4C500901752 /* ForgotPassword.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgotPassword.m; sourceTree = "<group>"; };
-		587EC9961A2CF4C500901752 /* ForgotPassword.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ForgotPassword.xib; sourceTree = "<group>"; };
+		BBAE1F161A37B3850008B772 /* UIView+InlineFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+InlineFunctions.h"; sourceTree = "<group>"; };
+		BBAE1F1B1A37B51E0008B772 /* ColombioServiceCommunicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColombioServiceCommunicator.h; sourceTree = "<group>"; };
+		BBAE1F1C1A37B51F0008B772 /* ColombioServiceCommunicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColombioServiceCommunicator.m; sourceTree = "<group>"; };
+		BBAE1F1E1A37B5A80008B772 /* NSDate+DateHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+DateHandler.h"; sourceTree = "<group>"; };
+		BBAE1F1F1A37B5A80008B772 /* NSDate+DateHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+DateHandler.m"; sourceTree = "<group>"; };
+		BBAE1F211A37B68E0008B772 /* ForgotPassword.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForgotPassword.h; sourceTree = "<group>"; };
+		BBAE1F221A37B68E0008B772 /* ForgotPassword.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgotPassword.m; sourceTree = "<group>"; };
+		BBAE1F231A37B68E0008B772 /* ForgotPassword.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ForgotPassword.xib; sourceTree = "<group>"; };
+		BBAE1F261A37B6980008B772 /* CreateAcc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateAcc.h; sourceTree = "<group>"; };
+		BBAE1F271A37B6980008B772 /* CreateAcc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateAcc.m; sourceTree = "<group>"; };
+		BBAE1F281A37B6980008B772 /* CreateAcc.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreateAcc.xib; sourceTree = "<group>"; };
+		BBAE1F2B1A37B71B0008B772 /* BackgroundViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackgroundViewController.h; sourceTree = "<group>"; };
+		BBAE1F2C1A37B71B0008B772 /* BackgroundViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackgroundViewController.m; sourceTree = "<group>"; };
 		BBB0BFA41A3504750074B20C /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../FacebookSDK.framework; sourceTree = "<group>"; };
 		BBB0BFA51A3504750074B20C /* FBUserSettingsViewResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = FBUserSettingsViewResources.bundle; path = ../FBUserSettingsViewResources.bundle; sourceTree = "<group>"; };
 		BBB0BFA81A350F640074B20C /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
@@ -127,10 +134,8 @@
 		BBCF58EB1A29401700CE64B4 /* Localized.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Localized.h; sourceTree = "<group>"; };
 		BBCF58EC1A29401700CE64B4 /* Localized.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Localized.m; sourceTree = "<group>"; };
 		BBCF58EE1A29412100CE64B4 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
-		BBCF58F01A2AA2B000CE64B4 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../FacebookSDK.framework; sourceTree = "<group>"; };
 		BBCF58F31A2AA47F00CE64B4 /* UIView+XibAttributes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+XibAttributes.h"; sourceTree = "<group>"; };
 		BBCF58F41A2AA47F00CE64B4 /* UIView+XibAttributes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+XibAttributes.m"; sourceTree = "<group>"; };
-		BBCF58F81A2BC5FE00CE64B4 /* FBUserSettingsViewResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = FBUserSettingsViewResources.bundle; path = ../../FBUserSettingsViewResources.bundle; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,8 +143,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BBB0BFA61A3504750074B20C /* FacebookSDK.framework in Frameworks */,
-				BBB0BFA71A3504750074B20C /* FBUserSettingsViewResources.bundle in Frameworks */,
+				BBAE1F191A37B49E0008B772 /* FacebookSDK.framework in Frameworks */,
+				BBAE1F1A1A37B49E0008B772 /* FBUserSettingsViewResources.bundle in Frameworks */,
 				BBCF58EF1A29412100CE64B4 /* libsqlite3.dylib in Frameworks */,
 				BBB33B091A27E1AF008D0E26 /* MapKit.framework in Frameworks */,
 				BBB33B021A27E007008D0E26 /* Foundation.framework in Frameworks */,
@@ -171,6 +176,12 @@
 		583572021A2B4B7400F6EA17 /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				BBAE1F261A37B6980008B772 /* CreateAcc.h */,
+				BBAE1F271A37B6980008B772 /* CreateAcc.m */,
+				BBAE1F281A37B6980008B772 /* CreateAcc.xib */,
+				BBAE1F211A37B68E0008B772 /* ForgotPassword.h */,
+				BBAE1F221A37B68E0008B772 /* ForgotPassword.m */,
+				BBAE1F231A37B68E0008B772 /* ForgotPassword.xib */,
 				583572031A2B4B7400F6EA17 /* LoginViewController.h */,
 				583572041A2B4B7400F6EA17 /* LoginViewController.m */,
 				BBB0BFA81A350F640074B20C /* LoginViewController.xib */,
@@ -181,30 +192,10 @@
 		583572101A2B71B900F6EA17 /* WebService */ = {
 			isa = PBXGroup;
 			children = (
-				583572111A2B71B900F6EA17 /* ColombioServiceCommunicator.h */,
-				583572121A2B71B900F6EA17 /* ColombioServiceCommunicator.m */,
+				BBAE1F1B1A37B51E0008B772 /* ColombioServiceCommunicator.h */,
+				BBAE1F1C1A37B51F0008B772 /* ColombioServiceCommunicator.m */,
 			);
 			path = WebService;
-			sourceTree = "<group>";
-		};
-		587EC98F1A2CF4C500901752 /* CreateAcc */ = {
-			isa = PBXGroup;
-			children = (
-				587EC9901A2CF4C500901752 /* CreateAcc.h */,
-				587EC9911A2CF4C500901752 /* CreateAcc.m */,
-				587EC9921A2CF4C500901752 /* CreateAcc.xib */,
-			);
-			path = CreateAcc;
-			sourceTree = "<group>";
-		};
-		587EC9931A2CF4C500901752 /* ForgotPassword */ = {
-			isa = PBXGroup;
-			children = (
-				587EC9941A2CF4C500901752 /* ForgotPassword.h */,
-				587EC9951A2CF4C500901752 /* ForgotPassword.m */,
-				587EC9961A2CF4C500901752 /* ForgotPassword.xib */,
-			);
-			path = ForgotPassword;
 			sourceTree = "<group>";
 		};
 		BBB33AB41A27D9EE008D0E26 = {
@@ -273,8 +264,6 @@
 			children = (
 				BBB0BFA41A3504750074B20C /* FacebookSDK.framework */,
 				BBB0BFA51A3504750074B20C /* FBUserSettingsViewResources.bundle */,
-				BBCF58F81A2BC5FE00CE64B4 /* FBUserSettingsViewResources.bundle */,
-				BBCF58F01A2AA2B000CE64B4 /* FacebookSDK.framework */,
 				BBCF58EE1A29412100CE64B4 /* libsqlite3.dylib */,
 				BBB33B011A27E007008D0E26 /* Foundation.framework */,
 				BBB33AFF1A27DFF9008D0E26 /* UIKit.framework */,
@@ -336,9 +325,9 @@
 		BBCF58831A29357400CE64B4 /* VIewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				587EC98F1A2CF4C500901752 /* CreateAcc */,
-				587EC9931A2CF4C500901752 /* ForgotPassword */,
 				583572021A2B4B7400F6EA17 /* Login */,
+				BBAE1F2B1A37B71B0008B772 /* BackgroundViewController.h */,
+				BBAE1F2C1A37B71B0008B772 /* BackgroundViewController.m */,
 			);
 			path = VIewControllers;
 			sourceTree = "<group>";
@@ -366,6 +355,9 @@
 			children = (
 				BBCF58F31A2AA47F00CE64B4 /* UIView+XibAttributes.h */,
 				BBCF58F41A2AA47F00CE64B4 /* UIView+XibAttributes.m */,
+				BBAE1F161A37B3850008B772 /* UIView+InlineFunctions.h */,
+				BBAE1F1E1A37B5A80008B772 /* NSDate+DateHandler.h */,
+				BBAE1F1F1A37B5A80008B772 /* NSDate+DateHandler.m */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -453,9 +445,9 @@
 			files = (
 				BBB0BFA91A350F640074B20C /* LoginViewController.xib in Resources */,
 				BBB33ACE1A27D9EE008D0E26 /* Images.xcassets in Resources */,
-				587EC9981A2CF4C500901752 /* CreateAcc.xib in Resources */,
-				587EC99A1A2CF4C500901752 /* ForgotPassword.xib in Resources */,
+				BBAE1F2A1A37B6980008B772 /* CreateAcc.xib in Resources */,
 				BBCF58E61A293F6700CE64B4 /* Localizable.strings in Resources */,
+				BBAE1F251A37B68E0008B772 /* ForgotPassword.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -474,19 +466,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				BBCF58A21A29395400CE64B4 /* Validation.m in Sources */,
-				587EC9971A2CF4C500901752 /* CreateAcc.m in Sources */,
+				BBAE1F201A37B5A80008B772 /* NSDate+DateHandler.m in Sources */,
+				BBAE1F241A37B68E0008B772 /* ForgotPassword.m in Sources */,
+				BBAE1F291A37B6980008B772 /* CreateAcc.m in Sources */,
 				BBCF58921A2938B400CE64B4 /* CustomField.m in Sources */,
 				583572071A2B4B7400F6EA17 /* LoginViewController.m in Sources */,
 				5835720B1A2B705100F6EA17 /* BottomNav.m in Sources */,
+				BBAE1F2D1A37B71B0008B772 /* BackgroundViewController.m in Sources */,
 				BBCF58A31A29395400CE64B4 /* YourInfo.m in Sources */,
+				BBAE1F1D1A37B51F0008B772 /* ColombioServiceCommunicator.m in Sources */,
 				BBB33AC61A27D9EE008D0E26 /* AppDelegate.m in Sources */,
 				5835720E1A2B70C000F6EA17 /* ScrollableHeader.m in Sources */,
-				583572131A2B71B900F6EA17 /* ColombioServiceCommunicator.m in Sources */,
 				BBCF58ED1A29401700CE64B4 /* Localized.m in Sources */,
 				BBCF58A11A29395400CE64B4 /* Reachability.m in Sources */,
 				BBB33AC31A27D9EE008D0E26 /* main.m in Sources */,
 				583572191A2B72BB00F6EA17 /* Tools.m in Sources */,
-				587EC9991A2CF4C500901752 /* ForgotPassword.m in Sources */,
 				BBCF58DC1A293DD200CE64B4 /* Database.m in Sources */,
 				BBCF58911A2938B400CE64B4 /* CountriesCell.m in Sources */,
 				BBCF58A01A29395400CE64B4 /* Messages.m in Sources */,
@@ -625,6 +619,9 @@
 					/Users/vsprem/Documents/Private,
 					stuff/Software,
 					development/Colombio/iOSColombio,
+					/Users/vsprem/Documents/Private,
+					stuff/Software,
+					development/Colombio/iOSColombio,
 				);
 				GCC_PREFIX_HEADER = "colombio/colombio-Prefix.pch";
 				INFOPLIST_FILE = "Colombio/Colombio-Info.plist";
@@ -660,6 +657,9 @@
 					/Users/vsprem/Documents/Private,
 					stuff/Software,
 					development/Colombio,
+					/Users/vsprem/Documents/Private,
+					stuff/Software,
+					development/Colombio/iOSColombio,
 					/Users/vsprem/Documents/Private,
 					stuff/Software,
 					development/Colombio/iOSColombio,

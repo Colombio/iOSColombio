@@ -16,4 +16,5 @@
     #import "Constants.h"
     #import "Localized.h"
     #import "UIView+XibAttributes.h"
+    #import "NSDate+DateHandler.h"
 #endif

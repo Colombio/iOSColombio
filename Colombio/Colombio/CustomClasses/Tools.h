@@ -10,11 +10,6 @@
 
 @interface Tools : NSObject
 
-+ (NSString*)getStringFromDate:(NSDate*)date;
-+ (NSDate*)getDateFromAPIString:(NSString*)date;
-+ (NSDate*)getDateFromString:(NSString*)date;
-+ (NSInteger)daysDifferenceBetween:(NSDate*)startDate And:(NSDate*)endDate;
-
 + (NSInteger)getNumberOfNewDemands;
 + (UILabel*)getBadgeObject:(long )count frame:(CGRect)frame;
 

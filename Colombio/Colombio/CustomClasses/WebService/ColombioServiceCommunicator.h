@@ -1,8 +1,8 @@
 //
-//  ColombioServiceCommunicator.h
-//  colombio
+//  ColombioServiceCommunicator.h
+//  Colombio
 //
-//  Created by Vlatko Šprem on 31/10/14.
+//  Created by Vlatko Šprem on 09/12/14.
 //  Copyright (c) 2014 Colombio. All rights reserved.
 //
 
@@ -16,7 +16,7 @@
 
 @end
 
-@interface _ColombioServiceCommunicator : NSObject
+@interface ColombioServiceCommunicator : NSObject
 {
     CLLocationManager *locationManager;
 }
@@ -27,3 +27,4 @@
 +(id)sharedManager;
 //- (void)fetchNewsDemands;
 @end
+

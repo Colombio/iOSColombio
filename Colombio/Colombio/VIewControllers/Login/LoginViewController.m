@@ -55,8 +55,6 @@
     
     //Testiranje lokalizacije
     //[txtPassword setPlaceholder:NSLocalizedString(@"T", nil)];
-    
-    
 }
 
 - (void)viewDidAppear:(BOOL)animated{
