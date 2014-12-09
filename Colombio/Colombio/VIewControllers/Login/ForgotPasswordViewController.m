@@ -10,17 +10,17 @@
 //  TODO Provjeriti duplikat na web servisu i ispraviti UI sukladno tome,
 //  Chekirati za error messagese
 
-#import "ForgotPassword.h"
-#import "CreateAcc.h"
+#import "ForgotPasswordViewController.h"
+#import "CreateAccViewController.h"
 #import "LoginViewController.h"
 #import "Messages.h"
 #import "Validation.h"
 
-@interface ForgotPassword ()
+@interface ForgotPasswordViewController ()
 
 @end
 
-@implementation ForgotPassword
+@implementation ForgotPasswordViewController
 
 @synthesize emailPass;
 @synthesize emailWrong;
@@ -163,7 +163,7 @@
 
 //Ako se klikne na sign in gumb
 - (IBAction)setSignIn:(id)sender {
-    CreateAcc *createAcc = [[CreateAcc alloc]init];
+    CreateAccViewController *createAcc = [[CreateAccViewController alloc]init];
     [self presentViewController:createAcc animated:YES completion:nil];
 }
 

@@ -11,8 +11,8 @@
 #import "Messages.h"
 #import "CryptoClass.h"
 #import "Validation.h"
-#import "CreateAcc.h"
-#import "ForgotPassword.h"
+#import "CreateAccViewController.h"
+#import "ForgotPasswordViewController.h"
 /*
 #import "Countries.h"
 #import "GoogleLogin.h"
@@ -327,12 +327,12 @@
 */
 //Kreiranje racuna
 - (IBAction)setSign:(id)sender {
-    CreateAcc *createAccount = [[CreateAcc alloc]init];
+    CreateAccViewController *createAccount = [[CreateAccViewController alloc]init];
     [self presentViewController:createAccount animated:YES completion:nil];
 }
 //Zaboravljena lozinka
 - (IBAction)setForgot:(id)sender {
-    ForgotPassword *forgotPassword = [[ForgotPassword alloc]init];
+    ForgotPasswordViewController *forgotPassword = [[ForgotPasswordViewController alloc]init];
     [self presentViewController:forgotPassword animated:YES completion:nil];
 }
 /*

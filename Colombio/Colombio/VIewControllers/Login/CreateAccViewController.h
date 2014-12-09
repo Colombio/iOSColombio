@@ -10,7 +10,7 @@
 #import "CustomField.h"
 #import "ScrollableHeader.h"
 
-@interface CreateAcc : UIViewController<UITableViewDelegate, UIScrollViewDelegate>{
+@interface CreateAccViewController : UIViewController<UITableViewDelegate, UIScrollViewDelegate>{
     IBOutlet UIImageView *userPass;
     IBOutlet UIImageView *userWrong;
     IBOutlet UIImageView *emailPass;

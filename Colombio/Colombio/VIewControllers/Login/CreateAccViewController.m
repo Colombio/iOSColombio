@@ -9,16 +9,16 @@
 //
 //  TODO ispraviti odredene dijelove zbog web servisa
 
-#import "CreateAcc.h"
+#import "CreateAccViewController.h"
 #import "LoginViewController.h"
 #import "Messages.h"
 #import "Validation.h"
 
-@interface CreateAcc ()
+@interface CreateAccViewController ()
 
 @end
 
-@implementation CreateAcc
+@implementation CreateAccViewController
 
 @synthesize userPass;
 @synthesize userWrong;

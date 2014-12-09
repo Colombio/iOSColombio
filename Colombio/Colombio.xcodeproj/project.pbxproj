@@ -15,10 +15,10 @@
 		BBAE1F1A1A37B49E0008B772 /* FBUserSettingsViewResources.bundle in Frameworks */ = {isa = PBXBuildFile; fileRef = BBB0BFA51A3504750074B20C /* FBUserSettingsViewResources.bundle */; };
 		BBAE1F1D1A37B51F0008B772 /* ColombioServiceCommunicator.m in Sources */ = {isa = PBXBuildFile; fileRef = BBAE1F1C1A37B51F0008B772 /* ColombioServiceCommunicator.m */; };
 		BBAE1F201A37B5A80008B772 /* NSDate+DateHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = BBAE1F1F1A37B5A80008B772 /* NSDate+DateHandler.m */; };
-		BBAE1F241A37B68E0008B772 /* ForgotPassword.m in Sources */ = {isa = PBXBuildFile; fileRef = BBAE1F221A37B68E0008B772 /* ForgotPassword.m */; };
-		BBAE1F251A37B68E0008B772 /* ForgotPassword.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBAE1F231A37B68E0008B772 /* ForgotPassword.xib */; };
-		BBAE1F291A37B6980008B772 /* CreateAcc.m in Sources */ = {isa = PBXBuildFile; fileRef = BBAE1F271A37B6980008B772 /* CreateAcc.m */; };
-		BBAE1F2A1A37B6980008B772 /* CreateAcc.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBAE1F281A37B6980008B772 /* CreateAcc.xib */; };
+		BBAE1F241A37B68E0008B772 /* ForgotPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBAE1F221A37B68E0008B772 /* ForgotPasswordViewController.m */; };
+		BBAE1F251A37B68E0008B772 /* ForgotPasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBAE1F231A37B68E0008B772 /* ForgotPasswordViewController.xib */; };
+		BBAE1F291A37B6980008B772 /* CreateAccViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBAE1F271A37B6980008B772 /* CreateAccViewController.m */; };
+		BBAE1F2A1A37B6980008B772 /* CreateAccViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBAE1F281A37B6980008B772 /* CreateAccViewController.xib */; };
 		BBAE1F2D1A37B71B0008B772 /* BackgroundViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBAE1F2C1A37B71B0008B772 /* BackgroundViewController.m */; };
 		BBB0BFA91A350F640074B20C /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBB0BFA81A350F640074B20C /* LoginViewController.xib */; };
 		BBB33AC31A27D9EE008D0E26 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB33AC21A27D9EE008D0E26 /* main.m */; };
@@ -77,12 +77,12 @@
 		BBAE1F1C1A37B51F0008B772 /* ColombioServiceCommunicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColombioServiceCommunicator.m; sourceTree = "<group>"; };
 		BBAE1F1E1A37B5A80008B772 /* NSDate+DateHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+DateHandler.h"; sourceTree = "<group>"; };
 		BBAE1F1F1A37B5A80008B772 /* NSDate+DateHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+DateHandler.m"; sourceTree = "<group>"; };
-		BBAE1F211A37B68E0008B772 /* ForgotPassword.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForgotPassword.h; sourceTree = "<group>"; };
-		BBAE1F221A37B68E0008B772 /* ForgotPassword.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgotPassword.m; sourceTree = "<group>"; };
-		BBAE1F231A37B68E0008B772 /* ForgotPassword.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ForgotPassword.xib; sourceTree = "<group>"; };
-		BBAE1F261A37B6980008B772 /* CreateAcc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateAcc.h; sourceTree = "<group>"; };
-		BBAE1F271A37B6980008B772 /* CreateAcc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateAcc.m; sourceTree = "<group>"; };
-		BBAE1F281A37B6980008B772 /* CreateAcc.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreateAcc.xib; sourceTree = "<group>"; };
+		BBAE1F211A37B68E0008B772 /* ForgotPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForgotPasswordViewController.h; sourceTree = "<group>"; };
+		BBAE1F221A37B68E0008B772 /* ForgotPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgotPasswordViewController.m; sourceTree = "<group>"; };
+		BBAE1F231A37B68E0008B772 /* ForgotPasswordViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ForgotPasswordViewController.xib; sourceTree = "<group>"; };
+		BBAE1F261A37B6980008B772 /* CreateAccViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateAccViewController.h; sourceTree = "<group>"; };
+		BBAE1F271A37B6980008B772 /* CreateAccViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateAccViewController.m; sourceTree = "<group>"; };
+		BBAE1F281A37B6980008B772 /* CreateAccViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreateAccViewController.xib; sourceTree = "<group>"; };
 		BBAE1F2B1A37B71B0008B772 /* BackgroundViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackgroundViewController.h; sourceTree = "<group>"; };
 		BBAE1F2C1A37B71B0008B772 /* BackgroundViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackgroundViewController.m; sourceTree = "<group>"; };
 		BBB0BFA41A3504750074B20C /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../FacebookSDK.framework; sourceTree = "<group>"; };
@@ -176,12 +176,12 @@
 		583572021A2B4B7400F6EA17 /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				BBAE1F261A37B6980008B772 /* CreateAcc.h */,
-				BBAE1F271A37B6980008B772 /* CreateAcc.m */,
-				BBAE1F281A37B6980008B772 /* CreateAcc.xib */,
-				BBAE1F211A37B68E0008B772 /* ForgotPassword.h */,
-				BBAE1F221A37B68E0008B772 /* ForgotPassword.m */,
-				BBAE1F231A37B68E0008B772 /* ForgotPassword.xib */,
+				BBAE1F261A37B6980008B772 /* CreateAccViewController.h */,
+				BBAE1F271A37B6980008B772 /* CreateAccViewController.m */,
+				BBAE1F281A37B6980008B772 /* CreateAccViewController.xib */,
+				BBAE1F211A37B68E0008B772 /* ForgotPasswordViewController.h */,
+				BBAE1F221A37B68E0008B772 /* ForgotPasswordViewController.m */,
+				BBAE1F231A37B68E0008B772 /* ForgotPasswordViewController.xib */,
 				583572031A2B4B7400F6EA17 /* LoginViewController.h */,
 				583572041A2B4B7400F6EA17 /* LoginViewController.m */,
 				BBB0BFA81A350F640074B20C /* LoginViewController.xib */,
@@ -445,9 +445,9 @@
 			files = (
 				BBB0BFA91A350F640074B20C /* LoginViewController.xib in Resources */,
 				BBB33ACE1A27D9EE008D0E26 /* Images.xcassets in Resources */,
-				BBAE1F2A1A37B6980008B772 /* CreateAcc.xib in Resources */,
+				BBAE1F2A1A37B6980008B772 /* CreateAccViewController.xib in Resources */,
 				BBCF58E61A293F6700CE64B4 /* Localizable.strings in Resources */,
-				BBAE1F251A37B68E0008B772 /* ForgotPassword.xib in Resources */,
+				BBAE1F251A37B68E0008B772 /* ForgotPasswordViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -467,8 +467,8 @@
 			files = (
 				BBCF58A21A29395400CE64B4 /* Validation.m in Sources */,
 				BBAE1F201A37B5A80008B772 /* NSDate+DateHandler.m in Sources */,
-				BBAE1F241A37B68E0008B772 /* ForgotPassword.m in Sources */,
-				BBAE1F291A37B6980008B772 /* CreateAcc.m in Sources */,
+				BBAE1F241A37B68E0008B772 /* ForgotPasswordViewController.m in Sources */,
+				BBAE1F291A37B6980008B772 /* CreateAccViewController.m in Sources */,
 				BBCF58921A2938B400CE64B4 /* CustomField.m in Sources */,
 				583572071A2B4B7400F6EA17 /* LoginViewController.m in Sources */,
 				5835720B1A2B705100F6EA17 /* BottomNav.m in Sources */,

@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "ScrollableHeader.h"
 
-@interface ForgotPassword : UIViewController<UIScrollViewDelegate,UITabBarDelegate>{
+@interface ForgotPasswordViewController : UIViewController<UIScrollViewDelegate,UITabBarDelegate>{
     
     IBOutlet UIImageView *emailPass;
     IBOutlet UIImageView *emailWrong;
