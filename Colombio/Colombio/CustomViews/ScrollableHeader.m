@@ -82,17 +82,11 @@
     
     _scrollView.contentSize = CGSizeMake(_scrollView.frame.size.width * colors.count, self._scrollView.frame.size.height);
     
-    //Manualno pozicioniranje pageControl kontrole
-    //TODO iphone 6
-    if(screenBounds.size.height == 568.0f){
-        pageControl = [[UIPageControl alloc]initWithFrame:CGRectMake(141, 226, 38, 36)];
-    }
-    else{
-        pageControl = [[UIPageControl alloc]initWithFrame:CGRectMake(141, 226, 38, 36)];
-    }
+    pageControl = [[UIPageControl alloc]initWithFrame:CGRectMake((activeView.frame.size.width/2) - (pageControl.frame.size.width/2), 226, pageControl.frame.size.width, 36)];
+    
     [pageControl setNumberOfPages:3];
     [_scrollBox addSubview:pageControl];
-    [_scrollView setDelegate:activeVC];
+    [_scrollView setDelegate:self];
 }
 
 // Switch the indicator when more than 50% of the previous/next page is visible
