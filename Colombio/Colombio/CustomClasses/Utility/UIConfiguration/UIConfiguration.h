@@ -8,8 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-static NSString *
-
 @interface UIConfiguration : NSObject
 
 + (UIConfiguration *)sharedInstance;

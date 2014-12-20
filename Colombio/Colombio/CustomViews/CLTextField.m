@@ -72,7 +72,7 @@
     if (_isNumber && ![Validation isNumber:string]) {
         return NO;
     }
-    return TRUE;
+    return YES;
 }
 
 
