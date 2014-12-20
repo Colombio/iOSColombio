@@ -11,8 +11,6 @@
 		5835720B1A2B705100F6EA17 /* BottomNav.m in Sources */ = {isa = PBXBuildFile; fileRef = 5835720A1A2B705100F6EA17 /* BottomNav.m */; };
 		5835720E1A2B70C000F6EA17 /* ScrollableHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 5835720D1A2B70C000F6EA17 /* ScrollableHeader.m */; };
 		583572191A2B72BB00F6EA17 /* Tools.m in Sources */ = {isa = PBXBuildFile; fileRef = 583572181A2B72BB00F6EA17 /* Tools.m */; };
-		BBAE1F191A37B49E0008B772 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBB0BFA41A3504750074B20C /* FacebookSDK.framework */; };
-		BBAE1F1A1A37B49E0008B772 /* FBUserSettingsViewResources.bundle in Frameworks */ = {isa = PBXBuildFile; fileRef = BBB0BFA51A3504750074B20C /* FBUserSettingsViewResources.bundle */; };
 		BBAE1F1D1A37B51F0008B772 /* ColombioServiceCommunicator.m in Sources */ = {isa = PBXBuildFile; fileRef = BBAE1F1C1A37B51F0008B772 /* ColombioServiceCommunicator.m */; };
 		BBAE1F201A37B5A80008B772 /* NSDate+DateHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = BBAE1F1F1A37B5A80008B772 /* NSDate+DateHandler.m */; };
 		BBAE1F241A37B68E0008B772 /* ForgotPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBAE1F221A37B68E0008B772 /* ForgotPasswordViewController.m */; };
@@ -40,6 +38,10 @@
 		BBB33B021A27E007008D0E26 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBB33B011A27E007008D0E26 /* Foundation.framework */; };
 		BBB33B091A27E1AF008D0E26 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBB33AE61A27DF0A008D0E26 /* MapKit.framework */; };
 		BBB6A0561A40E7D1006F61B3 /* VSSwitchButton.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB6A0551A40E7D1006F61B3 /* VSSwitchButton.m */; };
+		BBB6A0571A40E856006F61B3 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBB0BFA41A3504750074B20C /* FacebookSDK.framework */; };
+		BBB6A0581A40E856006F61B3 /* FBUserSettingsViewResources.bundle in Frameworks */ = {isa = PBXBuildFile; fileRef = BBB0BFA51A3504750074B20C /* FBUserSettingsViewResources.bundle */; };
+		BBB6A05B1A44D6B5006F61B3 /* CLTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB6A05A1A44D6B5006F61B3 /* CLTextField.m */; };
+		BBB6A05F1A44FB2D006F61B3 /* UIConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB6A05E1A44FB2D006F61B3 /* UIConfiguration.m */; };
 		BBCF58911A2938B400CE64B4 /* CountriesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BBCF588E1A2938B400CE64B4 /* CountriesCell.m */; };
 		BBCF58921A2938B400CE64B4 /* CustomField.m in Sources */ = {isa = PBXBuildFile; fileRef = BBCF58901A2938B400CE64B4 /* CustomField.m */; };
 		BBCF589F1A29395400CE64B4 /* CryptoClass.m in Sources */ = {isa = PBXBuildFile; fileRef = BBCF58951A29395400CE64B4 /* CryptoClass.m */; };
@@ -114,6 +116,10 @@
 		BBB33B011A27E007008D0E26 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		BBB6A0541A40E7D1006F61B3 /* VSSwitchButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSwitchButton.h; sourceTree = "<group>"; };
 		BBB6A0551A40E7D1006F61B3 /* VSSwitchButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSwitchButton.m; sourceTree = "<group>"; };
+		BBB6A0591A44D6B5006F61B3 /* CLTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLTextField.h; sourceTree = "<group>"; };
+		BBB6A05A1A44D6B5006F61B3 /* CLTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLTextField.m; sourceTree = "<group>"; };
+		BBB6A05D1A44FB2D006F61B3 /* UIConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIConfiguration.h; sourceTree = "<group>"; };
+		BBB6A05E1A44FB2D006F61B3 /* UIConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIConfiguration.m; sourceTree = "<group>"; };
 		BBCF588D1A2938B400CE64B4 /* CountriesCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CountriesCell.h; sourceTree = "<group>"; };
 		BBCF588E1A2938B400CE64B4 /* CountriesCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CountriesCell.m; sourceTree = "<group>"; };
 		BBCF588F1A2938B400CE64B4 /* CustomField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomField.h; sourceTree = "<group>"; };
@@ -146,8 +152,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BBAE1F191A37B49E0008B772 /* FacebookSDK.framework in Frameworks */,
-				BBAE1F1A1A37B49E0008B772 /* FBUserSettingsViewResources.bundle in Frameworks */,
+				BBB6A0571A40E856006F61B3 /* FacebookSDK.framework in Frameworks */,
+				BBB6A0581A40E856006F61B3 /* FBUserSettingsViewResources.bundle in Frameworks */,
 				BBCF58EF1A29412100CE64B4 /* libsqlite3.dylib in Frameworks */,
 				BBB33B091A27E1AF008D0E26 /* MapKit.framework in Frameworks */,
 				BBB33B021A27E007008D0E26 /* Foundation.framework in Frameworks */,
@@ -286,6 +292,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		BBB6A05C1A44FB1D006F61B3 /* UIConfiguration */ = {
+			isa = PBXGroup;
+			children = (
+				BBB6A05D1A44FB2D006F61B3 /* UIConfiguration.h */,
+				BBB6A05E1A44FB2D006F61B3 /* UIConfiguration.m */,
+			);
+			path = UIConfiguration;
+			sourceTree = "<group>";
+		};
 		BBCF58811A29357400CE64B4 /* CustomClasses */ = {
 			isa = PBXGroup;
 			children = (
@@ -323,6 +338,8 @@
 				BBCF58901A2938B400CE64B4 /* CustomField.m */,
 				5835720C1A2B70C000F6EA17 /* ScrollableHeader.h */,
 				5835720D1A2B70C000F6EA17 /* ScrollableHeader.m */,
+				BBB6A0591A44D6B5006F61B3 /* CLTextField.h */,
+				BBB6A05A1A44D6B5006F61B3 /* CLTextField.m */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -358,6 +375,7 @@
 		BBCF58F21A2AA3CD00CE64B4 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				BBB6A05C1A44FB1D006F61B3 /* UIConfiguration */,
 				BBCF58F31A2AA47F00CE64B4 /* UIView+XibAttributes.h */,
 				BBCF58F41A2AA47F00CE64B4 /* UIView+XibAttributes.m */,
 				BBAE1F161A37B3850008B772 /* UIView+InlineFunctions.h */,
@@ -472,6 +490,7 @@
 			files = (
 				BBCF58A21A29395400CE64B4 /* Validation.m in Sources */,
 				BBAE1F201A37B5A80008B772 /* NSDate+DateHandler.m in Sources */,
+				BBB6A05F1A44FB2D006F61B3 /* UIConfiguration.m in Sources */,
 				BBB6A0561A40E7D1006F61B3 /* VSSwitchButton.m in Sources */,
 				BBAE1F241A37B68E0008B772 /* ForgotPasswordViewController.m in Sources */,
 				BBAE1F291A37B6980008B772 /* CreateAccViewController.m in Sources */,
@@ -479,6 +498,7 @@
 				583572071A2B4B7400F6EA17 /* LoginViewController.m in Sources */,
 				5835720B1A2B705100F6EA17 /* BottomNav.m in Sources */,
 				BBAE1F2D1A37B71B0008B772 /* BackgroundViewController.m in Sources */,
+				BBB6A05B1A44D6B5006F61B3 /* CLTextField.m in Sources */,
 				BBCF58A31A29395400CE64B4 /* YourInfo.m in Sources */,
 				BBAE1F1D1A37B51F0008B772 /* ColombioServiceCommunicator.m in Sources */,
 				BBB33AC61A27D9EE008D0E26 /* AppDelegate.m in Sources */,
@@ -628,6 +648,9 @@
 					/Users/vsprem/Documents/Private,
 					stuff/Software,
 					development/Colombio/iOSColombio,
+					/Users/vsprem/Documents/Private,
+					stuff/Software,
+					development/Colombio/iOSColombio,
 				);
 				GCC_PREFIX_HEADER = "colombio/colombio-Prefix.pch";
 				INFOPLIST_FILE = "Colombio/Colombio-Info.plist";
@@ -663,6 +686,9 @@
 					/Users/vsprem/Documents/Private,
 					stuff/Software,
 					development/Colombio,
+					/Users/vsprem/Documents/Private,
+					stuff/Software,
+					development/Colombio/iOSColombio,
 					/Users/vsprem/Documents/Private,
 					stuff/Software,
 					development/Colombio/iOSColombio,
