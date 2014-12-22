@@ -27,7 +27,7 @@
 
 #define COLOR_BLACK [UIColor colorWithRed:255.0/255.0 green:255.0/255.0 blue:255.0/255.0 alpha:1.0]
 #define COLOR_BLACK_TRANSPARENT [UIColor colorWithRed:255.0/255.0 green:255.0/255.0 blue:255.0/255.0 alpha:0.5]
-#define COLOR_RED [UIColor redColor];
+#define COLOR_RED [UIColor redColor]
 
 #define TXT_FIELD_INPUT_IMG [UIImage imageNamed:@"inputicon"]
 #define TXT_FIELD_WRONG_IMG [UIImage imageNamed:@"wrong"]
