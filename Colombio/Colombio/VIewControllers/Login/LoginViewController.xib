@@ -31,6 +31,9 @@
                                             <subviews>
                                                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sg6-IV-f43">
                                                     <rect key="frame" x="0.0" y="0.0" width="320" height="275"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="keyPath" value="YES"/>
+                                                    </userDefinedRuntimeAttributes>
                                                 </scrollView>
                                             </subviews>
                                         </scrollView>
