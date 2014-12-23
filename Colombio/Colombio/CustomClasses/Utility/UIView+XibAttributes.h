@@ -14,5 +14,8 @@
  *  setText:
  */
 @property (nonatomic, weak) NSString *configText;
+@property (nonatomic, weak) NSString *configTextColor;
+@property (nonatomic, weak) NSString *buttonTextColorNormal;
+@property (nonatomic, weak) NSString *buttonTextColorHighlighted;
 
 @end

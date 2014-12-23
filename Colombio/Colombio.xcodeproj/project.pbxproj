@@ -42,6 +42,8 @@
 		BBB6A0581A40E856006F61B3 /* FBUserSettingsViewResources.bundle in Frameworks */ = {isa = PBXBuildFile; fileRef = BBB0BFA51A3504750074B20C /* FBUserSettingsViewResources.bundle */; };
 		BBB6A05B1A44D6B5006F61B3 /* CLTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB6A05A1A44D6B5006F61B3 /* CLTextField.m */; };
 		BBB6A05F1A44FB2D006F61B3 /* UIConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB6A05E1A44FB2D006F61B3 /* UIConfiguration.m */; };
+		BBB6A0631A48D791006F61B3 /* StartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB6A0611A48D791006F61B3 /* StartViewController.m */; };
+		BBB6A0641A48D791006F61B3 /* StartViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBB6A0621A48D791006F61B3 /* StartViewController.xib */; };
 		BBCF58911A2938B400CE64B4 /* CountriesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BBCF588E1A2938B400CE64B4 /* CountriesCell.m */; };
 		BBCF58921A2938B400CE64B4 /* CustomField.m in Sources */ = {isa = PBXBuildFile; fileRef = BBCF58901A2938B400CE64B4 /* CustomField.m */; };
 		BBCF589F1A29395400CE64B4 /* CryptoClass.m in Sources */ = {isa = PBXBuildFile; fileRef = BBCF58951A29395400CE64B4 /* CryptoClass.m */; };
@@ -120,6 +122,9 @@
 		BBB6A05A1A44D6B5006F61B3 /* CLTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLTextField.m; sourceTree = "<group>"; };
 		BBB6A05D1A44FB2D006F61B3 /* UIConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIConfiguration.h; sourceTree = "<group>"; };
 		BBB6A05E1A44FB2D006F61B3 /* UIConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIConfiguration.m; sourceTree = "<group>"; };
+		BBB6A0601A48D791006F61B3 /* StartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartViewController.h; sourceTree = "<group>"; };
+		BBB6A0611A48D791006F61B3 /* StartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StartViewController.m; sourceTree = "<group>"; };
+		BBB6A0621A48D791006F61B3 /* StartViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StartViewController.xib; sourceTree = "<group>"; };
 		BBCF588D1A2938B400CE64B4 /* CountriesCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CountriesCell.h; sourceTree = "<group>"; };
 		BBCF588E1A2938B400CE64B4 /* CountriesCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CountriesCell.m; sourceTree = "<group>"; };
 		BBCF588F1A2938B400CE64B4 /* CustomField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomField.h; sourceTree = "<group>"; };
@@ -194,6 +199,9 @@
 				583572031A2B4B7400F6EA17 /* LoginViewController.h */,
 				583572041A2B4B7400F6EA17 /* LoginViewController.m */,
 				BBB0BFA81A350F640074B20C /* LoginViewController.xib */,
+				BBB6A0601A48D791006F61B3 /* StartViewController.h */,
+				BBB6A0611A48D791006F61B3 /* StartViewController.m */,
+				BBB6A0621A48D791006F61B3 /* StartViewController.xib */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -306,8 +314,8 @@
 			children = (
 				583572101A2B71B900F6EA17 /* WebService */,
 				BBCF58F21A2AA3CD00CE64B4 /* Utility */,
-				BBCF58D91A293DD200CE64B4 /* Database */,
 				BBCF58931A29395400CE64B4 /* Constants.h */,
+				BBCF58D91A293DD200CE64B4 /* Database */,
 				BBCF58941A29395400CE64B4 /* CryptoClass.h */,
 				BBCF58951A29395400CE64B4 /* CryptoClass.m */,
 				BBCF58961A29395400CE64B4 /* Messages.h */,
@@ -471,6 +479,7 @@
 				BBAE1F2A1A37B6980008B772 /* CreateAccViewController.xib in Resources */,
 				BBCF58E61A293F6700CE64B4 /* Localizable.strings in Resources */,
 				BBAE1F251A37B68E0008B772 /* ForgotPasswordViewController.xib in Resources */,
+				BBB6A0641A48D791006F61B3 /* StartViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -505,6 +514,7 @@
 				5835720E1A2B70C000F6EA17 /* ScrollableHeader.m in Sources */,
 				BBCF58ED1A29401700CE64B4 /* Localized.m in Sources */,
 				BBCF58A11A29395400CE64B4 /* Reachability.m in Sources */,
+				BBB6A0631A48D791006F61B3 /* StartViewController.m in Sources */,
 				BBB33AC31A27D9EE008D0E26 /* main.m in Sources */,
 				583572191A2B72BB00F6EA17 /* Tools.m in Sources */,
 				BBCF58DC1A293DD200CE64B4 /* Database.m in Sources */,

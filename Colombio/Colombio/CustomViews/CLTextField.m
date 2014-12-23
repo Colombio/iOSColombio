@@ -22,7 +22,7 @@
 - (void)awakeFromNib{
     _isNumber=NO;
     _txtField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width-20, self.frame.size.height)];
-    _txtField.font = FONT_HELVETICA_NEUE_LIGHT;
+    _txtField.font = [[UIConfiguration sharedInstance] getFont:FONT_HELVETICA_NEUE_LIGHT];
     _txtField.keyboardType  = UIKeyboardTypeDefault;
     [self addSubview:_txtField];
     _imgView = [[UIImageView alloc] initWithFrame:CGRectMake(self.frame.size.width-20, 0, 20, self.frame.size.height)];
@@ -58,7 +58,7 @@
 - (void)setWrongInput:(BOOL)wrongInput{
     _wrongInput=wrongInput;
     if(_wrongInput){
-        _txtField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:_errorText attributes:@{NSForegroundColorAttributeName:[UIColor redColor]}];
+        _txtField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:_errorText attributes:@{NSForegroundColorAttributeName:[UIColor blackColor]}];
     }
 }
 

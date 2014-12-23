@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import <CoreLocation/CoreLocation.h>
 #import "LoginViewController.h"
+#import "StartViewController.h"
 
 @implementation AppDelegate
 @synthesize db, locationManager;
@@ -32,8 +33,9 @@
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
-    LoginViewController *loginVC = [[LoginViewController alloc] init];
-    self.window.rootViewController = loginVC;
+    StartViewController *startVC = [[StartViewController alloc] init];
+    //LoginViewController *loginVC = [[LoginViewController alloc] init];
+    self.window.rootViewController = startVC;
     [self.window makeKeyAndVisible];
     return YES;
 }

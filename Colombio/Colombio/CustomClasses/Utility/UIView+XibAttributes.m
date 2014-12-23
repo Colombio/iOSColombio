@@ -18,13 +18,38 @@
 
 @implementation UIView (XibAttributes)
 
-@dynamic configText;
+@dynamic configText, configTextColor, buttonTextColorHighlighted, buttonTextColorNormal;
 
 - (void)setConfigText:(NSString *)configText
 {
     if ( [self respondsToSelector:@selector(setText:)] )
     {
         [(id)self setText:[Localized string:configText]];
+    }
+}
+
+- (void)setConfigTextColor:(NSString *)configTextColor
+{
+    if ( [self respondsToSelector:@selector(setTextColor:)] )
+    {
+        UIColor *color = [[UIConfiguration sharedInstance] getColor:configTextColor];
+        [(id)self setTextColor:color];
+    }
+}
+
+- (void)setButtonTextColorNormal:(NSString *)buttonTextColorNormal{
+    if ( [self respondsToSelector:@selector(setTitleColor:forState:)] )
+    {
+        UIColor *color = [[UIConfiguration sharedInstance] getColor:buttonTextColorNormal];
+        [(id)self setTitleColor:color forState:UIControlStateNormal];
+    }
+}
+
+- (void)setButtonTextColorHighlighted:(NSString *)buttonTextColorHighlighted{
+    if ( [self respondsToSelector:@selector(setTitleColor:forState:)] )
+    {
+        UIColor *color = [[UIConfiguration sharedInstance] getColor:buttonTextColorHighlighted];
+        [(id)self setTitleColor:color forState:UIControlStateHighlighted];
     }
 }
 

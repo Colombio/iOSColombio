@@ -17,17 +17,8 @@
     #import "Localized.h"
     #import "UIView+XibAttributes.h"
     #import "NSDate+DateHandler.h"
+    #import "UIConfiguration.h"
 #endif
-
-#define FONT_HELVETICA_NEUE_ULTRALIGHT [UIFont fontWithName:@"Helvetica Neue-Ultralight" size:17]
-#define FONT_HELVETICA_NEUE_BOLD [UIFont fontWithName:@"Helvetica Neue-Bold" size:17]
-#define FONT_HELVETICA_NEUE_REGULAR_SMALL [UIFont fontWithName:@"Helvetica Neue-Regular" size:10]
-#define FONT_HELVETICA_NEUE_BOLD_SMALL [UIFont fontWithName:@"Helvetica Neue-Bold" size:14]
-#define FONT_HELVETICA_NEUE_LIGHT [UIFont fontWithName:@"Helvetica Neue-Light" size:17]
-
-#define COLOR_BLACK [UIColor colorWithRed:255.0/255.0 green:255.0/255.0 blue:255.0/255.0 alpha:1.0]
-#define COLOR_BLACK_TRANSPARENT [UIColor colorWithRed:255.0/255.0 green:255.0/255.0 blue:255.0/255.0 alpha:0.5]
-#define COLOR_RED [UIColor redColor]
 
 #define TXT_FIELD_INPUT_IMG [UIImage imageNamed:@"inputicon"]
 #define TXT_FIELD_WRONG_IMG [UIImage imageNamed:@"wrong"]
