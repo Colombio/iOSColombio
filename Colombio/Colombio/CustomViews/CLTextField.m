@@ -19,6 +19,19 @@
     return self;
 }
 
+- (BOOL)canPerformAction:(SEL)action withSender:(id)sender{
+    return NO;
+}
+
+- (void)addGestureRecognizer:(UIGestureRecognizer *)gestureRecognizer{
+    
+    if([gestureRecognizer isKindOfClass:[UILongPressGestureRecognizer class]]) {
+        gestureRecognizer.enabled=NO;
+    }
+    [super addGestureRecognizer:gestureRecognizer];
+    return;
+}
+
 - (void)awakeFromNib{
     _isNumber=NO;
     _txtField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width-20, self.frame.size.height)];
@@ -27,6 +40,7 @@
     [self addSubview:_txtField];
     _imgView = [[UIImageView alloc] initWithFrame:CGRectMake(self.frame.size.width-20, 0, 20, self.frame.size.height)];
     _imgView.image = TXT_FIELD_INPUT_IMG;
+    [_imgView setHidden:YES];
     [self addSubview:_imgView];
     
     if (_txtField.text.length==0) {
@@ -45,6 +59,13 @@
 - (void)setErrorText:(NSString *)errorText
 {
     _errorText = [Localized string:errorText];
+    [_imgView setHidden:NO];
+    _imgView.image = TXT_FIELD_WRONG_IMG;
+}
+
+- (void)setOkInput{
+    [_imgView setHidden:NO];
+    _imgView.image = TXT_FIELD_PASS_IMG;
 }
 
 - (void)setIsNumber:(BOOL)isNumber
