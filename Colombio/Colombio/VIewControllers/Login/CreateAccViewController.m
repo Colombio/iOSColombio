@@ -210,8 +210,6 @@
                         txtPassword.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"8 characters, 1 caps, 1 number" attributes:@{NSForegroundColorAttributeName:color}];
                         txtPassword.text=@"";
                         wrong=true;
-                        passPass.hidden=YES;
-                        imgPassword.hidden=YES;
                     }
                     //Duplikat emaila
                     if(strcmp("email_exists", greska.UTF8String)&& ![txtEmail.text isEqualToString:@"b"]&&wrongEmail==NO){
@@ -220,9 +218,6 @@
                         txtEmail.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Email already exists" attributes:@{NSForegroundColorAttributeName:color}];
                         txtEmail.text=@"";
                         wrong=true;
-                        emailPass.hidden=YES;
-                        imgEmail.hidden=YES;
-                        emailWrong.hidden=NO;
                     }
                 }
                 pogreska=true;
@@ -234,9 +229,6 @@
             UIColor *color = [UIColor redColor];
             txtEmail.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Wrong email format" attributes:@{NSForegroundColorAttributeName:color}];
             txtEmail.text=@"";
-            emailWrong.hidden=NO;
-            emailPass.hidden=YES;
-            imgEmail.hidden=YES;
         }
         //Duljina lozinke je kriva
         if(txtPassword.text.length<8){
@@ -244,9 +236,6 @@
             UIColor *color = [UIColor redColor];
             txtPassword.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"8 characters, 1 caps, 1 number" attributes:@{NSForegroundColorAttributeName:color}];
             txtPassword.text=@"";
-            passWrong.hidden=NO;
-            passPass.hidden=YES;
-            imgPassword.hidden=YES;
         }
         //Lozinka je prazna ili lozinke ne matchaju
         if(!strcmp([txtConfirmPass text].UTF8String,empty.UTF8String) || strcmp([txtConfirmPass text].UTF8String,[txtPassword text].UTF8String)){
@@ -258,9 +247,6 @@
             }
             txtConfirmPass.attributedPlaceholder = [[NSAttributedString alloc] initWithString:errText attributes:@{NSForegroundColorAttributeName:color}];
             txtConfirmPass.text=@"";
-            passConfirmWrong.hidden=NO;
-            imgConfirm.hidden=YES;
-            passConfirmPass.hidden=YES;
         }
         //Potvrda lozinke je prazna
         if(!strcmp([txtUsername text].UTF8String,empty.UTF8String)&&wrongUser==YES){
@@ -268,9 +254,6 @@
             UIColor *color = [UIColor redColor];
             txtUsername.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Enter your username" attributes:@{NSForegroundColorAttributeName:color}];
             txtUsername.text=@"";
-            userWrong.hidden=NO;
-            userPass.hidden=YES;
-            imgUsername.hidden=YES;
         }
 
         //Ako su svi podaci ispravno upisani
@@ -294,9 +277,6 @@
 //Fokus na confirm pass
 - (IBAction)setConfirmPass:(id)sender{
     keyboardActive=YES;
-    imgConfirm.hidden=YES;
-    passConfirmPass.hidden=YES;
-    passConfirmWrong.hidden=YES;
     [txtConfirmPass setPlaceholder:@"Confirm password"];
     CGRect screenBounds = [[UIScreen mainScreen]bounds];
     if(screenBounds.size.height == 568.0f){
@@ -310,9 +290,6 @@
 //Fokus na pass
 - (IBAction)setPassword:(id)sender{
     keyboardActive=YES;
-    imgPassword.hidden=YES;
-    passPass.hidden=YES;
-    passWrong.hidden=YES;
     [txtPassword setPlaceholder:@"Password"];
     CGRect screenBounds = [[UIScreen mainScreen]bounds];
     if(screenBounds.size.height == 568.0f){
@@ -326,9 +303,6 @@
 //Fokus na email
 - (IBAction)setEmail:(id)sender{
     keyboardActive=YES;
-    imgEmail.hidden=YES;
-    emailPass.hidden=YES;
-    emailWrong.hidden=YES;
     [txtEmail setPlaceholder:@"Email"];
     CGRect screenBounds = [[UIScreen mainScreen]bounds];
     if(screenBounds.size.height == 568.0f){
@@ -342,9 +316,6 @@
 //Fokus na username
 - (IBAction)setUsername:(id)sender{
     keyboardActive=YES;
-    imgUsername.hidden=YES;
-    userPass.hidden=YES;
-    userWrong.hidden=YES;
     [txtUsername setPlaceholder:@"Username"];
     CGRect screenBounds = [[UIScreen mainScreen]bounds];
     if(screenBounds.size.height == 568.0f){
