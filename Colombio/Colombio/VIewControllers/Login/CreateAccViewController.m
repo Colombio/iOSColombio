@@ -20,27 +20,15 @@
 
 @implementation CreateAccViewController
 
-@synthesize userPass;
-@synthesize userWrong;
-@synthesize emailPass;
-@synthesize emailWrong;
-@synthesize passPass;
-@synthesize passWrong;
-@synthesize passConfirmPass;
-@synthesize passConfirmWrong;
 @synthesize scrollBox;
 @synthesize txtConfirmPass;
 @synthesize txtEmail;
 @synthesize txtPassword;
 @synthesize txtUsername;
-@synthesize imgConfirm;
-@synthesize imgEmail;
-@synthesize imgPassword;
-@synthesize imgUsername;
 @synthesize btnCreate;
 @synthesize pozadina;
 @synthesize scrollView;
-@synthesize scrollableHeader;
+@synthesize headerViewHolder;
 
 - (void)viewDidLoad
 {
@@ -62,16 +50,6 @@
     
     txtPassword.secureTextEntry = YES;
     txtConfirmPass.secureTextEntry = YES;
-    userPass.hidden = YES;
-    userWrong.hidden = YES;
-    emailPass.hidden = YES;
-    emailWrong.hidden = YES;
-    passWrong.hidden = YES;
-    passPass.hidden = YES;
-    passConfirmWrong.hidden = YES;
-    passConfirmPass.hidden =YES;
-    scrollableHeader = [[ScrollableHeader alloc] init];
-    [scrollableHeader addHeader:self.view self:self headerScroll:scrollView viewScroll:scrollBox];
 }
 
 - (void)viewDidLayoutSubviews{
@@ -83,7 +61,6 @@
         [scrollBox setContentOffset:CGPointMake(0,20) animated:NO];
     }
     scrollView.bounces=NO;
-    [scrollView setDelegate:scrollableHeader];
 }
 
 - (void)toggleCreateOff{
@@ -91,7 +68,6 @@
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-
     if(self.scrollBox.contentOffset.y<0){
         [self.scrollBox setScrollEnabled:NO];
         [self.scrollBox setContentOffset:CGPointMake(0, 0)];
@@ -157,9 +133,6 @@
      passConfirmWrong.hidden=YES;
      */
     
-    emailWrong.hidden=YES;
-    emailPass.hidden=NO;
-    imgEmail.hidden=YES;
     
     NSString *empty = @"";
     Boolean wrong = false;
@@ -229,10 +202,6 @@
                         txtUsername.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Username already exists" attributes:@{NSForegroundColorAttributeName:color}];
                         txtUsername.text=@"";
                         wrong=true;
-                        userPass.hidden=YES;
-                        imgPassword.hidden=YES;
-                        imgUsername.hidden=YES;
-                        userWrong.hidden=NO;
                         wrongUser=NO;
                     }
                     //Snaga lozinke nije ok
@@ -241,7 +210,6 @@
                         txtPassword.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"8 characters, 1 caps, 1 number" attributes:@{NSForegroundColorAttributeName:color}];
                         txtPassword.text=@"";
                         wrong=true;
-                        passWrong.hidden=NO;
                         passPass.hidden=YES;
                         imgPassword.hidden=YES;
                     }

@@ -16,44 +16,21 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XgR-B1-fSr" userLabel="ContentHolder">
-                    <rect key="frame" x="0.0" y="106" width="320" height="568"/>
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="780"/>
                     <subviews>
+                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fvT-uN-djo">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </view>
                         <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sSL-bo-J7W">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                            <subviews>
-                                <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aW8-VS-ko2" userLabel="ContentView">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                    <subviews>
-                                        <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jSU-Bq-RP6">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                            <subviews>
-                                                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z6t-lM-8Tp">
-                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="275"/>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="keyPath" value="YES"/>
-                                                    </userDefinedRuntimeAttributes>
-                                                </scrollView>
-                                            </subviews>
-                                        </scrollView>
-                                    </subviews>
-                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </view>
-                            </subviews>
-                            <constraints>
-                                <constraint firstAttribute="bottom" secondItem="aW8-VS-ko2" secondAttribute="bottom" id="8o8-Eb-2Ig"/>
-                                <constraint firstItem="aW8-VS-ko2" firstAttribute="leading" secondItem="sSL-bo-J7W" secondAttribute="leading" id="Aqh-Qj-VVp"/>
-                                <constraint firstAttribute="trailing" secondItem="aW8-VS-ko2" secondAttribute="trailing" id="Zmi-eM-Mch"/>
-                                <constraint firstItem="aW8-VS-ko2" firstAttribute="top" secondItem="sSL-bo-J7W" secondAttribute="top" id="b4J-rN-ixE"/>
-                            </constraints>
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="780"/>
                         </scrollView>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstItem="aW8-VS-ko2" firstAttribute="width" secondItem="XgR-B1-fSr" secondAttribute="width" id="BWA-tW-gpB"/>
                         <constraint firstAttribute="bottom" secondItem="sSL-bo-J7W" secondAttribute="bottom" id="CbD-xu-Gko"/>
                         <constraint firstItem="sSL-bo-J7W" firstAttribute="leading" secondItem="XgR-B1-fSr" secondAttribute="leading" id="NTs-Py-QTf"/>
                         <constraint firstItem="sSL-bo-J7W" firstAttribute="top" secondItem="XgR-B1-fSr" secondAttribute="top" id="hZX-eJ-52z"/>
-                        <constraint firstItem="aW8-VS-ko2" firstAttribute="height" secondItem="XgR-B1-fSr" secondAttribute="height" id="qH7-QV-ckJ"/>
                         <constraint firstAttribute="trailing" secondItem="sSL-bo-J7W" secondAttribute="trailing" id="vwf-fO-RAE"/>
                     </constraints>
                 </view>

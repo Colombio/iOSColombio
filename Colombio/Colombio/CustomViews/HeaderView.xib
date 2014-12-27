@@ -11,7 +11,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="header_background" translatesAutoresizingMaskIntoConstraints="NO" id="CbC-H6-nHl">
+                <imageView userInteractionEnabled="NO" alpha="0.0" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="CbC-H6-nHl">
                     <rect key="frame" x="0.0" y="0.0" width="325" height="64"/>
                 </imageView>
                 <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H6A-Wh-VMI">
@@ -91,6 +91,5 @@
     <resources>
         <image name="back_normal" width="44" height="44"/>
         <image name="back_pressed.png" width="44" height="44"/>
-        <image name="header_background" width="324" height="64"/>
     </resources>
 </document>
