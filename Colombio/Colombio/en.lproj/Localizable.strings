@@ -5,3 +5,7 @@
   Created by Vlatko Šprem on 29/11/14.
   Copyright (c) 2014 Colombio. All rights reserved.
 */
+
+/*start*/
+"start_button" = "Start";
+"start_message" = "Before you start sharing your news with the world, create your account or sign in, choose country, choose media and enter your info.";

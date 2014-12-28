@@ -1,0 +1,25 @@
+{
+  "images" : [
+    {
+      "idiom" : "universal",
+      "scale" : "1x",
+      "filename" : "setup_colombio.png"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "2x",
+      "filename" : "setup_colombio@2x.png"
+    },
+    {
+      "idiom" : "universal",
+      "filename" : "setup_colombio-736h@3x.png",
+      "unassigned" : true,
+      "subtype" : "736h",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "version" : 1,
+    "author" : "xcode"
+  }
+}

@@ -16,31 +16,66 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Default" translatesAutoresizingMaskIntoConstraints="NO" id="kGu-mB-zbI">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login_bg1" translatesAutoresizingMaskIntoConstraints="NO" id="kGu-mB-zbI">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                 </imageView>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mIX-fa-CDR">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="setup_colombio" translatesAutoresizingMaskIntoConstraints="NO" id="KX1-aL-Koi">
+                    <rect key="frame" x="36" y="60" width="247" height="34"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="247" id="94i-d2-pE7"/>
+                        <constraint firstAttribute="height" constant="34" id="dMq-Eo-UCH"/>
+                    </constraints>
+                </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mIX-fa-CDR">
                     <rect key="frame" x="118" y="410" width="85" height="30"/>
                     <state key="normal" title="Button">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="configText" value="start_button"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="configTextFont" value="FONT_HELVETICA_NEUE_BOLD"/>
+                    </userDefinedRuntimeAttributes>
                     <connections>
                         <action selector="btnStartTapped:" destination="-1" eventType="touchUpInside" id="tIc-VT-jou"/>
                     </connections>
                 </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aCU-o3-ZsR">
+                    <rect key="frame" x="36" y="112" width="247" height="100"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="100" id="NI9-bZ-fOr"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="configText" value="start_message"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="configTextFont" value="FONT_HELVETICA_NEUE_ULTRALIGHT"/>
+                    </userDefinedRuntimeAttributes>
+                </label>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstAttribute="trailing" secondItem="mIX-fa-CDR" secondAttribute="trailing" constant="117" id="2FT-V9-Dkc"/>
                 <constraint firstItem="kGu-mB-zbI" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="2OP-r6-ZWw"/>
+                <constraint firstItem="KX1-aL-Koi" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="60" id="5RO-P1-A5y"/>
+                <constraint firstItem="mIX-fa-CDR" firstAttribute="top" secondItem="aCU-o3-ZsR" secondAttribute="bottom" constant="198" id="9MK-tm-SrJ"/>
                 <constraint firstAttribute="bottom" secondItem="kGu-mB-zbI" secondAttribute="bottom" id="Ajz-gB-LKa"/>
+                <constraint firstItem="mIX-fa-CDR" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="118" id="CCh-Fq-ui0"/>
+                <constraint firstItem="KX1-aL-Koi" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="36" id="CGk-6a-rsM"/>
+                <constraint firstAttribute="trailing" secondItem="KX1-aL-Koi" secondAttribute="trailing" constant="37" id="PMn-lV-r6N"/>
                 <constraint firstItem="kGu-mB-zbI" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="RBA-pJ-eE4"/>
                 <constraint firstAttribute="trailing" secondItem="kGu-mB-zbI" secondAttribute="trailing" id="d5v-P5-2Bo"/>
+                <constraint firstItem="aCU-o3-ZsR" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="36" id="fiI-XW-JA1"/>
+                <constraint firstAttribute="bottom" secondItem="mIX-fa-CDR" secondAttribute="bottom" constant="40" id="lt7-5W-DOu"/>
+                <constraint firstItem="aCU-o3-ZsR" firstAttribute="top" secondItem="KX1-aL-Koi" secondAttribute="bottom" constant="18" id="mir-0k-QrE"/>
+                <constraint firstAttribute="trailing" secondItem="aCU-o3-ZsR" secondAttribute="trailing" constant="37" id="puh-mm-LHj"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
         </view>
     </objects>
     <resources>
-        <image name="Default" width="320" height="480"/>
+        <image name="login_bg1" width="320" height="480"/>
+        <image name="setup_colombio" width="247" height="34"/>
     </resources>
 </document>
