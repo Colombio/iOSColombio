@@ -7,38 +7,81 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CreateAccViewController">
             <connections>
-                <outlet property="view" destination="1" id="3"/>
+                <outlet property="headerViewHolder" destination="oAR-qu-Rhx" id="Yc1-vk-2x3"/>
+                <outlet property="imgBackground" destination="lV4-AU-enK" id="m6Q-eI-zq6"/>
+                <outlet property="scrollBox" destination="Sc4-eG-eQE" id="5Kl-6E-HTL"/>
+                <outlet property="txtConfirmPass" destination="xh8-fE-8Up" id="Uoj-ic-yKH"/>
+                <outlet property="txtEmail" destination="IrL-5x-K3Q" id="xuN-ej-bZf"/>
+                <outlet property="txtPassword" destination="aUh-CJ-E59" id="Gsv-Ej-uB4"/>
+                <outlet property="txtUsername" destination="uaR-EH-yrE" id="Gfi-i1-V9I"/>
+                <outlet property="view" destination="1wW-LU-CNA" id="llU-dg-mRQ"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="1" customClass="UIControl">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="780"/>
-            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+        <view contentMode="scaleToFill" id="1wW-LU-CNA">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XgR-B1-fSr" userLabel="ContentHolder">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="780"/>
-                    <subviews>
-                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fvT-uN-djo">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        </view>
-                        <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sSL-bo-J7W">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="780"/>
-                        </scrollView>
-                    </subviews>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sc4-eG-eQE">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                </scrollView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cKW-8h-zYU">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </view>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login_bg1" translatesAutoresizingMaskIntoConstraints="NO" id="lV4-AU-enK">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                </imageView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oAR-qu-Rhx">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="bottom" secondItem="sSL-bo-J7W" secondAttribute="bottom" id="CbD-xu-Gko"/>
-                        <constraint firstItem="sSL-bo-J7W" firstAttribute="leading" secondItem="XgR-B1-fSr" secondAttribute="leading" id="NTs-Py-QTf"/>
-                        <constraint firstItem="sSL-bo-J7W" firstAttribute="top" secondItem="XgR-B1-fSr" secondAttribute="top" id="hZX-eJ-52z"/>
-                        <constraint firstAttribute="trailing" secondItem="sSL-bo-J7W" secondAttribute="trailing" id="vwf-fO-RAE"/>
+                        <constraint firstAttribute="height" constant="64" id="W1Q-wX-Zag"/>
                     </constraints>
                 </view>
+                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uaR-EH-yrE" userLabel="Username" customClass="CLTextField">
+                    <rect key="frame" x="0.0" y="75" width="320" height="44"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                </view>
+                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IrL-5x-K3Q" userLabel="Email" customClass="CLTextField">
+                    <rect key="frame" x="0.0" y="130" width="320" height="44"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                </view>
+                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aUh-CJ-E59" userLabel="Password" customClass="CLTextField">
+                    <rect key="frame" x="0.0" y="185" width="320" height="44"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                </view>
+                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xh8-fE-8Up" userLabel="Confirm Password" customClass="CLTextField">
+                    <rect key="frame" x="0.0" y="240" width="320" height="44"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                </view>
             </subviews>
-            <color key="backgroundColor" red="0.91764705879999997" green="0.91764705879999997" blue="0.91764705879999997" alpha="1" colorSpace="calibratedRGB"/>
-            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="oAR-qu-Rhx" secondAttribute="trailing" id="1Wb-IH-Ia2"/>
+                <constraint firstItem="cKW-8h-zYU" firstAttribute="leading" secondItem="1wW-LU-CNA" secondAttribute="leading" id="4JG-kr-UQ3"/>
+                <constraint firstAttribute="bottom" secondItem="lV4-AU-enK" secondAttribute="bottom" id="841-kt-v2I"/>
+                <constraint firstItem="cKW-8h-zYU" firstAttribute="top" secondItem="1wW-LU-CNA" secondAttribute="top" id="9NZ-NU-9PA"/>
+                <constraint firstAttribute="bottom" secondItem="oAR-qu-Rhx" secondAttribute="bottom" constant="416" id="HTe-3R-xyE"/>
+                <constraint firstAttribute="bottom" secondItem="cKW-8h-zYU" secondAttribute="bottom" id="NCn-0p-mAk"/>
+                <constraint firstAttribute="trailing" secondItem="Sc4-eG-eQE" secondAttribute="trailing" id="Npa-aZ-ZND"/>
+                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="oAR-qu-Rhx" secondAttribute="bottom" constant="416" id="OgQ-R7-jzP"/>
+                <constraint firstItem="lV4-AU-enK" firstAttribute="top" secondItem="1wW-LU-CNA" secondAttribute="top" id="Rf3-b3-qQv"/>
+                <constraint firstItem="Sc4-eG-eQE" firstAttribute="leading" secondItem="1wW-LU-CNA" secondAttribute="leading" id="U7J-ON-zpn"/>
+                <constraint firstAttribute="trailing" secondItem="lV4-AU-enK" secondAttribute="trailing" id="VJC-y6-Mxm"/>
+                <constraint firstItem="Sc4-eG-eQE" firstAttribute="top" secondItem="1wW-LU-CNA" secondAttribute="top" id="WbO-6E-53t"/>
+                <constraint firstItem="oAR-qu-Rhx" firstAttribute="leading" secondItem="1wW-LU-CNA" secondAttribute="leading" id="WeV-Sb-mBY"/>
+                <constraint firstItem="lV4-AU-enK" firstAttribute="leading" secondItem="1wW-LU-CNA" secondAttribute="leading" id="apQ-I4-vkH"/>
+                <constraint firstAttribute="bottom" secondItem="Sc4-eG-eQE" secondAttribute="bottom" id="nhp-tY-7Lu"/>
+                <constraint firstAttribute="trailing" secondItem="cKW-8h-zYU" secondAttribute="trailing" id="xLf-Tz-kbJ"/>
+            </constraints>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="132" y="144"/>
         </view>
     </objects>
+    <resources>
+        <image name="login_bg1" width="320" height="480"/>
+    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

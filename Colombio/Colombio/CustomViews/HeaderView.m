@@ -29,7 +29,7 @@
     lblTitle.text = title;
     [lblTitle setFont:[UIFont  fontWithName:@"HelveticaNeue-Bold" size:19.0f]];
     
-    CGFloat width =  ([self.lblTitle.text sizeWithFont:[UIFont  fontWithName:@"HelveticaNeue-Bold" size:19.0f]].width<200.0?[self.lblTitle.text sizeWithFont:[UIFont systemFontOfSize:17.0 ]].width:200.0);
+    CGFloat width =  ([self.lblTitle.text sizeWithFont:[UIFont  fontWithName:@"HelveticaNeue-Bold" size:21.0f]].width<200.0?[self.lblTitle.text sizeWithFont:[UIFont systemFontOfSize:19.0 ]].width:200.0);
     self.CS_TitleWidth.constant = width+20;
 
 }

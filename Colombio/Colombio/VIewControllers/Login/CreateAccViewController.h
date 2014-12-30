@@ -9,24 +9,30 @@
 #import <UIKit/UIKit.h>
 #import "CustomField.h"
 #import "ScrollableHeader.h"
+#import "HeaderView.h"
+#import "ColombioServiceCommunicator.h"
+#import "CLTextField.h"
 
-@interface CreateAccViewController : UIViewController<UITableViewDelegate, UIScrollViewDelegate>{
+@interface CreateAccViewController : UIViewController<UITableViewDelegate, UIScrollViewDelegate, HeaderViewDelegate, ColombioServiceCommunicatorDelegate>{
     IBOutlet UIScrollView *scrollBox;
-    IBOutlet CustomField *txtUsername;
-    IBOutlet CustomField *txtEmail;
-    IBOutlet CustomField *txtPassword;
-    IBOutlet CustomField *txtConfirmPass;
+    IBOutlet CLTextField *txtUsername;
+    IBOutlet CLTextField *txtEmail;
+    IBOutlet CLTextField *txtPassword;
+    IBOutlet CLTextField *txtConfirmPass;
     NSTimer *timer;
     IBOutlet UIButton *btnCreate;
-    IBOutlet UIImageView *pozadina;
-    IBOutlet UIScrollView *scrollView;
+    IBOutlet UIImageView *imgBackground;
     bool keyboardActive;
 }
 
 @property (weak, nonatomic) IBOutlet UIView *headerViewHolder;
-@property (strong, nonatomic) IBOutlet UIImageView *pozadina;
-@property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (strong, nonatomic) IBOutlet UIImageView *imgBackground;
 @property (strong, nonatomic) IBOutlet UIButton *btnCreate;
+@property (strong,nonatomic) IBOutlet CLTextField *txtUsername;
+@property (strong,nonatomic) IBOutlet CLTextField *txtEmail;
+@property (strong,nonatomic) IBOutlet CLTextField *txtPassword;
+@property (strong,nonatomic) IBOutlet CLTextField *txtConfirmPass;
+@property (strong,nonatomic) IBOutlet UIScrollView *scrollBox;
 
 - (IBAction)setLogIn:(id)sender;
 - (IBAction)goAwayKeyboard:(id)sender;
@@ -35,13 +41,6 @@
 - (IBAction)setPassword:(id)sender;
 - (IBAction)setConfirmPass:(id)sender;
 - (IBAction)setButton:(id)sender;
-
-@property (strong,nonatomic) IBOutlet UITextField *txtUsername;
-@property (strong,nonatomic) IBOutlet UITextField *txtEmail;
-@property (strong,nonatomic) IBOutlet UITextField *txtPassword;
-@property (strong,nonatomic) IBOutlet UITextField *txtConfirmPass;
-@property (strong,nonatomic) IBOutlet UIScrollView *scrollBox;
-
 - (IBAction)btnBackClicked:(id)sender;
 
 @end

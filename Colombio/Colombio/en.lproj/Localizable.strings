@@ -9,3 +9,8 @@
 /*start*/
 "start_button" = "Start";
 "start_message" = "Before you start sharing your news with the world, create your account or sign in, choose country, choose media and enter your info.";
+"enter_username" = "Enter your username";
+"enter_email" = "Enter your email";
+"enter_password" = "Enter your password";
+"enter_confirm_password" = "Confirm password";
+"create_account" = "Create account";

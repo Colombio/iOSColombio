@@ -26,41 +26,40 @@
 @synthesize txtPassword;
 @synthesize txtUsername;
 @synthesize btnCreate;
-@synthesize pozadina;
-@synthesize scrollView;
+@synthesize imgBackground;
 @synthesize headerViewHolder;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
-    CGRect screenBounds = [[UIScreen mainScreen]bounds];
-
+    HeaderView *headerView = [[HeaderView alloc]initWithFrame:headerViewHolder.frame];
+    headerView.backgroundColor =[UIColor colorWithWhite:0 alpha:0];
+    headerView.delegate=self;
+    headerView.title=@"COLOMBIO";
+    headerView.btnNext.hidden=YES;
+    [headerViewHolder addSubview:headerView];
+    
     [self.scrollBox setDelegate:self];
     UITapGestureRecognizer *singleTap =[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(singleTapGestureCaptured:)];
     [scrollBox addGestureRecognizer:singleTap];
     
-    //Uzimanje backgrounda za 4 inch ekran
-    if(screenBounds.size.height == 568.0f){
-        NSString *filename = @"back.png";
-        filename=[filename stringByReplacingOccurrencesOfString:@".png" withString:@"-568h.png"];
-    }
-    else{
-    }
+    [txtUsername setPlaceholderText:@"enter_username"];
+    [txtEmail setPlaceholderText:@"enter_email"];
+    [txtPassword setPlaceholderText:@"enter_password"];
+    [txtConfirmPass setPlaceholderText:@"enter_confirm_password"];
     
-    txtPassword.secureTextEntry = YES;
-    txtConfirmPass.secureTextEntry = YES;
+    txtPassword.txtField.secureTextEntry=YES;
+    txtConfirmPass.txtField.secureTextEntry=YES;
 }
 
 - (void)viewDidLayoutSubviews{
-    scrollView.contentSize = CGSizeMake(scrollBox.frame.size.width*3, scrollView.frame.size.height);
+    scrollBox.contentSize = CGSizeMake(scrollBox.frame.size.width,scrollBox.frame.size.height+55);
     
-    CGRect screenBounds = [[UIScreen mainScreen]bounds];
-    
-    if(screenBounds.size.height != 568.0f){
-        [scrollBox setContentOffset:CGPointMake(0,20) animated:NO];
-    }
-    scrollView.bounces=NO;
+}
+
+- (void)backButtonTapped{
+    NSLog(@"test");
 }
 
 - (void)toggleCreateOff{
@@ -68,46 +67,7 @@
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    if(self.scrollBox.contentOffset.y<0){
-        [self.scrollBox setScrollEnabled:NO];
-        [self.scrollBox setContentOffset:CGPointMake(0, 0)];
-        [self.scrollBox setScrollEnabled:YES];
-        return;
-    }
-    CGRect screenBounds = [[UIScreen mainScreen]bounds];
-    if(screenBounds.size.height == 568.0f){
-        if(keyboardActive==YES){
-            if(self.scrollBox.contentOffset.y>140){
-                [self.scrollBox setScrollEnabled:NO];
-                [self.scrollBox setContentOffset:CGPointMake(0, 140)];
-                [self.scrollBox setScrollEnabled:YES];
-            }
-        }
-        else{
-            if(self.scrollBox.contentOffset.y>0){
-                [self.scrollBox setContentOffset:CGPointMake(0, 0)];
-            }
-        }
-        return;
-    }
-    else{
-        if(keyboardActive==NO){
-            if(self.scrollBox.contentOffset.y>20){
-                [self.scrollBox setScrollEnabled:NO];
-                [self.scrollBox setContentOffset:CGPointMake(0, 20)];
-                [self.scrollBox setScrollEnabled:YES];
-                return;
-            }
-        }
-        else{
-            if(self.scrollBox.contentOffset.y>230){
-                [self.scrollBox setScrollEnabled:NO];
-                [self.scrollBox setContentOffset:CGPointMake(0, 230)];
-                [self.scrollBox setScrollEnabled:YES];
-                return;
-            }
-        }
-    }
+
 }
 
 - (void)toggleCreateOn{
@@ -117,26 +77,12 @@
 - (void)disableKeyboardActivity{
     keyboardActive=NO;
 }
-
+/*
 - (void)checkRegister{
     timer = [NSTimer scheduledTimerWithTimeInterval:0.3 target:self selector:@selector(disableKeyboardActivity) userInfo:nil repeats:NO];
-    /*
-     userWrong.hidden=YES;
-     userPass.hidden=NO;
-     
-     passWrong.hidden=YES;
-     passPass.hidden=NO;
-     
-     emailWrong.hidden=YES;
-     
-     passConfirmPass.hidden=NO;
-     passConfirmWrong.hidden=YES;
-     */
-    
     
     NSString *empty = @"";
     Boolean wrong = false;
-    
     
     //Slanje podataka za prijavu i dohvacanje odgovora
     NSString *url_str = [NSString stringWithFormat:@"https://appforrest.com/colombio/api_user_managment/mau_normal_register/"];
@@ -145,12 +91,6 @@
     NSMutableURLRequest *request =[NSMutableURLRequest requestWithURL:url];
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
     
-    //md5 TODO
-    //NSString *md5Prepare = [NSString stringWithFormat:@"%@registracija%@",txtEmail.text,txtPassword.text];
-    //NSString *hash = [self md5:(md5Prepare)];
-    
-    //TODO Provjeriti sa web servisom, nesto ne radi kod slanja podataka, odnosno
-    //response je krivi
     NSString *email =txtEmail.text;
     NSString *username = txtUsername.text;
     NSString *confirmPass = txtConfirmPass.text;
@@ -182,7 +122,6 @@
     if(err){
         [Messages showErrorMsg:@"Pogreška prilikom slanja zahtjeva"];
     }
-    
     
     //Uspjesno je poslan zahtjev, provjeri odgovor
     else{
@@ -266,7 +205,9 @@
     }
     timer = [NSTimer scheduledTimerWithTimeInterval:0 target:self selector:@selector(toggleCreateOff) userInfo:nil repeats:NO];
 }
+*/
 
+/*
 //Ako se klikne na create account
 - (IBAction)setButton:(id)sender{
     timer = [NSTimer scheduledTimerWithTimeInterval:0.3 target:self selector:@selector(disableKeyboardActivity) userInfo:nil repeats:NO];
@@ -333,6 +274,8 @@
     [self presentViewController:log animated:YES completion:nil];
     return;
 }
+ 
+ */
 
 //Kada se makne fokus sa text fielda, scrolla se view
 - (IBAction)goAwayKeyboard:(id)sender{
@@ -354,28 +297,11 @@
     }
 }
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
 //Ako se napravi tap na pozadinu, mice se tipkovnica i scrolla se view
 - (void)singleTapGestureCaptured:(UITapGestureRecognizer *)gesture{
     timer = [NSTimer scheduledTimerWithTimeInterval:0.3 target:self selector:@selector(disableKeyboardActivity) userInfo:nil repeats:NO];
-    [txtConfirmPass resignFirstResponder];
-    [txtEmail resignFirstResponder];
-    [txtPassword resignFirstResponder];
-    [txtUsername resignFirstResponder];
+    [self.view endEditing:YES];
     [scrollBox setContentOffset:CGPointMake(0,0) animated:YES];
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
 }
 
 - (void)btnBackClicked:(id)sender{

@@ -34,9 +34,10 @@
 
 - (void)awakeFromNib{
     _isNumber=NO;
-    _txtField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width-20, self.frame.size.height)];
+    _txtField = [[UITextField alloc] initWithFrame:CGRectMake(45, 0, self.frame.size.width-90, self.frame.size.height)];
     _txtField.font = [[UIConfiguration sharedInstance] getFont:FONT_HELVETICA_NEUE_LIGHT];
     _txtField.keyboardType  = UIKeyboardTypeDefault;
+    [_txtField setTextColor:[UIColor colorWithWhite:1 alpha:0.65]];
     [self addSubview:_txtField];
     _imgView = [[UIImageView alloc] initWithFrame:CGRectMake(self.frame.size.width-20, 0, 20, self.frame.size.height)];
     _imgView.image = TXT_FIELD_INPUT_IMG;
@@ -54,6 +55,8 @@
 - (void)setPlaceholderText:(NSString *)placeholderText
 {
     _placeholderText = [Localized string:placeholderText];
+    _txtField.placeholder = _placeholderText;
+    _txtField.attributedPlaceholder = [[NSAttributedString alloc]initWithString:_placeholderText attributes:@{NSForegroundColorAttributeName:[UIColor colorWithWhite:1 alpha:0.65]}];
 }
 
 - (void)setErrorText:(NSString *)errorText
@@ -95,16 +98,5 @@
     }
     return YES;
 }
-
-
-
-/*
- // Only override drawRect: if you perform custom drawing.
- // An empty implementation adversely affects performance during animation.
- - (void)drawRect:(CGRect)rect {
- // Drawing code
- }
- */
-
 
 @end

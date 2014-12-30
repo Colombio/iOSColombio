@@ -7,6 +7,7 @@
 //
 
 #import "StartViewController.h"
+#import "CreateAccViewController.h"
 
 @interface StartViewController ()
 
@@ -25,7 +26,8 @@
 }
 
 - (void)btnStartTapped:(id)sender{
-
+    CreateAccViewController *createAcc = [[CreateAccViewController alloc]init];
+    [self presentViewController:createAcc animated:YES completion:nil];
 }
 
 @end
