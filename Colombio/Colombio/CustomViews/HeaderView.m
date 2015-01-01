@@ -49,5 +49,14 @@
 }
 
 
++ (HeaderView *)initHeader:(NSString *)name nextHidden:(BOOL)isNextHidden previousHidden:(BOOL)isPreviousHidden activeVC:(UIViewController *)viewController headerFrame:(CGRect)frame{
+    HeaderView *headerView = [[HeaderView alloc]initWithFrame:frame];
+    headerView.backgroundColor =[UIColor colorWithWhite:0 alpha:0];
+    headerView.delegate=viewController;
+    headerView.title=name;
+    headerView.btnNext.hidden=isNextHidden;
+    headerView.btnBack.hidden=isPreviousHidden;
+    return headerView;
+}
 
 @end

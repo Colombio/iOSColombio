@@ -10,7 +10,6 @@
 
 @property (nonatomic, strong) UITextField *txtField;
 @property (nonatomic, strong) UIImageView *imgView;
-
 @property (nonatomic, weak) NSString *placeholderText;
 @property (nonatomic, weak) NSString *errorText;
 @property (nonatomic, assign) BOOL isNumber;

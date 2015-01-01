@@ -11,6 +11,7 @@
 		5835720B1A2B705100F6EA17 /* BottomNav.m in Sources */ = {isa = PBXBuildFile; fileRef = 5835720A1A2B705100F6EA17 /* BottomNav.m */; };
 		5835720E1A2B70C000F6EA17 /* ScrollableHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 5835720D1A2B70C000F6EA17 /* ScrollableHeader.m */; };
 		583572191A2B72BB00F6EA17 /* Tools.m in Sources */ = {isa = PBXBuildFile; fileRef = 583572181A2B72BB00F6EA17 /* Tools.m */; };
+		5836A1CD1A55F98300C509F1 /* Loading.m in Sources */ = {isa = PBXBuildFile; fileRef = 5836A1CC1A55F98300C509F1 /* Loading.m */; };
 		58ACA0021A4EE6B70076D3D8 /* HeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 58ACA0001A4EE6B70076D3D8 /* HeaderView.m */; };
 		58ACA0031A4EE6B70076D3D8 /* HeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58ACA0011A4EE6B70076D3D8 /* HeaderView.xib */; };
 		58ACA0051A530D5B0076D3D8 /* CreateAccViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58ACA0041A530D5B0076D3D8 /* CreateAccViewController.xib */; };
@@ -79,6 +80,8 @@
 		5835720D1A2B70C000F6EA17 /* ScrollableHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollableHeader.m; sourceTree = "<group>"; };
 		583572171A2B72BB00F6EA17 /* Tools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tools.h; sourceTree = "<group>"; };
 		583572181A2B72BB00F6EA17 /* Tools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tools.m; sourceTree = "<group>"; };
+		5836A1CB1A55F98300C509F1 /* Loading.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Loading.h; sourceTree = "<group>"; };
+		5836A1CC1A55F98300C509F1 /* Loading.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Loading.m; sourceTree = "<group>"; };
 		58AC9FFF1A4EE6B70076D3D8 /* HeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeaderView.h; sourceTree = "<group>"; };
 		58ACA0001A4EE6B70076D3D8 /* HeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeaderView.m; sourceTree = "<group>"; };
 		58ACA0011A4EE6B70076D3D8 /* HeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HeaderView.xib; sourceTree = "<group>"; };
@@ -360,6 +363,8 @@
 				5835720D1A2B70C000F6EA17 /* ScrollableHeader.m */,
 				BBB6A0591A44D6B5006F61B3 /* CLTextField.h */,
 				BBB6A05A1A44D6B5006F61B3 /* CLTextField.m */,
+				5836A1CB1A55F98300C509F1 /* Loading.h */,
+				5836A1CC1A55F98300C509F1 /* Loading.m */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -512,6 +517,7 @@
 			files = (
 				BBCF58A21A29395400CE64B4 /* Validation.m in Sources */,
 				BBAE1F201A37B5A80008B772 /* NSDate+DateHandler.m in Sources */,
+				5836A1CD1A55F98300C509F1 /* Loading.m in Sources */,
 				BBB6A05F1A44FB2D006F61B3 /* UIConfiguration.m in Sources */,
 				BBB6A0561A40E7D1006F61B3 /* VSSwitchButton.m in Sources */,
 				BBAE1F241A37B68E0008B772 /* ForgotPasswordViewController.m in Sources */,

@@ -33,50 +33,119 @@
 {
     [super viewDidLoad];
     
-    HeaderView *headerView = [[HeaderView alloc]initWithFrame:headerViewHolder.frame];
-    headerView.backgroundColor =[UIColor colorWithWhite:0 alpha:0];
-    headerView.delegate=self;
-    headerView.title=@"COLOMBIO";
-    headerView.btnNext.hidden=YES;
-    [headerViewHolder addSubview:headerView];
+    //Dodavanje headera
+    [headerViewHolder addSubview:[HeaderView initHeader:@"COLOMBIO" nextHidden:YES previousHidden:NO activeVC:self headerFrame:headerViewHolder.frame]];
     
+    //Ako se tapne bilo gdje drugdje na scrollbox, makne se tipkovnica
     [self.scrollBox setDelegate:self];
-    UITapGestureRecognizer *singleTap =[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(singleTapGestureCaptured:)];
+    
+    //Kada se klikne na scrollview da se makne tipkovnica
+    UITapGestureRecognizer *singleTap =[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(goAwayKeyboard:)];
     [scrollBox addGestureRecognizer:singleTap];
     
+    //Dodatno podešavanje tekstualnih okvira
+    [self setupTextFields];
+    
+    //Dodavanje eventa kada se sakrije tipkovnica
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(onKeyboardHide:) name:UIKeyboardWillHideNotification object:nil];
+}
+
+- (void)viewDidLayoutSubviews{
+    scrollBox.bounces=NO;
+}
+
+#pragma mark TextFields
+
+- (void)setupTextFields{
+    //Postavljanje delegata
+    txtUsername.txtField.delegate = self;
+    txtEmail.txtField.delegate = self;
+    txtPassword.txtField.delegate = self;
+    txtConfirmPass.txtField.delegate = self;
+    
+    //Dodavanje identifikatora
+    txtUsername.txtField.tag=1;
+    txtEmail.txtField.tag=2;
+    txtPassword.txtField.tag=3;
+    txtConfirmPass.txtField.tag=4;
+    
+    //Upisivanje placeholdera
     [txtUsername setPlaceholderText:@"enter_username"];
     [txtEmail setPlaceholderText:@"enter_email"];
     [txtPassword setPlaceholderText:@"enter_password"];
     [txtConfirmPass setPlaceholderText:@"enter_confirm_password"];
     
+    //Password text
     txtPassword.txtField.secureTextEntry=YES;
     txtConfirmPass.txtField.secureTextEntry=YES;
+    
+    //Return key
+    txtConfirmPass.txtField.returnKeyType = UIReturnKeyGo;
 }
 
-- (void)viewDidLayoutSubviews{
-    scrollBox.contentSize = CGSizeMake(scrollBox.frame.size.width,scrollBox.frame.size.height+55);
-    
+#pragma mark KeyboardEvents
+
+//Kad se sakrije tipkovnica makne se skrolabilnost viewa
+-(void)onKeyboardHide:(NSNotification *)notification
+{
+    scrollBox.contentSize = CGSizeMake(scrollBox.frame.size.width,scrollBox.frame.size.height);
 }
+
+//Metoda koja vraca true ili false ovisno o tome je li tipkovnica aktivna
+- (BOOL)isKeyboardActive{
+    if([txtUsername.txtField isFirstResponder]||[txtEmail.txtField isFirstResponder]||[txtPassword.txtField isFirstResponder]||[txtConfirmPass.txtField isFirstResponder]){
+        return YES;
+    }
+    return NO;
+}
+
+//Kada se klikne next/done na tipkovnici
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    switch (textField.tag) {
+        case 1:
+            [txtEmail.txtField becomeFirstResponder];
+            break;
+        case 2:
+            [txtPassword.txtField becomeFirstResponder];
+            break;
+        case 3:
+            [txtConfirmPass.txtField becomeFirstResponder];
+            break;
+        case 4:
+            [txtConfirmPass.txtField resignFirstResponder];
+            [self btnCreateAccClicked:nil];
+            break;
+    }
+    return NO;
+}
+
+//Kada se pojavi tipkovnica, omoguci se skrolabilnost kako bi se mogao pregledati cijeli view
+- (void)textFieldDidBeginEditing:(UITextField *)textField{
+    scrollBox.contentSize = CGSizeMake(scrollBox.frame.size.width,self.view.frame.size.height+210);
+}
+
+//Ako se napravi tap na pozadinu, mice se tipkovnica i scrolla se view
+- (void)goAwayKeyboard:(UITapGestureRecognizer *)gesture{
+    [self.view endEditing:YES];
+}
+
+#pragma mark Navigation
 
 - (void)backButtonTapped{
-    NSLog(@"test");
+    [self.view endEditing:YES];
+    [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }
+
+#pragma mark CreateAccount
 
 - (void)toggleCreateOff{
     [btnCreate setTitle:@"Create account" forState:UIControlStateNormal];
-}
-
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-
 }
 
 - (void)toggleCreateOn{
     [btnCreate setTitle:@"Please wait..." forState:UIControlStateNormal];
 }
 
-- (void)disableKeyboardActivity{
-    keyboardActive=NO;
-}
 /*
 - (void)checkRegister{
     timer = [NSTimer scheduledTimerWithTimeInterval:0.3 target:self selector:@selector(disableKeyboardActivity) userInfo:nil repeats:NO];
@@ -97,7 +166,7 @@
     NSString *pass =txtPassword.text;
     
     bool wrongEmail=NO;
-    bool wrongUser=NO;
+    bool wrongUs er=NO;
     if(email.length<1){
         wrongEmail=YES;
         email=@"b";
@@ -207,14 +276,14 @@
 }
 */
 
-/*
 //Ako se klikne na create account
-- (IBAction)setButton:(id)sender{
-    timer = [NSTimer scheduledTimerWithTimeInterval:0.3 target:self selector:@selector(disableKeyboardActivity) userInfo:nil repeats:NO];
+- (IBAction)btnCreateAccClicked:(id)sender{
+    [self.view endEditing:YES];
     timer = [NSTimer scheduledTimerWithTimeInterval:0 target:self selector:@selector(toggleCreateOn) userInfo:nil repeats:NO];
-    timer = [NSTimer scheduledTimerWithTimeInterval:0.2f target:self selector:@selector(checkRegister) userInfo:nil repeats:NO];
+    //timer = [NSTimer scheduledTimerWithTimeInterval:0.2f target:self selector:@selector(checkRegister) userInfo:nil repeats:NO];
 }
 
+/*
 //Fokus na confirm pass
 - (IBAction)setConfirmPass:(id)sender{
     keyboardActive=YES;
@@ -266,46 +335,6 @@
         [scrollBox setContentOffset:CGPointMake(0,177) animated:YES];
     }
 }
-
-//Login button click
-- (IBAction)setLogIn:(id)sender {
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
-    LoginViewController *log = (LoginViewController*)[storyboard instantiateViewControllerWithIdentifier:@"test122"];
-    [self presentViewController:log animated:YES completion:nil];
-    return;
-}
- 
- */
-
-//Kada se makne fokus sa text fielda, scrolla se view
-- (IBAction)goAwayKeyboard:(id)sender{
-    UITextField *gumb = (UITextField *)sender;
-    if(gumb.tag==1){
-        [txtUsername becomeFirstResponder];
-    }
-    else if(gumb.tag==2){
-        [txtPassword becomeFirstResponder];
-    }
-    else if(gumb.tag==3){
-        [txtConfirmPass becomeFirstResponder];
-    }
-    else
-    {
-        timer = [NSTimer scheduledTimerWithTimeInterval:0.3 target:self selector:@selector(disableKeyboardActivity) userInfo:nil repeats:NO];
-        [sender resignFirstResponder];
-        [scrollBox setContentOffset:CGPointMake(0,0) animated:YES];
-    }
-}
-
-//Ako se napravi tap na pozadinu, mice se tipkovnica i scrolla se view
-- (void)singleTapGestureCaptured:(UITapGestureRecognizer *)gesture{
-    timer = [NSTimer scheduledTimerWithTimeInterval:0.3 target:self selector:@selector(disableKeyboardActivity) userInfo:nil repeats:NO];
-    [self.view endEditing:YES];
-    [scrollBox setContentOffset:CGPointMake(0,0) animated:YES];
-}
-
-- (void)btnBackClicked:(id)sender{
-    [self.presentingViewController dismissViewControllerAnimated:NO completion:nil];
-}
+*/
 
 @end

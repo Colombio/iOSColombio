@@ -13,7 +13,7 @@
 #import "ColombioServiceCommunicator.h"
 #import "CLTextField.h"
 
-@interface CreateAccViewController : UIViewController<UITableViewDelegate, UIScrollViewDelegate, HeaderViewDelegate, ColombioServiceCommunicatorDelegate>{
+@interface CreateAccViewController : UIViewController<UITableViewDelegate, UIScrollViewDelegate, HeaderViewDelegate, ColombioServiceCommunicatorDelegate, UITextFieldDelegate>{
     IBOutlet UIScrollView *scrollBox;
     IBOutlet CLTextField *txtUsername;
     IBOutlet CLTextField *txtEmail;
@@ -22,7 +22,6 @@
     NSTimer *timer;
     IBOutlet UIButton *btnCreate;
     IBOutlet UIImageView *imgBackground;
-    bool keyboardActive;
 }
 
 @property (weak, nonatomic) IBOutlet UIView *headerViewHolder;
@@ -40,7 +39,7 @@
 - (IBAction)setEmail:(id)sender;
 - (IBAction)setPassword:(id)sender;
 - (IBAction)setConfirmPass:(id)sender;
-- (IBAction)setButton:(id)sender;
+- (IBAction)btnCreateAccClicked:(id)sender;
 - (IBAction)btnBackClicked:(id)sender;
 
 @end

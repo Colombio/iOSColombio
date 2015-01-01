@@ -37,6 +37,7 @@
     _txtField = [[UITextField alloc] initWithFrame:CGRectMake(45, 0, self.frame.size.width-90, self.frame.size.height)];
     _txtField.font = [[UIConfiguration sharedInstance] getFont:FONT_HELVETICA_NEUE_LIGHT];
     _txtField.keyboardType  = UIKeyboardTypeDefault;
+    _txtField.returnKeyType = UIReturnKeyNext;
     [_txtField setTextColor:[UIColor colorWithWhite:1 alpha:0.65]];
     [self addSubview:_txtField];
     _imgView = [[UIImageView alloc] initWithFrame:CGRectMake(self.frame.size.width-20, 0, 20, self.frame.size.height)];

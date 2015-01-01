@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CreateAccViewController">
             <connections>
+                <outlet property="btnCreate" destination="aVh-cm-uTy" id="HMZ-YR-bzg"/>
                 <outlet property="headerViewHolder" destination="oAR-qu-Rhx" id="Yc1-vk-2x3"/>
                 <outlet property="imgBackground" destination="lV4-AU-enK" id="m6Q-eI-zq6"/>
                 <outlet property="scrollBox" destination="Sc4-eG-eQE" id="5Kl-6E-HTL"/>
@@ -24,59 +25,91 @@
             <subviews>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sc4-eG-eQE">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
-                </scrollView>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cKW-8h-zYU">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                </view>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login_bg1" translatesAutoresizingMaskIntoConstraints="NO" id="lV4-AU-enK">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
-                </imageView>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oAR-qu-Rhx">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login_bg1" translatesAutoresizingMaskIntoConstraints="NO" id="lV4-AU-enK">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        </imageView>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oAR-qu-Rhx" userLabel="Header">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="64" id="W1Q-wX-Zag"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uaR-EH-yrE" userLabel="Username" customClass="CLTextField">
+                            <rect key="frame" x="0.0" y="75" width="320" height="44"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="44" id="AM5-2K-kpG"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IrL-5x-K3Q" userLabel="Email" customClass="CLTextField">
+                            <rect key="frame" x="0.0" y="130" width="320" height="44"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="44" id="0gu-3Y-wXb"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aUh-CJ-E59" userLabel="Password" customClass="CLTextField">
+                            <rect key="frame" x="0.0" y="185" width="320" height="44"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="44" id="0nx-XG-xGQ"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xh8-fE-8Up" userLabel="Confirm Password" customClass="CLTextField">
+                            <rect key="frame" x="0.0" y="240" width="320" height="44"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="44" id="nwh-5G-f6R"/>
+                            </constraints>
+                        </view>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aVh-cm-uTy">
+                            <rect key="frame" x="45" y="295" width="275" height="44"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <state key="normal" title="Create account">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="btnCreateAccClicked:" destination="-1" eventType="touchUpInside" id="O5k-3K-uaU"/>
+                            </connections>
+                        </button>
+                    </subviews>
                     <constraints>
-                        <constraint firstAttribute="height" constant="64" id="W1Q-wX-Zag"/>
+                        <constraint firstItem="xh8-fE-8Up" firstAttribute="top" secondItem="Sc4-eG-eQE" secondAttribute="top" constant="240" id="6Gm-SW-O7g"/>
+                        <constraint firstItem="IrL-5x-K3Q" firstAttribute="width" secondItem="xh8-fE-8Up" secondAttribute="width" id="6fB-F8-5Tc"/>
+                        <constraint firstItem="IrL-5x-K3Q" firstAttribute="width" secondItem="oAR-qu-Rhx" secondAttribute="width" id="81a-l8-v8d"/>
+                        <constraint firstItem="lV4-AU-enK" firstAttribute="top" secondItem="oAR-qu-Rhx" secondAttribute="top" id="9gl-WW-AxB"/>
+                        <constraint firstItem="IrL-5x-K3Q" firstAttribute="width" secondItem="aUh-CJ-E59" secondAttribute="width" id="AY8-CG-m8E"/>
+                        <constraint firstItem="lV4-AU-enK" firstAttribute="leading" secondItem="oAR-qu-Rhx" secondAttribute="leading" id="Euf-au-JE1"/>
+                        <constraint firstItem="IrL-5x-K3Q" firstAttribute="top" secondItem="Sc4-eG-eQE" secondAttribute="top" constant="130" id="HHA-J1-AEf"/>
+                        <constraint firstItem="lV4-AU-enK" firstAttribute="leading" secondItem="aUh-CJ-E59" secondAttribute="leading" id="Mgr-jZ-ea3"/>
+                        <constraint firstItem="oAR-qu-Rhx" firstAttribute="top" secondItem="Sc4-eG-eQE" secondAttribute="top" id="RJC-cA-Gfo"/>
+                        <constraint firstAttribute="trailing" secondItem="lV4-AU-enK" secondAttribute="trailing" id="YOg-jt-t9B"/>
+                        <constraint firstItem="lV4-AU-enK" firstAttribute="leading" secondItem="xh8-fE-8Up" secondAttribute="leading" id="bKa-HH-FJh"/>
+                        <constraint firstAttribute="bottom" secondItem="lV4-AU-enK" secondAttribute="bottom" id="fcX-3o-HIY"/>
+                        <constraint firstItem="lV4-AU-enK" firstAttribute="width" secondItem="Sc4-eG-eQE" secondAttribute="width" id="jIS-mO-1NB"/>
+                        <constraint firstItem="IrL-5x-K3Q" firstAttribute="width" secondItem="uaR-EH-yrE" secondAttribute="width" id="k3d-d7-g9z"/>
+                        <constraint firstItem="lV4-AU-enK" firstAttribute="height" secondItem="Sc4-eG-eQE" secondAttribute="height" id="kw9-JY-Axm"/>
+                        <constraint firstItem="lV4-AU-enK" firstAttribute="leading" secondItem="IrL-5x-K3Q" secondAttribute="leading" id="nT0-Yn-rl8"/>
+                        <constraint firstItem="uaR-EH-yrE" firstAttribute="top" secondItem="Sc4-eG-eQE" secondAttribute="top" constant="75" id="pSB-wf-B4L"/>
+                        <constraint firstItem="lV4-AU-enK" firstAttribute="leading" secondItem="uaR-EH-yrE" secondAttribute="leading" id="qNC-bF-XPd"/>
+                        <constraint firstItem="lV4-AU-enK" firstAttribute="leading" secondItem="Sc4-eG-eQE" secondAttribute="leading" id="uVi-Yu-ITd"/>
+                        <constraint firstItem="IrL-5x-K3Q" firstAttribute="width" secondItem="lV4-AU-enK" secondAttribute="width" id="xSW-2b-ZjE"/>
+                        <constraint firstItem="aUh-CJ-E59" firstAttribute="top" secondItem="Sc4-eG-eQE" secondAttribute="top" constant="185" id="ztv-As-7oy"/>
                     </constraints>
-                </view>
-                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uaR-EH-yrE" userLabel="Username" customClass="CLTextField">
-                    <rect key="frame" x="0.0" y="75" width="320" height="44"/>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                </view>
-                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IrL-5x-K3Q" userLabel="Email" customClass="CLTextField">
-                    <rect key="frame" x="0.0" y="130" width="320" height="44"/>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                </view>
-                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aUh-CJ-E59" userLabel="Password" customClass="CLTextField">
-                    <rect key="frame" x="0.0" y="185" width="320" height="44"/>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                </view>
-                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xh8-fE-8Up" userLabel="Confirm Password" customClass="CLTextField">
-                    <rect key="frame" x="0.0" y="240" width="320" height="44"/>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                </view>
+                </scrollView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="oAR-qu-Rhx" secondAttribute="trailing" id="1Wb-IH-Ia2"/>
-                <constraint firstItem="cKW-8h-zYU" firstAttribute="leading" secondItem="1wW-LU-CNA" secondAttribute="leading" id="4JG-kr-UQ3"/>
-                <constraint firstAttribute="bottom" secondItem="lV4-AU-enK" secondAttribute="bottom" id="841-kt-v2I"/>
-                <constraint firstItem="cKW-8h-zYU" firstAttribute="top" secondItem="1wW-LU-CNA" secondAttribute="top" id="9NZ-NU-9PA"/>
-                <constraint firstAttribute="bottom" secondItem="oAR-qu-Rhx" secondAttribute="bottom" constant="416" id="HTe-3R-xyE"/>
-                <constraint firstAttribute="bottom" secondItem="cKW-8h-zYU" secondAttribute="bottom" id="NCn-0p-mAk"/>
-                <constraint firstAttribute="trailing" secondItem="Sc4-eG-eQE" secondAttribute="trailing" id="Npa-aZ-ZND"/>
-                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="oAR-qu-Rhx" secondAttribute="bottom" constant="416" id="OgQ-R7-jzP"/>
-                <constraint firstItem="lV4-AU-enK" firstAttribute="top" secondItem="1wW-LU-CNA" secondAttribute="top" id="Rf3-b3-qQv"/>
-                <constraint firstItem="Sc4-eG-eQE" firstAttribute="leading" secondItem="1wW-LU-CNA" secondAttribute="leading" id="U7J-ON-zpn"/>
-                <constraint firstAttribute="trailing" secondItem="lV4-AU-enK" secondAttribute="trailing" id="VJC-y6-Mxm"/>
-                <constraint firstItem="Sc4-eG-eQE" firstAttribute="top" secondItem="1wW-LU-CNA" secondAttribute="top" id="WbO-6E-53t"/>
-                <constraint firstItem="oAR-qu-Rhx" firstAttribute="leading" secondItem="1wW-LU-CNA" secondAttribute="leading" id="WeV-Sb-mBY"/>
-                <constraint firstItem="lV4-AU-enK" firstAttribute="leading" secondItem="1wW-LU-CNA" secondAttribute="leading" id="apQ-I4-vkH"/>
-                <constraint firstAttribute="bottom" secondItem="Sc4-eG-eQE" secondAttribute="bottom" id="nhp-tY-7Lu"/>
-                <constraint firstAttribute="trailing" secondItem="cKW-8h-zYU" secondAttribute="trailing" id="xLf-Tz-kbJ"/>
+                <constraint firstItem="Sc4-eG-eQE" firstAttribute="leading" secondItem="1wW-LU-CNA" secondAttribute="leading" id="83g-NO-6Ee"/>
+                <constraint firstAttribute="bottom" secondItem="Sc4-eG-eQE" secondAttribute="bottom" id="8Z0-rR-hwt"/>
+                <constraint firstItem="Sc4-eG-eQE" firstAttribute="top" secondItem="1wW-LU-CNA" secondAttribute="top" id="Fhe-FZ-4pg"/>
+                <constraint firstAttribute="trailing" secondItem="Sc4-eG-eQE" secondAttribute="trailing" id="hUn-2g-Grk"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="132" y="144"/>
+            <point key="canvasLocation" x="131" y="143"/>
         </view>
     </objects>
     <resources>
