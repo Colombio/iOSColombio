@@ -17,14 +17,14 @@
 @end
 
 @interface ColombioServiceCommunicator : NSObject
-{
-    CLLocationManager *locationManager;
-}
-
 
 @property (strong, nonatomic) id<ColombioServiceCommunicatorDelegate> delegate;
+@property (strong, nonatomic) CLLocationManager *locationManager;
+@property (strong, nonatomic) NSMutableURLRequest *request;
 
 +(id)sharedManager;
+-(void)sendAsyncHttp:(NSString *)strUrl httpBody:(NSString *)strBody cache:(NSUInteger)cachePolicy timeoutInterval:(double)timeout;
 //- (void)fetchNewsDemands;
+
 @end
 

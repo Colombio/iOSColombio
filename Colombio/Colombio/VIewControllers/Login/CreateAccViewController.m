@@ -26,360 +26,257 @@
 @synthesize txtPassword;
 @synthesize txtUsername;
 @synthesize btnCreate;
-@synthesize pozadina;
-@synthesize scrollView;
+@synthesize imgBackground;
 @synthesize headerViewHolder;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
-    CGRect screenBounds = [[UIScreen mainScreen]bounds];
-
+    //Dodavanje headera
+    [headerViewHolder addSubview:[HeaderView initHeader:@"COLOMBIO" nextHidden:YES previousHidden:NO activeVC:self headerFrame:headerViewHolder.frame]];
+    
+    //Ako se tapne bilo gdje drugdje na scrollbox, makne se tipkovnica
     [self.scrollBox setDelegate:self];
-    UITapGestureRecognizer *singleTap =[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(singleTapGestureCaptured:)];
+    
+    //Kada se klikne na scrollview da se makne tipkovnica
+    UITapGestureRecognizer *singleTap =[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(goAwayKeyboard:)];
     [scrollBox addGestureRecognizer:singleTap];
     
-    //Uzimanje backgrounda za 4 inch ekran
-    if(screenBounds.size.height == 568.0f){
-        NSString *filename = @"back.png";
-        filename=[filename stringByReplacingOccurrencesOfString:@".png" withString:@"-568h.png"];
-    }
-    else{
-    }
+    //Dodatno podešavanje tekstualnih okvira
+    [self setupTextFields];
     
-    txtPassword.secureTextEntry = YES;
-    txtConfirmPass.secureTextEntry = YES;
-}
-
-- (void)viewDidLayoutSubviews{
-    scrollView.contentSize = CGSizeMake(scrollBox.frame.size.width*3, scrollView.frame.size.height);
+    //Dodavanje eventa kada se sakrije tipkovnica
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(onKeyboardHide:) name:UIKeyboardWillHideNotification object:nil];
     
-    CGRect screenBounds = [[UIScreen mainScreen]bounds];
+    loadingView = [[Loading alloc] init];
+}
+
+#pragma mark TextFields
+
+- (void)setupTextFields{
+    //Postavljanje delegata
+    txtUsername.txtField.delegate = self;
+    txtEmail.txtField.delegate = self;
+    txtPassword.txtField.delegate = self;
+    txtConfirmPass.txtField.delegate = self;
     
-    if(screenBounds.size.height != 568.0f){
-        [scrollBox setContentOffset:CGPointMake(0,20) animated:NO];
-    }
-    scrollView.bounces=NO;
-}
-
-- (void)toggleCreateOff{
-    [btnCreate setTitle:@"Create account" forState:UIControlStateNormal];
-}
-
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    if(self.scrollBox.contentOffset.y<0){
-        [self.scrollBox setScrollEnabled:NO];
-        [self.scrollBox setContentOffset:CGPointMake(0, 0)];
-        [self.scrollBox setScrollEnabled:YES];
-        return;
-    }
-    CGRect screenBounds = [[UIScreen mainScreen]bounds];
-    if(screenBounds.size.height == 568.0f){
-        if(keyboardActive==YES){
-            if(self.scrollBox.contentOffset.y>140){
-                [self.scrollBox setScrollEnabled:NO];
-                [self.scrollBox setContentOffset:CGPointMake(0, 140)];
-                [self.scrollBox setScrollEnabled:YES];
-            }
-        }
-        else{
-            if(self.scrollBox.contentOffset.y>0){
-                [self.scrollBox setContentOffset:CGPointMake(0, 0)];
-            }
-        }
-        return;
-    }
-    else{
-        if(keyboardActive==NO){
-            if(self.scrollBox.contentOffset.y>20){
-                [self.scrollBox setScrollEnabled:NO];
-                [self.scrollBox setContentOffset:CGPointMake(0, 20)];
-                [self.scrollBox setScrollEnabled:YES];
-                return;
-            }
-        }
-        else{
-            if(self.scrollBox.contentOffset.y>230){
-                [self.scrollBox setScrollEnabled:NO];
-                [self.scrollBox setContentOffset:CGPointMake(0, 230)];
-                [self.scrollBox setScrollEnabled:YES];
-                return;
-            }
-        }
-    }
-}
-
-- (void)toggleCreateOn{
-    [btnCreate setTitle:@"Please wait..." forState:UIControlStateNormal];
-}
-
-- (void)disableKeyboardActivity{
-    keyboardActive=NO;
-}
-
-- (void)checkRegister{
-    timer = [NSTimer scheduledTimerWithTimeInterval:0.3 target:self selector:@selector(disableKeyboardActivity) userInfo:nil repeats:NO];
-    /*
-     userWrong.hidden=YES;
-     userPass.hidden=NO;
-     
-     passWrong.hidden=YES;
-     passPass.hidden=NO;
-     
-     emailWrong.hidden=YES;
-     
-     passConfirmPass.hidden=NO;
-     passConfirmWrong.hidden=YES;
-     */
+    //Dodavanje identifikatora
+    txtUsername.txtField.tag=1;
+    txtEmail.txtField.tag=2;
+    txtPassword.txtField.tag=3;
+    txtConfirmPass.txtField.tag=4;
     
+    //Upisivanje placeholdera
+    [txtUsername setPlaceholderText:@"enter_username"];
+    [txtEmail setPlaceholderText:@"enter_email"];
+    [txtPassword setPlaceholderText:@"enter_password"];
+    [txtConfirmPass setPlaceholderText:@"enter_confirm_password"];
     
-    NSString *empty = @"";
-    Boolean wrong = false;
+    //Password text
+    txtPassword.txtField.secureTextEntry=YES;
+    txtConfirmPass.txtField.secureTextEntry=YES;
     
-    
-    //Slanje podataka za prijavu i dohvacanje odgovora
-    NSString *url_str = [NSString stringWithFormat:@"https://appforrest.com/colombio/api_user_managment/mau_normal_register/"];
-    NSURL * url = [NSURL URLWithString:url_str];
-    NSError *err=nil;
-    NSMutableURLRequest *request =[NSMutableURLRequest requestWithURL:url];
-    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
-    
-    //md5 TODO
-    //NSString *md5Prepare = [NSString stringWithFormat:@"%@registracija%@",txtEmail.text,txtPassword.text];
-    //NSString *hash = [self md5:(md5Prepare)];
-    
-    //TODO Provjeriti sa web servisom, nesto ne radi kod slanja podataka, odnosno
-    //response je krivi
-    NSString *email =txtEmail.text;
-    NSString *username = txtUsername.text;
-    NSString *confirmPass = txtConfirmPass.text;
-    NSString *pass =txtPassword.text;
-    
-    bool wrongEmail=NO;
-    bool wrongUser=NO;
-    if(email.length<1){
-        wrongEmail=YES;
-        email=@"b";
-    }
-    if(username.length<1){
-        wrongUser=YES;
-        username=@"b";
-    }
-    if(confirmPass.length<1){
-        confirmPass=@"b";
-    }
-    if(pass.length<1){
-        pass=@"b";
-    }
-    
-    [request setHTTPBody:[[NSString stringWithFormat:@"user_name=%@&user_email=%@&user_pass=%@&cpassword=%@",username,email,pass, confirmPass]dataUsingEncoding:NSUTF8StringEncoding]];
-    [request setHTTPMethod:@"POST"];
-    NSURLResponse *response = nil;
-    NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&err];
-    //NSString *nsJson = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
-    //Dogodila se pogreska prilikom dohvacanja zahtjeva
-    if(err){
-        [Messages showErrorMsg:@"Pogreška prilikom slanja zahtjeva"];
-    }
-    
-    
-    //Uspjesno je poslan zahtjev, provjeri odgovor
-    else{
-        Boolean pogreska=false;
-        NSDictionary *odgovor=nil;
-        odgovor =[NSJSONSerialization JSONObjectWithData:data options:0 error:NULL];
-        NSArray *keys =[odgovor allKeys];
-        //Provjeravanje pogresnih odgovora
-        for(NSString *key in keys){
-            //Provjera za ispravnost prijave
-            if(!strcmp("errors", key.UTF8String)){
-                NSArray *errors = [odgovor objectForKey:@"errors"];
-                for(NSString *greska in errors){
-                    //Duplikat usernamea
-                    if(strcmp("username_exists", greska.UTF8String)&&wrongUser==NO){
-                        UIColor *color = [UIColor redColor];
-                        txtUsername.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Username already exists" attributes:@{NSForegroundColorAttributeName:color}];
-                        txtUsername.text=@"";
-                        wrong=true;
-                        wrongUser=NO;
-                    }
-                    //Snaga lozinke nije ok
-                    if(strcmp("pass_str_fail", greska.UTF8String)){
-                        UIColor *color = [UIColor redColor];
-                        txtPassword.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"8 characters, 1 caps, 1 number" attributes:@{NSForegroundColorAttributeName:color}];
-                        txtPassword.text=@"";
-                        wrong=true;
-                    }
-                    //Duplikat emaila
-                    if(strcmp("email_exists", greska.UTF8String)&& ![txtEmail.text isEqualToString:@"b"]&&wrongEmail==NO){
-                        wrongEmail=NO;
-                        UIColor *color = [UIColor redColor];
-                        txtEmail.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Email already exists" attributes:@{NSForegroundColorAttributeName:color}];
-                        txtEmail.text=@"";
-                        wrong=true;
-                    }
-                }
-                pogreska=true;
-                break;
-            }
-        }
-        if(![Validation validateEmail:[txtEmail text]]&&wrongEmail==YES) {
-            wrong=true;
-            UIColor *color = [UIColor redColor];
-            txtEmail.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Wrong email format" attributes:@{NSForegroundColorAttributeName:color}];
-            txtEmail.text=@"";
-        }
-        //Duljina lozinke je kriva
-        if(txtPassword.text.length<8){
-            wrong=true;
-            UIColor *color = [UIColor redColor];
-            txtPassword.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"8 characters, 1 caps, 1 number" attributes:@{NSForegroundColorAttributeName:color}];
-            txtPassword.text=@"";
-        }
-        //Lozinka je prazna ili lozinke ne matchaju
-        if(!strcmp([txtConfirmPass text].UTF8String,empty.UTF8String) || strcmp([txtConfirmPass text].UTF8String,[txtPassword text].UTF8String)){
-            wrong=true;
-            UIColor *color = [UIColor redColor];
-            NSString *errText=@"Confirm your password";
-            if(strcmp([txtConfirmPass text].UTF8String,[txtPassword text].UTF8String)){
-                errText=@"Both passwords must match";
-            }
-            txtConfirmPass.attributedPlaceholder = [[NSAttributedString alloc] initWithString:errText attributes:@{NSForegroundColorAttributeName:color}];
-            txtConfirmPass.text=@"";
-        }
-        //Potvrda lozinke je prazna
-        if(!strcmp([txtUsername text].UTF8String,empty.UTF8String)&&wrongUser==YES){
-            wrong=true;
-            UIColor *color = [UIColor redColor];
-            txtUsername.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Enter your username" attributes:@{NSForegroundColorAttributeName:color}];
-            txtUsername.text=@"";
-        }
-
-        //Ako su svi podaci ispravno upisani
-        if(!wrong){
-            [Messages showNormalMsg:@"Uspjesna registracija"];
-            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
-            LoginViewController *log = (LoginViewController*)[storyboard instantiateViewControllerWithIdentifier:@"test122"];
-            [self presentViewController:log animated:YES completion:nil];
-        }
-    }
-    timer = [NSTimer scheduledTimerWithTimeInterval:0 target:self selector:@selector(toggleCreateOff) userInfo:nil repeats:NO];
+    //Return key
+    txtConfirmPass.txtField.returnKeyType = UIReturnKeyGo;
 }
 
-//Ako se klikne na create account
-- (IBAction)setButton:(id)sender{
-    timer = [NSTimer scheduledTimerWithTimeInterval:0.3 target:self selector:@selector(disableKeyboardActivity) userInfo:nil repeats:NO];
-    timer = [NSTimer scheduledTimerWithTimeInterval:0 target:self selector:@selector(toggleCreateOn) userInfo:nil repeats:NO];
-    timer = [NSTimer scheduledTimerWithTimeInterval:0.2f target:self selector:@selector(checkRegister) userInfo:nil repeats:NO];
-}
+#pragma mark KeyboardEvents
 
-//Fokus na confirm pass
-- (IBAction)setConfirmPass:(id)sender{
-    keyboardActive=YES;
-    [txtConfirmPass setPlaceholder:@"Confirm password"];
-    CGRect screenBounds = [[UIScreen mainScreen]bounds];
-    if(screenBounds.size.height == 568.0f){
-        [scrollBox setContentOffset:CGPointMake(0,140) animated:YES];
-    }
-    else{
-        [scrollBox setContentOffset:CGPointMake(0,221) animated:YES];
-    }
-}
-
-//Fokus na pass
-- (IBAction)setPassword:(id)sender{
-    keyboardActive=YES;
-    [txtPassword setPlaceholder:@"Password"];
-    CGRect screenBounds = [[UIScreen mainScreen]bounds];
-    if(screenBounds.size.height == 568.0f){
-        [scrollBox setContentOffset:CGPointMake(0,140) animated:YES];
-    }
-    else{
-        [scrollBox setContentOffset:CGPointMake(0,221) animated:YES];
-    }
-}
-
-//Fokus na email
-- (IBAction)setEmail:(id)sender{
-    keyboardActive=YES;
-    [txtEmail setPlaceholder:@"Email"];
-    CGRect screenBounds = [[UIScreen mainScreen]bounds];
-    if(screenBounds.size.height == 568.0f){
-        [scrollBox setContentOffset:CGPointMake(0,140) animated:YES];
-    }
-    else{
-        [scrollBox setContentOffset:CGPointMake(0,133) animated:YES];
-    }
-}
-
-//Fokus na username
-- (IBAction)setUsername:(id)sender{
-    keyboardActive=YES;
-    [txtUsername setPlaceholder:@"Username"];
-    CGRect screenBounds = [[UIScreen mainScreen]bounds];
-    if(screenBounds.size.height == 568.0f){
-        [scrollBox setContentOffset:CGPointMake(0,140) animated:YES];
-    }
-    else{
-        [scrollBox setContentOffset:CGPointMake(0,177) animated:YES];
-    }
-}
-
-//Login button click
-- (IBAction)setLogIn:(id)sender {
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
-    LoginViewController *log = (LoginViewController*)[storyboard instantiateViewControllerWithIdentifier:@"test122"];
-    [self presentViewController:log animated:YES completion:nil];
-    return;
-}
-
-//Kada se makne fokus sa text fielda, scrolla se view
-- (IBAction)goAwayKeyboard:(id)sender{
-    UITextField *gumb = (UITextField *)sender;
-    if(gumb.tag==1){
-        [txtUsername becomeFirstResponder];
-    }
-    else if(gumb.tag==2){
-        [txtPassword becomeFirstResponder];
-    }
-    else if(gumb.tag==3){
-        [txtConfirmPass becomeFirstResponder];
-    }
-    else
-    {
-        timer = [NSTimer scheduledTimerWithTimeInterval:0.3 target:self selector:@selector(disableKeyboardActivity) userInfo:nil repeats:NO];
-        [sender resignFirstResponder];
-        [scrollBox setContentOffset:CGPointMake(0,0) animated:YES];
-    }
-}
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+//Kad se sakrije tipkovnica makne se skrolabilnost viewa
+-(void)onKeyboardHide:(NSNotification *)notification
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
+    scrollBox.contentSize = CGSizeMake(scrollBox.frame.size.width,scrollBox.frame.size.height);
+}
+
+//Kada se klikne next/done na tipkovnici
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    switch (textField.tag) {
+        case 1:
+            [txtEmail.txtField becomeFirstResponder];
+            break;
+        case 2:
+            [txtPassword.txtField becomeFirstResponder];
+            break;
+        case 3:
+            [txtConfirmPass.txtField becomeFirstResponder];
+            break;
+        case 4:
+            [txtConfirmPass.txtField resignFirstResponder];
+            [self btnCreateAccClicked:nil];
+            break;
     }
-    return self;
+    return NO;
+}
+
+//Kada se pocne editirati neki text field, resetira se natrag originalni placeholder i makne se error img
+- (void)textFieldDidBeginEditing:(UITextField *)textField{
+    scrollBox.contentSize = CGSizeMake(scrollBox.frame.size.width,self.view.frame.size.height+210);
+    switch (textField.tag) {
+        case 1:
+            [txtUsername setPlaceholderText:txtUsername.placeholderText];
+            break;
+        case 2:
+            [txtEmail setPlaceholderText:txtEmail.placeholderText];
+            break;
+        case 3:
+            [txtPassword setPlaceholderText:txtPassword.placeholderText];
+            break;
+        case 4:
+            [txtConfirmPass setPlaceholderText:txtConfirmPass.placeholderText];
+            break;
+    }
 }
 
 //Ako se napravi tap na pozadinu, mice se tipkovnica i scrolla se view
-- (void)singleTapGestureCaptured:(UITapGestureRecognizer *)gesture{
-    timer = [NSTimer scheduledTimerWithTimeInterval:0.3 target:self selector:@selector(disableKeyboardActivity) userInfo:nil repeats:NO];
-    [txtConfirmPass resignFirstResponder];
-    [txtEmail resignFirstResponder];
-    [txtPassword resignFirstResponder];
-    [txtUsername resignFirstResponder];
-    [scrollBox setContentOffset:CGPointMake(0,0) animated:YES];
+- (void)goAwayKeyboard:(UITapGestureRecognizer *)gesture{
+    [self.view endEditing:YES];
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
+#pragma mark Navigation
+
+//Header back delegate
+- (void)backButtonTapped{
+    [self.view endEditing:YES];
+    [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (void)btnBackClicked:(id)sender{
-    [self.presentingViewController dismissViewControllerAnimated:NO completion:nil];
+//IB button back
+- (IBAction)btnBackClicked:(id)sender{
+    [self backButtonTapped];
+}
+
+#pragma mark CreateAccount
+
+- (void)toggleCreateOff{
+    [btnCreate setTitle:@"Create account" forState:UIControlStateNormal];
+    [loadingView removeCustomSpinner];
+}
+
+- (void)checkRegister{
+    strEmail =txtEmail.txtField.text;
+    strUsername = txtUsername.txtField.text;
+    strConfirmPass = txtConfirmPass.txtField.text;
+    strPassword =txtPassword.txtField.text;
+    
+    ColombioServiceCommunicator *csc = [[ColombioServiceCommunicator alloc] init];
+    [csc sendAsyncHttp:@"https://appforrest.com/colombio/api_user_managment/mau_normal_register/" httpBody:[NSString stringWithFormat:@"user_name=%@&user_email=%@&user_pass=%@&cpassword=%@",strUsername,strEmail,strPassword, strConfirmPass]cache:NSURLRequestReloadIgnoringCacheData timeoutInterval:5];
+    
+    [NSURLConnection sendAsynchronousRequest:csc.request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSString *empty = @"";
+            Boolean isWrongInput = false;
+            
+            bool wrongEmail=NO;
+            bool wrongUser=NO;
+            
+            if(strEmail.length<1){
+                wrongEmail=YES;
+                strEmail=@"b";
+            }
+            if(strUsername.length<1){
+                wrongUser=YES;
+                strUsername=@"b";
+            }
+            if(strConfirmPass.length<1)
+                strConfirmPass=@"b";
+            if(strPassword.length<1)
+                strPassword=@"b";
+            
+            //NSString *nsJson = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
+            //Dogodila se pogreska prilikom dohvacanja zahtjeva
+            if(error){
+                [Messages showErrorMsg:@"error_web_request"];
+            }
+            
+            //Uspjesno je poslan zahtjev, provjeri odgovor
+            else{
+                Boolean isWebServiceDataError=false;
+                NSDictionary *dataWsResponse=nil;
+                dataWsResponse =[NSJSONSerialization JSONObjectWithData:data options:0 error:NULL];
+                NSArray *keys =[dataWsResponse allKeys];
+                //Provjeravanje pogresnih odgovora
+                for(NSString *key in keys){
+                    //Provjera za ispravnost prijave
+                    if(!strcmp("errors", key.UTF8String)){
+                        NSArray *arrayWsErrors = [dataWsResponse objectForKey:@"errors"];
+                        for(NSString *greska in arrayWsErrors){
+                            //Duplikat usernamea
+                            if(strcmp("usernam e_exists", greska.UTF8String)&&wrongUser==NO){
+                                [txtUsername setErrorText:@"error_username_exists"];
+                                isWrongInput=true;
+                                wrongUser=NO;
+                            }
+                            //Snaga lozinke nije ok
+                            if(strcmp("pass_str_fail", greska.UTF8String)){
+                                [txtPassword setErrorText:@"error_password"];
+                                isWrongInput=true;
+                            }
+                            //Duplikat emaila
+                            if(strcmp("email_exists", greska.UTF8String)&& ![txtEmail.txtField.text isEqualToString:@"b"]&&wrongEmail==NO){
+                                wrongEmail=NO;
+                                [txtEmail setErrorText:@"error_email_exists"];
+                                isWrongInput=true;
+                            }
+                        }
+                        isWebServiceDataError=true;
+                        break;
+                    }
+                }
+                if(![Validation validateEmail:[txtEmail.txtField text]]&&wrongEmail==YES) {
+                    isWrongInput=true;
+                    [txtEmail setErrorText:@"error_email_format"];
+                }
+                //Duljina lozinke je kriva
+                if(txtPassword.txtField.text.length<8){
+                    isWrongInput=true;
+                    [txtPassword setErrorText:@"error_password"];
+                }
+                //Lozinka je prazna ili lozinke ne matchaju
+                if(!strcmp([txtConfirmPass.txtField text].UTF8String,empty.UTF8String) || strcmp([txtConfirmPass.txtField text].UTF8String,[txtPassword.txtField text].UTF8String)){
+                    isWrongInput=true;
+                    [txtConfirmPass setErrorText:@"error_confirm_password"];
+                }
+                //Potvrda lozinke je prazna
+                if(!strcmp([txtUsername.txtField text].UTF8String,empty.UTF8String)&&wrongUser==YES){
+                    isWrongInput=true;
+                    [txtUsername setErrorText:@"error_username_format"];
+                }
+                
+                //TODO, minor bugfixes, navigacija,
+                //Poruka ispod spinnera
+                
+                //Ako su svi podaci ispravno upisani
+                [loadingView stopCustomSpinner];
+                if(!isWrongInput){
+                    [Messages showNormalMsg:@"register_successful"];
+                    [loadingView customSpinnerSuccess];
+                }
+                else{
+                    [loadingView customSpinnerFail];
+                }
+            }
+            timer = [NSTimer scheduledTimerWithTimeInterval:0 target:self selector:@selector(toggleCreateOff) userInfo:nil repeats:NO];
+        });
+        
+    }];
+}
+
+//Ako se klikne na create account
+- (IBAction)btnCreateAccClicked:(id)sender{
+    [self.view endEditing:YES];
+    [loadingView startCustomSpinner:self.view];
+    [UIView animateWithDuration:0.8 animations:^{
+        [btnCreate setTitle:@"Please wait..." forState:UIControlStateNormal];
+    }];
+    
+    /*
+     [loadingView stopCustomSpinner];
+     [loadingView customSpinnerFail];
+     */
+    
+    timer = [NSTimer scheduledTimerWithTimeInterval:0.2f target:self selector:@selector(checkRegister) userInfo:nil repeats:NO];
 }
 
 @end

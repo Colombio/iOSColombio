@@ -14,6 +14,8 @@
 #import "Messages.h"
 
 @implementation ColombioServiceCommunicator
+@synthesize request;
+@synthesize locationManager;
 
 + (id)sharedManager {
     static ColombioServiceCommunicator *sharedMyManager = nil;
@@ -45,6 +47,17 @@
     NSData *data = [NSJSONSerialization dataWithJSONObject:provjera options:0 error:&err];
     NSString *result= [CryptoClass base64Encoding:data];
     return result;
+}
+
+
+-(void)sendAsyncHttp:(NSString *)strUrl httpBody:(NSString *)strBody cache:(NSUInteger)cachePolicy timeoutInterval:(double)timeout{
+    NSURL * url = [NSURL URLWithString:strUrl];
+    request =[NSMutableURLRequest requestWithURL:url cachePolicy:cachePolicy timeoutInterval:timeout];
+    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+    [request setHTTPBody:[strBody dataUsingEncoding:NSUTF8StringEncoding]];
+    [request setHTTPMethod:@"POST"];
+    //Timeout wont work
+    [request setTimeoutInterval:timeout];
 }
 
 //TODO fetching news demands

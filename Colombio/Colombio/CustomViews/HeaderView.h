@@ -31,5 +31,6 @@
 
 - (IBAction)btnNextClicked:(id)sender;
 - (IBAction)btnBackClicked:(id)sender;
++ (HeaderView *)initHeader:(NSString *)name nextHidden:(BOOL)isNextHidden previousHidden:(BOOL)isPreviousHidden activeVC:(UIViewController *)viewController headerFrame:(CGRect)frame;
 
 @end
