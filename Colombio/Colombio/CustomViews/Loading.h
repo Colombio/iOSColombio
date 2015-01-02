@@ -8,6 +8,21 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Loading : NSObject
+@interface Loading : NSObject{
+    UIActivityIndicatorView *actLoading;
+    UIView *viewDimmed;
+    BOOL isLoading;
+    UIView *viewParent;
+    UIImageView *imgSpinner;
+    UIImageView *imgStatus;
+}
+
+- (void)startNativeSpinner:(UIView *)view;
+- (void)stopNativeSpinner;
+- (void)startCustomSpinner:(UIView *)view;
+- (void)stopCustomSpinner;
+- (void)customSpinnerSuccess;
+- (void)customSpinnerFail;
+- (void)removeCustomSpinner;
 
 @end

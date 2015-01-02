@@ -48,10 +48,8 @@
     
     //Dodavanje eventa kada se sakrije tipkovnica
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(onKeyboardHide:) name:UIKeyboardWillHideNotification object:nil];
-}
-
-- (void)viewDidLayoutSubviews{
-    scrollBox.bounces=NO;
+    
+    loadingView = [[Loading alloc] init];
 }
 
 #pragma mark TextFields
@@ -140,10 +138,7 @@
 
 - (void)toggleCreateOff{
     [btnCreate setTitle:@"Create account" forState:UIControlStateNormal];
-}
-
-- (void)toggleCreateOn{
-    [btnCreate setTitle:@"Please wait..." forState:UIControlStateNormal];
+    [loadingView removeCustomSpinner];
 }
 
 /*
@@ -279,7 +274,18 @@
 //Ako se klikne na create account
 - (IBAction)btnCreateAccClicked:(id)sender{
     [self.view endEditing:YES];
-    timer = [NSTimer scheduledTimerWithTimeInterval:0 target:self selector:@selector(toggleCreateOn) userInfo:nil repeats:NO];
+    [loadingView startCustomSpinner:self.view];
+    [UIView animateWithDuration:0.8 animations:^{
+        [btnCreate setTitle:@"Please wait..." forState:UIControlStateNormal];
+    }];
+    
+    /*
+    [loadingView stopCustomSpinner];
+    [loadingView customSpinnerFail];
+    */
+    
+    timer = [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(toggleCreateOff) userInfo:nil repeats:NO];
+    
     //timer = [NSTimer scheduledTimerWithTimeInterval:0.2f target:self selector:@selector(checkRegister) userInfo:nil repeats:NO];
 }
 

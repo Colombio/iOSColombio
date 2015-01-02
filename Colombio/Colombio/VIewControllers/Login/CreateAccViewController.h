@@ -12,6 +12,7 @@
 #import "HeaderView.h"
 #import "ColombioServiceCommunicator.h"
 #import "CLTextField.h"
+#import "Loading.h"
 
 @interface CreateAccViewController : UIViewController<UITableViewDelegate, UIScrollViewDelegate, HeaderViewDelegate, ColombioServiceCommunicatorDelegate, UITextFieldDelegate>{
     IBOutlet UIScrollView *scrollBox;
@@ -22,6 +23,7 @@
     NSTimer *timer;
     IBOutlet UIButton *btnCreate;
     IBOutlet UIImageView *imgBackground;
+    Loading *loadingView;
 }
 
 @property (weak, nonatomic) IBOutlet UIView *headerViewHolder;
