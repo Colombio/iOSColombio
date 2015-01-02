@@ -117,9 +117,23 @@
     return NO;
 }
 
-//Kada se pojavi tipkovnica, omoguci se skrolabilnost kako bi se mogao pregledati cijeli view
+//Kada se pocne editirati neki text field, resetira se natrag originalni placeholder i makne se error img
 - (void)textFieldDidBeginEditing:(UITextField *)textField{
     scrollBox.contentSize = CGSizeMake(scrollBox.frame.size.width,self.view.frame.size.height+210);
+    switch (textField.tag) {
+        case 1:
+            [txtUsername setPlaceholderText:txtUsername.placeholderText];
+            break;
+        case 2:
+            [txtEmail setPlaceholderText:txtEmail.placeholderText];
+            break;
+        case 3:
+            [txtPassword setPlaceholderText:txtPassword.placeholderText];
+            break;
+        case 4:
+            [txtConfirmPass setPlaceholderText:txtConfirmPass.placeholderText];
+            break;
+    }
 }
 
 //Ako se napravi tap na pozadinu, mice se tipkovnica i scrolla se view
@@ -145,10 +159,7 @@
     [loadingView removeCustomSpinner];
 }
 
-/*
 - (void)checkRegister{
-    timer = [NSTimer scheduledTimerWithTimeInterval:0.3 target:self selector:@selector(disableKeyboardActivity) userInfo:nil repeats:NO];
-    
     NSString *empty = @"";
     Boolean wrong = false;
     
@@ -159,13 +170,14 @@
     NSMutableURLRequest *request =[NSMutableURLRequest requestWithURL:url];
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
     
-    NSString *email =txtEmail.text;
-    NSString *username = txtUsername.text;
-    NSString *confirmPass = txtConfirmPass.text;
-    NSString *pass =txtPassword.text;
+    NSString *email =txtEmail.txtField.text;
+    NSString *username = txtUsername.txtField.text;
+    NSString *confirmPass = txtConfirmPass.txtField.text;
+    NSString *pass =txtPassword.txtField.text;
     
     bool wrongEmail=NO;
-    bool wrongUs er=NO;
+    bool wrongUser=NO;
+    
     if(email.length<1){
         wrongEmail=YES;
         email=@"b";
@@ -190,7 +202,7 @@
     if(err){
         [Messages showErrorMsg:@"Pogreška prilikom slanja zahtjeva"];
     }
-    
+    /*
     //Uspjesno je poslan zahtjev, provjeri odgovor
     else{
         Boolean pogreska=false;
@@ -270,10 +282,10 @@
             LoginViewController *log = (LoginViewController*)[storyboard instantiateViewControllerWithIdentifier:@"test122"];
             [self presentViewController:log animated:YES completion:nil];
         }
-    }
+    }*/
     timer = [NSTimer scheduledTimerWithTimeInterval:0 target:self selector:@selector(toggleCreateOff) userInfo:nil repeats:NO];
 }
-*/
+
 //Ako se klikne na create account
 - (IBAction)btnCreateAccClicked:(id)sender{
     [self.view endEditing:YES];
@@ -287,63 +299,7 @@
     [loadingView customSpinnerFail];
     */
     
-    timer = [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(toggleCreateOff) userInfo:nil repeats:NO];
-    
-    //timer = [NSTimer scheduledTimerWithTimeInterval:0.2f target:self selector:@selector(checkRegister) userInfo:nil repeats:NO];
+    timer = [NSTimer scheduledTimerWithTimeInterval:0.2f target:self selector:@selector(checkRegister) userInfo:nil repeats:NO];
 }
-
-/*
-//Fokus na confirm pass
-- (IBAction)setConfirmPass:(id)sender{
-    keyboardActive=YES;
-    [txtConfirmPass setPlaceholder:@"Confirm password"];
-    CGRect screenBounds = [[UIScreen mainScreen]bounds];
-    if(screenBounds.size.height == 568.0f){
-        [scrollBox setContentOffset:CGPointMake(0,140) animated:YES];
-    }
-    else{
-        [scrollBox setContentOffset:CGPointMake(0,221) animated:YES];
-    }
-}
-
-//Fokus na pass
-- (IBAction)setPassword:(id)sender{
-    keyboardActive=YES;
-    [txtPassword setPlaceholder:@"Password"];
-    CGRect screenBounds = [[UIScreen mainScreen]bounds];
-    if(screenBounds.size.height == 568.0f){
-        [scrollBox setContentOffset:CGPointMake(0,140) animated:YES];
-    }
-    else{
-        [scrollBox setContentOffset:CGPointMake(0,221) animated:YES];
-    }
-}
-
-//Fokus na email
-- (IBAction)setEmail:(id)sender{
-    keyboardActive=YES;
-    [txtEmail setPlaceholder:@"Email"];
-    CGRect screenBounds = [[UIScreen mainScreen]bounds];
-    if(screenBounds.size.height == 568.0f){
-        [scrollBox setContentOffset:CGPointMake(0,140) animated:YES];
-    }
-    else{
-        [scrollBox setContentOffset:CGPointMake(0,133) animated:YES];
-    }
-}
-
-//Fokus na username
-- (IBAction)setUsername:(id)sender{
-    keyboardActive=YES;
-    [txtUsername setPlaceholder:@"Username"];
-    CGRect screenBounds = [[UIScreen mainScreen]bounds];
-    if(screenBounds.size.height == 568.0f){
-        [scrollBox setContentOffset:CGPointMake(0,140) animated:YES];
-    }
-    else{
-        [scrollBox setContentOffset:CGPointMake(0,177) animated:YES];
-    }
-}
-*/
 
 @end

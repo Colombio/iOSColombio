@@ -40,7 +40,7 @@
     _txtField.returnKeyType = UIReturnKeyNext;
     [_txtField setTextColor:[UIColor colorWithWhite:1 alpha:0.65]];
     [self addSubview:_txtField];
-    _imgView = [[UIImageView alloc] initWithFrame:CGRectMake(self.frame.size.width-20, 0, 20, self.frame.size.height)];
+    _imgView = [[UIImageView alloc] initWithFrame:CGRectMake(self.frame.size.width-70, 11, 25, 25)];
     _imgView.image = TXT_FIELD_INPUT_IMG;
     [_imgView setHidden:YES];
     [self addSubview:_imgView];
@@ -58,13 +58,15 @@
     _placeholderText = [Localized string:placeholderText];
     _txtField.placeholder = _placeholderText;
     _txtField.attributedPlaceholder = [[NSAttributedString alloc]initWithString:_placeholderText attributes:@{NSForegroundColorAttributeName:[UIColor colorWithWhite:1 alpha:0.65]}];
+    [_imgView setHidden:YES];
 }
 
 - (void)setErrorText:(NSString *)errorText
 {
     _errorText = [Localized string:errorText];
     [_imgView setHidden:NO];
-    _imgView.image = TXT_FIELD_WRONG_IMG;
+    _txtField.attributedPlaceholder = [[NSAttributedString alloc]initWithString:_errorText attributes:@{NSForegroundColorAttributeName:[UIColor colorWithWhite:1 alpha:0.65]}];
+    _imgView.image = TXT_FIELD_FAIL_IMG;
 }
 
 - (void)setOkInput{

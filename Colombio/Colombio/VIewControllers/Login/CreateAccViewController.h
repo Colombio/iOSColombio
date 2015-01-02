@@ -35,12 +35,7 @@
 @property (strong,nonatomic) IBOutlet CLTextField *txtConfirmPass;
 @property (strong,nonatomic) IBOutlet UIScrollView *scrollBox;
 
-- (IBAction)setLogIn:(id)sender;
 - (IBAction)goAwayKeyboard:(id)sender;
-- (IBAction)setUsername:(id)sender;
-- (IBAction)setEmail:(id)sender;
-- (IBAction)setPassword:(id)sender;
-- (IBAction)setConfirmPass:(id)sender;
 - (IBAction)btnCreateAccClicked:(id)sender;
 - (IBAction)btnBackClicked:(id)sender;
 
