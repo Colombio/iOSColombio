@@ -65,7 +65,7 @@
                             </constraints>
                         </view>
                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aVh-cm-uTy">
-                            <rect key="frame" x="45" y="295" width="275" height="44"/>
+                            <rect key="frame" x="45" y="292" width="275" height="44"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <state key="normal" title="Create account">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -75,12 +75,63 @@
                                 <action selector="btnCreateAccClicked:" destination="-1" eventType="touchUpInside" id="O5k-3K-uaU"/>
                             </connections>
                         </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="By creating account, you agree to the" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S8U-yY-gq4">
+                            <rect key="frame" x="45" y="357" width="230" height="44"/>
+                            <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="14"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="highlightedColor" white="1" alpha="0.65000000000000002" colorSpace="calibratedWhite"/>
+                            <size key="shadowOffset" width="0.0" height="-26"/>
+                        </label>
+                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pb6-IB-N39">
+                            <rect key="frame" x="45" y="357" width="230" height="2"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </view>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hFs-97-ECi">
+                            <rect key="frame" x="45" y="378" width="114" height="30"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="-9"/>
+                            <state key="normal" title="Terms of Service">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                        </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="and" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XWI-Zm-Las">
+                            <rect key="frame" x="156" y="388" width="42" height="20"/>
+                            <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="14"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L7T-Rk-nL6">
+                            <rect key="frame" x="183" y="378" width="92" height="30"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="-9"/>
+                            <state key="normal" title="Privacy Policy">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                        </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Already have an account?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U4o-Xn-b9i">
+                            <rect key="frame" x="45" y="423" width="151" height="17"/>
+                            <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="14"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AR4-Bb-70A">
+                            <rect key="frame" x="186" y="425" width="58" height="19"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <inset key="contentEdgeInsets" minX="14" minY="0.0" maxX="0.0" maxY="4"/>
+                            <state key="normal" title="Log in!">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                        </button>
                     </subviews>
                     <constraints>
                         <constraint firstItem="xh8-fE-8Up" firstAttribute="top" secondItem="Sc4-eG-eQE" secondAttribute="top" constant="240" id="6Gm-SW-O7g"/>
                         <constraint firstItem="IrL-5x-K3Q" firstAttribute="width" secondItem="xh8-fE-8Up" secondAttribute="width" id="6fB-F8-5Tc"/>
                         <constraint firstItem="IrL-5x-K3Q" firstAttribute="width" secondItem="oAR-qu-Rhx" secondAttribute="width" id="81a-l8-v8d"/>
                         <constraint firstItem="lV4-AU-enK" firstAttribute="top" secondItem="oAR-qu-Rhx" secondAttribute="top" id="9gl-WW-AxB"/>
+                        <constraint firstAttribute="bottom" secondItem="AR4-Bb-70A" secondAttribute="bottom" constant="36" id="A6H-61-WCt"/>
                         <constraint firstItem="IrL-5x-K3Q" firstAttribute="width" secondItem="aUh-CJ-E59" secondAttribute="width" id="AY8-CG-m8E"/>
                         <constraint firstItem="lV4-AU-enK" firstAttribute="leading" secondItem="oAR-qu-Rhx" secondAttribute="leading" id="Euf-au-JE1"/>
                         <constraint firstItem="IrL-5x-K3Q" firstAttribute="top" secondItem="Sc4-eG-eQE" secondAttribute="top" constant="130" id="HHA-J1-AEf"/>
@@ -88,6 +139,7 @@
                         <constraint firstItem="oAR-qu-Rhx" firstAttribute="top" secondItem="Sc4-eG-eQE" secondAttribute="top" id="RJC-cA-Gfo"/>
                         <constraint firstAttribute="trailing" secondItem="lV4-AU-enK" secondAttribute="trailing" id="YOg-jt-t9B"/>
                         <constraint firstItem="lV4-AU-enK" firstAttribute="leading" secondItem="xh8-fE-8Up" secondAttribute="leading" id="bKa-HH-FJh"/>
+                        <constraint firstItem="AR4-Bb-70A" firstAttribute="leading" secondItem="Sc4-eG-eQE" secondAttribute="leading" constant="186" id="cAK-f8-Eub"/>
                         <constraint firstAttribute="bottom" secondItem="lV4-AU-enK" secondAttribute="bottom" id="fcX-3o-HIY"/>
                         <constraint firstItem="lV4-AU-enK" firstAttribute="width" secondItem="Sc4-eG-eQE" secondAttribute="width" id="jIS-mO-1NB"/>
                         <constraint firstItem="IrL-5x-K3Q" firstAttribute="width" secondItem="uaR-EH-yrE" secondAttribute="width" id="k3d-d7-g9z"/>
@@ -95,6 +147,8 @@
                         <constraint firstItem="lV4-AU-enK" firstAttribute="leading" secondItem="IrL-5x-K3Q" secondAttribute="leading" id="nT0-Yn-rl8"/>
                         <constraint firstItem="uaR-EH-yrE" firstAttribute="top" secondItem="Sc4-eG-eQE" secondAttribute="top" constant="75" id="pSB-wf-B4L"/>
                         <constraint firstItem="lV4-AU-enK" firstAttribute="leading" secondItem="uaR-EH-yrE" secondAttribute="leading" id="qNC-bF-XPd"/>
+                        <constraint firstItem="U4o-Xn-b9i" firstAttribute="leading" secondItem="Sc4-eG-eQE" secondAttribute="leading" constant="45" id="qOP-2B-K7h"/>
+                        <constraint firstAttribute="bottom" secondItem="U4o-Xn-b9i" secondAttribute="bottom" constant="40" id="u0S-BO-n6i"/>
                         <constraint firstItem="lV4-AU-enK" firstAttribute="leading" secondItem="Sc4-eG-eQE" secondAttribute="leading" id="uVi-Yu-ITd"/>
                         <constraint firstItem="IrL-5x-K3Q" firstAttribute="width" secondItem="lV4-AU-enK" secondAttribute="width" id="xSW-2b-ZjE"/>
                         <constraint firstItem="aUh-CJ-E59" firstAttribute="top" secondItem="Sc4-eG-eQE" secondAttribute="top" constant="185" id="ztv-As-7oy"/>
