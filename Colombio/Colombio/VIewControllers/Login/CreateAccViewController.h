@@ -14,7 +14,7 @@
 #import "CLTextField.h"
 #import "Loading.h"
 
-@interface CreateAccViewController : UIViewController<UITableViewDelegate, UIScrollViewDelegate, HeaderViewDelegate, ColombioServiceCommunicatorDelegate, UITextFieldDelegate>{
+@interface CreateAccViewController : UIViewController<UITableViewDelegate, UIScrollViewDelegate, HeaderViewDelegate, ColombioServiceCommunicatorDelegate, UITextFieldDelegate, NSURLConnectionDelegate>{
     IBOutlet UIScrollView *scrollBox;
     IBOutlet CLTextField *txtUsername;
     IBOutlet CLTextField *txtEmail;
@@ -24,10 +24,10 @@
     IBOutlet UIButton *btnCreate;
     IBOutlet UIImageView *imgBackground;
     Loading *loadingView;
-    NSString *email;
-    NSString *username;
-    NSString *confirmPass;
-    NSString *pass;
+    NSString *strEmail;
+    NSString *strUsername;
+    NSString *strConfirmPass;
+    NSString *strPassword;
 }
 
 @property (weak, nonatomic) IBOutlet UIView *headerViewHolder;

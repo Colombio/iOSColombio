@@ -56,6 +56,8 @@
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
     [request setHTTPBody:[strBody dataUsingEncoding:NSUTF8StringEncoding]];
     [request setHTTPMethod:@"POST"];
+    //Timeout wont work
+    [request setTimeoutInterval:timeout];
 }
 
 //TODO fetching news demands

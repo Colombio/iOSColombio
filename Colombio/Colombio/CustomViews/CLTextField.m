@@ -66,6 +66,7 @@
     _errorText = [Localized string:errorText];
     [_imgView setHidden:NO];
     _txtField.attributedPlaceholder = [[NSAttributedString alloc]initWithString:_errorText attributes:@{NSForegroundColorAttributeName:[UIColor colorWithWhite:1 alpha:0.65]}];
+    _txtField.text=@"";
     _imgView.image = TXT_FIELD_FAIL_IMG;
 }
 
