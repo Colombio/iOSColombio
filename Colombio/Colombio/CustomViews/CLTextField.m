@@ -40,7 +40,7 @@
     _txtField.returnKeyType = UIReturnKeyNext;
     [_txtField setTextColor:[UIColor colorWithWhite:1 alpha:0.65]];
     [self addSubview:_txtField];
-    _imgView = [[UIImageView alloc] initWithFrame:CGRectMake(self.frame.size.width-70, 11, 25, 25)];
+    _imgView = [[UIImageView alloc] initWithFrame:CGRectMake(self.frame.size.width-65, 11, 25, 25)];
     _imgView.image = TXT_FIELD_INPUT_IMG;
     [_imgView setHidden:YES];
     [self addSubview:_imgView];

@@ -166,7 +166,7 @@
         
         dispatch_async(dispatch_get_main_queue(), ^{
             NSString *empty = @"";
-            Boolean wrong = false;
+            Boolean isWrongInput = false;
             
             bool wrongEmail=NO;
             bool wrongUser=NO;
@@ -192,86 +192,72 @@
             
             //Uspjesno je poslan zahtjev, provjeri odgovor
             else{
-                Boolean pogreska=false;
-                NSDictionary *odgovor=nil;
-                odgovor =[NSJSONSerialization JSONObjectWithData:data options:0 error:NULL];
-                NSArray *keys =[odgovor allKeys];
+                Boolean isWebServiceDataError=false;
+                NSDictionary *dataWsResponse=nil;
+                dataWsResponse =[NSJSONSerialization JSONObjectWithData:data options:0 error:NULL];
+                NSArray *keys =[dataWsResponse allKeys];
                 //Provjeravanje pogresnih odgovora
                 for(NSString *key in keys){
                     //Provjera za ispravnost prijave
                     if(!strcmp("errors", key.UTF8String)){
-                        NSArray *errors = [odgovor objectForKey:@"errors"];
-                        for(NSString *greska in errors){
+                        NSArray *arrayWsErrors = [dataWsResponse objectForKey:@"errors"];
+                        for(NSString *greska in arrayWsErrors){
                             //Duplikat usernamea
-                            if(strcmp("username_exists", greska.UTF8String)&&wrongUser==NO){
-                                UIColor *color = [UIColor redColor];
-                                txtUsername.txtField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Username already exists" attributes:@{NSForegroundColorAttributeName:color}];
-                                txtUsername.txtField.text=@"";
-                                wrong=true;
+                            if(strcmp("usernam e_exists", greska.UTF8String)&&wrongUser==NO){
+                                [txtUsername setErrorText:@"error_username_exists"];
+                                isWrongInput=true;
                                 wrongUser=NO;
                             }
                             //Snaga lozinke nije ok
                             if(strcmp("pass_str_fail", greska.UTF8String)){
-                                UIColor *color = [UIColor redColor];
-                                txtPassword.txtField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"8 characters, 1 caps, 1 number" attributes:@{NSForegroundColorAttributeName:color}];
-                                txtPassword.txtField.text=@"";
-                                wrong=true;
+                                [txtPassword setErrorText:@"error_password"];
+                                isWrongInput=true;
                             }
                             //Duplikat emaila
                             if(strcmp("email_exists", greska.UTF8String)&& ![txtEmail.txtField.text isEqualToString:@"b"]&&wrongEmail==NO){
                                 wrongEmail=NO;
-                                UIColor *color = [UIColor redColor];
-                                txtEmail.txtField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Email already exists" attributes:@{NSForegroundColorAttributeName:color}];
-                                txtEmail.txtField.text=@"";
-                                wrong=true;
+                                [txtEmail setErrorText:@"error_email_exists"];
+                                isWrongInput=true;
                             }
                         }
-                        pogreska=true;
+                        isWebServiceDataError=true;
                         break;
                     }
                 }
                 if(![Validation validateEmail:[txtEmail.txtField text]]&&wrongEmail==YES) {
-                    wrong=true;
-                    UIColor *color = [UIColor redColor];
-                    txtEmail.txtField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Wrong email format" attributes:@{NSForegroundColorAttributeName:color}];
-                    txtEmail.txtField.text=@"";
+                    isWrongInput=true;
+                    [txtEmail setErrorText:@"error_email_format"];
                 }
                 //Duljina lozinke je kriva
                 if(txtPassword.txtField.text.length<8){
-                    wrong=true;
-                    UIColor *color = [UIColor redColor];
-                    txtPassword.txtField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"8 characters, 1 caps, 1 number" attributes:@{NSForegroundColorAttributeName:color}];
-                    txtPassword.txtField.text=@"";
+                    isWrongInput=true;
+                    [txtPassword setErrorText:@"error_password"];
                 }
                 //Lozinka je prazna ili lozinke ne matchaju
                 if(!strcmp([txtConfirmPass.txtField text].UTF8String,empty.UTF8String) || strcmp([txtConfirmPass.txtField text].UTF8String,[txtPassword.txtField text].UTF8String)){
-                    wrong=true;
-                    UIColor *color = [UIColor redColor];
-                    NSString *errText=@"Confirm your password";
-                    if(strcmp([txtConfirmPass.txtField text].UTF8String,[txtPassword.txtField text].UTF8String)){
-                        errText=@"Both passwords must match";
-                    }
-                    txtConfirmPass.txtField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:errText attributes:@{NSForegroundColorAttributeName:color}];
-                    txtConfirmPass.txtField.text=@"";
+                    isWrongInput=true;
+                    [txtConfirmPass setErrorText:@"error_confirm_password"];
                 }
                 //Potvrda lozinke je prazna
                 if(!strcmp([txtUsername.txtField text].UTF8String,empty.UTF8String)&&wrongUser==YES){
-                    wrong=true;
-                    UIColor *color = [UIColor redColor];
-                    txtUsername.txtField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Enter your username" attributes:@{NSForegroundColorAttributeName:color}];
-                    txtUsername.txtField.text=@"";
+                    isWrongInput=true;
+                    [txtUsername setErrorText:@"error_username_format"];
                 }
                 
+                //TODO, minor bugfixes, navigacija,
+                //Poruka ispod spinnera
+                
                 //Ako su svi podaci ispravno upisani
-                if(!wrong){
-                    [Messages showNormalMsg:@"Uspjesna registracija"];
-                    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
-                    LoginViewController *log = (LoginViewController*)[storyboard instantiateViewControllerWithIdentifier:@"test122"];
-                    [self presentViewController:log animated:YES completion:nil];
+                [loadingView stopCustomSpinner];
+                if(!isWrongInput){
+                    [Messages showNormalMsg:@"register_successful"];
+                    [loadingView customSpinnerSuccess];
+                }
+                else{
+                    [loadingView customSpinnerFail];
                 }
             }
             timer = [NSTimer scheduledTimerWithTimeInterval:0 target:self selector:@selector(toggleCreateOff) userInfo:nil repeats:NO];
-            
         });
         
     }];

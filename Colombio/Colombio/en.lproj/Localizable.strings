@@ -11,6 +11,7 @@
 "start_message" = "Before you start sharing your news with the world, create your account or sign in, choose country, choose media and enter your info.";
 
 "create_account" = "Create account";
+"register_successful" = "Registration successful";
 
 /*create account placeholders*/
 "enter_username" = "Enter your username";
@@ -20,11 +21,11 @@
 
 /*create account error strings*/
 "error_username_exists" = "Username already exists";
-"error_username_format" = "Username already exists";
-"error_email_exists" = "Wrong email";
+"error_username_format" = "Enter your username";
+"error_email_exists" = "Email already exists";
 "error_email_format" = "Wrong email";
 "error_password" = "8 chars, 1 capital, 1 number";
-"error_confirm_password" = "Wrong confirm password";
+"error_confirm_password" = "Both passwords must match";
 
 /*error message global*/
 "error_web_request" = "Pogreška prilikom slanja zahtjeva";
