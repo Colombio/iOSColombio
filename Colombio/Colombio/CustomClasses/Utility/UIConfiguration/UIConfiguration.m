@@ -29,7 +29,8 @@
         fontMap = [[NSMutableDictionary alloc] init];
         fontMap[FONT_HELVETICA_NEUE_ULTRALIGHT] = [UIFont fontWithName:@"HelveticaNeue-Ultralight" size:17];
         fontMap[FONT_HELVETICA_NEUE_BOLD] = [UIFont fontWithName:@"HelveticaNeue-Bold" size:17];
-        fontMap[FONT_HELVETICA_NEUE_REGULAR_SMALL] = [UIFont fontWithName:@"HelveticaNeue" size:10];
+        fontMap[FONT_HELVETICA_NEUE_REGULAR_SMALL] = [UIFont fontWithName:@"HelveticaNeue" size:14];
+        fontMap[FONT_HELVETICA_NEUE_REGULAR_EXTRA_SMALL] = [UIFont fontWithName:@"HelveticaNeue" size:10];
         fontMap[FONT_HELVETICA_NEUE_BOLD_SMALL] = [UIFont fontWithName:@"HelveticaNeue-Bold" size:14];
         fontMap[FONT_HELVETICA_NEUE_LIGHT] = [UIFont fontWithName:@"HelveticaNeue-Light" size:17];
     }

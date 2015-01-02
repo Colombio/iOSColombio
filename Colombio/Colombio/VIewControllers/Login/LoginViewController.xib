@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LoginViewController">
             <connections>
+                <outlet property="contentHolder" destination="1JK-7q-v4p" id="cNI-Kf-2tD"/>
                 <outlet property="scrollBox" destination="Fab-I5-IN8" id="f4J-fa-GFM"/>
-                <outlet property="scrollView" destination="sg6-IV-f43" id="eb0-UF-1Uu"/>
                 <outlet property="view" destination="iN0-l3-epB" id="wWj-8g-ihO"/>
             </connections>
         </placeholder>
@@ -16,58 +17,191 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g8W-xe-un5" userLabel="ContentHolder">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login_bg1" translatesAutoresizingMaskIntoConstraints="NO" id="VHT-ct-EU7">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                </imageView>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Fab-I5-IN8">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                     <subviews>
-                        <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HxL-JS-Sar">
+                        <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1JK-7q-v4p" userLabel="Content Holder">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                             <subviews>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VdL-Fa-QCa" userLabel="ContentView">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eSY-Sr-MZ2" customClass="ScrollableHeaderView">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="275"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="275" id="58F-zb-rbe"/>
+                                    </constraints>
+                                </view>
+                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AIY-vZ-g87" userLabel="Buttons Holder">
+                                    <rect key="frame" x="30" y="292" width="260" height="77"/>
                                     <subviews>
-                                        <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Fab-I5-IN8">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                        <view alpha="0.49999999999999961" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="l9y-uI-EL4" userLabel="FB Holder">
+                                            <rect key="frame" x="0.0" y="0.0" width="77" height="77"/>
                                             <subviews>
-                                                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sg6-IV-f43">
-                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="275"/>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="keyPath" value="YES"/>
-                                                    </userDefinedRuntimeAttributes>
-                                                </scrollView>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HfZ-71-cRd">
+                                                    <rect key="frame" x="17" y="8" width="44" height="44"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    <state key="normal" backgroundImage="facebook">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                </button>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="brO-4p-PXK">
+                                                    <rect key="frame" x="17" y="48" width="42" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
-                                        </scrollView>
+                                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <view alpha="0.5" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9SK-3T-RnQ" userLabel="eMail Holder">
+                                            <rect key="frame" x="182" y="0.0" width="77" height="77"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HIy-Sb-msa">
+                                                    <rect key="frame" x="16" y="8" width="44" height="44"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    <state key="normal" backgroundImage="login_email">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                </button>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A7y-iw-fkj">
+                                                    <rect key="frame" x="17" y="48" width="42" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <view alpha="0.5" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Rps-QE-8Ng" userLabel="Google Holder">
+                                            <rect key="frame" x="91" y="0.0" width="77" height="77"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yHK-BW-hg3">
+                                                    <rect key="frame" x="17" y="8" width="44" height="44"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    <state key="normal" backgroundImage="google">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                </button>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fbS-iJ-ect">
+                                                    <rect key="frame" x="17" y="48" width="42" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        </view>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Osv-vW-V0r" userLabel="Login Holder">
+                                    <rect key="frame" x="30" y="400" width="260" height="135"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vrq-gy-VE3" customClass="CLTextField">
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="placeholderText" value="login_enter_email"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </view>
+                                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zPF-cl-Coj" customClass="CLTextField">
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="placeholderText" value="login_enter_email"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </view>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xPU-g5-F5b">
+                                            <rect key="frame" x="0.0" y="80" width="80" height="20"/>
+                                            <state key="normal" title="Log In">
+                                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="configText" value="login_login"/>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="configTextFont" value="FONT_HELVETICA_NEUE_BOLD"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RRk-G6-BfM">
+                                            <rect key="frame" x="17" y="110" width="140" height="20"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <state key="normal" title="Forgot password?">
+                                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="configText" value="login_login"/>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="configTextFont" value="FONT_HELVETICA_NEUE_BOLD_SMALL"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </button>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="login_forgotpass_normal" translatesAutoresizingMaskIntoConstraints="NO" id="hJU-4Y-5AL">
+                                            <rect key="frame" x="0.0" y="110" width="16" height="17"/>
+                                        </imageView>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="c9B-k4-feG">
+                                    <rect key="frame" x="30" y="545" width="260" height="20"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Don't have an account?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="R7A-AV-JAC">
+                                            <rect key="frame" x="0.0" y="0.0" width="161" height="20"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="configTextFont" value="FONT_HELVETICA_NEUE_REGULAR_SMALL"/>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="configText" value="login_missing_account"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </label>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fOl-uP-ppl">
+                                            <rect key="frame" x="169" y="0.0" width="80" height="20"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <state key="normal" title="Sign up!">
+                                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="configText" value="login_signup"/>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="configTextFont" value="FONT_HELVETICA_NEUE_BOLD_SMALL"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </button>
                                     </subviews>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </view>
                             </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>
-                                <constraint firstItem="VdL-Fa-QCa" firstAttribute="leading" secondItem="HxL-JS-Sar" secondAttribute="leading" id="ARk-6b-WRb"/>
-                                <constraint firstAttribute="trailing" secondItem="VdL-Fa-QCa" secondAttribute="trailing" id="OL6-Pc-TiG"/>
-                                <constraint firstItem="VdL-Fa-QCa" firstAttribute="top" secondItem="HxL-JS-Sar" secondAttribute="top" id="c5G-4N-dah"/>
-                                <constraint firstAttribute="bottom" secondItem="VdL-Fa-QCa" secondAttribute="bottom" id="ceO-Ax-g6r"/>
+                                <constraint firstItem="eSY-Sr-MZ2" firstAttribute="top" secondItem="1JK-7q-v4p" secondAttribute="top" id="83u-hm-9Jt"/>
+                                <constraint firstAttribute="trailing" secondItem="eSY-Sr-MZ2" secondAttribute="trailing" id="bxi-uh-ooM"/>
+                                <constraint firstItem="eSY-Sr-MZ2" firstAttribute="leading" secondItem="1JK-7q-v4p" secondAttribute="leading" id="ewY-NU-sMm"/>
                             </constraints>
-                            <connections>
-                                <outlet property="delegate" destination="-1" id="8Q0-QF-yhQ"/>
-                            </connections>
-                        </scrollView>
+                        </view>
                     </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstItem="HxL-JS-Sar" firstAttribute="leading" secondItem="g8W-xe-un5" secondAttribute="leading" id="1xL-5f-Aq3"/>
-                        <constraint firstAttribute="bottom" secondItem="HxL-JS-Sar" secondAttribute="bottom" id="FdC-Ly-C9b"/>
-                        <constraint firstAttribute="trailing" secondItem="HxL-JS-Sar" secondAttribute="trailing" id="de2-Rt-LD8"/>
-                        <constraint firstItem="HxL-JS-Sar" firstAttribute="top" secondItem="g8W-xe-un5" secondAttribute="top" id="g8v-wN-LgU"/>
-                        <constraint firstItem="VdL-Fa-QCa" firstAttribute="height" secondItem="g8W-xe-un5" secondAttribute="height" id="p74-AP-x4q"/>
-                        <constraint firstItem="VdL-Fa-QCa" firstAttribute="width" secondItem="g8W-xe-un5" secondAttribute="width" id="pDV-Qn-iL7"/>
+                        <constraint firstAttribute="width" secondItem="1JK-7q-v4p" secondAttribute="width" id="2zl-jS-Nk2"/>
+                        <constraint firstAttribute="trailing" secondItem="1JK-7q-v4p" secondAttribute="trailing" id="6gC-7n-Zdl"/>
+                        <constraint firstItem="1JK-7q-v4p" firstAttribute="leading" secondItem="Fab-I5-IN8" secondAttribute="leading" id="q5B-1H-cwo"/>
+                        <constraint firstItem="1JK-7q-v4p" firstAttribute="top" secondItem="Fab-I5-IN8" secondAttribute="top" id="qB6-4B-Y35"/>
+                        <constraint firstAttribute="bottom" secondItem="1JK-7q-v4p" secondAttribute="bottom" id="sBO-6J-ae0"/>
                     </constraints>
-                </view>
+                    <connections>
+                        <outlet property="delegate" destination="-1" id="LQz-96-9w0"/>
+                    </connections>
+                </scrollView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="g8W-xe-un5" secondAttribute="trailing" id="2Ug-C8-u5u"/>
-                <constraint firstAttribute="bottom" secondItem="g8W-xe-un5" secondAttribute="bottom" id="Bgw-TI-ZIH"/>
-                <constraint firstItem="g8W-xe-un5" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="o3c-z0-O6o"/>
-                <constraint firstItem="g8W-xe-un5" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="tHv-Gq-ylo"/>
+                <constraint firstAttribute="trailing" secondItem="Fab-I5-IN8" secondAttribute="trailing" id="0o6-64-je1"/>
+                <constraint firstItem="VHT-ct-EU7" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="FiH-S4-RB3"/>
+                <constraint firstItem="Fab-I5-IN8" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="W7q-Tn-R1h"/>
+                <constraint firstAttribute="bottom" secondItem="VHT-ct-EU7" secondAttribute="bottom" id="cIt-3I-y48"/>
+                <constraint firstItem="Fab-I5-IN8" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="eWK-Hd-FXK"/>
+                <constraint firstAttribute="trailing" secondItem="VHT-ct-EU7" secondAttribute="trailing" id="p2N-oY-XtJ"/>
+                <constraint firstItem="VHT-ct-EU7" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="vhf-vC-i3I"/>
+                <constraint firstAttribute="bottom" secondItem="Fab-I5-IN8" secondAttribute="bottom" id="z76-No-BQe"/>
             </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
             <connections>
@@ -75,4 +209,11 @@
             </connections>
         </view>
     </objects>
+    <resources>
+        <image name="facebook" width="44" height="44"/>
+        <image name="google" width="44" height="44"/>
+        <image name="login_bg1" width="320" height="480"/>
+        <image name="login_email" width="44" height="44"/>
+        <image name="login_forgotpass_normal" width="16" height="17"/>
+    </resources>
 </document>

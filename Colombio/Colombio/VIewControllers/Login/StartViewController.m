@@ -7,6 +7,7 @@
 //
 
 #import "StartViewController.h"
+#import "LoginViewController.h"
 
 @interface StartViewController ()
 
@@ -25,7 +26,7 @@
 }
 
 - (void)btnStartTapped:(id)sender{
-
+    [self presentViewController:[[LoginViewController alloc] init] animated:YES completion:nil];
 }
 
 @end

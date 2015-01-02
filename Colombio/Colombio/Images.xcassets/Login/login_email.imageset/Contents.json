@@ -3,12 +3,12 @@
     {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "setup_colombio.png"
+      "filename" : "login_email.png"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "setup_colombio@2x.png"
+      "filename" : "login_email@2x.png"
     },
     {
       "idiom" : "universal",
@@ -16,7 +16,7 @@
     },
     {
       "idiom" : "universal",
-      "filename" : "setup_colombio-736h@3x.png",
+      "filename" : "login_email-736h@3x.png",
       "unassigned" : true,
       "subtype" : "736h",
       "scale" : "3x"

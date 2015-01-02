@@ -35,8 +35,6 @@
 @synthesize imgFailPassword;
 @synthesize imgPassPassword;
 @synthesize btnLogin;
-@synthesize scrollView;
-@synthesize scrollableHeader;
 
 - (void)viewDidLoad
 {
@@ -59,9 +57,6 @@
 
 - (void)viewDidAppear:(BOOL)animated{
     //Dodavanje sličica za swipe
-    scrollableHeader = [[ScrollableHeader alloc] init];
-    [scrollableHeader addHeader:self.view self:self headerScroll:scrollView viewScroll:scrollBox];
-    
     CGRect screenBounds = [[UIScreen mainScreen]bounds];
     timer=nil;
     [scrollBox setDelegate:self];
@@ -108,8 +103,6 @@
         scrollBox.contentSize = CGSizeMake(scrollBox.frame.size.width, scrollBox.frame.size.height+300);
         [self.scrollBox setContentOffset:CGPointMake(0, 80)];
     }
-    scrollView.bounces=NO;
-    [scrollView setDelegate:scrollableHeader];
 }
 
 //Disable longtouch itd

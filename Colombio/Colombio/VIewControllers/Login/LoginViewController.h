@@ -10,15 +10,27 @@
 #import "CustomField.h"
 #import "ScrollableHeader.h"
 #import "BackgroundViewController.h"
+#import "ScrollableHeaderView.h"
 
 @interface LoginViewController : BackgroundViewController<UIScrollViewDelegate>
 {
     NSTimer *timer;
 }
 
-@property(strong,nonatomic) ScrollableHeader *scrollableHeader;
-@property(nonatomic,strong) IBOutlet UIScrollView *scrollView;
+
+
 @property(strong,nonatomic) IBOutlet UIScrollView *scrollBox;
+@property(weak, nonatomic) IBOutlet UIView *contentHolder;
+@property(weak, nonatomic) IBOutlet UIView *viewButtonsHolder;
+@property(weak, nonatomic) IBOutlet UIView *viewFBHolder;
+@property(weak, nonatomic) IBOutlet UIView *viewGoogleHolder;
+@property(weak, nonatomic) IBOutlet UIView *viewEmailHolder;
+@property(weak, nonatomic) IBOutlet UIButton *btnFB;
+@property(weak, nonatomic) IBOutlet UIButton *btnGoogle;
+@property(weak, nonatomic) IBOutlet UIButton *btnEmail;
+
+@property(weak, nonatomic) IBOutlet UIView *viewLoginHolder;
+
 @property(strong,nonatomic) IBOutlet CustomField *txtEmail;
 @property(strong,nonatomic) IBOutlet CustomField *txtPassword;
 @property(strong,nonatomic) IBOutlet UIImageView *imgPassEmail;
@@ -29,6 +41,10 @@
 @property(strong,nonatomic) IBOutlet UIImageView *imgInputPassword;
 @property(strong,nonatomic) IBOutlet UIButton *btnLogin;
 
+
+- (IBAction)btnFBSelected:(id)sender;
+- (IBAction)btnGoogleSelected:(id)sender;
+- (IBAction)btnEmailSelected:(id)sender;
 
 - (IBAction)setSign:(id)sender;
 - (IBAction)setForgot:(id)sender;

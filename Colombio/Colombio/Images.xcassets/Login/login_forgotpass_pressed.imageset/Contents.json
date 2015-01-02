@@ -3,14 +3,18 @@
     {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "forgotPass.png"
+      "filename" : "login_forgotpass_pressed.png"
     },
     {
       "idiom" : "universal",
-      "scale" : "2x"
+      "scale" : "2x",
+      "filename" : "login_forgotpass_pressed@2x.png"
     },
     {
       "idiom" : "universal",
+      "filename" : "login_forgotpass_pressed-736h@3x.png",
+      "unassigned" : true,
+      "subtype" : "736h",
       "scale" : "3x"
     }
   ],

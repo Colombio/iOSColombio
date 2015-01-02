@@ -9,3 +9,10 @@
 /*start*/
 "start_button" = "Start";
 "start_message" = "Prije nego što počnete dijeliti svoje vijesti sa svijetom, kreirajte svoj račun ili se ulogirajte, odaberite zemlju, odaberite medij i unesite svoje podatke.";
+
+/*Login*/
+"login_enter_email" = "Unesite vaš email";
+"login_enter_password" = "Unesite vašu lozinku";
+"login_login" = "Prijavi se";
+"login_missing_account" = "Nemaš račun?";
+"login_signup" = "Registriraj se!";

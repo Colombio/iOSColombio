@@ -3,20 +3,16 @@
     {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "setup_colombio.png"
+      "filename" : "login_forgotpass_normal.png"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "setup_colombio@2x.png"
+      "filename" : "login_forgotpass_normal@2x.png"
     },
     {
       "idiom" : "universal",
-      "scale" : "3x"
-    },
-    {
-      "idiom" : "universal",
-      "filename" : "setup_colombio-736h@3x.png",
+      "filename" : "login_forgotpass_normal-736h@3x.png",
       "unassigned" : true,
       "subtype" : "736h",
       "scale" : "3x"

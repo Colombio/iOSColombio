@@ -9,3 +9,10 @@
 /*start*/
 "start_button" = "Start";
 "start_message" = "Before you start sharing your news with the world, create your account or sign in, choose country, choose media and enter your info.";
+
+/*Login*/
+"login_enter_email" = "Enter your email";
+"login_enter_password" = "Enter your password";
+"login_login" = "Log In";
+"login_missing_account" = "Don't have an account?";
+"login_signup" = "Sign up!";

@@ -20,7 +20,10 @@
 		BBAE1F291A37B6980008B772 /* CreateAccViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBAE1F271A37B6980008B772 /* CreateAccViewController.m */; };
 		BBAE1F2A1A37B6980008B772 /* CreateAccViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBAE1F281A37B6980008B772 /* CreateAccViewController.xib */; };
 		BBAE1F2D1A37B71B0008B772 /* BackgroundViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBAE1F2C1A37B71B0008B772 /* BackgroundViewController.m */; };
+		BBAF777B1A50C914004AAAF9 /* ScrollableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = BBAF777A1A50C914004AAAF9 /* ScrollableHeaderView.m */; };
 		BBB0BFA91A350F640074B20C /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBB0BFA81A350F640074B20C /* LoginViewController.xib */; };
+		BBB253321A52214400C18500 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBD0109A1A4F683E00951526 /* FacebookSDK.framework */; };
+		BBB253331A52214400C18500 /* FBUserSettingsViewResources.bundle in Frameworks */ = {isa = PBXBuildFile; fileRef = BBD0109B1A4F683E00951526 /* FBUserSettingsViewResources.bundle */; };
 		BBB33AC31A27D9EE008D0E26 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB33AC21A27D9EE008D0E26 /* main.m */; };
 		BBB33AC61A27D9EE008D0E26 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB33AC51A27D9EE008D0E26 /* AppDelegate.m */; };
 		BBB33ACE1A27D9EE008D0E26 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BBB33ACD1A27D9EE008D0E26 /* Images.xcassets */; };
@@ -56,8 +59,6 @@
 		BBCF58ED1A29401700CE64B4 /* Localized.m in Sources */ = {isa = PBXBuildFile; fileRef = BBCF58EC1A29401700CE64B4 /* Localized.m */; };
 		BBCF58EF1A29412100CE64B4 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BBCF58EE1A29412100CE64B4 /* libsqlite3.dylib */; };
 		BBCF58F51A2AA47F00CE64B4 /* UIView+XibAttributes.m in Sources */ = {isa = PBXBuildFile; fileRef = BBCF58F41A2AA47F00CE64B4 /* UIView+XibAttributes.m */; };
-		BBD0109C1A4F683E00951526 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBD0109A1A4F683E00951526 /* FacebookSDK.framework */; };
-		BBD0109D1A4F683E00951526 /* FBUserSettingsViewResources.bundle in Frameworks */ = {isa = PBXBuildFile; fileRef = BBD0109B1A4F683E00951526 /* FBUserSettingsViewResources.bundle */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -95,6 +96,8 @@
 		BBAE1F281A37B6980008B772 /* CreateAccViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreateAccViewController.xib; sourceTree = "<group>"; };
 		BBAE1F2B1A37B71B0008B772 /* BackgroundViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackgroundViewController.h; sourceTree = "<group>"; };
 		BBAE1F2C1A37B71B0008B772 /* BackgroundViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackgroundViewController.m; sourceTree = "<group>"; };
+		BBAF77791A50C914004AAAF9 /* ScrollableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollableHeaderView.h; sourceTree = "<group>"; };
+		BBAF777A1A50C914004AAAF9 /* ScrollableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollableHeaderView.m; sourceTree = "<group>"; };
 		BBB0BFA41A3504750074B20C /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../FacebookSDK.framework; sourceTree = "<group>"; };
 		BBB0BFA51A3504750074B20C /* FBUserSettingsViewResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = FBUserSettingsViewResources.bundle; path = ../FBUserSettingsViewResources.bundle; sourceTree = "<group>"; };
 		BBB0BFA81A350F640074B20C /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
@@ -164,8 +167,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BBD0109C1A4F683E00951526 /* FacebookSDK.framework in Frameworks */,
-				BBD0109D1A4F683E00951526 /* FBUserSettingsViewResources.bundle in Frameworks */,
+				BBB253321A52214400C18500 /* FacebookSDK.framework in Frameworks */,
+				BBB253331A52214400C18500 /* FBUserSettingsViewResources.bundle in Frameworks */,
 				BBCF58EF1A29412100CE64B4 /* libsqlite3.dylib in Frameworks */,
 				BBB33B091A27E1AF008D0E26 /* MapKit.framework in Frameworks */,
 				BBB33B021A27E007008D0E26 /* Foundation.framework in Frameworks */,
@@ -360,6 +363,8 @@
 				5835720D1A2B70C000F6EA17 /* ScrollableHeader.m */,
 				BBB6A0591A44D6B5006F61B3 /* CLTextField.h */,
 				BBB6A05A1A44D6B5006F61B3 /* CLTextField.m */,
+				BBAF77791A50C914004AAAF9 /* ScrollableHeaderView.h */,
+				BBAF777A1A50C914004AAAF9 /* ScrollableHeaderView.m */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -524,6 +529,7 @@
 				BBCF58A31A29395400CE64B4 /* YourInfo.m in Sources */,
 				BBAE1F1D1A37B51F0008B772 /* ColombioServiceCommunicator.m in Sources */,
 				58ACA0021A4EE6B70076D3D8 /* HeaderView.m in Sources */,
+				BBAF777B1A50C914004AAAF9 /* ScrollableHeaderView.m in Sources */,
 				BBB33AC61A27D9EE008D0E26 /* AppDelegate.m in Sources */,
 				5835720E1A2B70C000F6EA17 /* ScrollableHeader.m in Sources */,
 				BBCF58ED1A29401700CE64B4 /* Localized.m in Sources */,
@@ -679,6 +685,12 @@
 					/Users/vsprem/Documents/Private,
 					stuff/Software,
 					development/Colombio,
+					/Users/vsprem/Documents/Private,
+					stuff/Software,
+					development/Colombio,
+					/Users/vsprem/Documents/Private,
+					stuff/Software,
+					development/Colombio,
 				);
 				GCC_PREFIX_HEADER = "colombio/colombio-Prefix.pch";
 				INFOPLIST_FILE = "Colombio/Colombio-Info.plist";
@@ -724,6 +736,12 @@
 					/Users/vsprem/Documents/Private,
 					stuff/Software,
 					development/Colombio/iOSColombio,
+					/Users/vsprem/Documents/Private,
+					stuff/Software,
+					development/Colombio,
+					/Users/vsprem/Documents/Private,
+					stuff/Software,
+					development/Colombio,
 					/Users/vsprem/Documents/Private,
 					stuff/Software,
 					development/Colombio,
