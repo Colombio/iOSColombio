@@ -274,7 +274,6 @@
     timer = [NSTimer scheduledTimerWithTimeInterval:0 target:self selector:@selector(toggleCreateOff) userInfo:nil repeats:NO];
 }
 */
-
 //Ako se klikne na create account
 - (IBAction)btnCreateAccClicked:(id)sender{
     [self.view endEditing:YES];
