@@ -134,6 +134,10 @@
     [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
+- (IBAction)btnBackClicked:(id)sender{
+    [self backButtonTapped];
+}
+
 #pragma mark CreateAccount
 
 - (void)toggleCreateOff{
