@@ -9,8 +9,22 @@
 /*start*/
 "start_button" = "Start";
 "start_message" = "Prije nego što počnete dijeliti svoje vijesti sa svijetom, kreirajte svoj račun ili se ulogirajte, odaberite zemlju, odaberite medij i unesite svoje podatke.";
+
+"create_account" = "Create account";
+
+/*create account placeholders*/
 "enter_username" = "Enter your username";
 "enter_email" = "Enter your email";
 "enter_password" = "Enter your password";
 "enter_confirm_password" = "Confirm password";
-"create_account" = "Create account";
+
+/*create account error strings*/
+"error_username_exists" = "Username already exists";
+"error_username_format" = "Username already exists";
+"error_email_exists" = "Wrong email";
+"error_email_format" = "Wrong email";
+"error_password" = "8 chars, 1 capital, 1 number";
+"error_confirm_password" = "Wrong confirm password";
+
+/*error message global*/
+"error_web_request" = "Pogreška prilikom slanja zahtjeva";

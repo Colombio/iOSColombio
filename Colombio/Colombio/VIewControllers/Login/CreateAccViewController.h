@@ -24,6 +24,10 @@
     IBOutlet UIButton *btnCreate;
     IBOutlet UIImageView *imgBackground;
     Loading *loadingView;
+    NSString *email;
+    NSString *username;
+    NSString *confirmPass;
+    NSString *pass;
 }
 
 @property (weak, nonatomic) IBOutlet UIView *headerViewHolder;
