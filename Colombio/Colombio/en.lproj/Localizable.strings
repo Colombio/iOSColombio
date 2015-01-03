@@ -10,9 +10,30 @@
 "start_button" = "Start";
 "start_message" = "Before you start sharing your news with the world, create your account or sign in, choose country, choose media and enter your info.";
 
+"create_account" = "Create account";
+"register_successful" = "Registration successful";
+
+/*create account placeholders*/
+"enter_username" = "Enter your username";
+"enter_email" = "Enter your email";
+"enter_password" = "Enter your password";
+"enter_confirm_password" = "Confirm password";
+
+/*create account error strings*/
+"error_username_exists" = "Username already exists";
+"error_username_format" = "Enter your username";
+"error_email_exists" = "Email already exists";
+"error_email_format" = "Wrong email";
+"error_password" = "8 chars, 1 capital, 1 number";
+"error_confirm_password" = "Both passwords must match";
+
+/*error message global*/
+"error_web_request" = "Pogreška prilikom slanja zahtjeva";
+
 /*Login*/
 "login_enter_email" = "Enter your email";
 "login_enter_password" = "Enter your password";
 "login_login" = "Log In";
 "login_missing_account" = "Don't have an account?";
 "login_signup" = "Sign up!";
+"login_forget_password" = "Forgot password?";

@@ -16,11 +16,17 @@
 }
 
 - (void)setupScroller{
-    _scrollBox = [[UIScrollView alloc] initWithFrame:self.frame];
+    CGRect screenBounds = [[UIScreen mainScreen]bounds];
+    if (screenBounds.size.height<568.0f) {
+        _scrollBox = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, 187)];
+    }else{
+        _scrollBox = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, 275)];
+    }
+    
     _scrollBox.delegate = self;
     int xPosition=0;
     NSArray *colors;
-    CGRect screenBounds = [[UIScreen mainScreen]bounds];
+   
     viewWidth = screenBounds.size.width;
     
     //TODO iphone 6
@@ -51,9 +57,8 @@
             imageSize=267;
         }
         else{
-            frame.size.height = 267;
+            frame.size.height = 187;
             imageSize=187;
-            headerOffset=80;
         }
         frame.size.width=viewWidth;
         
@@ -68,7 +73,7 @@
         [_scrollBox addSubview:subview];
     }
     
-    _scrollBox.contentSize = CGSizeMake(self.frame.size.width * colors.count, self.frame.size.height);
+    _scrollBox.contentSize = CGSizeMake(self.frame.size.width * colors.count, _scrollBox.frame.size.height);
     _scrollBox.pagingEnabled = YES;
     _pageControl = [[UIPageControl alloc]initWithFrame:CGRectMake((self.frame.size.width/2) - (_pageControl.frame.size.width/2), 20, _pageControl.frame.size.width, 36)];
     _pageControl.numberOfPages = 3;

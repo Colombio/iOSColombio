@@ -21,6 +21,7 @@
 
 @property(strong,nonatomic) IBOutlet UIScrollView *scrollBox;
 @property(weak, nonatomic) IBOutlet UIView *contentHolder;
+@property (weak, nonatomic) IBOutlet ScrollableHeaderView *scrollableHeader;
 @property(weak, nonatomic) IBOutlet UIView *viewButtonsHolder;
 @property(weak, nonatomic) IBOutlet UIView *viewFBHolder;
 @property(weak, nonatomic) IBOutlet UIView *viewGoogleHolder;
@@ -40,6 +41,10 @@
 @property(strong,nonatomic) IBOutlet UIImageView *imgFailPassword;
 @property(strong,nonatomic) IBOutlet UIImageView *imgInputPassword;
 @property(strong,nonatomic) IBOutlet UIButton *btnLogin;
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *CS_buttonDistanceFromTop;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *CS_buttonDistanceFromBottom;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *CS_scrollableHeaderHeight;
 
 
 - (IBAction)btnFBSelected:(id)sender;

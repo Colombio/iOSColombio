@@ -23,8 +23,6 @@
 		BBAE1F2D1A37B71B0008B772 /* BackgroundViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBAE1F2C1A37B71B0008B772 /* BackgroundViewController.m */; };
 		BBAF777B1A50C914004AAAF9 /* ScrollableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = BBAF777A1A50C914004AAAF9 /* ScrollableHeaderView.m */; };
 		BBB0BFA91A350F640074B20C /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBB0BFA81A350F640074B20C /* LoginViewController.xib */; };
-		BBB253321A52214400C18500 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBD0109A1A4F683E00951526 /* FacebookSDK.framework */; };
-		BBB253331A52214400C18500 /* FBUserSettingsViewResources.bundle in Frameworks */ = {isa = PBXBuildFile; fileRef = BBD0109B1A4F683E00951526 /* FBUserSettingsViewResources.bundle */; };
 		BBB33AC31A27D9EE008D0E26 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB33AC21A27D9EE008D0E26 /* main.m */; };
 		BBB33AC61A27D9EE008D0E26 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB33AC51A27D9EE008D0E26 /* AppDelegate.m */; };
 		BBB33ACE1A27D9EE008D0E26 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BBB33ACD1A27D9EE008D0E26 /* Images.xcassets */; };
@@ -60,6 +58,8 @@
 		BBCF58ED1A29401700CE64B4 /* Localized.m in Sources */ = {isa = PBXBuildFile; fileRef = BBCF58EC1A29401700CE64B4 /* Localized.m */; };
 		BBCF58EF1A29412100CE64B4 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BBCF58EE1A29412100CE64B4 /* libsqlite3.dylib */; };
 		BBCF58F51A2AA47F00CE64B4 /* UIView+XibAttributes.m in Sources */ = {isa = PBXBuildFile; fileRef = BBCF58F41A2AA47F00CE64B4 /* UIView+XibAttributes.m */; };
+		BBDFF6F31A574326000DBA62 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBD0109A1A4F683E00951526 /* FacebookSDK.framework */; };
+		BBDFF6F41A574326000DBA62 /* FBUserSettingsViewResources.bundle in Frameworks */ = {isa = PBXBuildFile; fileRef = BBD0109B1A4F683E00951526 /* FBUserSettingsViewResources.bundle */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -170,8 +170,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BBB253321A52214400C18500 /* FacebookSDK.framework in Frameworks */,
-				BBB253331A52214400C18500 /* FBUserSettingsViewResources.bundle in Frameworks */,
+				BBDFF6F31A574326000DBA62 /* FacebookSDK.framework in Frameworks */,
+				BBDFF6F41A574326000DBA62 /* FBUserSettingsViewResources.bundle in Frameworks */,
 				BBCF58EF1A29412100CE64B4 /* libsqlite3.dylib in Frameworks */,
 				BBB33B091A27E1AF008D0E26 /* MapKit.framework in Frameworks */,
 				BBB33B021A27E007008D0E26 /* Foundation.framework in Frameworks */,
@@ -366,6 +366,8 @@
 				5835720D1A2B70C000F6EA17 /* ScrollableHeader.m */,
 				BBB6A0591A44D6B5006F61B3 /* CLTextField.h */,
 				BBB6A05A1A44D6B5006F61B3 /* CLTextField.m */,
+				5836A1CB1A55F98300C509F1 /* Loading.h */,
+				5836A1CC1A55F98300C509F1 /* Loading.m */,
 				BBAF77791A50C914004AAAF9 /* ScrollableHeaderView.h */,
 				BBAF777A1A50C914004AAAF9 /* ScrollableHeaderView.m */,
 			);
@@ -695,6 +697,9 @@
 					/Users/vsprem/Documents/Private,
 					stuff/Software,
 					development/Colombio,
+					/Users/vsprem/Documents/Private,
+					stuff/Software,
+					development/Colombio,
 				);
 				GCC_PREFIX_HEADER = "colombio/colombio-Prefix.pch";
 				INFOPLIST_FILE = "Colombio/Colombio-Info.plist";
@@ -740,6 +745,9 @@
 					/Users/vsprem/Documents/Private,
 					stuff/Software,
 					development/Colombio/iOSColombio,
+					/Users/vsprem/Documents/Private,
+					stuff/Software,
+					development/Colombio,
 					/Users/vsprem/Documents/Private,
 					stuff/Software,
 					development/Colombio,

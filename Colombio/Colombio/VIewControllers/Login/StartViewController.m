@@ -7,6 +7,7 @@
 //
 
 #import "StartViewController.h"
+#import "CreateAccViewController.h"
 #import "LoginViewController.h"
 
 @interface StartViewController ()
@@ -26,6 +27,8 @@
 }
 
 - (void)btnStartTapped:(id)sender{
+    /*CreateAccViewController *createAcc = [[CreateAccViewController alloc]init];
+    [self presentViewController:createAcc animated:YES completion:nil];*/
     [self presentViewController:[[LoginViewController alloc] init] animated:YES completion:nil];
 }
 

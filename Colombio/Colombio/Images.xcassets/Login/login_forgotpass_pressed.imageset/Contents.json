@@ -12,6 +12,10 @@
     },
     {
       "idiom" : "universal",
+      "scale" : "3x"
+    },
+    {
+      "idiom" : "universal",
       "filename" : "login_forgotpass_pressed-736h@3x.png",
       "unassigned" : true,
       "subtype" : "736h",
