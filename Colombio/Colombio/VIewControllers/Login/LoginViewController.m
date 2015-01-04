@@ -40,20 +40,20 @@
 {
     [super viewDidLoad];
     //Skrivanje slicica da li su pogresni inputi
+    loginHidden=YES;
     imgPassEmail.hidden = YES;
     imgFailEmail.hidden = YES;
     imgPassPassword.hidden = YES;
     imgFailPassword.hidden = YES;
     NSLog(@"load");
     //Skrivanje inputa
-    txtPassword.secureTextEntry = YES;
+    txtPassword.txtField.secureTextEntry = YES;
     
     CGRect screenBounds = [[UIScreen mainScreen]bounds];
     if(screenBounds.size.height < 568.0f){
         
         _CS_scrollableHeaderHeight.constant=187;
     }
-    
     
     //Provjeravanje tokena, ako je korisnik vec logiran u sustavu, proslijedi ga na home
     //timer = [NSTimer scheduledTimerWithTimeInterval:0.4 target:self selector:@selector(provjeriToken) userInfo:nil repeats:NO];
@@ -75,9 +75,36 @@
 #pragma mark Button Action
 
 - (void)btnEmailSelected:(id)sender{
+    if (loginHidden) {
+        loginHidden=NO;
+        [self.view layoutIfNeeded];
         _CS_buttonDistanceFromTop.constant -= _viewLoginHolder.frame.size.height+10;
         _CS_buttonDistanceFromBottom.constant += _viewLoginHolder.frame.size.height+10;
+        [UIView animateWithDuration:0.5
+                         animations:^{
+                             [self.view layoutIfNeeded];
+                             
+                         }];
+        [UIView transitionWithView:_viewLoginHolder
+                          duration:0.5
+                           options:UIViewAnimationOptionTransitionCrossDissolve
+                        animations:NULL
+                        completion:NULL];
+        
         _viewLoginHolder.hidden=NO;
+        
+        
+    }else{
+        loginHidden=YES;
+        _viewLoginHolder.hidden=YES;
+        _CS_buttonDistanceFromTop.constant += _viewLoginHolder.frame.size.height+10;
+        _CS_buttonDistanceFromBottom.constant -= _viewLoginHolder.frame.size.height+10;
+        [UIView animateWithDuration:0.5
+                         animations:^{
+                             [self.view layoutIfNeeded];
+                         }];
+    }
+    
     
 }
 

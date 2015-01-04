@@ -11,10 +11,12 @@
 #import "ScrollableHeader.h"
 #import "BackgroundViewController.h"
 #import "ScrollableHeaderView.h"
+#import "CLTextField.h"
 
 @interface LoginViewController : BackgroundViewController<UIScrollViewDelegate>
 {
     NSTimer *timer;
+    BOOL loginHidden;
 }
 
 
@@ -32,8 +34,9 @@
 
 @property(weak, nonatomic) IBOutlet UIView *viewLoginHolder;
 
-@property(strong,nonatomic) IBOutlet CustomField *txtEmail;
-@property(strong,nonatomic) IBOutlet CustomField *txtPassword;
+@property(strong,nonatomic) IBOutlet CLTextField *txtEmail;
+@property(strong,nonatomic) IBOutlet CLTextField *txtPassword;
+
 @property(strong,nonatomic) IBOutlet UIImageView *imgPassEmail;
 @property(strong,nonatomic) IBOutlet UIImageView *imgFailEmail;
 @property(strong,nonatomic) IBOutlet UIImageView *imgInputEmail;

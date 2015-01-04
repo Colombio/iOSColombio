@@ -13,6 +13,8 @@
                 <outlet property="contentHolder" destination="1JK-7q-v4p" id="cNI-Kf-2tD"/>
                 <outlet property="scrollBox" destination="Fab-I5-IN8" id="f4J-fa-GFM"/>
                 <outlet property="scrollableHeader" destination="eSY-Sr-MZ2" id="EIm-pT-zZJ"/>
+                <outlet property="txtEmail" destination="vrq-gy-VE3" id="nuY-Zq-ZdK"/>
+                <outlet property="txtPassword" destination="zPF-cl-Coj" id="xOr-f6-Xds"/>
                 <outlet property="view" destination="iN0-l3-epB" id="wWj-8g-ihO"/>
                 <outlet property="viewButtonsHolder" destination="AIY-vZ-g87" id="ud1-UR-cuU"/>
                 <outlet property="viewEmailHolder" destination="9SK-3T-RnQ" id="Daj-w7-lZg"/>
@@ -49,11 +51,11 @@
                                         <view alpha="0.49999999999999961" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="l9y-uI-EL4" userLabel="FB Holder">
                                             <rect key="frame" x="0.0" y="0.0" width="77" height="77"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HfZ-71-cRd">
+                                                <button contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HfZ-71-cRd">
                                                     <rect key="frame" x="17" y="8" width="44" height="44"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <state key="normal" backgroundImage="facebook">
-                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     </state>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Facebook" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="brO-4p-PXK">
@@ -63,7 +65,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
-                                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <view alpha="0.5" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9SK-3T-RnQ" userLabel="eMail Holder">
                                             <rect key="frame" x="182" y="0.0" width="77" height="77"/>
@@ -85,7 +87,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
-                                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <view alpha="0.5" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Rps-QE-8Ng" userLabel="Google Holder">
                                             <rect key="frame" x="91" y="0.0" width="77" height="77"/>
@@ -104,7 +106,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
-                                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -132,7 +134,7 @@
                                                 <constraint firstAttribute="height" constant="30" id="QzH-Mp-VV3"/>
                                             </constraints>
                                             <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="string" keyPath="placeholderText" value="login_enter_email"/>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="placeholderText" value="login_enter_password"/>
                                             </userDefinedRuntimeAttributes>
                                         </view>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xPU-g5-F5b">
@@ -166,7 +168,7 @@
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
                                             <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="string" keyPath="configText" value="login_forgot_password"/>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="configText" value="login_forget_password"/>
                                                 <userDefinedRuntimeAttribute type="string" keyPath="configTextFont" value="FONT_HELVETICA_NEUE_BOLD_SMALL"/>
                                             </userDefinedRuntimeAttributes>
                                         </button>
