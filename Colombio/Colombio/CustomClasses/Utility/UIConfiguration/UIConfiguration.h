@@ -20,13 +20,21 @@ static NSString *FONT_HELVETICA_NEUE_REGULAR_EXTRA_SMALL = @"FONT_HELVETICA_NEUE
 static NSString *FONT_HELVETICA_NEUE_BOLD_SMALL = @"FONT_HELVETICA_NEUE_BOLD_SMALL";
 static NSString *FONT_HELVETICA_NEUE_LIGHT = @"FONT_HELVETICA_NEUE_LIGHT";
 
+//keyboard type
+static NSString *KEYBOARD_DEFAULT = @"KEYBOARD_DEFAULT";
+static NSString *KEYBOARD_NUMERIC = @"KEYBOARD_NUMBERIC";
+static NSString *KEYBOARD_DIAL = @"KEYBOARD_DIAL";
+static NSString *KEYBOARD_EMAIL = @"KEYBOARD_EMAIL";
+
 @interface UIConfiguration : NSObject
 {
     NSMutableDictionary *colorMap;
     NSMutableDictionary *fontMap;
+    NSMutableDictionary *keyboardMap;
 }
 + (UIConfiguration *)sharedInstance;
 
 - (UIFont *) getFont:(NSString *) fontName;
 - (UIColor *) getColor:(NSString *) colorName;
+- (UIKeyboardType)getKeyboardType:(NSString*)keyboardType;
 @end

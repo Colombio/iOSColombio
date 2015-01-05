@@ -125,7 +125,11 @@
                                             </constraints>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="string" keyPath="placeholderText" value="login_enter_email"/>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="keyboardType" value="KEYBOARD_EMAIL"/>
                                             </userDefinedRuntimeAttributes>
+                                            <connections>
+                                                <outlet property="textFieldDelegate" destination="-1" id="dR9-fo-fkh"/>
+                                            </connections>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zPF-cl-Coj" customClass="CLTextField">
                                             <rect key="frame" x="0.0" y="40" width="260" height="30"/>
@@ -135,7 +139,12 @@
                                             </constraints>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="string" keyPath="placeholderText" value="login_enter_password"/>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="keyboardType" value="KEYBOARD_DEFAULT"/>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="isPassword" value="YES"/>
                                             </userDefinedRuntimeAttributes>
+                                            <connections>
+                                                <outlet property="textFieldDelegate" destination="-1" id="3Tl-kU-lTD"/>
+                                            </connections>
                                         </view>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xPU-g5-F5b">
                                             <rect key="frame" x="0.0" y="80" width="80" height="20"/>

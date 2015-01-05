@@ -47,13 +47,17 @@
     imgFailPassword.hidden = YES;
     NSLog(@"load");
     //Skrivanje inputa
-    txtPassword.txtField.secureTextEntry = YES;
+    
+    txtEmail.txtField.delegate=self;
     
     CGRect screenBounds = [[UIScreen mainScreen]bounds];
     if(screenBounds.size.height < 568.0f){
         
         _CS_scrollableHeaderHeight.constant=187;
     }
+    
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(keyboardUp:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(keyboardDown:) name:UIKeyboardWillHideNotification object:nil];
     
     //Provjeravanje tokena, ako je korisnik vec logiran u sustavu, proslijedi ga na home
     //timer = [NSTimer scheduledTimerWithTimeInterval:0.4 target:self selector:@selector(provjeriToken) userInfo:nil repeats:NO];
@@ -106,6 +110,39 @@
     }
     
     
+}
+
+#pragma mark TextField Delegates
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField{
+    
+}
+
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
+    return  YES;
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    [textField resignFirstResponder];
+    return YES;
+}
+
+#pragma mark Keyboard
+
+- (void)keyboardUp:(NSNotification *)notification{
+    NSDictionary *info = [notification userInfo];
+    CGRect keyboardRect = [[info objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    keyboardRect = [self.view convertRect:keyboardRect fromView:nil];
+    
+    UIEdgeInsets contentInset = scrollBox.contentInset;
+    contentInset.bottom = keyboardRect.size.height;
+    scrollBox.contentInset = contentInset;
+}
+
+- (void)keyboardDown:(NSNotification*)notification{
+    UIEdgeInsets contentInsets = UIEdgeInsetsZero;
+    scrollBox.contentInset = contentInsets;
+    scrollBox.scrollIndicatorInsets = contentInsets;
 }
 
 //Da se zastopa skrol ako otide lijevo ili desno

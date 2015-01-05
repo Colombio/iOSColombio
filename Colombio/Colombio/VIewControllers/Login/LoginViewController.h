@@ -13,7 +13,7 @@
 #import "ScrollableHeaderView.h"
 #import "CLTextField.h"
 
-@interface LoginViewController : BackgroundViewController<UIScrollViewDelegate>
+@interface LoginViewController : BackgroundViewController<UIScrollViewDelegate, UITextFieldDelegate>
 {
     NSTimer *timer;
     BOOL loginHidden;
