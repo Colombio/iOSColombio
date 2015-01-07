@@ -28,7 +28,7 @@
 "error_confirm_password" = "Both passwords must match";
 
 /*error message global*/
-"error_web_request" = "Pogreška prilikom slanja zahtjeva";
+"error_web_request" = "Error sending request";
 
 /*Login*/
 "login_enter_email" = "Enter your email";

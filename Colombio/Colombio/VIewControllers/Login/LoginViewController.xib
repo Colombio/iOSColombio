@@ -165,6 +165,9 @@
                                                 <userDefinedRuntimeAttribute type="string" keyPath="configText" value="login_login"/>
                                                 <userDefinedRuntimeAttribute type="string" keyPath="configTextFont" value="FONT_HELVETICA_NEUE_BOLD"/>
                                             </userDefinedRuntimeAttributes>
+                                            <connections>
+                                                <action selector="btnLoginClicked:" destination="-1" eventType="touchUpInside" id="OTo-wz-or7"/>
+                                            </connections>
                                         </button>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login_forgotpass_normal" translatesAutoresizingMaskIntoConstraints="NO" id="hJU-4Y-5AL">
                                             <rect key="frame" x="0.0" y="110" width="16" height="17"/>

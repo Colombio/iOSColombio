@@ -53,10 +53,10 @@
 - (IBAction)btnFBSelected:(id)sender;
 - (IBAction)btnGoogleSelected:(id)sender;
 - (IBAction)btnEmailSelected:(id)sender;
+- (IBAction)btnLoginClicked:(id)sender;
 
 - (IBAction)setSign:(id)sender;
 - (IBAction)setForgot:(id)sender;
-- (IBAction)setLogin:(id)sender;
 - (IBAction)setPassword:(id)sender;
 - (IBAction)goAwayKeyboard:(id)sender;
 - (IBAction)tapBackground:(id)sender;
