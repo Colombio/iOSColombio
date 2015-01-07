@@ -46,6 +46,10 @@
 		BBB6A05F1A44FB2D006F61B3 /* UIConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB6A05E1A44FB2D006F61B3 /* UIConfiguration.m */; };
 		BBB6A0631A48D791006F61B3 /* StartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB6A0611A48D791006F61B3 /* StartViewController.m */; };
 		BBB6A0641A48D791006F61B3 /* StartViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBB6A0621A48D791006F61B3 /* StartViewController.xib */; };
+		BBB79D1C1A5CABF8001A876A /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB79D1A1A5CABF8001A876A /* HomeViewController.m */; };
+		BBB79D1D1A5CABF8001A876A /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBB79D1B1A5CABF8001A876A /* HomeViewController.xib */; };
+		BBB79D201A5CB3DD001A876A /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBB79D1E1A5CB3DD001A876A /* FacebookSDK.framework */; };
+		BBB79D211A5CB3DD001A876A /* FBUserSettingsViewResources.bundle in Frameworks */ = {isa = PBXBuildFile; fileRef = BBB79D1F1A5CB3DD001A876A /* FBUserSettingsViewResources.bundle */; };
 		BBCF58911A2938B400CE64B4 /* CountriesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BBCF588E1A2938B400CE64B4 /* CountriesCell.m */; };
 		BBCF58921A2938B400CE64B4 /* CustomField.m in Sources */ = {isa = PBXBuildFile; fileRef = BBCF58901A2938B400CE64B4 /* CustomField.m */; };
 		BBCF589F1A29395400CE64B4 /* CryptoClass.m in Sources */ = {isa = PBXBuildFile; fileRef = BBCF58951A29395400CE64B4 /* CryptoClass.m */; };
@@ -58,8 +62,6 @@
 		BBCF58ED1A29401700CE64B4 /* Localized.m in Sources */ = {isa = PBXBuildFile; fileRef = BBCF58EC1A29401700CE64B4 /* Localized.m */; };
 		BBCF58EF1A29412100CE64B4 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BBCF58EE1A29412100CE64B4 /* libsqlite3.dylib */; };
 		BBCF58F51A2AA47F00CE64B4 /* UIView+XibAttributes.m in Sources */ = {isa = PBXBuildFile; fileRef = BBCF58F41A2AA47F00CE64B4 /* UIView+XibAttributes.m */; };
-		BBDFF6F31A574326000DBA62 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBD0109A1A4F683E00951526 /* FacebookSDK.framework */; };
-		BBDFF6F41A574326000DBA62 /* FBUserSettingsViewResources.bundle in Frameworks */ = {isa = PBXBuildFile; fileRef = BBD0109B1A4F683E00951526 /* FBUserSettingsViewResources.bundle */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -101,8 +103,6 @@
 		BBAE1F2C1A37B71B0008B772 /* BackgroundViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackgroundViewController.m; sourceTree = "<group>"; };
 		BBAF77791A50C914004AAAF9 /* ScrollableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollableHeaderView.h; sourceTree = "<group>"; };
 		BBAF777A1A50C914004AAAF9 /* ScrollableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollableHeaderView.m; sourceTree = "<group>"; };
-		BBB0BFA41A3504750074B20C /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../FacebookSDK.framework; sourceTree = "<group>"; };
-		BBB0BFA51A3504750074B20C /* FBUserSettingsViewResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = FBUserSettingsViewResources.bundle; path = ../FBUserSettingsViewResources.bundle; sourceTree = "<group>"; };
 		BBB0BFA81A350F640074B20C /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
 		BBB33ABD1A27D9EE008D0E26 /* Colombio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Colombio.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BBB33AC11A27D9EE008D0E26 /* Colombio-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Colombio-Info.plist"; sourceTree = "<group>"; };
@@ -136,6 +136,11 @@
 		BBB6A0601A48D791006F61B3 /* StartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartViewController.h; sourceTree = "<group>"; };
 		BBB6A0611A48D791006F61B3 /* StartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StartViewController.m; sourceTree = "<group>"; };
 		BBB6A0621A48D791006F61B3 /* StartViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StartViewController.xib; sourceTree = "<group>"; };
+		BBB79D191A5CABF8001A876A /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
+		BBB79D1A1A5CABF8001A876A /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
+		BBB79D1B1A5CABF8001A876A /* HomeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeViewController.xib; sourceTree = "<group>"; };
+		BBB79D1E1A5CB3DD001A876A /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
+		BBB79D1F1A5CB3DD001A876A /* FBUserSettingsViewResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = FBUserSettingsViewResources.bundle; sourceTree = "<group>"; };
 		BBCF588D1A2938B400CE64B4 /* CountriesCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CountriesCell.h; sourceTree = "<group>"; };
 		BBCF588E1A2938B400CE64B4 /* CountriesCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CountriesCell.m; sourceTree = "<group>"; };
 		BBCF588F1A2938B400CE64B4 /* CustomField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomField.h; sourceTree = "<group>"; };
@@ -161,8 +166,6 @@
 		BBCF58EE1A29412100CE64B4 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		BBCF58F31A2AA47F00CE64B4 /* UIView+XibAttributes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+XibAttributes.h"; sourceTree = "<group>"; };
 		BBCF58F41A2AA47F00CE64B4 /* UIView+XibAttributes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+XibAttributes.m"; sourceTree = "<group>"; };
-		BBD0109A1A4F683E00951526 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../FacebookSDK.framework; sourceTree = "<group>"; };
-		BBD0109B1A4F683E00951526 /* FBUserSettingsViewResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = FBUserSettingsViewResources.bundle; path = ../../FBUserSettingsViewResources.bundle; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -170,8 +173,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BBDFF6F31A574326000DBA62 /* FacebookSDK.framework in Frameworks */,
-				BBDFF6F41A574326000DBA62 /* FBUserSettingsViewResources.bundle in Frameworks */,
+				BBB79D201A5CB3DD001A876A /* FacebookSDK.framework in Frameworks */,
+				BBB79D211A5CB3DD001A876A /* FBUserSettingsViewResources.bundle in Frameworks */,
 				BBCF58EF1A29412100CE64B4 /* libsqlite3.dylib in Frameworks */,
 				BBB33B091A27E1AF008D0E26 /* MapKit.framework in Frameworks */,
 				BBB33B021A27E007008D0E26 /* Foundation.framework in Frameworks */,
@@ -292,10 +295,8 @@
 		BBB33AE81A27DF13008D0E26 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				BBD0109A1A4F683E00951526 /* FacebookSDK.framework */,
-				BBD0109B1A4F683E00951526 /* FBUserSettingsViewResources.bundle */,
-				BBB0BFA41A3504750074B20C /* FacebookSDK.framework */,
-				BBB0BFA51A3504750074B20C /* FBUserSettingsViewResources.bundle */,
+				BBB79D1E1A5CB3DD001A876A /* FacebookSDK.framework */,
+				BBB79D1F1A5CB3DD001A876A /* FBUserSettingsViewResources.bundle */,
 				BBCF58EE1A29412100CE64B4 /* libsqlite3.dylib */,
 				BBB33B011A27E007008D0E26 /* Foundation.framework */,
 				BBB33AFF1A27DFF9008D0E26 /* UIKit.framework */,
@@ -380,6 +381,9 @@
 				583572021A2B4B7400F6EA17 /* Login */,
 				BBAE1F2B1A37B71B0008B772 /* BackgroundViewController.h */,
 				BBAE1F2C1A37B71B0008B772 /* BackgroundViewController.m */,
+				BBB79D191A5CABF8001A876A /* HomeViewController.h */,
+				BBB79D1A1A5CABF8001A876A /* HomeViewController.m */,
+				BBB79D1B1A5CABF8001A876A /* HomeViewController.xib */,
 			);
 			path = VIewControllers;
 			sourceTree = "<group>";
@@ -503,6 +507,7 @@
 				BBAE1F251A37B68E0008B772 /* ForgotPasswordViewController.xib in Resources */,
 				BBB6A0641A48D791006F61B3 /* StartViewController.xib in Resources */,
 				58ACA0031A4EE6B70076D3D8 /* HeaderView.xib in Resources */,
+				BBB79D1D1A5CABF8001A876A /* HomeViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -526,6 +531,7 @@
 				BBB6A05F1A44FB2D006F61B3 /* UIConfiguration.m in Sources */,
 				BBB6A0561A40E7D1006F61B3 /* VSSwitchButton.m in Sources */,
 				BBAE1F241A37B68E0008B772 /* ForgotPasswordViewController.m in Sources */,
+				BBB79D1C1A5CABF8001A876A /* HomeViewController.m in Sources */,
 				BBAE1F291A37B6980008B772 /* CreateAccViewController.m in Sources */,
 				BBCF58921A2938B400CE64B4 /* CustomField.m in Sources */,
 				583572071A2B4B7400F6EA17 /* LoginViewController.m in Sources */,
@@ -661,45 +667,14 @@
 		BBB33AE11A27D9EE008D0E26 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					/Users/vsprem/Documents/Private,
-					stuff/Software,
-					development/Colombio,
-					/Users/vsprem/Documents/Private,
-					stuff/Software,
-					development/Colombio,
+					"$(PROJECT_DIR)/**",
 					"$(PROJECT_DIR)/Colombio/ExternalFrameworks",
-					/Users/Colombio/Documents/FacebookSDK,
-					/Users/vsprem/Documents/Private,
-					stuff/Software,
-					development/Colombio,
-					/Users/vsprem/Documents/Private,
-					stuff/Software,
-					development/Colombio,
-					/Users/vsprem/Documents/Private,
-					stuff/Software,
-					development/Colombio/iOSColombio,
-					/Users/vsprem/Documents/Private,
-					stuff/Software,
-					development/Colombio/iOSColombio,
-					/Users/vsprem/Documents/Private,
-					stuff/Software,
-					development/Colombio/iOSColombio,
-					/Users/vsprem/Documents/Private,
-					stuff/Software,
-					development/Colombio,
-					/Users/vsprem/Documents/Private,
-					stuff/Software,
-					development/Colombio,
-					/Users/vsprem/Documents/Private,
-					stuff/Software,
-					development/Colombio,
-					/Users/vsprem/Documents/Private,
-					stuff/Software,
-					development/Colombio,
+					"$(PROJECT_DIR)",
 				);
 				GCC_PREFIX_HEADER = "colombio/colombio-Prefix.pch";
 				INFOPLIST_FILE = "Colombio/Colombio-Info.plist";
@@ -707,9 +682,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					/Users/vsprem/Documents/Private,
-					stuff/Software,
-					development/Colombio/ProperColombio/FacebookSDK.framework/Versions/A,
+					"$(PROJECT_DIR)FacebookSDK.framework/Versions/A",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -718,45 +691,14 @@
 		BBB33AE21A27D9EE008D0E26 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					/Users/vsprem/Documents/Private,
-					stuff/Software,
-					development/Colombio,
-					/Users/vsprem/Documents/Private,
-					stuff/Software,
-					development/Colombio,
+					"$(PROJECT_DIR)/**",
 					"$(PROJECT_DIR)/Colombio/ExternalFrameworks",
-					/Users/Colombio/Documents/FacebookSDK,
-					/Users/vsprem/Documents/Private,
-					stuff/Software,
-					development/Colombio,
-					/Users/vsprem/Documents/Private,
-					stuff/Software,
-					development/Colombio,
-					/Users/vsprem/Documents/Private,
-					stuff/Software,
-					development/Colombio/iOSColombio,
-					/Users/vsprem/Documents/Private,
-					stuff/Software,
-					development/Colombio/iOSColombio,
-					/Users/vsprem/Documents/Private,
-					stuff/Software,
-					development/Colombio/iOSColombio,
-					/Users/vsprem/Documents/Private,
-					stuff/Software,
-					development/Colombio,
-					/Users/vsprem/Documents/Private,
-					stuff/Software,
-					development/Colombio,
-					/Users/vsprem/Documents/Private,
-					stuff/Software,
-					development/Colombio,
-					/Users/vsprem/Documents/Private,
-					stuff/Software,
-					development/Colombio,
+					"$(PROJECT_DIR)",
 				);
 				GCC_PREFIX_HEADER = "colombio/colombio-Prefix.pch";
 				INFOPLIST_FILE = "Colombio/Colombio-Info.plist";
@@ -764,9 +706,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					/Users/vsprem/Documents/Private,
-					stuff/Software,
-					development/Colombio/ProperColombio/FacebookSDK.framework/Versions/A,
+					"$(PROJECT_DIR)FacebookSDK.framework/Versions/A",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

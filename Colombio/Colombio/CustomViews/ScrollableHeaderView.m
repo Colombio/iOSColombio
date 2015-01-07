@@ -30,7 +30,7 @@
     viewWidth = screenBounds.size.width;
     
     //TODO iphone 6
-    if(screenBounds.size.height == 568.0f){
+    /*if(screenBounds.size.height == 568.0f){
         colors = [NSArray arrayWithObjects:
                   @"swipelogin1_iphone5@2x.png",
                   @"swipelogin2_iphone5@2x.png",
@@ -41,7 +41,12 @@
                   @"loginswipe1.png",
                   @"loginswipe2.png",
                   @"loginswipe3.png", nil];
-    }
+    }*/
+    
+    colors = [NSArray arrayWithObjects:
+              @"swipelogin1_iphone5",
+              @"swipelogin2_iphone5",
+              @"swipelogin3_iphone5", nil];
     
     for (int i = 0; i < colors.count; i++) {
         CGRect frame;

@@ -13,6 +13,7 @@
 #import "Validation.h"
 #import "CreateAccViewController.h"
 #import "ForgotPasswordViewController.h"
+#import "HomeViewController.h"
 /*
 #import "Countries.h"
 #import "GoogleLogin.h"
@@ -81,6 +82,7 @@
 - (void)btnEmailSelected:(id)sender{
     if (loginHidden) {
         loginHidden=NO;
+        _viewEmailHolder.backgroundColor = [UIColor colorWithWhite:0.1 alpha:0.5];
         [self.view layoutIfNeeded];
         _CS_buttonDistanceFromTop.constant -= _viewLoginHolder.frame.size.height+10;
         _CS_buttonDistanceFromBottom.constant += _viewLoginHolder.frame.size.height+10;
@@ -100,6 +102,7 @@
         
     }else{
         loginHidden=YES;
+        _viewEmailHolder.backgroundColor = [UIColor clearColor];
         _viewLoginHolder.hidden=YES;
         _CS_buttonDistanceFromTop.constant += _viewLoginHolder.frame.size.height+10;
         _CS_buttonDistanceFromBottom.constant -= _viewLoginHolder.frame.size.height+10;
@@ -113,14 +116,6 @@
 }
 
 #pragma mark TextField Delegates
-
-- (void)textFieldDidBeginEditing:(UITextField *)textField{
-    
-}
-
-- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
-    return  YES;
-}
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
     [textField resignFirstResponder];
@@ -144,6 +139,81 @@
     scrollBox.contentInset = contentInsets;
     scrollBox.scrollIndicatorInsets = contentInsets;
 }
+
+#pragma mark Facebook Login
+- (void)btnFBSelected:(id)sender{
+    [txtEmail.txtField resignFirstResponder];
+    [txtPassword.txtField resignFirstResponder];
+    _viewFBHolder.backgroundColor = [UIColor colorWithWhite:0.1 alpha:0.5];
+    [self checkLoginFacebook];
+    /*timer = [NSTimer scheduledTimerWithTimeInterval:0 target:self selector:@selector(toggleLoginOn) userInfo:nil repeats:NO];
+    timer = [NSTimer scheduledTimerWithTimeInterval:0.2f target:self selector:@selector(checkLoginFacebook) userInfo:nil repeats:NO];*/
+}
+
+-(void)checkLoginFacebook{
+    if([FBSession activeSession].state == FBSessionStateOpen  || [FBSession activeSession].state==FBSessionStateOpenTokenExtended){
+        [[FBSession activeSession] closeAndClearTokenInformation];
+    }
+    else{
+        [FBSession openActiveSessionWithReadPermissions:@[@"public_profile",@"email"] allowLoginUI:YES completionHandler:^(FBSession *session,FBSessionState status,NSError *error) {
+            NSString *token =[[[FBSession activeSession]accessTokenData]accessToken];
+            NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+            NSString *documentsDirectory = [paths objectAtIndex:0];
+            NSString *filePathUser =[documentsDirectory stringByAppendingPathComponent:@"user.out"];
+            NSString *filePathToken =[documentsDirectory stringByAppendingPathComponent:@"token.out"];
+            
+            //Slanje podataka za prijavu i dohvacanje odgovora
+            NSString *url_str = [NSString stringWithFormat:@"https://appforrest.com/colombio/api_user_managment/mau_social_login?type=fb&token=%@",token];
+            NSURL * url = [NSURL URLWithString:url_str];
+            NSError *err=nil;
+            NSMutableURLRequest *request =[NSMutableURLRequest requestWithURL:url];
+            NSURLResponse *URLresponse = nil;
+            NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&URLresponse error:&err];
+            //Dogodila se pogreska prilikom dohvacanja zahtjeva
+            if(err){
+                [Messages showErrorMsg:@"Pogreska prilikom slanja zahtjeva15"];
+            }
+            
+            //Uspjesno je poslan zahtjev
+            else{
+                Boolean error=false;
+                NSDictionary *response=nil;
+                response =[NSJSONSerialization JSONObjectWithData:data options:0 error:NULL];
+                NSArray *keys =[response allKeys];
+                for(NSString *key in keys){
+                    //Provjera za ispravnost prijave
+                    if(!strcmp("s", key.UTF8String)){
+                        error=true;
+                        break;
+                    }
+                }
+                
+                //Ako je uspjesna prijava, spremi user id i token u datoteke
+                // i preusmjeri korisnika na drugi view
+                if(!error){
+                    NSString *token = [response objectForKey:@"token"];
+                    NSDictionary *user =[response objectForKey:@"usr"];
+                    NSString *userId=[user objectForKey:@"user_id"];
+                    [userId writeToFile:filePathUser atomically:YES encoding:NSUTF8StringEncoding error:nil];
+                    [token writeToFile:filePathToken atomically:YES encoding:NSUTF8StringEncoding error:nil];
+                    
+                    /*
+                     Testing purposes
+                     **/
+                    [self presentViewController:[[HomeViewController alloc] init] animated:NO completion:nil];
+                    
+                     
+                    /*Countries *states = [[Countries alloc]init];
+                    states.arSelectedRows = [[NSMutableArray alloc] init];
+                    [self presentViewController:states animated:YES completion:nil];*/
+                }
+            }
+        }];
+    }
+    timer = [NSTimer scheduledTimerWithTimeInterval:0 target:self selector:@selector(toggleLoginOff) userInfo:nil repeats:NO];
+    timer=nil;
+}
+
 
 //Da se zastopa skrol ako otide lijevo ili desno
 //Da se pomakne slicica ako se prijede polovicu
@@ -448,62 +518,6 @@
 }
 
 //Ako se klikne na facebook button
--(void)checkLoginFacebook{
-    if([FBSession activeSession].state == FBSessionStateOpen  || [FBSession activeSession].state==FBSessionStateOpenTokenExtended){
-        [[FBSession activeSession] closeAndClearTokenInformation];
-    }
-    else{
-        [FBSession openActiveSessionWithReadPermissions:@[@"public_profile",@"email"] allowLoginUI:YES completionHandler:^(FBSession *session,FBSessionState status,NSError *error) {
-            NSString *token =[[[FBSession activeSession]accessTokenData]accessToken];
-            NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-            NSString *documentsDirectory = [paths objectAtIndex:0];
-            NSString *filePathUser =[documentsDirectory stringByAppendingPathComponent:@"korisnik.out"];
-            NSString *filePathToken =[documentsDirectory stringByAppendingPathComponent:@"token.out"];
-            
-            //Slanje podataka za prijavu i dohvacanje odgovora
-            NSString *url_str = [NSString stringWithFormat:@"https://appforrest.com/colombio/api_user_managment/mau_social_login?type=fb&token=%@",token];
-            NSURL * url = [NSURL URLWithString:url_str];
-            NSError *err=nil;
-            NSMutableURLRequest *request =[NSMutableURLRequest requestWithURL:url];
-            NSURLResponse *response = nil;
-            NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&err];
-            //Dogodila se pogreska prilikom dohvacanja zahtjeva
-            if(err){
-                [Messages showErrorMsg:@"Pogreska prilikom slanja zahtjeva15"];
-            }
-            
-            //Uspjesno je poslan zahtjev
-            else{
-                Boolean pogreska=false;
-                NSDictionary *odgovor=nil;
-                odgovor =[NSJSONSerialization JSONObjectWithData:data options:0 error:NULL];
-                NSArray *keys =[odgovor allKeys];
-                for(NSString *key in keys){
-                    //Provjera za ispravnost prijave
-                    if(!strcmp("s", key.UTF8String)){
-                        pogreska=true;
-                        break;
-                    }
-                }
-                
-                //Ako je uspjesna prijava, spremi user id i token u datoteke
-                // i preusmjeri korisnika na drugi view
-                if(!pogreska){
-                    NSString *token = [odgovor objectForKey:@"token"];
-                    NSDictionary *korisnik =[odgovor objectForKey:@"usr"];
-                    NSString *userId=[korisnik objectForKey:@"user_id"];
-                    [userId writeToFile:filePathUser atomically:YES encoding:NSUTF8StringEncoding error:nil];
-                    [token writeToFile:filePathToken atomically:YES encoding:NSUTF8StringEncoding error:nil];
-                    Countries *states = [[Countries alloc]init];
-                    states.arSelectedRows = [[NSMutableArray alloc] init];
-                    [self presentViewController:states animated:YES completion:nil];
-                }
-            }
-        }];
-    }
-    timer = [NSTimer scheduledTimerWithTimeInterval:0 target:self selector:@selector(toggleLoginOff) userInfo:nil repeats:NO];
-    timer=nil;
-}
 
 
 

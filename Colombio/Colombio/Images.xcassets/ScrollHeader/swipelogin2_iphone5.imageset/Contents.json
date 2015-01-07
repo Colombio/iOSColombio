@@ -2,12 +2,13 @@
   "images" : [
     {
       "idiom" : "universal",
-      "scale" : "1x"
+      "scale" : "1x",
+      "filename" : "swipelogin2.png"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "swipelogin2_iphone5@2x.png"
+      "filename" : "swipelogin2@2x.png"
     },
     {
       "idiom" : "universal",

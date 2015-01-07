@@ -56,11 +56,8 @@
 
 - (IBAction)setSign:(id)sender;
 - (IBAction)setForgot:(id)sender;
-- (IBAction)setEmail:(id)sender;
 - (IBAction)setLogin:(id)sender;
 - (IBAction)setPassword:(id)sender;
-- (IBAction)setFacebook:(id)sender;
-- (IBAction)setGoogle:(id)sender;
 - (IBAction)goAwayKeyboard:(id)sender;
 - (IBAction)tapBackground:(id)sender;
 

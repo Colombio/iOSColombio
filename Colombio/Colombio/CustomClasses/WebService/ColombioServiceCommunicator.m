@@ -32,21 +32,27 @@
     return self;
 }
 
-- (NSString*)getSignedRequest{
++ (NSString*)getSignedRequest{
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
     
     //citanje posljednjeg timestampa za drzave
-    NSString *filePathUser =[documentsDirectory stringByAppendingPathComponent:@"korisnik.out"];
+    NSString *filePathUser =[documentsDirectory stringByAppendingPathComponent:@"user.out"];
     NSString *filePathToken =[documentsDirectory stringByAppendingPathComponent:@"token.out"];
     NSString *token = [NSString stringWithContentsOfFile:filePathToken encoding:NSUTF8StringEncoding error:nil];
     NSString *userId = [NSString stringWithContentsOfFile:filePathUser encoding:NSUTF8StringEncoding error:nil];
     
-    NSDictionary *provjera = @{@"usr" : userId,@"token" : token};
+    NSDictionary *provjera = @{@"usr" : (userId?userId:[NSNull null]),@"token" : token};
     NSError *err;
     NSData *data = [NSJSONSerialization dataWithJSONObject:provjera options:0 error:&err];
+    if(!data){
+        [Messages showErrorMsg:@"Pogreška prilikom slanja zahtjeva!"];
+        return @"";
+    }
+    else{
     NSString *result= [CryptoClass base64Encoding:data];
     return result;
+    }
 }
 
 
