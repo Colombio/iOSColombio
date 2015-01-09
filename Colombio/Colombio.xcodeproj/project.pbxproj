@@ -23,6 +23,12 @@
 		BBAE1F2D1A37B71B0008B772 /* BackgroundViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBAE1F2C1A37B71B0008B772 /* BackgroundViewController.m */; };
 		BBAF777B1A50C914004AAAF9 /* ScrollableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = BBAF777A1A50C914004AAAF9 /* ScrollableHeaderView.m */; };
 		BBB0BFA91A350F640074B20C /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBB0BFA81A350F640074B20C /* LoginViewController.xib */; };
+		BBB2B12E1A5F37E200F4FD38 /* TabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB2B12C1A5F37E200F4FD38 /* TabBarViewController.m */; };
+		BBB2B12F1A5F37E200F4FD38 /* TabBarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBB2B12D1A5F37E200F4FD38 /* TabBarViewController.xib */; };
+		BBB2B1331A5F404E00F4FD38 /* DummyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB2B1311A5F404E00F4FD38 /* DummyViewController.m */; };
+		BBB2B1341A5F404E00F4FD38 /* DummyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBB2B1321A5F404E00F4FD38 /* DummyViewController.xib */; };
+		BBB2B1391A5F534F00F4FD38 /* CreateNewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB2B1371A5F534F00F4FD38 /* CreateNewsViewController.m */; };
+		BBB2B13A1A5F534F00F4FD38 /* CreateNewsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBB2B1381A5F534F00F4FD38 /* CreateNewsViewController.xib */; };
 		BBB33AC31A27D9EE008D0E26 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB33AC21A27D9EE008D0E26 /* main.m */; };
 		BBB33AC61A27D9EE008D0E26 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB33AC51A27D9EE008D0E26 /* AppDelegate.m */; };
 		BBB33ACE1A27D9EE008D0E26 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BBB33ACD1A27D9EE008D0E26 /* Images.xcassets */; };
@@ -104,6 +110,15 @@
 		BBAF77791A50C914004AAAF9 /* ScrollableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollableHeaderView.h; sourceTree = "<group>"; };
 		BBAF777A1A50C914004AAAF9 /* ScrollableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollableHeaderView.m; sourceTree = "<group>"; };
 		BBB0BFA81A350F640074B20C /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
+		BBB2B12B1A5F37E200F4FD38 /* TabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarViewController.h; sourceTree = "<group>"; };
+		BBB2B12C1A5F37E200F4FD38 /* TabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarViewController.m; sourceTree = "<group>"; };
+		BBB2B12D1A5F37E200F4FD38 /* TabBarViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TabBarViewController.xib; sourceTree = "<group>"; };
+		BBB2B1301A5F404E00F4FD38 /* DummyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DummyViewController.h; sourceTree = "<group>"; };
+		BBB2B1311A5F404E00F4FD38 /* DummyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DummyViewController.m; sourceTree = "<group>"; };
+		BBB2B1321A5F404E00F4FD38 /* DummyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DummyViewController.xib; sourceTree = "<group>"; };
+		BBB2B1361A5F534F00F4FD38 /* CreateNewsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateNewsViewController.h; sourceTree = "<group>"; };
+		BBB2B1371A5F534F00F4FD38 /* CreateNewsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateNewsViewController.m; sourceTree = "<group>"; };
+		BBB2B1381A5F534F00F4FD38 /* CreateNewsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreateNewsViewController.xib; sourceTree = "<group>"; };
 		BBB33ABD1A27D9EE008D0E26 /* Colombio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Colombio.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BBB33AC11A27D9EE008D0E26 /* Colombio-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Colombio-Info.plist"; sourceTree = "<group>"; };
 		BBB33AC21A27D9EE008D0E26 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -229,6 +244,16 @@
 				BBAE1F1C1A37B51F0008B772 /* ColombioServiceCommunicator.m */,
 			);
 			path = WebService;
+			sourceTree = "<group>";
+		};
+		BBB2B1351A5F52A500F4FD38 /* Upload */ = {
+			isa = PBXGroup;
+			children = (
+				BBB2B1361A5F534F00F4FD38 /* CreateNewsViewController.h */,
+				BBB2B1371A5F534F00F4FD38 /* CreateNewsViewController.m */,
+				BBB2B1381A5F534F00F4FD38 /* CreateNewsViewController.xib */,
+			);
+			path = Upload;
 			sourceTree = "<group>";
 		};
 		BBB33AB41A27D9EE008D0E26 = {
@@ -378,12 +403,19 @@
 		BBCF58831A29357400CE64B4 /* VIewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				BBB2B1351A5F52A500F4FD38 /* Upload */,
 				583572021A2B4B7400F6EA17 /* Login */,
 				BBAE1F2B1A37B71B0008B772 /* BackgroundViewController.h */,
 				BBAE1F2C1A37B71B0008B772 /* BackgroundViewController.m */,
 				BBB79D191A5CABF8001A876A /* HomeViewController.h */,
 				BBB79D1A1A5CABF8001A876A /* HomeViewController.m */,
 				BBB79D1B1A5CABF8001A876A /* HomeViewController.xib */,
+				BBB2B12B1A5F37E200F4FD38 /* TabBarViewController.h */,
+				BBB2B12C1A5F37E200F4FD38 /* TabBarViewController.m */,
+				BBB2B12D1A5F37E200F4FD38 /* TabBarViewController.xib */,
+				BBB2B1301A5F404E00F4FD38 /* DummyViewController.h */,
+				BBB2B1311A5F404E00F4FD38 /* DummyViewController.m */,
+				BBB2B1321A5F404E00F4FD38 /* DummyViewController.xib */,
 			);
 			path = VIewControllers;
 			sourceTree = "<group>";
@@ -507,7 +539,10 @@
 				BBAE1F251A37B68E0008B772 /* ForgotPasswordViewController.xib in Resources */,
 				BBB6A0641A48D791006F61B3 /* StartViewController.xib in Resources */,
 				58ACA0031A4EE6B70076D3D8 /* HeaderView.xib in Resources */,
+				BBB2B12F1A5F37E200F4FD38 /* TabBarViewController.xib in Resources */,
 				BBB79D1D1A5CABF8001A876A /* HomeViewController.xib in Resources */,
+				BBB2B13A1A5F534F00F4FD38 /* CreateNewsViewController.xib in Resources */,
+				BBB2B1341A5F404E00F4FD38 /* DummyViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -530,11 +565,14 @@
 				5836A1CD1A55F98300C509F1 /* Loading.m in Sources */,
 				BBB6A05F1A44FB2D006F61B3 /* UIConfiguration.m in Sources */,
 				BBB6A0561A40E7D1006F61B3 /* VSSwitchButton.m in Sources */,
+				BBB2B1391A5F534F00F4FD38 /* CreateNewsViewController.m in Sources */,
 				BBAE1F241A37B68E0008B772 /* ForgotPasswordViewController.m in Sources */,
 				BBB79D1C1A5CABF8001A876A /* HomeViewController.m in Sources */,
 				BBAE1F291A37B6980008B772 /* CreateAccViewController.m in Sources */,
 				BBCF58921A2938B400CE64B4 /* CustomField.m in Sources */,
+				BBB2B1331A5F404E00F4FD38 /* DummyViewController.m in Sources */,
 				583572071A2B4B7400F6EA17 /* LoginViewController.m in Sources */,
+				BBB2B12E1A5F37E200F4FD38 /* TabBarViewController.m in Sources */,
 				5835720B1A2B705100F6EA17 /* BottomNav.m in Sources */,
 				BBAE1F2D1A37B71B0008B772 /* BackgroundViewController.m in Sources */,
 				BBB6A05B1A44D6B5006F61B3 /* CLTextField.m in Sources */,

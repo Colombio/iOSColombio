@@ -1,30 +1,24 @@
 //
-//  HomeViewController.m
+//  CreateNewsViewController.m
 //  Colombio
 //
-//  Created by Vlatko Šprem on 07/01/15.
+//  Created by Vlatko Šprem on 09/01/15.
 //  Copyright (c) 2015 Colombio. All rights reserved.
 //
 
-#import "HomeViewController.h"
 #import "CreateNewsViewController.h"
 
-@interface HomeViewController ()
+@interface CreateNewsViewController ()
 
 @end
 
-@implementation HomeViewController
-
-- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    
-    if (self) {
-    }
-    return self;
-}
+@implementation CreateNewsViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    //self.navigationController.tabBarItem.selectedImage  = [UIImage imageNamed:@"home_normal"];
+    //[self.navigationController.tabBarController.tabBar setNeedsDisplay];
+    ((UITabBarItem*)[self.tabBarController.tabBar.items objectAtIndex:2]).selectedImage =  [[UIImage imageNamed:@"home_normal" ] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -42,10 +36,5 @@
     // Pass the selected object to the new view controller.
 }
 */
-
-#pragma mark Button Action
-- (void)btnUploadClicked:(id)sender{
-    [self.navigationController pushViewController:[[CreateNewsViewController alloc] init] animated:YES];
-}
 
 @end

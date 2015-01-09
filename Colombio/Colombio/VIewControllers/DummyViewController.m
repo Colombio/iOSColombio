@@ -1,30 +1,23 @@
 //
-//  HomeViewController.m
+//  DummyViewController.m
 //  Colombio
 //
-//  Created by Vlatko Šprem on 07/01/15.
+//  Created by Vlatko Šprem on 08/01/15.
 //  Copyright (c) 2015 Colombio. All rights reserved.
 //
 
-#import "HomeViewController.h"
-#import "CreateNewsViewController.h"
+#import "DummyViewController.h"
 
-@interface HomeViewController ()
+@interface DummyViewController ()
 
 @end
 
-@implementation HomeViewController
-
-- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    
-    if (self) {
-    }
-    return self;
-}
+@implementation DummyViewController
+@synthesize label;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    label.text = self.dummyText;
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -42,10 +35,5 @@
     // Pass the selected object to the new view controller.
 }
 */
-
-#pragma mark Button Action
-- (void)btnUploadClicked:(id)sender{
-    [self.navigationController pushViewController:[[CreateNewsViewController alloc] init] animated:YES];
-}
 
 @end

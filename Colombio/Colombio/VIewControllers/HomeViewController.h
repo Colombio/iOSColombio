@@ -9,5 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface HomeViewController : UIViewController
+{
+    IBOutlet UIButton *btnUpload;
+}
 
+- (IBAction)btnUploadClicked:(id)sender;
 @end

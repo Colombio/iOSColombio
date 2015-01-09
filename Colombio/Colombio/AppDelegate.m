@@ -12,7 +12,7 @@
 #import "StartViewController.h"
 #import "Messages.h"
 #import "ColombioServiceCommunicator.h"
-#import "HomeViewController.h"
+#import "TabBarViewController.h"
 
 @implementation AppDelegate
 @synthesize db, locationManager;
@@ -115,7 +115,7 @@
                     if(!strcmp("1", firstLogin.UTF8String)){
                         /*Countries *states = [[Countries alloc]init];
                         [self presentViewController:states animated:YES completion:nil];*/
-                        self.window.rootViewController = [[HomeViewController alloc] init];
+                        self.window.rootViewController = [[TabBarViewController alloc] init];
                         return;
                     }
                     //Ako je korisnik vec popunio pocetne podatke prikazi home
@@ -123,7 +123,7 @@
                         /*
                          Testing purposes
                          **/
-                        self.window.rootViewController = [[HomeViewController alloc] init];
+                        self.window.rootViewController = [[TabBarViewController alloc] init];
                         return;
                     }
                 }else{

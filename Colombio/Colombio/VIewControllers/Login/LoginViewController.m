@@ -13,7 +13,7 @@
 #import "Validation.h"
 #import "CreateAccViewController.h"
 #import "ForgotPasswordViewController.h"
-#import "HomeViewController.h"
+#import "TabBarViewController.h"
 /*
 #import "Countries.h"
 #import "GoogleLogin.h"
@@ -218,7 +218,7 @@
             /*
              Testing purposes only
              **/
-            [self presentViewController:[[HomeViewController alloc] init] animated:NO completion:nil];
+            [self presentViewController:[[TabBarViewController alloc] init] animated:NO completion:nil];
         }
     }
 }
@@ -286,7 +286,7 @@
                     /*
                      Testing purposes only
                      **/
-                    [self presentViewController:[[HomeViewController alloc] init] animated:NO completion:nil];
+                    [self presentViewController:[[TabBarViewController alloc] init] animated:NO completion:nil];
                     
                      
                     /*Countries *states = [[Countries alloc]init];
