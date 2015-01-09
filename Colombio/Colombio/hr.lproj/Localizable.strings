@@ -37,3 +37,5 @@
 "login_missing_account" = "Nemaš račun?";
 "login_signup" = "Registriraj se!";
 "login_forget_password" = "Zaboravljena lozinka?";
+/*Spinner message*/
+"logged" ="Logged in, please wait...";

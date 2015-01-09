@@ -13,6 +13,7 @@
 #import "Messages.h"
 #import "ColombioServiceCommunicator.h"
 #import "HomeViewController.h"
+#import "CreateAccViewController.h"
 
 @implementation AppDelegate
 @synthesize db, locationManager;
@@ -43,6 +44,8 @@
     }
     //LoginViewController *loginVC = [[LoginViewController alloc] init];
     
+    self.window.rootViewController = [[CreateAccViewController alloc] init];
+   // [self presentViewController:[[CreateAccViewController alloc] init] animated:YES completion:nil];
     [self.window makeKeyAndVisible];
     return YES;
 }

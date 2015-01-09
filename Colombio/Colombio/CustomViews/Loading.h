@@ -15,11 +15,12 @@
     UIView *viewParent;
     UIImageView *imgSpinner;
     UIImageView *imgStatus;
+    UILabel *lblInfo;
 }
 
 - (void)startNativeSpinner:(UIView *)view;
 - (void)stopNativeSpinner;
-- (void)startCustomSpinner:(UIView *)view;
+- (void)startCustomSpinner:(UIView *)view spinMessage:(NSString*)strMessage;
 - (void)stopCustomSpinner;
 - (void)customSpinnerSuccess;
 - (void)customSpinnerFail;
