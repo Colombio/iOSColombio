@@ -203,7 +203,7 @@
                         NSArray *arrayWsErrors = [dataWsResponse objectForKey:@"errors"];
                         for(NSString *greska in arrayWsErrors){
                             //Duplikat usernamea
-                            if(strcmp("usernam e_exists", greska.UTF8String)&&wrongUser==NO){
+                            if(strcmp("username_exists", greska.UTF8String)&&wrongUser==NO){
                                 [txtUsername setErrorText:@"error_username_exists"];
                                 isWrongInput=true;
                                 wrongUser=NO;
@@ -244,37 +244,33 @@
                     [txtUsername setErrorText:@"error_username_format"];
                 }
                 
-                //TODO, minor bugfixes, navigacija,
-                //Poruka ispod spinnera
-                
                 //Ako su svi podaci ispravno upisani
                 [loadingView stopCustomSpinner];
                 if(!isWrongInput){
-                    [Messages showNormalMsg:@"register_successful"];
                     [loadingView customSpinnerSuccess];
+                    timer = [NSTimer scheduledTimerWithTimeInterval:3.5 target:self selector:@selector(createAccSuccessful) userInfo:nil repeats:NO];
                 }
                 else{
                     [loadingView customSpinnerFail];
                 }
             }
-            timer = [NSTimer scheduledTimerWithTimeInterval:0 target:self selector:@selector(toggleCreateOff) userInfo:nil repeats:NO];
+            timer = [NSTimer scheduledTimerWithTimeInterval:2.5 target:self selector:@selector(toggleCreateOff) userInfo:nil repeats:NO];
         });
         
     }];
 }
 
+- (void)createAccSuccessful{
+    //TODO GOTO Countries
+}
+
 //Ako se klikne na create account
 - (IBAction)btnCreateAccClicked:(id)sender{
     [self.view endEditing:YES];
-    [loadingView startCustomSpinner:self.view];
+    [loadingView startCustomSpinner:self.view spinMessage:@"logged"];
     [UIView animateWithDuration:0.8 animations:^{
         [btnCreate setTitle:@"Please wait..." forState:UIControlStateNormal];
     }];
-    
-    /*
-     [loadingView stopCustomSpinner];
-     [loadingView customSpinnerFail];
-     */
     
     timer = [NSTimer scheduledTimerWithTimeInterval:0.2f target:self selector:@selector(checkRegister) userInfo:nil repeats:NO];
 }

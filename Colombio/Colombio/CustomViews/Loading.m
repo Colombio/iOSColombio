@@ -41,15 +41,21 @@
     }];
 }
 
-- (void)startCustomSpinner:(UIView *)view{
+- (void)startCustomSpinner:(UIView *)view spinMessage:(NSString*)strMessage{
     viewParent=view;
     viewDimmed = [[UIView alloc] initWithFrame:CGRectMake(0, 0, viewParent.frame.size.width, viewParent.frame.size.height)];
-    imgSpinner = [[UIImageView alloc]initWithFrame:CGRectMake(viewParent.frame.size.width/2-30, viewParent.frame.size.height-130, 60, 60)];
+    imgSpinner = [[UIImageView alloc]initWithFrame:CGRectMake(viewParent.frame.size.width/2-30, viewParent.frame.size.height-150, 60, 60)];
     viewDimmed.backgroundColor = [UIColor clearColor];
     imgSpinner.alpha=0;
     imgStatus = [[UIImageView alloc]initWithFrame:CGRectMake(20, 20, 20, 20)];
-    [imgStatus setHidden:YES];
+    imgStatus.alpha=0;
     [imgSpinner addSubview:imgStatus];
+    lblInfo = [[UILabel alloc]initWithFrame:CGRectMake(-50, 40, 200, 80)];
+    lblInfo.text = [Localized string:strMessage];
+    lblInfo.font = [[UIConfiguration sharedInstance] getFont:FONT_HELVETICA_NEUE_LIGHT];
+    lblInfo.textColor = [UIColor whiteColor];
+    lblInfo.alpha=0;
+    [imgSpinner addSubview:lblInfo];
     
     [UIView animateWithDuration:0.8 animations:^(void) {
         [viewParent addSubview:viewDimmed];
@@ -65,7 +71,7 @@
 }
 
 - (void)stopCustomSpinner{
-    [imgSpinner.layer removeAllAnimations];
+    [imgSpinner.layer removeAllAnimations ];
 }
 
 - (void)removeCustomSpinner{
@@ -73,11 +79,13 @@
         [imgSpinner.layer removeAllAnimations];
         imgSpinner.alpha=0.0;
         viewDimmed.alpha=0.0;
+        lblInfo.alpha=0.0;
         [viewParent setUserInteractionEnabled:YES];
         isLoading=NO;
     } completion:^(BOOL finished) {
         [viewDimmed removeFromSuperview];
         [imgSpinner removeFromSuperview];
+        [lblInfo removeFromSuperview];
     }];
 }
 
@@ -93,14 +101,15 @@
 - (void)customSpinnerSuccess{
     imgStatus.image = TXT_FIELD_PASS_IMG;
     [UIView animateWithDuration:2 animations:^{
-        [imgStatus setHidden:NO];
+        imgStatus.alpha=1;
+        lblInfo.alpha=1;
     }];
 }
 
 - (void)customSpinnerFail{
     imgStatus.image = TXT_FIELD_WRONG_IMG;
     [UIView animateWithDuration:2 animations:^{
-        [imgStatus setHidden:NO];
+        imgStatus.alpha=1;
     }];
 }
 

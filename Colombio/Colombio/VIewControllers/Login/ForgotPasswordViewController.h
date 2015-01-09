@@ -8,34 +8,30 @@
 
 #import <UIKit/UIKit.h>
 #import "ScrollableHeader.h"
+#import "HeaderView.h"
+#import "ColombioServiceCommunicator.h"
+#import "CLTextField.h"
+#import "Loading.h"
 
-@interface ForgotPasswordViewController : UIViewController<UIScrollViewDelegate,UITabBarDelegate>{
-    
-    IBOutlet UIImageView *emailPass;
-    IBOutlet UIImageView *emailWrong;
-    IBOutlet UITextField *txtEmail;
+@interface ForgotPasswordViewController : UIViewController<UITableViewDelegate, UIScrollViewDelegate, HeaderViewDelegate, ColombioServiceCommunicatorDelegate, UITextFieldDelegate, NSURLConnectionDelegate>{
     IBOutlet UIScrollView *scrollBox;
-    IBOutlet UIImageView *inputImg;
+    IBOutlet CLTextField *txtEmail;
     NSTimer *timer;
     IBOutlet UIButton *btnSend;
-    IBOutlet UIImageView *pozadina;
+    IBOutlet UIImageView *imgBackground;
+    Loading *loadingView;
 }
 
-@property(strong,nonatomic) ScrollableHeader *scrollableHeader;
-@property (strong, nonatomic) IBOutlet UIImageView *pozadina;
+@property (weak, nonatomic) IBOutlet UIView *headerViewHolder;
+@property (strong, nonatomic) IBOutlet UIImageView *imgBackground;
 @property (strong, nonatomic) IBOutlet UIButton *btnSend;
-@property (nonatomic, strong) IBOutlet UIScrollView *scrollView;
+@property (strong,nonatomic) IBOutlet CLTextField *txtEmail;;
+@property (strong,nonatomic) IBOutlet UIScrollView *scrollBox;
+
 - (IBAction)setLogInside:(id)sender;
 - (IBAction)setSignIn:(id)sender;
 - (IBAction)goAwayKeyboard:(id)sender;
 - (IBAction)setEmail:(id)sender;
-
-@property (strong,nonatomic) UIScrollView *scrollBox;
-@property (strong,nonatomic) IBOutlet UIImageView *inputImg;
-@property (strong,nonatomic) IBOutlet UITextField *txtEmail;
-@property (strong,nonatomic) IBOutlet UIImageView *emailPass;
-@property (strong,nonatomic) IBOutlet UIImageView *emailWrong;
-
 - (IBAction)setSend:(id)sender;
 
 @end

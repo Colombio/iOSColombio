@@ -22,52 +22,22 @@
 
 @implementation ForgotPasswordViewController
 
-@synthesize emailPass;
-@synthesize emailWrong;
-@synthesize txtEmail;
+@synthesize headerViewHolder;
 @synthesize scrollBox;
-@synthesize inputImg;
-@synthesize btnSend;
-@synthesize pozadina;
-@synthesize scrollView;
-@synthesize scrollableHeader;
+@synthesize imgBackground;
+@synthesize txtEmail;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
-    emailPass.hidden=YES;
-    emailWrong.hidden=YES;
-    scrollableHeader = [[ScrollableHeader alloc] init];
-    [scrollableHeader addHeader:self.view self:self headerScroll:scrollView viewScroll:scrollBox];
 }
 
 - (void)viewDidLayoutSubviews{
-    scrollView.contentSize = CGSizeMake(scrollView.frame.size.width*3, scrollView.frame.size.height);
-    scrollView.bounces=NO;
-    [scrollView setDelegate:scrollableHeader];
+    
 }
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-- (void)emailUntapped{
-    [scrollBox setContentOffset:CGPointMake(0,0) animated:YES];
-    [txtEmail resignFirstResponder];
-}
-
+/*
 //Kada se klikne na forgot password, pozove se ova metoda
 - (void)sendPassword{
     timer = [NSTimer scheduledTimerWithTimeInterval:0 target:self selector:@selector(emailUntapped) userInfo:nil repeats:NO];
@@ -139,6 +109,7 @@
     }
     timer = [NSTimer scheduledTimerWithTimeInterval:0 target:self selector:@selector(toggleSendOff) userInfo:nil repeats:NO];
 }
+*/
 
 -(void)toggleSendOn{
     [btnSend setTitle:@"Please wait..." forState:UIControlStateNormal];
@@ -154,24 +125,12 @@
     timer = [NSTimer scheduledTimerWithTimeInterval:0.2f target:self selector:@selector(sendPassword) userInfo:nil repeats:NO];
 }
 
-//Ako se klikne na login gumb
-- (IBAction)setLogInside:(id)sender {
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
-    LoginViewController *log = (LoginViewController*)[storyboard instantiateViewControllerWithIdentifier:@"test122"];
-    [self presentViewController:log animated:YES completion:nil];
-}
-
-//Ako se klikne na sign in gumb
-- (IBAction)setSignIn:(id)sender {
-    CreateAccViewController *createAcc = [[CreateAccViewController alloc]init];
-    [self presentViewController:createAcc animated:YES completion:nil];
-}
-
 - (IBAction)goAwayKeyboard:(id)sender {
     [sender resignFirstResponder];
     [scrollBox setContentOffset:CGPointMake(0,0) animated:YES];
 }
 
+/*
 //Fokus na email txt box
 - (IBAction)setEmail:(id)sender {
     inputImg.hidden=YES;
@@ -180,5 +139,6 @@
     [txtEmail setPlaceholder:@"Email"];
     [scrollBox setContentOffset:CGPointMake(0,120) animated:YES];
 }
+*/
 
 @end

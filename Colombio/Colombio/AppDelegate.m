@@ -43,6 +43,8 @@
     }
     //LoginViewController *loginVC = [[LoginViewController alloc] init];
     
+    self.window.rootViewController = [[CreateAccViewController alloc] init];
+   // [self presentViewController:[[CreateAccViewController alloc] init] animated:YES completion:nil];
     [self.window makeKeyAndVisible];
     return YES;
 }

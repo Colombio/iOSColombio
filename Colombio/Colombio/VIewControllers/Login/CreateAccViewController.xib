@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+        <deployment defaultVersion="1552" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CreateAccViewController">
@@ -37,28 +37,28 @@
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uaR-EH-yrE" userLabel="Username" customClass="CLTextField">
-                            <rect key="frame" x="0.0" y="75" width="320" height="44"/>
+                            <rect key="frame" x="45" y="75" width="260" height="44"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="44" id="AM5-2K-kpG"/>
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IrL-5x-K3Q" userLabel="Email" customClass="CLTextField">
-                            <rect key="frame" x="0.0" y="130" width="320" height="44"/>
+                            <rect key="frame" x="45" y="130" width="260" height="44"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="44" id="0gu-3Y-wXb"/>
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aUh-CJ-E59" userLabel="Password" customClass="CLTextField">
-                            <rect key="frame" x="0.0" y="185" width="320" height="44"/>
+                            <rect key="frame" x="45" y="185" width="260" height="44"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="44" id="0nx-XG-xGQ"/>
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xh8-fE-8Up" userLabel="Confirm Password" customClass="CLTextField">
-                            <rect key="frame" x="0.0" y="240" width="320" height="44"/>
+                            <rect key="frame" x="45" y="240" width="260" height="44"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="44" id="nwh-5G-f6R"/>
@@ -138,27 +138,27 @@
                     <constraints>
                         <constraint firstItem="xh8-fE-8Up" firstAttribute="top" secondItem="Sc4-eG-eQE" secondAttribute="top" constant="240" id="6Gm-SW-O7g"/>
                         <constraint firstItem="IrL-5x-K3Q" firstAttribute="width" secondItem="xh8-fE-8Up" secondAttribute="width" id="6fB-F8-5Tc"/>
-                        <constraint firstItem="IrL-5x-K3Q" firstAttribute="width" secondItem="oAR-qu-Rhx" secondAttribute="width" id="81a-l8-v8d"/>
+                        <constraint firstItem="IrL-5x-K3Q" firstAttribute="width" secondItem="oAR-qu-Rhx" secondAttribute="width" constant="-60" id="81a-l8-v8d"/>
                         <constraint firstItem="lV4-AU-enK" firstAttribute="top" secondItem="oAR-qu-Rhx" secondAttribute="top" id="9gl-WW-AxB"/>
                         <constraint firstItem="IrL-5x-K3Q" firstAttribute="width" secondItem="aUh-CJ-E59" secondAttribute="width" id="AY8-CG-m8E"/>
                         <constraint firstAttribute="bottom" secondItem="9Ro-qz-Imd" secondAttribute="bottom" constant="36" id="AdB-0f-Rat"/>
                         <constraint firstItem="lV4-AU-enK" firstAttribute="leading" secondItem="oAR-qu-Rhx" secondAttribute="leading" id="Euf-au-JE1"/>
                         <constraint firstItem="IrL-5x-K3Q" firstAttribute="top" secondItem="Sc4-eG-eQE" secondAttribute="top" constant="130" id="HHA-J1-AEf"/>
                         <constraint firstAttribute="trailing" secondItem="9Ro-qz-Imd" secondAttribute="trailing" constant="45" id="Hj3-do-Amt"/>
-                        <constraint firstItem="lV4-AU-enK" firstAttribute="leading" secondItem="aUh-CJ-E59" secondAttribute="leading" id="Mgr-jZ-ea3"/>
+                        <constraint firstItem="lV4-AU-enK" firstAttribute="leading" secondItem="aUh-CJ-E59" secondAttribute="leading" constant="-45" id="Mgr-jZ-ea3"/>
                         <constraint firstItem="9Ro-qz-Imd" firstAttribute="leading" secondItem="Sc4-eG-eQE" secondAttribute="leading" constant="45" id="NjS-je-Jco"/>
                         <constraint firstItem="oAR-qu-Rhx" firstAttribute="top" secondItem="Sc4-eG-eQE" secondAttribute="top" id="RJC-cA-Gfo"/>
                         <constraint firstAttribute="trailing" secondItem="lV4-AU-enK" secondAttribute="trailing" id="YOg-jt-t9B"/>
-                        <constraint firstItem="lV4-AU-enK" firstAttribute="leading" secondItem="xh8-fE-8Up" secondAttribute="leading" id="bKa-HH-FJh"/>
+                        <constraint firstItem="lV4-AU-enK" firstAttribute="leading" secondItem="xh8-fE-8Up" secondAttribute="leading" constant="-45" id="bKa-HH-FJh"/>
                         <constraint firstAttribute="bottom" secondItem="lV4-AU-enK" secondAttribute="bottom" id="fcX-3o-HIY"/>
                         <constraint firstItem="lV4-AU-enK" firstAttribute="width" secondItem="Sc4-eG-eQE" secondAttribute="width" id="jIS-mO-1NB"/>
                         <constraint firstItem="IrL-5x-K3Q" firstAttribute="width" secondItem="uaR-EH-yrE" secondAttribute="width" id="k3d-d7-g9z"/>
                         <constraint firstItem="lV4-AU-enK" firstAttribute="height" secondItem="Sc4-eG-eQE" secondAttribute="height" id="kw9-JY-Axm"/>
-                        <constraint firstItem="lV4-AU-enK" firstAttribute="leading" secondItem="IrL-5x-K3Q" secondAttribute="leading" id="nT0-Yn-rl8"/>
+                        <constraint firstItem="lV4-AU-enK" firstAttribute="leading" secondItem="IrL-5x-K3Q" secondAttribute="leading" constant="-45" id="nT0-Yn-rl8"/>
                         <constraint firstItem="uaR-EH-yrE" firstAttribute="top" secondItem="Sc4-eG-eQE" secondAttribute="top" constant="75" id="pSB-wf-B4L"/>
-                        <constraint firstItem="lV4-AU-enK" firstAttribute="leading" secondItem="uaR-EH-yrE" secondAttribute="leading" id="qNC-bF-XPd"/>
+                        <constraint firstItem="lV4-AU-enK" firstAttribute="leading" secondItem="uaR-EH-yrE" secondAttribute="leading" constant="-45" id="qNC-bF-XPd"/>
                         <constraint firstItem="lV4-AU-enK" firstAttribute="leading" secondItem="Sc4-eG-eQE" secondAttribute="leading" id="uVi-Yu-ITd"/>
-                        <constraint firstItem="IrL-5x-K3Q" firstAttribute="width" secondItem="lV4-AU-enK" secondAttribute="width" id="xSW-2b-ZjE"/>
+                        <constraint firstItem="IrL-5x-K3Q" firstAttribute="width" secondItem="lV4-AU-enK" secondAttribute="width" constant="-60" id="xSW-2b-ZjE"/>
                         <constraint firstItem="aUh-CJ-E59" firstAttribute="top" secondItem="Sc4-eG-eQE" secondAttribute="top" constant="185" id="ztv-As-7oy"/>
                     </constraints>
                 </scrollView>

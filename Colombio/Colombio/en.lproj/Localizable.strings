@@ -37,3 +37,6 @@
 "login_missing_account" = "Don't have an account?";
 "login_signup" = "Sign up!";
 "login_forget_password" = "Forgot password?";
+
+/*Spinner message*/
+"logged" ="Logged in, please wait...";
