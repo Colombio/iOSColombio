@@ -28,4 +28,12 @@
 "error_confirm_password" = "Both passwords must match";
 
 /*error message global*/
-"error_web_request" = "Pogreška prilikom slanja zahtjeva";
+"error_web_request" = "Error sending request";
+
+/*Login*/
+"login_enter_email" = "Enter your email";
+"login_enter_password" = "Enter your password";
+"login_login" = "Log In";
+"login_missing_account" = "Don't have an account?";
+"login_signup" = "Sign up!";
+"login_forget_password" = "Forgot password?";

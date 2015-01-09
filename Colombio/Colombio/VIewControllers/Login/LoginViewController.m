@@ -13,6 +13,7 @@
 #import "Validation.h"
 #import "CreateAccViewController.h"
 #import "ForgotPasswordViewController.h"
+#import "HomeViewController.h"
 /*
 #import "Countries.h"
 #import "GoogleLogin.h"
@@ -35,20 +36,29 @@
 @synthesize imgFailPassword;
 @synthesize imgPassPassword;
 @synthesize btnLogin;
-@synthesize scrollView;
-@synthesize scrollableHeader;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     //Skrivanje slicica da li su pogresni inputi
+    loginHidden=YES;
     imgPassEmail.hidden = YES;
     imgFailEmail.hidden = YES;
     imgPassPassword.hidden = YES;
     imgFailPassword.hidden = YES;
     NSLog(@"load");
     //Skrivanje inputa
-    txtPassword.secureTextEntry = YES;
+    
+    txtEmail.txtField.delegate=self;
+    
+    CGRect screenBounds = [[UIScreen mainScreen]bounds];
+    if(screenBounds.size.height < 568.0f){
+        
+        _CS_scrollableHeaderHeight.constant=187;
+    }
+    
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(keyboardUp:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(keyboardDown:) name:UIKeyboardWillHideNotification object:nil];
     
     //Provjeravanje tokena, ako je korisnik vec logiran u sustavu, proslijedi ga na home
     //timer = [NSTimer scheduledTimerWithTimeInterval:0.4 target:self selector:@selector(provjeriToken) userInfo:nil repeats:NO];
@@ -59,23 +69,241 @@
 
 - (void)viewDidAppear:(BOOL)animated{
     //Dodavanje sličica za swipe
-    scrollableHeader = [[ScrollableHeader alloc] init];
-    [scrollableHeader addHeader:self.view self:self headerScroll:scrollView viewScroll:scrollBox];
-    
-    CGRect screenBounds = [[UIScreen mainScreen]bounds];
+    scrollBox.scrollEnabled=YES;
+   
     timer=nil;
-    [scrollBox setDelegate:self];
-    if(screenBounds.size.height == 568.0f){
-        scrollBox.scrollEnabled=NO;
-    }
-    [scrollBox setContentOffset:CGPointMake(0,0) animated:NO];
+    //[scrollBox setDelegate:self];
+    
 }
+
+
+#pragma mark Button Action
+
+- (void)btnEmailSelected:(id)sender{
+    if (loginHidden) {
+        [self showEmailLogin];
+    }else{
+        [self hideEmailLogin];
+    }
+    
+    
+}
+
+- (void)hideEmailLogin{
+    loginHidden=YES;
+    _viewEmailHolder.backgroundColor = [UIColor clearColor];
+    _viewLoginHolder.hidden=YES;
+    _CS_buttonDistanceFromTop.constant += _viewLoginHolder.frame.size.height+10;
+    _CS_buttonDistanceFromBottom.constant -= _viewLoginHolder.frame.size.height+10;
+    [UIView animateWithDuration:0.5
+                     animations:^{
+                         [self.view layoutIfNeeded];
+                     }];
+}
+
+- (void)showEmailLogin{
+    loginHidden=NO;
+    _viewEmailHolder.backgroundColor = [UIColor colorWithWhite:0.1 alpha:0.5];
+    [self.view layoutIfNeeded];
+    _CS_buttonDistanceFromTop.constant -= _viewLoginHolder.frame.size.height+10;
+    _CS_buttonDistanceFromBottom.constant += _viewLoginHolder.frame.size.height+10;
+    [UIView animateWithDuration:0.5
+                     animations:^{
+                         [self.view layoutIfNeeded];
+                         
+                     }];
+    [UIView transitionWithView:_viewLoginHolder
+                      duration:0.5
+                       options:UIViewAnimationOptionTransitionCrossDissolve
+                    animations:NULL
+                    completion:NULL];
+    
+    _viewLoginHolder.hidden=NO;
+}
+
+
+
+#pragma mark TextField Delegates
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    [textField resignFirstResponder];
+    return YES;
+}
+
+#pragma mark Keyboard
+
+- (void)keyboardUp:(NSNotification *)notification{
+    NSDictionary *info = [notification userInfo];
+    CGRect keyboardRect = [[info objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    keyboardRect = [self.view convertRect:keyboardRect fromView:nil];
+    
+    UIEdgeInsets contentInset = scrollBox.contentInset;
+    contentInset.bottom = keyboardRect.size.height;
+    scrollBox.contentInset = contentInset;
+}
+
+- (void)keyboardDown:(NSNotification*)notification{
+    UIEdgeInsets contentInsets = UIEdgeInsetsZero;
+    scrollBox.contentInset = contentInsets;
+    scrollBox.scrollIndicatorInsets = contentInsets;
+}
+
+#pragma mark Email Login
+
+- (void)btnLoginClicked:(id)sender{
+    [self checkLoginNormal];
+}
+-(void)checkLoginNormal{
+    //Provjera da li su email i lozinka prazni
+    Boolean wrong = false;
+    if(![Validation validateEmail:txtEmail.txtField.text]){
+        wrong=true;
+        txtEmail.errorText = @"login_enter_email";
+    }
+    
+    //Lozinka je prazna
+    if(txtPassword.txtField.text.length<8){
+        wrong=true;
+        txtPassword.errorText = @"login_enter_password";
+    }
+    
+    //pocetna konfiguracija za datoteke
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *filePathUser =[documentsDirectory stringByAppendingPathComponent:@"user.out"];
+    NSString *filePathToken =[documentsDirectory stringByAppendingPathComponent:@"token.out"];
+    
+    //Slanje podataka za prijavu i dohvacanje odgovora
+    NSString *url_str = [NSString stringWithFormat:@"https://appforrest.com/colombio/api_user_managment/mau_login/"];
+    NSURL * url = [NSURL URLWithString:url_str];
+    NSError *err=nil;
+    NSMutableURLRequest *request =[NSMutableURLRequest requestWithURL:url];
+    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+    [request setHTTPBody:[[NSString stringWithFormat:@"login_string=%@&login_pass=%@",txtEmail.txtField.text,txtPassword.txtField.text]dataUsingEncoding:NSUTF8StringEncoding]];
+    [request setHTTPMethod:@"POST"];
+    NSURLResponse *response = nil;
+    NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&err];
+    
+    //Dogodila se pogreska prilikom dohvacanja zahtjeva
+    if(err){
+        [Messages showErrorMsg:@"error_web_request"];
+    }
+    //Uspjesno je poslan zahtjev
+    else{
+        Boolean err=false;
+        NSDictionary *response=nil;
+        response =[NSJSONSerialization JSONObjectWithData:data options:0 error:NULL];
+        NSArray *keys =[response allKeys];
+        
+        for(NSString *key in keys){
+            //Provjera za ispravnost prijave
+            if(!strcmp("s", key.UTF8String)){
+                txtEmail.errorText = @"login_enter_email";
+                txtPassword.errorText = @"login_enter_password";
+                err=true;
+                break;
+            }
+        }
+        //Ako je uspjesna prijava, spremi user id i token u datoteke
+        // i preusmjeri korisnika na drugi view
+        if(!err){
+            NSString *token = [response objectForKey:@"token"];
+            NSDictionary *user =[response objectForKey:@"usr"];
+            NSString *userId=[user objectForKey:@"user_id"];
+            [userId writeToFile:filePathUser atomically:YES encoding:NSUTF8StringEncoding error:nil];
+            [token writeToFile:filePathToken atomically:YES encoding:NSUTF8StringEncoding error:nil];
+            //Countries *states = [[Countries alloc]init];
+            //[self presentViewController:states animated:YES completion:nil];
+            
+            /*
+             Testing purposes only
+             **/
+            [self presentViewController:[[HomeViewController alloc] init] animated:NO completion:nil];
+        }
+    }
+}
+
+
+#pragma mark Facebook Login
+- (void)btnFBSelected:(id)sender{
+    [txtEmail.txtField resignFirstResponder];
+    [txtPassword.txtField resignFirstResponder];
+    if (loginHidden) {
+        [self hideEmailLogin];
+    }
+    _viewFBHolder.backgroundColor = [UIColor colorWithWhite:0.1 alpha:0.5];
+    [self checkLoginFacebook];
+    
+}
+
+-(void)checkLoginFacebook{
+    if([FBSession activeSession].state == FBSessionStateOpen  || [FBSession activeSession].state==FBSessionStateOpenTokenExtended){
+        [[FBSession activeSession] closeAndClearTokenInformation];
+    }
+    else{
+        [FBSession openActiveSessionWithReadPermissions:@[@"public_profile",@"email"] allowLoginUI:YES completionHandler:^(FBSession *session,FBSessionState status,NSError *error) {
+            NSString *token =[[[FBSession activeSession]accessTokenData]accessToken];
+            NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+            NSString *documentsDirectory = [paths objectAtIndex:0];
+            NSString *filePathUser =[documentsDirectory stringByAppendingPathComponent:@"user.out"];
+            NSString *filePathToken =[documentsDirectory stringByAppendingPathComponent:@"token.out"];
+            
+            //Slanje podataka za prijavu i dohvacanje odgovora
+            NSString *url_str = [NSString stringWithFormat:@"https://appforrest.com/colombio/api_user_managment/mau_social_login?type=fb&token=%@",token];
+            NSURL * url = [NSURL URLWithString:url_str];
+            NSError *err=nil;
+            NSMutableURLRequest *request =[NSMutableURLRequest requestWithURL:url];
+            NSURLResponse *URLresponse = nil;
+            NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&URLresponse error:&err];
+            //Dogodila se pogreska prilikom dohvacanja zahtjeva
+            if(err){
+                [Messages showErrorMsg:@"Pogreska prilikom slanja zahtjeva15"];
+            }
+            
+            //Uspjesno je poslan zahtjev
+            else{
+                Boolean error=false;
+                NSDictionary *response=nil;
+                response =[NSJSONSerialization JSONObjectWithData:data options:0 error:NULL];
+                NSArray *keys =[response allKeys];
+                for(NSString *key in keys){
+                    //Provjera za ispravnost prijave
+                    if(!strcmp("s", key.UTF8String)){
+                        error=true;
+                        break;
+                    }
+                }
+                
+                //Ako je uspjesna prijava, spremi user id i token u datoteke
+                // i preusmjeri korisnika na drugi view
+                if(!error){
+                    NSString *token = [response objectForKey:@"token"];
+                    NSDictionary *user =[response objectForKey:@"usr"];
+                    NSString *userId=[user objectForKey:@"user_id"];
+                    [userId writeToFile:filePathUser atomically:YES encoding:NSUTF8StringEncoding error:nil];
+                    [token writeToFile:filePathToken atomically:YES encoding:NSUTF8StringEncoding error:nil];
+                    
+                    /*
+                     Testing purposes only
+                     **/
+                    [self presentViewController:[[HomeViewController alloc] init] animated:NO completion:nil];
+                    
+                     
+                    /*Countries *states = [[Countries alloc]init];
+                    states.arSelectedRows = [[NSMutableArray alloc] init];
+                    [self presentViewController:states animated:YES completion:nil];*/
+                }
+            }
+        }];
+    }
+}
+
 
 //Da se zastopa skrol ako otide lijevo ili desno
 //Da se pomakne slicica ako se prijede polovicu
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     
-    CGRect screenBounds = [[UIScreen mainScreen]bounds];
+    /*CGRect screenBounds = [[UIScreen mainScreen]bounds];
     if(screenBounds.size.height != 568.0f){
         if(self.scrollBox.contentOffset.y<80){
             [self.scrollBox setScrollEnabled:NO];
@@ -99,23 +327,21 @@
         [self.scrollBox setContentOffset:CGPointMake(0, 80)];
         [self.scrollBox setScrollEnabled:YES];
         return;
-    }
+    }*/
 }
 
 - (void)viewDidLayoutSubviews{
-    CGRect screenBounds = [[UIScreen mainScreen]bounds];
+    /*CGRect screenBounds = [[UIScreen mainScreen]bounds];
     if(screenBounds.size.height != 568.0f){
         scrollBox.contentSize = CGSizeMake(scrollBox.frame.size.width, scrollBox.frame.size.height+300);
         [self.scrollBox setContentOffset:CGPointMake(0, 80)];
-    }
-    scrollView.bounces=NO;
-    [scrollView setDelegate:scrollableHeader];
+    }*/
 }
 
 //Disable longtouch itd
-- (BOOL)canBecomeFirstResponder{
+/*- (BOOL)canBecomeFirstResponder{
     return NO;
-}
+}*/
 
 /*
 //Provjeravanje da li je pohranjeni token još uvijek aktivan na serveru
@@ -228,92 +454,6 @@
 
 /*
 //Provjera ako se korisnik odlucio na normalni login
--(void)checkLoginNormal{
-    imgFailEmail.hidden=YES;
-    imgInputPassword.hidden=YES;
-    
-    imgFailPassword.hidden=YES;
-    imgInputPassword.hidden=YES;
-    
-    //Provjera da li su email i lozinka prazni
-    Boolean wrong = false;
-    UIColor *color = [UIColor redColor];
-    if(![_Validation validateEmail:txtEmail.text]){
-        wrong=true;
-        txtEmail.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Check your email" attributes:@{NSForegroundColorAttributeName:color}];
-        imgFailEmail.hidden=NO;
-        imgInputEmail.hidden=YES;
-        txtEmail.text=@"";
-    }
-    
-    //Lozinka je prazna
-    if(txtPassword.text.length<8){
-        wrong=true;
-        txtPassword.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Check your password" attributes:@{NSForegroundColorAttributeName:color}];
-        imgFailPassword.hidden=NO;
-        imgInputPassword.hidden=YES;
-        txtPassword.text=@"";
-    }
-    
-    //pocetna konfiguracija za datoteke
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsDirectory = [paths objectAtIndex:0];
-    NSString *filePathUser =[documentsDirectory stringByAppendingPathComponent:@"korisnik.out"];
-    NSString *filePathToken =[documentsDirectory stringByAppendingPathComponent:@"token.out"];
-    
-    //Slanje podataka za prijavu i dohvacanje odgovora
-    NSString *url_str = [NSString stringWithFormat:@"https://appforrest.com/colombio/api_user_managment/mau_login/"];
-    NSURL * url = [NSURL URLWithString:url_str];
-    NSError *err=nil;
-    NSMutableURLRequest *request =[NSMutableURLRequest requestWithURL:url];
-    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
-    [request setHTTPBody:[[NSString stringWithFormat:@"login_string=%@&login_pass=%@",txtEmail.text,txtPassword.text]dataUsingEncoding:NSUTF8StringEncoding]];
-    [request setHTTPMethod:@"POST"];
-    NSURLResponse *response = nil;
-    NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&err];
-    
-    //Dogodila se pogreska prilikom dohvacanja zahtjeva
-    if(err){
-        [Messages showErrorMsg:@"Pogreska prilikom slanja zahtjeva12"];
-    }
-    
-    //Uspjesno je poslan zahtjev
-    else{
-        Boolean pogreska=false;
-        NSDictionary *odgovor=nil;
-        odgovor =[NSJSONSerialization JSONObjectWithData:data options:0 error:NULL];
-        NSArray *keys =[odgovor allKeys];
-        
-        for(NSString *key in keys){
-            //Provjera za ispravnost prijave
-            if(!strcmp("s", key.UTF8String)){
-                txtEmail.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Check your email" attributes:@{NSForegroundColorAttributeName:color}];
-                txtPassword.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Check your password" attributes:@{NSForegroundColorAttributeName:color}];
-                pogreska=true;
-                imgInputPassword.hidden=YES;
-                imgInputEmail.hidden=YES;
-                imgFailEmail.hidden=NO;
-                imgFailPassword.hidden=NO;
-                txtPassword.text=@"";
-                txtEmail.text=@"";
-                break;
-            }
-        }
-        //Ako je uspjesna prijava, spremi user id i token u datoteke
-        // i preusmjeri korisnika na drugi view
-        if(!pogreska){
-            NSString *token = [odgovor objectForKey:@"token"];
-            NSDictionary *korisnik =[odgovor objectForKey:@"usr"];
-            NSString *userId=[korisnik objectForKey:@"user_id"];
-            [userId writeToFile:filePathUser atomically:YES encoding:NSUTF8StringEncoding error:nil];
-            [token writeToFile:filePathToken atomically:YES encoding:NSUTF8StringEncoding error:nil];
-            Countries *states = [[Countries alloc]init];
-            [self presentViewController:states animated:YES completion:nil];
-        }
-    }
-    timer = [NSTimer scheduledTimerWithTimeInterval:0 target:self selector:@selector(toggleLoginOff) userInfo:nil repeats:NO];
-    timer=nil;
-}
 
 
 //Login gumb
@@ -376,62 +516,6 @@
 }
 
 //Ako se klikne na facebook button
--(void)checkLoginFacebook{
-    if([FBSession activeSession].state == FBSessionStateOpen  || [FBSession activeSession].state==FBSessionStateOpenTokenExtended){
-        [[FBSession activeSession] closeAndClearTokenInformation];
-    }
-    else{
-        [FBSession openActiveSessionWithReadPermissions:@[@"public_profile",@"email"] allowLoginUI:YES completionHandler:^(FBSession *session,FBSessionState status,NSError *error) {
-            NSString *token =[[[FBSession activeSession]accessTokenData]accessToken];
-            NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-            NSString *documentsDirectory = [paths objectAtIndex:0];
-            NSString *filePathUser =[documentsDirectory stringByAppendingPathComponent:@"korisnik.out"];
-            NSString *filePathToken =[documentsDirectory stringByAppendingPathComponent:@"token.out"];
-            
-            //Slanje podataka za prijavu i dohvacanje odgovora
-            NSString *url_str = [NSString stringWithFormat:@"https://appforrest.com/colombio/api_user_managment/mau_social_login?type=fb&token=%@",token];
-            NSURL * url = [NSURL URLWithString:url_str];
-            NSError *err=nil;
-            NSMutableURLRequest *request =[NSMutableURLRequest requestWithURL:url];
-            NSURLResponse *response = nil;
-            NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&err];
-            //Dogodila se pogreska prilikom dohvacanja zahtjeva
-            if(err){
-                [Messages showErrorMsg:@"Pogreska prilikom slanja zahtjeva15"];
-            }
-            
-            //Uspjesno je poslan zahtjev
-            else{
-                Boolean pogreska=false;
-                NSDictionary *odgovor=nil;
-                odgovor =[NSJSONSerialization JSONObjectWithData:data options:0 error:NULL];
-                NSArray *keys =[odgovor allKeys];
-                for(NSString *key in keys){
-                    //Provjera za ispravnost prijave
-                    if(!strcmp("s", key.UTF8String)){
-                        pogreska=true;
-                        break;
-                    }
-                }
-                
-                //Ako je uspjesna prijava, spremi user id i token u datoteke
-                // i preusmjeri korisnika na drugi view
-                if(!pogreska){
-                    NSString *token = [odgovor objectForKey:@"token"];
-                    NSDictionary *korisnik =[odgovor objectForKey:@"usr"];
-                    NSString *userId=[korisnik objectForKey:@"user_id"];
-                    [userId writeToFile:filePathUser atomically:YES encoding:NSUTF8StringEncoding error:nil];
-                    [token writeToFile:filePathToken atomically:YES encoding:NSUTF8StringEncoding error:nil];
-                    Countries *states = [[Countries alloc]init];
-                    states.arSelectedRows = [[NSMutableArray alloc] init];
-                    [self presentViewController:states animated:YES completion:nil];
-                }
-            }
-        }];
-    }
-    timer = [NSTimer scheduledTimerWithTimeInterval:0 target:self selector:@selector(toggleLoginOff) userInfo:nil repeats:NO];
-    timer=nil;
-}
 
 
 

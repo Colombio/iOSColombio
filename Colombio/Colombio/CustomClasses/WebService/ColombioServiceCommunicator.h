@@ -22,6 +22,7 @@
 @property (strong, nonatomic) CLLocationManager *locationManager;
 @property (strong, nonatomic) NSMutableURLRequest *request;
 
++ (NSString*)getSignedRequest;
 +(id)sharedManager;
 -(void)sendAsyncHttp:(NSString *)strUrl httpBody:(NSString *)strBody cache:(NSUInteger)cachePolicy timeoutInterval:(double)timeout;
 //- (void)fetchNewsDemands;

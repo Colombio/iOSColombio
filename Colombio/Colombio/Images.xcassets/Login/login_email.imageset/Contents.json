@@ -3,15 +3,22 @@
     {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "swipelogin2.png"
+      "filename" : "login_email.png"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "swipelogin2@2x.png"
+      "filename" : "login_email@2x.png"
     },
     {
       "idiom" : "universal",
+      "scale" : "3x"
+    },
+    {
+      "idiom" : "universal",
+      "filename" : "login_email-736h@3x.png",
+      "unassigned" : true,
+      "subtype" : "736h",
       "scale" : "3x"
     }
   ],

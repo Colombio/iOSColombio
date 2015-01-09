@@ -29,3 +29,11 @@
 
 /*error message global*/
 "error_web_request" = "Pogreška prilikom slanja zahtjeva";
+
+/*Login*/
+"login_enter_email" = "Unesite vaš email";
+"login_enter_password" = "Unesite vašu lozinku";
+"login_login" = "Prijavi se";
+"login_missing_account" = "Nemaš račun?";
+"login_signup" = "Registriraj se!";
+"login_forget_password" = "Zaboravljena lozinka?";
