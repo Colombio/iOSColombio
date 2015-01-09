@@ -248,6 +248,7 @@
                 [loadingView stopCustomSpinner];
                 if(!isWrongInput){
                     [loadingView customSpinnerSuccess];
+                    timer = [NSTimer scheduledTimerWithTimeInterval:3.5 target:self selector:@selector(createAccSuccessful) userInfo:nil repeats:NO];
                 }
                 else{
                     [loadingView customSpinnerFail];
@@ -257,6 +258,10 @@
         });
         
     }];
+}
+
+- (void)createAccSuccessful{
+    //TODO GOTO Countries
 }
 
 //Ako se klikne na create account
