@@ -60,6 +60,7 @@
 		BBB79D211A5CB3DD001A876A /* FBUserSettingsViewResources.bundle in Frameworks */ = {isa = PBXBuildFile; fileRef = BBB79D1F1A5CB3DD001A876A /* FBUserSettingsViewResources.bundle */; };
 		BBB7F32D1A60A6C20014909B /* ScrollableHeaderContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB7F32C1A60A6C20014909B /* ScrollableHeaderContentView.m */; };
 		BBB7F32F1A60A6D30014909B /* ScrollableHeaderContentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBB7F32E1A60A6D30014909B /* ScrollableHeaderContentView.xib */; };
+		BBB7F3321A60B60E0014909B /* CustomHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB7F3311A60B60E0014909B /* CustomHeaderView.m */; };
 		BBCF58911A2938B400CE64B4 /* CountriesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BBCF588E1A2938B400CE64B4 /* CountriesCell.m */; };
 		BBCF58921A2938B400CE64B4 /* CustomField.m in Sources */ = {isa = PBXBuildFile; fileRef = BBCF58901A2938B400CE64B4 /* CustomField.m */; };
 		BBCF589F1A29395400CE64B4 /* CryptoClass.m in Sources */ = {isa = PBXBuildFile; fileRef = BBCF58951A29395400CE64B4 /* CryptoClass.m */; };
@@ -166,6 +167,8 @@
 		BBB7F32B1A60A6C20014909B /* ScrollableHeaderContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollableHeaderContentView.h; sourceTree = "<group>"; };
 		BBB7F32C1A60A6C20014909B /* ScrollableHeaderContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollableHeaderContentView.m; sourceTree = "<group>"; };
 		BBB7F32E1A60A6D30014909B /* ScrollableHeaderContentView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ScrollableHeaderContentView.xib; sourceTree = "<group>"; };
+		BBB7F3301A60B60E0014909B /* CustomHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomHeaderView.h; sourceTree = "<group>"; };
+		BBB7F3311A60B60E0014909B /* CustomHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomHeaderView.m; sourceTree = "<group>"; };
 		BBCF588D1A2938B400CE64B4 /* CountriesCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CountriesCell.h; sourceTree = "<group>"; };
 		BBCF588E1A2938B400CE64B4 /* CountriesCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CountriesCell.m; sourceTree = "<group>"; };
 		BBCF588F1A2938B400CE64B4 /* CustomField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomField.h; sourceTree = "<group>"; };
@@ -419,6 +422,8 @@
 				BBB7F32B1A60A6C20014909B /* ScrollableHeaderContentView.h */,
 				BBB7F32C1A60A6C20014909B /* ScrollableHeaderContentView.m */,
 				BBB7F32E1A60A6D30014909B /* ScrollableHeaderContentView.xib */,
+				BBB7F3301A60B60E0014909B /* CustomHeaderView.h */,
+				BBB7F3311A60B60E0014909B /* CustomHeaderView.m */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -615,6 +620,7 @@
 				BBB6A0631A48D791006F61B3 /* StartViewController.m in Sources */,
 				BBB33AC31A27D9EE008D0E26 /* main.m in Sources */,
 				583572191A2B72BB00F6EA17 /* Tools.m in Sources */,
+				BBB7F3321A60B60E0014909B /* CustomHeaderView.m in Sources */,
 				BBCF58DC1A293DD200CE64B4 /* Database.m in Sources */,
 				BBCF58911A2938B400CE64B4 /* CountriesCell.m in Sources */,
 				BBCF58A01A29395400CE64B4 /* Messages.m in Sources */,

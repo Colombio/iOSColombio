@@ -25,6 +25,9 @@
         colorMap = [[NSMutableDictionary alloc] init];
         colorMap[COLOR_BLACK_TRANSPARENT] = [UIColor colorWithRed:255.0/255.0 green:255.0/255.0 blue:255.0/255.0 alpha:0.5];
         colorMap[COLOR_CUSTOM_RED] = [UIColor redColor];
+        colorMap[COLOR_TEXT_NAVIGATIONBAR_TITLE] = [UIColor colorWithWhite:0.2 alpha:1.0];
+        colorMap[COLOR_TEXT_NAVIGATIONBAR_BUTTON] = [UIColor colorWithWhite:0.1 alpha:0.5];
+        colorMap[COLOR_TEXT_NAVIGATIONBAR_BUTTON_HIGHLIGHT] = [UIColor colorWithWhite:0.1 alpha:0.2];
         
         fontMap = [[NSMutableDictionary alloc] init];
         fontMap[FONT_HELVETICA_NEUE_ULTRALIGHT]             = [UIFont fontWithName:@"HelveticaNeue-Ultralight" size:17];
