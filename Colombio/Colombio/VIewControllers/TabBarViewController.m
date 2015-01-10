@@ -38,8 +38,8 @@
         newsDemandVC.dummyText = @"NEWS DEMAND";
         newsDemandNavController.navigationBar.hidden=YES;
         
-        newsDemandVC.tabBarItem.image = [UIImage imageNamed:@"newsdemand_normal"];
-        newsDemandVC.tabBarItem.selectedImage = [UIImage imageNamed:@"newsdemand_active"];
+        newsDemandVC.tabBarItem.image = [[UIImage imageNamed:@"newsdemand_normal"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        newsDemandVC.tabBarItem.selectedImage = [[UIImage imageNamed:@"newsdemand_active"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
         [controllers addObject:newsDemandNavController];
         
         //TimeLine
@@ -48,8 +48,8 @@
         timeLineVC.dummyText = @"TIMELINE";
         timeLineNavController.navigationBar.hidden=YES;
         
-        timeLineNavController.tabBarItem.image = [UIImage imageNamed:@"timeline_normal"];
-        timeLineNavController.tabBarItem.selectedImage = [UIImage imageNamed:@"timeline_active"];
+        timeLineNavController.tabBarItem.image = [[UIImage imageNamed:@"timeline_normal"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        timeLineNavController.tabBarItem.selectedImage = [[UIImage imageNamed:@"timeline_active"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
         [controllers addObject:timeLineNavController];
         
         //Home
@@ -57,8 +57,8 @@
         UINavigationController *homeNavController = [[UINavigationController alloc] initWithRootViewController:homeVC];
         homeNavController.navigationBar.hidden=YES;
         
-        homeNavController.tabBarItem.image = [UIImage imageNamed:@"home_normal"];
-        //homeNavController.tabBarItem.selectedImage = [UIImage imageNamed:@"home_active"];
+        homeNavController.tabBarItem.image = [[UIImage imageNamed:@"home_normal"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        homeNavController.tabBarItem.selectedImage = [[UIImage imageNamed:@"home_active"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
         [controllers addObject:homeNavController];
         
         //MyProfile
@@ -67,8 +67,8 @@
         myProfileVC.dummyText = @"MY PROFILE";
         myProfileNavController.navigationBar.hidden=YES;
         
-        myProfileNavController.tabBarItem.image = [UIImage imageNamed:@"myprofile_normal"];
-        myProfileNavController.tabBarItem.selectedImage = [UIImage imageNamed:@"myprofile_active"];
+        myProfileNavController.tabBarItem.image = [[UIImage imageNamed:@"myprofile_normal"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        myProfileNavController.tabBarItem.selectedImage = [[UIImage imageNamed:@"myprofile_active"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
         [controllers addObject:myProfileNavController];
         
         //Settings
@@ -77,25 +77,25 @@
         settingsVC.dummyText= @"SETTINGS";
         settingsNavController.navigationBar.hidden=YES;
         
-        settingsNavController.tabBarItem.image = [UIImage imageNamed:@"settings_normal"];
-        settingsNavController.tabBarItem.selectedImage = [UIImage imageNamed:@"settings_active"];
+        settingsNavController.tabBarItem.image = [[UIImage imageNamed:@"settings_normal"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        settingsNavController.tabBarItem.selectedImage = [[UIImage imageNamed:@"settings_active"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
         [controllers addObject:settingsNavController];
         
         self.viewControllers = controllers;
         self.customizableViewControllers = controllers;
         [self setSelectedIndex:2];
         
-        
-        
-        
-        
+        [[UITabBar appearance] setTintColor:[UIColor blackColor]];
+        [[UITabBar appearance] setBarTintColor:[UIColor blackColor]];
     }
     return self;
 }
 
 - (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item{
     [(UINavigationController*)self.viewControllers[2] popToRootViewControllerAnimated:NO];
-}
+    if (self.selectedIndex==2) {
+        ((UITabBarItem*)[self.tabBar.items objectAtIndex:2]).selectedImage =  [[UIImage imageNamed:@"home_active" ] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    }}
 
 /*
 #pragma mark - Navigation

@@ -36,6 +36,7 @@
         fontMap[FONT_HELVETICA_NEUE_LIGHT]                  = [UIFont fontWithName:@"HelveticaNeue-Light" size:17];
         fontMap[FONT_HELVETICA_NEUE_REGULAR]                = [UIFont fontWithName:@"HelveticaNeue" size:17];
         fontMap[FONT_HELVETICA_NEUE_BOLD_LARGE]             = [UIFont fontWithName:@"HelveticaNeue-Bold" size:40];
+        fontMap[FONT_HELVETICA_NEUE_BOLD_MIDDLE]             = [UIFont fontWithName:@"HelveticaNeue-Bold" size:25];
         
         keyboardMap = [[NSMutableDictionary alloc] init];
         keyboardMap[KEYBOARD_DEFAULT]       = @(UIKeyboardTypeDefault);

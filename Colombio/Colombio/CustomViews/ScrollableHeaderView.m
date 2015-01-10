@@ -7,6 +7,7 @@
 //
 
 #import "ScrollableHeaderView.h"
+#import "ScrollableHeaderContentView.h"
 
 @implementation ScrollableHeaderView
 
@@ -25,7 +26,7 @@
     
     _scrollBox.delegate = self;
     int xPosition=0;
-    NSArray *colors;
+    NSArray *views;
    
     viewWidth = screenBounds.size.width;
     
@@ -43,12 +44,7 @@
                   @"loginswipe3.png", nil];
     }*/
     
-    colors = [NSArray arrayWithObjects:
-              @"swipelogin1_iphone5",
-              @"swipelogin2_iphone5",
-              @"swipelogin3_iphone5", nil];
-    
-    for (int i = 0; i < colors.count; i++) {
+    /*for (int i = 0; i < views.count; i++) {
         CGRect frame;
         frame.origin.x = xPosition;
         xPosition+=viewWidth;
@@ -76,12 +72,36 @@
         UIView *subview = [[UIView alloc] initWithFrame:frame];
         subview.backgroundColor = [UIColor colorWithPatternImage:resultImage];
         [_scrollBox addSubview:subview];
+    }*/
+    
+    ScrollableHeaderContentView *view1 = [[ScrollableHeaderContentView alloc] initWithFrame:CGRectMake(0, 0, _scrollBox.frame.size.width, _scrollBox.frame.size.height)];
+    view1.lblTitle.text = @"COLOMBIO";
+    view1.lblDescription.text = [Localized string:@"header1_desc"];
+    
+    ScrollableHeaderContentView *view2 = [[ScrollableHeaderContentView alloc] initWithFrame:CGRectMake(0, 0, _scrollBox.frame.size.width, _scrollBox.frame.size.height)];
+    view2.lblTitle.text = [Localized string:@"header2_title"];
+    view2.lblDescription.text = [Localized string:@"header2_desc"];
+    
+    ScrollableHeaderContentView *view3 = [[ScrollableHeaderContentView alloc] initWithFrame:CGRectMake(0, 0, _scrollBox.frame.size.width, _scrollBox.frame.size.height)];
+    view3.lblTitle.text = [Localized string:@"header3_title"];
+    view3.lblDescription.text = [Localized string:@"header3_desc"];
+    
+    views = [NSArray arrayWithObjects: view1, view2, view3,nil];
+    
+    for (int i = 0; i < views.count; i++) {
+        CGRect frame;
+        frame.origin.x = xPosition;
+        xPosition+=viewWidth;
+        UIView *subview = [[UIView alloc] initWithFrame:frame];
+        [subview addSubview:views[i]];
+        [_scrollBox addSubview:subview];
     }
     
-    _scrollBox.contentSize = CGSizeMake(self.frame.size.width * colors.count, _scrollBox.frame.size.height);
+    _scrollBox.contentSize = CGSizeMake(self.frame.size.width * views.count, _scrollBox.frame.size.height);
     _scrollBox.pagingEnabled = YES;
     _pageControl = [[UIPageControl alloc]initWithFrame:CGRectMake((self.frame.size.width/2) - (_pageControl.frame.size.width/2), 20, _pageControl.frame.size.width, 36)];
     _pageControl.numberOfPages = 3;
+    _scrollBox.showsHorizontalScrollIndicator=NO;
     
     [self addSubview:_scrollBox];
     [self addSubview:_pageControl];

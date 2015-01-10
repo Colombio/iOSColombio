@@ -16,9 +16,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    //self.navigationController.tabBarItem.selectedImage  = [UIImage imageNamed:@"home_normal"];
+    self.navigationController.tabBarItem.selectedImage  = [[UIImage imageNamed:@"home_normal"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     //[self.navigationController.tabBarController.tabBar setNeedsDisplay];
-    ((UITabBarItem*)[self.tabBarController.tabBar.items objectAtIndex:2]).selectedImage =  [[UIImage imageNamed:@"home_normal" ] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    //((UITabBarItem*)[self.tabBarController.tabBar.items objectAtIndex:2]).selectedImage =  [[UIImage imageNamed:@"home_normal" ] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     // Do any additional setup after loading the view from its nib.
 }
 

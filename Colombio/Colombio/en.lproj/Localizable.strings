@@ -37,6 +37,11 @@
 "login_missing_account" = "Don't have an account?";
 "login_signup" = "Sign up!";
 "login_forget_password" = "Forgot password?";
+"header1_desc" = "The simplest way to share info with news media.";
+"header2_title" = "PHOTO, VIDEO & TEXT";
+"header2_desc" = "Share exclusive news you have witnessed or heard about.";
+"header3_title" = "EARN MONEY";
+"header3_desc" = "Be rewarded for helping media in creating news content";
 
 /*Spinner message*/
 "logged" ="Logged in, please wait...";

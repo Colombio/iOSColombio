@@ -42,7 +42,7 @@
     NSString *token = [NSString stringWithContentsOfFile:filePathToken encoding:NSUTF8StringEncoding error:nil];
     NSString *userId = [NSString stringWithContentsOfFile:filePathUser encoding:NSUTF8StringEncoding error:nil];
     
-    NSDictionary *provjera = @{@"usr" : (userId?userId:[NSNull null]),@"token" : token};
+    NSDictionary *provjera = @{@"usr" : (userId?userId:[NSNull null]),@"token" : (token?token:[NSNull null])};
     NSError *err;
     NSData *data = [NSJSONSerialization dataWithJSONObject:provjera options:0 error:&err];
     if(!data){

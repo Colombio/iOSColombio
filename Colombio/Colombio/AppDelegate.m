@@ -12,6 +12,8 @@
 #import "StartViewController.h"
 #import "Messages.h"
 #import "ColombioServiceCommunicator.h"
+#import "HomeViewController.h"
+#import "CreateAccViewController.h"
 #import "TabBarViewController.h"
 
 @implementation AppDelegate
@@ -43,7 +45,7 @@
     }
     //LoginViewController *loginVC = [[LoginViewController alloc] init];
     
-    self.window.rootViewController = [[CreateAccViewController alloc] init];
+    //self.window.rootViewController = [[CreateAccViewController alloc] init];
    // [self presentViewController:[[CreateAccViewController alloc] init] animated:YES completion:nil];
     [self.window makeKeyAndVisible];
     return YES;
@@ -136,6 +138,8 @@
             //Nije uspješna komunikacija sa serverom
             else{
                 [Messages showErrorMsg:@"Pogreška prilikom slanja zahtjeva11"];
+                self.window.rootViewController = [[LoginViewController alloc] init];
+                return;
             }
         }
     }
