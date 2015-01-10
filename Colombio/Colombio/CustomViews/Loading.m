@@ -47,7 +47,7 @@
     imgSpinner = [[UIImageView alloc]initWithFrame:CGRectMake(viewParent.frame.size.width/2-30, viewParent.frame.size.height-150, 60, 60)];
     viewDimmed.backgroundColor = [UIColor clearColor];
     imgSpinner.alpha=0;
-    imgStatus = [[UIImageView alloc]initWithFrame:CGRectMake(20, 20, 20, 20)];
+    imgStatus = [[UIImageView alloc]initWithFrame:CGRectMake(15, 15, 30, 30)];
     imgStatus.alpha=0;
     [imgSpinner addSubview:imgStatus];
     lblInfo = [[UILabel alloc]initWithFrame:CGRectMake(-50, 40, 200, 80)];
@@ -107,7 +107,7 @@
 }
 
 - (void)customSpinnerFail{
-    imgStatus.image = TXT_FIELD_WRONG_IMG;
+    imgStatus.image = TXT_FIELD_FAIL_IMG;
     [UIView animateWithDuration:2 animations:^{
         imgStatus.alpha=1;
     }];

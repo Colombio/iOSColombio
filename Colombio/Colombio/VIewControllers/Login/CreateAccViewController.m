@@ -13,6 +13,7 @@
 #import "LoginViewController.h"
 #import "Messages.h"
 #import "Validation.h"
+#import "Localized.h"
 
 @interface CreateAccViewController ()
 
@@ -149,7 +150,7 @@
 #pragma mark CreateAccount
 
 - (void)toggleCreateOff{
-    [btnCreate setTitle:@"Create account" forState:UIControlStateNormal];
+    [btnCreate setTitle:[Localized string:@"create_account"] forState:UIControlStateNormal];
     [loadingView removeCustomSpinner];
 }
 
@@ -192,7 +193,6 @@
             
             //Uspjesno je poslan zahtjev, provjeri odgovor
             else{
-                Boolean isWebServiceDataError=false;
                 NSDictionary *dataWsResponse=nil;
                 dataWsResponse =[NSJSONSerialization JSONObjectWithData:data options:0 error:NULL];
                 NSArray *keys =[dataWsResponse allKeys];
@@ -203,24 +203,23 @@
                         NSArray *arrayWsErrors = [dataWsResponse objectForKey:@"errors"];
                         for(NSString *greska in arrayWsErrors){
                             //Duplikat usernamea
-                            if(strcmp("username_exists", greska.UTF8String)&&wrongUser==NO){
+                            if(!strcmp("username_exists", greska.UTF8String)&&wrongUser==NO){
                                 [txtUsername setErrorText:@"error_username_exists"];
                                 isWrongInput=true;
-                                wrongUser=NO;
+                                wrongUser=YES;
                             }
                             //Snaga lozinke nije ok
-                            if(strcmp("pass_str_fail", greska.UTF8String)){
+                            if(!strcmp("pass_str_fail", greska.UTF8String)){
                                 [txtPassword setErrorText:@"error_password"];
                                 isWrongInput=true;
                             }
                             //Duplikat emaila
-                            if(strcmp("email_exists", greska.UTF8String)&& ![txtEmail.txtField.text isEqualToString:@"b"]&&wrongEmail==NO){
-                                wrongEmail=NO;
+                            if(!strcmp("email_exists", greska.UTF8String)&& ![txtEmail.txtField.text isEqualToString:@"b"]&&wrongEmail==NO){
+                                wrongEmail=YES;
                                 [txtEmail setErrorText:@"error_email_exists"];
                                 isWrongInput=true;
                             }
                         }
-                        isWebServiceDataError=true;
                         break;
                     }
                 }
@@ -269,7 +268,7 @@
     [self.view endEditing:YES];
     [loadingView startCustomSpinner:self.view spinMessage:@"logged"];
     [UIView animateWithDuration:0.8 animations:^{
-        [btnCreate setTitle:@"Please wait..." forState:UIControlStateNormal];
+        [btnCreate setTitle:[Localized string:@"wait"] forState:UIControlStateNormal];
     }];
     
     timer = [NSTimer scheduledTimerWithTimeInterval:0.2f target:self selector:@selector(checkRegister) userInfo:nil repeats:NO];

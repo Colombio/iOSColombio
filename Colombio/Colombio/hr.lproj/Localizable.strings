@@ -27,6 +27,14 @@
 "error_password" = "8 chars, 1 capital, 1 number";
 "error_confirm_password" = "Wrong confirm password";
 
+/*forgot password*/
+"forgot_password" = "Send password";
+"email_banned" = "User with this email is banned";
+"email_null" = "Email does not exist";
+
+/*Common*/
+"wait" = "Please wait...";
+
 /*error message global*/
 "error_web_request" = "Pogreška prilikom slanja zahtjeva";
 

@@ -26,119 +26,154 @@
 @synthesize scrollBox;
 @synthesize imgBackground;
 @synthesize txtEmail;
+@synthesize btnSend;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
-}
-
-- (void)viewDidLayoutSubviews{
+    //Dodavanje headera
+    [headerViewHolder addSubview:[HeaderView initHeader:@"COLOMBIO" nextHidden:YES previousHidden:NO activeVC:self headerFrame:headerViewHolder.frame]];
     
+    //Ako se tapne bilo gdje drugdje na scrollbox, makne se tipkovnica
+    [self.scrollBox setDelegate:self];
+    
+    //Kada se klikne na scrollview da se makne tipkovnica
+    UITapGestureRecognizer *singleTap =[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(goAwayKeyboard:)];
+    [scrollBox addGestureRecognizer:singleTap];
+    
+    //Dodatno podešavanje tekstualnih okvira
+    txtEmail.txtField.delegate = self;
+    [txtEmail setPlaceholderText:@"enter_email"];
+    txtEmail.txtField.returnKeyType = UIReturnKeyGo;
+    
+    loadingView = [[Loading alloc] init];
 }
 
-/*
-//Kada se klikne na forgot password, pozove se ova metoda
-- (void)sendPassword{
-    timer = [NSTimer scheduledTimerWithTimeInterval:0 target:self selector:@selector(emailUntapped) userInfo:nil repeats:NO];
-    //Ako je krivi format e-maila
-    if(![Validation validateEmail:[txtEmail text]]) {
-        // user entered invalid email address
-        UIColor *color = [UIColor redColor];
-        txtEmail.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Enter a valid email address" attributes:@{NSForegroundColorAttributeName:color}];
-        txtEmail.text=@"";
-        emailWrong.hidden=NO;
-        emailPass.hidden=YES;
-        inputImg.hidden=YES;
-    }
-    //Ako je ok format e-maila, onda se mora provjeriti duplikat na web servisu
-    else{        
-        //Slanje podataka za prijavu i dohvacanje odgovora
-        NSString *url_str = [NSString stringWithFormat:@"https://appforrest.com/colombio/api_user_managment/mau_pass_recovery?user_email=%@",txtEmail.text];
-        NSURL * url = [NSURL URLWithString:url_str];
-        NSMutableURLRequest *request =[NSMutableURLRequest requestWithURL:url];
-        [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
-        
-        [request setHTTPBody:[[NSString stringWithFormat:@"user_email=%@",txtEmail.text]dataUsingEncoding:NSUTF8StringEncoding]];
-        [request setHTTPMethod:@"POST"];
-        NSURLResponse *response = nil;
-        NSError *err;
-        NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&err];
-        
-        //Dogodila se pogreska prilikom dohvacanja zahtjeva
-        if(err){
-            [Messages showErrorMsg:@"Pogreska prilikom slanja zahtjeva"];
-        }
-        //Uspjesno je poslan zahtjev
-        else{
-            Boolean pogreska=false;
-            NSDictionary *odgovor=nil;
-            odgovor =[NSJSONSerialization JSONObjectWithData:data options:0 error:NULL];
-            NSArray *keys =[odgovor allKeys];
-            for(NSString *key in keys){
-                //Provjera za ispravnost prijave
-                if(!strcmp("s", key.UTF8String)){
-                    NSString *error = [odgovor objectForKey:@"s"];
-                    if(!(strcmp("0",error.UTF8String))){
-                        NSString *errMessage= [odgovor objectForKey:@"msg"];
-                        NSString *displayErr;
-                        if(!strcmp("no_match", errMessage.UTF8String)){
-                            displayErr=@"Email does not exist";
-                        }
-                        else if(!strcmp("user_banned", errMessage.UTF8String)){
-                            displayErr=@"User with this email is banned";
-                        }
-                        UIColor *color = [UIColor redColor];
-                        txtEmail.attributedPlaceholder = [[NSAttributedString alloc] initWithString:displayErr attributes:@{NSForegroundColorAttributeName:color}];
-                        txtEmail.text=@"";
-                        pogreska=true;
-                    }
-                    break;
-                }
-            }
-            if(!pogreska){
-                [Messages showNormalMsg:[NSString stringWithFormat:@"Lozinka je uspješno poslana na email %@",txtEmail.text]];
-                emailWrong.hidden=YES;
-                emailPass.hidden=NO;
-                inputImg.hidden=YES;
-                UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
-                LoginViewController *log = (LoginViewController*)[storyboard instantiateViewControllerWithIdentifier:@"test122"];
-                [self presentViewController:log animated:YES completion:nil];
-            }
-        }
-    }
-    timer = [NSTimer scheduledTimerWithTimeInterval:0 target:self selector:@selector(toggleSendOff) userInfo:nil repeats:NO];
+#pragma mark KeyboardEvents
+
+//Kada se klikne next/done na tipkovnici
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [txtEmail.txtField becomeFirstResponder];
+    [self btnForgotPassClicked:nil];
+    return NO;
 }
-*/
+
+//Kada se pocne editirati neki text field, resetira se natrag originalni placeholder i makne se error img
+- (void)textFieldDidBeginEditing:(UITextField *)textField{            [txtEmail setPlaceholderText:txtEmail.placeholderText];
+}
+
+//Ako se napravi tap na pozadinu, mice se tipkovnica i scrolla se view
+- (void)goAwayKeyboard:(UITapGestureRecognizer *)gesture{
+    [self.view endEditing:YES];
+}
+
+#pragma mark Navigation
+
+//Header back delegate
+- (void)backButtonTapped{
+    [self.view endEditing:YES];
+    [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+}
+
+//IB button back
+- (IBAction)btnBackClicked:(id)sender{
+    [self backButtonTapped];
+}
+
+#pragma mark ForgotPassword
 
 -(void)toggleSendOn{
-    [btnSend setTitle:@"Please wait..." forState:UIControlStateNormal];
+    [btnSend setTitle:[Localized string:@"wait"] forState:UIControlStateNormal];
 }
 
 -(void)toggleSendOff{
-    [btnSend setTitle:@"Send password" forState:UIControlStateNormal];
+    [btnSend setTitle:[Localized string:@"forgot_password"] forState:UIControlStateNormal];
+    [loadingView removeCustomSpinner];
 }
 
-//Akcija koja se poziva kada se klikne gumb
-- (IBAction)setSend:(id)sender {
-    timer = [NSTimer scheduledTimerWithTimeInterval:0 target:self selector:@selector(toggleSendOn) userInfo:nil repeats:NO];
+- (IBAction)btnForgotPassClicked:(id)sender{
+    [self.view endEditing:YES];
+    [loadingView startCustomSpinner:self.view spinMessage:@""];
+    [UIView animateWithDuration:0.8 animations:^{
+        [btnSend setTitle:[Localized string:@"wait"] forState:UIControlStateNormal];
+    }];
+    
     timer = [NSTimer scheduledTimerWithTimeInterval:0.2f target:self selector:@selector(sendPassword) userInfo:nil repeats:NO];
 }
 
-- (IBAction)goAwayKeyboard:(id)sender {
-    [sender resignFirstResponder];
-    [scrollBox setContentOffset:CGPointMake(0,0) animated:YES];
+- (void)sendPassword{
+    strEmail =txtEmail.txtField.text;
+    
+    ColombioServiceCommunicator *csc = [[ColombioServiceCommunicator alloc] init];
+    
+    [csc sendAsyncHttp:@"https://appforrest.com/colombio/api_user_managment/mau_normal_register/" httpBody:[NSString stringWithFormat:@"https://appforrest.com/colombio/api_user_managment/mau_pass_recovery?user_email=%@",strEmail]cache:NSURLRequestReloadIgnoringCacheData timeoutInterval:5];
+    
+    [NSURLConnection sendAsynchronousRequest:csc.request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            Boolean isWrongInput = false;
+            
+            bool wrongEmail=NO;
+            
+            if(strEmail.length<1){
+                wrongEmail=YES;
+                strEmail=@"b";
+            }
+            
+            if(error){
+                [Messages showErrorMsg:@"error_web_request"];
+            }
+            
+            //Uspjesno je poslan zahtjev, provjeri odgovor
+            else{
+                NSDictionary *dataWsResponse=nil;
+                dataWsResponse =[NSJSONSerialization JSONObjectWithData:data options:0 error:NULL];
+                NSArray *keys =[dataWsResponse allKeys];
+                //Provjeravanje pogresnih odgovora
+                for(NSString *key in keys){
+                    //Provjera za ispravnost prijave
+                    if(!strcmp("s", key.UTF8String)){
+                        NSString *error = [dataWsResponse objectForKey:@"s"];
+                        if(!(strcmp("0",error.UTF8String))){
+                            NSString *errMessage= [dataWsResponse objectForKey:@"msg"];
+                            wrongEmail=YES;
+                            isWrongInput=true;
+                            if(!strcmp("no_match", errMessage.UTF8String)){
+                                [txtEmail setErrorText:@"email_null"];
+                            }
+                            else if(!strcmp("user_banned", errMessage.UTF8String)){
+                                [txtEmail setErrorText:@"email_banned"];
+                            }
+                        }
+                        break;
+                    }
+                }
+                
+                if(![Validation validateEmail:[txtEmail.txtField text]]&&wrongEmail==YES) {
+                    isWrongInput=true;
+                    [txtEmail setErrorText:@"error_email_format"];
+                }
+                
+                //Ako su svi podaci ispravno upisani
+                [loadingView stopCustomSpinner];
+                if(!isWrongInput){
+                    [txtEmail setOkInput];
+                    [loadingView customSpinnerSuccess];
+                    timer = [NSTimer scheduledTimerWithTimeInterval:3.5 target:self selector:@selector(forgotPasswordSuccessful) userInfo:nil repeats:NO];
+                }
+                else{
+                    [loadingView customSpinnerFail];
+                }
+            }
+            timer = [NSTimer scheduledTimerWithTimeInterval:2.5 target:self selector:@selector(toggleSendOff) userInfo:nil repeats:NO];
+        });
+        
+    }];
 }
 
-/*
-//Fokus na email txt box
-- (IBAction)setEmail:(id)sender {
-    inputImg.hidden=YES;
-    emailWrong.hidden=YES;
-    emailPass.hidden=YES;
-    [txtEmail setPlaceholder:@"Email"];
-    [scrollBox setContentOffset:CGPointMake(0,120) animated:YES];
+- (void)forgotPasswordSuccessful{
+    //TODO show message
 }
-*/
 
 @end
