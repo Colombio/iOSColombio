@@ -18,7 +18,7 @@
 @property (nonatomic, assign) BOOL isPassword;
 @property (nonatomic, assign) BOOL wrongInput;
 
-@property (nonatomic, weak) IBOutlet id <UITextFieldDelegate> textFieldDelegate;//sloziti delegata preko IB-a????
+@property (nonatomic, weak) IBOutlet id <UITextFieldDelegate> textFieldDelegate;
 
 - (id)initWithFrame:(CGRect)frame;
 @end
