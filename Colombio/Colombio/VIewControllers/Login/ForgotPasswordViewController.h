@@ -20,6 +20,7 @@
     IBOutlet UIButton *btnSend;
     IBOutlet UIImageView *imgBackground;
     Loading *loadingView;
+    NSString *strEmail;
 }
 
 @property (weak, nonatomic) IBOutlet UIView *headerViewHolder;
@@ -28,10 +29,8 @@
 @property (strong,nonatomic) IBOutlet CLTextField *txtEmail;;
 @property (strong,nonatomic) IBOutlet UIScrollView *scrollBox;
 
-- (IBAction)setLogInside:(id)sender;
-- (IBAction)setSignIn:(id)sender;
 - (IBAction)goAwayKeyboard:(id)sender;
-- (IBAction)setEmail:(id)sender;
-- (IBAction)setSend:(id)sender;
+- (IBAction)btnForgotPassClicked:(id)sender;
+- (IBAction)btnBackClicked:(id)sender;
 
 @end

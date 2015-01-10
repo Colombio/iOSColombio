@@ -27,12 +27,9 @@
 }
 
 - (void)btnStartTapped:(id)sender{
-    //[self presentViewController:[[CreateAccViewController alloc] init] animated:YES completion:nil];
-    /*CreateAccViewController *createAcc = [[CreateAccViewController alloc]init];
-    [self presentViewController:createAcc animated:YES completion:nil];*/
     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"SKIP_START"];
     [[NSUserDefaults standardUserDefaults] synchronize];
-    [self presentViewController:[[LoginViewController alloc] init] animated:YES completion:nil];
+    [self presentViewController:[[CreateAccViewController alloc] init] animated:YES completion:nil];
 }
 
 @end

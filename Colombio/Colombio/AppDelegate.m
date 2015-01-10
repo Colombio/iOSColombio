@@ -15,6 +15,7 @@
 #import "HomeViewController.h"
 #import "CreateAccViewController.h"
 #import "TabBarViewController.h"
+#import "ForgotPasswordViewController.h"
 
 @implementation AppDelegate
 @synthesize db, locationManager;
@@ -44,9 +45,6 @@
         self.window.rootViewController = [[StartViewController alloc] init];
     }
     //LoginViewController *loginVC = [[LoginViewController alloc] init];
-    
-    //self.window.rootViewController = [[CreateAccViewController alloc] init];
-   // [self presentViewController:[[CreateAccViewController alloc] init] animated:YES completion:nil];
     [self.window makeKeyAndVisible];
     return YES;
 }
@@ -97,6 +95,8 @@
 }
 
 - (void)checkToken{
+    self.window.rootViewController = [[ForgotPasswordViewController alloc] init];
+    return;
     @try {
         NSString *result = [ColombioServiceCommunicator getSignedRequest];
         if(result.length>0){

@@ -21,4 +21,6 @@
 @property (nonatomic, weak) IBOutlet id <UITextFieldDelegate> textFieldDelegate;//sloziti delegata preko IB-a????
 
 - (id)initWithFrame:(CGRect)frame;
+- (void)setOkInput;
+
 @end
