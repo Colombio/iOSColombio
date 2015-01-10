@@ -20,7 +20,11 @@
 }
 
 - (void)btnAction:(UIButton *)sender{
-
+    if (sender==_btnBack) {
+        [self.customHeaderDelegate btnBackClicked];
+    }else{
+        [self.customHeaderDelegate btnNextClicked];
+    }
 }
 
 #pragma mark SetupLabel
