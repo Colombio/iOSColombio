@@ -44,6 +44,7 @@
 }
 
 #pragma mark WebServiceCommunication
+
 /*
 - (void)loadStates{
     //pocetna konfiguracija za datoteke
@@ -313,4 +314,5 @@
     [self nextView];
 }
 */
+
 @end
