@@ -10,14 +10,15 @@
 
 @implementation CountriesCell
 
-@synthesize notSelected;
-@synthesize select;
-@synthesize countryName;
+@synthesize lblCountryName;
+@synthesize imgCountryFlag;
+@synthesize imgSelected;
 
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
+        /*
         notSelected = [[UIImageView alloc] initWithFrame:CGRectMake(12, 12, 20, 20)];
         select = [[UIImageView alloc] initWithFrame:CGRectMake(12, 12, 20, 20)];
         notSelected.image=[UIImage imageNamed:@"unselected.png"];
@@ -28,18 +29,9 @@
         [self addSubview:countryName];
         [self addSubview:notSelected];
         [self addSubview:select];
+         */
     }
     return self;
 }
-
-/*
- // Only override drawRect: if you perform custom drawing.
- // An empty implementation adversely affects performance during animation.
- - (void)drawRect:(CGRect)rect
- {
- // Drawing code
- }
- */
-
 
 @end

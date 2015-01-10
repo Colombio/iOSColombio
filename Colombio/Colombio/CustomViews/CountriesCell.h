@@ -9,13 +9,13 @@
 #import <UIKit/UIKit.h>
 
 @interface CountriesCell : UICollectionViewCell{
-    IBOutlet UIImageView *notSelected;
-    IBOutlet UIImageView *select;
-    IBOutlet UILabel *countryName;
+    IBOutlet UIImageView *imgCountryFlag;
+    IBOutlet UIImageView *imgSelected;
+    IBOutlet UILabel *lblCountryName;
 }
 
-@property (nonatomic, strong) IBOutlet UILabel *countryName;
-@property (nonatomic, strong) IBOutlet UIImageView *select;
-@property (nonatomic, strong) IBOutlet UIImageView *notSelected;
+@property (nonatomic, strong) IBOutlet UIImageView *imgCountryFlag;
+@property (nonatomic, strong) IBOutlet UIImageView *imgSelected;
+@property (nonatomic, strong) IBOutlet UILabel *lblCountryName;
 
 @end

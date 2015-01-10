@@ -7,42 +7,24 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Messages.h"
+#import "Localized.h"
+#import "CountriesCell.h"
 
-@interface Countries : UIViewController/*
+@interface Countries : UIViewController
 <UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UIGestureRecognizerDelegate>{
     
-    NSMutableArray *arOptions;
-    NSMutableArray *arSelectedRows;
-    
-    UIImageView *imgInfoPlaceholder;
-    UIImageView *imgArrowInfo;
-    
-    UILabel *infoBarDescription;
-    
-    NSMutableArray *arSelectedMedia;
-    
     NSTimer *timer;
-    
-    IBOutlet UILabel *lblStates;
-    
     UICollectionView *_collectionView;
     UICollectionReusableView *reusableView;
     
-    UIButton *btnNext;
-    UIButton *btnInfo;
-    
-    bool statePicked;
-    bool firstViewShown;
-    bool firstReloaded;
-    bool collectionViewHeaderDisplayed;
-    
-    _YourInfo *reporterInfo;
-    UIActivityIndicatorView *loading;
-    UIView *loadingView;
+    bool isStatePicked;
+    bool isFirstViewShown;
+    bool isCollectionViewHeaderDisplayed;
 }
 
 @property (strong,nonatomic) UILabel *infoBarDescription;
-@property (strong,nonatomic) _YourInfo *reporterInfo;
+//@property (strong,nonatomic) _YourInfo *reporterInfo;
 @property (strong, nonatomic) UIImageView *imgInfoPlaceholder;
 @property (strong, nonatomic) UIImageView *imgArrowInfo;
 @property (strong, nonatomic) IBOutlet UILabel *lblStates;
@@ -53,6 +35,5 @@
 @property (nonatomic,assign) bool isSettings;
 
 - (IBAction)nextClick:(id)sender;
-- (IBAction)information:(id)sender;
-*/
+
 @end

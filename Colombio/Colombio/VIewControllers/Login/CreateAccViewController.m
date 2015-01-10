@@ -30,6 +30,10 @@
 @synthesize imgBackground;
 @synthesize headerViewHolder;
 
+- (UIStatusBarStyle)preferredStatusBarStyle{
+    return UIStatusBarStyleLightContent;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -189,6 +193,8 @@
             //Dogodila se pogreska prilikom dohvacanja zahtjeva
             if(error){
                 [Messages showErrorMsg:@"error_web_request"];
+                [loadingView stopCustomSpinner];
+                [loadingView customSpinnerFail];
             }
             
             //Uspjesno je poslan zahtjev, provjeri odgovor

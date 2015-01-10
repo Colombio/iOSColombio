@@ -28,6 +28,10 @@
 @synthesize txtEmail;
 @synthesize btnSend;
 
+- (UIStatusBarStyle)preferredStatusBarStyle{
+    return UIStatusBarStyleLightContent;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -123,6 +127,8 @@
             
             if(error){
                 [Messages showErrorMsg:@"error_web_request"];
+                [loadingView stopCustomSpinner];
+                [loadingView customSpinnerFail];
             }
             
             //Uspjesno je poslan zahtjev, provjeri odgovor
