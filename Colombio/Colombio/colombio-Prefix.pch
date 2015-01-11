@@ -24,4 +24,5 @@
 #define TXT_FIELD_WRONG_IMG [UIImage imageNamed:@"wrong"]
 #define TXT_FIELD_PASS_IMG [UIImage imageNamed:@"pass"]
 #define TXT_FIELD_FAIL_IMG [UIImage imageNamed:@"failicon"]
+#define COLLECTION_SELECTED [UIImage imageNamed:@"selected"]
 

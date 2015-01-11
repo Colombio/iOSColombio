@@ -26,6 +26,7 @@
 @property (assign, nonatomic) BOOL isBackButtonText;
 @property (strong, nonatomic) NSString *backButtonText;
 @property (strong, nonatomic) NSString *nextButtonText;
+@property (strong, nonatomic) UIView *bottomBorder;
 
 - (void)btnAction:(UIButton*)sender;
 @end

@@ -10,13 +10,18 @@
 #import "Messages.h"
 #import "Localized.h"
 #import "CountriesCell.h"
+#import "CustomHeaderView.h"
+#import "Tools.h"
+#import "Loading.h"
+#import "ColombioServiceCommunicator.h"
 
 @interface Countries : UIViewController
-<UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UIGestureRecognizerDelegate>{
-    
+<UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UIGestureRecognizerDelegate,CustomHeaderViewDelegate,ColombioServiceCommunicatorDelegate>{
     NSTimer *timer;
     UICollectionView *_collectionView;
     UICollectionReusableView *reusableView;
+    IBOutlet CustomHeaderView *customHeaderView;
+    Loading *loadingView;
     
     bool isStatePicked;
     bool isFirstViewShown;
@@ -32,8 +37,7 @@
 @property (strong,nonatomic) NSMutableArray *arSelectedRows;
 @property (strong,nonatomic) NSMutableArray *arSelectedMedia;
 @property (strong,nonatomic) UICollectionReusableView *reusableView;
+@property (strong,nonatomic) IBOutlet  CustomHeaderView *customHeaderView;
 @property (nonatomic,assign) bool isSettings;
-
-- (IBAction)nextClick:(id)sender;
 
 @end

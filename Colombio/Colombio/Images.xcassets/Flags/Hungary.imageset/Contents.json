@@ -3,17 +3,17 @@
     {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "selected.png"
+      "filename" : "hungary.png"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "selected@2x.png"
+      "filename" : "hungary-736h@3x.png"
     },
     {
       "idiom" : "universal",
       "scale" : "3x",
-      "filename" : "selected-736h@3x.png"
+      "filename" : "hungary@2x.png"
     }
   ],
   "info" : {
