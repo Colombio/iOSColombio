@@ -15,5 +15,5 @@
 + (UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)newSize;
 + (UIImage *)imageWithColor:(UIColor *)color;
 + (NSString*)getFilePaths:(NSString *)filePathName;
-
++ (UIImage *)convertImageToGrayScale:(UIImage *)image;
 @end

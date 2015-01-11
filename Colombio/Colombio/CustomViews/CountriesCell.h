@@ -12,10 +12,12 @@
     IBOutlet UIImageView *imgCountryFlag;
     IBOutlet UIImageView *imgSelected;
     IBOutlet UILabel *lblCountryName;
+    IBOutlet UIView *bottomBorder;
 }
 
 @property (nonatomic, strong) IBOutlet UIImageView *imgCountryFlag;
 @property (nonatomic, strong) IBOutlet UIImageView *imgSelected;
 @property (nonatomic, strong) IBOutlet UILabel *lblCountryName;
+@property (nonatomic, strong) IBOutlet UIView *bottomBorder;
 
 @end

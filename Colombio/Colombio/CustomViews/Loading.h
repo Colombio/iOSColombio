@@ -18,6 +18,7 @@
     UILabel *lblInfo;
 }
 
+@property (strong,nonatomic) UIActivityIndicatorView *actLoading;
 - (void)startNativeSpinner:(UIView *)view;
 - (void)stopNativeSpinner;
 - (void)startCustomSpinner:(UIView *)view spinMessage:(NSString*)strMessage;

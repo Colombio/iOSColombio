@@ -13,18 +13,25 @@
 @synthesize lblCountryName;
 @synthesize imgCountryFlag;
 @synthesize imgSelected;
+@synthesize bottomBorder;
 
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
-        imgSelected = [[UIImageView alloc] initWithFrame:CGRectMake(12, 12, 20, 20)];
-        imgSelected.image=[UIImage imageNamed:@"selected.png"];
-        lblCountryName = [[UILabel alloc] initWithFrame:CGRectMake(45,13,230,20)];
+        imgSelected = [[UIImageView alloc] initWithFrame:CGRectMake(265, 0, 44, 44)];
+        imgSelected.image=COLLECTION_SELECTED;
+        lblCountryName = [[UILabel alloc] initWithFrame:CGRectMake(50,8,230,25)];
         lblCountryName.font = [UIFont  fontWithName:@"HelveticaNeue-Light" size:19.0f];
+        bottomBorder = [[UIView alloc]initWithFrame:CGRectMake(10, 42, 280, 1)];
+        bottomBorder.backgroundColor = [UIColor grayColor];
+        bottomBorder.alpha=0.3;
+        imgCountryFlag = [[UIImageView alloc]initWithFrame:CGRectMake(12, 11, 30, 20)];
         
         [self addSubview:lblCountryName];
         [self addSubview:imgSelected];
+        [self addSubview:bottomBorder];
+        [self addSubview:imgCountryFlag];
     }
     return self;
 }

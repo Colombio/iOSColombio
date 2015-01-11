@@ -35,6 +35,7 @@
     [super viewDidLoad];
     NSLog(@"countries");
     isFirstViewShown=YES;
+    self.wantsFullScreenLayout = YES;
     customHeaderView.customHeaderDelegate = self;
     customHeaderView.backButtonText = @"SELECT COUNTRY";
     customHeaderView.nextButtonText = @"YOUR INFO";
@@ -42,9 +43,6 @@
     [self loadStates];
 }
 
-- (void)viewDidLayoutSubviews{
-    [loadingView startNativeSpinner:self.view];
-}
 - (void)btnBackClicked{
     
 }
@@ -56,6 +54,7 @@
 #pragma mark WebServiceCommunication
 
 - (void)loadStates{
+    [loadingView startNativeSpinner:self.view];
     NSString *filePathStates = [Tools getFilePaths:@"drzave.out"];
     NSString *filePathTimeStamp = [Tools getFilePaths:@"timestamp_countries.out"];
     //citanje posljednjeg timestampa za drzave
@@ -79,53 +78,55 @@
                         break;
                     }
                 }
+                //Ako je mijenjan popis drzava
+                if(isDataChanged){
+                    //Spremanje zadnjeg timestampa u datoteku
+                    NSString *changeTimestamp=[dataWsResponse objectForKey:@"change_timestamp"];
+                    [changeTimestamp writeToFile:filePathTimeStamp atomically:YES encoding:NSUTF8StringEncoding error:nil];
+                    //Spremanje drzava u datoteku
+                    [dataWsResponse writeToFile:filePathStates atomically:YES];
+                }
+                //Citanje drzava iz datoteke
+                NSDictionary *countriesFromFile=[NSDictionary dictionaryWithContentsOfFile:filePathStates];
+                //punjenje drzava podacima
+                arOptions = [[NSMutableArray alloc] init];
+                NSArray *arCountries=[countriesFromFile objectForKey:@"data" ];
+                for(NSDictionary *k in arCountries){
+                    NSString *value = [k objectForKey:@"c_name"];
+                    [arOptions addObject:value];
+                }
+                [arOptions sortUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
+                if(arSelectedRows.count==0){
+                    arSelectedRows = [[NSMutableArray alloc] init];
+                }
+                else{
+                    isStatePicked=YES;
+                }
+                UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc]init];
+                layout.headerReferenceSize=CGSizeMake(100,0);
+                _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 44, self.view.frame.size.width, self.view.frame.size.height-10) collectionViewLayout:layout];
+                [_collectionView setBackgroundColor:[UIColor whiteColor]];
+                [_collectionView setDataSource:self];
+                [_collectionView setDelegate:self];
+                [_collectionView registerClass:[CountriesCell class] forCellWithReuseIdentifier:@"cellIdentifier"];
+                
+                [self.view addSubview:_collectionView];
+                [_collectionView reloadData];
+                [self.view sendSubviewToBack:_collectionView];
+                timer=nil;
             }
             //Ako nije dobra konekcija
             else{
                 [Messages showErrorMsg:@"error_web_request"];
-                //[loadingView stopNativeSpinner];
                 //TODO Vratiti korisnika na login???
-                return;
             }
-            //Ako je mijenjan popis drzava
-            if(isDataChanged){
-                //Spremanje zadnjeg timestampa u datoteku
-                NSString *changeTimestamp=[dataWsResponse objectForKey:@"change_timestamp"];
-                [changeTimestamp writeToFile:filePathTimeStamp atomically:YES encoding:NSUTF8StringEncoding error:nil];
-                //Spremanje drzava u datoteku
-                [dataWsResponse writeToFile:filePathStates atomically:YES];
-            }
-            //Citanje drzava iz datoteke
-            NSDictionary *countriesFromFile=[NSDictionary dictionaryWithContentsOfFile:filePathStates];
-            //punjenje drzava podacima
-            arOptions = [[NSMutableArray alloc] init];
-            NSArray *arCountries=[countriesFromFile objectForKey:@"data" ];
-            for(NSDictionary *k in arCountries){
-                NSString *value = [k objectForKey:@"c_name"];
-                [arOptions addObject:value];
-            }
-            [arOptions sortUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
-            if(arSelectedRows.count==0){
-                arSelectedRows = [[NSMutableArray alloc] init];
-            }
-            else{
-                isStatePicked=YES;
-            }
-            UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc]init];
-            layout.headerReferenceSize=CGSizeMake(100,36);
-            _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 44, self.view.frame.size.width, self.view.frame.size.height-10) collectionViewLayout:layout];
-            
-            [_collectionView setDataSource:self];
-            [_collectionView setDelegate:self];
-            [_collectionView registerClass:[CountriesCell class] forCellWithReuseIdentifier:@"cellIdentifier"];
-            
-            [self.view addSubview:_collectionView];
-            [_collectionView reloadData];
-            
-            timer=nil;
-            [self.view setUserInteractionEnabled:YES];
+            timer = [NSTimer scheduledTimerWithTimeInterval:0.8 target:self selector:@selector(toggleSpinnerOff) userInfo:nil repeats:NO];
         });
     }];
+}
+
+- (void)toggleSpinnerOff{
+   [loadingView stopNativeSpinner];
 }
 
 //Ukupan broj celija
@@ -156,37 +157,59 @@
     NSString*countryName = [arOptions objectAtIndex:pozicija];
     
     cell.lblCountryName.text = countryName;
+    cell.imgCountryFlag.image = [UIImage imageNamed:countryName];
     
     if([arSelectedRows containsObject:countryName]){
         [cell.imgSelected setHidden:NO];
+        cell.imgCountryFlag.alpha = 1;
+        cell.lblCountryName.alpha = 1;
     }
     else{
+        cell.imgCountryFlag.image =[Tools convertImageToGrayScale: [UIImage imageNamed:countryName]];
+        cell.imgCountryFlag.alpha = 0.3;
         [cell.imgSelected setHidden:YES];
+        cell.lblCountryName.alpha = 0.3;
     }
     return cell;
 }
-
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     long pozicija = (indexPath.row)+(indexPath.section*3);
     
     NSString*countryName = [arOptions objectAtIndex:pozicija];
-    
+    CountriesCell *cell = [_collectionView cellForItemAtIndexPath:indexPath
+                           ];
     if([arSelectedRows containsObject:countryName]){
         [arSelectedRows removeObject:countryName];
+        //animiraj
+        [UIView animateWithDuration:0.4 animations:^(void) {
+            cell.imgCountryFlag.image = [UIImage imageNamed:countryName];
+            
+            cell.lblCountryName.alpha = 0.3;
+            cell.imgCountryFlag.alpha = 0.3;
+            [cell.imgSelected setAlpha:0];
+        }];
         if(timer){
             [timer invalidate];
             timer=nil;
         }
-        timer = [NSTimer scheduledTimerWithTimeInterval:0 target:self selector:@selector(countDown) userInfo:nil repeats:NO];
+        timer = [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(countDown) userInfo:nil repeats:NO];
     }
     else{
         [arSelectedRows addObject:countryName];
+        [cell.imgSelected setHidden:NO];
+        [cell.imgSelected setAlpha:0];
+        [UIView animateWithDuration:0.4 animations:^(void) {
+            cell.imgCountryFlag.image = [UIImage imageNamed:countryName];
+            cell.lblCountryName.alpha = 1;
+            [cell.imgSelected setAlpha:1];
+            cell.imgCountryFlag.alpha = 1;
+        }];
         if(timer){
             [timer invalidate];
             timer=nil;
         }
-        timer = [NSTimer scheduledTimerWithTimeInterval:0 target:self selector:@selector(countDown) userInfo:nil repeats:NO];
+        timer = [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(countDown) userInfo:nil repeats:NO];
     }
 }
 

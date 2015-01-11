@@ -10,6 +10,8 @@
 
 @implementation Loading
 
+@synthesize actLoading;
+
 - (void)startNativeSpinner:(UIView *)view{
     viewParent = view;
     viewDimmed = [[UIView alloc] initWithFrame:CGRectMake(0, 0, viewParent.frame.size.width, viewParent.frame.size.height)];
@@ -26,6 +28,7 @@
         [actLoading startAnimating];
         isLoading=YES;
     }];
+    NSLog(@"startedSpinner");
 }
 
 - (void)stopNativeSpinner{
@@ -35,6 +38,7 @@
         actLoading.alpha=0.0;
         [viewParent setUserInteractionEnabled:YES];
         isLoading=NO;
+        NSLog(@"removed");
     } completion:^(BOOL finished) {
         [actLoading removeFromSuperview];
         [viewDimmed removeFromSuperview];
