@@ -9,13 +9,6 @@
       "idiom" : "universal",
       "scale" : "2x",
       "filename" : "takephoto_normal@2x.png"
-    },
-    {
-      "idiom" : "universal",
-      "filename" : "takephoto_normal-736h@3x.png",
-      "unassigned" : true,
-      "subtype" : "736h",
-      "scale" : "3x"
     }
   ],
   "info" : {

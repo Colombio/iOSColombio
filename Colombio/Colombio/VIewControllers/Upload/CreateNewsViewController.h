@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CreateNewsViewController : UIViewController
+@interface CreateNewsViewController : UIViewController<UITextViewDelegate>
+
 
 @end

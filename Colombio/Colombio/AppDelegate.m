@@ -95,8 +95,6 @@
 }
 
 - (void)checkToken{
-    self.window.rootViewController = [[ForgotPasswordViewController alloc] init];
-    return;
     @try {
         NSString *result = [ColombioServiceCommunicator getSignedRequest];
         if(result.length>0){

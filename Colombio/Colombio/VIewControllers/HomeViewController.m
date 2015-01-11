@@ -44,8 +44,29 @@
 */
 
 #pragma mark Button Action
-- (void)btnUploadClicked:(id)sender{
+- (void)btnPhotoClicked:(id)sender{
+
+}
+
+- (void)btnSendClicked:(id)sender{
     [self.navigationController pushViewController:[[CreateNewsViewController alloc] init] animated:YES];
 }
+
+- (void)btnAlertClicked:(id)sender{
+
+}
+
+- (void)btnCommunityClicked:(id)sender{
+
+}
+
+- (void)btnAnnounceClicked:(id)sender{
+
+}
+
+- (void)btnCallClicked:(id)sender{
+
+}
+
 
 @end

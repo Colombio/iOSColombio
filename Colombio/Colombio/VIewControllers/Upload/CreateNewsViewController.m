@@ -7,9 +7,20 @@
 //
 
 #import "CreateNewsViewController.h"
+#import "CustomHeaderView.h"
 
 @interface CreateNewsViewController ()
 
+@property (weak,nonatomic) IBOutlet CustomHeaderView *customHeader;
+@property (weak,nonatomic) IBOutlet UIView *viewHolder;
+@property (weak,nonatomic) IBOutlet UITextView *txtTitle;
+@property (weak,nonatomic) IBOutlet UITextView *txtDescription;
+@property (weak,nonatomic) IBOutlet UIView *viewImageHolder;
+@property (weak,nonatomic) IBOutlet UIButton *btnAddImage;
+@property (weak,nonatomic) IBOutlet UIView *viewTagsHolder;
+
+@property (weak,nonatomic) IBOutlet NSLayoutConstraint *CS_imageHolderHeight;
+@property (weak,nonatomic) IBOutlet NSLayoutConstraint *CS_tagdHolderHeight;
 @end
 
 @implementation CreateNewsViewController
@@ -17,9 +28,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationController.tabBarItem.selectedImage  = [[UIImage imageNamed:@"home_normal"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    //[self.navigationController.tabBarController.tabBar setNeedsDisplay];
-    //((UITabBarItem*)[self.tabBarController.tabBar.items objectAtIndex:2]).selectedImage =  [[UIImage imageNamed:@"home_normal" ] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    // Do any additional setup after loading the view from its nib.
 }
 
 - (void)didReceiveMemoryWarning {

@@ -61,6 +61,7 @@
 		BBB7F32D1A60A6C20014909B /* ScrollableHeaderContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB7F32C1A60A6C20014909B /* ScrollableHeaderContentView.m */; };
 		BBB7F32F1A60A6D30014909B /* ScrollableHeaderContentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBB7F32E1A60A6D30014909B /* ScrollableHeaderContentView.xib */; };
 		BBB7F3321A60B60E0014909B /* CustomHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB7F3311A60B60E0014909B /* CustomHeaderView.m */; };
+		BBB7F33A1A6209560014909B /* NewsData.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB7F3391A6209560014909B /* NewsData.m */; };
 		BBCF58911A2938B400CE64B4 /* CountriesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BBCF588E1A2938B400CE64B4 /* CountriesCell.m */; };
 		BBCF58921A2938B400CE64B4 /* CustomField.m in Sources */ = {isa = PBXBuildFile; fileRef = BBCF58901A2938B400CE64B4 /* CustomField.m */; };
 		BBCF589F1A29395400CE64B4 /* CryptoClass.m in Sources */ = {isa = PBXBuildFile; fileRef = BBCF58951A29395400CE64B4 /* CryptoClass.m */; };
@@ -169,6 +170,8 @@
 		BBB7F32E1A60A6D30014909B /* ScrollableHeaderContentView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ScrollableHeaderContentView.xib; sourceTree = "<group>"; };
 		BBB7F3301A60B60E0014909B /* CustomHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomHeaderView.h; sourceTree = "<group>"; };
 		BBB7F3311A60B60E0014909B /* CustomHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomHeaderView.m; sourceTree = "<group>"; };
+		BBB7F3381A6209560014909B /* NewsData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsData.h; sourceTree = "<group>"; };
+		BBB7F3391A6209560014909B /* NewsData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsData.m; sourceTree = "<group>"; };
 		BBCF588D1A2938B400CE64B4 /* CountriesCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CountriesCell.h; sourceTree = "<group>"; };
 		BBCF588E1A2938B400CE64B4 /* CountriesCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CountriesCell.m; sourceTree = "<group>"; };
 		BBCF588F1A2938B400CE64B4 /* CustomField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomField.h; sourceTree = "<group>"; };
@@ -272,6 +275,7 @@
 		BBB2B1351A5F52A500F4FD38 /* Upload */ = {
 			isa = PBXGroup;
 			children = (
+				BBB7F3371A6209560014909B /* Model */,
 				BBB2B1361A5F534F00F4FD38 /* CreateNewsViewController.h */,
 				BBB2B1371A5F534F00F4FD38 /* CreateNewsViewController.m */,
 				BBB2B1381A5F534F00F4FD38 /* CreateNewsViewController.xib */,
@@ -371,6 +375,15 @@
 				BBB6A05E1A44FB2D006F61B3 /* UIConfiguration.m */,
 			);
 			path = UIConfiguration;
+			sourceTree = "<group>";
+		};
+		BBB7F3371A6209560014909B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				BBB7F3381A6209560014909B /* NewsData.h */,
+				BBB7F3391A6209560014909B /* NewsData.m */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		BBCF58811A29357400CE64B4 /* CustomClasses */ = {
@@ -611,6 +624,7 @@
 				BBCF58A31A29395400CE64B4 /* YourInfo.m in Sources */,
 				BBAE1F1D1A37B51F0008B772 /* ColombioServiceCommunicator.m in Sources */,
 				58ACA0021A4EE6B70076D3D8 /* HeaderView.m in Sources */,
+				BBB7F33A1A6209560014909B /* NewsData.m in Sources */,
 				BBAF777B1A50C914004AAAF9 /* ScrollableHeaderView.m in Sources */,
 				BBB7F32D1A60A6C20014909B /* ScrollableHeaderContentView.m in Sources */,
 				BBB33AC61A27D9EE008D0E26 /* AppDelegate.m in Sources */,

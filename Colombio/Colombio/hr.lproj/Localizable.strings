@@ -45,5 +45,18 @@
 "login_missing_account" = "Nemaš račun?";
 "login_signup" = "Registriraj se!";
 "login_forget_password" = "Zaboravljena lozinka?";
+
+/*Home*/
+"btn_takephoto" = "TAKE PHOTO OR VIDEO";
+"btn_sendnews" = "SEND NEWS";
+"btn_alert" = "ALERT MEDIA";
+"btn_community" = "COMMUNITY NEWS";
+"btn_announce" = "ANNOUNCE EVENT";
+"btn_call" = "CALL MEDIA";
+
+/*create news*/
+"news_title_placeholder" = "Unesite naslov";
+"news_description_placeholder" = "Unesite opis";
+
 /*Spinner message*/
 "logged" ="Logged in, please wait...";

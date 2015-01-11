@@ -3,12 +3,12 @@
     {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "sendnews_pressed.png"
+      "filename" : "addcontent.png"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "sendnews_pressed@2x.png"
+      "filename" : "addcontent@2x.png"
     }
   ],
   "info" : {
