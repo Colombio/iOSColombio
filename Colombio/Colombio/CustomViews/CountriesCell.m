@@ -18,18 +18,13 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        /*
-        notSelected = [[UIImageView alloc] initWithFrame:CGRectMake(12, 12, 20, 20)];
-        select = [[UIImageView alloc] initWithFrame:CGRectMake(12, 12, 20, 20)];
-        notSelected.image=[UIImage imageNamed:@"unselected.png"];
-        select.image=[UIImage imageNamed:@"selected.png"];
-        countryName = [[UILabel alloc] initWithFrame:CGRectMake(45,13,230,20)];
-        countryName.font = [UIFont  fontWithName:@"HelveticaNeue-Light" size:19.0f];
+        imgSelected = [[UIImageView alloc] initWithFrame:CGRectMake(12, 12, 20, 20)];
+        imgSelected.image=[UIImage imageNamed:@"selected.png"];
+        lblCountryName = [[UILabel alloc] initWithFrame:CGRectMake(45,13,230,20)];
+        lblCountryName.font = [UIFont  fontWithName:@"HelveticaNeue-Light" size:19.0f];
         
-        [self addSubview:countryName];
-        [self addSubview:notSelected];
-        [self addSubview:select];
-         */
+        [self addSubview:lblCountryName];
+        [self addSubview:imgSelected];
     }
     return self;
 }

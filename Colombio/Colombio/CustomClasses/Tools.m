@@ -61,4 +61,9 @@
     return image;
 }
 
++ (NSString*)getFilePaths:(NSString *)filePathName{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    return [documentsDirectory stringByAppendingPathComponent:filePathName];
+}
 @end
