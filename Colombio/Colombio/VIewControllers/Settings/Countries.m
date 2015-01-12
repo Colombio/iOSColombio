@@ -190,26 +190,6 @@
     timer = [NSTimer scheduledTimerWithTimeInterval:0.05 target:self selector:@selector(reloadCollectionView) userInfo:nil repeats:NO];
 }
 
-//Velicina jedne celije
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
-    return  CGSizeMake(300, 44);
-}
-
-//Razmak izmedu celija
-- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
-    return 1;
-}
-
-//Razmak izmedu celija
-- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section{
-    return 1.5;
-}
-
-//Padding od rubova
-- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{
-    return UIEdgeInsetsMake(10, 10, 10, 10);
-}
-
 /*
  - (void)switchNextView{
  UIView *currentView = self.view;

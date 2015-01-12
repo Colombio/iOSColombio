@@ -7,7 +7,19 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "CountriesCell.h"
 
-@interface SettingsCollectionView : NSObject
+@protocol SettingsCollectionViewDelegate
+@optional
+
+- (void)didSelectCell;
+- (void)setupCellLook;
+
+@end
+
+@interface SettingsCollectionView : NSObject<UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
+
+@property (weak, nonatomic) IBOutlet id<SettingsCollectionViewDelegate>settingsCollectionViewDelegate;
+@property (strong, nonatomic) UICollectionView *collectionView;
 
 @end
