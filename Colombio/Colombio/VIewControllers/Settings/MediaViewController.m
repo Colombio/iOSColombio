@@ -17,107 +17,100 @@
 
 @synthesize arSelectedRows;
 @synthesize mediji;
-@synthesize infobar;
-@synthesize arrow;
-@synthesize reusableView;
 @synthesize arSelectedMedia;
-@synthesize started;
-@synthesize lbl;
-@synthesize infoLabel;
-@synthesize strelica;
-@synthesize lastContentOffset;
-@synthesize btnSearch;
-@synthesize txtSearch;
-@synthesize searchGradient;
-@synthesize searchArrow;
-@synthesize infoDescription;
-@synthesize infoName;
-@synthesize infoPanelDescription;
-@synthesize infoArrow;
-@synthesize infoPanel;
-@synthesize reporterInfo;
+@synthesize polje;
+@synthesize arMediaImages;
+@synthesize settingsCollectionView;
 
 //Pocetno ucitavanje pogleda, dohvacanje medija
 - (void)viewDidLoad
 {
-    started=NO;
-    hidden=YES;
-    counter=0;
-    reloadFirst=NO;
-    offset=1;
-    timerSearch=nil;
-    searchHidden=YES;
- 
+    [super viewDidLoad];
+    self.wantsFullScreenLayout = YES;
+    customHeaderView.customHeaderDelegate = self;
+    customHeaderView.backButtonText = @"SELECT COUNTRY";
+    customHeaderView.nextButtonText = @"YOUR INFO";
+    loadingView = [[Loading alloc]init];
+    
     if(arSelectedMedia.count==0){
         arSelectedMedia = [[NSMutableArray alloc]init];
     }
+    [self loadMedia];
 }
 
-#pragma mark LoadingData
+#pragma mark Navigation
 
-//LoadingMedia
-- (void)loadMedia{
-    //pocetna konfiguracija za datoteke
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsDirectory = [paths objectAtIndex:0];
-    NSString *filePathMediji =[documentsDirectory stringByAppendingPathComponent:@"medijiDohvaceni.out"];
-    NSString *filePathTimeStamp = [documentsDirectory stringByAppendingPathComponent:@"timestamp_media.out"];
+- (void)btnBackClicked{
     
-    //citanje posljednjeg timestampa za drzave
+}
+
+- (void)btnNextClicked{
+    
+}
+
+#pragma mark WebServiceCommunication
+
+- (void)loadMedia{
+    [loadingView startCustomSpinner:self.view spinMessage:@""];
+    NSString *filePathMediji = [Tools getFilePaths:@"medijiDohvaceni.out"];
+    NSString *filePathTimeStamp = [Tools getFilePaths:@"timestamp_media.out"];
+    //citanje posljednjeg timestampa za medije
     NSString *lastTimestamp =[NSString stringWithContentsOfFile:filePathTimeStamp encoding:NSUTF8StringEncoding error:nil];
     
-    //sinkrono dohvacanje podataka sa servera
-    NSString *url_str = [NSString stringWithFormat:@"http://appforrest.com/colombio/api_config/get_media?sync_time=%@",lastTimestamp];
-    NSURL * url = [NSURL URLWithString:url_str];
-    NSError *err=nil;
-    NSMutableURLRequest *request =[NSMutableURLRequest requestWithURL:url];
-    [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
-        
+    ColombioServiceCommunicator *csc = [[ColombioServiceCommunicator alloc] init];
+    [csc sendAsyncHttp:@"http://appforrest.com/colombio/api_config/get_media/" httpBody:[NSString stringWithFormat:@"sync_time=%@",lastTimestamp]cache:NSURLRequestReloadIgnoringCacheData timeoutInterval:5];
+    
+    [NSURLConnection sendAsynchronousRequest:csc.request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            Boolean mijenjano=true;
-            NSMutableDictionary *odgovor=nil;
-            
             //Ako su uspjesno dohvaceni podaci sa servera
-            if(err==nil){
-                odgovor =[NSJSONSerialization JSONObjectWithData:data options:0 error:NULL];
-                NSArray *keys =[odgovor allKeys];
-                for(NSString *key in keys){
-                    //Nije mijenjan popis medija
-                    if(!strcmp("s", key.UTF8String)){
-                        mijenjano=false;
-                        break;
-                    }
-                }
+            if(error==nil&&data!=nil){
+                [self prepareMedia:data response:response strTimestamp:filePathTimeStamp strFilePathMedia:filePathMediji];
+                
+                settingsCollectionView = [[SettingsCollectionView alloc] init];
+                settingsCollectionView.settingsCollectionViewDelegate = self;
+                settingsCollectionView.numberOfCells = [mediji count];
+                [settingsCollectionView addCollectionView:self];
             }
-            
             //Ako nije dobra konekcija
             else{
-                [Messages showErrorMsg:@"This app requires internet connection. Please make sure that you are connected to the internet."];
+                [Messages showErrorMsg:@"error_web_request"];
+                //TODO Vratiti korisnika na login???
             }
-            //Ako je mijenjan popis medija
-            if(mijenjano){
-                //Spremanje zadnjeg timestampa u datoteku
-                NSString *changeTimestamp=[odgovor objectForKey:@"change_timestamp"];
-                [changeTimestamp writeToFile:filePathTimeStamp atomically:YES encoding:NSUTF8StringEncoding error:
-                 nil];
-                
-                [odgovor writeToFile:filePathMediji atomically:YES];
-            }
-            
-            //Ucitavanje medija iz datoteke
-            NSDictionary *procitano=[NSDictionary dictionaryWithContentsOfFile:filePathMediji];
-            self.mediji=[procitano objectForKey:@"data"];
-            arMediaImages = mediji;
-            
-            [_collectionView reloadData];
-            
-            if(mijenjano==true){
-                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
-                    [self loadImages];
-                });
-            }
+            timer = [NSTimer scheduledTimerWithTimeInterval:0.8 target:self selector:@selector(toggleSpinnerOff) userInfo:nil repeats:NO];
         });
     }];
+}
+
+- (void)prepareMedia:(NSData *)data response:(NSURLResponse*)response strTimestamp:(NSString *)filePathTimeStamp strFilePathMedia:(NSString*)filePathMedia{
+    Boolean isDataChanged=true;
+    NSDictionary *dataWsResponse=nil;
+    dataWsResponse =[NSJSONSerialization JSONObjectWithData:data options:0 error:NULL];
+    NSArray *keys =[dataWsResponse allKeys];
+    for(NSString *key in keys){
+        //Nije mijenjan popis medija
+        if(!strcmp("s", key.UTF8String)){
+            isDataChanged=false;
+            break;
+        }
+    }
+    //Ako je mijenjan popis medija
+    if(isDataChanged){
+        //Spremanje zadnjeg timestampa u datoteku
+        NSString *changeTimestamp=[dataWsResponse objectForKey:@"change_timestamp"];
+        [changeTimestamp writeToFile:filePathTimeStamp atomically:YES encoding:NSUTF8StringEncoding error:nil];
+        //Spremanje drzava u datoteku
+        [dataWsResponse writeToFile:filePathMedia atomically:YES];
+    }
+    //Citanje drzava iz datoteke
+    NSDictionary *countriesFromFile=[NSDictionary dictionaryWithContentsOfFile:filePathMedia];
+    //punjenje medija podacima
+    mediji =[countriesFromFile objectForKey:@"data"];
+    arMediaImages = mediji;
+    if(isDataChanged==true){
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+            [self loadImages];
+        });
+    }
 }
 
 - (void)loadImages{
@@ -168,7 +161,9 @@
     });
 }
 
-#pragma mark CollectionView
+- (void)toggleSpinnerOff{
+    [loadingView removeCustomSpinner];
+}
 
 /*
  infoDescription.text = [[mediji objectAtIndex:pozicija-offset]objectForKey:@"description"];

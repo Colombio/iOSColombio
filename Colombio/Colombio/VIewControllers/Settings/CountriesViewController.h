@@ -19,13 +19,8 @@
 @interface CountriesViewController : UIViewController
 <UIGestureRecognizerDelegate,CustomHeaderViewDelegate,ColombioServiceCommunicatorDelegate, SettingsCollectionViewDelegate>{
     NSTimer *timer;
-    UICollectionView *_collectionView;
-    UICollectionReusableView *reusableView;
     IBOutlet CustomHeaderView *customHeaderView;
     Loading *loadingView;
-    
-    bool isFirstViewShown;
-    bool isCollectionViewHeaderDisplayed;
 }
 
 @property (strong, nonatomic) SettingsCollectionView *settingsCollectionView;

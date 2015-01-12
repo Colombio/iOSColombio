@@ -33,8 +33,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    NSLog(@"countries");
-    isFirstViewShown=YES;
     self.wantsFullScreenLayout = YES;
     customHeaderView.customHeaderDelegate = self;
     customHeaderView.backButtonText = @"SELECT COUNTRY";
@@ -42,6 +40,8 @@
     loadingView = [[Loading alloc]init];
     [self loadStates];
 }
+
+#pragma mark Navigation
 
 - (void)btnBackClicked{
     
