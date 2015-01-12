@@ -11,18 +11,35 @@
 @implementation SettingsCollectionView
 
 @synthesize collectionView;
+@synthesize numberOfCells;
 
 - (void)addCollectionView:(UIViewController *)VC{
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc]init];
     layout.headerReferenceSize=CGSizeMake(100,0);
     collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 66, VC.view.frame.size.width, VC.view.frame.size.height-10) collectionViewLayout:layout];
     [collectionView setBackgroundColor:[UIColor whiteColor]];
-    [collectionView setDataSource:VC];
-    [collectionView setDelegate:VC];
+    [collectionView setDataSource:self];
+    [collectionView setDelegate:self];
     [collectionView registerClass:[CountriesCell class] forCellWithReuseIdentifier:@"cellIdentifier"];
     [VC.view addSubview:collectionView];
     [collectionView reloadData];
     [VC.view sendSubviewToBack:collectionView];
+}
+
+//Pocetno dodavanje celija u collection view
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    return [self.settingsCollectionViewDelegate setupCellLook:indexPath];
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    [self.settingsCollectionViewDelegate didSelectCell:indexPath];
+}
+
+//Ukupan broj celija
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+{
+    return numberOfCells;
 }
 
 //Velicina jedne celije

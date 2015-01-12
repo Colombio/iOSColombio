@@ -14,9 +14,10 @@
 #import "Tools.h"
 #import "Loading.h"
 #import "ColombioServiceCommunicator.h"
+#import "SettingsCollectionView.h"
 
 @interface Countries : UIViewController
-<UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UIGestureRecognizerDelegate,CustomHeaderViewDelegate,ColombioServiceCommunicatorDelegate>{
+<UIGestureRecognizerDelegate,CustomHeaderViewDelegate,ColombioServiceCommunicatorDelegate, SettingsCollectionViewDelegate>{
     NSTimer *timer;
     UICollectionView *_collectionView;
     UICollectionReusableView *reusableView;
@@ -27,6 +28,7 @@
     bool isCollectionViewHeaderDisplayed;
 }
 
+@property (strong, nonatomic) SettingsCollectionView *settingsCollectionView;
 @property (strong,nonatomic) UILabel *infoBarDescription;
 //@property (strong,nonatomic) _YourInfo *reporterInfo;
 @property (strong, nonatomic) UIImageView *imgInfoPlaceholder;
@@ -35,7 +37,6 @@
 @property (strong,nonatomic) NSMutableArray *arOptions;
 @property (strong,nonatomic) NSMutableArray *arSelectedRows;
 @property (strong,nonatomic) NSMutableArray *arSelectedMedia;
-@property (strong,nonatomic) UICollectionReusableView *reusableView;
 @property (strong,nonatomic) IBOutlet  CustomHeaderView *customHeaderView;
 @property (nonatomic,assign) bool isSettings;
 

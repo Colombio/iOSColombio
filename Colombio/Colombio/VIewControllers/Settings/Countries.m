@@ -23,12 +23,12 @@
 @synthesize arSelectedRows;
 @synthesize lblStates;
 @synthesize arSelectedMedia;
-@synthesize reusableView;
 @synthesize imgArrowInfo;
 @synthesize imgInfoPlaceholder;
 @synthesize infoBarDescription;
 @synthesize isSettings;
 @synthesize customHeaderView;
+@synthesize settingsCollectionView;
 
 - (void)viewDidLoad
 {
@@ -68,8 +68,10 @@
             //Ako su uspjesno dohvaceni podaci sa servera
             if(error==nil&&data!=nil){
                 [self prepareCountries:data response:response strTimestamp:filePathTimeStamp strFilePathStates:filePathStates];
-                
-                [self addCollectionView:self];
+                settingsCollectionView = [[SettingsCollectionView alloc] init];
+                settingsCollectionView.settingsCollectionViewDelegate = self;
+                settingsCollectionView.numberOfCells = [arOptions count];
+                [settingsCollectionView addCollectionView:self];
             }
             //Ako nije dobra konekcija
             else{
@@ -79,19 +81,6 @@
             timer = [NSTimer scheduledTimerWithTimeInterval:0.8 target:self selector:@selector(toggleSpinnerOff) userInfo:nil repeats:NO];
         });
     }];
-}
-
-- (void)addCollectionView:(UIViewController *)VC{
-    UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc]init];
-    layout.headerReferenceSize=CGSizeMake(100,0);
-    _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 66, self.view.frame.size.width, self.view.frame.size.height-10) collectionViewLayout:layout];
-    [_collectionView setBackgroundColor:[UIColor whiteColor]];
-    [_collectionView setDataSource:VC];
-    [_collectionView setDelegate:VC];
-    [_collectionView registerClass:[CountriesCell class] forCellWithReuseIdentifier:@"cellIdentifier"];
-    [self.view addSubview:_collectionView];
-    [_collectionView reloadData];
-    [self.view sendSubviewToBack:_collectionView];
 }
 
 - (void)prepareCountries:(NSData *)data response:(NSURLResponse*)response strTimestamp:(NSString *)filePathTimeStamp strFilePathStates:(NSString*)filePathStates{
@@ -129,41 +118,22 @@
     }
 }
 
-- (void)toggleSpinnerOff{
-   [loadingView removeCustomSpinner];
-    timer=nil;
-}
+#pragma mark CollectionView
 
-//Ukupan broj celija
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
-{
-    return [arOptions count];
-}
-
-- (void)reloadCollectionView {
-    [_collectionView reloadData];
-    timer=nil;
-}
-
-//Pocetno dodavanje celija u collection view
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    CountriesCell *cell = (CountriesCell *)[collectionView dequeueReusableCellWithReuseIdentifier:@"cellIdentifier" forIndexPath:indexPath];
-    
-    cell.backgroundColor = [UIColor whiteColor];
-    
-    long pozicija = (indexPath.row)+(indexPath.section*3);
-    
-    NSString*countryName = [arOptions objectAtIndex:pozicija];
-    
+//Postavke kako ce celije izgledati
+- (UICollectionViewCell *)setupCellLook:(NSIndexPath*)indexPath{
+    CountriesCell *cell = (CountriesCell *)[settingsCollectionView.collectionView dequeueReusableCellWithReuseIdentifier:@"cellIdentifier" forIndexPath:indexPath];
+    long cellPosition = (indexPath.row)+(indexPath.section*3);
+    NSString*countryName = [arOptions objectAtIndex:cellPosition];
     cell.lblCountryName.text = countryName;
     cell.imgCountryFlag.image = [UIImage imageNamed:countryName];
-    
+    //Ako je odabrana drzava, prikazi je da je odabrana u viewu
     if([arSelectedRows containsObject:countryName]){
         [cell.imgSelected setHidden:NO];
         cell.imgCountryFlag.alpha = 1;
         cell.lblCountryName.alpha = 1;
     }
+    //Ako nije odabrana drzava, oznaci da nije odabrana
     else{
         cell.imgCountryFlag.image =[Tools convertImageToGrayScale: [UIImage imageNamed:countryName]];
         cell.imgCountryFlag.alpha = 0.3;
@@ -173,23 +143,25 @@
     return cell;
 }
 
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+- (void)didSelectCell:(NSIndexPath*)indexPath{
     long cellPosition = (indexPath.row)+(indexPath.section*3);
-    
-    if(timer){
-        return;
-    }
     NSString*countryName = [arOptions objectAtIndex:cellPosition];
-    
     if([arSelectedRows containsObject:countryName]){
         [arSelectedRows removeObject:countryName];
     }
     else{
         [arSelectedRows addObject:countryName];
     }
-    timer = [NSTimer scheduledTimerWithTimeInterval:0.05 target:self selector:@selector(reloadCollectionView) userInfo:nil repeats:NO];
+    timer = [NSTimer scheduledTimerWithTimeInterval:0 target:self selector:@selector(reloadCollectionView) userInfo:nil repeats:NO];
 }
 
+- (void)toggleSpinnerOff{
+    [loadingView removeCustomSpinner];
+}
+
+- (void)reloadCollectionView {
+    [settingsCollectionView.collectionView reloadData];
+}
 /*
  - (void)switchNextView{
  UIView *currentView = self.view;
