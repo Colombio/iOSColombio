@@ -16,7 +16,8 @@
 #import "CreateAccViewController.h"
 #import "TabBarViewController.h"
 #import "ForgotPasswordViewController.h"
-#import "Countries.h"
+#import "CountriesViewController.h"
+#import "MediaViewController.h"
 
 @implementation AppDelegate
 @synthesize db, locationManager;
@@ -40,6 +41,9 @@
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
+    self.window.rootViewController = [[StartViewController alloc] init];
+    [self.window makeKeyAndVisible];
+    return YES;
     if([[NSUserDefaults standardUserDefaults] boolForKey:@"SKIP_START"]){
         [self checkToken];
     }else{

@@ -10,6 +10,7 @@
                 <outlet property="CS_buttonDistanceFromBottom" destination="aM0-ly-6o8" id="Lae-nX-txJ"/>
                 <outlet property="CS_buttonDistanceFromTop" destination="KUw-i9-iHH" id="sQE-BM-FU2"/>
                 <outlet property="CS_scrollableHeaderHeight" destination="58F-zb-rbe" id="MX1-NE-xc7"/>
+                <outlet property="btnLogin" destination="xPU-g5-F5b" id="geJ-tF-BdG"/>
                 <outlet property="contentHolder" destination="1JK-7q-v4p" id="cNI-Kf-2tD"/>
                 <outlet property="scrollBox" destination="Fab-I5-IN8" id="f4J-fa-GFM"/>
                 <outlet property="scrollableHeader" destination="eSY-Sr-MZ2" id="EIm-pT-zZJ"/>
@@ -189,6 +190,9 @@
                                                 <userDefinedRuntimeAttribute type="string" keyPath="configText" value="login_forget_password"/>
                                                 <userDefinedRuntimeAttribute type="string" keyPath="configTextFont" value="FONT_HELVETICA_NEUE_BOLD_SMALL"/>
                                             </userDefinedRuntimeAttributes>
+                                            <connections>
+                                                <action selector="setForgot:" destination="-1" eventType="touchUpInside" id="Wml-Bx-d86"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>

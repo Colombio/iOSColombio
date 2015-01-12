@@ -14,6 +14,7 @@
 #import "CreateAccViewController.h"
 #import "ForgotPasswordViewController.h"
 #import "TabBarViewController.h"
+#import "CountriesViewController.h"
 /*
 #import "Countries.h"
 #import "GoogleLogin.h"
@@ -36,6 +37,10 @@
 @synthesize imgFailPassword;
 @synthesize imgPassPassword;
 @synthesize btnLogin;
+
+- (UIStatusBarStyle)preferredStatusBarStyle{
+    return UIStatusBarStyleLightContent;
+}
 
 - (void)viewDidLoad
 {
@@ -65,6 +70,7 @@
     
     //Testiranje lokalizacije
     //[txtPassword setPlaceholder:NSLocalizedString(@"T", nil)];
+    loadingView = [[Loading alloc] init];
 }
 
 - (void)viewDidAppear:(BOOL)animated{
@@ -148,10 +154,21 @@
     scrollBox.scrollIndicatorInsets = contentInsets;
 }
 
+- (void)toggleLoginOff{
+    [btnLogin setTitle:[Localized string:@"login_login"] forState:UIControlStateNormal];
+    [loadingView removeCustomSpinner];
+}
+
 #pragma mark Email Login
 
 - (void)btnLoginClicked:(id)sender{
-    [self checkLoginNormal];
+    [self.view endEditing:YES];
+    [loadingView startCustomSpinner:self.view spinMessage:@""];
+    [UIView animateWithDuration:0.8 animations:^{
+        [btnLogin setTitle:[Localized string:@"wait"] forState:UIControlStateNormal];
+    }];
+    
+    timer = [NSTimer scheduledTimerWithTimeInterval:0.2f target:self selector:@selector(checkLoginNormal) userInfo:nil repeats:NO];
 }
 -(void)checkLoginNormal{
     //Provjera da li su email i lozinka prazni
@@ -212,14 +229,18 @@
             NSString *userId=[user objectForKey:@"user_id"];
             [userId writeToFile:filePathUser atomically:YES encoding:NSUTF8StringEncoding error:nil];
             [token writeToFile:filePathToken atomically:YES encoding:NSUTF8StringEncoding error:nil];
-            //Countries *states = [[Countries alloc]init];
-            //[self presentViewController:states animated:YES completion:nil];
+            CountriesViewController *states = [[CountriesViewController alloc]init];
+            [loadingView stopCustomSpinner];
+            [loadingView removeCustomSpinner];
+            [self presentViewController:states animated:YES completion:nil];
+            return;
             
-            /*
-             Testing purposes only
-             **/
-            [self presentViewController:[[TabBarViewController alloc] init] animated:NO completion:nil];
         }
+        else {
+            [loadingView stopCustomSpinner];
+            [loadingView customSpinnerFail];
+        }
+        timer = [NSTimer scheduledTimerWithTimeInterval:2.5 target:self selector:@selector(toggleLoginOff) userInfo:nil repeats:NO];
     }
 }
 
@@ -283,15 +304,15 @@
                     [userId writeToFile:filePathUser atomically:YES encoding:NSUTF8StringEncoding error:nil];
                     [token writeToFile:filePathToken atomically:YES encoding:NSUTF8StringEncoding error:nil];
                     
+                    CountriesViewController *states = [[CountriesViewController alloc]init];
+                     states.arSelectedRows = [[NSMutableArray alloc] init];
+                     [self presentViewController:states animated:YES completion:nil];
                     /*
                      Testing purposes only
                      **/
                     [self presentViewController:[[TabBarViewController alloc] init] animated:NO completion:nil];
                     
-                     
-                    /*Countries *states = [[Countries alloc]init];
-                    states.arSelectedRows = [[NSMutableArray alloc] init];
-                    [self presentViewController:states animated:YES completion:nil];*/
+                    
                 }
             }
         }];
@@ -446,10 +467,6 @@
 
 -(void)toggleLoginOn{
     [btnLogin setTitle:@"Please wait..." forState:UIControlStateNormal];
-}
-
--(void)toggleLoginOff{
-    [btnLogin setTitle:@"Log In" forState:UIControlStateNormal];
 }
 
 /*
