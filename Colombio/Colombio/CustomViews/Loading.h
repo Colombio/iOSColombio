@@ -19,6 +19,7 @@
 }
 
 @property (strong,nonatomic) UIActivityIndicatorView *actLoading;
+@property (strong,nonatomic) UIView *viewDimmed;
 - (void)startNativeSpinner:(UIView *)view;
 - (void)stopNativeSpinner;
 - (void)startCustomSpinner:(UIView *)view spinMessage:(NSString*)strMessage;

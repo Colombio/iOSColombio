@@ -15,6 +15,7 @@
 #import "Loading.h"
 #import "ColombioServiceCommunicator.h"
 #import "SettingsCollectionView.h"
+#import "MediaViewController.h"
 
 @interface CountriesViewController : UIViewController
 <UIGestureRecognizerDelegate,CustomHeaderViewDelegate,ColombioServiceCommunicatorDelegate, SettingsCollectionViewDelegate>{

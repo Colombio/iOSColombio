@@ -41,11 +41,11 @@
 #pragma mark Navigation
 
 - (void)btnBackClicked{
-    
+    [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)btnNextClicked{
-    
+    [self presentViewController:[[TabBarViewController alloc] init] animated:NO completion:nil];
 }
 
 #pragma mark WebServiceCommunication
@@ -75,6 +75,7 @@
             else{
                 [Messages showErrorMsg:@"error_web_request"];
                 //TODO Vratiti korisnika na login???
+                [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
             }
             timer = [NSTimer scheduledTimerWithTimeInterval:0.8 target:self selector:@selector(toggleSpinnerOff) userInfo:nil repeats:NO];
         });
@@ -102,14 +103,12 @@
         [dataWsResponse writeToFile:filePathMedia atomically:YES];
     }
     //Citanje drzava iz datoteke
-    NSDictionary *countriesFromFile=[NSDictionary dictionaryWithContentsOfFile:filePathMedia];
+    NSDictionary *mediaFromFile=[NSDictionary dictionaryWithContentsOfFile:filePathMedia];
     //punjenje medija podacima
-    mediji =[countriesFromFile objectForKey:@"data"];
+    mediji =[mediaFromFile objectForKey:@"data"];
     arMediaImages = mediji;
     if(isDataChanged==true){
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
-            [self loadImages];
-        });
+        timer = [NSTimer scheduledTimerWithTimeInterval:0 target:self selector:@selector(loadImages) userInfo:nil repeats:NO];
     }
 }
 
@@ -128,8 +127,9 @@
         NSTimeInterval executionTime2 = [methodFinish2 timeIntervalSinceDate:methodStart];
         NSLog(@"---------------DOWNLOADING STARTED---------------");
         NSLog(@"Time: =%f ",executionTime2);
-        
-        UIImage *imageFromURL = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:link]]];
+        NSURL *imageUrl = [NSURL URLWithString:link];
+        NSData *imageData = [NSData dataWithContentsOfURL:imageUrl];
+        UIImage *imageFromURL =[UIImage imageWithData:imageData];
         
         NSLog(@"---------------DOWNLOADING FINISHED---------------");
         NSDate *methodFinish = [NSDate date];
@@ -145,19 +145,19 @@
         NSLog(@">");
         NSLog(@">");
         NSLog(@"**************************************************");
-        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i+offset inSection:0];
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:0];
         i++;
         NSArray *indexPaths = [[NSMutableArray alloc]initWithObjects:indexPath, nil];
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            [_collectionView reloadItemsAtIndexPaths:indexPaths];
+            [settingsCollectionView.collectionView reloadItemsAtIndexPaths:indexPaths];
         });
     }
     if(exitingView==YES){
         return;
     }
     dispatch_async(dispatch_get_main_queue(), ^{
-        [_collectionView reloadData];
+        [settingsCollectionView.collectionView reloadData];
     });
 }
 
@@ -165,111 +165,123 @@
     [loadingView removeCustomSpinner];
 }
 
+- (void)reloadCollectionView {
+    [settingsCollectionView.collectionView reloadData];
+}
+
+#pragma mark CollectionView
+
+//Postavke kako ce celije izgledati
+- (UICollectionViewCell *)setupCellLook:(NSIndexPath*)indexPath{
+    CountriesCell *cell = (CountriesCell *)[settingsCollectionView.collectionView dequeueReusableCellWithReuseIdentifier:@"cellIdentifier" forIndexPath:indexPath];
+    long cellPosition = (indexPath.row)+(indexPath.section*3);
+    NSDictionary*m = [mediji objectAtIndex:cellPosition];
+    NSString *strMediaName=[m objectForKey:@"name"];
+    
+    NSString *documentsDirectoryPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)objectAtIndex:0];
+    
+    //cell.imgCountryFlag.image=[UIImage imageWithContentsOfFile:[NSString stringWithFormat:@"%@/%@.%@",documentsDirectoryPath,strMediaName,@"png"]];
+    cell.lblCountryName.text = strMediaName;
+    
+    //Ako je odabran medij, prikazi je da je odabran u viewu
+    if([arSelectedMedia containsObject:[[mediji objectAtIndex:cellPosition] objectForKey:@"id"]]){
+        [cell.imgSelected setHidden:NO];
+        cell.imgCountryFlag.alpha = 1;
+        cell.lblCountryName.alpha = 1;
+    }
+    //Ako nije odabran medij, oznaci da nije odabran
+    else{
+        @try {
+            cell.imgCountryFlag.image =[Tools convertImageToGrayScale:cell.imgCountryFlag.image=[UIImage imageWithContentsOfFile:[NSString stringWithFormat:@"%@/%@.%@",documentsDirectoryPath,strMediaName,@"png"]]];
+        }
+        @catch (NSException *exception) {
+            
+        }
+        cell.imgCountryFlag.alpha = 0.3;
+        [cell.imgSelected setHidden:YES];
+        cell.lblCountryName.alpha = 0.3;
+    }
+    return cell;
+}
+
+- (void)didSelectCell:(NSIndexPath*)indexPath{
+    long cellPosition = (indexPath.row)+(indexPath.section*3);
+    
+    if([arSelectedMedia containsObject:[[mediji objectAtIndex:cellPosition] objectForKey:@"id"]]){
+        NSString *strMediaPosition = [[mediji objectAtIndex:cellPosition]objectForKey:@"id"];
+        [arSelectedMedia removeObject:strMediaPosition];
+    }
+    //Ako odabrani medij nije selektiran, dodaj ga u polje selektiranih i refreshaj pogled
+    else{
+        NSString *strMediaPosition = [[mediji objectAtIndex:cellPosition]objectForKey:@"id"];
+        [arSelectedMedia addObject:strMediaPosition];
+    }
+
+    timer = [NSTimer scheduledTimerWithTimeInterval:0 target:self selector:@selector(reloadCollectionView) userInfo:nil repeats:NO];
+}
+
 /*
  infoDescription.text = [[mediji objectAtIndex:pozicija-offset]objectForKey:@"description"];
  
  infoName.text=[[mediji objectAtIndex:pozicija-offset]objectForKey:@"name"];
  
-- (void)nextView{
-    exitingView=YES;
-    UIView *fromView = self.view;
-    ReporterInfo *yourInfo = [[ReporterInfo alloc]init];
-    yourInfo.arSelectedRows=self.arSelectedRows;
-    yourInfo.arSelectedMedia = self.arSelectedMedia;
-    yourInfo.reporterInfo=self.reporterInfo;
-    UIView *toView = yourInfo.view;
-    
-    CGRect viewSize = fromView.frame;
-    
-    [fromView.superview addSubview:toView];
-    
-    toView.frame = CGRectMake(320, viewSize.origin.y, 320, viewSize.size.height);
-    
-    [UIView animateWithDuration:0.4 animations:
-     ^{
-         fromView.frame = CGRectMake(-320, viewSize.origin.y, 320, viewSize.size.height);
-         toView.frame = CGRectMake(0, viewSize.origin.y, 320, viewSize.size.height);
-     }
-                     completion:^(BOOL finished)
-     {
-         if(finished){
-             [self presentViewController:yourInfo animated:NO completion:nil];
-         }
-     }
-     ];
-}
-
-- (void)previousView{
-    exitingView=YES;
-    UIView *fromView = self.view;
-    CountriesViewController *states = [[CountriesViewController alloc]init];
-    states.arSelectedRows = self.arSelectedRows;
-    states.arSelectedMedia = self.arSelectedMedia;
-    states.reporterInfo=self.reporterInfo;
-    UIView *toView = states.view;
-    
-    CGRect viewSize = fromView.frame;
-    
-    [fromView.superview addSubview:toView];
-    
-    toView.frame = CGRectMake(-320, viewSize.origin.y, 320, viewSize.size.height);
-    
-    [UIView animateWithDuration:0.4 animations:
-     ^{
-         fromView.frame = CGRectMake(320, viewSize.origin.y, 320, viewSize.size.height);
-         toView.frame = CGRectMake(0, viewSize.origin.y, 320, viewSize.size.height);
-     }
-                     completion:^(BOOL finished)
-     {
-         if(finished){
-             [self presentViewController:states animated:NO completion:nil];
-         }
-     }
-     ];
-}
-*/
-
-//Pocetno dodavanje celija u collection view
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    NSDictionary*m = [mediji objectAtIndex:pozicija];
-    NSString *urlSlike=[m objectForKey:@"name"];
-    cell.tag=pozicija;
-    
-    NSString *documentsDirectoryPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)objectAtIndex:0];
-    
-    cell.img.image=[UIImage imageWithContentsOfFile:[NSString stringWithFormat:@"%@/%@.%@",documentsDirectoryPath,urlSlike,@"png"]];
-    [cell.img setHidden:NO];
-    //Provjeravanje da li je medij vec selektiran, jer se refreshanjem celija gube podaci
-    if([arSelectedMedia containsObject:[[mediji objectAtIndex:pozicija-offset] objectForKey:@"id"]]){
-        [cell.notSelected setHidden:YES];
-        [cell.select setHidden:NO];
-    }
-    else{
-        [cell.notSelected setHidden:NO];
-        [cell.select setHidden:YES];
-    }
-    return cell;
-}
-
-//Odabrana je neka celija
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-    //Ako je odabrani medij selektiran, izbrisi ga iz polja selektiranih i refreshaj pogled
-    if([arSelectedMedia containsObject:[[mediji objectAtIndex:pozicija-offset] objectForKey:@"id"]]){
-        NSString *poz = [[mediji objectAtIndex:pozicija-offset]objectForKey:@"id"];
-        [arSelectedMedia removeObject:poz];
-    }
-    //Ako odabrani medij nije selektiran, dodaj ga u polje selektiranih i refreshaj pogled
-    else{
-        NSString *poz = [[mediji objectAtIndex:pozicija-offset]objectForKey:@"id"];
-        [arSelectedMedia addObject:poz];
-        }
-}
-
-//Ukupan broj celija, + 10 zato da ima viska prostora na dnu kako bi mogao biti scrollabilan view
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
-{
-    return [mediji count]+offset+4;
-}
+ - (void)nextView{
+ exitingView=YES;
+ UIView *fromView = self.view;
+ ReporterInfo *yourInfo = [[ReporterInfo alloc]init];
+ yourInfo.arSelectedRows=self.arSelectedRows;
+ yourInfo.arSelectedMedia = self.arSelectedMedia;
+ yourInfo.reporterInfo=self.reporterInfo;
+ UIView *toView = yourInfo.view;
+ 
+ CGRect viewSize = fromView.frame;
+ 
+ [fromView.superview addSubview:toView];
+ 
+ toView.frame = CGRectMake(320, viewSize.origin.y, 320, viewSize.size.height);
+ 
+ [UIView animateWithDuration:0.4 animations:
+ ^{
+ fromView.frame = CGRectMake(-320, viewSize.origin.y, 320, viewSize.size.height);
+ toView.frame = CGRectMake(0, viewSize.origin.y, 320, viewSize.size.height);
+ }
+ completion:^(BOOL finished)
+ {
+ if(finished){
+ [self presentViewController:yourInfo animated:NO completion:nil];
+ }
+ }
+ ];
+ }
+ 
+ - (void)previousView{
+ exitingView=YES;
+ UIView *fromView = self.view;
+ CountriesViewController *states = [[CountriesViewController alloc]init];
+ states.arSelectedRows = self.arSelectedRows;
+ states.arSelectedMedia = self.arSelectedMedia;
+ states.reporterInfo=self.reporterInfo;
+ UIView *toView = states.view;
+ 
+ CGRect viewSize = fromView.frame;
+ 
+ [fromView.superview addSubview:toView];
+ 
+ toView.frame = CGRectMake(-320, viewSize.origin.y, 320, viewSize.size.height);
+ 
+ [UIView animateWithDuration:0.4 animations:
+ ^{
+ fromView.frame = CGRectMake(320, viewSize.origin.y, 320, viewSize.size.height);
+ toView.frame = CGRectMake(0, viewSize.origin.y, 320, viewSize.size.height);
+ }
+ completion:^(BOOL finished)
+ {
+ if(finished){
+ [self presentViewController:states animated:NO completion:nil];
+ }
+ }
+ ];
+ }
+ */
 
 @end

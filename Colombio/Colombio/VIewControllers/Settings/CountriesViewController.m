@@ -48,7 +48,8 @@
 }
 
 - (void)btnNextClicked{
-    
+    MediaViewController *media = [[MediaViewController alloc]init];
+    [self presentViewController:media animated:YES completion:nil];
 }
 
 #pragma mark WebServiceCommunication
@@ -67,16 +68,17 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             //Ako su uspjesno dohvaceni podaci sa servera
             if(error==nil&&data!=nil){
-                [self prepareCountries:data response:response strTimestamp:filePathTimeStamp strFilePathStates:filePathStates];
                 settingsCollectionView = [[SettingsCollectionView alloc] init];
                 settingsCollectionView.settingsCollectionViewDelegate = self;
-                settingsCollectionView.numberOfCells = [arOptions count];
                 [settingsCollectionView addCollectionView:self];
+                [self prepareCountries:data response:response strTimestamp:filePathTimeStamp strFilePathStates:filePathStates];
+                settingsCollectionView.numberOfCells = [arOptions count];
             }
             //Ako nije dobra konekcija
             else{
                 [Messages showErrorMsg:@"error_web_request"];
                 //TODO Vratiti korisnika na login???
+                [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
             }
             timer = [NSTimer scheduledTimerWithTimeInterval:0.8 target:self selector:@selector(toggleSpinnerOff) userInfo:nil repeats:NO];
         });

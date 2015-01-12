@@ -17,6 +17,7 @@
 #import "SettingsCollectionView.h"
 #import "LoginViewController.h"
 #import "CountriesViewController.h"
+#import "TabBarViewController.h"
 
 @interface MediaViewController : UIViewController<UIGestureRecognizerDelegate,CustomHeaderViewDelegate,ColombioServiceCommunicatorDelegate, SettingsCollectionViewDelegate>{
     NSTimer *timer;

@@ -12,11 +12,13 @@
 #import "BackgroundViewController.h"
 #import "ScrollableHeaderView.h"
 #import "CLTextField.h"
+#import "Loading.h"
 
 @interface LoginViewController : BackgroundViewController<UIScrollViewDelegate, UITextFieldDelegate>
 {
     NSTimer *timer;
     BOOL loginHidden;
+    Loading *loadingView;
 }
 
 
@@ -31,6 +33,7 @@
 @property(weak, nonatomic) IBOutlet UIButton *btnFB;
 @property(weak, nonatomic) IBOutlet UIButton *btnGoogle;
 @property(weak, nonatomic) IBOutlet UIButton *btnEmail;
+@property(weak, nonatomic) IBOutlet UIButton *btnLogin;
 
 @property(weak, nonatomic) IBOutlet UIView *viewLoginHolder;
 
@@ -43,7 +46,6 @@
 @property(strong,nonatomic) IBOutlet UIImageView *imgPassPassword;
 @property(strong,nonatomic) IBOutlet UIImageView *imgFailPassword;
 @property(strong,nonatomic) IBOutlet UIImageView *imgInputPassword;
-@property(strong,nonatomic) IBOutlet UIButton *btnLogin;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *CS_buttonDistanceFromTop;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *CS_buttonDistanceFromBottom;

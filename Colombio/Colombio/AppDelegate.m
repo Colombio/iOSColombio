@@ -17,6 +17,7 @@
 #import "TabBarViewController.h"
 #import "ForgotPasswordViewController.h"
 #import "CountriesViewController.h"
+#import "MediaViewController.h"
 
 @implementation AppDelegate
 @synthesize db, locationManager;
@@ -40,6 +41,9 @@
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
+    self.window.rootViewController = [[StartViewController alloc] init];
+    [self.window makeKeyAndVisible];
+    return YES;
     if([[NSUserDefaults standardUserDefaults] boolForKey:@"SKIP_START"]){
         [self checkToken];
     }else{
@@ -96,8 +100,6 @@
 }
 
 - (void)checkToken{
-    self.window.rootViewController = [[CountriesViewController alloc] init];
-    return;
     @try {
         NSString *result = [ColombioServiceCommunicator getSignedRequest];
         if(result.length>0){

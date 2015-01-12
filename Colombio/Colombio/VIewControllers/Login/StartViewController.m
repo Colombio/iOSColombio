@@ -29,7 +29,7 @@
 - (void)btnStartTapped:(id)sender{
     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"SKIP_START"];
     [[NSUserDefaults standardUserDefaults] synchronize];
-    [self presentViewController:[[CreateAccViewController alloc] init] animated:YES completion:nil];
+    [self presentViewController:[[LoginViewController alloc] init] animated:YES completion:nil];
 }
 
 @end
