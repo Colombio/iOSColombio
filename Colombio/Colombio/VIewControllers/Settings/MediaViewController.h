@@ -7,6 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Messages.h"
+#import "Localized.h"
+#import "CountriesCell.h"
+#import "CustomHeaderView.h"
+#import "Tools.h"
+#import "Loading.h"
+#import "ColombioServiceCommunicator.h"
+#import "SettingsCollectionView.h"
+#import "LoginViewController.h"
+#import "CountriesViewController.h"
 
 @interface MediaViewController : UIViewController<UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UIGestureRecognizerDelegate, UITextFieldDelegate>{
     UICollectionView *_collectionView;
