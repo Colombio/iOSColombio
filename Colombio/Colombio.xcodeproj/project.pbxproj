@@ -12,6 +12,7 @@
 		5835720E1A2B70C000F6EA17 /* ScrollableHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 5835720D1A2B70C000F6EA17 /* ScrollableHeader.m */; };
 		583572191A2B72BB00F6EA17 /* Tools.m in Sources */ = {isa = PBXBuildFile; fileRef = 583572181A2B72BB00F6EA17 /* Tools.m */; };
 		5836A1CD1A55F98300C509F1 /* Loading.m in Sources */ = {isa = PBXBuildFile; fileRef = 5836A1CC1A55F98300C509F1 /* Loading.m */; };
+		583C9EBE1A6357FD00C6131C /* SettingsCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 583C9EBD1A6357FD00C6131C /* SettingsCollectionView.m */; };
 		58A004FE1A60DBE300E7BA68 /* Countries.m in Sources */ = {isa = PBXBuildFile; fileRef = 58A004FC1A60DBE300E7BA68 /* Countries.m */; };
 		58A004FF1A60DBE300E7BA68 /* Countries.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58A004FD1A60DBE300E7BA68 /* Countries.xib */; };
 		58ACA0021A4EE6B70076D3D8 /* HeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 58ACA0001A4EE6B70076D3D8 /* HeaderView.m */; };
@@ -96,6 +97,8 @@
 		583572181A2B72BB00F6EA17 /* Tools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tools.m; sourceTree = "<group>"; };
 		5836A1CB1A55F98300C509F1 /* Loading.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Loading.h; sourceTree = "<group>"; };
 		5836A1CC1A55F98300C509F1 /* Loading.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Loading.m; sourceTree = "<group>"; };
+		583C9EBC1A6357FD00C6131C /* SettingsCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsCollectionView.h; sourceTree = "<group>"; };
+		583C9EBD1A6357FD00C6131C /* SettingsCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsCollectionView.m; sourceTree = "<group>"; };
 		58A004FB1A60DBE300E7BA68 /* Countries.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Countries.h; sourceTree = "<group>"; };
 		58A004FC1A60DBE300E7BA68 /* Countries.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Countries.m; sourceTree = "<group>"; };
 		58A004FD1A60DBE300E7BA68 /* Countries.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Countries.xib; sourceTree = "<group>"; };
@@ -400,30 +403,32 @@
 		BBCF58821A29357400CE64B4 /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
-				58AC9FFF1A4EE6B70076D3D8 /* HeaderView.h */,
-				58ACA0001A4EE6B70076D3D8 /* HeaderView.m */,
-				58ACA0011A4EE6B70076D3D8 /* HeaderView.xib */,
-				BBB6A0541A40E7D1006F61B3 /* VSSwitchButton.h */,
-				BBB6A0551A40E7D1006F61B3 /* VSSwitchButton.m */,
 				583572091A2B705100F6EA17 /* BottomNav.h */,
 				5835720A1A2B705100F6EA17 /* BottomNav.m */,
+				BBB6A0591A44D6B5006F61B3 /* CLTextField.h */,
+				BBB6A05A1A44D6B5006F61B3 /* CLTextField.m */,
 				BBCF588D1A2938B400CE64B4 /* CountriesCell.h */,
 				BBCF588E1A2938B400CE64B4 /* CountriesCell.m */,
 				BBCF588F1A2938B400CE64B4 /* CustomField.h */,
 				BBCF58901A2938B400CE64B4 /* CustomField.m */,
-				5835720C1A2B70C000F6EA17 /* ScrollableHeader.h */,
-				5835720D1A2B70C000F6EA17 /* ScrollableHeader.m */,
-				BBB6A0591A44D6B5006F61B3 /* CLTextField.h */,
-				BBB6A05A1A44D6B5006F61B3 /* CLTextField.m */,
+				BBB7F3301A60B60E0014909B /* CustomHeaderView.h */,
+				BBB7F3311A60B60E0014909B /* CustomHeaderView.m */,
+				58AC9FFF1A4EE6B70076D3D8 /* HeaderView.h */,
+				58ACA0001A4EE6B70076D3D8 /* HeaderView.m */,
+				58ACA0011A4EE6B70076D3D8 /* HeaderView.xib */,
 				5836A1CB1A55F98300C509F1 /* Loading.h */,
 				5836A1CC1A55F98300C509F1 /* Loading.m */,
-				BBAF77791A50C914004AAAF9 /* ScrollableHeaderView.h */,
-				BBAF777A1A50C914004AAAF9 /* ScrollableHeaderView.m */,
+				5835720C1A2B70C000F6EA17 /* ScrollableHeader.h */,
+				5835720D1A2B70C000F6EA17 /* ScrollableHeader.m */,
 				BBB7F32B1A60A6C20014909B /* ScrollableHeaderContentView.h */,
 				BBB7F32C1A60A6C20014909B /* ScrollableHeaderContentView.m */,
 				BBB7F32E1A60A6D30014909B /* ScrollableHeaderContentView.xib */,
-				BBB7F3301A60B60E0014909B /* CustomHeaderView.h */,
-				BBB7F3311A60B60E0014909B /* CustomHeaderView.m */,
+				BBAF77791A50C914004AAAF9 /* ScrollableHeaderView.h */,
+				BBAF777A1A50C914004AAAF9 /* ScrollableHeaderView.m */,
+				583C9EBC1A6357FD00C6131C /* SettingsCollectionView.h */,
+				583C9EBD1A6357FD00C6131C /* SettingsCollectionView.m */,
+				BBB6A0541A40E7D1006F61B3 /* VSSwitchButton.h */,
+				BBB6A0551A40E7D1006F61B3 /* VSSwitchButton.m */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -610,6 +615,7 @@
 				58A004FE1A60DBE300E7BA68 /* Countries.m in Sources */,
 				BBCF58A31A29395400CE64B4 /* YourInfo.m in Sources */,
 				BBAE1F1D1A37B51F0008B772 /* ColombioServiceCommunicator.m in Sources */,
+				583C9EBE1A6357FD00C6131C /* SettingsCollectionView.m in Sources */,
 				58ACA0021A4EE6B70076D3D8 /* HeaderView.m in Sources */,
 				BBAF777B1A50C914004AAAF9 /* ScrollableHeaderView.m in Sources */,
 				BBB7F32D1A60A6C20014909B /* ScrollableHeaderContentView.m in Sources */,

@@ -23,7 +23,6 @@
     IBOutlet CustomHeaderView *customHeaderView;
     Loading *loadingView;
     
-    bool isStatePicked;
     bool isFirstViewShown;
     bool isCollectionViewHeaderDisplayed;
 }
