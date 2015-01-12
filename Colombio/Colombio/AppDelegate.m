@@ -16,7 +16,7 @@
 #import "CreateAccViewController.h"
 #import "TabBarViewController.h"
 #import "ForgotPasswordViewController.h"
-#import "Countries.h"
+#import "CountriesViewController.h"
 
 @implementation AppDelegate
 @synthesize db, locationManager;
@@ -96,7 +96,7 @@
 }
 
 - (void)checkToken{
-    self.window.rootViewController = [[Countries alloc] init];
+    self.window.rootViewController = [[CountriesViewController alloc] init];
     return;
     @try {
         NSString *result = [ColombioServiceCommunicator getSignedRequest];

@@ -10,14 +10,14 @@
 // 2) loadati fav countrie medu ostalim
 // 3) Kada se klikne na done, updateati fav countrie, prikazati loading i vratiti na settings
 
-#import "Countries.h"
+#import "CountriesViewController.h"
 #import <QuartzCore/QuartzCore.h>
 
-@interface Countries ()
+@interface CountriesViewController ()
 
 @end
 
-@implementation Countries
+@implementation CountriesViewController
 
 @synthesize arOptions;
 @synthesize arSelectedRows;

@@ -16,7 +16,7 @@
 #import "ColombioServiceCommunicator.h"
 #import "SettingsCollectionView.h"
 
-@interface Countries : UIViewController
+@interface CountriesViewController : UIViewController
 <UIGestureRecognizerDelegate,CustomHeaderViewDelegate,ColombioServiceCommunicatorDelegate, SettingsCollectionViewDelegate>{
     NSTimer *timer;
     UICollectionView *_collectionView;
