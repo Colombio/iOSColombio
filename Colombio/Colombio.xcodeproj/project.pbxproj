@@ -77,6 +77,8 @@
 		BBCF58ED1A29401700CE64B4 /* Localized.m in Sources */ = {isa = PBXBuildFile; fileRef = BBCF58EC1A29401700CE64B4 /* Localized.m */; };
 		BBCF58EF1A29412100CE64B4 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BBCF58EE1A29412100CE64B4 /* libsqlite3.dylib */; };
 		BBCF58F51A2AA47F00CE64B4 /* UIView+XibAttributes.m in Sources */ = {isa = PBXBuildFile; fileRef = BBCF58F41A2AA47F00CE64B4 /* UIView+XibAttributes.m */; };
+		BBD453611A64914A0029CADD /* ContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBD4535F1A64914A0029CADD /* ContainerViewController.m */; };
+		BBD453621A64914A0029CADD /* ContainerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBD453601A64914A0029CADD /* ContainerViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -205,6 +207,9 @@
 		BBCF58EE1A29412100CE64B4 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		BBCF58F31A2AA47F00CE64B4 /* UIView+XibAttributes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+XibAttributes.h"; sourceTree = "<group>"; };
 		BBCF58F41A2AA47F00CE64B4 /* UIView+XibAttributes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+XibAttributes.m"; sourceTree = "<group>"; };
+		BBD4535E1A64914A0029CADD /* ContainerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContainerViewController.h; sourceTree = "<group>"; };
+		BBD4535F1A64914A0029CADD /* ContainerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContainerViewController.m; sourceTree = "<group>"; };
+		BBD453601A64914A0029CADD /* ContainerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContainerViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -457,6 +462,7 @@
 		BBCF58831A29357400CE64B4 /* VIewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				BBD4535D1A64913E0029CADD /* ContainerViewController */,
 				58A004FA1A60DBE300E7BA68 /* Settings */,
 				BBB2B1351A5F52A500F4FD38 /* Upload */,
 				583572021A2B4B7400F6EA17 /* Login */,
@@ -504,6 +510,16 @@
 				BBAE1F1F1A37B5A80008B772 /* NSDate+DateHandler.m */,
 			);
 			path = Utility;
+			sourceTree = "<group>";
+		};
+		BBD4535D1A64913E0029CADD /* ContainerViewController */ = {
+			isa = PBXGroup;
+			children = (
+				BBD4535E1A64914A0029CADD /* ContainerViewController.h */,
+				BBD4535F1A64914A0029CADD /* ContainerViewController.m */,
+				BBD453601A64914A0029CADD /* ContainerViewController.xib */,
+			);
+			path = ContainerViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -601,6 +617,7 @@
 				BBB7F32F1A60A6D30014909B /* ScrollableHeaderContentView.xib in Resources */,
 				BBB2B1341A5F404E00F4FD38 /* DummyViewController.xib in Resources */,
 				58A004FF1A60DBE300E7BA68 /* CountriesViewController.xib in Resources */,
+				BBD453621A64914A0029CADD /* ContainerViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -653,6 +670,7 @@
 				BBB7F3321A60B60E0014909B /* CustomHeaderView.m in Sources */,
 				BBCF58DC1A293DD200CE64B4 /* Database.m in Sources */,
 				BBCF58911A2938B400CE64B4 /* CountriesCell.m in Sources */,
+				BBD453611A64914A0029CADD /* ContainerViewController.m in Sources */,
 				BBCF58A01A29395400CE64B4 /* Messages.m in Sources */,
 				BBCF589F1A29395400CE64B4 /* CryptoClass.m in Sources */,
 				BBCF58F51A2AA47F00CE64B4 /* UIView+XibAttributes.m in Sources */,
