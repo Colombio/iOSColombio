@@ -41,7 +41,7 @@
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
-    self.window.rootViewController = [[StartViewController alloc] init];
+    self.window.rootViewController = [[MediaViewController alloc] init];
     [self.window makeKeyAndVisible];
     return YES;
     if([[NSUserDefaults standardUserDefaults] boolForKey:@"SKIP_START"]){

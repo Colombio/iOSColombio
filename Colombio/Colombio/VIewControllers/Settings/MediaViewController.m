@@ -31,7 +31,7 @@
     customHeaderView.backButtonText = @"SELECT COUNTRY";
     customHeaderView.nextButtonText = @"YOUR INFO";
     loadingView = [[Loading alloc]init];
-    
+    imagesLoaded = [[NSMutableArray alloc]init];
     if(arSelectedMedia.count==0){
         arSelectedMedia = [[NSMutableArray alloc]init];
     }
@@ -108,7 +108,9 @@
     mediji =[mediaFromFile objectForKey:@"data"];
     arMediaImages = mediji;
     if(isDataChanged==true){
-        timer = [NSTimer scheduledTimerWithTimeInterval:0 target:self selector:@selector(loadImages) userInfo:nil repeats:NO];
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            [self loadImages];
+        });
     }
 }
 
@@ -148,7 +150,8 @@
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:0];
         i++;
         NSArray *indexPaths = [[NSMutableArray alloc]initWithObjects:indexPath, nil];
-        
+        long cellPosition = (indexPath.row)+(indexPath.section*3);
+        [imagesLoaded addObject:[NSString stringWithFormat:@"%ld",cellPosition]];
         dispatch_async(dispatch_get_main_queue(), ^{
             [settingsCollectionView.collectionView reloadItemsAtIndexPaths:indexPaths];
         });
@@ -180,7 +183,8 @@
     
     NSString *documentsDirectoryPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)objectAtIndex:0];
     
-    //cell.imgCountryFlag.image=[UIImage imageWithContentsOfFile:[NSString stringWithFormat:@"%@/%@.%@",documentsDirectoryPath,strMediaName,@"png"]];
+    if([imagesLoaded containsObject:[NSString stringWithFormat:@"%ld",cellPosition]])
+    cell.imgCountryFlag.image=[UIImage imageWithContentsOfFile:[NSString stringWithFormat:@"%@/%@.%@",documentsDirectoryPath,strMediaName,@"png"]];
     cell.lblCountryName.text = strMediaName;
     
     //Ako je odabran medij, prikazi je da je odabran u viewu
@@ -192,6 +196,7 @@
     //Ako nije odabran medij, oznaci da nije odabran
     else{
         @try {
+            if([imagesLoaded containsObject:[NSString stringWithFormat:@"%ld",cellPosition]])
             cell.imgCountryFlag.image =[Tools convertImageToGrayScale:cell.imgCountryFlag.image=[UIImage imageWithContentsOfFile:[NSString stringWithFormat:@"%@/%@.%@",documentsDirectoryPath,strMediaName,@"png"]]];
         }
         @catch (NSException *exception) {

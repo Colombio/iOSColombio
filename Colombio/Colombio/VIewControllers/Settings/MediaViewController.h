@@ -24,6 +24,7 @@
     IBOutlet CustomHeaderView *customHeaderView;
     Loading *loadingView;
     BOOL exitingView;
+    NSMutableArray *imagesLoaded;
 }
 
 @property (strong, nonatomic) SettingsCollectionView *settingsCollectionView;
