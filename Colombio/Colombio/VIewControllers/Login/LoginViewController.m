@@ -204,6 +204,8 @@
     //Dogodila se pogreska prilikom dohvacanja zahtjeva
     if(err){
         [Messages showErrorMsg:@"error_web_request"];
+        [loadingView stopCustomSpinner];
+        [loadingView customSpinnerFail];
     }
     //Uspjesno je poslan zahtjev
     else{
@@ -277,7 +279,9 @@
             NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&URLresponse error:&err];
             //Dogodila se pogreska prilikom dohvacanja zahtjeva
             if(err){
-                [Messages showErrorMsg:@"Pogreska prilikom slanja zahtjeva15"];
+                [Messages showErrorMsg:@"error_web_request"];
+                [loadingView stopCustomSpinner];
+                [loadingView customSpinnerFail];
             }
             
             //Uspjesno je poslan zahtjev
