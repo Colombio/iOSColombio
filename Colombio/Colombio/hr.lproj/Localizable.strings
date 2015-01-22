@@ -57,6 +57,8 @@
 /*create news*/
 "news_title_placeholder" = "Unesite naslov";
 "news_description_placeholder" = "Unesite opis";
+"select_content" = "ODABERITE SADRŽAJ";
+"use" = "POTVRDI";
 
 /*Spinner message*/
 "logged" ="Logged in, please wait...";

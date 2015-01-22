@@ -66,6 +66,29 @@
     [request setTimeoutInterval:timeout];
 }
 
+#pragma mark Tags
+
+- (void)fetchTags{
+    NSString *url_str = [NSString stringWithFormat:@"%@/api_config/get_news_tags?signed_req=%@", BASE_URL, [ColombioServiceCommunicator getSignedRequest]];
+    NSURL * url = [NSURL URLWithString:url_str];
+    NSError *err=nil;
+    request =[NSMutableURLRequest requestWithURL:url];
+    
+    [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if(err!=nil&&data==nil){
+                //TODO - check connection, check error
+                [Messages showErrorMsg:@"This app requires internet connection. Please make sure that you are connected to the internet."];
+                return;
+            }else{
+                NSMutableDictionary *result=[NSJSONSerialization JSONObjectWithData:data options:0 error:NULL];
+                [self.delegate didFetchTags:result];
+            }
+        });
+    }];
+            
+}
+
 //TODO fetching news demands
 /*
  #pragma mark NewsDemands

@@ -20,6 +20,8 @@
     #import "UIConfiguration.h"
 #endif
 
+#define BASE_URL @"https://colomb.io"
+
 #define TXT_FIELD_INPUT_IMG [UIImage imageNamed:@"inputicon"]
 #define TXT_FIELD_WRONG_IMG [UIImage imageNamed:@"wrong"]
 #define TXT_FIELD_PASS_IMG [UIImage imageNamed:@"pass"]

@@ -165,7 +165,7 @@
     strPassword =txtPassword.txtField.text;
     
     ColombioServiceCommunicator *csc = [[ColombioServiceCommunicator alloc] init];
-    [csc sendAsyncHttp:@"https://appforrest.com/colombio/api_user_managment/mau_normal_register/" httpBody:[NSString stringWithFormat:@"user_name=%@&user_email=%@&user_pass=%@&cpassword=%@",strUsername,strEmail,strPassword, strConfirmPass]cache:NSURLRequestReloadIgnoringCacheData timeoutInterval:5];
+    [csc sendAsyncHttp:[NSString stringWithFormat:@"%@/api_user_managment/mau_normal_register/", BASE_URL] httpBody:[NSString stringWithFormat:@"user_name=%@&user_email=%@&user_pass=%@&cpassword=%@",strUsername,strEmail,strPassword, strConfirmPass]cache:NSURLRequestReloadIgnoringCacheData timeoutInterval:5];
     
     [NSURLConnection sendAsynchronousRequest:csc.request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
         

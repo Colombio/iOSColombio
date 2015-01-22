@@ -26,8 +26,12 @@
         colorMap[COLOR_BLACK_TRANSPARENT] = [UIColor colorWithRed:255.0/255.0 green:255.0/255.0 blue:255.0/255.0 alpha:0.5];
         colorMap[COLOR_CUSTOM_RED] = [UIColor redColor];
         colorMap[COLOR_TEXT_NAVIGATIONBAR_TITLE] = [UIColor colorWithWhite:0.2 alpha:1.0];
+        colorMap[COLOR_TEXT_NAVIGATIONBAR_BUTTONLABEL] = [UIColor colorWithWhite:0.1 alpha:0.9];
         colorMap[COLOR_TEXT_NAVIGATIONBAR_BUTTON] = [UIColor colorWithWhite:0.1 alpha:0.5];
         colorMap[COLOR_TEXT_NAVIGATIONBAR_BUTTON_HIGHLIGHT] = [UIColor colorWithWhite:0.1 alpha:0.2];
+        colorMap[COLOR_TAGS_TEXT_NORMAL] = [UIColor colorWithWhite:0.5 alpha:0.5];
+        colorMap[COLOR_TAGS_TEXT_SELECTED] = [UIColor colorWithWhite:0.1 alpha:0.9];
+        colorMap[COLOR_TAGS_BACKGROUND_SELECTED] = [UIColor colorWithWhite:0.9 alpha:0.5];
         
         fontMap = [[NSMutableDictionary alloc] init];
         fontMap[FONT_HELVETICA_NEUE_ULTRALIGHT]             = [UIFont fontWithName:@"HelveticaNeue-Ultralight" size:17];
@@ -40,6 +44,7 @@
         fontMap[FONT_HELVETICA_NEUE_REGULAR]                = [UIFont fontWithName:@"HelveticaNeue" size:17];
         fontMap[FONT_HELVETICA_NEUE_BOLD_LARGE]             = [UIFont fontWithName:@"HelveticaNeue-Bold" size:40];
         fontMap[FONT_HELVETICA_NEUE_BOLD_MIDDLE]             = [UIFont fontWithName:@"HelveticaNeue-Bold" size:25];
+        fontMap[FONT_HELVETICA_NEUE_TAGS_ITALIC]             = [UIFont fontWithName:@"HelveticaNeue-Italic" size:14];
         
         keyboardMap = [[NSMutableDictionary alloc] init];
         keyboardMap[KEYBOARD_DEFAULT]       = @(UIKeyboardTypeDefault);

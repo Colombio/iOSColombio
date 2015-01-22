@@ -8,6 +8,10 @@
 
 #import "HomeViewController.h"
 #import "CreateNewsViewController.h"
+#import "UploadContainerViewController.h"
+#import "ContainerViewController.h"
+
+#import "DummyViewController.h"
 
 @interface HomeViewController ()
 
@@ -26,6 +30,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    self.navigationController.tabBarItem.selectedImage  = [[UIImage imageNamed:@"home_active"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -49,7 +57,11 @@
 }
 
 - (void)btnSendClicked:(id)sender{
-    [self.navigationController pushViewController:[[CreateNewsViewController alloc] init] animated:YES];
+    //[self.navigationController pushViewController:[[CreateNewsViewController alloc] init] animated:YES];
+    
+    UploadContainerViewController *containerVC = [[UploadContainerViewController alloc] initWithNibName:@"ContainerViewController" bundle:nil];
+    [self.navigationController pushViewController:containerVC animated:YES];
+    self.navigationController.tabBarItem.selectedImage  = [[UIImage imageNamed:@"home_normal"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
 }
 
 - (void)btnAlertClicked:(id)sender{

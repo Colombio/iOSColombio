@@ -41,9 +41,6 @@
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
-    self.window.rootViewController = [[StartViewController alloc] init];
-    [self.window makeKeyAndVisible];
-    return YES;
     if([[NSUserDefaults standardUserDefaults] boolForKey:@"SKIP_START"]){
         [self checkToken];
     }else{
@@ -104,7 +101,7 @@
         NSString *result = [ColombioServiceCommunicator getSignedRequest];
         if(result.length>0){
             //URL sa signed req
-            NSString *url_str = [NSString stringWithFormat:@"https://appforrest.com/colombio/api_user_managment/mau_check_status?signed_req=%@",result];
+            NSString *url_str = [NSString stringWithFormat:@"%@/api_user_managment/mau_check_status?signed_req=%@",BASE_URL,result];
             NSURL * url = [NSURL URLWithString:url_str];
             NSError *err=nil;
             NSMutableURLRequest *request =[NSMutableURLRequest requestWithURL:url];

@@ -62,6 +62,8 @@
 /*create news*/
 "news_title_placeholder" = "Enter your title";
 "news_description_placeholder" = "Enter your description";
+"select_content" = "SELECT CONTENT";
+"use" = "USE";
 
 
 /*Spinner message*/

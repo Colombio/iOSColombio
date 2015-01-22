@@ -65,6 +65,10 @@
 		BBB7F32F1A60A6D30014909B /* ScrollableHeaderContentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBB7F32E1A60A6D30014909B /* ScrollableHeaderContentView.xib */; };
 		BBB7F3321A60B60E0014909B /* CustomHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB7F3311A60B60E0014909B /* CustomHeaderView.m */; };
 		BBB7F33A1A6209560014909B /* NewsData.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB7F3391A6209560014909B /* NewsData.m */; };
+		BBBA31CF1A70772E002ED12A /* ButtonTag.m in Sources */ = {isa = PBXBuildFile; fileRef = BBBA31CE1A70772E002ED12A /* ButtonTag.m */; };
+		BBBE0C561A6DB37C00EF5124 /* UploadContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBBE0C551A6DB37C00EF5124 /* UploadContainerViewController.m */; };
+		BBC77C691A6889610069FD9D /* PhotoLibraryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBC77C671A6889610069FD9D /* PhotoLibraryViewController.m */; };
+		BBC77C6A1A6889610069FD9D /* PhotoLibraryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBC77C681A6889610069FD9D /* PhotoLibraryViewController.xib */; };
 		BBCF58911A2938B400CE64B4 /* CountriesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BBCF588E1A2938B400CE64B4 /* CountriesCell.m */; };
 		BBCF58921A2938B400CE64B4 /* CustomField.m in Sources */ = {isa = PBXBuildFile; fileRef = BBCF58901A2938B400CE64B4 /* CustomField.m */; };
 		BBCF589F1A29395400CE64B4 /* CryptoClass.m in Sources */ = {isa = PBXBuildFile; fileRef = BBCF58951A29395400CE64B4 /* CryptoClass.m */; };
@@ -77,6 +81,7 @@
 		BBCF58ED1A29401700CE64B4 /* Localized.m in Sources */ = {isa = PBXBuildFile; fileRef = BBCF58EC1A29401700CE64B4 /* Localized.m */; };
 		BBCF58EF1A29412100CE64B4 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BBCF58EE1A29412100CE64B4 /* libsqlite3.dylib */; };
 		BBCF58F51A2AA47F00CE64B4 /* UIView+XibAttributes.m in Sources */ = {isa = PBXBuildFile; fileRef = BBCF58F41A2AA47F00CE64B4 /* UIView+XibAttributes.m */; };
+		BBD071571A69C79800C3E84E /* LibraryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BBD071561A69C79800C3E84E /* LibraryCell.m */; };
 		BBD453611A64914A0029CADD /* ContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBD4535F1A64914A0029CADD /* ContainerViewController.m */; };
 		BBD453621A64914A0029CADD /* ContainerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBD453601A64914A0029CADD /* ContainerViewController.xib */; };
 /* End PBXBuildFile section */
@@ -182,6 +187,13 @@
 		BBB7F3311A60B60E0014909B /* CustomHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomHeaderView.m; sourceTree = "<group>"; };
 		BBB7F3381A6209560014909B /* NewsData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsData.h; sourceTree = "<group>"; };
 		BBB7F3391A6209560014909B /* NewsData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsData.m; sourceTree = "<group>"; };
+		BBBA31CD1A70772E002ED12A /* ButtonTag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ButtonTag.h; sourceTree = "<group>"; };
+		BBBA31CE1A70772E002ED12A /* ButtonTag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ButtonTag.m; sourceTree = "<group>"; };
+		BBBE0C541A6DB37C00EF5124 /* UploadContainerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadContainerViewController.h; sourceTree = "<group>"; };
+		BBBE0C551A6DB37C00EF5124 /* UploadContainerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadContainerViewController.m; sourceTree = "<group>"; };
+		BBC77C661A6889610069FD9D /* PhotoLibraryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoLibraryViewController.h; sourceTree = "<group>"; };
+		BBC77C671A6889610069FD9D /* PhotoLibraryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoLibraryViewController.m; sourceTree = "<group>"; };
+		BBC77C681A6889610069FD9D /* PhotoLibraryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotoLibraryViewController.xib; sourceTree = "<group>"; };
 		BBCF588D1A2938B400CE64B4 /* CountriesCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CountriesCell.h; sourceTree = "<group>"; };
 		BBCF588E1A2938B400CE64B4 /* CountriesCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CountriesCell.m; sourceTree = "<group>"; };
 		BBCF588F1A2938B400CE64B4 /* CustomField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomField.h; sourceTree = "<group>"; };
@@ -207,6 +219,8 @@
 		BBCF58EE1A29412100CE64B4 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		BBCF58F31A2AA47F00CE64B4 /* UIView+XibAttributes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+XibAttributes.h"; sourceTree = "<group>"; };
 		BBCF58F41A2AA47F00CE64B4 /* UIView+XibAttributes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+XibAttributes.m"; sourceTree = "<group>"; };
+		BBD071551A69C79800C3E84E /* LibraryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LibraryCell.h; sourceTree = "<group>"; };
+		BBD071561A69C79800C3E84E /* LibraryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LibraryCell.m; sourceTree = "<group>"; };
 		BBD4535E1A64914A0029CADD /* ContainerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContainerViewController.h; sourceTree = "<group>"; };
 		BBD4535F1A64914A0029CADD /* ContainerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContainerViewController.m; sourceTree = "<group>"; };
 		BBD453601A64914A0029CADD /* ContainerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContainerViewController.xib; sourceTree = "<group>"; };
@@ -295,6 +309,11 @@
 				BBB2B1361A5F534F00F4FD38 /* CreateNewsViewController.h */,
 				BBB2B1371A5F534F00F4FD38 /* CreateNewsViewController.m */,
 				BBB2B1381A5F534F00F4FD38 /* CreateNewsViewController.xib */,
+				BBC77C661A6889610069FD9D /* PhotoLibraryViewController.h */,
+				BBC77C671A6889610069FD9D /* PhotoLibraryViewController.m */,
+				BBC77C681A6889610069FD9D /* PhotoLibraryViewController.xib */,
+				BBBE0C541A6DB37C00EF5124 /* UploadContainerViewController.h */,
+				BBBE0C551A6DB37C00EF5124 /* UploadContainerViewController.m */,
 			);
 			path = Upload;
 			sourceTree = "<group>";
@@ -455,6 +474,10 @@
 				583C9EBD1A6357FD00C6131C /* SettingsCollectionView.m */,
 				BBB6A0541A40E7D1006F61B3 /* VSSwitchButton.h */,
 				BBB6A0551A40E7D1006F61B3 /* VSSwitchButton.m */,
+				BBD071551A69C79800C3E84E /* LibraryCell.h */,
+				BBD071561A69C79800C3E84E /* LibraryCell.m */,
+				BBBA31CD1A70772E002ED12A /* ButtonTag.h */,
+				BBBA31CE1A70772E002ED12A /* ButtonTag.m */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -616,6 +639,7 @@
 				583C9EC31A63654500C6131C /* MediaViewController.xib in Resources */,
 				BBB7F32F1A60A6D30014909B /* ScrollableHeaderContentView.xib in Resources */,
 				BBB2B1341A5F404E00F4FD38 /* DummyViewController.xib in Resources */,
+				BBC77C6A1A6889610069FD9D /* PhotoLibraryViewController.xib in Resources */,
 				58A004FF1A60DBE300E7BA68 /* CountriesViewController.xib in Resources */,
 				BBD453621A64914A0029CADD /* ContainerViewController.xib in Resources */,
 			);
@@ -646,6 +670,7 @@
 				BBAE1F291A37B6980008B772 /* CreateAccViewController.m in Sources */,
 				BBCF58921A2938B400CE64B4 /* CustomField.m in Sources */,
 				BBB2B1331A5F404E00F4FD38 /* DummyViewController.m in Sources */,
+				BBBE0C561A6DB37C00EF5124 /* UploadContainerViewController.m in Sources */,
 				583572071A2B4B7400F6EA17 /* LoginViewController.m in Sources */,
 				BBB2B12E1A5F37E200F4FD38 /* TabBarViewController.m in Sources */,
 				5835720B1A2B705100F6EA17 /* BottomNav.m in Sources */,
@@ -656,15 +681,18 @@
 				BBAE1F1D1A37B51F0008B772 /* ColombioServiceCommunicator.m in Sources */,
 				583C9EBE1A6357FD00C6131C /* SettingsCollectionView.m in Sources */,
 				58ACA0021A4EE6B70076D3D8 /* HeaderView.m in Sources */,
+				BBC77C691A6889610069FD9D /* PhotoLibraryViewController.m in Sources */,
 				BBB7F33A1A6209560014909B /* NewsData.m in Sources */,
 				BBAF777B1A50C914004AAAF9 /* ScrollableHeaderView.m in Sources */,
 				BBB7F32D1A60A6C20014909B /* ScrollableHeaderContentView.m in Sources */,
+				BBD071571A69C79800C3E84E /* LibraryCell.m in Sources */,
 				BBB33AC61A27D9EE008D0E26 /* AppDelegate.m in Sources */,
 				583C9EC21A63654500C6131C /* MediaViewController.m in Sources */,
 				5835720E1A2B70C000F6EA17 /* ScrollableHeader.m in Sources */,
 				BBCF58ED1A29401700CE64B4 /* Localized.m in Sources */,
 				BBCF58A11A29395400CE64B4 /* Reachability.m in Sources */,
 				BBB6A0631A48D791006F61B3 /* StartViewController.m in Sources */,
+				BBBA31CF1A70772E002ED12A /* ButtonTag.m in Sources */,
 				BBB33AC31A27D9EE008D0E26 /* main.m in Sources */,
 				583572191A2B72BB00F6EA17 /* Tools.m in Sources */,
 				BBB7F3321A60B60E0014909B /* CustomHeaderView.m in Sources */,

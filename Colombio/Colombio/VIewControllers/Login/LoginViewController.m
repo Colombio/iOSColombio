@@ -191,7 +191,7 @@
     NSString *filePathToken =[documentsDirectory stringByAppendingPathComponent:@"token.out"];
     
     //Slanje podataka za prijavu i dohvacanje odgovora
-    NSString *url_str = [NSString stringWithFormat:@"https://appforrest.com/colombio/api_user_managment/mau_login/"];
+    NSString *url_str = [NSString stringWithFormat:@"%@/api_user_managment/mau_login/", BASE_URL];
     NSURL * url = [NSURL URLWithString:url_str];
     NSError *err=nil;
     NSMutableURLRequest *request =[NSMutableURLRequest requestWithURL:url];
@@ -249,10 +249,9 @@
 - (void)btnFBSelected:(id)sender{
     [txtEmail.txtField resignFirstResponder];
     [txtPassword.txtField resignFirstResponder];
-    if (loginHidden) {
+    if (!loginHidden) {
         [self hideEmailLogin];
     }
-    _viewFBHolder.backgroundColor = [UIColor colorWithWhite:0.1 alpha:0.5];
     [self checkLoginFacebook];
     
 }
@@ -270,7 +269,7 @@
             NSString *filePathToken =[documentsDirectory stringByAppendingPathComponent:@"token.out"];
             
             //Slanje podataka za prijavu i dohvacanje odgovora
-            NSString *url_str = [NSString stringWithFormat:@"https://appforrest.com/colombio/api_user_managment/mau_social_login?type=fb&token=%@",token];
+            NSString *url_str = [NSString stringWithFormat:@"%@/api_user_managment/mau_social_login?type=fb&token=%@",BASE_URL,token];
             NSURL * url = [NSURL URLWithString:url_str];
             NSError *err=nil;
             NSMutableURLRequest *request =[NSMutableURLRequest requestWithURL:url];
@@ -304,9 +303,9 @@
                     [userId writeToFile:filePathUser atomically:YES encoding:NSUTF8StringEncoding error:nil];
                     [token writeToFile:filePathToken atomically:YES encoding:NSUTF8StringEncoding error:nil];
                     
-                    CountriesViewController *states = [[CountriesViewController alloc]init];
+                    /*CountriesViewController *states = [[CountriesViewController alloc]init];
                      states.arSelectedRows = [[NSMutableArray alloc] init];
-                     [self presentViewController:states animated:YES completion:nil];
+                     [self presentViewController:states animated:YES completion:nil];*/
                     /*
                      Testing purposes only
                      **/
@@ -317,6 +316,11 @@
             }
         }];
     }
+}
+
+#pragma mark Google
+- (void)btnGoogleSelected:(id)sender{
+
 }
 
 
@@ -463,10 +467,6 @@
 - (IBAction)tapBackground:(id)sender{
     [txtEmail resignFirstResponder];
     [txtPassword resignFirstResponder];
-}
-
--(void)toggleLoginOn{
-    [btnLogin setTitle:@"Please wait..." forState:UIControlStateNormal];
 }
 
 /*

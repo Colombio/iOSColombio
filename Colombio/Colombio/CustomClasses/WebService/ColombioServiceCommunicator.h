@@ -12,6 +12,7 @@
 @protocol ColombioServiceCommunicatorDelegate
 @optional
 - (void)didFetchNewsDemands:(NSDictionary*)result;
+- (void)didFetchTags:(NSDictionary*)result;
 - (void)fetchingFailedWithError:(NSError*)error;
 
 @end
@@ -23,7 +24,8 @@
 @property (strong, nonatomic) NSMutableURLRequest *request;
 
 + (NSString*)getSignedRequest;
-+(id)sharedManager;
++ (id)sharedManager;
+- (void)fetchTags;
 -(void)sendAsyncHttp:(NSString *)strUrl httpBody:(NSString *)strBody cache:(NSUInteger)cachePolicy timeoutInterval:(double)timeout;
 //- (void)fetchNewsDemands;
 

@@ -14,6 +14,7 @@
 #import "CLTextField.h"
 #import "Loading.h"
 
+
 @interface CreateAccViewController : UIViewController<UITableViewDelegate, UIScrollViewDelegate, HeaderViewDelegate, ColombioServiceCommunicatorDelegate, UITextFieldDelegate, NSURLConnectionDelegate>{
     IBOutlet UIScrollView *scrollBox;
     IBOutlet CLTextField *txtUsername;

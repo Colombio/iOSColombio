@@ -7,8 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PhotoLibraryViewController.h"
+#import "ColombioServiceCommunicator.h"
 
-@interface CreateNewsViewController : UIViewController<UITextViewDelegate>
+@protocol CreateAccViewControllerDelegate
 
+- (void)navigateToVC:(PhotoLibraryViewController*)viewController;
+
+@end
+
+@interface CreateNewsViewController : UIViewController<UITextViewDelegate, ColombioServiceCommunicatorDelegate>
+
+@property (nonatomic, strong) id<CreateAccViewControllerDelegate> delegate;
 
 @end

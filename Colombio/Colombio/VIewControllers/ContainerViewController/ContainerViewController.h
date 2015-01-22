@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ContainerViewController : UIViewController
+@interface ContainerViewController : UIViewController<UIPageViewControllerDelegate,UIPageViewControllerDataSource,UIScrollViewDelegate>
 
-@property (weak, nonatomic) IBOutlet UIView *viewHeader;
-@property (weak, nonatomic) IBOutlet UIView *viwContainer;
+@property (strong, nonatomic) NSArray *viewControllersArray;
+
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil andControllers:(NSArray*)controllers;
 @end
