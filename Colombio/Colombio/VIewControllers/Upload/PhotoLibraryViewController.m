@@ -109,6 +109,7 @@
 }
 
 - (void)btnNextClicked{
+    [self dismissViewControllerAnimated:YES completion:nil];
     if ([self.caller isKindOfClass:[UploadContainerViewController class]]) {
         NSMutableArray *tempArray = [[NSMutableArray alloc] init];
         if (selectedImage.count>0){
@@ -119,7 +120,7 @@
         }
         [(UploadContainerViewController*)self.caller selectedImageAction:tempArray];
     }
-    [self dismissViewControllerAnimated:YES completion:nil];
+    
 }
 
 #pragma mark CollectionView

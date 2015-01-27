@@ -11,6 +11,9 @@
 @interface ContainerViewController : UIViewController<UIPageViewControllerDelegate,UIPageViewControllerDataSource,UIScrollViewDelegate>
 
 @property (strong, nonatomic) NSArray *viewControllersArray;
+@property (strong, nonatomic) NSString *nextButtonTitle;//sets textual NEXT button
+@property (strong, nonatomic) UIImage *imgNextBtnNormal;//sets NEXT button image if text length = 0
+@property (strong, nonatomic) UIImage *imgNextBtnPressed;//sets NEXT button image if text length = 0
 
-- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil andControllers:(NSArray*)controllers;
+//- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil andControllers:(NSArray*)controllers;
 @end

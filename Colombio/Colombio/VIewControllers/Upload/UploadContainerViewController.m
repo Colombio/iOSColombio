@@ -33,6 +33,8 @@
         }else{
             array = [[NSArray alloc] initWithObjects:contentVC, dummyVC, nil];
         }
+        super.imgNextBtnNormal = [UIImage imageNamed:@"send_normal"];
+        super.imgNextBtnPressed = [UIImage imageNamed:@"send_pressed"];
         super.viewControllersArray = array;
     }
     
@@ -58,5 +60,9 @@
 - (void)navigateToVC:(PhotoLibraryViewController *)viewController{
     viewController.caller = self;
     [self presentViewController:viewController animated:YES completion:nil];
+}
+
+- (void)navigateNext{
+
 }
 @end

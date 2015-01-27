@@ -34,7 +34,7 @@ enum HeaderMovement{
 @end
 
 @implementation ContainerViewController
-@synthesize viewControllersArray=_viewControllersArray;
+@synthesize viewControllersArray=_viewControllersArray, nextButtonTitle=_nextButtonTitle;
 
 /*- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil andControllers:(NSArray*)controllers{
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -50,13 +50,14 @@ enum HeaderMovement{
     xFromCenterLastPosition= 0.0;
     numberOfPages = _viewControllersArray.count;
     _headerBtnsArray = [[NSMutableArray alloc] init];
+    [self setupHeader];
+    [self setupProgressBar];
+    [self setupPageViewController];
     // Do any additional setup after loading the view from its nib.
 }
 
 - (void)viewWillAppear:(BOOL)animated{
-    [self setupHeader];
-    [self setupProgressBar];
-    [self setupPageViewController];
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -69,8 +70,8 @@ enum HeaderMovement{
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
         btn.tag=0;
         [btn addTarget:self action:@selector(btnAction:) forControlEvents:UIControlEventTouchUpInside];
-        [btn setBackgroundImage:[UIImage imageNamed:@"back_normal"] forState:UIControlStateNormal];
-        [btn setBackgroundImage:[UIImage imageNamed:@"back_pressed"] forState:UIControlStateHighlighted];
+        [btn setBackgroundImage:[UIImage imageNamed:@"backgrey_normal"] forState:UIControlStateNormal];
+        [btn setBackgroundImage:[UIImage imageNamed:@"backgrey_pressed"] forState:UIControlStateHighlighted];
         btn.frame = CGRectMake(10, 0, 44, 44);
         [_headerBtnsArray addObject:btn];
         [_viewHeader addSubview:btn];
@@ -105,9 +106,19 @@ enum HeaderMovement{
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
         btn.tag=_headerBtnsArray.count;
         [btn addTarget:self action:@selector(btnAction:) forControlEvents:UIControlEventTouchUpInside];
-        [btn setBackgroundImage:[UIImage imageNamed:@"back_normal"] forState:UIControlStateNormal];
-        [btn setBackgroundImage:[UIImage imageNamed:@"back_pressed"] forState:UIControlStateHighlighted];
-        btn.frame = CGRectMake((numberOfPages+1)*(_viewHeader.frame.size.width/2)-44, 0, 44, 44);
+        if (self.nextButtonTitle.length>0) {
+            [btn setTitle:self.nextButtonTitle  forState:UIControlStateNormal];
+            btn.titleLabel.font = [[UIConfiguration sharedInstance] getFont:FONT_HELVETICA_NEUE_LIGHT];
+            CGSize stringsize = [self.nextButtonTitle sizeWithFont:[[UIConfiguration sharedInstance] getFont:FONT_HELVETICA_NEUE_LIGHT]];
+            [btn setTitleColor:[[UIConfiguration sharedInstance] getColor:COLOR_TEXT_NAVIGATIONBAR_BUTTON] forState:UIControlStateNormal];
+            [btn setTitleColor:[[UIConfiguration sharedInstance] getColor:COLOR_TEXT_NAVIGATIONBAR_BUTTON_HIGHLIGHT] forState:UIControlStateHighlighted];
+            btn.frame = CGRectMake((numberOfPages+1)*(_viewHeader.frame.size.width/2)-stringsize.width-10, 0, stringsize.width, 20);
+            btn.center = CGPointMake(btn.center.x, _viewHeader.frame.size.height/2);
+        }else{
+            [btn setBackgroundImage:_imgNextBtnNormal forState:UIControlStateNormal];
+            [btn setBackgroundImage:_imgNextBtnPressed forState:UIControlStateHighlighted];
+            btn.frame = CGRectMake((numberOfPages+1)*(_viewHeader.frame.size.width/2)-44, 0, 44, 44);
+        }
         [_headerBtnsArray addObject:btn];
         [_viewHeader addSubview:btn];
     }
@@ -122,6 +133,8 @@ enum HeaderMovement{
     _pageViewController = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
     _pageViewController.view.frame = CGRectMake(0, 0, _viewContainer.frame.size.width, _viewContainer.frame.size.height);
     [_viewContainer addSubview:_pageViewController.view];
+    [self addChildViewController:_pageViewController];
+    [_pageViewController didMoveToParentViewController:self];
     _pageViewController.delegate = self;
     _pageViewController.dataSource = self;
     [_pageViewController setViewControllers:@[[_viewControllersArray objectAtIndex:0]] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
@@ -271,7 +284,7 @@ enum HeaderMovement{
         else
             [self.navigationController popViewControllerAnimated:YES];
     }else if(sender.tag == _headerBtnsArray.count-1){
-    
+        [self navigateNext];
     }else {
         NSInteger tempIndex = currentPageIndex;
         __weak typeof(self) weakSelf = self;
@@ -295,6 +308,12 @@ enum HeaderMovement{
         
         }
     }
+}
+
+- (void)navigateNext{
+    /**
+    *****Override in subclass!!!
+    **/
 }
 
 -(void)updateCurrentPageIndex:(int)newIndex

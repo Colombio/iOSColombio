@@ -24,7 +24,7 @@
                         <constraint firstAttribute="height" constant="44" id="CEb-ux-hsR"/>
                     </constraints>
                     <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="title" value="select_content"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="headerTitle" value="select_content"/>
                         <userDefinedRuntimeAttribute type="string" keyPath="nextButtonText" value="use"/>
                         <userDefinedRuntimeAttribute type="string" keyPath="backButtonText" value=""/>
                     </userDefinedRuntimeAttributes>

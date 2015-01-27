@@ -3,17 +3,19 @@
     {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "back_normal.png"
+      "filename" : "backgrey_pressed.png"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "back_normal@2x.png"
+      "filename" : "backgrey_pressed@2x.png"
     },
     {
       "idiom" : "universal",
-      "scale" : "3x",
-      "filename" : "back_normal-736h@3x.png"
+      "filename" : "backgrey_pressed-736h@3x.png",
+      "unassigned" : true,
+      "subtype" : "736h",
+      "scale" : "3x"
     }
   ],
   "info" : {
