@@ -20,6 +20,9 @@
 		58ACA0021A4EE6B70076D3D8 /* HeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 58ACA0001A4EE6B70076D3D8 /* HeaderView.m */; };
 		58ACA0031A4EE6B70076D3D8 /* HeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58ACA0011A4EE6B70076D3D8 /* HeaderView.xib */; };
 		58ACA0051A530D5B0076D3D8 /* CreateAccViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58ACA0041A530D5B0076D3D8 /* CreateAccViewController.xib */; };
+		BB6EBE4C1A7474AD0066D7D7 /* MediaListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6EBE4A1A7474AD0066D7D7 /* MediaListViewController.m */; };
+		BB6EBE4D1A7474AD0066D7D7 /* MediaListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB6EBE4B1A7474AD0066D7D7 /* MediaListViewController.xib */; };
+		BB6EBE501A75A4BD0066D7D7 /* NewsMediaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6EBE4F1A75A4BD0066D7D7 /* NewsMediaViewController.m */; };
 		BBAE1F1D1A37B51F0008B772 /* ColombioServiceCommunicator.m in Sources */ = {isa = PBXBuildFile; fileRef = BBAE1F1C1A37B51F0008B772 /* ColombioServiceCommunicator.m */; };
 		BBAE1F201A37B5A80008B772 /* NSDate+DateHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = BBAE1F1F1A37B5A80008B772 /* NSDate+DateHandler.m */; };
 		BBAE1F241A37B68E0008B772 /* ForgotPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBAE1F221A37B68E0008B772 /* ForgotPasswordViewController.m */; };
@@ -52,6 +55,7 @@
 		BBB33B001A27DFF9008D0E26 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBB33AFF1A27DFF9008D0E26 /* UIKit.framework */; };
 		BBB33B021A27E007008D0E26 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBB33B011A27E007008D0E26 /* Foundation.framework */; };
 		BBB33B091A27E1AF008D0E26 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBB33AE61A27DF0A008D0E26 /* MapKit.framework */; };
+		BBB56D451A71BE1F004D3B9A /* CLTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB56D441A71BE1F004D3B9A /* CLTextView.m */; };
 		BBB6A0561A40E7D1006F61B3 /* VSSwitchButton.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB6A0551A40E7D1006F61B3 /* VSSwitchButton.m */; };
 		BBB6A05B1A44D6B5006F61B3 /* CLTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB6A05A1A44D6B5006F61B3 /* CLTextField.m */; };
 		BBB6A05F1A44FB2D006F61B3 /* UIConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB6A05E1A44FB2D006F61B3 /* UIConfiguration.m */; };
@@ -119,6 +123,11 @@
 		58ACA0001A4EE6B70076D3D8 /* HeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeaderView.m; sourceTree = "<group>"; };
 		58ACA0011A4EE6B70076D3D8 /* HeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HeaderView.xib; sourceTree = "<group>"; };
 		58ACA0041A530D5B0076D3D8 /* CreateAccViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreateAccViewController.xib; sourceTree = "<group>"; };
+		BB6EBE491A7474AD0066D7D7 /* MediaListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaListViewController.h; sourceTree = "<group>"; };
+		BB6EBE4A1A7474AD0066D7D7 /* MediaListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaListViewController.m; sourceTree = "<group>"; };
+		BB6EBE4B1A7474AD0066D7D7 /* MediaListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MediaListViewController.xib; sourceTree = "<group>"; };
+		BB6EBE4E1A75A4BD0066D7D7 /* NewsMediaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsMediaViewController.h; sourceTree = "<group>"; };
+		BB6EBE4F1A75A4BD0066D7D7 /* NewsMediaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsMediaViewController.m; sourceTree = "<group>"; };
 		BBAE1F161A37B3850008B772 /* UIView+InlineFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+InlineFunctions.h"; sourceTree = "<group>"; };
 		BBAE1F1B1A37B51E0008B772 /* ColombioServiceCommunicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColombioServiceCommunicator.h; sourceTree = "<group>"; };
 		BBAE1F1C1A37B51F0008B772 /* ColombioServiceCommunicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColombioServiceCommunicator.m; sourceTree = "<group>"; };
@@ -166,6 +175,8 @@
 		BBB33AFD1A27DFF1008D0E26 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		BBB33AFF1A27DFF9008D0E26 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		BBB33B011A27E007008D0E26 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		BBB56D431A71BE1F004D3B9A /* CLTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLTextView.h; sourceTree = "<group>"; };
+		BBB56D441A71BE1F004D3B9A /* CLTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLTextView.m; sourceTree = "<group>"; };
 		BBB6A0541A40E7D1006F61B3 /* VSSwitchButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSwitchButton.h; sourceTree = "<group>"; };
 		BBB6A0551A40E7D1006F61B3 /* VSSwitchButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSwitchButton.m; sourceTree = "<group>"; };
 		BBB6A0591A44D6B5006F61B3 /* CLTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLTextField.h; sourceTree = "<group>"; };
@@ -298,6 +309,9 @@
 				58A004FB1A60DBE300E7BA68 /* CountriesViewController.h */,
 				58A004FC1A60DBE300E7BA68 /* CountriesViewController.m */,
 				58A004FD1A60DBE300E7BA68 /* CountriesViewController.xib */,
+				BB6EBE491A7474AD0066D7D7 /* MediaListViewController.h */,
+				BB6EBE4A1A7474AD0066D7D7 /* MediaListViewController.m */,
+				BB6EBE4B1A7474AD0066D7D7 /* MediaListViewController.xib */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -314,6 +328,8 @@
 				BBC77C681A6889610069FD9D /* PhotoLibraryViewController.xib */,
 				BBBE0C541A6DB37C00EF5124 /* UploadContainerViewController.h */,
 				BBBE0C551A6DB37C00EF5124 /* UploadContainerViewController.m */,
+				BB6EBE4E1A75A4BD0066D7D7 /* NewsMediaViewController.h */,
+				BB6EBE4F1A75A4BD0066D7D7 /* NewsMediaViewController.m */,
 			);
 			path = Upload;
 			sourceTree = "<group>";
@@ -478,6 +494,8 @@
 				BBD071561A69C79800C3E84E /* LibraryCell.m */,
 				BBBA31CD1A70772E002ED12A /* ButtonTag.h */,
 				BBBA31CE1A70772E002ED12A /* ButtonTag.m */,
+				BBB56D431A71BE1F004D3B9A /* CLTextView.h */,
+				BBB56D441A71BE1F004D3B9A /* CLTextView.m */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -627,6 +645,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				58ACA0051A530D5B0076D3D8 /* CreateAccViewController.xib in Resources */,
+				BB6EBE4D1A7474AD0066D7D7 /* MediaListViewController.xib in Resources */,
 				BBB0BFA91A350F640074B20C /* LoginViewController.xib in Resources */,
 				BBB33ACE1A27D9EE008D0E26 /* Images.xcassets in Resources */,
 				BBCF58E61A293F6700CE64B4 /* Localizable.strings in Resources */,
@@ -662,6 +681,7 @@
 				BBCF58A21A29395400CE64B4 /* Validation.m in Sources */,
 				BBAE1F201A37B5A80008B772 /* NSDate+DateHandler.m in Sources */,
 				5836A1CD1A55F98300C509F1 /* Loading.m in Sources */,
+				BB6EBE4C1A7474AD0066D7D7 /* MediaListViewController.m in Sources */,
 				BBB6A05F1A44FB2D006F61B3 /* UIConfiguration.m in Sources */,
 				BBB6A0561A40E7D1006F61B3 /* VSSwitchButton.m in Sources */,
 				BBB2B1391A5F534F00F4FD38 /* CreateNewsViewController.m in Sources */,
@@ -682,6 +702,7 @@
 				583C9EBE1A6357FD00C6131C /* SettingsCollectionView.m in Sources */,
 				58ACA0021A4EE6B70076D3D8 /* HeaderView.m in Sources */,
 				BBC77C691A6889610069FD9D /* PhotoLibraryViewController.m in Sources */,
+				BB6EBE501A75A4BD0066D7D7 /* NewsMediaViewController.m in Sources */,
 				BBB7F33A1A6209560014909B /* NewsData.m in Sources */,
 				BBAF777B1A50C914004AAAF9 /* ScrollableHeaderView.m in Sources */,
 				BBB7F32D1A60A6C20014909B /* ScrollableHeaderContentView.m in Sources */,
@@ -701,6 +722,7 @@
 				BBD453611A64914A0029CADD /* ContainerViewController.m in Sources */,
 				BBCF58A01A29395400CE64B4 /* Messages.m in Sources */,
 				BBCF589F1A29395400CE64B4 /* CryptoClass.m in Sources */,
+				BBB56D451A71BE1F004D3B9A /* CLTextView.m in Sources */,
 				BBCF58F51A2AA47F00CE64B4 /* UIView+XibAttributes.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

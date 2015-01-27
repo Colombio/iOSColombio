@@ -20,7 +20,7 @@
 @property (nonatomic, assign) BOOL be_contacted;
 @property (strong, nonatomic) NSMutableArray *tags;
 @property (strong, nonatomic) NSMutableArray *media;
-@property (assign, nonatomic) NSInteger did;
+@property (assign, nonatomic) NSInteger did;//demand_id
 @property (assign, nonatomic) NSInteger type_id;
 
 @property (strong, nonatomic) NSMutableArray *images;

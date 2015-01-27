@@ -10,6 +10,7 @@
 #import <FacebookSDK/FacebookSDK.h>
 #import "Database.h"
 #import <CoreLocation/CoreLocation.h>
+#import <AssetsLibrary/AssetsLibrary.h>
 
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
@@ -19,4 +20,6 @@
 @property (strong, nonatomic) Database *db;
 @property (strong, nonatomic) CLLocationManager *locationManager;
 
+
++ (ALAssetsLibrary *)defaultAssetsLibrary;
 @end

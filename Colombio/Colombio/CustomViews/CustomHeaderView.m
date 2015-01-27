@@ -49,9 +49,9 @@
         [_btnBack setTitleColor:[[UIConfiguration sharedInstance] getColor:COLOR_TEXT_NAVIGATIONBAR_BUTTON] forState:UIControlStateNormal];
         [_btnBack setTitleColor:[[UIConfiguration sharedInstance] getColor:COLOR_TEXT_NAVIGATIONBAR_BUTTON_HIGHLIGHT] forState:UIControlStateHighlighted];
         
-        [_btnBack setTitle:backButtonText forState:UIControlStateNormal];
+        [_btnBack setTitle:[Localized string:backButtonText]  forState:UIControlStateNormal];
         _btnBack.titleLabel.font = [[UIConfiguration sharedInstance] getFont:FONT_HELVETICA_NEUE_LIGHT];
-        CGSize stringsize = [backButtonText sizeWithFont:[[UIConfiguration sharedInstance] getFont:FONT_HELVETICA_NEUE_LIGHT]];
+        CGSize stringsize = [[Localized string:backButtonText] sizeWithFont:[[UIConfiguration sharedInstance] getFont:FONT_HELVETICA_NEUE_LIGHT]];
         _btnBack.frame = CGRectMake(0, 0, stringsize.width, 20);
         _btnBack.center = CGPointMake(0, self.bounds.size.height/2);
     }else{
@@ -70,11 +70,11 @@
         [_btnNext setTitleColor:[[UIConfiguration sharedInstance] getColor:COLOR_TEXT_NAVIGATIONBAR_BUTTON] forState:UIControlStateNormal];
         [_btnNext setTitleColor:[[UIConfiguration sharedInstance] getColor:COLOR_TEXT_NAVIGATIONBAR_BUTTON_HIGHLIGHT] forState:UIControlStateHighlighted];
         
-        [_btnNext setTitle:nextButtonText forState:UIControlStateNormal];
+        [_btnNext setTitle:[Localized string:nextButtonText] forState:UIControlStateNormal];
         _btnNext.titleLabel.font = [[UIConfiguration sharedInstance] getFont:FONT_HELVETICA_NEUE_LIGHT];
-        CGSize stringsize = [nextButtonText sizeWithFont:[[UIConfiguration sharedInstance] getFont:FONT_HELVETICA_NEUE_LIGHT]];
+        CGSize stringsize = [[Localized string:nextButtonText] sizeWithFont:[[UIConfiguration sharedInstance] getFont:FONT_HELVETICA_NEUE_LIGHT]];
         _btnNext.frame = CGRectMake(0, 0, stringsize.width, 20);
-        _btnNext.center = CGPointMake(self.bounds.size.width, self.bounds.size.height/2);
+        _btnNext.center = CGPointMake(self.bounds.size.width-stringsize.width-10, self.bounds.size.height/2);
         [self addSubview:_btnNext];
     }
    

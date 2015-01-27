@@ -28,34 +28,38 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z1Q-2i-jcx">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="367"/>
                             <subviews>
-                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OCJ-nf-Qvc">
+                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OCJ-nf-Qvc" customClass="CLTextView">
                                     <rect key="frame" x="20" y="15" width="280" height="45"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="45" id="4JR-Km-Pz1"/>
                                     </constraints>
-                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="no" spellCheckingType="no" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="news_title_placeholder"/>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="placeholderColor" value="COLOR_TEXT_NAVIGATIONBAR_BUTTON"/>
                                     </userDefinedRuntimeAttributes>
                                     <connections>
-                                        <outlet property="delegate" destination="-1" id="paB-iI-gN6"/>
+                                        <outlet property="delegate" destination="-1" id="BtB-4i-JXl"/>
+                                        <outlet property="textViewDelegate" destination="-1" id="0hg-NW-Qgx"/>
                                     </connections>
                                 </textView>
-                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jow-f9-SSX">
+                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jow-f9-SSX" customClass="CLTextView">
                                     <rect key="frame" x="20" y="60" width="280" height="120"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="120" id="ex7-l0-U3v"/>
                                     </constraints>
                                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
-                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="no" spellCheckingType="no"/>
                                     <userDefinedRuntimeAttributes>
-                                        <userDefinedRuntimeAttribute type="string" keyPath="placeholderText" value="news_title_placeholder"/>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="news_description_placeholder"/>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="placeholderColor" value="COLOR_TEXT_NAVIGATIONBAR_BUTTON"/>
                                     </userDefinedRuntimeAttributes>
                                     <connections>
                                         <outlet property="delegate" destination="-1" id="5a8-BA-4Av"/>
+                                        <outlet property="textViewDelegate" destination="-1" id="tYC-Ok-boE"/>
                                     </connections>
                                 </textView>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o86-CN-uUn">
@@ -84,7 +88,6 @@
                                                 <constraint firstAttribute="trailing" secondItem="6yC-9V-nJI" secondAttribute="trailing" constant="127" id="4eD-g6-8O5"/>
                                                 <constraint firstItem="6yC-9V-nJI" firstAttribute="leading" secondItem="UJS-ns-qyw" secondAttribute="leading" constant="127" id="en7-6R-1pW"/>
                                                 <constraint firstAttribute="bottom" secondItem="6yC-9V-nJI" secondAttribute="bottom" constant="43" id="nPE-L8-78K"/>
-                                                <constraint firstItem="6yC-9V-nJI" firstAttribute="top" secondItem="UJS-ns-qyw" secondAttribute="top" constant="42" id="po0-z3-sXj"/>
                                             </constraints>
                                         </view>
                                     </subviews>

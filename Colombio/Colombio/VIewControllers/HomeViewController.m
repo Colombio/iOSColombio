@@ -59,7 +59,7 @@
 - (void)btnSendClicked:(id)sender{
     //[self.navigationController pushViewController:[[CreateNewsViewController alloc] init] animated:YES];
     
-    UploadContainerViewController *containerVC = [[UploadContainerViewController alloc] initWithNibName:@"ContainerViewController" bundle:nil];
+    UploadContainerViewController *containerVC = [[UploadContainerViewController alloc] initWithNibName:@"ContainerViewController" bundle:nil isNewsDemand:NO];
     [self.navigationController pushViewController:containerVC animated:YES];
     self.navigationController.tabBarItem.selectedImage  = [[UIImage imageNamed:@"home_normal"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
 }

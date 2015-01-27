@@ -6,25 +6,56 @@
 //  Copyright (c) 2015 Colombio. All rights reserved.
 //
 
+#import <AppDelegate.h>
 #import "PhotoLibraryViewController.h"
 #import "LibraryCell.h"
 #import <AssetsLibrary/AssetsLibrary.h>
+#import "UploadContainerViewController.h"
 
+#define MAX_IMAGES 5
+#define MAX_VIDEOS 1
 @interface PhotoLibraryViewController ()
 {
-    ALAssetsLibrary *al;
     NSMutableArray *content;
     BOOL cameraPicked;
+    NSMutableArray *selectedImage;
+    NSMutableArray *selectedVideo;
+    NSMutableArray *selectedImageURLs;
+    NSMutableArray *selectedVideoURLs;
+    
+    
 }
 @property (weak, nonatomic) IBOutlet CustomHeaderView *headerView;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+@property (strong, nonatomic) UIImagePickerController *camera;
 
 @end
 
 @implementation PhotoLibraryViewController
 
+- (instancetype)initWithSelectedAssets:(NSMutableArray*)selectedAssets{
+    self = [super init];
+    if (self) {
+        selectedImageURLs = [[NSMutableArray alloc] init];
+        selectedVideoURLs = [[NSMutableArray alloc] init];
+        selectedImage=[[NSMutableArray alloc] init];
+        selectedVideo=[[NSMutableArray alloc] init];
+        if (selectedAssets!=nil && selectedAssets.count>0) {
+            for(ALAsset *asset in selectedAssets){
+                if([[asset valueForProperty:ALAssetPropertyType] isEqual:@"ALAssetTypePhoto"]){
+                    [selectedImage addObject:asset];
+                }else{
+                    [selectedVideo addObject:asset];
+                }
+            }
+        }
+        [self setAssetsURLs];
+    }
+    return self;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     [_collectionView registerClass:[LibraryCell class] forCellWithReuseIdentifier:@"cellIdentifier"];
     [self loadLibrary];
     // Do any additional setup after loading the view from its nib.
@@ -36,12 +67,11 @@
 }
 
 - (void)loadLibrary{
-    al= [[ALAssetsLibrary alloc] init];
+    ALAssetsLibrary *al = [AppDelegate defaultAssetsLibrary];
     content = [[NSMutableArray alloc]init];
     [al enumerateGroupsWithTypes:ALAssetsGroupAll usingBlock:^(ALAssetsGroup *group, BOOL *stop) {
         if(group==nil){
             content = [[[content reverseObjectEnumerator]allObjects]mutableCopy ];
-            //[labela setTitle:@"Select Photo/Video" forState:UIControlStateNormal];
             [_collectionView reloadData];
         }
         [group enumerateAssetsUsingBlock:^(ALAsset *result, NSUInteger index, BOOL *stop) {
@@ -54,14 +84,42 @@
     }];
 }
 
-#pragma mark HeaderView Delegate
+- (void)setAssetsURLs{
+    [selectedImageURLs removeAllObjects];
+    [selectedVideoURLs removeAllObjects];
+    if (selectedImage!=nil && selectedImage.count>0) {
+        for(ALAsset *asset in selectedImage){
+            NSString *url = [asset valueForProperty:ALAssetPropertyAssetURL];
+            [selectedImageURLs addObject:url];
+        }
+    }
+    if (selectedVideo!=nil && selectedVideo.count>0) {
+        for(ALAsset *asset in selectedVideo){
+            NSString *url = [asset valueForProperty:ALAssetPropertyAssetURL];
+            [selectedVideoURLs addObject:url];
+        }
+    }
+}
+
+
+#pragma mark HeaderView
 
 - (void)btnBackClicked{
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)btnNextClicked{
-
+    if ([self.caller isKindOfClass:[UploadContainerViewController class]]) {
+        NSMutableArray *tempArray = [[NSMutableArray alloc] init];
+        if (selectedImage.count>0){
+            [tempArray addObjectsFromArray:selectedImage];
+        }
+        if (selectedVideo.count>0){
+            [tempArray addObjectsFromArray:selectedVideo];
+        }
+        [(UploadContainerViewController*)self.caller selectedImageAction:tempArray];
+    }
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark CollectionView
@@ -115,27 +173,129 @@
     }
     
     //Dohvacanje url-a i naziva slike iz polja medija
-    ALAsset *slika =[content objectAtIndex:position-1];
+    ALAsset *asset =[content objectAtIndex:position-1];
+    cell.img.image=[UIImage imageWithCGImage:[asset thumbnail]];
     
-    cell.img.image=[UIImage imageWithCGImage:[slika thumbnail]];
-    if([[slika valueForProperty:ALAssetPropertyType] isEqual:@"ALAssetTypePhoto"]){
+    
+    if([[asset valueForProperty:ALAssetPropertyType] isEqual:@"ALAssetTypePhoto"]){
         [cell.watermark setHidden:YES];
+        if ([selectedImageURLs containsObject:[asset valueForProperty:ALAssetPropertyAssetURL]]) {
+            [cell.select setHidden:NO];
+        }else{
+            [cell.select setHidden:YES];
+        }
     }
     else{
         [cell.watermark setHidden:NO];
+        if ([selectedVideoURLs containsObject:[asset valueForProperty:ALAssetPropertyAssetURL]]) {
+            [cell.select setHidden:NO];
+        }else{
+            [cell.select setHidden:YES];
+        }
     }
-    /*if([odabrano containsObject:[NSString stringWithFormat:@"%li",pozicija-1]]){
-        [cell.notSelected setHidden:YES];
-        [cell.select setHidden:NO];
-    }
-    else{
-        [cell.notSelected setHidden:NO];
-        [cell.select setHidden:YES];
-    }*/
+    
     
     cell.select.tag=position-1;
     cell.notSelected.tag=position-1;
     
     return cell;
 }
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    long position = (indexPath.row)+(indexPath.section*3);
+    if(position==0){
+        _camera = [[UIImagePickerController alloc]init];
+        _camera.mediaTypes = [UIImagePickerController availableMediaTypesForSourceType:UIImagePickerControllerSourceTypeCamera];
+        
+        _camera.delegate = self;
+        
+        [_camera setSourceType:UIImagePickerControllerSourceTypeCamera];
+        [self presentViewController:_camera animated:YES completion:NULL];
+    }
+    else{
+        if ([[(ALAsset*)content[position-1] valueForProperty:ALAssetPropertyType] isEqual:@"ALAssetTypePhoto"]) {
+            int indexToRemove=-1;
+            if([selectedImageURLs containsObject:[(ALAsset*)content[position-1] valueForProperty:ALAssetPropertyAssetURL]]){
+                for (int i=0; i<selectedImage.count; i++) {
+                    NSString *tempAssetURL = [NSString stringWithFormat:@"%@",[(ALAsset*)selectedImage[i] valueForProperty:ALAssetPropertyAssetURL]];
+                    NSString *selectedAssetURL = [NSString stringWithFormat:@"%@",[(ALAsset*)content[position-1] valueForProperty:ALAssetPropertyAssetURL]];
+                        
+                    if ([tempAssetURL isEqualToString:selectedAssetURL]) {
+                        indexToRemove=i;
+                    }
+                }
+                if (indexToRemove!=-1) {
+                    [selectedImage removeObjectAtIndex:indexToRemove];
+                }
+            }
+            else{
+                if (selectedImage.count<5) {
+                    [selectedImage addObject:content[position-1]];
+                }else{
+                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[Localized string:@"photos_max_num_title"] message:[Localized string:@"photos_max_num"] delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                    [alert show];
+                }
+            }
+        }else{
+            if([selectedVideoURLs containsObject:[(ALAsset*)content[position-1] valueForProperty:ALAssetPropertyAssetURL]]){
+                int indexToRemove=-1;
+                for (int i=0; i<selectedVideo.count; i++) {
+                    NSString *tempAssetURL = [NSString stringWithFormat:@"%@",[(ALAsset*)selectedVideo[i] valueForProperty:ALAssetPropertyAssetURL]];
+                    NSString *selectedAssetURL = [NSString stringWithFormat:@"%@",[(ALAsset*)content[position-1] valueForProperty:ALAssetPropertyAssetURL]];
+                    
+                    if ([tempAssetURL isEqualToString:selectedAssetURL]) {
+                        indexToRemove=i;
+                    }
+                }
+                if (indexToRemove!=-1) {
+                    [selectedVideo removeObjectAtIndex:indexToRemove];
+                }
+            }
+            else{
+                if (selectedVideo.count<1) {
+                    [selectedVideo addObject:content[position-1]];
+                }else{
+                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[Localized string:@"photos_max_num_title"] message:[Localized string:@"photos_max_num"] delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                    [alert show];
+                }
+            }
+        }
+        [self setAssetsURLs];
+        [_collectionView reloadData];
+    }
+}
+
+#pragma mark Camera Action
+/*- (void) imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
+    UIImage *image  =[info objectForKey:UIImagePickerControllerOriginalImage];
+    cameraPicked=YES;
+    NSMutableArray *temp = [[NSMutableArray alloc] init];
+    
+    [temp addObject:@"0"];
+    for(NSString *pozicija in odabrano){
+        NSInteger poz = [pozicija intValue];
+        poz+=1;
+        [temp addObject:[NSString stringWithFormat:@"%li",(long)poz]];
+    }
+    odabrano=temp;
+    
+    [self dismissViewControllerAnimated:YES completion:NULL];
+    
+    [al writeImageToSavedPhotosAlbum:slika.CGImage orientation:(ALAssetOrientation)slika.imageOrientation completionBlock:^(NSURL *assetURL, NSError *error) {
+        
+        timer = [NSTimer scheduledTimerWithTimeInterval:0.2 target:self selector:@selector(loadLibrary) userInfo:nil repeats:NO];
+    }];
+    NSString *mediaType = [info objectForKey:UIImagePickerControllerMediaType];
+    if([mediaType isEqualToString:@"public.movie"]){
+        NSString *sourcePath = [[info objectForKey:@"UIImagePickerControllerMediaURL"]relativePath];
+        UISaveVideoAtPathToSavedPhotosAlbum(sourcePath, nil, @selector(finishVideoSaving:), nil);    }
+}
+
+- (IBAction)finishVideoSaving:(id)sender{
+    timer = [NSTimer scheduledTimerWithTimeInterval:0.2 target:self selector:@selector(loadLibrary) userInfo:nil repeats:NO];
+}
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
+    [self dismissViewControllerAnimated:YES completion:NULL];
+}*/
 @end

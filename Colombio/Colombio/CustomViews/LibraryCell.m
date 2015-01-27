@@ -17,6 +17,7 @@
 @synthesize select;
 @synthesize red2;
 @synthesize watermark;
+@synthesize imgWatermark;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -25,15 +26,17 @@
         img = [[UIImageView alloc] initWithFrame:CGRectMake(0,0,99,99)];
         watermark = [[UIImageView alloc] initWithFrame:CGRectMake(28,28,44,44)];
         notSelected = [[UIImageView alloc] initWithFrame:CGRectMake(76, 5, 20, 20)];
-        select = [[UIImageView alloc] initWithFrame:CGRectMake(76, 5, 20, 20)];
+        select = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
+        select.center = CGPointMake(self.frame.size.width/2, self.frame.size.height/2);
         notSelected.image=[UIImage imageNamed:@"unselected.png"];
-        select.image=[UIImage imageNamed:@"selected.png"];
+        select.image=[UIImage imageNamed:@"selectedcontent"];
         watermark.image=[UIImage imageNamed:@"watermark.png"];
         
         red2 = [[UILabel alloc] initWithFrame:CGRectMake(18,60,70,20)];
         red2.text= @"Camera";
         red2.font = [UIFont  fontWithName:@"HelveticaNeue-Light" size:19.0f];
         [red2 setHidden:YES];
+        notSelected.hidden=YES;//ne treba
         
         [self addSubview:img];
         [self addSubview:notSelected];

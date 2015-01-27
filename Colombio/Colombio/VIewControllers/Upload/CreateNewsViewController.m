@@ -10,6 +10,7 @@
 #import "CustomHeaderView.h"
 #import "PhotoLibraryViewController.h"
 #import "ButtonTag.h"
+#import <AssetsLibrary/AssetsLibrary.h>
 
 @interface CreateNewsViewController ()
 
@@ -31,12 +32,15 @@
 - (IBAction)btnAddImageTapped:(id)sender;
 @end
 
+CGFloat const kImageHeight = 120.0;
+CGFloat const kImagePadding = 1.0;
+
 @implementation CreateNewsViewController
 
 - (instancetype)init{
     self = [super init];
     if (self) {
-        self.title = [Localized string:@"SELECT MEDIA"];
+        self.title = [Localized string:@"send_news"];
     }
     return self;
 }
@@ -52,16 +56,43 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
+#pragma mark Set Images
+
+- (void)loadImages{
+    int yoffset=0;
+     _CS_imageHolderHeight.constant = kImageHeight;
+    for(UIView *view in _viewImageHolder.subviews){
+        if ([view isKindOfClass:[UIImageView class]]) {
+            [view removeFromSuperview];
+        }
+    }
+    for(int i=0;i<_selectedImagesArray.count;i++){
+        ALAsset *asset =_selectedImagesArray[i];
+        UIImageView *thumbnail = [[UIImageView alloc] initWithFrame:CGRectMake(0, yoffset, _viewImageHolder.frame.size.width, kImageHeight)];
+        thumbnail.contentMode = UIViewContentModeScaleAspectFill;
+        thumbnail.clipsToBounds=YES;
+        UITapGestureRecognizer *btnLibrary =[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(btnAddImageTapped:)];
+        btnLibrary.numberOfTapsRequired = 1;
+        btnLibrary.numberOfTouchesRequired = 1;
+        [thumbnail addGestureRecognizer:btnLibrary];
+        [thumbnail setUserInteractionEnabled:YES];
+        thumbnail.image =[UIImage imageWithCGImage:[asset thumbnail]];
+        [_viewImageHolder addSubview:thumbnail];
+                                  
+        yoffset+=kImageHeight+kImagePadding;
+    }
+    _CS_imageHolderHeight.constant +=yoffset;
+    
+}
 
 
 
 #pragma mark Button Action
 
 - (IBAction)btnAddImageTapped:(id)sender{
-    PhotoLibraryViewController *library = [[PhotoLibraryViewController alloc] init];
+    PhotoLibraryViewController *library = [[PhotoLibraryViewController alloc] initWithSelectedAssets:_selectedImagesArray];
     [self.delegate navigateToVC:library];
     
 }

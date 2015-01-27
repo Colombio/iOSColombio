@@ -19,5 +19,8 @@
 @interface CreateNewsViewController : UIViewController<UITextViewDelegate, ColombioServiceCommunicatorDelegate>
 
 @property (nonatomic, strong) id<CreateAccViewControllerDelegate> delegate;
+@property (strong, nonatomic) NSMutableArray *selectedImagesArray;
+
+- (void)loadImages;
 
 @end

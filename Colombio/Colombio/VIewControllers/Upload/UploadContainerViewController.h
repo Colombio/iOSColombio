@@ -8,7 +8,16 @@
 
 #import "ContainerViewController.h"
 #import "CreateNewsViewController.h"
+#import "NewsMediaViewController.h"
+#import "DummyViewController.h"
 
 @interface UploadContainerViewController : ContainerViewController<CreateAccViewControllerDelegate>
+{
+    CreateNewsViewController *contentVC;
+    NewsMediaViewController *mediaVC;
+    DummyViewController *dummyVC;
+}
 
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil isNewsDemand:(BOOL)isNewsDemand;
+- (void)selectedImageAction:(NSMutableArray*)selectedImagesArray;
 @end

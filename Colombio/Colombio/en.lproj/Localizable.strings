@@ -62,8 +62,12 @@
 /*create news*/
 "news_title_placeholder" = "Enter your title";
 "news_description_placeholder" = "Enter your description";
+"send_news" = "SEND NEWS";
 "select_content" = "SELECT CONTENT";
+"select_media" = "SELECT MEDIA";
 "use" = "USE";
+"photos_max_num" = "You can upload up to 5 pictures and/or 1 video";
+"photos_max_num_title" = "Number limit of pictures/video exceeded";
 
 
 /*Spinner message*/

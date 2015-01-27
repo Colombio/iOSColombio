@@ -16,7 +16,7 @@
 - (void)addCollectionView:(UIViewController *)VC{
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc]init];
     layout.headerReferenceSize=CGSizeMake(100,0);
-    collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 66, VC.view.frame.size.width, VC.view.frame.size.height-10) collectionViewLayout:layout];
+    collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 10, VC.view.frame.size.width, VC.view.frame.size.height-10) collectionViewLayout:layout];
     collectionView.bounces=NO;
     [collectionView setBackgroundColor:[UIColor whiteColor]];
     [collectionView setDataSource:self];

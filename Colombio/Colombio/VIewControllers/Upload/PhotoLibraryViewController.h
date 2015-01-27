@@ -9,7 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "CustomHeaderView.h"
 
-@interface PhotoLibraryViewController : UIViewController<UICollectionViewDataSource, UICollectionViewDelegate,CustomHeaderViewDelegate, UIImagePickerControllerDelegate>
+@interface PhotoLibraryViewController : UIViewController<UICollectionViewDataSource, UICollectionViewDelegate,CustomHeaderViewDelegate, UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 
 @property (strong, nonatomic) UIViewController *caller;
+
+- (instancetype)initWithSelectedAssets:(NSMutableArray*)selectedAssets;
 @end

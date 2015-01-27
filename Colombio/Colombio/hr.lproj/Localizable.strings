@@ -57,8 +57,12 @@
 /*create news*/
 "news_title_placeholder" = "Unesite naslov";
 "news_description_placeholder" = "Unesite opis";
+"send_news" = "POŠALJI VIJEST";
 "select_content" = "ODABERITE SADRŽAJ";
+"select_media" = "MEDIJI";
 "use" = "POTVRDI";
+"photos_max_num" = "Možeš slati do 5 slika i/ili 1 video";
+"photos_max_num_title" = "Premašen broj slika/videa";
 
 /*Spinner message*/
 "logged" ="Logged in, please wait...";

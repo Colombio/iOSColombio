@@ -7,26 +7,35 @@
 //
 
 #import "UploadContainerViewController.h"
-#import "DummyViewController.h"
+
 
 @interface UploadContainerViewController ()
 
+@property (assign, nonatomic) BOOL isNewsDemand;
 @end
+
+
 
 @implementation UploadContainerViewController
 //@synthesize viewControllersArray=_viewControllersArray;
 
-- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil{
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil isNewsDemand:(BOOL)isNewsDemand{
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        CreateNewsViewController *vc1 = [[CreateNewsViewController alloc] init];
-        vc1.delegate = self;
-        DummyViewController *vc2 = [[DummyViewController alloc] init];
-        DummyViewController *vc3 = [[DummyViewController alloc] init];
-        NSArray *array = [[NSArray alloc] initWithObjects:vc1, vc2, vc3, nil];
+        _isNewsDemand = isNewsDemand;
+        contentVC = [[CreateNewsViewController alloc] init];
+        contentVC.delegate = self;
+        dummyVC = [[DummyViewController alloc] init];
+        NSArray *array;
+        if (!isNewsDemand) {
+            mediaVC = [[NewsMediaViewController alloc] init];
+            array = [[NSArray alloc] initWithObjects:contentVC, mediaVC, dummyVC, nil];
+        }else{
+            array = [[NSArray alloc] initWithObjects:contentVC, dummyVC, nil];
+        }
         super.viewControllersArray = array;
-        
     }
+    
     return self;
 }
 
@@ -40,8 +49,14 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)selectedImageAction:(NSMutableArray *)selectedImagesArray{
+    contentVC.selectedImagesArray = selectedImagesArray;
+    [contentVC loadImages];
+}
+
 #pragma mark Custom Delegates
 - (void)navigateToVC:(PhotoLibraryViewController *)viewController{
+    viewController.caller = self;
     [self presentViewController:viewController animated:YES completion:nil];
 }
 @end
