@@ -25,13 +25,13 @@
         _isNewsDemand = isNewsDemand;
         contentVC = [[CreateNewsViewController alloc] init];
         contentVC.delegate = self;
-        dummyVC = [[DummyViewController alloc] init];
+        userInfoVC = [[UserInfoUploadViewController alloc] initWithDemand:_isNewsDemand];
         NSArray *array;
         if (!isNewsDemand) {
             mediaVC = [[NewsMediaViewController alloc] init];
-            array = [[NSArray alloc] initWithObjects:contentVC, mediaVC, dummyVC, nil];
+            array = [[NSArray alloc] initWithObjects:contentVC, mediaVC, userInfoVC, nil];
         }else{
-            array = [[NSArray alloc] initWithObjects:contentVC, dummyVC, nil];
+            array = [[NSArray alloc] initWithObjects:contentVC, userInfoVC, nil];
         }
         super.imgNextBtnNormal = [UIImage imageNamed:@"send_normal"];
         super.imgNextBtnPressed = [UIImage imageNamed:@"send_pressed"];

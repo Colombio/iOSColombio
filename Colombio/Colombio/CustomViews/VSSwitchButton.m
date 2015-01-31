@@ -26,16 +26,25 @@
     return self;
 }
 
+- (id)initWithCoder:(NSCoder *)aDecoder{
+    self = [super initWithCoder:aDecoder];
+    if (self) {
+        self.isON=NO; //default value
+        [self addTarget:self action:@selector(buttonPressed) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return self;
+}
+
 
 - (void)buttonPressed{
     _isON=!_isON;
     [self setState];
 }
 
-- (void)awakeFromNib{
+/*- (void)awakeFromNib{
     self.isON=NO; //default value
     [self addTarget:self action:@selector(buttonPressed) forControlEvents:UIControlEventTouchUpInside];
-}
+}*/
 
 - (void)setIsON:(BOOL)isON{
     _isON = isON;

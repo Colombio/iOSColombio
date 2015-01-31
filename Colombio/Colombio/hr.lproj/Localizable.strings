@@ -63,6 +63,14 @@
 "use" = "POTVRDI";
 "photos_max_num" = "Možeš slati do 5 slika i/ili 1 video";
 "photos_max_num_title" = "Premašen broj slika/videa";
-
+"i_want_sell" = "Želim prodati";
+"media_price_offer" = "Ponuđena cijena $%@";
+"media_may_or_not" = "Mediji nisu dužni objaviti tvoju vijest";
+"media_only_one" = "*Samo jedan medij može kupiti tvoju vijest";
+"be_signed" = "Želim biti autor";
+"anonymous_sending" = "Anonimno slanje";
+"name_price" = "Navedi cijenu (max $100)*";
+"name_and_surname" = "Ime i prezime";
+"phone_number" = "Broj telefona";
 /*Spinner message*/
 "logged" ="Logged in, please wait...";

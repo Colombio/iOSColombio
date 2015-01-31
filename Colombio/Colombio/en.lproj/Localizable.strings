@@ -68,6 +68,15 @@
 "use" = "USE";
 "photos_max_num" = "You can upload up to 5 pictures and/or 1 video";
 "photos_max_num_title" = "Number limit of pictures/video exceeded";
+"i_want_sell" = "I want to sell";
+"media_price_offer" = "Media price offer $%@";
+"media_may_or_not" = "*Media may or may not publish your news.";
+"media_only_one" = "*Only one media can buy your news";
+"be_signed" = "Be signed as an author";
+"anonymous_sending" = "Anonymous sending";
+"name_price" = "Name your price (max $100)*";
+"name_and_surname" = "Name and surname";
+"phone_number" = "Phone number";
 
 
 /*Spinner message*/

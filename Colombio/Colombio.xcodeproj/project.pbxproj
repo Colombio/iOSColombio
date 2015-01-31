@@ -31,6 +31,8 @@
 		BBAE1F2D1A37B71B0008B772 /* BackgroundViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBAE1F2C1A37B71B0008B772 /* BackgroundViewController.m */; };
 		BBAF777B1A50C914004AAAF9 /* ScrollableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = BBAF777A1A50C914004AAAF9 /* ScrollableHeaderView.m */; };
 		BBB0BFA91A350F640074B20C /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBB0BFA81A350F640074B20C /* LoginViewController.xib */; };
+		BBB144841A78E66800980BB4 /* UserInfoUploadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB144821A78E66800980BB4 /* UserInfoUploadViewController.m */; };
+		BBB144851A78E66800980BB4 /* UserInfoUploadViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBB144831A78E66800980BB4 /* UserInfoUploadViewController.xib */; };
 		BBB2B12E1A5F37E200F4FD38 /* TabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB2B12C1A5F37E200F4FD38 /* TabBarViewController.m */; };
 		BBB2B12F1A5F37E200F4FD38 /* TabBarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBB2B12D1A5F37E200F4FD38 /* TabBarViewController.xib */; };
 		BBB2B1331A5F404E00F4FD38 /* DummyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB2B1311A5F404E00F4FD38 /* DummyViewController.m */; };
@@ -56,6 +58,7 @@
 		BBB33B021A27E007008D0E26 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBB33B011A27E007008D0E26 /* Foundation.framework */; };
 		BBB33B091A27E1AF008D0E26 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBB33AE61A27DF0A008D0E26 /* MapKit.framework */; };
 		BBB56D451A71BE1F004D3B9A /* CLTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB56D441A71BE1F004D3B9A /* CLTextView.m */; };
+		BBB604B21A7AF4310090F18A /* UITextField+XibAttributes.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB604B11A7AF4310090F18A /* UITextField+XibAttributes.m */; };
 		BBB6A0561A40E7D1006F61B3 /* VSSwitchButton.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB6A0551A40E7D1006F61B3 /* VSSwitchButton.m */; };
 		BBB6A05B1A44D6B5006F61B3 /* CLTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB6A05A1A44D6B5006F61B3 /* CLTextField.m */; };
 		BBB6A05F1A44FB2D006F61B3 /* UIConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB6A05E1A44FB2D006F61B3 /* UIConfiguration.m */; };
@@ -143,6 +146,9 @@
 		BBAF77791A50C914004AAAF9 /* ScrollableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollableHeaderView.h; sourceTree = "<group>"; };
 		BBAF777A1A50C914004AAAF9 /* ScrollableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollableHeaderView.m; sourceTree = "<group>"; };
 		BBB0BFA81A350F640074B20C /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
+		BBB144811A78E66800980BB4 /* UserInfoUploadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoUploadViewController.h; sourceTree = "<group>"; };
+		BBB144821A78E66800980BB4 /* UserInfoUploadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoUploadViewController.m; sourceTree = "<group>"; };
+		BBB144831A78E66800980BB4 /* UserInfoUploadViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserInfoUploadViewController.xib; sourceTree = "<group>"; };
 		BBB2B12B1A5F37E200F4FD38 /* TabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarViewController.h; sourceTree = "<group>"; };
 		BBB2B12C1A5F37E200F4FD38 /* TabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarViewController.m; sourceTree = "<group>"; };
 		BBB2B12D1A5F37E200F4FD38 /* TabBarViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TabBarViewController.xib; sourceTree = "<group>"; };
@@ -177,6 +183,8 @@
 		BBB33B011A27E007008D0E26 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		BBB56D431A71BE1F004D3B9A /* CLTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLTextView.h; sourceTree = "<group>"; };
 		BBB56D441A71BE1F004D3B9A /* CLTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLTextView.m; sourceTree = "<group>"; };
+		BBB604B01A7AF4310090F18A /* UITextField+XibAttributes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextField+XibAttributes.h"; sourceTree = "<group>"; };
+		BBB604B11A7AF4310090F18A /* UITextField+XibAttributes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextField+XibAttributes.m"; sourceTree = "<group>"; };
 		BBB6A0541A40E7D1006F61B3 /* VSSwitchButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSwitchButton.h; sourceTree = "<group>"; };
 		BBB6A0551A40E7D1006F61B3 /* VSSwitchButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSwitchButton.m; sourceTree = "<group>"; };
 		BBB6A0591A44D6B5006F61B3 /* CLTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLTextField.h; sourceTree = "<group>"; };
@@ -330,6 +338,9 @@
 				BBBE0C551A6DB37C00EF5124 /* UploadContainerViewController.m */,
 				BB6EBE4E1A75A4BD0066D7D7 /* NewsMediaViewController.h */,
 				BB6EBE4F1A75A4BD0066D7D7 /* NewsMediaViewController.m */,
+				BBB144811A78E66800980BB4 /* UserInfoUploadViewController.h */,
+				BBB144821A78E66800980BB4 /* UserInfoUploadViewController.m */,
+				BBB144831A78E66800980BB4 /* UserInfoUploadViewController.xib */,
 			);
 			path = Upload;
 			sourceTree = "<group>";
@@ -549,6 +560,8 @@
 				BBAE1F161A37B3850008B772 /* UIView+InlineFunctions.h */,
 				BBAE1F1E1A37B5A80008B772 /* NSDate+DateHandler.h */,
 				BBAE1F1F1A37B5A80008B772 /* NSDate+DateHandler.m */,
+				BBB604B01A7AF4310090F18A /* UITextField+XibAttributes.h */,
+				BBB604B11A7AF4310090F18A /* UITextField+XibAttributes.m */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -646,6 +659,7 @@
 			files = (
 				58ACA0051A530D5B0076D3D8 /* CreateAccViewController.xib in Resources */,
 				BB6EBE4D1A7474AD0066D7D7 /* MediaListViewController.xib in Resources */,
+				BBB144851A78E66800980BB4 /* UserInfoUploadViewController.xib in Resources */,
 				BBB0BFA91A350F640074B20C /* LoginViewController.xib in Resources */,
 				BBB33ACE1A27D9EE008D0E26 /* Images.xcassets in Resources */,
 				BBCF58E61A293F6700CE64B4 /* Localizable.strings in Resources */,
@@ -696,6 +710,7 @@
 				5835720B1A2B705100F6EA17 /* BottomNav.m in Sources */,
 				BBAE1F2D1A37B71B0008B772 /* BackgroundViewController.m in Sources */,
 				BBB6A05B1A44D6B5006F61B3 /* CLTextField.m in Sources */,
+				BBB144841A78E66800980BB4 /* UserInfoUploadViewController.m in Sources */,
 				58A004FE1A60DBE300E7BA68 /* CountriesViewController.m in Sources */,
 				BBCF58A31A29395400CE64B4 /* YourInfo.m in Sources */,
 				BBAE1F1D1A37B51F0008B772 /* ColombioServiceCommunicator.m in Sources */,
@@ -710,6 +725,7 @@
 				BBB33AC61A27D9EE008D0E26 /* AppDelegate.m in Sources */,
 				583C9EC21A63654500C6131C /* MediaViewController.m in Sources */,
 				5835720E1A2B70C000F6EA17 /* ScrollableHeader.m in Sources */,
+				BBB604B21A7AF4310090F18A /* UITextField+XibAttributes.m in Sources */,
 				BBCF58ED1A29401700CE64B4 /* Localized.m in Sources */,
 				BBCF58A11A29395400CE64B4 /* Reachability.m in Sources */,
 				BBB6A0631A48D791006F61B3 /* StartViewController.m in Sources */,
