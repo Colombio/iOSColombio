@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "PhotoLibraryViewController.h"
 #import "ColombioServiceCommunicator.h"
+#import "CLTextView.h"
 
 @protocol CreateAccViewControllerDelegate
 
@@ -20,7 +21,13 @@
 
 @property (nonatomic, strong) id<CreateAccViewControllerDelegate> delegate;
 @property (strong, nonatomic) NSMutableArray *selectedImagesArray;
+@property (strong, nonatomic) NSMutableArray *selectedTags;
+@property (weak,nonatomic) IBOutlet CLTextView *txtTitle;
+@property (weak,nonatomic) IBOutlet CLTextView *txtDescription;
 
 - (void)loadImages;
+- (BOOL)validateFields;
+- (BOOL)validateImages;
+- (BOOL)validateTags;
 
 @end

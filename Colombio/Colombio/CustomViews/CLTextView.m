@@ -18,7 +18,7 @@ CGFloat const UI_PLACEHOLDER_TEXT_CHANGED_ANIMATION_DURATION = 0.25;
     }
     
     if (!self.placeholderColor) {
-        [self setPlaceholderColor:[UIColor lightGrayColor]];
+        [self setPlaceholderColor:COLOR_TEXT_NAVIGATIONBAR_BUTTON];
     }
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textChanged:) name:UITextViewTextDidChangeNotification object:nil];
@@ -27,16 +27,16 @@ CGFloat const UI_PLACEHOLDER_TEXT_CHANGED_ANIMATION_DURATION = 0.25;
 - (id)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
         [self setPlaceholder:@""];
-        [self setPlaceholderColor:[UIColor lightGrayColor]];
+        [self setPlaceholderColor:COLOR_TEXT_NAVIGATIONBAR_BUTTON];
     }
     return self;
 }
 
 - (void)drawRect:(CGRect)rect {
     if ([[self placeholder] length]>0) {
-        UILabel *l = [[UILabel alloc] initWithFrame:CGRectMake(8, 8, 0, 0)];
+        l = [[UILabel alloc] initWithFrame:CGRectMake(8, 8, 0, 0)];
         [l setFont:self.font];
-        [l setTextColor:self.placeholderColor];
+        [l setTextColor:[[UIConfiguration sharedInstance] getColor:_placeholderColor]];
         [l setText:self.placeholder];
         [l setAlpha:0];
         [l setTag:999];
@@ -78,7 +78,8 @@ CGFloat const UI_PLACEHOLDER_TEXT_CHANGED_ANIMATION_DURATION = 0.25;
 }
 
 - (void)setPlaceholderColor:(NSString *)placeholderColor{
-    _placeholderColor = [[UIConfiguration sharedInstance] getColor:placeholderColor];
+    _placeholderColor = placeholderColor;
+    l.textColor = [[UIConfiguration sharedInstance] getColor:placeholderColor];
 }
 
 - (UIToolbar *)keyboardToolbarFor:(SEL)action {

@@ -45,4 +45,12 @@
     [super.settingsCollectionView.collectionView reloadData];
 }
 
+#pragma mark Validate
+- (BOOL)validateMedia{
+    if (self.selectedMedia.count==0) {
+        return NO;
+    }
+    return YES;
+}
+
 @end

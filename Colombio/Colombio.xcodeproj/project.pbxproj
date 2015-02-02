@@ -59,6 +59,8 @@
 		BBB33B091A27E1AF008D0E26 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBB33AE61A27DF0A008D0E26 /* MapKit.framework */; };
 		BBB56D451A71BE1F004D3B9A /* CLTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB56D441A71BE1F004D3B9A /* CLTextView.m */; };
 		BBB604B21A7AF4310090F18A /* UITextField+XibAttributes.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB604B11A7AF4310090F18A /* UITextField+XibAttributes.m */; };
+		BBB604B71A7EFFB90090F18A /* UploadNewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB604B51A7EFFB90090F18A /* UploadNewsViewController.m */; };
+		BBB604B81A7EFFB90090F18A /* UploadNewsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBB604B61A7EFFB90090F18A /* UploadNewsViewController.xib */; };
 		BBB6A0561A40E7D1006F61B3 /* VSSwitchButton.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB6A0551A40E7D1006F61B3 /* VSSwitchButton.m */; };
 		BBB6A05B1A44D6B5006F61B3 /* CLTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB6A05A1A44D6B5006F61B3 /* CLTextField.m */; };
 		BBB6A05F1A44FB2D006F61B3 /* UIConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB6A05E1A44FB2D006F61B3 /* UIConfiguration.m */; };
@@ -185,6 +187,9 @@
 		BBB56D441A71BE1F004D3B9A /* CLTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLTextView.m; sourceTree = "<group>"; };
 		BBB604B01A7AF4310090F18A /* UITextField+XibAttributes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextField+XibAttributes.h"; sourceTree = "<group>"; };
 		BBB604B11A7AF4310090F18A /* UITextField+XibAttributes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextField+XibAttributes.m"; sourceTree = "<group>"; };
+		BBB604B41A7EFFB90090F18A /* UploadNewsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadNewsViewController.h; sourceTree = "<group>"; };
+		BBB604B51A7EFFB90090F18A /* UploadNewsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadNewsViewController.m; sourceTree = "<group>"; };
+		BBB604B61A7EFFB90090F18A /* UploadNewsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UploadNewsViewController.xib; sourceTree = "<group>"; };
 		BBB6A0541A40E7D1006F61B3 /* VSSwitchButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VSSwitchButton.h; sourceTree = "<group>"; };
 		BBB6A0551A40E7D1006F61B3 /* VSSwitchButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VSSwitchButton.m; sourceTree = "<group>"; };
 		BBB6A0591A44D6B5006F61B3 /* CLTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLTextField.h; sourceTree = "<group>"; };
@@ -341,6 +346,9 @@
 				BBB144811A78E66800980BB4 /* UserInfoUploadViewController.h */,
 				BBB144821A78E66800980BB4 /* UserInfoUploadViewController.m */,
 				BBB144831A78E66800980BB4 /* UserInfoUploadViewController.xib */,
+				BBB604B41A7EFFB90090F18A /* UploadNewsViewController.h */,
+				BBB604B51A7EFFB90090F18A /* UploadNewsViewController.m */,
+				BBB604B61A7EFFB90090F18A /* UploadNewsViewController.xib */,
 			);
 			path = Upload;
 			sourceTree = "<group>";
@@ -672,6 +680,7 @@
 				583C9EC31A63654500C6131C /* MediaViewController.xib in Resources */,
 				BBB7F32F1A60A6D30014909B /* ScrollableHeaderContentView.xib in Resources */,
 				BBB2B1341A5F404E00F4FD38 /* DummyViewController.xib in Resources */,
+				BBB604B81A7EFFB90090F18A /* UploadNewsViewController.xib in Resources */,
 				BBC77C6A1A6889610069FD9D /* PhotoLibraryViewController.xib in Resources */,
 				58A004FF1A60DBE300E7BA68 /* CountriesViewController.xib in Resources */,
 				BBD453621A64914A0029CADD /* ContainerViewController.xib in Resources */,
@@ -722,6 +731,7 @@
 				BBAF777B1A50C914004AAAF9 /* ScrollableHeaderView.m in Sources */,
 				BBB7F32D1A60A6C20014909B /* ScrollableHeaderContentView.m in Sources */,
 				BBD071571A69C79800C3E84E /* LibraryCell.m in Sources */,
+				BBB604B71A7EFFB90090F18A /* UploadNewsViewController.m in Sources */,
 				BBB33AC61A27D9EE008D0E26 /* AppDelegate.m in Sources */,
 				583C9EC21A63654500C6131C /* MediaViewController.m in Sources */,
 				5835720E1A2B70C000F6EA17 /* ScrollableHeader.m in Sources */,

@@ -74,10 +74,16 @@
 "media_only_one" = "*Only one media can buy your news";
 "be_signed" = "Be signed as an author";
 "anonymous_sending" = "Anonymous sending";
-"name_price" = "Name your price (max $100)*";
+"name_price" = "Name your price (max $%@)*";
 "name_and_surname" = "Name and surname";
+"name" = "Name";
+"surname" = "Surname";
 "phone_number" = "Phone number";
+"did_you_know" = "DID YOU KNOW?";
 
-
+"error_fill_fields" = "Please fill fields marked in red";
+"error_missing_images" = "Please choose at least one image or video";
+"error_missing_tags" = "Please choose at least one tag";
+"error_missing_media" = "Please choose at least one media";
 /*Spinner message*/
 "logged" ="Logged in, please wait...";

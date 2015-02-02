@@ -30,19 +30,23 @@
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(keyboardUp:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(keyboardDown:) name:UIKeyboardWillHideNotification object:nil];
     
-    _txtPhoneNum.inputAccessoryView = [self keyboardToolbarFor:_txtPhoneNum action:@selector(resignFirstResponder)];
+    //_txtPhoneNum.inputAccessoryView = [self keyboardToolbarFor:_txtPhoneNum action:@selector(resignFirstResponder)];
     _txtContactMe.inputAccessoryView = [self keyboardToolbarFor:_txtContactMe action:@selector(resignFirstResponder)];
     _txtPrice.inputAccessoryView = [self keyboardToolbarFor:_txtPrice action:@selector(resignFirstResponder)];
     
     _be_credited=YES;
     if (_isNewsDemand) {
         _btnTogglePrice.hidden=YES;
-        _lblPrice.text = [NSString stringWithFormat:[Localized string:@"media_price_offer"],_cost];
+        _lblPrice.text = [NSString stringWithFormat:[Localized string:@"media_price_offer"],_price];
         _lblDisclamer.text = [Localized string:@"media_may_or_not"];
     }else{
+        /*_txtPrice.placeholder = [NSString stringWithFormat:[Localized string:@"name_price"], maxPrice];
         _btnTogglePrice.hidden=NO;
         _lblPrice.text = [Localized string:@"i_want_sell"];
-        _lblDisclamer.text = [Localized string:@"media_only_one"];
+        _lblDisclamer.text = [Localized string:@"media_only_one"];*/
+        _CS_PriceHolderHeight.constant = 0.0;
+        _viewPriceHolder.hidden=YES;
+        _viewH1.hidden=YES;
     }
     // Do any additional setup after loading the view from its nib.
 }
@@ -144,6 +148,13 @@
     [textField resignFirstResponder];
 }
 
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
+    if (textField==_txtPrice) {
+        _price = [_txtPrice.text substringFromIndex:_txtPrice.text.length-1];
+    }
+    return YES;
+}
+
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
     [textField resignFirstResponder];
     return YES;
@@ -165,5 +176,38 @@
     UIEdgeInsets contentInsets = UIEdgeInsetsZero;
     _scrollView.contentInset = contentInsets;
     _scrollView.scrollIndicatorInsets = contentInsets;
+}
+
+#pragma mark Validation
+
+- (BOOL)validateFields{
+    BOOL dataOK = YES;
+    if (_btnTogglePrice.isON) {
+        if (_txtPrice.text.length==0 || [_txtPrice.text isEqualToString:@"."]) {
+            _txtPrice.attributedPlaceholder = [[NSAttributedString alloc] initWithString:_txtPrice.placeholder attributes:@{NSForegroundColorAttributeName:[UIColor redColor]}];
+            dataOK=NO;
+        }
+    }
+    if (_btnToggleAnonymous.isON) {
+        if (_txtName.text.length==0) {
+            _txtName.attributedPlaceholder = [[NSAttributedString alloc] initWithString:_txtName.placeholder attributes:@{NSForegroundColorAttributeName:[UIColor redColor]}];
+            dataOK=NO;
+        }
+        if (_txtSurname.text.length==0) {
+            _txtSurname.attributedPlaceholder = [[NSAttributedString alloc] initWithString:_txtSurname.placeholder attributes:@{NSForegroundColorAttributeName:[UIColor redColor]}];
+            dataOK=NO;
+        }
+        /*if (_txtPhoneNum.text.length==0) {
+            _txtPhoneNum.attributedPlaceholder = [[NSAttributedString alloc] initWithString:_txtPhoneNum.placeholder attributes:@{NSForegroundColorAttributeName:[UIColor redColor]}];
+            dataOK=NO;
+        }*/
+    }
+    if (_btnToggleContactMe.isON) {
+        if (_txtContactMe.text.length==0) {
+            _txtContactMe.attributedPlaceholder = [[NSAttributedString alloc] initWithString:_txtContactMe.placeholder attributes:@{NSForegroundColorAttributeName:[UIColor redColor]}];
+            dataOK=NO;
+        }
+    }
+    return dataOK;
 }
 @end

@@ -69,8 +69,17 @@
 "media_only_one" = "*Samo jedan medij može kupiti tvoju vijest";
 "be_signed" = "Želim biti autor";
 "anonymous_sending" = "Anonimno slanje";
-"name_price" = "Navedi cijenu (max $100)*";
+"name_price" = "Navedi cijenu (max $%@)*";
 "name_and_surname" = "Ime i prezime";
+"name" = "Ime";
+"surname" = "Prezime";
 "phone_number" = "Broj telefona";
+"did_you_know" = "DA LI STE ZNALI?";
+
+"error_fill_fields" = "Molimo ispunite polja označena crvenom bojom";
+"error_missing_images" = "Molimo odaberite barem jednu sliku ili video";
+"error_missing_tags" = "Molimo odaberite barem jedan tag";
+"error_missing_media" = "Molimo odaberite barem jedan medij";
+
 /*Spinner message*/
 "logged" ="Logged in, please wait...";

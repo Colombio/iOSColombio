@@ -16,15 +16,12 @@
 
 @property (weak,nonatomic) IBOutlet CustomHeaderView *customHeader;
 @property (weak,nonatomic) IBOutlet UIView *viewHolder;
-@property (weak,nonatomic) IBOutlet UITextView *txtTitle;
-@property (weak,nonatomic) IBOutlet UITextView *txtDescription;
 @property (weak,nonatomic) IBOutlet UIView *viewImageHolder;
 @property (weak,nonatomic) IBOutlet UIButton *btnAddImage;
 @property (weak,nonatomic) IBOutlet UIView *viewTagsHolder;
 
 @property (strong, nonatomic) NSMutableArray *tagsButtons;
-@property (strong, nonatomic) NSMutableArray *tagsResult;
-@property (strong, nonatomic) NSMutableArray *selectedTags;
+
 
 @property (weak,nonatomic) IBOutlet NSLayoutConstraint *CS_imageHolderHeight;
 @property (weak,nonatomic) IBOutlet NSLayoutConstraint *CS_tagsHolderHeight;
@@ -152,5 +149,37 @@ CGFloat const kImagePadding = 1.0;
         [_selectedTags addObject:sender.tag_id];
     }
     [self setupTags];
+}
+
+#pragma mark Validation
+
+/*
+ * Not used
+ **/
+- (BOOL)validateFields{
+    BOOL dataOK = YES;
+    if (_txtTitle.text.length==0) {
+        [_txtTitle setPlaceholderColor:COLOR_CUSTOM_RED];
+        dataOK = NO;
+    }
+    if (_txtDescription.text.length==0) {
+        [_txtDescription setPlaceholderColor:COLOR_CUSTOM_RED];
+        dataOK = NO;
+    }
+    return dataOK;
+}
+
+- (BOOL)validateImages{
+    if (_selectedImagesArray.count==0) {
+        return NO;
+    }
+    return YES;
+}
+
+- (BOOL)validateTags{
+    if (_selectedTags.count==0) {
+        return NO;
+    }
+    return YES;
 }
 @end

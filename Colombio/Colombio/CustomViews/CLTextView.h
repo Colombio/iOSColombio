@@ -16,9 +16,11 @@
 @end
 
 @interface CLTextView : UITextView<UITextViewDelegate>
-
+{
+    UILabel *l;
+}
 @property(nonatomic, strong) NSString *placeholder;
-@property(nonatomic, strong) UIColor *placeholderColor;
+@property(nonatomic, strong) NSString *placeholderColor;
 @property (nonatomic, weak) IBOutlet id <UITextViewDelegate> textViewDelegate;
 
 @end

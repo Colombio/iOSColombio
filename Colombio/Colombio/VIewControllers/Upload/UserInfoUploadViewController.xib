@@ -26,11 +26,12 @@
                 <outlet property="scrollView" destination="iIC-Pz-gI4" id="U8q-ii-adr"/>
                 <outlet property="txtContactMe" destination="r3a-Gt-gh4" id="eWn-FR-Uwo"/>
                 <outlet property="txtName" destination="MUo-Iw-Ef8" id="mbL-Xz-1eY"/>
-                <outlet property="txtPhoneNum" destination="NAT-ay-v29" id="Jzj-gG-W3L"/>
                 <outlet property="txtPrice" destination="y6g-yx-NaT" id="jma-GJ-QiL"/>
+                <outlet property="txtSurname" destination="NAT-ay-v29" id="yBL-K9-FsQ"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="viewAnonymousHolder" destination="qki-mO-fhT" id="zAK-ET-uF9"/>
                 <outlet property="viewContactMe" destination="esd-8k-Ja8" id="fRu-fz-meT"/>
+                <outlet property="viewH1" destination="Uae-Jd-7cB" id="kbe-Po-8TR"/>
                 <outlet property="viewPriceHolder" destination="DCv-5S-hMs" id="pze-Pg-hzO"/>
             </connections>
         </placeholder>
@@ -173,7 +174,7 @@
                                                 <constraint firstItem="Grd-7s-ybR" firstAttribute="top" secondItem="Agb-p6-stU" secondAttribute="top" id="y4W-06-ucl"/>
                                             </constraints>
                                         </view>
-                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name and Surname" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MUo-Iw-Ef8" userLabel="Name ">
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MUo-Iw-Ef8" userLabel="Name ">
                                             <constraints>
                                                 <constraint firstAttribute="height" id="Xjc-ZL-gla"/>
                                             </constraints>
@@ -181,22 +182,22 @@
                                             <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
                                             <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done"/>
                                             <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="string" keyPath="configPlaceholder" value="name_and_surname"/>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="configPlaceholder" value="name"/>
                                                 <userDefinedRuntimeAttribute type="string" keyPath="configTextColor" value="COLOR_TEXT_NAVIGATIONBAR_BUTTON"/>
                                             </userDefinedRuntimeAttributes>
                                             <connections>
                                                 <outlet property="delegate" destination="-1" id="fiW-Yn-raZ"/>
                                             </connections>
                                         </textField>
-                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Phone number" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NAT-ay-v29" userLabel="Phone">
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Surname" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NAT-ay-v29">
                                             <constraints>
                                                 <constraint firstAttribute="height" id="Ot6-Kf-3kC"/>
                                             </constraints>
                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                             <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
-                                            <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="phonePad" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
+                                            <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done"/>
                                             <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="string" keyPath="configPlaceholder" value="phone_number"/>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="configPlaceholder" value="surname"/>
                                                 <userDefinedRuntimeAttribute type="string" keyPath="configTextColor" value="COLOR_TEXT_NAVIGATIONBAR_BUTTON"/>
                                             </userDefinedRuntimeAttributes>
                                             <connections>

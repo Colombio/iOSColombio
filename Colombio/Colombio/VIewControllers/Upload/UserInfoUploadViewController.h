@@ -11,7 +11,7 @@
 
 @interface UserInfoUploadViewController : UIViewController<UITextFieldDelegate>
 
-@property (strong, nonatomic) NSString *cost;
+@property (strong, nonatomic) NSString *price;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 
 @property (weak, nonatomic) IBOutlet UIView *viewPriceHolder;
@@ -21,11 +21,13 @@
 @property (weak, nonatomic) IBOutlet VSSwitchButton *btnTogglePrice;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *CS_PriceHolderHeight;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *CS_NameYourPriceHeight;
+@property (weak, nonatomic) IBOutlet UIView *viewH1;
 
 @property (weak, nonatomic) IBOutlet UIView *viewAnonymousHolder;
 @property (weak, nonatomic) IBOutlet UILabel *lblAnonymoys;
 @property (weak, nonatomic) IBOutlet UITextField *txtName;
-@property (weak, nonatomic) IBOutlet UITextField *txtPhoneNum;
+//@property (weak, nonatomic) IBOutlet UITextField *txtPhoneNum;
+@property (weak, nonatomic) IBOutlet UITextField *txtSurname;
 @property (weak, nonatomic) IBOutlet VSSwitchButton *btnToggleAnonymous;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *CS_AnonynmousHolderHeight;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *CS_NameHeight;
@@ -45,5 +47,6 @@
 - (instancetype)initWithDemand:(BOOL)isNewsDemand;
 - (IBAction)btnAction:(VSSwitchButton*)sender;
 - (IBAction)btnBeCredited:(id)sender;
+- (BOOL)validateFields;
 
 @end

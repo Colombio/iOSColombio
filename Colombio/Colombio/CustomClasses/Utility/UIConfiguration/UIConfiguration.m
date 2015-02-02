@@ -39,12 +39,12 @@
         fontMap[FONT_HELVETICA_NEUE_REGULAR_SMALL]          = [UIFont fontWithName:@"HelveticaNeue" size:14];
         fontMap[FONT_HELVETICA_NEUE_REGULAR_EXTRA_SMALL]    = [UIFont fontWithName:@"HelveticaNeue" size:10];
         fontMap[FONT_HELVETICA_NEUE_BOLD_SMALL]             = [UIFont fontWithName:@"HelveticaNeue-Bold" size:14];
-        fontMap[FONT_HELVETICA_NEUE_LIGHT_SMALL]                  = [UIFont fontWithName:@"HelveticaNeue-Light" size:14];
+        fontMap[FONT_HELVETICA_NEUE_LIGHT_SMALL]            = [UIFont fontWithName:@"HelveticaNeue-Light" size:14];
         fontMap[FONT_HELVETICA_NEUE_LIGHT]                  = [UIFont fontWithName:@"HelveticaNeue-Light" size:17];
         fontMap[FONT_HELVETICA_NEUE_REGULAR]                = [UIFont fontWithName:@"HelveticaNeue" size:17];
         fontMap[FONT_HELVETICA_NEUE_BOLD_LARGE]             = [UIFont fontWithName:@"HelveticaNeue-Bold" size:40];
-        fontMap[FONT_HELVETICA_NEUE_BOLD_MIDDLE]             = [UIFont fontWithName:@"HelveticaNeue-Bold" size:25];
-        fontMap[FONT_HELVETICA_NEUE_TAGS_ITALIC]             = [UIFont fontWithName:@"HelveticaNeue-Italic" size:14];
+        fontMap[FONT_HELVETICA_NEUE_BOLD_MIDDLE]            = [UIFont fontWithName:@"HelveticaNeue-Bold" size:25];
+        fontMap[FONT_HELVETICA_NEUE_TAGS_ITALIC]            = [UIFont fontWithName:@"HelveticaNeue-Italic" size:14];
         
         keyboardMap = [[NSMutableDictionary alloc] init];
         keyboardMap[KEYBOARD_DEFAULT]       = @(UIKeyboardTypeDefault);

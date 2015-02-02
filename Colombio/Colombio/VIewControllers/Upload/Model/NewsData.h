@@ -14,8 +14,8 @@
 @property (strong, nonatomic) NSString *content;
 @property (nonatomic, assign) CGFloat latitude;
 @property (nonatomic, assign) CGFloat longitude;
-@property (nonatomic, assign) BOOL prot;
-@property (assign, nonatomic) float price;
+@property (nonatomic, assign) BOOL prot;//whisper mode
+@property (strong, nonatomic) NSString *price;
 @property (nonatomic, assign) BOOL be_credited;
 @property (nonatomic, assign) BOOL be_contacted;
 @property (strong, nonatomic) NSMutableArray *tags;

@@ -11,4 +11,6 @@
 @interface NewsMediaViewController : MediaListViewController
 
 @property (strong, nonatomic) NSMutableArray *selectedMedia;
+
+- (BOOL)validateMedia;
 @end

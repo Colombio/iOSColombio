@@ -7,6 +7,9 @@
 //
 
 #import "UploadContainerViewController.h"
+#import "NewsData.h"
+#import "AppDelegate.h"
+#import "UploadNewsViewController.h"
 
 
 @interface UploadContainerViewController ()
@@ -63,6 +66,67 @@
 }
 
 - (void)navigateNext{
+    if ([self validateData]) {
+        AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+        NewsData *newsData = [[NewsData alloc] init];
+        newsData.longitude = appDelegate.locationManager.location.coordinate.longitude;
+        newsData.latitude = appDelegate.locationManager.location.coordinate.latitude;
+        newsData.title = contentVC.txtTitle.text;
+        newsData.content = contentVC.txtDescription.text;
+        newsData.images = contentVC.selectedImagesArray;
+        newsData.tags = contentVC.selectedTags;
+        
+        if (_isNewsDemand) {
+            //složiti kak se šalje media_id is newsdemand
+        }else{
+            newsData.media = mediaVC.selectedMedia;
+        }
+        
+        newsData.prot = userInfoVC.btnToggleAnonymous.isON;
+        //ime i prezima??
+        newsData.be_credited = userInfoVC.be_credited;
+        newsData.be_contacted = userInfoVC.btnToggleContactMe.isON;
+        //broj telefona??
+        newsData.price = userInfoVC.price;
+        newsData.type_id = 1;
+        
+        UploadNewsViewController *uploadNewsVC = [[UploadNewsViewController alloc] init];
+        [self.navigationController pushViewController:uploadNewsVC animated:YES];
+        
+    }
+}
 
+- (BOOL)validateData{
+    BOOL dataOK  = YES;
+    /*if (![contentVC validateFields]) {
+        dataOK=NO;
+    }*/
+    if (![userInfoVC validateFields]) {
+        dataOK=NO;
+    }
+    if (!dataOK) {
+        [self showErrorMessage:@"error_fill_fields"];
+        return NO;
+    }
+    if (![contentVC validateImages]) {
+        [self showErrorMessage:@"error_missing_images"];
+        return NO;
+    }
+    if (![contentVC validateTags]) {
+        [self showErrorMessage:@"error_missing_tags"];
+        return NO;
+    }
+    
+    if (!_isNewsDemand) {
+        if (![mediaVC validateMedia]) {
+            [self showErrorMessage:@"error_missing_media"];
+            return NO;
+        }
+    }
+    return YES;
+}
+
+- (void)showErrorMessage:(NSString*)errorString{
+    [Messages showNormalMsg:errorString];
 }
 @end
