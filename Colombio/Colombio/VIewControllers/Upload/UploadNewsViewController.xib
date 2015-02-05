@@ -9,7 +9,7 @@
             <connections>
                 <outlet property="imgLoading" destination="uxp-go-bd4" id="Ma2-6x-kbP"/>
                 <outlet property="lblUploadCount" destination="d0X-Zh-zEi" id="yKf-C6-feK"/>
-                <outlet property="lblUploadPercengate" destination="CN0-kn-eWn" id="r9Y-Lk-GAg"/>
+                <outlet property="lblUploadPercentage" destination="CN0-kn-eWn" id="394-Aw-Etu"/>
                 <outlet property="lblUploading" destination="hUW-l1-Z7T" id="sNt-Sf-yqZ"/>
                 <outlet property="txtDidYouKnow" destination="MOr-gq-cGr" id="qeV-4d-m4l"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -32,7 +32,7 @@
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                     <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="configTextFont" value="FONT_HELVETICA_NEUE_BOLD_LARGE"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="configTextFont" value="FONT_HELVETICA_NEUE_BOLD_MIDDLE"/>
                         <userDefinedRuntimeAttribute type="string" keyPath="configText" value="did_you_know"/>
                     </userDefinedRuntimeAttributes>
                 </label>
@@ -48,7 +48,7 @@
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                     <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="configTextColor" value="FONT_HELVETICA_NEUE_LIGHT_SMALL"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="0configTextFont" value="FONT_HELVETICA_NEUE_LIGHT_SMALL"/>
                     </userDefinedRuntimeAttributes>
                 </textView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="loading" translatesAutoresizingMaskIntoConstraints="NO" id="uxp-go-bd4">
@@ -58,7 +58,7 @@
                         <constraint firstAttribute="height" constant="59" id="vfJ-DR-ibh"/>
                     </constraints>
                 </imageView>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="0%" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CN0-kn-eWn">
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="0%" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CN0-kn-eWn">
                     <rect key="frame" x="137" y="314" width="47" height="37"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="47" id="QJB-UC-ajn"/>
@@ -77,7 +77,7 @@
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                     <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="configText" value="FONT_HELVETICA_NEUE_LIGHT_SMALL"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="0configTextFont" value="FONT_HELVETICA_NEUE_LIGHT_SMALL"/>
                     </userDefinedRuntimeAttributes>
                 </label>
                 <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="1/5" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d0X-Zh-zEi">
@@ -86,6 +86,13 @@
                     <color key="textColor" red="0.28832116790000001" green="0.28832116790000001" blue="0.28832116790000001" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <imageView userInteractionEnabled="NO" contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="5ug-hZ-nNg">
+                    <rect key="frame" x="151" y="324" width="18" height="18"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="18" id="Eg0-ae-F01"/>
+                        <constraint firstAttribute="height" constant="18" id="iYE-tv-OKM"/>
+                    </constraints>
+                </imageView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
@@ -94,7 +101,9 @@
                 <constraint firstItem="MOr-gq-cGr" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="40" id="AKE-np-ZqB"/>
                 <constraint firstAttribute="bottom" secondItem="hUW-l1-Z7T" secondAttribute="bottom" constant="62" id="B6p-dK-eFI"/>
                 <constraint firstItem="uxp-go-bd4" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="131" id="G9q-aQ-FVv"/>
+                <constraint firstItem="uxp-go-bd4" firstAttribute="leading" secondItem="5ug-hZ-nNg" secondAttribute="trailing" constant="-38" id="KBE-7Z-6pd"/>
                 <constraint firstAttribute="trailing" secondItem="hUW-l1-Z7T" secondAttribute="trailing" constant="40" id="LNk-ec-LSv"/>
+                <constraint firstItem="5ug-hZ-nNg" firstAttribute="top" secondItem="uxp-go-bd4" secondAttribute="bottom" constant="-38" id="PnF-6N-M5o"/>
                 <constraint firstItem="B09-7b-Sfc" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="QOv-bA-f8H"/>
                 <constraint firstItem="MOr-gq-cGr" firstAttribute="top" secondItem="gOg-e9-OjZ" secondAttribute="bottom" constant="10" id="TZm-dd-pVW"/>
                 <constraint firstItem="gOg-e9-OjZ" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="40" id="VTf-HN-9Ns"/>

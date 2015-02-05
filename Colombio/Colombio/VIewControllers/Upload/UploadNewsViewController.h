@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "NewsData.h"
 
 @interface UploadNewsViewController : UIViewController
 
+- (instancetype)initWithNewsData:(NewsData*)data;
 @end

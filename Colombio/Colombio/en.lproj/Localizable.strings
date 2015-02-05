@@ -85,5 +85,7 @@
 "error_missing_images" = "Please choose at least one image or video";
 "error_missing_tags" = "Please choose at least one tag";
 "error_missing_media" = "Please choose at least one media";
+"send_success" = "News sent. Please wait…";
+"send_failed" = "Sending failed. Please wait…";
 /*Spinner message*/
 "logged" ="Logged in, please wait...";

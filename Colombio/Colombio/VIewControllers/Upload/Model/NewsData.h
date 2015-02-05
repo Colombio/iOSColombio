@@ -15,13 +15,14 @@
 @property (nonatomic, assign) CGFloat latitude;
 @property (nonatomic, assign) CGFloat longitude;
 @property (nonatomic, assign) BOOL prot;//whisper mode
-@property (strong, nonatomic) NSString *price;
+@property (assign, nonatomic) float price;
 @property (nonatomic, assign) BOOL be_credited;
 @property (nonatomic, assign) BOOL be_contacted;
 @property (strong, nonatomic) NSMutableArray *tags;
 @property (strong, nonatomic) NSMutableArray *media;
 @property (assign, nonatomic) NSInteger did;//demand_id
 @property (assign, nonatomic) NSInteger type_id;
+@property (strong, nonatomic) NSString *phone_number;
 
 @property (strong, nonatomic) NSMutableArray *images;
 
