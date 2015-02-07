@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		582352C21A841E2900A03D19 /* GoogleLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 582352C01A841E2900A03D19 /* GoogleLoginViewController.m */; };
+		582352C31A841E2900A03D19 /* GoogleLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 582352C11A841E2900A03D19 /* GoogleLoginViewController.xib */; };
 		583572071A2B4B7400F6EA17 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 583572041A2B4B7400F6EA17 /* LoginViewController.m */; };
 		5835720B1A2B705100F6EA17 /* BottomNav.m in Sources */ = {isa = PBXBuildFile; fileRef = 5835720A1A2B705100F6EA17 /* BottomNav.m */; };
 		5835720E1A2B70C000F6EA17 /* ScrollableHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 5835720D1A2B70C000F6EA17 /* ScrollableHeader.m */; };
@@ -106,6 +108,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		582352BF1A841E2900A03D19 /* GoogleLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoogleLoginViewController.h; sourceTree = "<group>"; };
+		582352C01A841E2900A03D19 /* GoogleLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoogleLoginViewController.m; sourceTree = "<group>"; };
+		582352C11A841E2900A03D19 /* GoogleLoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GoogleLoginViewController.xib; sourceTree = "<group>"; };
 		583572031A2B4B7400F6EA17 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		583572041A2B4B7400F6EA17 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		583572091A2B705100F6EA17 /* BottomNav.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "\bBottomNav.h"; sourceTree = "<group>"; };
@@ -288,12 +293,15 @@
 		583572021A2B4B7400F6EA17 /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				58ACA0041A530D5B0076D3D8 /* CreateAccViewController.xib */,
 				BBAE1F261A37B6980008B772 /* CreateAccViewController.h */,
 				BBAE1F271A37B6980008B772 /* CreateAccViewController.m */,
+				58ACA0041A530D5B0076D3D8 /* CreateAccViewController.xib */,
 				BBAE1F211A37B68E0008B772 /* ForgotPasswordViewController.h */,
 				BBAE1F221A37B68E0008B772 /* ForgotPasswordViewController.m */,
 				BBAE1F231A37B68E0008B772 /* ForgotPasswordViewController.xib */,
+				582352BF1A841E2900A03D19 /* GoogleLoginViewController.h */,
+				582352C01A841E2900A03D19 /* GoogleLoginViewController.m */,
+				582352C11A841E2900A03D19 /* GoogleLoginViewController.xib */,
 				583572031A2B4B7400F6EA17 /* LoginViewController.h */,
 				583572041A2B4B7400F6EA17 /* LoginViewController.m */,
 				BBB0BFA81A350F640074B20C /* LoginViewController.xib */,
@@ -683,6 +691,7 @@
 				BBB604B81A7EFFB90090F18A /* UploadNewsViewController.xib in Resources */,
 				BBC77C6A1A6889610069FD9D /* PhotoLibraryViewController.xib in Resources */,
 				58A004FF1A60DBE300E7BA68 /* CountriesViewController.xib in Resources */,
+				582352C31A841E2900A03D19 /* GoogleLoginViewController.xib in Resources */,
 				BBD453621A64914A0029CADD /* ContainerViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -741,6 +750,7 @@
 				BBB6A0631A48D791006F61B3 /* StartViewController.m in Sources */,
 				BBBA31CF1A70772E002ED12A /* ButtonTag.m in Sources */,
 				BBB33AC31A27D9EE008D0E26 /* main.m in Sources */,
+				582352C21A841E2900A03D19 /* GoogleLoginViewController.m in Sources */,
 				583572191A2B72BB00F6EA17 /* Tools.m in Sources */,
 				BBB7F3321A60B60E0014909B /* CustomHeaderView.m in Sources */,
 				BBCF58DC1A293DD200CE64B4 /* Database.m in Sources */,
