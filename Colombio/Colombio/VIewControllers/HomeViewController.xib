@@ -58,7 +58,7 @@
                     <rect key="frame" x="10" y="203" width="100" height="99"/>
                     <subviews>
                         <button contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oV6-mN-efE">
-                            <rect key="frame" x="17" y="8" width="67" height="66"/>
+                            <rect key="frame" x="27" y="18" width="47" height="46"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <state key="normal" backgroundImage="takephoto_normal">
                                 <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -87,7 +87,7 @@
                     <rect key="frame" x="110" y="203" width="100" height="99"/>
                     <subviews>
                         <button contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nG1-cG-WJ4">
-                            <rect key="frame" x="17" y="8" width="67" height="66"/>
+                            <rect key="frame" x="27" y="18" width="47" height="46"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <state key="normal" backgroundImage="sendnews_normal">
                                 <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -117,7 +117,7 @@
                     <rect key="frame" x="210" y="203" width="100" height="99"/>
                     <subviews>
                         <button contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="12J-Tn-eFv">
-                            <rect key="frame" x="17" y="8" width="67" height="66"/>
+                            <rect key="frame" x="27" y="18" width="47" height="46"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <state key="normal" backgroundImage="alert_normal">
                                 <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -146,7 +146,7 @@
                     <rect key="frame" x="210" y="310" width="100" height="99"/>
                     <subviews>
                         <button contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z82-wW-zm4">
-                            <rect key="frame" x="17" y="8" width="67" height="66"/>
+                            <rect key="frame" x="27" y="18" width="47" height="46"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <state key="normal" backgroundImage="callmedia_normal">
                                 <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -175,7 +175,7 @@
                     <rect key="frame" x="110" y="310" width="100" height="99"/>
                     <subviews>
                         <button contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sPh-OX-Cca">
-                            <rect key="frame" x="17" y="8" width="67" height="66"/>
+                            <rect key="frame" x="27" y="18" width="47" height="46"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <state key="normal" backgroundImage="announce_normal">
                                 <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -204,7 +204,7 @@
                     <rect key="frame" x="10" y="310" width="100" height="99"/>
                     <subviews>
                         <button contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0TS-Ie-n7I">
-                            <rect key="frame" x="17" y="8" width="67" height="66"/>
+                            <rect key="frame" x="27" y="18" width="47" height="46"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <state key="normal" backgroundImage="community_normal">
                                 <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -263,13 +263,13 @@
         </view>
     </objects>
     <resources>
-        <image name="alert_normal" width="67" height="66"/>
-        <image name="announce_normal" width="67" height="66"/>
-        <image name="callmedia_normal" width="67" height="66"/>
-        <image name="community_normal" width="67" height="66"/>
+        <image name="alert_normal" width="36" height="36"/>
+        <image name="announce_normal" width="36" height="36"/>
+        <image name="callmedia_normal" width="36" height="36"/>
+        <image name="community_normal" width="36" height="36"/>
         <image name="login_bg1" width="320" height="480"/>
-        <image name="sendnews_normal" width="67" height="66"/>
-        <image name="sendnews_pressed" width="67" height="66"/>
-        <image name="takephoto_normal" width="67" height="66"/>
+        <image name="sendnews_normal" width="36" height="36"/>
+        <image name="sendnews_pressed" width="36" height="36"/>
+        <image name="takephoto_normal" width="36" height="36"/>
     </resources>
 </document>
