@@ -80,6 +80,7 @@
 "error_missing_images" = "Molimo odaberite barem jednu sliku ili video";
 "error_missing_tags" = "Molimo odaberite barem jedan tag";
 "error_missing_media" = "Molimo odaberite barem jedan medij";
-
+"send_success" = "Uspješno poslano. Molimo pričekaj…";
+"send_failed" = "Slanje nije uspjelo. Molimo pričekaj…";
 /*Spinner message*/
 "logged" ="Logged in, please wait...";

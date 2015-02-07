@@ -78,19 +78,24 @@
         
         if (_isNewsDemand) {
             //složiti kak se šalje media_id is newsdemand
+            //newsData.did=
         }else{
             newsData.media = mediaVC.selectedMedia;
+            newsData.did=0;
+            newsData.price = [userInfoVC.price floatValue];
         }
         
         newsData.prot = userInfoVC.btnToggleAnonymous.isON;
         //ime i prezima??
         newsData.be_credited = userInfoVC.be_credited;
         newsData.be_contacted = userInfoVC.btnToggleContactMe.isON;
-        //broj telefona??
-        newsData.price = userInfoVC.price;
+        newsData.phone_number = userInfoVC.txtContactMe.text;
+        
         newsData.type_id = 1;
         
-        UploadNewsViewController *uploadNewsVC = [[UploadNewsViewController alloc] init];
+        
+        UploadNewsViewController *uploadNewsVC = [[UploadNewsViewController alloc] initWithNewsData:newsData];
+        uploadNewsVC.hidesBottomBarWhenPushed=YES;
         [self.navigationController pushViewController:uploadNewsVC animated:YES];
         
     }
