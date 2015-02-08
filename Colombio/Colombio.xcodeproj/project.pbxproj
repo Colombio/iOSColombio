@@ -868,6 +868,7 @@
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Zvonimir Juranko (MYSJ6HWKEM)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/**",
@@ -883,7 +884,7 @@
 					"$(PROJECT_DIR)FacebookSDK.framework/Versions/A",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "4d597ad3-4ad2-4d57-9576-6285af7a2ef2";
+				PROVISIONING_PROFILE = "F260053E-ABE2-4130-AD0A-B0B11078B853";
 			};
 			name = Debug;
 		};
@@ -893,6 +894,7 @@
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Zvonimir Juranko (MYSJ6HWKEM)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/**",
@@ -908,7 +910,7 @@
 					"$(PROJECT_DIR)FacebookSDK.framework/Versions/A",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "4d597ad3-4ad2-4d57-9576-6285af7a2ef2";
+				PROVISIONING_PROFILE = "F260053E-ABE2-4130-AD0A-B0B11078B853";
 			};
 			name = Release;
 		};
