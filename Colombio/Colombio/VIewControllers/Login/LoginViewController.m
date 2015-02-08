@@ -15,6 +15,7 @@
 #import "ForgotPasswordViewController.h"
 #import "TabBarViewController.h"
 #import "CountriesViewController.h"
+#import "GoogleLoginViewController.h"
 /*
 #import "Countries.h"
 #import "GoogleLogin.h"
@@ -67,9 +68,6 @@
     
     //Provjeravanje tokena, ako je korisnik vec logiran u sustavu, proslijedi ga na home
     //timer = [NSTimer scheduledTimerWithTimeInterval:0.4 target:self selector:@selector(provjeriToken) userInfo:nil repeats:NO];
-    
-    //Testiranje lokalizacije
-    //[txtPassword setPlaceholder:NSLocalizedString(@"T", nil)];
     loadingView = [[Loading alloc] init];
 }
 
@@ -324,53 +322,9 @@
 
 #pragma mark Google
 - (void)btnGoogleSelected:(id)sender{
-
+    GoogleLoginViewController *gg = [[GoogleLoginViewController alloc]init];
+    [self presentViewController:gg animated:YES completion:nil];
 }
-
-
-//Da se zastopa skrol ako otide lijevo ili desno
-//Da se pomakne slicica ako se prijede polovicu
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    
-    /*CGRect screenBounds = [[UIScreen mainScreen]bounds];
-    if(screenBounds.size.height != 568.0f){
-        if(self.scrollBox.contentOffset.y<80){
-            [self.scrollBox setScrollEnabled:NO];
-            [self.scrollBox setContentOffset:CGPointMake(0, 80)];
-            [self.scrollBox setScrollEnabled:YES];
-            return;
-        }
-        
-    }
-    if([txtEmail isFirstResponder]||[txtPassword isFirstResponder]){
-        
-        if(self.scrollBox.contentOffset.y>300){
-            [self.scrollBox setScrollEnabled:NO];
-            [self.scrollBox setContentOffset:CGPointMake(0, 300)];
-            [self.scrollBox setScrollEnabled:YES];
-        }
-        return;
-    }
-    if(self.scrollBox.contentOffset.y>80){
-        [self.scrollBox setScrollEnabled:NO];
-        [self.scrollBox setContentOffset:CGPointMake(0, 80)];
-        [self.scrollBox setScrollEnabled:YES];
-        return;
-    }*/
-}
-
-- (void)viewDidLayoutSubviews{
-    /*CGRect screenBounds = [[UIScreen mainScreen]bounds];
-    if(screenBounds.size.height != 568.0f){
-        scrollBox.contentSize = CGSizeMake(scrollBox.frame.size.width, scrollBox.frame.size.height+300);
-        [self.scrollBox setContentOffset:CGPointMake(0, 80)];
-    }*/
-}
-
-//Disable longtouch itd
-/*- (BOOL)canBecomeFirstResponder{
-    return NO;
-}*/
 
 /*
 //Provjeravanje da li je pohranjeni token još uvijek aktivan na serveru

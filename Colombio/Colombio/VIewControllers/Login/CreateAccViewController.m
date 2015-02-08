@@ -13,6 +13,7 @@
 #import "LoginViewController.h"
 #import "Messages.h"
 #import "Validation.h"
+#import "CountriesViewController.h"
 #import "Localized.h"
 
 @interface CreateAccViewController ()
@@ -266,7 +267,8 @@
 }
 
 - (void)createAccSuccessful{
-    //TODO GOTO Countries
+    CountriesViewController *countries = [[CountriesViewController alloc]init];
+    [self presentViewController:countries animated:YES completion:nil];
 }
 
 //Ako se klikne na create account

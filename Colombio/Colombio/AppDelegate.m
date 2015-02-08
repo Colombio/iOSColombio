@@ -97,6 +97,8 @@
 }
 
 - (void)checkToken{
+    self.window.rootViewController = [[LoginViewController alloc] init];
+    return;
     @try {
         NSString *result = [ColombioServiceCommunicator getSignedRequest];
         if(result.length>0){
