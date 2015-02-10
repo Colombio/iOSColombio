@@ -5,6 +5,8 @@
 //  Created by Vlatko Šprem on 29/11/14.
 //  Copyright (c) 2014 Colombio. All rights reserved.
 //
+// Used for getting proper value from Localizable.strings
+// Use [Localized string:@"<key>"]!
 
 #import <Foundation/Foundation.h>
 

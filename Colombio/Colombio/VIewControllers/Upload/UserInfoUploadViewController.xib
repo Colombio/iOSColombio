@@ -85,7 +85,7 @@
                                                 <constraint firstAttribute="bottom" secondItem="rfQ-Es-jNH" secondAttribute="bottom" id="tQb-1e-N3y"/>
                                             </constraints>
                                         </view>
-                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name your price (max $100)" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="y6g-yx-NaT">
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name your price (max $100)" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="y6g-yx-NaT">
                                             <constraints>
                                                 <constraint firstAttribute="height" id="prx-JN-14Q"/>
                                             </constraints>
@@ -174,7 +174,7 @@
                                                 <constraint firstItem="Grd-7s-ybR" firstAttribute="top" secondItem="Agb-p6-stU" secondAttribute="top" id="y4W-06-ucl"/>
                                             </constraints>
                                         </view>
-                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MUo-Iw-Ef8" userLabel="Name ">
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MUo-Iw-Ef8" userLabel="Name ">
                                             <constraints>
                                                 <constraint firstAttribute="height" id="Xjc-ZL-gla"/>
                                             </constraints>
@@ -189,7 +189,7 @@
                                                 <outlet property="delegate" destination="-1" id="fiW-Yn-raZ"/>
                                             </connections>
                                         </textField>
-                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Surname" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NAT-ay-v29">
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Surname" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NAT-ay-v29">
                                             <constraints>
                                                 <constraint firstAttribute="height" id="Ot6-Kf-3kC"/>
                                             </constraints>
@@ -312,7 +312,7 @@
                                                 <constraint firstAttribute="bottom" secondItem="5Tn-aX-hwv" secondAttribute="bottom" constant="5" id="smi-Bt-erF"/>
                                             </constraints>
                                         </view>
-                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Phone number" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="r3a-Gt-gh4" userLabel="Phone">
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Phone number" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="r3a-Gt-gh4" userLabel="Phone">
                                             <constraints>
                                                 <constraint firstAttribute="height" id="WVH-wh-f7u"/>
                                             </constraints>

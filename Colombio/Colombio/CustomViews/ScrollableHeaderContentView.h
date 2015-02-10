@@ -5,6 +5,7 @@
 //  Created by Vlatko Šprem on 10/01/15.
 //  Copyright (c) 2015 Colombio. All rights reserved.
 //
+//  Content view for scrollable headers!
 
 #import <UIKit/UIKit.h>
 

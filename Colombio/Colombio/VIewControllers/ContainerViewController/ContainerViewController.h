@@ -5,6 +5,7 @@
 //  Created by Vlatko Šprem on 13/01/15.
 //  Copyright (c) 2015 Colombio. All rights reserved.
 //
+//  This class is used as superclass for swipe like navigation. Each subclass has to be implemented specifically (check already implemented - UploadContainerViewController)
 
 #import <UIKit/UIKit.h>
 

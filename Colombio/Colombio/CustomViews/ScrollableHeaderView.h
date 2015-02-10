@@ -5,6 +5,7 @@
 //  Created by Vlatko Šprem on 29/12/14.
 //  Copyright (c) 2014 Colombio. All rights reserved.
 //
+//  Scrollable header to be set in IB via UIView (change class to ScrollableHeader)!
 
 #import <UIKit/UIKit.h>
 

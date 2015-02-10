@@ -5,6 +5,7 @@
 //  Created by Vlatko Šprem on 14/12/14.
 //  Copyright (c) 2014 vlatko. All rights reserved.
 //
+//  Custom switch button with ON/OFF text!
 
 #import <UIKit/UIKit.h>
 

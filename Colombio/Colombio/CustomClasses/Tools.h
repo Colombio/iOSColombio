@@ -5,6 +5,7 @@
 //  Created by Vlatko Šprem on 19/10/14.
 //  Copyright (c) 2014 Colombio. All rights reserved.
 //
+// Convenience methods.
 
 #import <Foundation/Foundation.h>
 

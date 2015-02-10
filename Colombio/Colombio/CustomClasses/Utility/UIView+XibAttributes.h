@@ -11,8 +11,13 @@
 @interface UIView (XibAttributes)
 
 /**
- *  setText:
+ *  Config User Defined Runtime Attributes in your .xib for any UIView subclass
+ *
+ *	e.g.
+ *	KEY PATH				TYPE			VALUE
+ *	configText				String			localized_key
  */
+
 @property (nonatomic, weak) NSString *configText;
 @property (nonatomic, weak) NSString *configTextColor;
 @property (nonatomic, weak) NSString *configTextFont;

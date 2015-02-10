@@ -8,13 +8,7 @@
 
 #import "UIView+XibAttributes.h"
 
-/**
- *  Config User Defined Runtime Attributes in your .xib for any UIView subclass
- *
- *	e.g.
- *	KEY PATH				TYPE			VALUE
- *	configText				String			localized_key
- */
+
 
 @implementation UIView (XibAttributes)
 

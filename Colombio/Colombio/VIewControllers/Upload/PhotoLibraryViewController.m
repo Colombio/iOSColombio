@@ -118,6 +118,7 @@
         if (selectedVideo.count>0){
             [tempArray addObjectsFromArray:selectedVideo];
         }
+        //reloads images in previous controller
         [(UploadContainerViewController*)self.caller selectedImageAction:tempArray];
     }
     

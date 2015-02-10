@@ -25,6 +25,7 @@
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil isNewsDemand:(BOOL)isNewsDemand{
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
+        //set child view controllers and their properties
         _isNewsDemand = isNewsDemand;
         contentVC = [[CreateNewsViewController alloc] init];
         contentVC.delegate = self;
@@ -100,6 +101,8 @@
         
     }
 }
+
+#pragma mark Validate Data
 
 - (BOOL)validateData{
     BOOL dataOK  = YES;

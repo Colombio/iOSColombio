@@ -5,6 +5,7 @@
 //  Created by Vlatko Šprem on 25/01/15.
 //  Copyright (c) 2015 Colombio. All rights reserved.
 //
+// Select Media from media list.
 
 #import "MediaListViewController.h"
 

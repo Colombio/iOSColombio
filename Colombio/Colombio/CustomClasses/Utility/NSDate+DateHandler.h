@@ -5,6 +5,7 @@
 //  Created by Vlatko Šprem on 09/12/14.
 //  Copyright (c) 2014 Colombio. All rights reserved.
 //
+// NSDate convenience methods.
 
 #import <Foundation/Foundation.h>
 

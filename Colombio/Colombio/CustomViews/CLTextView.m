@@ -82,6 +82,8 @@ CGFloat const UI_PLACEHOLDER_TEXT_CHANGED_ANIMATION_DURATION = 0.25;
     l.textColor = [[UIConfiguration sharedInstance] getColor:placeholderColor];
 }
 
+#pragma mark Set Keyboard Toolbar
+
 - (UIToolbar *)keyboardToolbarFor:(SEL)action {
     UIToolbar *keyboardDoneButtonView = [[UIToolbar alloc] init];
     keyboardDoneButtonView.backgroundColor = [UIColor lightGrayColor];

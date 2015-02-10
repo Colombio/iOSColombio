@@ -5,6 +5,7 @@
 //  Created by Vlatko Šprem on 11/01/15.
 //  Copyright (c) 2015 Colombio. All rights reserved.
 //
+// Instance of this class is used to store data prior to uploading.
 
 #import <Foundation/Foundation.h>
 

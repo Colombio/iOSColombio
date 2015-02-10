@@ -86,10 +86,10 @@
     NSString *httpBody;
     
     if(_newsData.did == 0){
-        httpBody = [NSString stringWithFormat:@"signed_req=%@&title=%@&content=%@&loc=%@&prot=%@&cost=%f&be_credited=%@&be_contacted=%@&tags=%@&media=%@&type_id=%@&contact_data[contact_phone]=%@",result,_newsData.title,_newsData.description,location,whisperMode,_newsData.price,be_credited,be_contacted,arTagsUpload,arMediaUpload,[NSString stringWithFormat:@"%d",_newsData.type_id],_newsData.phone_number];
+        httpBody = [NSString stringWithFormat:@"signed_req=%@&title=%@&content=%@&loc=%@&prot=%@&cost=%f&be_credited=%@&be_contacted=%@&tags=%@&media=%@&type_id=%@&contact_data[contact_phone]=%@",result,_newsData.title,_newsData.description,location,whisperMode,_newsData.price,be_credited,be_contacted,arTagsUpload,arMediaUpload,[NSString stringWithFormat:@"%ld",(long)_newsData.type_id],_newsData.phone_number];
     }
     else{
-        httpBody = [NSString stringWithFormat:@"signed_req=%@&title=%@&content=%@&loc=%@&prot=%@&cost=%f&be_credited=%@&be_contacted=%@&tags=%@&req_id=%d&media=%@&type_id=%@&contact_data[contact_phone]=%@",result,_newsData.title,_newsData.content,location,whisperMode,_newsData.price,be_credited,be_contacted,arTagsUpload,_newsData.did,arMediaUpload,[NSString stringWithFormat:@"%d",_newsData.type_id],_newsData.phone_number];
+        httpBody = [NSString stringWithFormat:@"signed_req=%@&title=%@&content=%@&loc=%@&prot=%@&cost=%f&be_credited=%@&be_contacted=%@&tags=%@&req_id=%ld&media=%@&type_id=%@&contact_data[contact_phone]=%@",result,_newsData.title,_newsData.content,location,whisperMode,_newsData.price,be_credited,be_contacted,arTagsUpload,(long)_newsData.did,arMediaUpload,[NSString stringWithFormat:@"%ld",_newsData.type_id],_newsData.phone_number];
     }
     
     [csc sendAsyncHttp:url_str httpBody:httpBody cache:NSURLRequestReloadIgnoringCacheData timeoutInterval:TIMEOUT];
@@ -103,7 +103,10 @@
                     news_id = [response objectForKey:@"news_id"];
                     
                     if(_newsData.images.count>0){
-                        [self uploadFile:uploadCount-1];
+                        /**
+                        ** after we send textual data and if everything is ok, we can start sending media files we selected.
+                        **/
+                        [self uploadFile:(int)uploadCount-1];
                     }
                     else {
                         [_imgLoading.layer removeAllAnimations];
@@ -123,6 +126,7 @@
     
 }
 
+//gets total file size for progress purposes
 - (NSUInteger)getTotalFileSize{
     NSUInteger totalFileSize;
     for(ALAsset *asset in _newsData.images){
@@ -142,6 +146,7 @@
     }
     return totalFileSize;
 }
+
 - (void)uploadFile:(int)index{
     ALAsset *img = _newsData.images[index];
     
@@ -221,6 +226,7 @@
         });
     }
 }
+
 - (void)uploadMedia:(NSURLRequest*)wigiRequest{
     NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:wigiRequest delegate:self];
 }
