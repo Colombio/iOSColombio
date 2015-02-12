@@ -1,11 +1,23 @@
+/////////////////////////////////////////////////////////////
 //
-//  Home.m
-//  Colombio
+//  MediaViewController.m
+//  Armin Vrevic
 //
-//  Created by Colombio on 6/20/14.
+//  Created by Colombio on 7/8/14.
 //  Copyright (c) 2014 Colombio. All rights reserved.
 //
-//  Kontroler za prikaz i odabir medija za korisnika
+//  Class that implements media listing from a web service
+//  or from the media stored locally.
+//
+//  It first checks for timestamp on the web, if the data
+//  is not present locally it fetches all the media, and
+//  presents it in a collection view, then for performance
+//  optimizing, it loads picture one by one from web service.
+//
+//  If the data is cached on the device, it loads data from
+//  inner device memory
+//
+///////////////////////////////////////////////////////////////
 
 #import "MediaViewController.h"
 
@@ -22,16 +34,20 @@
 @synthesize arMediaImages;
 @synthesize settingsCollectionView;
 
-//Pocetno ucitavanje pogleda, dohvacanje medija
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     self.wantsFullScreenLayout = YES;
+    //Add custom header
     customHeaderView.customHeaderDelegate = self;
     customHeaderView.backButtonText = @"SELECT COUNTRY";
     customHeaderView.nextButtonText = @"YOUR INFO";
     loadingView = [[Loading alloc]init];
     imagesLoaded = [[NSMutableArray alloc]init];
+    //This is provided here so that array can be reinitialized
+    //if it is empty,
+    //if it is not empty, user probably navigated forward,
+    //and then back to this view
     if(arSelectedMedia.count==0){
         arSelectedMedia = [[NSMutableArray alloc]init];
     }
@@ -50,11 +66,19 @@
 
 #pragma mark WebServiceCommunication
 
+/**
+ *  Method that loads the media into collection view
+ *  It first loads the timestamp from the local
+ *  directory, if the timestamp matches the one on the
+ *  web server, the cached data is valid.
+ *  If not, it sends new async http to the server
+ *
+ */
 - (void)loadMedia{
     [loadingView startCustomSpinner:self.view spinMessage:@""];
     NSString *filePathMediji = [Tools getFilePaths:@"medijiDohvaceni.out"];
     NSString *filePathTimeStamp = [Tools getFilePaths:@"timestamp_media.out"];
-    //citanje posljednjeg timestampa za medije
+    //Reading media last timestamp
     NSString *lastTimestamp =[NSString stringWithContentsOfFile:filePathTimeStamp encoding:NSUTF8StringEncoding error:nil];
     
     ColombioServiceCommunicator *csc = [[ColombioServiceCommunicator alloc] init];
@@ -62,49 +86,62 @@
     
     [NSURLConnection sendAsynchronousRequest:csc.request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            //Ako su uspjesno dohvaceni podaci sa servera
+            //If data is fetched successfuly
             if(error==nil&&data!=nil){
                 [self prepareMedia:data response:response strTimestamp:filePathTimeStamp strFilePathMedia:filePathMediji];
-                
+                //Initialize collection view
                 settingsCollectionView = [[SettingsCollectionView alloc] init];
                 settingsCollectionView.settingsCollectionViewDelegate = self;
                 settingsCollectionView.numberOfCells = [mediji count];
                 [settingsCollectionView addCollectionView:self];
             }
-            //Ako nije dobra konekcija
+            //If connection is not good, return user to login
             else{
                 [Messages showErrorMsg:@"error_web_request"];
-                //TODO Vratiti korisnika na login???
                 [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
             }
+            //Create timer to fluently remove spinner
             timer = [NSTimer scheduledTimerWithTimeInterval:0.8 target:self selector:@selector(toggleSpinnerOff) userInfo:nil repeats:NO];
         });
     }];
 }
 
+/**
+ *  Method that checks if the media cached is valid
+ *  and if it is not valid it caches it
+ *  
+ *  After that it loads it into variable and presents it in
+ *  collection view
+ *
+ *  @param data "Data fetched from server"
+ *  @param response ""
+ *  @param filePathTimeStamp "File path for -> Timestamp that caches the data"
+ *  @param filePathMedia "Timestamp for caching the data"
+ *
+ */
 - (void)prepareMedia:(NSData *)data response:(NSURLResponse*)response strTimestamp:(NSString *)filePathTimeStamp strFilePathMedia:(NSString*)filePathMedia{
     Boolean isDataChanged=true;
     NSDictionary *dataWsResponse=nil;
     dataWsResponse =[NSJSONSerialization JSONObjectWithData:data options:0 error:NULL];
     NSArray *keys =[dataWsResponse allKeys];
     for(NSString *key in keys){
-        //Nije mijenjan popis medija
+        //Media is not changed
         if(!strcmp("s", key.UTF8String)){
             isDataChanged=false;
             break;
         }
     }
-    //Ako je mijenjan popis medija
+    //Media is changed
     if(isDataChanged){
-        //Spremanje zadnjeg timestampa u datoteku
+        //Save last timestamp to file
         NSString *changeTimestamp=[dataWsResponse objectForKey:@"change_timestamp"];
         [changeTimestamp writeToFile:filePathTimeStamp atomically:YES encoding:NSUTF8StringEncoding error:nil];
-        //Spremanje drzava u datoteku
+        //Save countries to file
         [dataWsResponse writeToFile:filePathMedia atomically:YES];
     }
-    //Citanje drzava iz datoteke
+    //Read states from file
     NSDictionary *mediaFromFile=[NSDictionary dictionaryWithContentsOfFile:filePathMedia];
-    //punjenje medija podacima
+    //Fill the media with data
     mediji =[mediaFromFile objectForKey:@"data"];
     arMediaImages = mediji;
     if(isDataChanged==true){
@@ -114,9 +151,14 @@
     }
 }
 
+/**
+ *  Async images loading one by one to improve performance
+ *
+ */
 - (void)loadImages{
     NSDate *methodStart = [NSDate date];
     int i=0;
+    //for every image
     for(NSDictionary *m in arMediaImages){
         if(exitingView==YES){
             return;
@@ -156,9 +198,11 @@
             [settingsCollectionView.collectionView reloadItemsAtIndexPaths:indexPaths];
         });
     }
+    //if the user has exited the VC, stop loading images
     if(exitingView==YES){
         return;
     }
+    //Reload data in collection view after loading the image
     dispatch_async(dispatch_get_main_queue(), ^{
         [settingsCollectionView.collectionView reloadData];
     });
@@ -174,7 +218,10 @@
 
 #pragma mark CollectionView
 
-//Postavke kako ce celije izgledati
+/**
+ *  Settings that define how will cells look
+ *
+ */
 - (UICollectionViewCell *)setupCellLook:(NSIndexPath*)indexPath{
     CountriesCell *cell = (CountriesCell *)[settingsCollectionView.collectionView dequeueReusableCellWithReuseIdentifier:@"cellIdentifier" forIndexPath:indexPath];
     long cellPosition = (indexPath.row)+(indexPath.section*3);

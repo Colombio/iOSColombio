@@ -1,10 +1,23 @@
+/////////////////////////////////////////////////////////////
 //
-//  Media.h
-//  Colombio
+//  MediaViewController.h
+//  Armin Vrevic
 //
 //  Created by Colombio on 7/8/14.
 //  Copyright (c) 2014 Colombio. All rights reserved.
 //
+//  Class that implements media listing from a web service
+//  or from the media stored locally.
+//
+//  It first checks for timestamp on the web, if the data
+//  is not present locally it fetches all the media, and
+//  presents it in a collection view, then for performance
+//  optimizing, it loads picture one by one from web service.
+//
+//  If the data is cached on the device, it loads data from
+//  inner device memory
+//
+///////////////////////////////////////////////////////////////
 
 #import <UIKit/UIKit.h>
 #import "Messages.h"
