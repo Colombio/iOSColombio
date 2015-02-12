@@ -1,10 +1,15 @@
+/////////////////////////////////////////////////////////////
 //
 //  Validation.h
-//  colombio
+//  Armin Vrevic
 //
-//  Created by Vlatko Šprem on 27/09/14.
+//  Created by Colombio on 8/6/14.
 //  Copyright (c) 2014 Colombio. All rights reserved.
 //
+//  Class that provides methods for regex or other types of
+//  string validation
+//
+///////////////////////////////////////////////////////////////
 
 #import <Foundation/Foundation.h>
 

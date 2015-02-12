@@ -1,16 +1,29 @@
+/////////////////////////////////////////////////////////////
 //
 //  CryptoClass.m
-//  colombio
+//  Armin Vrevic
 //
 //  Created by Colombio on 8/6/14.
 //  Copyright (c) 2014 Colombio. All rights reserved.
 //
+//  Class that primarily serves for the crypto algorithm functions
+//
+///////////////////////////////////////////////////////////////
+
 
 #import "CryptoClass.h"
 #import <CommonCrypto/CommonDigest.h>
 
 @implementation CryptoClass
 
+/**
+ *  Produces md5 hash out of provided string input
+ *
+ *  @param input "Input that user wants to hash"
+ *
+ *  @return md5 hash in string format
+ *
+ */
 + (NSString *) md5:(NSString *) input
 {
     const char *cStr = [input UTF8String];
@@ -23,6 +36,14 @@
     return output;
 }
 
+/**
+ *  Method that produces base64encoded string out of provided binary data
+ *
+ *  @param input "Binary data"
+ *
+ *  @return base64 encoded string
+ *
+ */
 + (NSMutableString*)base64Encoding:(NSData*)data{
     static char base64EncodingTable[64] = {
         'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P',

@@ -1,10 +1,14 @@
+/////////////////////////////////////////////////////////////
 //
 //  CountriesCell.h
-//  colombio
+//  Armin Vrevic
 //
-//  Created by Vlatko Šprem on 28/09/14.
+//  Created by Colombio on 8/6/14.
 //  Copyright (c) 2014 Colombio. All rights reserved.
 //
+//  Custom Collection View cell class for countries
+//
+///////////////////////////////////////////////////////////////
 
 #import <UIKit/UIKit.h>
 
@@ -12,6 +16,7 @@
     IBOutlet UIImageView *imgCountryFlag;
     IBOutlet UIImageView *imgSelected;
     IBOutlet UILabel *lblCountryName;
+    //Gray bottom border
     IBOutlet UIView *bottomBorder;
 }
 

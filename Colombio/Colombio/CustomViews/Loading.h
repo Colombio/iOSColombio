@@ -1,10 +1,15 @@
+/////////////////////////////////////////////////////////////
 //
 //  Loading.h
-//  Colombio
+//  Armin Vrevic
 //
 //  Created by Colombio on 01/01/15.
-//  Copyright (c) 2015 Colombio. All rights reserved.
+//  Copyright (c) 2014 Colombio. All rights reserved.
 //
+//  Custom view that provides methods for presenting loading
+//  screen.
+//
+///////////////////////////////////////////////////////////////
 
 #import <Foundation/Foundation.h>
 

@@ -1,10 +1,15 @@
+/////////////////////////////////////////////////////////////
 //
 //  Messages.h
-//  colombio
+//  Armin Vrevic
 //
-//  Created by Vlatko Šprem on 27/09/14.
+//  Created by Colombio on 8/6/14.
 //  Copyright (c) 2014 Colombio. All rights reserved.
 //
+//  Class that primarily serves for the message output functions
+//  in the form of the alert views
+//
+///////////////////////////////////////////////////////////////
 
 #import <Foundation/Foundation.h>
 

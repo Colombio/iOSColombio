@@ -1,10 +1,14 @@
+/////////////////////////////////////////////////////////////
 //
 //  CountriesCell.m
-//  colombio
+//  Armin Vrevic
 //
-//  Created by Vlatko Šprem on 28/09/14.
+//  Created by Colombio on 8/6/14.
 //  Copyright (c) 2014 Colombio. All rights reserved.
 //
+//  Custom Collection View cell class for countries
+//
+///////////////////////////////////////////////////////////////
 
 #import "CountriesCell.h"
 
@@ -15,6 +19,10 @@
 @synthesize imgSelected;
 @synthesize bottomBorder;
 
+/**
+ * Initializes objects for custom cell
+ *
+ */
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];

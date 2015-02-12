@@ -1,28 +1,31 @@
+/////////////////////////////////////////////////////////////
 //
 //  CustomField.m
-//  colombio
+//  Armin Vrevic
 //
-//  Created by Vlatko Šprem on 16/08/14.
+//  Created by Colombio on 16/08/14.
 //  Copyright (c) 2014 Colombio. All rights reserved.
 //
+//  Custom text field that disables all user gestures
+//
+///////////////////////////////////////////////////////////////
 
 #import "CustomField.h"
 
 @implementation CustomField
 
-- (id)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code
-    }
-    return self;
-}
-
+/**
+ * Cant perform action on a cell
+ *
+ */
 - (BOOL)canPerformAction:(SEL)action withSender:(id)sender{
     return NO;
 }
 
+/**
+ * Disable long press on a cell
+ *
+ */
 - (void)addGestureRecognizer:(UIGestureRecognizer *)gestureRecognizer{
     
     if([gestureRecognizer isKindOfClass:[UILongPressGestureRecognizer class]]) {
@@ -31,13 +34,5 @@
     [super addGestureRecognizer:gestureRecognizer];
     return;
 }
-/*
- // Only override drawRect: if you perform custom drawing.
- // An empty implementation adversely affects performance during animation.
- - (void)drawRect:(CGRect)rect
- {
- // Drawing code
- }
- */
 
 @end
