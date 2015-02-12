@@ -1,14 +1,16 @@
+/////////////////////////////////////////////////////////////
 //
-//  ForgotPassword.m
-//  Colombio
+//  ForgotPasswordViewController.m
+//  Armin Vrevic
 //
 //  Created by Colombio on 7/3/14.
 //  Copyright (c) 2014 Colombio. All rights reserved.
 //
-//  Kontroler za zaboravljenu lozinku
+//  Forgot password workflow class, user inputs email,
+//  email is validated and sent to server
+//  Response is validated, and presented to user
 //
-//  TODO Provjeriti duplikat na web servisu i ispraviti UI sukladno tome,
-//  Chekirati za error messagese
+///////////////////////////////////////////////////////////////
 
 #import "ForgotPasswordViewController.h"
 #import "CreateAccViewController.h"
@@ -36,51 +38,45 @@
 {
     [super viewDidLoad];
     
-    //Dodavanje headera
+    //Adding custom header
     [headerViewHolder addSubview:[HeaderView initHeader:@"COLOMBIO" nextHidden:YES previousHidden:NO activeVC:self headerFrame:headerViewHolder.frame]];
     
-    //Ako se tapne bilo gdje drugdje na scrollbox, makne se tipkovnica
+    //If tapped anywhere on the scrollbox, keyboard is hidden
     [self.scrollBox setDelegate:self];
-    
-    //Kada se klikne na scrollview da se makne tipkovnica
     UITapGestureRecognizer *singleTap =[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(goAwayKeyboard:)];
     [scrollBox addGestureRecognizer:singleTap];
     
-    //Dodatno podešavanje tekstualnih okvira
+    //Extra setup of text fields
     txtEmail.txtField.delegate = self;
     [txtEmail setPlaceholderText:@"enter_email"];
     txtEmail.txtField.returnKeyType = UIReturnKeyGo;
     
+    //Add custom loading spiner
     loadingView = [[Loading alloc] init];
 }
 
 #pragma mark KeyboardEvents
 
-//Kada se klikne next/done na tipkovnici
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [txtEmail.txtField becomeFirstResponder];
     [self btnForgotPassClicked:nil];
     return NO;
 }
 
-//Kada se pocne editirati neki text field, resetira se natrag originalni placeholder i makne se error img
 - (void)textFieldDidBeginEditing:(UITextField *)textField{            [txtEmail setPlaceholderText:txtEmail.placeholderText];
 }
 
-//Ako se napravi tap na pozadinu, mice se tipkovnica i scrolla se view
 - (void)goAwayKeyboard:(UITapGestureRecognizer *)gesture{
     [self.view endEditing:YES];
 }
 
 #pragma mark Navigation
 
-//Header back delegate
 - (void)backButtonTapped{
     [self.view endEditing:YES];
     [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
-//IB button back
 - (IBAction)btnBackClicked:(id)sender{
     [self backButtonTapped];
 }
@@ -96,6 +92,11 @@
     [loadingView removeCustomSpinner];
 }
 
+/**
+ *
+ *  When user clicks on forgot password, send the password to
+ *  web service and validate response
+ */
 - (IBAction)btnForgotPassClicked:(id)sender{
     [self.view endEditing:YES];
     [loadingView startCustomSpinner:self.view spinMessage:@""];
@@ -106,6 +107,10 @@
     timer = [NSTimer scheduledTimerWithTimeInterval:0.2f target:self selector:@selector(sendPassword) userInfo:nil repeats:NO];
 }
 
+/**
+ *  Method that sends password to server
+ *
+ */
 - (void)sendPassword{
     strEmail =txtEmail.txtField.text;
     
@@ -131,14 +136,14 @@
                 [loadingView customSpinnerFail];
             }
             
-            //Uspjesno je poslan zahtjev, provjeri odgovor
+            //Request sent successfuly, check response
             else{
                 NSDictionary *dataWsResponse=nil;
                 dataWsResponse =[NSJSONSerialization JSONObjectWithData:data options:0 error:NULL];
                 NSArray *keys =[dataWsResponse allKeys];
-                //Provjeravanje pogresnih odgovora
+                //Check wrong answers
                 for(NSString *key in keys){
-                    //Provjera za ispravnost prijave
+                    //Check for errors in validation
                     if(!strcmp("s", key.UTF8String)){
                         NSString *error = [dataWsResponse objectForKey:@"s"];
                         if(!(strcmp("0",error.UTF8String))){
@@ -161,7 +166,7 @@
                     [txtEmail setErrorText:@"error_email_format"];
                 }
                 
-                //Ako su svi podaci ispravno upisani
+                //All data is entered in a valid format
                 [loadingView stopCustomSpinner];
                 if(!isWrongInput){
                     [txtEmail setOkInput];

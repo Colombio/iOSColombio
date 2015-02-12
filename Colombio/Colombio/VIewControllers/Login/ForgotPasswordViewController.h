@@ -1,10 +1,16 @@
+/////////////////////////////////////////////////////////////
 //
-//  ForgotPassword.h
-//  Colombio
+//  ForgotPasswordViewController.h
+//  Armin Vrevic
 //
 //  Created by Colombio on 7/3/14.
 //  Copyright (c) 2014 Colombio. All rights reserved.
 //
+//  Forgot password workflow class, user inputs email,
+//  email is validated and sent to server
+//  Response is validated, and presented to user
+//
+///////////////////////////////////////////////////////////////
 
 #import <UIKit/UIKit.h>
 #import "ScrollableHeader.h"

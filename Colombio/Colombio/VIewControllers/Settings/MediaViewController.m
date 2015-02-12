@@ -234,13 +234,13 @@
     cell.imgCountryFlag.image=[UIImage imageWithContentsOfFile:[NSString stringWithFormat:@"%@/%@.%@",documentsDirectoryPath,strMediaName,@"png"]];
     cell.lblCountryName.text = strMediaName;
     
-    //Ako je odabran medij, prikazi je da je odabran u viewu
+    //if media is chosen, mark it in a collection view
     if([arSelectedMedia containsObject:[[mediji objectAtIndex:cellPosition] objectForKey:@"id"]]){
         [cell.imgSelected setHidden:NO];
         cell.imgCountryFlag.alpha = 1;
         cell.lblCountryName.alpha = 1;
     }
-    //Ako nije odabran medij, oznaci da nije odabran
+    //If the media is not chosen, mark it that is not chosen
     else{
         @try {
             if([imagesLoaded containsObject:[NSString stringWithFormat:@"%ld",cellPosition]])
@@ -256,6 +256,11 @@
     return cell;
 }
 
+/**
+ *  After selecting media, add media index to array if
+ *  it is not selected. If it is selected, remove it from array
+ *
+ */
 - (void)didSelectCell:(NSIndexPath*)indexPath{
     long cellPosition = (indexPath.row)+(indexPath.section*3);
     
