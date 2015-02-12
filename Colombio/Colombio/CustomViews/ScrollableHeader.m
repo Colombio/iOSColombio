@@ -1,10 +1,15 @@
+/////////////////////////////////////////////////////////////
 //
 //  ScrollableHeader.m
-//  Colombio
+//  Armin Vrevic
 //
 //  Created by Colombio on 30/11/14.
 //  Copyright (c) 2014 Colombio. All rights reserved.
 //
+//  Custom View that acts as a horizontal scrollable header
+//  that has custom pictures on it with page control
+//
+///////////////////////////////////////////////////////////////
 
 #import "ScrollableHeader.h"
 
@@ -21,7 +26,17 @@
 @synthesize _scrollView;
 @synthesize viewWidth;
 
-- (void)addHeader:(UIView *)view self:(UIViewController *)viewController headerScroll:(UIScrollView *)scrollView viewScroll:(UIScrollView *)scrollBox{
+/**
+ *  Method that configures and adds custom scrollable header view
+ *
+ *  @param view "View on which the scrollable header will go"
+ *  @param viewController "Active view controller(needed to add event handlers)"
+ *  @param scrollView "Header scroll view"
+ *  @param scrollBox "Parent View scroll view"
+ *
+ */
+- (void)addHeader:(UIView *)view self:(UIViewController *)viewController
+     headerScroll:(UIScrollView *)scrollView viewScroll:(UIScrollView *)scrollBox{
     
     activeView = view;
     activeVC = viewController;
@@ -81,8 +96,6 @@
     }
     
     _scrollView.contentSize = CGSizeMake(_scrollView.frame.size.width * colors.count, self._scrollView.frame.size.height);
-    
-    //pageControl = [[UIPageControl alloc]initWithFrame:CGRectMake((activeView.frame.size.width/2) - (pageControl.frame.size.width/2), 226, pageControl.frame.size.width, 36)];
     pageControl = [[UIPageControl alloc]initWithFrame:CGRectMake((activeView.frame.size.width/2) - (pageControl.frame.size.width/2), 20, pageControl.frame.size.width, 36)];
     
     [pageControl setNumberOfPages:3];
@@ -90,7 +103,12 @@
     [_scrollView setDelegate:self];
 }
 
-// Switch the indicator when more than 50% of the previous/next page is visible
+/**
+ *  Switch the indicator when more than 50% of the previous/next page is visible
+ *
+ *  @param scrollView "Header scroll view"
+ *
+ */
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     if (!pageControlBeingUsed) {
         CGFloat pageWidth = scrollView.frame.size.width;
@@ -101,10 +119,18 @@
     }
 }
 
+/**
+ *  Disables stuttering or flashing
+ *
+ */
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
     pageControlBeingUsed = NO;
 }
 
+/**
+ *  Disables stuttering or flashing
+ *
+ */
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
     pageControlBeingUsed = NO;
 }

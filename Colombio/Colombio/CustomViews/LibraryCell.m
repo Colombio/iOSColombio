@@ -1,62 +1,62 @@
+/////////////////////////////////////////////////////////////
 //
 //  LibraryCell.m
-//  colombio
+//  Armin Vrevic
 //
 //  Created by Colombio on 7/29/14.
 //  Copyright (c) 2014 Colombio. All rights reserved.
 //
-//  Custom celija za collection view koji prikazuje
-//  slike iz librarya
+//  Custom collection view cell for phone library item selecting
+//  (video, pictures)
+//
+///////////////////////////////////////////////////////////////
 
 #import "LibraryCell.h"
 
 @implementation LibraryCell
 
 @synthesize img = img;
-@synthesize notSelected =notSelected;
-@synthesize select;
-@synthesize red2;
+@synthesize imgNotSelected =imgNotSelected;
+@synthesize imgSelected;
+@synthesize lblCellText;
 @synthesize watermark;
 @synthesize imgWatermark;
 
+/**
+ *  Method that inits cell and its elements
+ *
+ */
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
         img = [[UIImageView alloc] initWithFrame:CGRectMake(0,0,99,99)];
         watermark = [[UIImageView alloc] initWithFrame:CGRectMake(28,28,44,44)];
-        notSelected = [[UIImageView alloc] initWithFrame:CGRectMake(76, 5, 20, 20)];
-        select = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
-        select.center = CGPointMake(self.frame.size.width/2, self.frame.size.height/2);
-        notSelected.image=[UIImage imageNamed:@"unselected.png"];
-        select.image=[UIImage imageNamed:@"selectedcontent"];
+        imgNotSelected = [[UIImageView alloc] initWithFrame:CGRectMake(76, 5, 20, 20)];
+        imgSelected = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
+        imgSelected.center = CGPointMake(self.frame.size.width/2, self.frame.size.height/2);
+        imgNotSelected.image=[UIImage imageNamed:@"unselected.png"];
+        imgSelected.image=[UIImage imageNamed:@"selectedcontent"];
         watermark.image=[UIImage imageNamed:@"watermark.png"];
-        
-        red2 = [[UILabel alloc] initWithFrame:CGRectMake(18,60,70,20)];
-        red2.text= @"Camera";
-        red2.font = [UIFont  fontWithName:@"HelveticaNeue-Light" size:19.0f];
-        [red2 setHidden:YES];
-        notSelected.hidden=YES;//ne treba
+        lblCellText = [[UILabel alloc] initWithFrame:CGRectMake(18,60,70,20)];
+        lblCellText.text= @"Camera";
+        lblCellText.font = [UIFont  fontWithName:@"HelveticaNeue-Light" size:19.0f];
+        [lblCellText setHidden:YES];
+        imgNotSelected.hidden=YES;//ne treba
         
         [self addSubview:img];
-        [self addSubview:notSelected];
-        [self addSubview:select];
-        [self addSubview:red2];
+        [self addSubview:imgNotSelected];
+        [self addSubview:imgSelected];
+        [self addSubview:lblCellText];
         [self addSubview:watermark];
     }
     return self;
 }
 
-
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
-{
-    // Drawing code
-}
-*/
-
+/**
+ *  Custom method that hides the watermark
+ *
+ **/
 - (void)hideWaterMark{
     watermark.hidden=YES;
 }

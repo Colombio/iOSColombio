@@ -1,10 +1,15 @@
+/////////////////////////////////////////////////////////////
 //
 //  SettingsCollectionView.m
-//  Colombio
+//  Armin Vrevic
 //
 //  Created by Colombio on 12/01/15.
-//  Copyright (c) 2015 Colombio. All rights reserved.
+//  Copyright (c) 2014 Colombio. All rights reserved.
 //
+//  Custom settings that collection views on multiple view
+//  controllers use.
+//
+///////////////////////////////////////////////////////////////
 
 #import "SettingsCollectionView.h"
 
@@ -13,6 +18,12 @@
 @synthesize collectionView;
 @synthesize numberOfCells;
 
+/**
+ *  Method that adds collection view to selected view controller
+ *
+ *  @param VC "View controller that will use these settings"
+ *
+ */
 - (void)addCollectionView:(UIViewController *)VC{
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc]init];
     layout.headerReferenceSize=CGSizeMake(100,0);
@@ -27,38 +38,62 @@
     [VC.view sendSubviewToBack:collectionView];
 }
 
-//Pocetno dodavanje celija u collection view
+/**
+ *  Adding cells to collection view. It delegates
+ *  the event to view controller that uses these settings
+ *
+ */
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     return [self.settingsCollectionViewDelegate setupCellLook:indexPath];
 }
 
+/**
+ *  Event that occurs on selecting one cells. It delegates
+ *  the event to view controller that uses these settings
+ *
+ */
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     [self.settingsCollectionViewDelegate didSelectCell:indexPath];
 }
 
-//Ukupan broj celija
+/**
+ *  Total number of cells
+ *
+ */
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
     return numberOfCells;
 }
 
-//Velicina jedne celije
+/**
+ *  One cell size
+ *
+ */
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
     return  CGSizeMake(300, 44);
 }
 
-//Razmak izmedu celija
+/**
+ *  Space between cells
+ *
+ */
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
     return 1;
 }
 
-//Razmak izmedu celija
+/**
+ *  Space between cells
+ *
+ */
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section{
     return 1.5;
 }
 
-//Padding od rubova
+/**
+ *  Padding
+ *
+ */
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{
     return UIEdgeInsetsMake(10, 10, 10, 10);
 }

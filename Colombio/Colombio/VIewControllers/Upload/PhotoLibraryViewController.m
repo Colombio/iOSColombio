@@ -159,14 +159,14 @@
     cell.backgroundColor = [UIColor whiteColor];
     
     long position = (indexPath.row)+(indexPath.section*3);
-    [cell.red2 setHidden:YES];
+    [cell.lblCellText setHidden:YES];
     cell.tag=position;
     if(position==0){
         //[cell hideWaterMark];
-        [cell.watermark setHidden:YES];
-        [cell.red2 setHidden:NO];
-        [cell.notSelected setHidden:YES];
-        [cell.select setHidden:YES];
+        [cell.imgWatermark setHidden:YES];
+        [cell.lblCellText setHidden:NO];
+        [cell.imgNotSelected setHidden:YES];
+        [cell.imgSelected setHidden:YES];
         cell.img.image=[UIImage imageNamed:@"uploadcamera.png"];
         return cell;
     }
@@ -180,25 +180,25 @@
     
     
     if([[asset valueForProperty:ALAssetPropertyType] isEqual:@"ALAssetTypePhoto"]){
-        [cell.watermark setHidden:YES];
+        [cell.imgWatermark setHidden:YES];
         if ([selectedImageURLs containsObject:[asset valueForProperty:ALAssetPropertyAssetURL]]) {
-            [cell.select setHidden:NO];
+            [cell.imgSelected setHidden:NO];
         }else{
-            [cell.select setHidden:YES];
+            [cell.imgSelected setHidden:YES];
         }
     }
     else{
-        [cell.watermark setHidden:NO];
+        [cell.imgWatermark setHidden:NO];
         if ([selectedVideoURLs containsObject:[asset valueForProperty:ALAssetPropertyAssetURL]]) {
-            [cell.select setHidden:NO];
+            [cell.imgSelected setHidden:NO];
         }else{
-            [cell.select setHidden:YES];
+            [cell.imgSelected setHidden:YES];
         }
     }
     
     
-    cell.select.tag=position-1;
-    cell.notSelected.tag=position-1;
+    cell.imgSelected.tag=position-1;
+    cell.imgNotSelected.tag=position-1;
     
     return cell;
 }
