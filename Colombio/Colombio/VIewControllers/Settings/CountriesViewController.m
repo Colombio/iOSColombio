@@ -1,14 +1,23 @@
+/////////////////////////////////////////////////////////////
 //
 //  Countries.m
-//  colombio
+//  Armin Vrevic
 //
 //  Created by Colombio on 8/8/14.
 //  Copyright (c) 2014 Colombio. All rights reserved.
 //
-// TODO - settings
-// 1) provjeriti ako se radi o settings
-// 2) loadati fav countrie medu ostalim
-// 3) Kada se klikne na done, updateati fav countrie, prikazati loading i vratiti na settings
+//  Class that implements countries listing from a web service
+//  or from the countries stored locally.
+//
+//  It first checks for timestamp on the web, if the data
+//  is not present locally it fetches all the countries, and
+//  presents it in a collection view, then for performance
+//  optimizing, it loads picture one by one from web service.
+//
+//  If the data is cached on the device, it loads data from
+//  inner device memory
+//
+///////////////////////////////////////////////////////////////
 
 #import "CountriesViewController.h"
 #import <QuartzCore/QuartzCore.h>
@@ -34,6 +43,7 @@
 {
     [super viewDidLoad];
     self.wantsFullScreenLayout = YES;
+    //Setting up custom header
     customHeaderView.customHeaderDelegate = self;
     customHeaderView.backButtonText = @"SELECT COUNTRY";
     customHeaderView.nextButtonText = @"YOUR INFO";
@@ -54,11 +64,16 @@
 
 #pragma mark WebServiceCommunication
 
+/**
+ *  Method that loads the countries from the web service
+ *  It provides caching mechanism for countries data
+ *
+ */
 - (void)loadStates{
     [loadingView startCustomSpinner:self.view spinMessage:@""];
     NSString *filePathStates = [Tools getFilePaths:@"drzave.out"];
     NSString *filePathTimeStamp = [Tools getFilePaths:@"timestamp_countries.out"];
-    //citanje posljednjeg timestampa za drzave
+    //Read the last timestamp for countries
     NSString *lastTimestamp =[NSString stringWithContentsOfFile:filePathTimeStamp encoding:NSUTF8StringEncoding error:nil];
     
     ColombioServiceCommunicator *csc = [[ColombioServiceCommunicator alloc] init];
@@ -66,18 +81,18 @@
     
     [NSURLConnection sendAsynchronousRequest:csc.request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            //Ako su uspjesno dohvaceni podaci sa servera
+            //If data from server is successfuly fetched
             if(error==nil&&data!=nil){
+                //Prepare collection view
                 settingsCollectionView = [[SettingsCollectionView alloc] init];
                 settingsCollectionView.settingsCollectionViewDelegate = self;
                 [settingsCollectionView addCollectionView:self];
                 [self prepareCountries:data response:response strTimestamp:filePathTimeStamp strFilePathStates:filePathStates];
                 settingsCollectionView.numberOfCells = [arOptions count];
             }
-            //Ako nije dobra konekcija
+            //If connection is not valid
             else{
                 [Messages showErrorMsg:@"error_web_request"];
-                //TODO Vratiti korisnika na login???
                 [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
             }
             timer = [NSTimer scheduledTimerWithTimeInterval:0.8 target:self selector:@selector(toggleSpinnerOff) userInfo:nil repeats:NO];
@@ -85,29 +100,42 @@
     }];
 }
 
+/**
+ *  Method that checks if the countries cached data is valid
+ *  and if it is not valid it caches it
+ *
+ *  After that it loads it into variable and presents it in
+ *  collection view
+ *
+ *  @param data "Data fetched from server"
+ *  @param response ""
+ *  @param filePathTimeStamp "File path for -> Timestamp that caches the data"
+ *  @param filePathStates "Timestamp for caching the data"
+ *
+ */
 - (void)prepareCountries:(NSData *)data response:(NSURLResponse*)response strTimestamp:(NSString *)filePathTimeStamp strFilePathStates:(NSString*)filePathStates{
     Boolean isDataChanged=true;
     NSDictionary *dataWsResponse=nil;
     dataWsResponse =[NSJSONSerialization JSONObjectWithData:data options:0 error:NULL];
     NSArray *keys =[dataWsResponse allKeys];
     for(NSString *key in keys){
-        //Nije mijenjan popis drzava
+        //If countries list is changed
         if(!strcmp("s", key.UTF8String)){
             isDataChanged=false;
             break;
         }
     }
-    //Ako je mijenjan popis drzava
+    //If cached data is changed
     if(isDataChanged){
-        //Spremanje zadnjeg timestampa u datoteku
+        //Save the last timestamp in a file
         NSString *changeTimestamp=[dataWsResponse objectForKey:@"change_timestamp"];
         [changeTimestamp writeToFile:filePathTimeStamp atomically:YES encoding:NSUTF8StringEncoding error:nil];
-        //Spremanje drzava u datoteku
+        //Save countries in a file
         [dataWsResponse writeToFile:filePathStates atomically:YES];
     }
-    //Citanje drzava iz datoteke
+    //Load states from file
     NSDictionary *countriesFromFile=[NSDictionary dictionaryWithContentsOfFile:filePathStates];
-    //punjenje drzava podacima
+    //Load countries with data
     arOptions = [[NSMutableArray alloc] init];
     NSArray *arCountries=[countriesFromFile objectForKey:@"data" ];
     for(NSDictionary *k in arCountries){
@@ -122,7 +150,10 @@
 
 #pragma mark CollectionView
 
-//Postavke kako ce celije izgledati
+/**
+ *  Settings that define how will cells look
+ *
+ */
 - (UICollectionViewCell *)setupCellLook:(NSIndexPath*)indexPath{
     CountriesCell *cell = (CountriesCell *)[settingsCollectionView.collectionView dequeueReusableCellWithReuseIdentifier:@"cellIdentifier" forIndexPath:indexPath];
     long cellPosition = (indexPath.row)+(indexPath.section*3);
@@ -145,6 +176,11 @@
     return cell;
 }
 
+/**
+ *  After selecting country, add country index to array if
+ *  it is not selected. If it is selected, remove it from array
+ *
+ */
 - (void)didSelectCell:(NSIndexPath*)indexPath{
     long cellPosition = (indexPath.row)+(indexPath.section*3);
     NSString*countryName = [arOptions objectAtIndex:cellPosition];
