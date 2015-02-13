@@ -1,11 +1,15 @@
+/////////////////////////////////////////////////////////////
 //
-//  GoogleLogin.m
-//  Colombio
+//  GoogleLoginViewController.m
+//  Armin Vrevic
 //
-//  Created by Colombio on 7/4/14.
+//  Created by Colombio on 7/7/14.
 //  Copyright (c) 2014 Colombio. All rights reserved.
 //
-//  Kontroler za implementaciju google logina
+//  Class that calls google login api
+//  and registers user if google login is successful
+//
+///////////////////////////////////////////////////////////////
 
 #import "GoogleLoginViewController.h"
 #import "LoginViewController.h"
@@ -38,7 +42,6 @@ NSString *visibleactions = @"http://schemas.google.com/AddActivity";
     [super viewDidLoad];
     
     loadingView = [[Loading alloc] init];
-    //[loadingView startCustomSpinner:self.view spinMessage:@""];
     [headerViewHolder addSubview:[HeaderView initHeader:@"COLOMBIO" nextHidden:YES previousHidden:NO activeVC:self headerFrame:headerViewHolder.frame]];
     // Do any additional setup after loading the view from its nib.
     NSString *url = [NSString stringWithFormat:@"https://accounts.google.com/o/oauth2/auth?response_type=code&client_id=%@&redirect_uri=%@&scope=%@&data-requestvisibleactions=%@",client_id,callbakc,scope,visibleactions];
@@ -64,8 +67,6 @@ NSString *visibleactions = @"http://schemas.google.com/AddActivity";
 }
 
 - (BOOL)webView:(UIWebView*)webView shouldStartLoadWithRequest:(NSURLRequest*)request navigationType:(UIWebViewNavigationType)navigationType {
-    
-    //    [indicator startAnimating];
     if ([[[request URL] host] isEqualToString:@"localhost"]) {
         [self dismiss];
         // Extract oauth_verifier from URL query
@@ -122,7 +123,7 @@ NSString *visibleactions = @"http://schemas.google.com/AddActivity";
     NSString *filePathUser =[documentsDirectory stringByAppendingPathComponent:@"korisnik.out"];
     NSString *filePathToken =[documentsDirectory stringByAppendingPathComponent:@"token.out"];
     
-    //Slanje podataka za prijavu i dohvacanje odgovora
+    //Sending login data and accepting answer
     NSString *url_str = [NSString stringWithFormat:@"https://appforrest.com/colombio/api_user_managment/mau_social_login?type=gg&token=%@",token];
     
     NSURL * url = [NSURL URLWithString:url_str];
@@ -134,14 +135,14 @@ NSString *visibleactions = @"http://schemas.google.com/AddActivity";
             [Messages showErrorMsg:@"error_web_request"];
             [self dismiss];
         }
-        //Uspjesno je poslan zahtjev
+        //Request sent successfuly
         else{
             Boolean pogreska=false;
             NSDictionary *odgovor=nil;
             odgovor =[NSJSONSerialization JSONObjectWithData:data options:0 error:NULL];
             NSArray *keys =[odgovor allKeys];
             for(NSString *key in keys){
-                //Provjera za ispravnost prijave
+                //Check if login is valid
                 if(!strcmp("s", key.UTF8String)){
                     UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"" message:@"Krivi podaci za prijavu" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
                     [alert show];
@@ -149,8 +150,8 @@ NSString *visibleactions = @"http://schemas.google.com/AddActivity";
                     break;
                 }
             }
-            //Ako je uspjesna prijava, spremi user id i token u datoteke
-            // i preusmjeri korisnika na drugi view
+            //If login successful, save user id and token in file and
+            //redirect user to another view
             if(!pogreska){
                 NSString *token = [odgovor objectForKey:@"token"];
                 NSDictionary *korisnik =[odgovor objectForKey:@"usr"];
@@ -168,6 +169,7 @@ NSString *visibleactions = @"http://schemas.google.com/AddActivity";
 -(void)checkFirstLogin{
     NSLog(@"chekin4");
     @try {
+        //Paths for files that store user token and user id
         NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
         NSString *documentsDirectory = [paths objectAtIndex:0];
         NSString *filePathUser =[documentsDirectory stringByAppendingPathComponent:@"korisnik.out"];
@@ -186,17 +188,17 @@ NSString *visibleactions = @"http://schemas.google.com/AddActivity";
                 return;
             }
             else{
-                //Napravi base64 encoding
+                // base64 encoding
                 NSMutableString *result= [CryptoClass base64Encoding:data];
                 
-                //URL sa signed req
+                //URL with signed req(check web service documentation)
                 NSString *url_str = [NSString stringWithFormat:@"https://appforrest.com/colombio/api_user_managment/mau_check_status?signed_req=%@",result];
                 
                 NSURL * url = [NSURL URLWithString:url_str];
                 NSError *err=nil;
                 NSMutableURLRequest *request =[NSMutableURLRequest requestWithURL:url];
                 [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
-                    //Ako su uspjesno dohvaceni podaci sa servera
+                    //If data from the server is successfuly fetched
                     if(err==nil){
                         if(data==nil){
                             [Messages showErrorMsg:@"error_web_request"];
@@ -208,7 +210,7 @@ NSString *visibleactions = @"http://schemas.google.com/AddActivity";
                         NSString *test= [odgovor objectForKey:@"s"];
                         if(!strcmp("1", test.UTF8String)){
                             NSString *firstLogin = [odgovor objectForKey:@"first_login"];
-                            //Ako korisnik nije popunio pocetne postavke prikazi popis drzava
+                            //If user did not fill settings data, show countries
                             if(!strcmp("0", firstLogin.UTF8String)){
                                 NSLog(@"success");
                                 dispatch_async(dispatch_get_main_queue(), ^{
@@ -217,7 +219,7 @@ NSString *visibleactions = @"http://schemas.google.com/AddActivity";
                                     return;
                                 });
                             }
-                            //Ako je korisnik vec popunio pocetne podatke prikazi home
+                            //If user already filled the settngs data show home view
                             else{
                                 dispatch_async(dispatch_get_main_queue(), ^{
                                     //TODO PRESENT SUCCESS
@@ -226,7 +228,7 @@ NSString *visibleactions = @"http://schemas.google.com/AddActivity";
                             }
                         }
                     }
-                    //Nije uspješna komunikacija sa serverom
+                    //If communication with the server is successful
                     else{
                         [Messages showErrorMsg:@"error_web_request"];
                         [self dismiss];
@@ -235,7 +237,7 @@ NSString *visibleactions = @"http://schemas.google.com/AddActivity";
             }
         });
     }
-    //Token ne postoji ili se dogodila greska prilikom pristupa
+    //Token does not exist, or error occured during login
     @catch(NSException *ex){
         
     }

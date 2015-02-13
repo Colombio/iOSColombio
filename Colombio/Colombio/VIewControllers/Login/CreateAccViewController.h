@@ -1,10 +1,14 @@
+/////////////////////////////////////////////////////////////
 //
-//  CreateAcc.h
-//  Colombio
+//  CreateAccountViewController.h
+//  Armin Vrevic
 //
 //  Created by Colombio on 7/3/14.
 //  Copyright (c) 2014 Colombio. All rights reserved.
 //
+//  View controller for user registering
+//
+///////////////////////////////////////////////////////////////
 
 #import <UIKit/UIKit.h>
 #import "CustomField.h"

@@ -1,13 +1,14 @@
+/////////////////////////////////////////////////////////////
 //
-//  CreateAcc.m
-//  Colombio
+//  CreateAccountViewController.m
+//  Armin Vrevic
 //
 //  Created by Colombio on 7/3/14.
 //  Copyright (c) 2014 Colombio. All rights reserved.
 //
-//  Kontroler za kreiranje korisnickog racuna
+//  View controller for user registering
 //
-//  TODO ispraviti odredene dijelove zbog web servisa
+///////////////////////////////////////////////////////////////
 
 #import "CreateAccViewController.h"
 #import "LoginViewController.h"
@@ -39,41 +40,41 @@
 {
     [super viewDidLoad];
     
-    //Dodavanje headera
+    //Add the custom header
     [headerViewHolder addSubview:[HeaderView initHeader:@"COLOMBIO" nextHidden:YES previousHidden:NO activeVC:self headerFrame:headerViewHolder.frame]];
     
-    //Ako se tapne bilo gdje drugdje na scrollbox, makne se tipkovnica
+    //For keyboard hiding on tap
     [self.scrollBox setDelegate:self];
-    
-    //Kada se klikne na scrollview da se makne tipkovnica
     UITapGestureRecognizer *singleTap =[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(goAwayKeyboard:)];
     [scrollBox addGestureRecognizer:singleTap];
     
-    //Dodatno podešavanje tekstualnih okvira
+    //Aditional setup of text fields
     [self setupTextFields];
     
-    //Dodavanje eventa kada se sakrije tipkovnica
+    //Adding custom event on keyboard hide
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(onKeyboardHide:) name:UIKeyboardWillHideNotification object:nil];
     
+    //Adding the custom loading view
     loadingView = [[Loading alloc] init];
 }
 
 #pragma mark TextFields
 
 - (void)setupTextFields{
-    //Postavljanje delegata
+    //Setting up text field delegates
     txtUsername.txtField.delegate = self;
     txtEmail.txtField.delegate = self;
     txtPassword.txtField.delegate = self;
     txtConfirmPass.txtField.delegate = self;
     
-    //Dodavanje identifikatora
+    //Adding the id-s so particular textfields
+    //can be identified by id
     txtUsername.txtField.tag=1;
     txtEmail.txtField.tag=2;
     txtPassword.txtField.tag=3;
     txtConfirmPass.txtField.tag=4;
     
-    //Upisivanje placeholdera
+    //Adding placeholder
     [txtUsername setPlaceholderText:@"enter_username"];
     [txtEmail setPlaceholderText:@"enter_email"];
     [txtPassword setPlaceholderText:@"enter_password"];
@@ -89,13 +90,21 @@
 
 #pragma mark KeyboardEvents
 
-//Kad se sakrije tipkovnica makne se skrolabilnost viewa
+/**
+ *
+ * If keyboard is hidden, prevent scroll view from scrolling
+ *
+ */
 -(void)onKeyboardHide:(NSNotification *)notification
 {
     scrollBox.contentSize = CGSizeMake(scrollBox.frame.size.width,scrollBox.frame.size.height);
 }
 
-//Kada se klikne next/done na tipkovnici
+/**
+ *
+ * If next/done clicked
+ *
+ */
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     switch (textField.tag) {
         case 1:
@@ -115,7 +124,10 @@
     return NO;
 }
 
-//Kada se pocne editirati neki text field, resetira se natrag originalni placeholder i makne se error img
+/**
+ *  When text field starts editing, reset placeholder and remove error text
+ *
+ */
 - (void)textFieldDidBeginEditing:(UITextField *)textField{
     scrollBox.contentSize = CGSizeMake(scrollBox.frame.size.width,self.view.frame.size.height+210);
     switch (textField.tag) {
@@ -134,20 +146,17 @@
     }
 }
 
-//Ako se napravi tap na pozadinu, mice se tipkovnica i scrolla se view
 - (void)goAwayKeyboard:(UITapGestureRecognizer *)gesture{
     [self.view endEditing:YES];
 }
 
 #pragma mark Navigation
 
-//Header back delegate
 - (void)backButtonTapped{
     [self.view endEditing:YES];
     [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
-//IB button back
 - (IBAction)btnBackClicked:(id)sender{
     [self backButtonTapped];
 }
@@ -159,6 +168,11 @@
     [loadingView removeCustomSpinner];
 }
 
+/**
+ *
+ *  Check input data and try to register user
+ *
+ */
 - (void)checkRegister{
     strEmail =txtEmail.txtField.text;
     strUsername = txtUsername.txtField.text;
@@ -177,6 +191,7 @@
             bool wrongEmail=NO;
             bool wrongUser=NO;
             
+            //Dummy data if wrong input
             if(strEmail.length<1){
                 wrongEmail=YES;
                 strEmail=@"b";
@@ -190,22 +205,21 @@
             if(strPassword.length<1)
                 strPassword=@"b";
             
-            //NSString *nsJson = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
-            //Dogodila se pogreska prilikom dohvacanja zahtjeva
+            //Error occured during http request
             if(error){
                 [Messages showErrorMsg:@"error_web_request"];
                 [loadingView stopCustomSpinner];
                 [loadingView customSpinnerFail];
             }
             
-            //Uspjesno je poslan zahtjev, provjeri odgovor
+            //Request is successfuly sent
             else{
                 NSDictionary *dataWsResponse=nil;
                 dataWsResponse =[NSJSONSerialization JSONObjectWithData:data options:0 error:NULL];
                 NSArray *keys =[dataWsResponse allKeys];
-                //Provjeravanje pogresnih odgovora
+                //Check for wrong answers
                 for(NSString *key in keys){
-                    //Provjera za ispravnost prijave
+                    //Validate login
                     if(!strcmp("errors", key.UTF8String)){
                         NSArray *arrayWsErrors = [dataWsResponse objectForKey:@"errors"];
                         for(NSString *greska in arrayWsErrors){
@@ -215,12 +229,12 @@
                                 isWrongInput=true;
                                 wrongUser=YES;
                             }
-                            //Snaga lozinke nije ok
+                            //Password strength is wrong
                             if(!strcmp("pass_str_fail", greska.UTF8String)){
                                 [txtPassword setErrorText:@"error_password"];
                                 isWrongInput=true;
                             }
-                            //Duplikat emaila
+                            //Email duplicate
                             if(!strcmp("email_exists", greska.UTF8String)&& ![txtEmail.txtField.text isEqualToString:@"b"]&&wrongEmail==NO){
                                 wrongEmail=YES;
                                 [txtEmail setErrorText:@"error_email_exists"];
@@ -234,23 +248,23 @@
                     isWrongInput=true;
                     [txtEmail setErrorText:@"error_email_format"];
                 }
-                //Duljina lozinke je kriva
+                //Password length is wrong
                 if(txtPassword.txtField.text.length<8){
                     isWrongInput=true;
                     [txtPassword setErrorText:@"error_password"];
                 }
-                //Lozinka je prazna ili lozinke ne matchaju
+                //Password is empty or it doesnt match
                 if(!strcmp([txtConfirmPass.txtField text].UTF8String,empty.UTF8String) || strcmp([txtConfirmPass.txtField text].UTF8String,[txtPassword.txtField text].UTF8String)){
                     isWrongInput=true;
                     [txtConfirmPass setErrorText:@"error_confirm_password"];
                 }
-                //Potvrda lozinke je prazna
+                //Password confirm is empty
                 if(!strcmp([txtUsername.txtField text].UTF8String,empty.UTF8String)&&wrongUser==YES){
                     isWrongInput=true;
                     [txtUsername setErrorText:@"error_username_format"];
                 }
                 
-                //Ako su svi podaci ispravno upisani
+                //If all data is successfuly entered
                 [loadingView stopCustomSpinner];
                 if(!isWrongInput){
                     [loadingView customSpinnerSuccess];
@@ -271,7 +285,6 @@
     [self presentViewController:countries animated:YES completion:nil];
 }
 
-//Ako se klikne na create account
 - (IBAction)btnCreateAccClicked:(id)sender{
     [self.view endEditing:YES];
     [loadingView startCustomSpinner:self.view spinMessage:@"logged"];
