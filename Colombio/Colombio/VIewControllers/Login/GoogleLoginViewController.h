@@ -1,10 +1,15 @@
+/////////////////////////////////////////////////////////////
 //
-//  GoogleLogin.h
-//  Colombio
+//  GoogleLoginViewController.h
+//  Armin Vrevic
 //
-//  Created by Colombio on 7/4/14.
+//  Created by Colombio on 7/7/14.
 //  Copyright (c) 2014 Colombio. All rights reserved.
 //
+//  Class that calls google login api
+//  and registers user if google login is successful
+//
+///////////////////////////////////////////////////////////////
 
 #import <UIKit/UIKit.h>
 #import "CustomHeaderView.h"
