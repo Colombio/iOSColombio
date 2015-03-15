@@ -19,6 +19,7 @@
 @property (strong, nonatomic) FBSession *session;
 @property (strong, nonatomic) Database *db;
 @property (strong, nonatomic) CLLocationManager *locationManager;
+@property (strong, nonatomic) NSCache *mediaImages;
 
 
 + (ALAssetsLibrary *)defaultAssetsLibrary;

@@ -41,10 +41,22 @@
 {
     /*self.isEmptyDB = YES;
     [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:YES] forKey:@"emptyDB"];*/
+    
+    //USER
+    sqlite3_exec(db, "CREATE TABLE USER(user_id TEXT UNIQUE PRIMARY KEY, user_pass TEXT, user_pass_confirm TEXT, user_email TEXT, first_name TEXT, last_name TEXT, phone_number TEXT, anonymous NUMBER, token TEXT, sign TEXT, username TEXT, paypal_email TEXT)", NULL, NULL, NULL);
+    sqlite3_exec(db, "CREATE TABLE USER_CASHOUT(user_id TEXT UNIQUE PRIMARY KEY, req_timestamp DATETIME, amount TEXT)", NULL, NULL, NULL);
     //NEWS DEMAND
 	sqlite3_exec(db, "CREATE TABLE NEWSDEMANDLIST(NEWSDEMAND_ID NUMBER UNIQUE PRIMARY KEY, TITLE TEXT, COST TEXT, DESCRIPTION TEXT, END_TIMESTAMP DATETIME, START_TIMESTAMP DATETIME, LAT NUMERIC, LNG NUMERIC, MEDIA_ID INTEGER, RADIUS NUMBER,  ISREAD INTEGER, STATUS INTEGER)", NULL, NULL, NULL);
     //UPLOAD DATA
     sqlite3_exec(db, "CREATE TABLE UPLOAD_DATA(NEWS_ID INTEGER UNIQUE PRIMARY KEY, NEWS_ID_SERVER INTEGER, NEWSDEMAND_ID INTEGER, TITLE TEXT, DESCRIPTION TEXT, LAT NUMERIC, LNG NUMERIC, MEDIA_ID TEXT, SELECTED_IMGS TEXT, SELECTED_ROWS TEXT, ISNEWSDEMAND INTEGER, IMAGES TEXT, TAGS TEXT, ANONYMOUS INTEGER, CONTACTED INTEGER, CREDITED INTEGER, NEWSVALUE INTEGER, PRICE NUMBER, STATUS INTEGER, UPLOAD_COUNT INTEGER)", NULL, NULL, NULL);
+    //MEDIA LIST
+    sqlite3_exec(db, "CREATE TABLE MEDIA_LIST(id NUMBER UNIQUE PRIMARY KEY, country_id INTEGER, description TEXT, media_icon TEXT, media_type INTEGER, name TEXT)", NULL, NULL, NULL);
+    sqlite3_exec(db, "CREATE TABLE SELECTED_MEDIA(media_id NUMBER UNIQUE PRIMARY KEY, status INTEGER)", NULL, NULL, NULL);
+    //COUNTRIES LIST
+    sqlite3_exec(db, "CREATE TABLE COUNTRIES_LIST(c_id NUMBER UNIQUE PRIMARY KEY, lang_id INTEGER, abbr TEXT, c_name TEXT)", NULL, NULL, NULL);
+    sqlite3_exec(db, "CREATE TABLE SELECTED_COUNTRIES(c_id NUMBER UNIQUE PRIMARY KEY, status INTEGER)", NULL, NULL, NULL);
+    
+    
     
     NSUserDefaults *defaults=[NSUserDefaults standardUserDefaults];
 	[defaults setInteger:0 forKey:@"FirstTimeLaunch"];
@@ -464,6 +476,12 @@
 	NSString *sql = [NSString stringWithFormat:@"DELETE FROM %@ WHERE %@",
 					 table,where];
 	[self runDynamicSQL:sql forTable:table];
+}
+
+- (void)clearTable:(NSString*)table{
+    NSString *sql = [NSString stringWithFormat:@"DELETE FROM %@",
+                     table];
+    [self runDynamicSQL:sql forTable:table];
 }
 
 // INSERT/UPDATE/DELETE Subroutines

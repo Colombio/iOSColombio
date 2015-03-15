@@ -12,7 +12,7 @@
 #import "NewsMediaViewController.h"
 #import "UserInfoUploadViewController.h"
 
-@interface UploadContainerViewController : ContainerViewController<CreateAccViewControllerDelegate>
+@interface UploadContainerViewController : ContainerViewController<CreateNewsViewControllerDelegate>
 {
     CreateNewsViewController *contentVC;
     NewsMediaViewController *mediaVC;

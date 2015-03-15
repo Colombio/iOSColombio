@@ -24,6 +24,7 @@
 - (NSMutableArray *)getAllForSQL:(NSString *)sql;
 - (NSMutableDictionary *)getRowForSQL:(NSString *)sql;
 - (void)updateSQL:(NSString *)sql forTable:(NSString *)table;
+- (void)clearTable:(NSString*)table;
 
 - (int)getCountWhere:(NSString *)where forTable:(NSString *)table;
 - (int)getMax:(NSString *)key Where:(NSString *)where forTable:(NSString *)table;

@@ -11,7 +11,7 @@
 #import "ColombioServiceCommunicator.h"
 #import "CLTextView.h"
 
-@protocol CreateAccViewControllerDelegate
+@protocol CreateNewsViewControllerDelegate
 
 - (void)navigateToVC:(PhotoLibraryViewController*)viewController;
 
@@ -19,7 +19,7 @@
 
 @interface CreateNewsViewController : UIViewController<UITextViewDelegate, ColombioServiceCommunicatorDelegate>
 
-@property (nonatomic, strong) id<CreateAccViewControllerDelegate> delegate;
+@property (nonatomic, strong) id<CreateNewsViewControllerDelegate> delegate;
 @property (strong, nonatomic) NSMutableArray *selectedImagesArray;
 @property (strong, nonatomic) NSMutableArray *selectedTags;
 @property (weak,nonatomic) IBOutlet CLTextView *txtTitle;

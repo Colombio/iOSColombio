@@ -13,19 +13,22 @@
 "create_account" = "Create account";
 "register_successful" = "Uspješna registracija";
 
-/*create account placeholders*/
+/*create account*/
 "enter_username" = "Enter your username";
 "enter_email" = "Enter your email";
 "enter_password" = "Enter your password";
 "enter_confirm_password" = "Confirm password";
-
-/*create account error strings*/
 "error_username_exists" = "Username already exists";
 "error_username_format" = "Enter your username";
 "error_email_exists" = "Email already exists";
 "error_email_format" = "Wrong email";
 "error_password" = "8 chars, 1 capital, 1 number";
 "error_confirm_password" = "Wrong confirm password";
+"acc_terms_of_service_lbl" = "Kreiranjem računa slažete se sa";
+"acc_terms_of_service" = "Uvjetima usluge";
+"and" = "i";
+"acc_privacy_policy" = "Politikom privatnosti";
+"acc_already_have_account" = "Već imate račun?";
 
 /*forgot password*/
 "forgot_password" = "Send password";
@@ -45,6 +48,25 @@
 "login_missing_account" = "Nemaš račun?";
 "login_signup" = "Registriraj se!";
 "login_forget_password" = "Zaboravljena lozinka?";
+"header1_desc" = "The simplest way to share info with news media.";
+"header2_title" = "PHOTO, VIDEO & TEXT";
+"header2_desc" = "Share exclusive news you have witnessed or heard about.";
+"header3_title" = "EARN MONEY";
+"header3_desc" = "Be rewarded for helping media in creating news content";
+
+"google_token_error" = "Greška autorizacije na Google";
+
+/*Settings*/
+"select_country" = "DRŽAVA";
+"select_media" = "MEDIJ";
+"search_media" = "Traži medij";
+"your_info" = "TVOJI PODACI";
+"connect_paypay" = "Spoji PayPal";
+"paypal_email" = "PayPal Email";
+"info_anonymous_on" = "Anonymous ON";
+"info_anonymous_off" = "Anonymous OFF";
+"info_paypal_on" = "PayPal ON";
+"info_paypal_off" = "PayPal OFF";
 
 /*Home*/
 "btn_takephoto" = "TAKE PHOTO OR VIDEO";

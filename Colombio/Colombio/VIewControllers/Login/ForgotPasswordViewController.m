@@ -39,7 +39,10 @@
     [super viewDidLoad];
     
     //Adding custom header
-    [headerViewHolder addSubview:[HeaderView initHeader:@"COLOMBIO" nextHidden:YES previousHidden:NO activeVC:self headerFrame:headerViewHolder.frame]];
+    HeaderView *headerView = [HeaderView initHeader:@"COLOMBIO" nextHidden:YES previousHidden:NO activeVC:self headerFrame:headerViewHolder.frame];
+    [headerView.btnBack setBackgroundImage:[UIImage imageNamed:@"backwhite_normal"] forState:UIControlStateNormal];
+    [headerView.btnBack setBackgroundImage:[UIImage imageNamed:@"backwhite_pressed"] forState:UIControlStateHighlighted];
+    [headerViewHolder addSubview:headerView];
     
     //If tapped anywhere on the scrollbox, keyboard is hidden
     [self.scrollBox setDelegate:self];
@@ -63,7 +66,8 @@
     return NO;
 }
 
-- (void)textFieldDidBeginEditing:(UITextField *)textField{            [txtEmail setPlaceholderText:txtEmail.placeholderText];
+- (void)textFieldDidBeginEditing:(UITextField *)textField{
+    [txtEmail setPlaceholderText:txtEmail.placeholderText];
 }
 
 - (void)goAwayKeyboard:(UITapGestureRecognizer *)gesture{
@@ -116,7 +120,7 @@
     
     ColombioServiceCommunicator *csc = [[ColombioServiceCommunicator alloc] init];
     
-    [csc sendAsyncHttp:[NSString stringWithFormat:@"%@/api_user_managment/mau_normal_register/", BASE_URL] httpBody:[NSString stringWithFormat:@"%@/api_user_managment/mau_pass_recovery?user_email=%@",BASE_URL,strEmail]cache:NSURLRequestReloadIgnoringCacheData timeoutInterval:5];
+    [csc sendAsyncHttp:[NSString stringWithFormat:@"%@/api_user_managment/mau_pass_recovery/", BASE_URL] httpBody:[NSString stringWithFormat:@"user_email=%@",strEmail]cache:NSURLRequestReloadIgnoringCacheData timeoutInterval:5];
     
     [NSURLConnection sendAsynchronousRequest:csc.request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
         

@@ -25,6 +25,8 @@
 		BB6EBE4C1A7474AD0066D7D7 /* MediaListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6EBE4A1A7474AD0066D7D7 /* MediaListViewController.m */; };
 		BB6EBE4D1A7474AD0066D7D7 /* MediaListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB6EBE4B1A7474AD0066D7D7 /* MediaListViewController.xib */; };
 		BB6EBE501A75A4BD0066D7D7 /* NewsMediaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6EBE4F1A75A4BD0066D7D7 /* NewsMediaViewController.m */; };
+		BBAB60091AAE5722000493E0 /* UserInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBAB60071AAE5722000493E0 /* UserInfoViewController.m */; };
+		BBAB600A1AAE5722000493E0 /* UserInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBAB60081AAE5722000493E0 /* UserInfoViewController.xib */; };
 		BBAE1F1D1A37B51F0008B772 /* ColombioServiceCommunicator.m in Sources */ = {isa = PBXBuildFile; fileRef = BBAE1F1C1A37B51F0008B772 /* ColombioServiceCommunicator.m */; };
 		BBAE1F201A37B5A80008B772 /* NSDate+DateHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = BBAE1F1F1A37B5A80008B772 /* NSDate+DateHandler.m */; };
 		BBAE1F241A37B68E0008B772 /* ForgotPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBAE1F221A37B68E0008B772 /* ForgotPasswordViewController.m */; };
@@ -35,6 +37,7 @@
 		BBB0BFA91A350F640074B20C /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBB0BFA81A350F640074B20C /* LoginViewController.xib */; };
 		BBB144841A78E66800980BB4 /* UserInfoUploadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB144821A78E66800980BB4 /* UserInfoUploadViewController.m */; };
 		BBB144851A78E66800980BB4 /* UserInfoUploadViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBB144831A78E66800980BB4 /* UserInfoUploadViewController.xib */; };
+		BBB214151AA91D17009B43D2 /* LoginSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB214141AA91D17009B43D2 /* LoginSettingsViewController.m */; };
 		BBB2B12E1A5F37E200F4FD38 /* TabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB2B12C1A5F37E200F4FD38 /* TabBarViewController.m */; };
 		BBB2B12F1A5F37E200F4FD38 /* TabBarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBB2B12D1A5F37E200F4FD38 /* TabBarViewController.xib */; };
 		BBB2B1331A5F404E00F4FD38 /* DummyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB2B1311A5F404E00F4FD38 /* DummyViewController.m */; };
@@ -44,7 +47,6 @@
 		BBB33AC31A27D9EE008D0E26 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB33AC21A27D9EE008D0E26 /* main.m */; };
 		BBB33AC61A27D9EE008D0E26 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB33AC51A27D9EE008D0E26 /* AppDelegate.m */; };
 		BBB33ACE1A27D9EE008D0E26 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BBB33ACD1A27D9EE008D0E26 /* Images.xcassets */; };
-		BBB33ADD1A27D9EE008D0E26 /* ColombioTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB33ADC1A27D9EE008D0E26 /* ColombioTests.m */; };
 		BBB33AEB1A27DF6D008D0E26 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBB33AE91A27DF6D008D0E26 /* CoreLocation.framework */; };
 		BBB33AEC1A27DF6D008D0E26 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBB33AEA1A27DF6D008D0E26 /* QuartzCore.framework */; };
 		BBB33AEE1A27DF9B008D0E26 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBB33AED1A27DF9B008D0E26 /* AssetsLibrary.framework */; };
@@ -59,7 +61,15 @@
 		BBB33B001A27DFF9008D0E26 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBB33AFF1A27DFF9008D0E26 /* UIKit.framework */; };
 		BBB33B021A27E007008D0E26 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBB33B011A27E007008D0E26 /* Foundation.framework */; };
 		BBB33B091A27E1AF008D0E26 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBB33AE61A27DF0A008D0E26 /* MapKit.framework */; };
+		BBB4EADF1AAA67290075717A /* SelectMediaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB4EADD1AAA67290075717A /* SelectMediaViewController.m */; };
+		BBB4EAE01AAA67290075717A /* SelectMediaViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBB4EADE1AAA67290075717A /* SelectMediaViewController.xib */; };
+		BBB4EAEA1AAA6B010075717A /* SelectMediaCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB4EAE81AAA6B010075717A /* SelectMediaCell.m */; };
+		BBB4EAEB1AAA6B010075717A /* SelectMediaCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBB4EAE91AAA6B010075717A /* SelectMediaCell.xib */; };
 		BBB56D451A71BE1F004D3B9A /* CLTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB56D441A71BE1F004D3B9A /* CLTextView.m */; };
+		BBB5B47E1AABC73A00765861 /* SelectCountriesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB5B47C1AABC73A00765861 /* SelectCountriesViewController.m */; };
+		BBB5B47F1AABC73A00765861 /* SelectCountriesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBB5B47D1AABC73A00765861 /* SelectCountriesViewController.xib */; };
+		BBB5B4831AABCA0E00765861 /* SelectCountryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB5B4811AABCA0E00765861 /* SelectCountryCell.m */; };
+		BBB5B4841AABCA0E00765861 /* SelectCountryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBB5B4821AABCA0E00765861 /* SelectCountryCell.xib */; };
 		BBB604B21A7AF4310090F18A /* UITextField+XibAttributes.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB604B11A7AF4310090F18A /* UITextField+XibAttributes.m */; };
 		BBB604B71A7EFFB90090F18A /* UploadNewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB604B51A7EFFB90090F18A /* UploadNewsViewController.m */; };
 		BBB604B81A7EFFB90090F18A /* UploadNewsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBB604B61A7EFFB90090F18A /* UploadNewsViewController.xib */; };
@@ -97,16 +107,6 @@
 		BBD453621A64914A0029CADD /* ContainerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBD453601A64914A0029CADD /* ContainerViewController.xib */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		BBB33AD71A27D9EE008D0E26 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BBB33AB51A27D9EE008D0E26 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = BBB33ABC1A27D9EE008D0E26;
-			remoteInfo = Colombio;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
 		582352BF1A841E2900A03D19 /* GoogleLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoogleLoginViewController.h; sourceTree = "<group>"; };
 		582352C01A841E2900A03D19 /* GoogleLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoogleLoginViewController.m; sourceTree = "<group>"; };
@@ -138,6 +138,9 @@
 		BB6EBE4B1A7474AD0066D7D7 /* MediaListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MediaListViewController.xib; sourceTree = "<group>"; };
 		BB6EBE4E1A75A4BD0066D7D7 /* NewsMediaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsMediaViewController.h; sourceTree = "<group>"; };
 		BB6EBE4F1A75A4BD0066D7D7 /* NewsMediaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsMediaViewController.m; sourceTree = "<group>"; };
+		BBAB60061AAE5722000493E0 /* UserInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoViewController.h; sourceTree = "<group>"; };
+		BBAB60071AAE5722000493E0 /* UserInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoViewController.m; sourceTree = "<group>"; };
+		BBAB60081AAE5722000493E0 /* UserInfoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserInfoViewController.xib; sourceTree = "<group>"; };
 		BBAE1F161A37B3850008B772 /* UIView+InlineFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+InlineFunctions.h"; sourceTree = "<group>"; };
 		BBAE1F1B1A37B51E0008B772 /* ColombioServiceCommunicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColombioServiceCommunicator.h; sourceTree = "<group>"; };
 		BBAE1F1C1A37B51F0008B772 /* ColombioServiceCommunicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColombioServiceCommunicator.m; sourceTree = "<group>"; };
@@ -156,6 +159,8 @@
 		BBB144811A78E66800980BB4 /* UserInfoUploadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoUploadViewController.h; sourceTree = "<group>"; };
 		BBB144821A78E66800980BB4 /* UserInfoUploadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoUploadViewController.m; sourceTree = "<group>"; };
 		BBB144831A78E66800980BB4 /* UserInfoUploadViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserInfoUploadViewController.xib; sourceTree = "<group>"; };
+		BBB214131AA91D17009B43D2 /* LoginSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginSettingsViewController.h; sourceTree = "<group>"; };
+		BBB214141AA91D17009B43D2 /* LoginSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginSettingsViewController.m; sourceTree = "<group>"; };
 		BBB2B12B1A5F37E200F4FD38 /* TabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarViewController.h; sourceTree = "<group>"; };
 		BBB2B12C1A5F37E200F4FD38 /* TabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarViewController.m; sourceTree = "<group>"; };
 		BBB2B12D1A5F37E200F4FD38 /* TabBarViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TabBarViewController.xib; sourceTree = "<group>"; };
@@ -171,7 +176,6 @@
 		BBB33AC41A27D9EE008D0E26 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		BBB33AC51A27D9EE008D0E26 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		BBB33ACD1A27D9EE008D0E26 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		BBB33AD61A27D9EE008D0E26 /* ColombioTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ColombioTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BBB33ADB1A27D9EE008D0E26 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BBB33ADC1A27D9EE008D0E26 /* ColombioTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ColombioTests.m; sourceTree = "<group>"; };
 		BBB33AE61A27DF0A008D0E26 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -188,8 +192,20 @@
 		BBB33AFD1A27DFF1008D0E26 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		BBB33AFF1A27DFF9008D0E26 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		BBB33B011A27E007008D0E26 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		BBB4EADC1AAA67290075717A /* SelectMediaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectMediaViewController.h; sourceTree = "<group>"; };
+		BBB4EADD1AAA67290075717A /* SelectMediaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectMediaViewController.m; sourceTree = "<group>"; };
+		BBB4EADE1AAA67290075717A /* SelectMediaViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelectMediaViewController.xib; sourceTree = "<group>"; };
+		BBB4EAE71AAA6B010075717A /* SelectMediaCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectMediaCell.h; sourceTree = "<group>"; };
+		BBB4EAE81AAA6B010075717A /* SelectMediaCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectMediaCell.m; sourceTree = "<group>"; };
+		BBB4EAE91AAA6B010075717A /* SelectMediaCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelectMediaCell.xib; sourceTree = "<group>"; };
 		BBB56D431A71BE1F004D3B9A /* CLTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLTextView.h; sourceTree = "<group>"; };
 		BBB56D441A71BE1F004D3B9A /* CLTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLTextView.m; sourceTree = "<group>"; };
+		BBB5B47B1AABC73A00765861 /* SelectCountriesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectCountriesViewController.h; sourceTree = "<group>"; };
+		BBB5B47C1AABC73A00765861 /* SelectCountriesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectCountriesViewController.m; sourceTree = "<group>"; };
+		BBB5B47D1AABC73A00765861 /* SelectCountriesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelectCountriesViewController.xib; sourceTree = "<group>"; };
+		BBB5B4801AABCA0E00765861 /* SelectCountryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectCountryCell.h; sourceTree = "<group>"; };
+		BBB5B4811AABCA0E00765861 /* SelectCountryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectCountryCell.m; sourceTree = "<group>"; };
+		BBB5B4821AABCA0E00765861 /* SelectCountryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelectCountryCell.xib; sourceTree = "<group>"; };
 		BBB604B01A7AF4310090F18A /* UITextField+XibAttributes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextField+XibAttributes.h"; sourceTree = "<group>"; };
 		BBB604B11A7AF4310090F18A /* UITextField+XibAttributes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextField+XibAttributes.m"; sourceTree = "<group>"; };
 		BBB604B41A7EFFB90090F18A /* UploadNewsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadNewsViewController.h; sourceTree = "<group>"; };
@@ -280,13 +296,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		BBB33AD31A27D9EE008D0E26 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -308,6 +317,8 @@
 				BBB6A0601A48D791006F61B3 /* StartViewController.h */,
 				BBB6A0611A48D791006F61B3 /* StartViewController.m */,
 				BBB6A0621A48D791006F61B3 /* StartViewController.xib */,
+				BBB214131AA91D17009B43D2 /* LoginSettingsViewController.h */,
+				BBB214141AA91D17009B43D2 /* LoginSettingsViewController.m */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -324,6 +335,7 @@
 		58A004FA1A60DBE300E7BA68 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				BBB4EAE11AAA698D0075717A /* Views */,
 				583C9EBF1A63654500C6131C /* MediaViewController.h */,
 				583C9EC01A63654500C6131C /* MediaViewController.m */,
 				583C9EC11A63654500C6131C /* MediaViewController.xib */,
@@ -333,6 +345,15 @@
 				BB6EBE491A7474AD0066D7D7 /* MediaListViewController.h */,
 				BB6EBE4A1A7474AD0066D7D7 /* MediaListViewController.m */,
 				BB6EBE4B1A7474AD0066D7D7 /* MediaListViewController.xib */,
+				BBB4EADC1AAA67290075717A /* SelectMediaViewController.h */,
+				BBB4EADD1AAA67290075717A /* SelectMediaViewController.m */,
+				BBB4EADE1AAA67290075717A /* SelectMediaViewController.xib */,
+				BBB5B47B1AABC73A00765861 /* SelectCountriesViewController.h */,
+				BBB5B47C1AABC73A00765861 /* SelectCountriesViewController.m */,
+				BBB5B47D1AABC73A00765861 /* SelectCountriesViewController.xib */,
+				BBAB60061AAE5722000493E0 /* UserInfoViewController.h */,
+				BBAB60071AAE5722000493E0 /* UserInfoViewController.m */,
+				BBAB60081AAE5722000493E0 /* UserInfoViewController.xib */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -375,7 +396,6 @@
 			isa = PBXGroup;
 			children = (
 				BBB33ABD1A27D9EE008D0E26 /* Colombio.app */,
-				BBB33AD61A27D9EE008D0E26 /* ColombioTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -444,6 +464,19 @@
 				BBB33AE61A27DF0A008D0E26 /* MapKit.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BBB4EAE11AAA698D0075717A /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				BBB4EAE71AAA6B010075717A /* SelectMediaCell.h */,
+				BBB4EAE81AAA6B010075717A /* SelectMediaCell.m */,
+				BBB4EAE91AAA6B010075717A /* SelectMediaCell.xib */,
+				BBB5B4801AABCA0E00765861 /* SelectCountryCell.h */,
+				BBB5B4811AABCA0E00765861 /* SelectCountryCell.m */,
+				BBB5B4821AABCA0E00765861 /* SelectCountryCell.xib */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 		BBB6A05C1A44FB1D006F61B3 /* UIConfiguration */ = {
@@ -612,24 +645,6 @@
 			productReference = BBB33ABD1A27D9EE008D0E26 /* Colombio.app */;
 			productType = "com.apple.product-type.application";
 		};
-		BBB33AD51A27D9EE008D0E26 /* ColombioTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = BBB33AE31A27D9EE008D0E26 /* Build configuration list for PBXNativeTarget "ColombioTests" */;
-			buildPhases = (
-				BBB33AD21A27D9EE008D0E26 /* Sources */,
-				BBB33AD31A27D9EE008D0E26 /* Frameworks */,
-				BBB33AD41A27D9EE008D0E26 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				BBB33AD81A27D9EE008D0E26 /* PBXTargetDependency */,
-			);
-			name = ColombioTests;
-			productName = ColombioTests;
-			productReference = BBB33AD61A27D9EE008D0E26 /* ColombioTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -641,10 +656,6 @@
 				TargetAttributes = {
 					BBB33ABC1A27D9EE008D0E26 = {
 						CreatedOnToolsVersion = 6.1;
-					};
-					BBB33AD51A27D9EE008D0E26 = {
-						CreatedOnToolsVersion = 6.1;
-						TestTargetID = BBB33ABC1A27D9EE008D0E26;
 					};
 				};
 			};
@@ -663,7 +674,6 @@
 			projectRoot = "";
 			targets = (
 				BBB33ABC1A27D9EE008D0E26 /* Colombio */,
-				BBB33AD51A27D9EE008D0E26 /* ColombioTests */,
 			);
 		};
 /* End PBXProject section */
@@ -676,16 +686,20 @@
 				58ACA0051A530D5B0076D3D8 /* CreateAccViewController.xib in Resources */,
 				BB6EBE4D1A7474AD0066D7D7 /* MediaListViewController.xib in Resources */,
 				BBB144851A78E66800980BB4 /* UserInfoUploadViewController.xib in Resources */,
+				BBB4EAEB1AAA6B010075717A /* SelectMediaCell.xib in Resources */,
 				BBB0BFA91A350F640074B20C /* LoginViewController.xib in Resources */,
 				BBB33ACE1A27D9EE008D0E26 /* Images.xcassets in Resources */,
+				BBB5B4841AABCA0E00765861 /* SelectCountryCell.xib in Resources */,
 				BBCF58E61A293F6700CE64B4 /* Localizable.strings in Resources */,
 				BBAE1F251A37B68E0008B772 /* ForgotPasswordViewController.xib in Resources */,
 				BBB6A0641A48D791006F61B3 /* StartViewController.xib in Resources */,
 				58ACA0031A4EE6B70076D3D8 /* HeaderView.xib in Resources */,
 				BBB2B12F1A5F37E200F4FD38 /* TabBarViewController.xib in Resources */,
+				BBAB600A1AAE5722000493E0 /* UserInfoViewController.xib in Resources */,
 				BBB79D1D1A5CABF8001A876A /* HomeViewController.xib in Resources */,
 				BBB2B13A1A5F534F00F4FD38 /* CreateNewsViewController.xib in Resources */,
 				583C9EC31A63654500C6131C /* MediaViewController.xib in Resources */,
+				BBB4EAE01AAA67290075717A /* SelectMediaViewController.xib in Resources */,
 				BBB7F32F1A60A6D30014909B /* ScrollableHeaderContentView.xib in Resources */,
 				BBB2B1341A5F404E00F4FD38 /* DummyViewController.xib in Resources */,
 				BBB604B81A7EFFB90090F18A /* UploadNewsViewController.xib in Resources */,
@@ -693,13 +707,7 @@
 				58A004FF1A60DBE300E7BA68 /* CountriesViewController.xib in Resources */,
 				582352C31A841E2900A03D19 /* GoogleLoginViewController.xib in Resources */,
 				BBD453621A64914A0029CADD /* ContainerViewController.xib in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		BBB33AD41A27D9EE008D0E26 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
+				BBB5B47F1AABC73A00765861 /* SelectCountriesViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -715,6 +723,8 @@
 				5836A1CD1A55F98300C509F1 /* Loading.m in Sources */,
 				BB6EBE4C1A7474AD0066D7D7 /* MediaListViewController.m in Sources */,
 				BBB6A05F1A44FB2D006F61B3 /* UIConfiguration.m in Sources */,
+				BBAB60091AAE5722000493E0 /* UserInfoViewController.m in Sources */,
+				BBB214151AA91D17009B43D2 /* LoginSettingsViewController.m in Sources */,
 				BBB6A0561A40E7D1006F61B3 /* VSSwitchButton.m in Sources */,
 				BBB2B1391A5F534F00F4FD38 /* CreateNewsViewController.m in Sources */,
 				BBAE1F241A37B68E0008B772 /* ForgotPasswordViewController.m in Sources */,
@@ -734,11 +744,13 @@
 				BBAE1F1D1A37B51F0008B772 /* ColombioServiceCommunicator.m in Sources */,
 				583C9EBE1A6357FD00C6131C /* SettingsCollectionView.m in Sources */,
 				58ACA0021A4EE6B70076D3D8 /* HeaderView.m in Sources */,
+				BBB5B4831AABCA0E00765861 /* SelectCountryCell.m in Sources */,
 				BBC77C691A6889610069FD9D /* PhotoLibraryViewController.m in Sources */,
 				BB6EBE501A75A4BD0066D7D7 /* NewsMediaViewController.m in Sources */,
 				BBB7F33A1A6209560014909B /* NewsData.m in Sources */,
 				BBAF777B1A50C914004AAAF9 /* ScrollableHeaderView.m in Sources */,
 				BBB7F32D1A60A6C20014909B /* ScrollableHeaderContentView.m in Sources */,
+				BBB4EADF1AAA67290075717A /* SelectMediaViewController.m in Sources */,
 				BBD071571A69C79800C3E84E /* LibraryCell.m in Sources */,
 				BBB604B71A7EFFB90090F18A /* UploadNewsViewController.m in Sources */,
 				BBB33AC61A27D9EE008D0E26 /* AppDelegate.m in Sources */,
@@ -755,31 +767,17 @@
 				BBB7F3321A60B60E0014909B /* CustomHeaderView.m in Sources */,
 				BBCF58DC1A293DD200CE64B4 /* Database.m in Sources */,
 				BBCF58911A2938B400CE64B4 /* CountriesCell.m in Sources */,
+				BBB5B47E1AABC73A00765861 /* SelectCountriesViewController.m in Sources */,
 				BBD453611A64914A0029CADD /* ContainerViewController.m in Sources */,
 				BBCF58A01A29395400CE64B4 /* Messages.m in Sources */,
 				BBCF589F1A29395400CE64B4 /* CryptoClass.m in Sources */,
 				BBB56D451A71BE1F004D3B9A /* CLTextView.m in Sources */,
+				BBB4EAEA1AAA6B010075717A /* SelectMediaCell.m in Sources */,
 				BBCF58F51A2AA47F00CE64B4 /* UIView+XibAttributes.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		BBB33AD21A27D9EE008D0E26 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				BBB33ADD1A27D9EE008D0E26 /* ColombioTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		BBB33AD81A27D9EE008D0E26 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = BBB33ABC1A27D9EE008D0E26 /* Colombio */;
-			targetProxy = BBB33AD71A27D9EE008D0E26 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		BBCF58E81A293F6700CE64B4 /* Localizable.strings */ = {
@@ -904,7 +902,8 @@
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Zvonimir Juranko (9ULYX2KK4N)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Zvonimir Juranko (MYSJ6HWKEM)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Zvonimir Juranko (9ULYX2KK4N)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/**",
@@ -921,40 +920,6 @@
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "ccc8cb4f-bdcf-41f7-9182-cebdefb4d939";
-			};
-			name = Release;
-		};
-		BBB33AE41A27D9EE008D0E26 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = ColombioTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Colombio.app/Colombio";
-			};
-			name = Debug;
-		};
-		BBB33AE51A27D9EE008D0E26 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = ColombioTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Colombio.app/Colombio";
 			};
 			name = Release;
 		};
@@ -975,15 +940,6 @@
 			buildConfigurations = (
 				BBB33AE11A27D9EE008D0E26 /* Debug */,
 				BBB33AE21A27D9EE008D0E26 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		BBB33AE31A27D9EE008D0E26 /* Build configuration list for PBXNativeTarget "ColombioTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				BBB33AE41A27D9EE008D0E26 /* Debug */,
-				BBB33AE51A27D9EE008D0E26 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

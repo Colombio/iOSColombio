@@ -46,7 +46,7 @@
     NSError *err;
     NSData *data = [NSJSONSerialization dataWithJSONObject:provjera options:0 error:&err];
     if(!data){
-        [Messages showErrorMsg:@"Pogreška prilikom slanja zahtjeva!"];
+        [Messages showErrorMsg:@"error_web_request"];
         return @"";
     }
     else{

@@ -16,6 +16,8 @@
 #import "TabBarViewController.h"
 #import "CountriesViewController.h"
 #import "GoogleLoginViewController.h"
+
+#import "LoginSettingsViewController.h"
 /*
 #import "Countries.h"
 #import "GoogleLogin.h"
@@ -66,8 +68,6 @@
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(keyboardUp:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(keyboardDown:) name:UIKeyboardWillHideNotification object:nil];
     
-    //Provjeravanje tokena, ako je korisnik vec logiran u sustavu, proslijedi ga na home
-    //timer = [NSTimer scheduledTimerWithTimeInterval:0.4 target:self selector:@selector(provjeriToken) userInfo:nil repeats:NO];
     loadingView = [[Loading alloc] init];
 }
 
@@ -229,10 +229,23 @@
             NSString *userId=[user objectForKey:@"user_id"];
             [userId writeToFile:filePathUser atomically:YES encoding:NSUTF8StringEncoding error:nil];
             [token writeToFile:filePathToken atomically:YES encoding:NSUTF8StringEncoding error:nil];
-            CountriesViewController *states = [[CountriesViewController alloc]init];
+            
+            //spremanje u bazu
+            NSMutableDictionary *dbDict = [[NSMutableDictionary alloc] init];
+            AppDelegate *appdelegate = [[UIApplication sharedApplication] delegate];
+            [appdelegate.db clearTable:@"USER"];
+            [appdelegate.db clearTable:@"USER_CASHOUT"];
+            dbDict[@"user_id"] = response[@"usr"][@"user_id"];
+            dbDict[@"username"] = response[@"usr"][@"username"];
+            dbDict[@"user_email"] = response[@"usr"][@"user_email"];
+            dbDict[@"token"] = response[@"token"];
+            dbDict[@"sign"] = response[@"sign"];
+            [appdelegate.db insertDictionaryWithoutColumnCheck:dbDict forTable:@"USER"];
+            
             [loadingView stopCustomSpinner];
             [loadingView removeCustomSpinner];
-            [self presentViewController:states animated:YES completion:nil];
+            LoginSettingsViewController *containerVC = [[LoginSettingsViewController alloc] initWithNibName:@"ContainerViewController" bundle:nil];
+            [self presentViewController:containerVC animated:YES completion:nil];
             return;
             
         }
@@ -240,7 +253,7 @@
             [loadingView stopCustomSpinner];
             [loadingView customSpinnerFail];
         }
-        timer = [NSTimer scheduledTimerWithTimeInterval:2.5 target:self selector:@selector(toggleLoginOff) userInfo:nil repeats:NO];
+        [self toggleLoginOff];
     }
 }
 
@@ -253,7 +266,6 @@
         [self hideEmailLogin];
     }
     [self checkLoginFacebook];
-    
 }
 
 -(void)checkLoginFacebook{
@@ -305,14 +317,19 @@
                     [userId writeToFile:filePathUser atomically:YES encoding:NSUTF8StringEncoding error:nil];
                     [token writeToFile:filePathToken atomically:YES encoding:NSUTF8StringEncoding error:nil];
                     
-                    /*CountriesViewController *states = [[CountriesViewController alloc]init];
-                     states.arSelectedRows = [[NSMutableArray alloc] init];
-                     [self presentViewController:states animated:YES completion:nil];*/
-                    /*
-                     Testing purposes only
-                     **/
-                    [self presentViewController:[[TabBarViewController alloc] init] animated:NO completion:nil];
+                    NSMutableDictionary *dbDict = [[NSMutableDictionary alloc] init];
+                    AppDelegate *appdelegate = [[UIApplication sharedApplication] delegate];
+                    [appdelegate.db clearTable:@"USER"];
+                    [appdelegate.db clearTable:@"USER_CASHOUT"];
+                    dbDict[@"user_id"] = response[@"usr"][@"user_id"];
+                    dbDict[@"username"] = response[@"usr"][@"username"];
+                    dbDict[@"user_email"] = response[@"usr"][@"user_email"];
+                    dbDict[@"token"] = response[@"token"];
+                    dbDict[@"sign"] = response[@"sign"];
+                    [appdelegate.db insertDictionaryWithoutColumnCheck:dbDict forTable:@"USER"];
                     
+                    LoginSettingsViewController *containerVC = [[LoginSettingsViewController alloc] initWithNibName:@"ContainerViewController" bundle:nil];
+                    [self presentViewController:containerVC animated:YES completion:nil];
                     
                 }
             }
@@ -324,6 +341,8 @@
 - (void)btnGoogleSelected:(id)sender{
     GoogleLoginViewController *gg = [[GoogleLoginViewController alloc]init];
     [self presentViewController:gg animated:YES completion:nil];
+    
+    
 }
 
 /*

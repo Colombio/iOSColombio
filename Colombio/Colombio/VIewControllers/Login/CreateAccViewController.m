@@ -16,6 +16,7 @@
 #import "Validation.h"
 #import "CountriesViewController.h"
 #import "Localized.h"
+#import "AppDelegate.h"
 
 @interface CreateAccViewController ()
 
@@ -41,12 +42,15 @@
     [super viewDidLoad];
     
     //Add the custom header
-    [headerViewHolder addSubview:[HeaderView initHeader:@"COLOMBIO" nextHidden:YES previousHidden:NO activeVC:self headerFrame:headerViewHolder.frame]];
+    HeaderView *headerView = [HeaderView initHeader:@"COLOMBIO" nextHidden:YES previousHidden:NO activeVC:self headerFrame:headerViewHolder.frame];
+    [headerView.btnBack setBackgroundImage:[UIImage imageNamed:@"backwhite_normal"] forState:UIControlStateNormal];
+    [headerView.btnBack setBackgroundImage:[UIImage imageNamed:@"backwhite_pressed"] forState:UIControlStateHighlighted];
+    [headerViewHolder addSubview:headerView];
     
     //For keyboard hiding on tap
     [self.scrollBox setDelegate:self];
-    UITapGestureRecognizer *singleTap =[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(goAwayKeyboard:)];
-    [scrollBox addGestureRecognizer:singleTap];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(keyboardUp:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(keyboardDown:) name:UIKeyboardWillHideNotification object:nil];
     
     //Aditional setup of text fields
     [self setupTextFields];
@@ -129,7 +133,7 @@
  *
  */
 - (void)textFieldDidBeginEditing:(UITextField *)textField{
-    scrollBox.contentSize = CGSizeMake(scrollBox.frame.size.width,self.view.frame.size.height+210);
+    //scrollBox.contentSize = CGSizeMake(scrollBox.frame.size.width,self.view.frame.size.height+210);
     switch (textField.tag) {
         case 1:
             [txtUsername setPlaceholderText:txtUsername.placeholderText];
@@ -144,6 +148,24 @@
             [txtConfirmPass setPlaceholderText:txtConfirmPass.placeholderText];
             break;
     }
+}
+
+#pragma mark Keyboard
+
+- (void)keyboardUp:(NSNotification *)notification{
+    NSDictionary *info = [notification userInfo];
+    CGRect keyboardRect = [[info objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    keyboardRect = [self.view convertRect:keyboardRect fromView:nil];
+    
+    UIEdgeInsets contentInset = scrollBox.contentInset;
+    contentInset.bottom = keyboardRect.size.height;
+    scrollBox.contentInset = contentInset;
+}
+
+- (void)keyboardDown:(NSNotification*)notification{
+    UIEdgeInsets contentInsets = UIEdgeInsetsZero;
+    scrollBox.contentInset = contentInsets;
+    scrollBox.scrollIndicatorInsets = contentInsets;
 }
 
 - (void)goAwayKeyboard:(UITapGestureRecognizer *)gesture{
@@ -185,7 +207,6 @@
     [NSURLConnection sendAsynchronousRequest:csc.request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            NSString *empty = @"";
             Boolean isWrongInput = false;
             
             bool wrongEmail=NO;
@@ -244,31 +265,11 @@
                         break;
                     }
                 }
-                if(![Validation validateEmail:[txtEmail.txtField text]]&&wrongEmail==YES) {
-                    isWrongInput=true;
-                    [txtEmail setErrorText:@"error_email_format"];
-                }
-                //Password length is wrong
-                if(txtPassword.txtField.text.length<8){
-                    isWrongInput=true;
-                    [txtPassword setErrorText:@"error_password"];
-                }
-                //Password is empty or it doesnt match
-                if(!strcmp([txtConfirmPass.txtField text].UTF8String,empty.UTF8String) || strcmp([txtConfirmPass.txtField text].UTF8String,[txtPassword.txtField text].UTF8String)){
-                    isWrongInput=true;
-                    [txtConfirmPass setErrorText:@"error_confirm_password"];
-                }
-                //Password confirm is empty
-                if(!strcmp([txtUsername.txtField text].UTF8String,empty.UTF8String)&&wrongUser==YES){
-                    isWrongInput=true;
-                    [txtUsername setErrorText:@"error_username_format"];
-                }
-                
                 //If all data is successfuly entered
                 [loadingView stopCustomSpinner];
                 if(!isWrongInput){
                     [loadingView customSpinnerSuccess];
-                    timer = [NSTimer scheduledTimerWithTimeInterval:3.5 target:self selector:@selector(createAccSuccessful) userInfo:nil repeats:NO];
+                    [self createAccSuccessful];
                 }
                 else{
                     [loadingView customSpinnerFail];
@@ -281,18 +282,46 @@
 }
 
 - (void)createAccSuccessful{
-    CountriesViewController *countries = [[CountriesViewController alloc]init];
-    [self presentViewController:countries animated:YES completion:nil];
+    [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (IBAction)btnCreateAccClicked:(id)sender{
-    [self.view endEditing:YES];
-    [loadingView startCustomSpinner:self.view spinMessage:@"logged"];
-    [UIView animateWithDuration:0.8 animations:^{
-        [btnCreate setTitle:[Localized string:@"wait"] forState:UIControlStateNormal];
-    }];
+    if ([self validateFields]) {
+        [self.view endEditing:YES];
+        [loadingView startCustomSpinner:self.view spinMessage:@"logged"];
+        [UIView animateWithDuration:0.8 animations:^{
+            [btnCreate setTitle:[Localized string:@"wait"] forState:UIControlStateNormal];
+        }];
+        
+        timer = [NSTimer scheduledTimerWithTimeInterval:0.2f target:self selector:@selector(checkRegister) userInfo:nil repeats:NO];
+    }
+}
+
+#pragma mark Validation
+- (BOOL)validateFields{
+    BOOL fieldsOK = YES;
+    if(![Validation validateEmail:[txtEmail.txtField text]]) {
+        fieldsOK=NO;
+        [txtEmail setErrorText:@"error_email_format"];
+    }
+    //Password length is wrong
+    if(txtPassword.txtField.text.length<8){
+        fieldsOK=NO;
+        [txtPassword setErrorText:@"error_password"];
+    }
+    //Password is empty or it doesnt match
+    if(!strcmp([txtConfirmPass.txtField text].UTF8String,@"".UTF8String) || strcmp([txtConfirmPass.txtField text].UTF8String,[txtPassword.txtField text].UTF8String)){
+        
+        [txtConfirmPass setErrorText:@"error_confirm_password"];
+    }
+    //Password confirm is empty
+    if(!strcmp([txtUsername.txtField text].UTF8String,@"".UTF8String)){
+        fieldsOK=NO;
+        [txtUsername setErrorText:@"error_username_format"];
+    }
     
-    timer = [NSTimer scheduledTimerWithTimeInterval:0.2f target:self selector:@selector(checkRegister) userInfo:nil repeats:NO];
+    return fieldsOK;
+    
 }
 
 @end

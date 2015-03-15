@@ -67,14 +67,14 @@ enum HeaderMovement{
 
 - (void)setupHeader{
     {
-        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-        btn.tag=0;
-        [btn addTarget:self action:@selector(btnAction:) forControlEvents:UIControlEventTouchUpInside];
-        [btn setBackgroundImage:[UIImage imageNamed:@"backgrey_normal"] forState:UIControlStateNormal];
-        [btn setBackgroundImage:[UIImage imageNamed:@"backgrey_pressed"] forState:UIControlStateHighlighted];
-        btn.frame = CGRectMake(10, 0, 44, 44);
-        [_headerBtnsArray addObject:btn];
-        [_viewHeader addSubview:btn];
+        _btnBack = [UIButton buttonWithType:UIButtonTypeCustom];
+        _btnBack.tag=0;
+        [_btnBack addTarget:self action:@selector(btnAction:) forControlEvents:UIControlEventTouchUpInside];
+        [_btnBack setBackgroundImage:[UIImage imageNamed:@"backgrey_normal"] forState:UIControlStateNormal];
+        [_btnBack setBackgroundImage:[UIImage imageNamed:@"backgrey_pressed"] forState:UIControlStateHighlighted];
+        _btnBack.frame = CGRectMake(10, 0, 44, 44);
+        [_headerBtnsArray addObject:_btnBack];
+        [_viewHeader addSubview:_btnBack];
     }
     
     for(int i=0;i<_viewControllersArray.count;i++){

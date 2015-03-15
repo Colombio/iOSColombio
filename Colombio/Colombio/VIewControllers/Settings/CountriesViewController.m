@@ -42,6 +42,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.title = [Localized string:@"select_country"];
     self.wantsFullScreenLayout = YES;
     //Setting up custom header
     customHeaderView.customHeaderDelegate = self;
@@ -72,9 +73,13 @@
 - (void)loadStates{
     [loadingView startCustomSpinner:self.view spinMessage:@""];
     NSString *filePathStates = [Tools getFilePaths:@"drzave.out"];
-    NSString *filePathTimeStamp = [Tools getFilePaths:@"timestamp_countries.out"];
+    NSString *lastTimestamp = ([[NSUserDefaults standardUserDefaults] stringForKey:COUNTRIES_TIMESTAMP]!=nil?[[NSUserDefaults standardUserDefaults] stringForKey:COUNTRIES_TIMESTAMP]:@"0");// [Tools getFilePaths:@"timestamp_countries.out"];
+    
+    
+    
+    
     //Read the last timestamp for countries
-    NSString *lastTimestamp =[NSString stringWithContentsOfFile:filePathTimeStamp encoding:NSUTF8StringEncoding error:nil];
+    //NSString *lastTimestamp =[NSString stringWithContentsOfFile:filePathTimeStamp encoding:NSUTF8StringEncoding error:nil];
     
     ColombioServiceCommunicator *csc = [[ColombioServiceCommunicator alloc] init];
     [csc sendAsyncHttp:[NSString stringWithFormat:@"%@/api_config/get_sys_countries/", BASE_URL] httpBody:[NSString stringWithFormat:@"sync_time=%@",lastTimestamp]cache:NSURLRequestReloadIgnoringCacheData timeoutInterval:5];
@@ -87,8 +92,9 @@
                 settingsCollectionView = [[SettingsCollectionView alloc] init];
                 settingsCollectionView.settingsCollectionViewDelegate = self;
                 [settingsCollectionView addCollectionView:self];
-                [self prepareCountries:data response:response strTimestamp:filePathTimeStamp strFilePathStates:filePathStates];
+                [self prepareCountries:data response:response strFilePathStates:filePathStates];
                 settingsCollectionView.numberOfCells = [arOptions count];
+                [self reloadCollectionView];
             }
             //If connection is not valid
             else{
@@ -113,7 +119,7 @@
  *  @param filePathStates "Timestamp for caching the data"
  *
  */
-- (void)prepareCountries:(NSData *)data response:(NSURLResponse*)response strTimestamp:(NSString *)filePathTimeStamp strFilePathStates:(NSString*)filePathStates{
+- (void)prepareCountries:(NSData *)data response:(NSURLResponse*)response strFilePathStates:(NSString*)filePathStates{
     Boolean isDataChanged=true;
     NSDictionary *dataWsResponse=nil;
     dataWsResponse =[NSJSONSerialization JSONObjectWithData:data options:0 error:NULL];
@@ -129,7 +135,8 @@
     if(isDataChanged){
         //Save the last timestamp in a file
         NSString *changeTimestamp=[dataWsResponse objectForKey:@"change_timestamp"];
-        [changeTimestamp writeToFile:filePathTimeStamp atomically:YES encoding:NSUTF8StringEncoding error:nil];
+        [[NSUserDefaults standardUserDefaults] setObject:changeTimestamp forKey:COUNTRIES_TIMESTAMP];
+        [[NSUserDefaults standardUserDefaults] synchronize];
         //Save countries in a file
         [dataWsResponse writeToFile:filePathStates atomically:YES];
     }

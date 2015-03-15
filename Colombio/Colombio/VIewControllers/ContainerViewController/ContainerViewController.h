@@ -15,6 +15,7 @@
 @property (strong, nonatomic) NSString *nextButtonTitle;//sets textual NEXT button
 @property (strong, nonatomic) UIImage *imgNextBtnNormal;//sets NEXT button image if text length = 0
 @property (strong, nonatomic) UIImage *imgNextBtnPressed;//sets NEXT button image if text length = 0
+@property (strong, nonatomic) UIButton *btnBack;
 
 //- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil andControllers:(NSArray*)controllers;
 @end

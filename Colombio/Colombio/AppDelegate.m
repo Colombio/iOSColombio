@@ -18,9 +18,10 @@
 #import "ForgotPasswordViewController.h"
 #import "CountriesViewController.h"
 #import "MediaViewController.h"
+#import "LoginSettingsViewController.h"
 
 @implementation AppDelegate
-@synthesize db, locationManager;
+@synthesize db, locationManager, mediaImages;
 
 - (BOOL)application:(UIApplication *)application
             openURL:(NSURL *)url
@@ -38,9 +39,12 @@
     [self getLocation];
     self.db = [[Database alloc] init];
     [db UpgradeDB];
+    mediaImages = [[NSCache alloc] init];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
+    [[NSUserDefaults standardUserDefaults] setObject:@0 forKey:COUNTRY_ID];
+    [[NSUserDefaults standardUserDefaults] synchronize];
     if([[NSUserDefaults standardUserDefaults] boolForKey:@"SKIP_START"]){
         [self checkToken];
     }else{
@@ -97,8 +101,6 @@
 }
 
 - (void)checkToken{
-    self.window.rootViewController = [[LoginViewController alloc] init];
-    return;
     @try {
         NSString *result = [ColombioServiceCommunicator getSignedRequest];
         if(result.length>0){
@@ -119,9 +121,9 @@
                     NSString *firstLogin = [response objectForKey:@"first_login"];
                     //Ako korisnik nije popunio pocetne postavke prikazi popis drzava
                     if(!strcmp("1", firstLogin.UTF8String)){
-                        /*Countries *states = [[Countries alloc]init];
-                        [self presentViewController:states animated:YES completion:nil];*/
-                        self.window.rootViewController = [[TabBarViewController alloc] init];
+                        
+                        LoginSettingsViewController *containerVC = [[LoginSettingsViewController alloc] initWithNibName:@"ContainerViewController" bundle:nil];
+                        self.window.rootViewController = containerVC;
                         return;
                     }
                     //Ako je korisnik vec popunio pocetne podatke prikazi home
@@ -143,6 +145,9 @@
                 self.window.rootViewController = [[LoginViewController alloc] init];
                 return;
             }
+        }else{
+            self.window.rootViewController = [[LoginViewController alloc] init];
+            return;
         }
     }
     //Token ne postoji ili se dogodila greska prilikom pristupa
