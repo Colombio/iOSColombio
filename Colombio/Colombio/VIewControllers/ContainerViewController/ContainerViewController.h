@@ -16,6 +16,10 @@
 @property (strong, nonatomic) UIImage *imgNextBtnNormal;//sets NEXT button image if text length = 0
 @property (strong, nonatomic) UIImage *imgNextBtnPressed;//sets NEXT button image if text length = 0
 @property (strong, nonatomic) UIButton *btnBack;
+@property (assign, nonatomic) BOOL isSingleTitle;
+@property (strong, nonatomic) NSString *lastNextBtnText;
+
 
 //- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil andControllers:(NSArray*)controllers;
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil focusOnControllerIndex:(NSInteger)index withSingleTitle:(BOOL)singleTitle;
 @end

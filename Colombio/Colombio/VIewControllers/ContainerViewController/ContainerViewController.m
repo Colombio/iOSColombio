@@ -22,6 +22,7 @@ enum HeaderMovement{
     BOOL isScrollToRight;
     int headerMovement;
     CGFloat xFromCenterLastPosition;
+    UILabel *lblHeader;
 }
 
 @property (weak, nonatomic) IBOutlet UIView *viewHeader;
@@ -30,30 +31,49 @@ enum HeaderMovement{
 @property (strong, nonatomic) NSMutableArray *headerBtnsArray;
 @property (strong, nonatomic) UIPageViewController *pageViewController;
 @property (weak,nonatomic) IBOutlet NSLayoutConstraint *CS_progressBarWidth;
+@property (weak,nonatomic) IBOutlet NSLayoutConstraint *CS_containerBottomMargin;
+@property (strong, nonatomic) UIButton *nextButton;
 
 @end
 
 @implementation ContainerViewController
 @synthesize viewControllersArray=_viewControllersArray, nextButtonTitle=_nextButtonTitle;
 
-/*- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil andControllers:(NSArray*)controllers{
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil focusOnControllerIndex:(NSInteger)index withSingleTitle:(BOOL)singleTitle{
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        _viewControllersArray = controllers;
+        _isSingleTitle = singleTitle;
+        currentPageIndex = index;
     }
     return self;
-}*/
+}
+
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        currentPageIndex = 0;
+    }
+    return self;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
-    currentPageIndex = 0;
+    //currentPageIndex = 0;
     headerMovement = dontMove;
     xFromCenterLastPosition= 0.0;
     numberOfPages = _viewControllersArray.count;
     _headerBtnsArray = [[NSMutableArray alloc] init];
-    [self setupHeader];
-    [self setupProgressBar];
+    if (_isSingleTitle) {
+        [self setupSingleHeader];
+    }else{
+        [self setupHeader];
+        [self setupProgressBar];
+    }
     [self setupPageViewController];
-    // Do any additional setup after loading the view from its nib.
+    if ([self.parentViewController.parentViewController isKindOfClass:[UITabBarController class]]) {
+        _CS_containerBottomMargin.constant = 49.0;
+    }else{
+        _CS_containerBottomMargin.constant = 0;
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -65,11 +85,53 @@ enum HeaderMovement{
     // Dispose of any resources that can be recreated.
 }
 
+- (void)setupSingleHeader{
+    _btnBack = [UIButton buttonWithType:UIButtonTypeCustom];
+    _btnBack.tag=0;
+    [_btnBack addTarget:self action:@selector(btnBack:) forControlEvents:UIControlEventTouchUpInside];
+    [_btnBack setBackgroundImage:[UIImage imageNamed:@"backgrey_normal"] forState:UIControlStateNormal];
+    [_btnBack setBackgroundImage:[UIImage imageNamed:@"backgrey_pressed"] forState:UIControlStateHighlighted];
+    _btnBack.frame = CGRectMake(10, 0, 44, 44);
+    [_headerBtnsArray addObject:_btnBack];
+    [_viewHeader addSubview:_btnBack];
+    
+    lblHeader = [[UILabel alloc] initWithFrame:CGRectMake(100, 0, 250, 20)];
+    lblHeader.center = CGPointMake(_viewHeader.frame.size.width/2, _viewHeader.frame.size.height/2);
+    lblHeader.font = [[UIConfiguration sharedInstance] getFont:FONT_HELVETICA_NEUE_LIGHT];
+    lblHeader.textColor = [[UIConfiguration sharedInstance] getColor:COLOR_TEXT_NAVIGATIONBAR_BUTTONLABEL];
+    lblHeader.adjustsFontSizeToFitWidth = YES;
+    lblHeader.minimumScaleFactor = 0.5;
+    lblHeader.textAlignment = NSTextAlignmentCenter;
+    lblHeader.text = ((UIViewController*)_viewControllersArray[currentPageIndex]).title;
+    [_viewHeader addSubview:lblHeader];
+    
+    {
+        _nextButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_nextButton addTarget:self action:@selector(btnAction:) forControlEvents:UIControlEventTouchUpInside];
+        _nextButton.titleLabel.font = [[UIConfiguration sharedInstance] getFont:FONT_HELVETICA_NEUE_LIGHT];
+        [_nextButton setTitleColor:[[UIConfiguration sharedInstance] getColor:COLOR_TEXT_NAVIGATIONBAR_BUTTON] forState:UIControlStateNormal];
+        [_nextButton setTitleColor:[[UIConfiguration sharedInstance] getColor:COLOR_TEXT_NAVIGATIONBAR_BUTTON_HIGHLIGHT] forState:UIControlStateHighlighted];
+        _nextButton.frame = CGRectMake(self.view.bounds.size.width-90, 11, 80, 20);
+        _nextButton.titleLabel.textAlignment = NSTextAlignmentRight;
+        [self setNextButtonTitle];
+        [_viewHeader addSubview:_nextButton];
+    }
+}
+
+- (void)setNextButtonTitle{
+    [_nextButton addTarget:self action:@selector(btnAction:) forControlEvents:UIControlEventTouchUpInside];
+    if (currentPageIndex+1 == _viewControllersArray.count) {
+        [_nextButton setTitle:_lastNextBtnText  forState:UIControlStateNormal];
+    }else{
+        [_nextButton setTitle:[Localized string:@"header_next"]  forState:UIControlStateNormal];
+    }
+}
+
 - (void)setupHeader{
     {
         _btnBack = [UIButton buttonWithType:UIButtonTypeCustom];
         _btnBack.tag=0;
-        [_btnBack addTarget:self action:@selector(btnAction:) forControlEvents:UIControlEventTouchUpInside];
+        [_btnBack addTarget:self action:@selector(btnBack:) forControlEvents:UIControlEventTouchUpInside];
         [_btnBack setBackgroundImage:[UIImage imageNamed:@"backgrey_normal"] forState:UIControlStateNormal];
         [_btnBack setBackgroundImage:[UIImage imageNamed:@"backgrey_pressed"] forState:UIControlStateHighlighted];
         _btnBack.frame = CGRectMake(10, 0, 44, 44);
@@ -137,13 +199,15 @@ enum HeaderMovement{
     [_pageViewController didMoveToParentViewController:self];
     _pageViewController.delegate = self;
     _pageViewController.dataSource = self;
-    [_pageViewController setViewControllers:@[[_viewControllersArray objectAtIndex:0]] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
+    [_pageViewController setViewControllers:@[[_viewControllersArray objectAtIndex:currentPageIndex]] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
     [self syncScrollView];
 }
 
 //%%% this allows us to get information back from the scrollview, namely the coordinate information that we can link to the selection bar.
 #pragma mark ScrollView
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
 
+}
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
     double delayInSeconds = 0.5;
     _pageViewController.view.userInteractionEnabled=NO;
@@ -157,10 +221,11 @@ enum HeaderMovement{
 {
     CGFloat xFromCenter = self.view.frame.size.width-pageScrollView.contentOffset.x;
     //%%% positive for right swipe, negative for left
-    
+    if (!_isSingleTitle) {
         [self headerMovementWithScroll:((xFromCenter!=0?xFromCenter-xFromCenterLastPosition:0))/2];
         [self progressBarMovement:((xFromCenter!=0?xFromCenter-xFromCenterLastPosition:0))/numberOfPages];
         xFromCenterLastPosition = xFromCenter;
+    }
 }
 
 -(void)syncScrollView
@@ -212,14 +277,19 @@ enum HeaderMovement{
 }
 
 - (void)setHeaderButtonsAfterMovement{
-    for(UIButton *btn in _headerBtnsArray){
-        if (btn.tag == currentPageIndex+1) {
-            [btn setTitleColor:[[UIConfiguration sharedInstance] getColor:COLOR_TEXT_NAVIGATIONBAR_BUTTONLABEL] forState:UIControlStateNormal];
-            btn.userInteractionEnabled=NO;
-        }else{
-            [btn setTitleColor:[[UIConfiguration sharedInstance] getColor:COLOR_TEXT_NAVIGATIONBAR_BUTTON] forState:UIControlStateNormal];
-            [btn setTitleColor:[[UIConfiguration sharedInstance] getColor:COLOR_TEXT_NAVIGATIONBAR_BUTTON_HIGHLIGHT] forState:UIControlStateHighlighted];
-            btn.userInteractionEnabled=YES;
+    if (_isSingleTitle) {
+        lblHeader.text = ((UIViewController*)_viewControllersArray[currentPageIndex]).title;
+        
+    }else{
+        for(UIButton *btn in _headerBtnsArray){
+            if (btn.tag == currentPageIndex+1) {
+                [btn setTitleColor:[[UIConfiguration sharedInstance] getColor:COLOR_TEXT_NAVIGATIONBAR_BUTTONLABEL] forState:UIControlStateNormal];
+                btn.userInteractionEnabled=NO;
+            }else{
+                [btn setTitleColor:[[UIConfiguration sharedInstance] getColor:COLOR_TEXT_NAVIGATIONBAR_BUTTON] forState:UIControlStateNormal];
+                [btn setTitleColor:[[UIConfiguration sharedInstance] getColor:COLOR_TEXT_NAVIGATIONBAR_BUTTON_HIGHLIGHT] forState:UIControlStateHighlighted];
+                btn.userInteractionEnabled=YES;
+            }
         }
     }
     pageScrollView.userInteractionEnabled=YES;
@@ -277,37 +347,78 @@ enum HeaderMovement{
 }
 
 #pragma mark Header Button Action
+- (void)btnBack:(UIButton*)sender{
+    /**
+     *****Override in subclass!!!
+     **/
+}
+
 - (void)btnAction:(UIButton*)sender{
-    if (sender.tag == 0) {
+    /*if (sender.tag == 0) {
         if ([self isModal])
             [self dismissViewControllerAnimated:NO completion:nil];
         else
             [self.navigationController popViewControllerAnimated:YES];
-    }else if(sender.tag == _headerBtnsArray.count-1){
-        [self navigateNext];
-    }else {
-        NSInteger tempIndex = currentPageIndex;
-        __weak typeof(self) weakSelf = self;
-        if (sender.tag>tempIndex+1) {
+    }else*/
+    if (_isSingleTitle) {
+        if(sender==_nextButton && currentPageIndex+1==_viewControllersArray.count){
+            [self navigateNext];
+        }else if(sender==_btnBack && currentPageIndex==0){
+            [self btnBack];
+        }else {
+            NSInteger tempIndex = currentPageIndex;
+            __weak typeof(self) weakSelf = self;
+            if (sender==_nextButton) {
                 [_pageViewController setViewControllers:@[[_viewControllersArray objectAtIndex:tempIndex+1]] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:^(BOOL complete){
                     
                     //%%% if the action finishes scrolling (i.e. the user doesn't stop it in the middle),
                     //then it updates the page that it's currently on
                     if (complete) {
-                        [weakSelf updateCurrentPageIndex:tempIndex+1];
+                        [weakSelf updateCurrentPageIndex:(int)tempIndex+1];
                         [weakSelf setHeaderButtonsAfterMovement];
                     }
                 }];
-        }else if (sender.tag < tempIndex) {
+            }else if (sender==_btnBack) {
                 [_pageViewController setViewControllers:@[[_viewControllersArray objectAtIndex:tempIndex-1]] direction:UIPageViewControllerNavigationDirectionReverse animated:YES completion:^(BOOL complete){
                     if (complete) {
-                        [weakSelf updateCurrentPageIndex:tempIndex-1];
+                        [weakSelf updateCurrentPageIndex:(int)tempIndex-1];
                         [weakSelf setHeaderButtonsAfterMovement];
                     }
                 }];
-        
+                
+            }
+        }
+    }else{
+        if(sender.tag == _headerBtnsArray.count-1){
+            [self navigateNext];
+        }else {
+            NSInteger tempIndex = currentPageIndex;
+            __weak typeof(self) weakSelf = self;
+            if (sender.tag>tempIndex+1) {
+                [_pageViewController setViewControllers:@[[_viewControllersArray objectAtIndex:tempIndex+1]] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:^(BOOL complete){
+                    
+                    //%%% if the action finishes scrolling (i.e. the user doesn't stop it in the middle),
+                    //then it updates the page that it's currently on
+                    if (complete) {
+                        [weakSelf updateCurrentPageIndex:(int)tempIndex+1];
+                        [weakSelf setHeaderButtonsAfterMovement];
+                    }
+                }];
+            }else if (sender.tag < tempIndex) {
+                [_pageViewController setViewControllers:@[[_viewControllersArray objectAtIndex:tempIndex-1]] direction:UIPageViewControllerNavigationDirectionReverse animated:YES completion:^(BOOL complete){
+                    if (complete) {
+                        [weakSelf updateCurrentPageIndex:(int)tempIndex-1];
+                        [weakSelf setHeaderButtonsAfterMovement];
+                    }
+                }];
+                
+            }
         }
     }
+    
+    
+    
+    
 }
 
 - (void)navigateNext{

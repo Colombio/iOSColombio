@@ -7,6 +7,7 @@
 //
 
 #import "UserInfoViewController.h"
+#import "UITextField+XibAttributes.h"
 
 @interface UserInfoViewController ()
 
@@ -29,6 +30,9 @@
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(keyboardUp:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(keyboardDown:) name:UIKeyboardWillHideNotification object:nil];
     
+    _txtName.tintColor = [[UIConfiguration sharedInstance] getColor:COLOR_TEXT_TXT_FIELD];
+    _txtSurname.tintColor = [[UIConfiguration sharedInstance] getColor:COLOR_TEXT_TXT_FIELD];
+    _txtPayPalEmail.tintColor = [[UIConfiguration sharedInstance] getColor:COLOR_TEXT_TXT_FIELD];
     _btnToggleAnonymous.isON = YES;
     _btnTogglePayPal.isON = NO;
     [self setLabelsWidth];
@@ -56,26 +60,34 @@
             _CS_NameHeight.constant +=30;
             _CS_SurnameHeight.constant +=30;
             _CS_AnonynmousHolderHeight.constant +=60;
-            [_btnAnonymousInfo setBackgroundImage:[UIImage imageNamed:@"infoicon"] forState:UIControlStateNormal];
+            //[_btnAnonymousInfo setBackgroundImage:[UIImage imageNamed:@"infoicon"] forState:UIControlStateNormal];
+            _lblAnonymous.text = [Localized string:@"sending_news_as"];
+            _btnAnonymousInfo.hidden=YES;
         }else{
             _CS_NameHeight.constant -=30;
             _CS_SurnameHeight.constant -=30;
             _CS_AnonynmousHolderHeight.constant -=60;
-            [_btnAnonymousInfo setBackgroundImage:[UIImage imageNamed:@"infoicon_active"] forState:UIControlStateNormal];
+            //[_btnAnonymousInfo setBackgroundImage:[UIImage imageNamed:@"infoicon_active"] forState:UIControlStateNormal];
+            _btnAnonymousInfo.hidden=NO;
+            _lblAnonymous.text = [Localized string:@"anonymous_sending"];
         }
+        [self setLabelsWidth];
         [UIView animateWithDuration:0.5
                          animations:^{
                              [self.view layoutIfNeeded];
+                             
                          }];
     }else if (sender == _btnTogglePayPal) {
         if (sender.isON) {
             _CS_PayPalEmailHeight.constant +=30;
             _CS_PayPalViewHeight.constant +=30;
-            [_btnPayPalInfo setBackgroundImage:[UIImage imageNamed:@"infoicon_active"] forState:UIControlStateNormal];
+            //[_btnPayPalInfo setBackgroundImage:[UIImage imageNamed:@"infoicon_active"] forState:UIControlStateNormal];
+            _btnPayPalInfo.hidden=YES;
         }else{
             _CS_PayPalEmailHeight.constant -=30;
             _CS_PayPalViewHeight.constant -=30;
-            [_btnPayPalInfo setBackgroundImage:[UIImage imageNamed:@"infoicon"] forState:UIControlStateNormal];
+            //[_btnPayPalInfo setBackgroundImage:[UIImage imageNamed:@"infoicon"] forState:UIControlStateNormal];
+            _btnPayPalInfo.hidden=NO;
         }
         [UIView animateWithDuration:0.5
                          animations:^{
@@ -127,11 +139,23 @@
 
 - (void)textFieldDidEndEditing:(UITextField *)textField{
     [textField resignFirstResponder];
+    if (textField==_txtName) {
+        textField.placeholder = [Localized string:@"name"];
+    }else if(textField == _txtSurname){
+        textField.placeholder = [Localized string:@"surname"];
+    }else if(textField == _txtPayPalEmail){
+        textField.placeholder = [Localized string:@"paypal_email"];
+    }
+    
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
     [textField resignFirstResponder];
     return YES;
+}
+
+-(void)textFieldDidBeginEditing:(UITextField *)textField{
+    textField.placeholder=nil;
 }
 
 #pragma mark Validation
@@ -148,6 +172,14 @@
             dataOK=NO;
         }
     }
+    
+    if (_btnTogglePayPal.isON) {
+        if (_txtPayPalEmail.text.length==0) {
+            _txtPayPalEmail.attributedPlaceholder = [[NSAttributedString alloc] initWithString:_txtPayPalEmail.placeholder attributes:@{NSForegroundColorAttributeName:[UIColor redColor]}];
+            dataOK=NO;
+        }
+    }
+    
     return dataOK;
 }
 

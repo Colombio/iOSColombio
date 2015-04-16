@@ -82,14 +82,15 @@
     NSString *be_credited=[NSString stringWithFormat:@"%@", [NSNumber numberWithBool:_newsData.be_credited]];
     NSString *whisperMode=[NSString stringWithFormat:@"%@", [NSNumber numberWithBool:_newsData.prot]];
     NSString *be_contacted=[NSString stringWithFormat:@"%@", [NSNumber numberWithBool:_newsData.be_contacted]];
+    NSString *sell=[NSString stringWithFormat:@"%@", [NSNumber numberWithBool:_newsData.sell]];
     
     NSString *httpBody;
     
     if(_newsData.did == 0){
-        httpBody = [NSString stringWithFormat:@"signed_req=%@&title=%@&content=%@&loc=%@&prot=%@&cost=%f&be_credited=%@&be_contacted=%@&tags=%@&media=%@&type_id=%@&contact_data[contact_phone]=%@",result,_newsData.title,_newsData.description,location,whisperMode,_newsData.price,be_credited,be_contacted,arTagsUpload,arMediaUpload,[NSString stringWithFormat:@"%ld",(long)_newsData.type_id],_newsData.phone_number];
+        httpBody = [NSString stringWithFormat:@"signed_req=%@&title=%@&content=%@&loc=%@&prot=%@&cost=%f&be_credited=%@&be_contacted=%@&tags=%@&media=%@&type_id=%@&contact_data[contact_phone]=%@&sell=%@",result,_newsData.title,_newsData.description,location,whisperMode,_newsData.price,be_credited,be_contacted,arTagsUpload,arMediaUpload,[NSString stringWithFormat:@"%ld",(long)_newsData.type_id],_newsData.phone_number, sell];
     }
     else{
-        httpBody = [NSString stringWithFormat:@"signed_req=%@&title=%@&content=%@&loc=%@&prot=%@&cost=%f&be_credited=%@&be_contacted=%@&tags=%@&req_id=%ld&media=%@&type_id=%@&contact_data[contact_phone]=%@",result,_newsData.title,_newsData.content,location,whisperMode,_newsData.price,be_credited,be_contacted,arTagsUpload,(long)_newsData.did,arMediaUpload,[NSString stringWithFormat:@"%ld",_newsData.type_id],_newsData.phone_number];
+        httpBody = [NSString stringWithFormat:@"signed_req=%@&title=%@&content=%@&loc=%@&prot=%@&cost=%f&be_credited=%@&be_contacted=%@&tags=%@&req_id=%ld&media=%@&type_id=%@&contact_data[contact_phone]=%@&sell=%@",result,_newsData.title,_newsData.content,location,whisperMode,_newsData.price,be_credited,be_contacted,arTagsUpload,(long)_newsData.did,arMediaUpload,[NSString stringWithFormat:@"%ld",(long)_newsData.type_id],_newsData.phone_number, sell];
     }
     
     [csc sendAsyncHttp:url_str httpBody:httpBody cache:NSURLRequestReloadIgnoringCacheData timeoutInterval:TIMEOUT];
@@ -101,7 +102,7 @@
                 response =[NSJSONSerialization JSONObjectWithData:data options:0 error:NULL];
                 if(!strcmp("1",((NSString*)[response objectForKey:@"s"]).UTF8String)){
                     news_id = [response objectForKey:@"news_id"];
-                    
+                    [self saveDataToDB];
                     if(_newsData.images.count>0){
                         /**
                         ** after we send textual data and if everything is ok, we can start sending media files we selected.
@@ -109,6 +110,7 @@
                         [self uploadFile:(int)uploadCount-1];
                     }
                     else {
+                        _lblUploadPercentage.text=@"100%";
                         [_imgLoading.layer removeAllAnimations];
                         [self success];
                         return;
@@ -122,13 +124,13 @@
             }
         });
     }];
-    [self saveDataToDB];
+   
     
 }
 
 //gets total file size for progress purposes
 - (NSUInteger)getTotalFileSize{
-    NSUInteger totalFileSize;
+    NSUInteger totalFileSize=0;
     for(ALAsset *asset in _newsData.images){
         ALAssetRepresentation *rep = [asset defaultRepresentation];
         CGImageRef iref = [rep fullResolutionImage];
@@ -155,7 +157,7 @@
     NSString *name=[rep filename];
     if(iref){
         UIImage *obj = [UIImage imageWithCGImage:iref];
-        NSString *url_str = [NSString stringWithFormat:@"%@/api_upload/upload_file/", BASE_URL];
+        NSString *url_str = [NSString stringWithFormat:@"%@/api_upload/upload_file/", BASE_URL_IMAGES];
         NSURL *wigiURL = [[NSURL alloc] initWithString:url_str];
         // create the connection
         NSMutableURLRequest *wigiRequest = [NSMutableURLRequest requestWithURL:wigiURL
@@ -245,7 +247,7 @@
 - (void)fail{
     _imgInfo.image = [UIImage imageNamed:@"failicon.png"];
     _lblUploading.text=[Localized string:@"send_failed"];
-    NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(navigateBack) userInfo:nil repeats:NO];
+    NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(backToHome) userInfo:nil repeats:NO];
 }
 
 - (void)success{

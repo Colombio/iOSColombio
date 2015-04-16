@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6751" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
@@ -16,7 +16,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="252" verticalHuggingPriority="251" horizontalCompressionResistancePriority="752" image="Croatia" translatesAutoresizingMaskIntoConstraints="NO" id="QOU-CR-ghB">
-                        <rect key="frame" x="8" y="12" width="30" height="20"/>
+                        <rect key="frame" x="8" y="7" width="30" height="30"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="30" id="yDq-6Q-RM2"/>
                         </constraints>
@@ -36,7 +36,7 @@
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Media Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iSu-8D-r8v">
                         <rect key="frame" x="61" y="11" width="199" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="string" keyPath="configTextFont" value="FONT_HELVETICA_NEUE_LIGHT"/>
@@ -48,12 +48,12 @@
                     <constraint firstAttribute="bottomMargin" secondItem="iSu-8D-r8v" secondAttribute="bottom" constant="3" id="5rA-81-MgD"/>
                     <constraint firstItem="iSu-8D-r8v" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="3" id="Fln-nj-Zuq"/>
                     <constraint firstItem="sUx-sm-smP" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="-8" id="Rk9-pr-5Uc"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="QOU-CR-ghB" secondAttribute="bottom" constant="3" id="b2E-b8-7w9"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="QOU-CR-ghB" secondAttribute="bottom" constant="-2" id="bnu-pP-XDe"/>
                     <constraint firstItem="QOU-CR-ghB" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="eY1-8u-ZdQ"/>
                     <constraint firstItem="iSu-8D-r8v" firstAttribute="leading" secondItem="QOU-CR-ghB" secondAttribute="trailing" constant="23" id="kBQ-Z0-CYB"/>
                     <constraint firstAttribute="trailingMargin" secondItem="sUx-sm-smP" secondAttribute="trailing" constant="-8" id="lCX-VE-n9J"/>
+                    <constraint firstItem="QOU-CR-ghB" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="-1" id="mfz-a5-6Mk"/>
                     <constraint firstItem="sUx-sm-smP" firstAttribute="leading" secondItem="iSu-8D-r8v" secondAttribute="trailing" constant="16" id="nv0-SW-jAR"/>
-                    <constraint firstItem="QOU-CR-ghB" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="4" id="st0-1x-uEl"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>

@@ -37,7 +37,9 @@ NSString *visibleactions = @"http://schemas.google.com/AddActivity";
 
 
 @interface GoogleLoginViewController ()
-
+{
+    ColombioServiceCommunicator *csc;
+}
 @end
 
 @implementation GoogleLoginViewController
@@ -51,6 +53,8 @@ NSString *visibleactions = @"http://schemas.google.com/AddActivity";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    csc = [ColombioServiceCommunicator sharedManager];
+    csc.delegate = self;
     
     loadingView = [[Loading alloc] init];
     [headerViewHolder addSubview:[HeaderView initHeader:@"COLOMBIO" nextHidden:YES previousHidden:NO activeVC:self headerFrame:headerViewHolder.frame]];
@@ -136,7 +140,7 @@ NSString *visibleactions = @"http://schemas.google.com/AddActivity";
     NSString *filePathToken =[documentsDirectory stringByAppendingPathComponent:@"token.out"];
     
     //Sending login data and accepting answer
-    NSString *url_str = [NSString stringWithFormat:@"https://appforrest.com/colombio/api_user_managment/mau_social_login?type=gg&token=%@",token];
+    NSString *url_str = [NSString stringWithFormat:@"%@/api_user_managment/mau_social_login?type=gg&token=%@", BASE_URL,token];
     
     NSURL * url = [NSURL URLWithString:url_str];
     NSError *err=nil;
@@ -171,26 +175,14 @@ NSString *visibleactions = @"http://schemas.google.com/AddActivity";
                 [token writeToFile:filePathToken atomically:YES encoding:NSUTF8StringEncoding error:nil];
                 
                 //spremanje u bazu
-                NSMutableDictionary *dbDict = [[NSMutableDictionary alloc] init];
-                AppDelegate *appdelegate = [[UIApplication sharedApplication] delegate];
-                [appdelegate.db clearTable:@"USER"];
-                [appdelegate.db clearTable:@"USER_CASHOUT"];
-                dbDict[@"user_id"] = response[@"usr"][@"user_id"];
-                dbDict[@"username"] = response[@"usr"][@"username"];
-                dbDict[@"user_email"] = response[@"usr"][@"user_email"];
-                dbDict[@"token"] = response[@"token"];
-                dbDict[@"sign"] = response[@"sign"];
-                [appdelegate.db insertDictionaryWithoutColumnCheck:dbDict forTable:@"USER"];
+                [csc fetchUserProfile];
                 
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [self checkFirstLogin];
-                });
             }
         }
     }];
 }
 
--(void)checkFirstLogin{
+/*-(void)checkFirstLogin{
     NSLog(@"chekin4");
     @try {
         NSString *result = [ColombioServiceCommunicator getSignedRequest];
@@ -215,7 +207,7 @@ NSString *visibleactions = @"http://schemas.google.com/AddActivity";
                         if(!strcmp("1", test.UTF8String)){
                             NSString *firstLogin = [response objectForKey:@"first_login"];
                             //If user did not fill settings data, show countries
-                            if(!strcmp("0", firstLogin.UTF8String)){
+                            if(!strcmp("1", firstLogin.UTF8String)){
                                 NSLog(@"success");
                                 dispatch_async(dispatch_get_main_queue(), ^{
                                     LoginSettingsViewController *containerVC = [[LoginSettingsViewController alloc] initWithNibName:@"ContainerViewController" bundle:nil];
@@ -247,6 +239,37 @@ NSString *visibleactions = @"http://schemas.google.com/AddActivity";
     @catch(NSException *ex){
         
     }
+}*/
+
+- (void)didFetchUserDetails:(NSDictionary *)result{
+    [csc checkUserStatus];
+}
+
+- (void)didCheckUserStatus:(NSDictionary *)result{
+    NSString *test= [result objectForKey:@"s"];
+    if(!strcmp("1", test.UTF8String)){
+        NSString *firstLogin = [result objectForKey:@"first_login"];
+        //If user did not fill settings data, show countries
+        if(!strcmp("1", firstLogin.UTF8String)){
+            NSLog(@"success");
+            dispatch_async(dispatch_get_main_queue(), ^{
+                LoginSettingsViewController *containerVC = [[LoginSettingsViewController alloc] initWithNibName:@"ContainerViewController" bundle:nil];
+                [self presentViewController:containerVC animated:YES completion:nil];
+                return;
+            });
+        }
+        //If user already filled the settngs data show home view
+        else{
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self presentViewController:[[TabBarViewController alloc] init] animated:YES completion:nil];
+                return;
+            });
+        }
+    }
+}
+
+- (void)backButtonTapped{
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

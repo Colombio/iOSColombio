@@ -6,24 +6,37 @@
   Copyright (c) 2014 Colombio. All rights reserved.
 */
 
+/*media types*/
+"internet" = "Internet";
+"newspaper" = "Novine";
+"tv" = "TV";
+"radio" = "Radio";
+
+/*timeline_butt*/
+"foto_video" = "Fotografija/video";
+"news" = "Novost";
+"story_tip" = "Predložena priča";
+"community_news" = "Vijest zajednice";
+"announced_event" = "Najavljeni događaj";
+
 /*start*/
-"start_button" = "Start";
+"start_button" = "START";
 "start_message" = "Prije nego što počnete dijeliti svoje vijesti sa svijetom, kreirajte svoj račun ili se ulogirajte, odaberite zemlju, odaberite medij i unesite svoje podatke.";
 
-"create_account" = "Create account";
+"create_account" = "Registriraj se";
 "register_successful" = "Uspješna registracija";
 
 /*create account*/
-"enter_username" = "Enter your username";
-"enter_email" = "Enter your email";
-"enter_password" = "Enter your password";
-"enter_confirm_password" = "Confirm password";
-"error_username_exists" = "Username already exists";
-"error_username_format" = "Enter your username";
-"error_email_exists" = "Email already exists";
-"error_email_format" = "Wrong email";
-"error_password" = "8 chars, 1 capital, 1 number";
-"error_confirm_password" = "Wrong confirm password";
+"enter_username" = "Unesi korisničko ime";
+"enter_email" = "Unesi email";
+"enter_password" = "Unesi lozinku";
+"enter_confirm_password" = "Potvrdi lozinku";
+"error_username_exists" = "Korisničko ime već postoji";
+"error_username_format" = "Unesi korisničko ime";
+"error_email_exists" = "Email već postoji";
+"error_email_format" = "Pogrešan email";
+"error_password" = "Min. 8 znakova, 1 veliko slovo, 1 broj";
+"error_confirm_password" = "Lozinke se ne podudaraju";
 "acc_terms_of_service_lbl" = "Kreiranjem računa slažete se sa";
 "acc_terms_of_service" = "Uvjetima usluge";
 "and" = "i";
@@ -31,19 +44,22 @@
 "acc_already_have_account" = "Već imate račun?";
 
 /*forgot password*/
-"forgot_password" = "Send password";
-"email_banned" = "User with this email is banned";
-"email_null" = "Email does not exist";
+"forgot_password" = "Pošalji lozinku";
+"email_banned" = "Korisnik blokiran";
+"email_null" = "Email ne postoji";
+
 
 /*Common*/
-"wait" = "Please wait...";
+"wait" = "Molimo pričekaj...";
+"yes" = "Da";
+"no" = "Ne";
 
 /*error message global*/
 "error_web_request" = "Pogreška prilikom slanja zahtjeva";
 
 /*Login*/
-"login_enter_email" = "Unesite vaš email";
-"login_enter_password" = "Unesite vašu lozinku";
+"login_enter_email" = "Unesi email";
+"login_enter_password" = "Unesi lozinku";
 "login_login" = "Prijavi se";
 "login_missing_account" = "Nemaš račun?";
 "login_signup" = "Registriraj se!";
@@ -56,17 +72,24 @@
 
 "google_token_error" = "Greška autorizacije na Google";
 
+"check_email" = "Provjeri email.";
+"pass_sent" = "Lozinka poslana.";
+
 /*Settings*/
 "select_country" = "DRŽAVA";
 "select_media" = "MEDIJ";
 "search_media" = "Traži medij";
+"search_country" = "Traži državu";
 "your_info" = "TVOJI PODACI";
 "connect_paypay" = "Spoji PayPal";
 "paypal_email" = "PayPal Email";
+"sending_news_as" = "Novosti šaljete kao";
 "info_anonymous_on" = "Anonymous ON";
 "info_anonymous_off" = "Anonymous OFF";
 "info_paypal_on" = "PayPal ON";
 "info_paypal_off" = "PayPal OFF";
+"error_choose_one_country" ="Odaberi barem jednu državu";
+"error_choose_one_media" = "Odaberi barem jedan medij";
 
 /*Home*/
 "btn_takephoto" = "TAKE PHOTO OR VIDEO";
@@ -90,6 +113,7 @@
 "media_may_or_not" = "Mediji nisu dužni objaviti tvoju vijest";
 "media_only_one" = "*Samo jedan medij može kupiti tvoju vijest";
 "be_signed" = "Želim biti autor";
+"contact_me" = "Moj kontakt broj";
 "anonymous_sending" = "Anonimno slanje";
 "name_price" = "Navedi cijenu (max $%@)*";
 "name_and_surname" = "Ime i prezime";
@@ -97,6 +121,7 @@
 "surname" = "Prezime";
 "phone_number" = "Broj telefona";
 "did_you_know" = "DA LI STE ZNALI?";
+"do_you_really_want_to_exit" = "Da li stvarno želite izaći? Svi podaci će biti izbrisani";
 
 "error_fill_fields" = "Molimo ispunite polja označena crvenom bojom";
 "error_missing_images" = "Molimo odaberite barem jednu sliku ili video";
@@ -106,3 +131,16 @@
 "send_failed" = "Slanje nije uspjelo. Molimo pričekaj…";
 /*Spinner message*/
 "logged" ="Logged in, please wait...";
+
+/*News Task*/
+"reward" = "Nagrada";
+"date" = "DATUM";
+
+/*TimeLine**/
+"sent" = "Sent";
+
+/*Header*/
+"header_next" = "DALJE";
+"header_use" = "POTVRDI";
+"header_save" = "SPREMI";
+"header_send" = "ŠALJI";

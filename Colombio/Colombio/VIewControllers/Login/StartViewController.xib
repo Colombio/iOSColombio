@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6751" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="StartViewController">
@@ -15,7 +16,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login_bg1" translatesAutoresizingMaskIntoConstraints="NO" id="kGu-mB-zbI">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login_bg2" translatesAutoresizingMaskIntoConstraints="NO" id="kGu-mB-zbI">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                 </imageView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="setup_colombio" translatesAutoresizingMaskIntoConstraints="NO" id="KX1-aL-Koi">
@@ -27,6 +28,9 @@
                 </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mIX-fa-CDR">
                     <rect key="frame" x="118" y="410" width="85" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="Dmr-xe-en9"/>
+                    </constraints>
                     <state key="normal" title="Button">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -58,7 +62,6 @@
                 <constraint firstAttribute="trailing" secondItem="mIX-fa-CDR" secondAttribute="trailing" constant="117" id="2FT-V9-Dkc"/>
                 <constraint firstItem="kGu-mB-zbI" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="2OP-r6-ZWw"/>
                 <constraint firstItem="KX1-aL-Koi" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="60" id="5RO-P1-A5y"/>
-                <constraint firstItem="mIX-fa-CDR" firstAttribute="top" secondItem="aCU-o3-ZsR" secondAttribute="bottom" constant="198" id="9MK-tm-SrJ"/>
                 <constraint firstAttribute="bottom" secondItem="kGu-mB-zbI" secondAttribute="bottom" id="Ajz-gB-LKa"/>
                 <constraint firstItem="mIX-fa-CDR" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="118" id="CCh-Fq-ui0"/>
                 <constraint firstItem="KX1-aL-Koi" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="36" id="CGk-6a-rsM"/>
@@ -74,7 +77,7 @@
         </view>
     </objects>
     <resources>
-        <image name="login_bg1" width="320" height="480"/>
+        <image name="login_bg2" width="320" height="480"/>
         <image name="setup_colombio" width="247" height="34"/>
     </resources>
 </document>

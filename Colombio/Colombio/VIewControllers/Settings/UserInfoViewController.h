@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "VSSwitchButton.h"
 
-@interface UserInfoViewController : UIViewController<UITextViewDelegate>
+@interface UserInfoViewController : UIViewController<UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 

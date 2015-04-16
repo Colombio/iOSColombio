@@ -19,7 +19,6 @@
 @synthesize imgNotSelected =imgNotSelected;
 @synthesize imgSelected;
 @synthesize lblCellText;
-@synthesize watermark;
 @synthesize imgWatermark;
 
 /**
@@ -31,13 +30,13 @@
     self = [super initWithFrame:frame];
     if (self) {
         img = [[UIImageView alloc] initWithFrame:CGRectMake(0,0,99,99)];
-        watermark = [[UIImageView alloc] initWithFrame:CGRectMake(28,28,44,44)];
+        imgWatermark = [[UIImageView alloc] initWithFrame:CGRectMake(28,28,44,44)];
         imgNotSelected = [[UIImageView alloc] initWithFrame:CGRectMake(76, 5, 20, 20)];
         imgSelected = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
         imgSelected.center = CGPointMake(self.frame.size.width/2, self.frame.size.height/2);
         imgNotSelected.image=[UIImage imageNamed:@"unselected.png"];
         imgSelected.image=[UIImage imageNamed:@"selectedcontent"];
-        watermark.image=[UIImage imageNamed:@"watermark.png"];
+        imgWatermark.image=[UIImage imageNamed:@"watermark.png"];
         lblCellText = [[UILabel alloc] initWithFrame:CGRectMake(18,60,70,20)];
         lblCellText.text= @"Camera";
         lblCellText.font = [UIFont  fontWithName:@"HelveticaNeue-Light" size:19.0f];
@@ -48,7 +47,7 @@
         [self addSubview:imgNotSelected];
         [self addSubview:imgSelected];
         [self addSubview:lblCellText];
-        [self addSubview:watermark];
+        [self addSubview:imgWatermark];
     }
     return self;
 }
@@ -58,7 +57,7 @@
  *
  **/
 - (void)hideWaterMark{
-    watermark.hidden=YES;
+    imgWatermark.hidden=YES;
 }
 
 @end

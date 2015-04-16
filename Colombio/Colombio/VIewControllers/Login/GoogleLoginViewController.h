@@ -19,7 +19,7 @@
 #import "ColombioServiceCommunicator.h"
 
 
-@interface GoogleLoginViewController : UIViewController <UIWebViewDelegate, UIScrollViewDelegate, CustomHeaderViewDelegate>{
+@interface GoogleLoginViewController : UIViewController <UIWebViewDelegate, UIScrollViewDelegate, HeaderViewDelegate, ColombioServiceCommunicatorDelegate>{
     IBOutlet UIWebView *webView;
     NSMutableData *receivedData;
     NSTimer *timer;

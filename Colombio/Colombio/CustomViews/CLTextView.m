@@ -13,21 +13,22 @@ CGFloat const UI_PLACEHOLDER_TEXT_CHANGED_ANIMATION_DURATION = 0.25;
 
 - (void)awakeFromNib{
     self.inputAccessoryView = [self keyboardToolbarFor:@selector(resignFirstResponder)];
-    if (!self.placeholder) {
+    /*if (!self.placeholder) {
         [self setPlaceholder:@""];
     }
     
     if (!self.placeholderColor) {
         [self setPlaceholderColor:COLOR_TEXT_NAVIGATIONBAR_BUTTON];
-    }
+    }*/
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textChanged:) name:UITextViewTextDidChangeNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textBeginEditing:) name:UITextViewTextDidBeginEditingNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textEndEditing:) name:UITextViewTextDidEndEditingNotification object:nil];
 }
 
 - (id)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
-        [self setPlaceholder:@""];
-        [self setPlaceholderColor:COLOR_TEXT_NAVIGATIONBAR_BUTTON];
+        //[self setPlaceholder:@""];
+        ///[self setPlaceholderColor:COLOR_TEXT_NAVIGATIONBAR_BUTTON];
     }
     return self;
 }
@@ -54,6 +55,23 @@ CGFloat const UI_PLACEHOLDER_TEXT_CHANGED_ANIMATION_DURATION = 0.25;
     self.delegate = textViewDelegate;
 }
 
+- (void)textBeginEditing:(NSNotification*)notification{
+    
+    if (notification.object == self) {
+        if(_placeholder.length == 0)
+        {
+            return;
+        }else{
+            [self viewWithTag:999].alpha=0.0;
+        }
+    }
+}
+
+- (void)textEndEditing:(NSNotification*)notification{
+    if (((CLTextView*)notification.object).text.length<1 && notification.object == self) {
+        [self viewWithTag:999].alpha=1.0;
+    }
+}
 - (void)textChanged:(NSNotification *)notification
 {
     if([[self placeholder] length] == 0)

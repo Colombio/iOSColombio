@@ -18,7 +18,8 @@
                         owner:self
                         options:nil];
         self = [nib objectAtIndex:0];
-        
+        _imgMedia.layer.cornerRadius = _imgMedia.frame.size.width/2;
+        _imgMedia.clipsToBounds=YES;
 
     }
     return self;

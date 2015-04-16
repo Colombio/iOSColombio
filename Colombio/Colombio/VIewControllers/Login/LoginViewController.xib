@@ -1,17 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6751" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <deployment defaultVersion="1552" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LoginViewController">
             <connections>
                 <outlet property="CS_buttonDistanceFromBottom" destination="aM0-ly-6o8" id="Lae-nX-txJ"/>
                 <outlet property="CS_buttonDistanceFromTop" destination="KUw-i9-iHH" id="sQE-BM-FU2"/>
+                <outlet property="CS_lblRegisterWidth" destination="MeT-zV-DDz" id="mFC-PN-9rH"/>
                 <outlet property="CS_scrollableHeaderHeight" destination="58F-zb-rbe" id="MX1-NE-xc7"/>
                 <outlet property="btnLogin" destination="xPU-g5-F5b" id="geJ-tF-BdG"/>
                 <outlet property="contentHolder" destination="1JK-7q-v4p" id="cNI-Kf-2tD"/>
+                <outlet property="lblRegister" destination="R7A-AV-JAC" id="EBs-Gf-Uks"/>
                 <outlet property="scrollBox" destination="Fab-I5-IN8" id="f4J-fa-GFM"/>
                 <outlet property="scrollableHeader" destination="eSY-Sr-MZ2" id="EIm-pT-zZJ"/>
                 <outlet property="txtEmail" destination="vrq-gy-VE3" id="nuY-Zq-ZdK"/>
@@ -36,7 +38,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1JK-7q-v4p" userLabel="Content Holder">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="558"/>
                             <subviews>
                                 <view autoresizesSubviews="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eSY-Sr-MZ2" customClass="ScrollableHeaderView">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="275"/>
@@ -47,7 +49,7 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AIY-vZ-g87" userLabel="Buttons Holder">
-                                    <rect key="frame" x="30" y="445" width="260" height="77"/>
+                                    <rect key="frame" x="30" y="435" width="260" height="77"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="l9y-uI-EL4" userLabel="FB Holder">
                                             <rect key="frame" x="0.0" y="0.0" width="77" height="77"/>
@@ -62,9 +64,9 @@
                                                         <action selector="btnFBSelected:" destination="-1" eventType="touchUpInside" id="UIK-QK-h7Y"/>
                                                     </connections>
                                                 </button>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Facebook" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="brO-4p-PXK">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="FACEBOOK" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="brO-4p-PXK">
                                                     <rect key="frame" x="10" y="48" width="56" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="10"/>
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -84,9 +86,9 @@
                                                         <action selector="btnEmailSelected:" destination="-1" eventType="touchUpInside" id="FUC-Dc-lqa"/>
                                                     </connections>
                                                 </button>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Email" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A7y-iw-fkj">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="EMAIL" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A7y-iw-fkj">
                                                     <rect key="frame" x="10" y="48" width="56" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="10"/>
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -106,9 +108,9 @@
                                                         <action selector="btnGoogleSelected:" destination="-1" eventType="touchUpInside" id="pJJ-P7-ibX"/>
                                                     </connections>
                                                 </button>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Google" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fbS-iJ-ect">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="GOOGLE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fbS-iJ-ect">
                                                     <rect key="frame" x="10" y="48" width="56" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="10"/>
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -122,7 +124,7 @@
                                     </constraints>
                                 </view>
                                 <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Osv-vW-V0r" userLabel="Login Holder">
-                                    <rect key="frame" x="30" y="387" width="260" height="135"/>
+                                    <rect key="frame" x="30" y="377" width="260" height="135"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vrq-gy-VE3" customClass="CLTextField">
                                             <rect key="frame" x="0.0" y="0.0" width="260" height="30"/>
@@ -177,7 +179,7 @@
                                             </constraints>
                                         </imageView>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RRk-G6-BfM">
-                                            <rect key="frame" x="17" y="110" width="140" height="20"/>
+                                            <rect key="frame" x="17" y="110" width="240" height="20"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="20" id="qQy-9g-V5S"/>
                                             </constraints>
@@ -198,7 +200,7 @@
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     <constraints>
                                         <constraint firstItem="RRk-G6-BfM" firstAttribute="top" secondItem="xPU-g5-F5b" secondAttribute="bottom" constant="10" id="2ib-BV-YL9"/>
-                                        <constraint firstAttribute="trailing" secondItem="RRk-G6-BfM" secondAttribute="trailing" constant="103" id="3Qo-ob-GkQ"/>
+                                        <constraint firstAttribute="trailing" secondItem="RRk-G6-BfM" secondAttribute="trailing" constant="3" id="3Qo-ob-GkQ"/>
                                         <constraint firstAttribute="trailing" secondItem="vrq-gy-VE3" secondAttribute="trailing" id="ARk-nO-Msj"/>
                                         <constraint firstAttribute="bottom" secondItem="RRk-G6-BfM" secondAttribute="bottom" constant="5" id="IEM-Ar-Npu"/>
                                         <constraint firstItem="xPU-g5-F5b" firstAttribute="leading" secondItem="Osv-vW-V0r" secondAttribute="leading" id="Iky-k1-sXi"/>
@@ -216,20 +218,26 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c9B-k4-feG">
-                                    <rect key="frame" x="30" y="532" width="260" height="20"/>
+                                    <rect key="frame" x="30" y="522" width="260" height="20"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Don't have an account?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="R7A-AV-JAC">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Don't have an account?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="R7A-AV-JAC">
                                             <rect key="frame" x="0.0" y="0.0" width="161" height="20"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="161" id="MeT-zV-DDz"/>
+                                            </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                             <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="string" keyPath="configTextFont" value="FONT_HELVETICA_NEUE_REGULAR_SMALL"/>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="configTextFont" value="FONT_HELVETICA_NEUE_ULTRALIGHT"/>
                                                 <userDefinedRuntimeAttribute type="string" keyPath="configText" value="login_missing_account"/>
                                             </userDefinedRuntimeAttributes>
                                         </label>
-                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="fOl-uP-ppl">
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="fOl-uP-ppl">
                                             <rect key="frame" x="169" y="0.0" width="100" height="20"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="100" id="hcB-zh-Hvj"/>
+                                            </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <state key="normal" title="Sign up!">
                                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -247,6 +255,12 @@
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="20" id="Uiq-ca-x9s"/>
+                                        <constraint firstItem="R7A-AV-JAC" firstAttribute="top" secondItem="c9B-k4-feG" secondAttribute="top" id="X8T-xu-VD6"/>
+                                        <constraint firstItem="fOl-uP-ppl" firstAttribute="top" secondItem="c9B-k4-feG" secondAttribute="top" id="ef0-K2-HdP"/>
+                                        <constraint firstAttribute="bottom" secondItem="R7A-AV-JAC" secondAttribute="bottom" id="gee-1s-ikx"/>
+                                        <constraint firstAttribute="bottom" secondItem="fOl-uP-ppl" secondAttribute="bottom" id="hek-kN-pig"/>
+                                        <constraint firstItem="R7A-AV-JAC" firstAttribute="leading" secondItem="c9B-k4-feG" secondAttribute="leading" id="pFm-b3-tMs"/>
+                                        <constraint firstItem="fOl-uP-ppl" firstAttribute="leading" secondItem="R7A-AV-JAC" secondAttribute="trailing" constant="8" id="xLM-O1-M2U"/>
                                     </constraints>
                                 </view>
                             </subviews>
@@ -256,7 +270,7 @@
                                 <constraint firstItem="eSY-Sr-MZ2" firstAttribute="top" secondItem="1JK-7q-v4p" secondAttribute="top" id="83u-hm-9Jt"/>
                                 <constraint firstItem="AIY-vZ-g87" firstAttribute="leading" secondItem="1JK-7q-v4p" secondAttribute="leading" constant="30" id="BXL-ma-kC5"/>
                                 <constraint firstAttribute="trailing" secondItem="c9B-k4-feG" secondAttribute="trailing" constant="30" id="D7V-B1-Dg5"/>
-                                <constraint firstItem="AIY-vZ-g87" firstAttribute="top" secondItem="eSY-Sr-MZ2" secondAttribute="bottom" constant="170" id="KUw-i9-iHH"/>
+                                <constraint firstItem="AIY-vZ-g87" firstAttribute="top" secondItem="eSY-Sr-MZ2" secondAttribute="bottom" constant="160" id="KUw-i9-iHH"/>
                                 <constraint firstAttribute="trailing" secondItem="Osv-vW-V0r" secondAttribute="trailing" constant="30" id="M91-9k-hq3"/>
                                 <constraint firstItem="c9B-k4-feG" firstAttribute="top" secondItem="Osv-vW-V0r" secondAttribute="bottom" constant="10" id="Zka-PQ-DCT"/>
                                 <constraint firstItem="c9B-k4-feG" firstAttribute="top" secondItem="AIY-vZ-g87" secondAttribute="bottom" constant="10" id="aM0-ly-6o8"/>

@@ -21,9 +21,10 @@
 #endif
 
 #define BASE_URL @"https://colomb.io"
+#define BASE_URL_IMAGES @"https://afs.colomb.io"
 
 #define maxPrice @"100"
-#define TIMEOUT 500 //seconds
+#define TIMEOUT 180 //seconds
 
 #define TXT_FIELD_INPUT_IMG [UIImage imageNamed:@"inputicon"]
 #define TXT_FIELD_WRONG_IMG [UIImage imageNamed:@"wrong"]
@@ -34,5 +35,11 @@
 //NSDefaults Keys
 #define COUNTRIES_TIMESTAMP @"COUNTRIES_TIMESTAMP"
 #define MEDIA_TIMESTAMP @"MEDIA_TIMESTAMP"
+#define NEWSDEMAND_TIMESTAMP @"NEWSDEMAND_TIMESTAMP"
+#define TIMELINE_TIMESTAMP @"TIMELINE_TIMESTAMP"
 #define COUNTRY_ID @"COUNTRY_ID"
+#define TOKEN @"TOKEN"
+#define SIGNED_REQUEST @"SIGNED_REQUEST"
+#define USERID @"USERID"
+
 

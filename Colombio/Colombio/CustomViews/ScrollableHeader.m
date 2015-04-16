@@ -96,7 +96,7 @@
     }
     
     _scrollView.contentSize = CGSizeMake(_scrollView.frame.size.width * colors.count, self._scrollView.frame.size.height);
-    pageControl = [[UIPageControl alloc]initWithFrame:CGRectMake((activeView.frame.size.width/2) - (pageControl.frame.size.width/2), 20, pageControl.frame.size.width, 36)];
+    pageControl = [[UIPageControl alloc]initWithFrame:CGRectMake((activeView.frame.size.width/2) - (pageControl.frame.size.width/2), 20, pageControl.frame.size.width, 50)];
     
     [pageControl setNumberOfPages:3];
     [_scrollBox addSubview:pageControl];

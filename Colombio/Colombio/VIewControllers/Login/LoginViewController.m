@@ -25,7 +25,9 @@
 */
 
 @interface LoginViewController ()
-
+{
+    ColombioServiceCommunicator *csc;
+}
 @end
 
 @implementation LoginViewController
@@ -49,6 +51,8 @@
 {
     [super viewDidLoad];
     //Skrivanje slicica da li su pogresni inputi
+    csc = [ColombioServiceCommunicator sharedManager];
+    csc.delegate = self;
     loginHidden=YES;
     imgPassEmail.hidden = YES;
     imgFailEmail.hidden = YES;
@@ -64,6 +68,10 @@
         
         _CS_scrollableHeaderHeight.constant=187;
     }
+    
+    CGSize size = [_lblRegister.text sizeWithFont:_lblRegister.font constrainedToSize:CGSizeMake(200, 20) lineBreakMode:NSLineBreakByWordWrapping];
+    _CS_lblRegisterWidth.constant = size.width;
+    
     
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(keyboardUp:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(keyboardDown:) name:UIKeyboardWillHideNotification object:nil];
@@ -230,24 +238,7 @@
             [userId writeToFile:filePathUser atomically:YES encoding:NSUTF8StringEncoding error:nil];
             [token writeToFile:filePathToken atomically:YES encoding:NSUTF8StringEncoding error:nil];
             
-            //spremanje u bazu
-            NSMutableDictionary *dbDict = [[NSMutableDictionary alloc] init];
-            AppDelegate *appdelegate = [[UIApplication sharedApplication] delegate];
-            [appdelegate.db clearTable:@"USER"];
-            [appdelegate.db clearTable:@"USER_CASHOUT"];
-            dbDict[@"user_id"] = response[@"usr"][@"user_id"];
-            dbDict[@"username"] = response[@"usr"][@"username"];
-            dbDict[@"user_email"] = response[@"usr"][@"user_email"];
-            dbDict[@"token"] = response[@"token"];
-            dbDict[@"sign"] = response[@"sign"];
-            [appdelegate.db insertDictionaryWithoutColumnCheck:dbDict forTable:@"USER"];
-            
-            [loadingView stopCustomSpinner];
-            [loadingView removeCustomSpinner];
-            LoginSettingsViewController *containerVC = [[LoginSettingsViewController alloc] initWithNibName:@"ContainerViewController" bundle:nil];
-            [self presentViewController:containerVC animated:YES completion:nil];
-            return;
-            
+            [csc fetchUserProfile];
         }
         else {
             [loadingView stopCustomSpinner];
@@ -260,6 +251,7 @@
 
 #pragma mark Facebook Login
 - (void)btnFBSelected:(id)sender{
+    [loadingView startCustomSpinner:self.view spinMessage:@""];
     [txtEmail.txtField resignFirstResponder];
     [txtPassword.txtField resignFirstResponder];
     if (!loginHidden) {
@@ -297,7 +289,7 @@
             //Uspjesno je poslan zahtjev
             else{
                 Boolean error=false;
-                NSDictionary *response=nil;
+                NSDictionary *response=[[NSDictionary alloc] init];
                 response =[NSJSONSerialization JSONObjectWithData:data options:0 error:NULL];
                 NSArray *keys =[response allKeys];
                 for(NSString *key in keys){
@@ -316,24 +308,42 @@
                     NSString *userId=[user objectForKey:@"user_id"];
                     [userId writeToFile:filePathUser atomically:YES encoding:NSUTF8StringEncoding error:nil];
                     [token writeToFile:filePathToken atomically:YES encoding:NSUTF8StringEncoding error:nil];
-                    
-                    NSMutableDictionary *dbDict = [[NSMutableDictionary alloc] init];
-                    AppDelegate *appdelegate = [[UIApplication sharedApplication] delegate];
-                    [appdelegate.db clearTable:@"USER"];
-                    [appdelegate.db clearTable:@"USER_CASHOUT"];
-                    dbDict[@"user_id"] = response[@"usr"][@"user_id"];
-                    dbDict[@"username"] = response[@"usr"][@"username"];
-                    dbDict[@"user_email"] = response[@"usr"][@"user_email"];
-                    dbDict[@"token"] = response[@"token"];
-                    dbDict[@"sign"] = response[@"sign"];
-                    [appdelegate.db insertDictionaryWithoutColumnCheck:dbDict forTable:@"USER"];
-                    
-                    LoginSettingsViewController *containerVC = [[LoginSettingsViewController alloc] initWithNibName:@"ContainerViewController" bundle:nil];
-                    [self presentViewController:containerVC animated:YES completion:nil];
+                    [[NSUserDefaults standardUserDefaults] setObject:@0 forKey:COUNTRY_ID];
+                    [[NSUserDefaults standardUserDefaults] synchronize];
+                    [csc fetchUserProfile];
                     
                 }
             }
         }];
+    }
+}
+
+#pragma mark Colombio Service Delegate
+- (void)didFetchUserDetails:(NSDictionary *)result{
+    [csc checkUserStatus];
+}
+
+- (void)didCheckUserStatus:(NSDictionary *)result{
+    NSString *test= [result objectForKey:@"s"];
+    if(!strcmp("1", test.UTF8String)){
+        NSString *firstLogin = [result objectForKey:@"first_login"];
+        //If user did not fill settings data, show countries
+        if(!strcmp("1", firstLogin.UTF8String)){
+            NSLog(@"success");
+            dispatch_async(dispatch_get_main_queue(), ^{
+                LoginSettingsViewController *containerVC = [[LoginSettingsViewController alloc] initWithNibName:@"ContainerViewController" bundle:nil];
+                [self presentViewController:containerVC animated:YES completion:nil];
+                return;
+            });
+        }
+        //If user already filled the settngs data show home view
+        else{
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self presentViewController:[[LoginSettingsViewController alloc] initWithNibName:@"ContainerViewController" bundle:nil] animated:YES completion:nil];
+                //[self presentViewController:[[TabBarViewController alloc] init] animated:YES completion:nil];
+                return;
+            });
+        }
     }
 }
 

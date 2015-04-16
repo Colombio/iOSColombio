@@ -21,6 +21,10 @@
 @property (strong, nonatomic) CLLocationManager *locationManager;
 @property (strong, nonatomic) NSCache *mediaImages;
 
+@property (strong, nonatomic) NSDictionary *dicMediaTypes;
+@property (strong, nonatomic) NSDictionary *dicTimelineButt;
+
+
 
 + (ALAssetsLibrary *)defaultAssetsLibrary;
 @end

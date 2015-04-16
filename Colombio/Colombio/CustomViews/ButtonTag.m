@@ -12,6 +12,8 @@
 
 + (instancetype)buttonWithType:(UIButtonType)buttonType {
     ButtonTag *btn = [super buttonWithType:buttonType];
+    btn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+    btn.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
     return btn;
 }
 

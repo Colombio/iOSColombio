@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SelectCountriesViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
+@interface SelectCountriesViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>
 
 @property (strong, nonatomic) NSMutableArray *selectedCountries;
 

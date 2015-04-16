@@ -22,6 +22,8 @@
 @property (weak, nonatomic) IBOutlet UITableView *tblView;
 @property (strong, nonatomic) NSArray *countries;
 @property (assign, nonatomic) NSInteger countryId;
+@property (weak, nonatomic) IBOutlet UITextField *txtSearch;
+@property (strong, nonatomic) NSArray *filteredCountries;
 @end
 
 @implementation SelectCountriesViewController
@@ -39,7 +41,18 @@
     _tblView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     _tblView.alwaysBounceVertical = NO;
     _selectedCountries = [[NSMutableArray alloc] init];
+    spinner = [[Loading alloc] init];
     [self loadCountries];
+    
+    UISwipeGestureRecognizer *mSwipeUpRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self.tblView action:@selector(doSomething)];
+    
+    [mSwipeUpRecognizer setDirection:(UISwipeGestureRecognizerDirectionLeft | UISwipeGestureRecognizerDirectionRight)];
+    
+    [self.tblView addGestureRecognizer:mSwipeUpRecognizer];
+}
+
+- (void)doSomething{
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -53,7 +66,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return _countries.count;
+    return _filteredCountries.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -62,8 +75,8 @@
         cell=[[SelectCountryCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
     }
     cell.lblCountry.text = _countries[indexPath.row][@"c_name"];
-    cell.imgFlag.image = [UIImage imageNamed:_countries[indexPath.row][@"c_name"]];
-    if ([_countries[indexPath.row][@"status"] boolValue]) {
+    cell.imgFlag.image = [UIImage imageNamed:_filteredCountries[indexPath.row][@"c_name"]];
+    if ([_selectedCountries containsObject:_filteredCountries[indexPath.row][@"id"]]) {
         cell.imgSelected.hidden = NO;
         cell.imgFlag.alpha = 1;
         cell.lblCountry.alpha = 1;
@@ -80,17 +93,17 @@
     BOOL status = FALSE;
     if (cell.imgSelected.hidden) {
         cell.imgSelected.hidden = NO;
-        _countries[indexPath.row][@"status"] = @1;
+        _filteredCountries[indexPath.row][@"status"] = @1;
         cell.imgFlag.alpha = 1;
         cell.lblCountry.alpha = 1;
-        [_selectedCountries addObject:_countries[indexPath.row][@"c_id"]];
+        [_selectedCountries addObject:_filteredCountries[indexPath.row][@"c_id"]];
         status = YES;
     }else{
         cell.imgSelected.hidden = YES;
-        _countries[indexPath.row][@"status"] = @0;
+        _filteredCountries[indexPath.row][@"status"] = @0;
         cell.imgFlag.alpha = 0.3;
         cell.lblCountry.alpha = 0.3;
-        [_selectedCountries removeObject:_countries[indexPath.row][@"c_id"]];
+        [_selectedCountries removeObject:_filteredCountries[indexPath.row][@"c_id"]];
         status = NO;
     }
     
@@ -122,8 +135,8 @@
             //If connection is not valid
             else{
                 [Messages showErrorMsg:@"error_web_request"];
+                [spinner removeCustomSpinner];
             }
-            //timer = [NSTimer scheduledTimerWithTimeInterval:0.8 target:self selector:@selector(toggleSpinnerOff) userInfo:nil repeats:NO];
         });
     }];
 }
@@ -166,6 +179,7 @@
     NSString *sql = @"SELECT cl.c_id as c_id, abbr, c_name, lang_id, ifnull(sc.status, 0) as status FROM countries_list cl LEFT OUTER JOIN selected_countries sc on sc.c_id = cl.c_id";
     _countries = [appdelegate.db getAllForSQL:sql];
     _countryId = [self getCountryId];
+    _filteredCountries = [[NSArray alloc] initWithArray:_countries];
     for (NSDictionary *country in _countries){
         if ([country[@"status"] boolValue]) {
             [_selectedCountries addObject:country[@"c_id"]];
@@ -174,6 +188,7 @@
     [[NSUserDefaults standardUserDefaults] setObject:@(_countryId) forKey:COUNTRY_ID];
     [[NSUserDefaults standardUserDefaults] synchronize];
     [_tblView reloadData];
+    [spinner removeCustomSpinner];
 }
 
 - (NSInteger)getCountryId{
@@ -195,5 +210,28 @@
         return YES;
     }
     return NO;
+}
+
+#pragma mark TextField
+-(IBAction)textFieldDidChange:(UITextField *)textField{
+    
+    if (textField.text.length>0) {
+        [self filterCountries:textField.text];
+    }else{
+        _filteredCountries = [[NSMutableArray alloc] initWithArray:_countries];
+    }
+    [_tblView reloadData];
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    [textField resignFirstResponder];
+    return YES;
+}
+
+#pragma mark Filter Media
+- (void)filterCountries:(NSString*)searchCondition{
+    _filteredCountries=[[NSArray alloc] init];
+    NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"c_name beginswith[c] %@", searchCondition];
+    _filteredCountries = [_countries filteredArrayUsingPredicate:resultPredicate];
 }
 @end

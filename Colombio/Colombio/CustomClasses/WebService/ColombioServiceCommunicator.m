@@ -51,6 +51,9 @@
     }
     else{
     NSString *result= [CryptoClass base64Encoding:data];
+        
+        
+        
     return result;
     }
 }
@@ -72,7 +75,7 @@
     NSString *url_str = [NSString stringWithFormat:@"%@/api_config/get_news_tags?signed_req=%@", BASE_URL, [ColombioServiceCommunicator getSignedRequest]];
     NSURL * url = [NSURL URLWithString:url_str];
     NSError *err=nil;
-    request =[NSMutableURLRequest requestWithURL:url];
+    request =[NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:TIMEOUT];
     
     [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -89,61 +92,294 @@
             
 }
 
-//TODO fetching news demands
-/*
- #pragma mark NewsDemands
- - (void)fetchNewsDemands{
- NSString *url_str;
- AppDelegate *appdelegate = [[UIApplication sharedApplication] delegate];
- if (appdelegate.locationManager) {
- NSString *lat = [NSString stringWithFormat:@"%f",appdelegate.locationManager.location.coordinate.latitude];
- NSString *lng = [NSString stringWithFormat:@"%f",appdelegate.locationManager.location.coordinate.longitude];
- url_str = [NSString stringWithFormat:@"http://appforrest.com/colombio/api_content/get_news_demands?signed_req=%@&lat=%@&lng=%@&sync_time=%@",[self getSignedRequest], lat, lng, ([[NSUserDefaults standardUserDefaults] stringForKey:SYNC_TIME_NEWS_DEMAND]!=nil?[[NSUserDefaults standardUserDefaults] stringForKey:SYNC_TIME_NEWS_DEMAND]:@"0")];
- }else{
- url_str = [NSString stringWithFormat:@"http://appforrest.com/colombio/api_content/get_news_demands?signed_req=%@&sync_time=%@",[self getSignedRequest], ([[NSUserDefaults standardUserDefaults] stringForKey:SYNC_TIME_NEWS_DEMAND]!=nil?[[NSUserDefaults standardUserDefaults] stringForKey:SYNC_TIME_NEWS_DEMAND]:@"0")];
- }
- NSURL * url = [NSURL URLWithString:url_str];
- NSMutableURLRequest *request =[NSMutableURLRequest requestWithURL:url];
- [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
- if(error==nil){
- AppDelegate *appdelegate = [[UIApplication sharedApplication] delegate];
- NSDictionary *result =[NSJSONSerialization JSONObjectWithData:data options:0 error:NULL];
- [[NSUserDefaults standardUserDefaults] setObject:result[@"change_timestamp"] forKey:SYNC_TIME_NEWS_DEMAND];
- [[NSUserDefaults standardUserDefaults] synchronize];
- for(NSDictionary *tDict in result[@"data"]){
- NSMutableDictionary *tDBDict = [[NSMutableDictionary alloc] init];
- tDBDict[@"NEWSDEMAND_ID"]=@([tDict[@"req_id"] intValue]);
- tDBDict[@"TITLE"]=tDict[@"title"];
- tDBDict[@"COST"]=tDict[@"cost"];
- tDBDict[@"DESCRIPTION"]=tDict[@"description"];
- tDBDict[@"END_TIMESTAMP"]=[_Tools getDateFromAPIString:tDict[@"end_timestamp"]];
- tDBDict[@"START_TIMESTAMP"]=[_Tools getDateFromAPIString:tDict[@"start_timestamp"]];
- tDBDict[@"LAT"]=@([tDict[@"lat"] floatValue]);
- tDBDict[@"LONG"]=@([tDict[@"lng"] floatValue]);
- tDBDict[@"MEDIA_ID"]=@([tDict[@"media_id"] intValue]);
- tDBDict[@"RADIUS"]=@([tDict[@"radius"] intValue]);
- tDBDict[@"STATUS"]=@([tDict[@"status"] intValue]);
- NSString *sql = [NSString stringWithFormat:@"SELECT count(*) FROM newsdemandlist WHERE newsdemand_id = '%d'", [tDBDict[@"NEWSDEMAND_ID"] intValue]];
- if ([[appdelegate.db getColForSQL:sql] integerValue] == 0) {
- tDBDict[@"ISREAD"]=@0;
- [appdelegate.db insertDictionaryWithoutColumnCheck:tDBDict forTable:@"NEWSDEMANDLIST"];
- }else{
- [appdelegate.db updateDictionary:tDBDict forTable:@"NEWSDEMANDLIST" where:[NSString stringWithFormat:@" NEWSDEMAND_ID='%d'", [tDict[@"NEWSDEMAND_ID"] intValue]]];
- }
- }
- [self.delegate didFetchNewsDemands:result];
- }
- //Ako nije dobra konekcija
- else{
- dispatch_async(dispatch_get_main_queue(), ^{
- [self.delegate fetchingFailedWithError:error];
- //[_Messages showErrorMsg:@"This app requires internet connection. Please make sure that you are connected to the internet."];
- });
- return;
- }
- }];
- }
- */
+#pragma mark User
+
+- (void)fetchUserProfile{
+    NSString *url_str = [NSString stringWithFormat:@"%@/api_user_managment/mau_get_profile?signed_req=%@", BASE_URL, [ColombioServiceCommunicator getSignedRequest]];
+    NSURL * url = [NSURL URLWithString:url_str];
+    request =[NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:TIMEOUT];
+    [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if(error!=nil&&data==nil){
+                //TODO - check connection, check error
+                [Messages showErrorMsg:@"error_web_request"];
+                return;
+            }else{
+                NSError* error = nil;
+                NSDictionary  *result = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
+                NSString *test= result[@"s"];
+                if (!strcmp("1", test.UTF8String)) {
+                    NSMutableDictionary *dbDict = [[NSMutableDictionary alloc] init];
+                    AppDelegate *appdelegate = [[UIApplication sharedApplication] delegate];
+                    [appdelegate.db clearTable:@"USER"];
+                    [appdelegate.db clearTable:@"USER_CASHOUT"];
+                    dbDict[@"user_id"] = result[@"user_data"][@"user_id"];
+                    dbDict[@"user_name"] = result[@"user_data"][@"user_name"];
+                    dbDict[@"user_email"] = result[@"user_data"][@"user_email"];
+                    dbDict[@"first_name"] = result[@"user_data"][@"first_name"];
+                    dbDict[@"last_name"] = result[@"user_data"][@"last_name"];
+                    dbDict[@"city"] = result[@"user_data"][@"city"];
+                    dbDict[@"zip"] = result[@"user_data"][@"zip"];
+                    dbDict[@"phone_number"] = result[@"user_data"][@"phone_number"];
+                    dbDict[@"paypal_email"] = result[@"user_data"][@"paypal_email"];
+                    dbDict[@"anonymous"] = result[@"user_data"][@"anonymous"];
+                    dbDict[@"balance"] = result[@"user_data"][@"balance"];
+                    dbDict[@"ntf_push"] = result[@"user_data"][@"ntf_push"];
+                    dbDict[@"ntf_in_app"] = result[@"user_data"][@"ntf_in_app"];
+                    dbDict[@"ntf_email"] = result[@"user_data"][@"ntf_email"];
+                    dbDict[@"rating"] = result[@"user_data"][@"rating"];
+                    [appdelegate.db insertDictionaryWithoutColumnCheck:dbDict forTable:@"USER"];
+                    [[NSUserDefaults standardUserDefaults] setObject:result[@"user_data"][@"country_id"] forKey:COUNTRY_ID];
+                    [[NSUserDefaults standardUserDefaults] synchronize];
+                    
+                    [self.delegate didFetchUserDetails:result];
+                }else{
+                    [Messages showErrorMsg:@"error_web_request"];
+                    return;
+                }
+                
+            }
+        });
+    }];
+}
+
+- (void)checkUserStatus{
+    NSString *url_str = [NSString stringWithFormat:@"%@/api_user_managment/mau_check_status?signed_req=%@", BASE_URL, [ColombioServiceCommunicator getSignedRequest]];
+    NSURL * url = [NSURL URLWithString:url_str];
+    NSError *err=nil;
+    request =[NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:TIMEOUT];
+    
+    [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if(err!=nil&&data==nil){
+                //TODO - check connection, check error
+                [Messages showErrorMsg:@"error_web_request"];
+                return;
+            }else{
+                NSMutableDictionary *result=[NSJSONSerialization JSONObjectWithData:data options:0 error:NULL];
+                [self.delegate didCheckUserStatus:result];
+            }
+        });
+    }];
+}
+
+
+#pragma mark NewsDemands
+- (void)fetchNewsDemands{
+    NSString *url_str;
+    AppDelegate *appdelegate = [[UIApplication sharedApplication] delegate];
+    if (appdelegate.locationManager) {
+        NSString *lat = [NSString stringWithFormat:@"%f",appdelegate.locationManager.location.coordinate.latitude];
+        NSString *lng = [NSString stringWithFormat:@"%f",appdelegate.locationManager.location.coordinate.longitude];
+        url_str = [NSString stringWithFormat:@"%@/api_content/get_news_demands?signed_req=%@&lat=%@&lng=%@&sync_time=%@",BASE_URL,[[self class] getSignedRequest], lat, lng, ([[NSUserDefaults standardUserDefaults] stringForKey:NEWSDEMAND_TIMESTAMP]!=nil?[[NSUserDefaults standardUserDefaults] stringForKey:NEWSDEMAND_TIMESTAMP]:@"0")];
+    }else{
+        url_str = [NSString stringWithFormat:@"%@/api_content/get_news_demands?signed_req=%@&sync_time=%@",BASE_URL, [[self class] getSignedRequest], ([[NSUserDefaults standardUserDefaults] stringForKey:NEWSDEMAND_TIMESTAMP]!=nil?[[NSUserDefaults standardUserDefaults] stringForKey:NEWSDEMAND_TIMESTAMP]:@"0")];
+    }
+    NSURL * url = [NSURL URLWithString:url_str];
+    request =[NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:TIMEOUT];
+    [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+        if(error==nil && data!=nil){
+            AppDelegate *appdelegate = [[UIApplication sharedApplication] delegate];
+            NSDictionary *result =[NSJSONSerialization JSONObjectWithData:data options:0 error:NULL];
+            [[NSUserDefaults standardUserDefaults] setObject:result[@"change_timestamp"] forKey:NEWSDEMAND_TIMESTAMP];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+            for(NSDictionary *tDict in result[@"data"]){
+                NSMutableDictionary *tDBDict = [[NSMutableDictionary alloc] init];
+                tDBDict[@"req_id"]=@([tDict[@"req_id"] intValue]);
+                tDBDict[@"title"]=tDict[@"title"];
+                tDBDict[@"cost"]=tDict[@"cost"];
+                tDBDict[@"description"]=tDict[@"description"];
+                tDBDict[@"end_timestamp"]=[Tools getDateFromAPIString:tDict[@"end_timestamp"]];
+                tDBDict[@"start_timestamp"]=[Tools getDateFromAPIString:tDict[@"start_timestamp"]];
+                tDBDict[@"lat"]= (tDict[@"lat"]!=[NSNull null]?@([tDict[@"lat"] floatValue]):[NSNull null]);
+                tDBDict[@"lng"]= (tDict[@"lng"]!=[NSNull null]?@([tDict[@"lng"] floatValue]):[NSNull null]);
+                tDBDict[@"media_id"]=@([tDict[@"media_id"] intValue]);
+                tDBDict[@"radius"]=@([tDict[@"radius"] intValue]);
+                tDBDict[@"status"]=@([tDict[@"status"] intValue]);
+                tDBDict[@"distance"]=@([tDict[@"distance"] intValue]);
+                tDBDict[@"location_type"]=@([tDict[@"location_type"] intValue]);
+                NSString *sql = [NSString stringWithFormat:@"SELECT count(*) FROM newsdemandlist WHERE req_id = '%d'", [tDBDict[@"req_id"] intValue]];
+                if ([[appdelegate.db getColForSQL:sql] integerValue] == 0) {
+                    tDBDict[@"isread"]=@0;
+                    [appdelegate.db insertDictionaryWithoutColumnCheck:tDBDict forTable:@"NEWSDEMANDLIST"];
+                }else{
+                    [appdelegate.db updateDictionary:tDBDict forTable:@"NEWSDEMANDLIST" where:[NSString stringWithFormat:@" req_id='%d'", [tDict[@"req_id"] intValue]]];
+                }
+            }
+            [self.delegate didFetchNewsDemands:result];
+        }
+        //Ako nije dobra konekcija
+        else{
+            dispatch_async(dispatch_get_main_queue(), ^{
+                //[self.delegate fetchingFailedWithError:error];
+                [Messages showErrorMsg:@"error_web_request"];
+            });
+            return;
+        }
+    }];
+}
+
+#pragma mark Media
+
+- (void)fetchMedia{
+    NSString *lastTimestamp = ([[NSUserDefaults standardUserDefaults] stringForKey:MEDIA_TIMESTAMP]!=nil?[[NSUserDefaults standardUserDefaults] stringForKey:MEDIA_TIMESTAMP]:@"0");
+    [self sendAsyncHttp:[NSString stringWithFormat:@"%@/api_config/get_media/", BASE_URL] httpBody:[NSString stringWithFormat:@"sync_time=%@",lastTimestamp]cache:NSURLRequestReloadIgnoringCacheData timeoutInterval:TIMEOUT];
+    [NSURLConnection sendAsynchronousRequest:self.request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if(error==nil&&data!=nil){
+                Boolean isDataChanged=true;
+                NSDictionary *dataWsResponse=[NSJSONSerialization JSONObjectWithData:data options:0 error:NULL];
+                NSArray *keys =[dataWsResponse allKeys];
+                for(NSString *key in keys){
+                    //Nije mijenjan popis medija
+                    if(!strcmp("s", key.UTF8String)){
+                        isDataChanged=false;
+                        break;
+                    }
+                }
+                //Ako je mijenjan popis medija
+                if(isDataChanged){
+                    AppDelegate *appdelegate = [[UIApplication sharedApplication] delegate];
+                    NSString *changeTimestamp= [NSString stringWithFormat:@"%@",[dataWsResponse objectForKey:@"change_timestamp"]];
+                    [[NSUserDefaults standardUserDefaults] setObject:changeTimestamp forKey:MEDIA_TIMESTAMP];
+                    [[NSUserDefaults standardUserDefaults] synchronize];
+                    for(NSDictionary *tDict in dataWsResponse[@"data"]){
+                        //[appdelegate.db insertDictionaryWithoutColumnCheck:tDict forTable:@"MEDIA_LIST"];
+                        NSString *sql = [NSString stringWithFormat:@"SELECT count(*) FROM media_list WHERE id = '%d'", [tDict[@"id"] intValue]];
+                        if ([[appdelegate.db getColForSQL:sql] integerValue] == 0) {
+                            [appdelegate.db insertDictionaryWithoutColumnCheck:tDict forTable:@"MEDIA_LIST"];
+                        }else{
+                            [appdelegate.db updateDictionary:tDict forTable:@"MEDIA_LIST" where:[NSString stringWithFormat:@" id='%d'", [tDict[@"id"] intValue]]];
+                        }
+                    }
+                }
+                [self.delegate didFetchMedia];
+            }
+            else{
+                [Messages showErrorMsg:@"error_web_request"];
+                
+            }
+        });
+    }];
+}
+
+#pragma mark TimeLine
+- (void)fetchTimeLine{
+    NSString *lastTimestamp = @"0";//([[NSUserDefaults standardUserDefaults] stringForKey:TIMELINE_TIMESTAMP]!=nil?[[NSUserDefaults standardUserDefaults] stringForKey:TIMELINE_TIMESTAMP]:@"0");
+    NSString *url_str = [NSString stringWithFormat:@"%@/api_content/get_full_timeline?signed_req=%@&sync_time=%@", BASE_URL, [[self class] getSignedRequest],lastTimestamp];
+    NSURL * url = [NSURL URLWithString:url_str];
+    request =[NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:TIMEOUT];
+    [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+        if(error==nil && data!=nil){
+            AppDelegate *appdelegate = [[UIApplication sharedApplication] delegate];
+            NSDictionary *result =[NSJSONSerialization JSONObjectWithData:data options:0 error:NULL];
+            [[NSUserDefaults standardUserDefaults] setObject:result[@"data"][@"req_timestamp"] forKey:TIMELINE_TIMESTAMP];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+            for(NSDictionary *tDict in result[@"data"][@"news"]){
+                NSMutableDictionary *tDBDict = [[NSMutableDictionary alloc] init];
+                tDBDict[@"news_id"]=@([tDict[@"news_id"] intValue]);
+                tDBDict[@"news_title"]=tDict[@"news_title"];
+                tDBDict[@"news_text"]=tDict[@"news_text"];
+                tDBDict[@"cost"]=tDict[@"cost"];
+                tDBDict[@"news_timestamp"]=[Tools getDateFromAPIString:tDict[@"news_timestamp"]];
+                tDBDict[@"lat"]= (tDict[@"lat"]!=[NSNull null]?@([tDict[@"lat"] floatValue]):[NSNull null]);
+                tDBDict[@"lng"]= (tDict[@"lng"]!=[NSNull null]?@([tDict[@"lng"] floatValue]):[NSNull null]);
+                tDBDict[@"media_list"]=@([tDict[@"media_list"] intValue]);
+                tDBDict[@"anonymous"]=@([tDict[@"anonymous"] intValue]);
+                tDBDict[@"type_id"]=@([tDict[@"type_id"] intValue]);
+                NSString *sql = [NSString stringWithFormat:@"SELECT count(*) FROM timeline WHERE news_id = '%d'", [tDBDict[@"news_id"] intValue]];
+                if ([[appdelegate.db getColForSQL:sql] integerValue] == 0) {
+                    //tDBDict[@"isread"]=@0;
+                    [appdelegate.db insertDictionaryWithoutColumnCheck:tDBDict forTable:@"TIMELINE"];
+                }else{
+                    [appdelegate.db updateDictionary:tDBDict forTable:@"TIMELINE" where:[NSString stringWithFormat:@" news_id='%d'", [tDict[@"news_id"] intValue]]];
+                }
+                
+                tDBDict = [[NSMutableDictionary alloc] init];
+                NSArray *arrayImages = [(NSString*)tDict[@"image_data"] componentsSeparatedByString:@","];
+                for(NSString *tString in arrayImages){
+                    NSCharacterSet* charSet = [NSCharacterSet characterSetWithCharactersInString:@"\"\\ {}"];
+                    NSString *strippedString = [[tString componentsSeparatedByCharactersInSet:charSet] componentsJoinedByString:@""];
+                    NSArray *arrImage =[strippedString componentsSeparatedByString:@":"];
+                    tDBDict[arrImage[0]]= [NSString stringWithFormat:@"https://afs.colomb.io/%@",arrImage[1]];
+                }
+                tDBDict[@"news_id"]=@([tDict[@"news_id"] intValue]);
+                sql = [NSString stringWithFormat:@"SELECT count(*) FROM timeline_image WHERE news_id = '%d'", [tDBDict[@"news_id"] intValue]];
+                if ([[appdelegate.db getColForSQL:sql] integerValue] == 0) {
+                    [appdelegate.db insertDictionaryWithoutColumnCheck:tDBDict forTable:@"TIMELINE_IMAGE"];
+                }else{
+                    [appdelegate.db updateDictionary:tDBDict forTable:@"TIMELINE_IMAGE" where:[NSString stringWithFormat:@" news_id='%d'", [tDict[@"news_id"] intValue]]];
+                }
+            }
+             for(NSDictionary *tDict in result[@"data"][@"notif"]){
+                 NSMutableDictionary *tDBDict = [[NSMutableDictionary alloc] init];
+                 tDBDict[@"id"] = tDict[@"id"];
+                 tDBDict[@"user_id"] = tDict[@"user_id"];
+                 tDBDict[@"notif_timestamp"] = [Tools getDateFromAPIString:tDict[@"notif_timestamp"]];
+                 tDBDict[@"type_id"] = tDict[@"type_id"];
+                 tDBDict[@"is_read"] = tDict[@"is_read"];
+                 NSArray *arrayNotifs = [(NSString*)tDict[@"content"] componentsSeparatedByString:@","];
+                 for(NSString *tString in arrayNotifs){
+                     NSCharacterSet* charSet = [NSCharacterSet characterSetWithCharactersInString:@"\"\\{}"];
+                     NSString *strippedString = [[tString componentsSeparatedByCharactersInSet:charSet] componentsJoinedByString:@""];
+                     NSArray *arrNotif =[strippedString componentsSeparatedByString:@":"];
+                     tDBDict[arrNotif[0]]= arrNotif[1];
+                 }
+                 NSString *sql = [NSString stringWithFormat:@"SELECT count(*) FROM timeline_notifications WHERE id = '%d'", [tDBDict[@"id"] intValue]];
+                 if ([[appdelegate.db getColForSQL:sql] integerValue] == 0) {
+                     [appdelegate.db insertDictionaryWithoutColumnCheck:tDBDict forTable:@"TIMELINE_NOTIFICATIONS"];
+                 }else{
+                     [appdelegate.db updateDictionary:tDBDict forTable:@"TIMELINE_NOTIFICATIONS" where:[NSString stringWithFormat:@" id='%d'", [tDict[@"id"] intValue]]];
+                 }
+             }
+            [self.delegate didFetchTimeline];
+        }
+        //Ako nije dobra konekcija
+        else{
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.delegate didFetchTimeline];
+                [Messages showErrorMsg:@"error_web_request"];
+            });
+            return;
+        }
+    }];
+}
+
+- (void)fetchTimeLineCounterOffers:(NSInteger)news_id{
+    NSString *url_str = [NSString stringWithFormat:@"%@/api_content/get_news_counteroffers?signed_req=%@&nid=%ld", BASE_URL, [[self class] getSignedRequest],news_id];
+    NSURL * url = [NSURL URLWithString:url_str];
+    request =[NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:TIMEOUT];
+    [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+        if(error==nil && data!=nil){
+            NSDictionary *result =[NSJSONSerialization JSONObjectWithData:data options:0 error:NULL];
+            [self.delegate didFetchTimeLineCounterOffers:result];
+        }else{
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.delegate didFetchTimeline];
+                [Messages showErrorMsg:@"error_web_request"];
+            });
+            return;
+        }
+    }];
+}
+
+- (void)fetchTimeLineCommunication:(NSInteger)news_id{
+    NSString *url_str = [NSString stringWithFormat:@"%@/api_content/get_news_communication?signed_req=%@&nid=%ld", BASE_URL, [[self class] getSignedRequest],news_id];
+    NSURL * url = [NSURL URLWithString:url_str];
+    request =[NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:TIMEOUT];
+    [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+        if(error==nil && data!=nil){
+            NSDictionary *result =[NSJSONSerialization JSONObjectWithData:data options:0 error:NULL];
+            [self.delegate didFetchTimeLineCommunication:result];
+        }else{
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.delegate didFetchTimeline];
+                [Messages showErrorMsg:@"error_web_request"];
+            });
+            return;
+        }
+    }];
+}
 
 @end
 

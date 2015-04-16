@@ -17,4 +17,9 @@
 + (UIImage *)imageWithColor:(UIColor *)color;
 + (NSString*)getFilePaths:(NSString *)filePathName;
 + (UIImage *)convertImageToGrayScale:(UIImage *)image;
+
++ (NSString*)getStringFromDate:(NSDate*)date;
++ (NSDate*)getDateFromAPIString:(NSString*)date;
++ (NSDate*)getDateFromString:(NSString*)date;
++ (NSInteger)daysDifferenceBetween:(NSDate*)startDate And:(NSDate*)endDate;
 @end

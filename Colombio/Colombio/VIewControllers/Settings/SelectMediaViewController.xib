@@ -23,7 +23,7 @@
                         <constraint firstAttribute="height" constant="30" id="1Ga-LB-CwR"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                    <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done"/>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="string" keyPath="configPlaceholder" value="search_media"/>
                     </userDefinedRuntimeAttributes>

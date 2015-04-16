@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6751" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CreateNewsViewController">
             <connections>
                 <outlet property="CS_imageHolderHeight" destination="cWI-lv-iDB" id="NXP-dU-uNM"/>
                 <outlet property="CS_tagsHolderHeight" destination="Uwl-GP-uFj" id="EA2-sr-ard"/>
+                <outlet property="CS_txtDescriptionHeight" destination="ex7-l0-U3v" id="kLI-Af-kQJ"/>
+                <outlet property="CS_txtTitleHeight" destination="4JR-Km-Pz1" id="BLR-t2-bPm"/>
                 <outlet property="btnAddImage" destination="6yC-9V-nJI" id="vHg-nd-5gy"/>
+                <outlet property="scrollView" destination="83W-79-EZ8" id="Xgn-n4-HKP"/>
                 <outlet property="txtDescription" destination="jow-f9-SSX" id="Phy-8C-S5e"/>
                 <outlet property="txtTitle" destination="OCJ-nf-Qvc" id="4H1-50-qfC"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -26,10 +29,44 @@
                     <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z1Q-2i-jcx">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="367"/>
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="275"/>
                             <subviews>
-                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OCJ-nf-Qvc" customClass="CLTextView">
-                                    <rect key="frame" x="20" y="15" width="280" height="45"/>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o86-CN-uUn">
+                                    <rect key="frame" x="10" y="15" width="300" height="40"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UJS-ns-qyw">
+                                            <rect key="frame" x="0.0" y="0.0" width="300" height="40"/>
+                                            <subviews>
+                                                <button opaque="NO" tag="-1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6yC-9V-nJI">
+                                                    <rect key="frame" x="0.0" y="0.0" width="300" height="40"/>
+                                                    <state key="normal" image="addcontent">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="btnAddImageTapped:" destination="-1" eventType="touchUpInside" id="2kt-7K-T0j"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="40" id="0cC-U3-Tw7"/>
+                                                <constraint firstAttribute="trailing" secondItem="6yC-9V-nJI" secondAttribute="trailing" id="Hmv-aK-eec"/>
+                                                <constraint firstItem="6yC-9V-nJI" firstAttribute="top" secondItem="UJS-ns-qyw" secondAttribute="top" id="PjA-AV-bUN"/>
+                                                <constraint firstItem="6yC-9V-nJI" firstAttribute="leading" secondItem="UJS-ns-qyw" secondAttribute="leading" id="Ymz-eO-p90"/>
+                                                <constraint firstItem="6yC-9V-nJI" firstAttribute="height" secondItem="UJS-ns-qyw" secondAttribute="height" id="kgh-6a-h0P"/>
+                                            </constraints>
+                                        </view>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="UJS-ns-qyw" secondAttribute="trailing" id="1Mx-5U-YXO"/>
+                                        <constraint firstAttribute="height" constant="40" id="cWI-lv-iDB"/>
+                                        <constraint firstAttribute="bottom" secondItem="UJS-ns-qyw" secondAttribute="bottom" id="dLn-rY-8DP"/>
+                                        <constraint firstItem="UJS-ns-qyw" firstAttribute="leading" secondItem="o86-CN-uUn" secondAttribute="leading" id="qmN-Og-zDB"/>
+                                    </constraints>
+                                </view>
+                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OCJ-nf-Qvc" customClass="CLTextView">
+                                    <rect key="frame" x="20" y="70" width="280" height="45"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="45" id="4JR-Km-Pz1"/>
@@ -38,15 +75,17 @@
                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="no" spellCheckingType="no" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="news_title_placeholder"/>
-                                        <userDefinedRuntimeAttribute type="string" keyPath="placeholderColor" value="COLOR_TEXT_NAVIGATIONBAR_BUTTON"/>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="placeholderColor" value="COLOR_PLACEHOLDER_NEWS_TITLE"/>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="configTextColor" value="COLOR_TEXT_NEWS_TITLE"/>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="configTextFont" value="FONT_HELVETICA_NEUE_MEDIUM"/>
                                     </userDefinedRuntimeAttributes>
                                     <connections>
                                         <outlet property="delegate" destination="-1" id="BtB-4i-JXl"/>
                                         <outlet property="textViewDelegate" destination="-1" id="0hg-NW-Qgx"/>
                                     </connections>
                                 </textView>
-                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jow-f9-SSX" customClass="CLTextView">
-                                    <rect key="frame" x="20" y="60" width="280" height="120"/>
+                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jow-f9-SSX" customClass="CLTextView">
+                                    <rect key="frame" x="20" y="115" width="280" height="120"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="120" id="ex7-l0-U3v"/>
@@ -56,51 +95,16 @@
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="news_description_placeholder"/>
                                         <userDefinedRuntimeAttribute type="string" keyPath="placeholderColor" value="COLOR_TEXT_NAVIGATIONBAR_BUTTON"/>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="configTextColor" value="COLOR_TEXT_NAVIGATIONBAR_BUTTON"/>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="configTextFont" value="FONT_HELVETICA_NEUE_MEDIUM"/>
                                     </userDefinedRuntimeAttributes>
                                     <connections>
                                         <outlet property="delegate" destination="-1" id="5a8-BA-4Av"/>
                                         <outlet property="textViewDelegate" destination="-1" id="tYC-Ok-boE"/>
                                     </connections>
                                 </textView>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o86-CN-uUn">
-                                    <rect key="frame" x="0.0" y="190" width="320" height="120"/>
-                                    <subviews>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UJS-ns-qyw">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="120"/>
-                                            <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6yC-9V-nJI">
-                                                    <rect key="frame" x="127" y="42" width="66" height="35"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="35" id="2Tr-E1-n4c"/>
-                                                        <constraint firstAttribute="width" constant="66" id="xwO-9Q-FPh"/>
-                                                    </constraints>
-                                                    <state key="normal" backgroundImage="addcontent">
-                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </state>
-                                                    <connections>
-                                                        <action selector="btnAddImageTapped:" destination="-1" eventType="touchUpInside" id="2kt-7K-T0j"/>
-                                                    </connections>
-                                                </button>
-                                            </subviews>
-                                            <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="120" id="0cC-U3-Tw7"/>
-                                                <constraint firstAttribute="trailing" secondItem="6yC-9V-nJI" secondAttribute="trailing" constant="127" id="4eD-g6-8O5"/>
-                                                <constraint firstItem="6yC-9V-nJI" firstAttribute="leading" secondItem="UJS-ns-qyw" secondAttribute="leading" constant="127" id="en7-6R-1pW"/>
-                                                <constraint firstAttribute="bottom" secondItem="6yC-9V-nJI" secondAttribute="bottom" constant="43" id="nPE-L8-78K"/>
-                                            </constraints>
-                                        </view>
-                                    </subviews>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                    <constraints>
-                                        <constraint firstAttribute="bottom" secondItem="UJS-ns-qyw" secondAttribute="bottom" id="7WZ-e9-hI7"/>
-                                        <constraint firstItem="UJS-ns-qyw" firstAttribute="leading" secondItem="o86-CN-uUn" secondAttribute="leading" id="NEC-j1-Zqd"/>
-                                        <constraint firstAttribute="trailing" secondItem="UJS-ns-qyw" secondAttribute="trailing" id="Z4I-KR-hN0"/>
-                                        <constraint firstAttribute="height" constant="120" id="cWI-lv-iDB"/>
-                                    </constraints>
-                                </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ttk-zV-JDM">
-                                    <rect key="frame" x="20" y="320" width="280" height="1"/>
+                                    <rect key="frame" x="20" y="245" width="280" height="1"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="1" id="Uwl-GP-uFj"/>
@@ -109,19 +113,19 @@
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
-                                <constraint firstAttribute="bottom" secondItem="ttk-zV-JDM" secondAttribute="bottom" constant="46" id="8CF-PE-JLt"/>
-                                <constraint firstAttribute="trailing" secondItem="OCJ-nf-Qvc" secondAttribute="trailing" constant="20" id="D4H-pD-ikb"/>
-                                <constraint firstItem="OCJ-nf-Qvc" firstAttribute="leading" secondItem="Z1Q-2i-jcx" secondAttribute="leading" constant="20" id="ERF-2y-ZYB"/>
-                                <constraint firstItem="ttk-zV-JDM" firstAttribute="top" secondItem="o86-CN-uUn" secondAttribute="bottom" constant="10" id="GIV-Qc-Qzs"/>
-                                <constraint firstItem="OCJ-nf-Qvc" firstAttribute="top" secondItem="Z1Q-2i-jcx" secondAttribute="top" constant="15" id="QsN-0M-plq"/>
-                                <constraint firstItem="o86-CN-uUn" firstAttribute="top" secondItem="jow-f9-SSX" secondAttribute="bottom" constant="10" id="RTB-oH-bIU"/>
-                                <constraint firstAttribute="trailing" secondItem="o86-CN-uUn" secondAttribute="trailing" id="bEh-uv-oHc"/>
-                                <constraint firstItem="jow-f9-SSX" firstAttribute="top" secondItem="OCJ-nf-Qvc" secondAttribute="bottom" id="gn5-Ve-laB"/>
-                                <constraint firstItem="o86-CN-uUn" firstAttribute="leading" secondItem="Z1Q-2i-jcx" secondAttribute="leading" id="ohf-qh-rnE"/>
-                                <constraint firstItem="ttk-zV-JDM" firstAttribute="leading" secondItem="Z1Q-2i-jcx" secondAttribute="leading" constant="20" id="raq-FR-bJh"/>
-                                <constraint firstAttribute="trailing" secondItem="jow-f9-SSX" secondAttribute="trailing" constant="20" id="upt-ai-Eg8"/>
-                                <constraint firstAttribute="trailing" secondItem="ttk-zV-JDM" secondAttribute="trailing" constant="20" id="vyj-EK-u41"/>
-                                <constraint firstItem="jow-f9-SSX" firstAttribute="leading" secondItem="Z1Q-2i-jcx" secondAttribute="leading" constant="20" id="xsK-fS-qJS"/>
+                                <constraint firstItem="o86-CN-uUn" firstAttribute="top" secondItem="Z1Q-2i-jcx" secondAttribute="top" constant="15" id="2Sd-1m-RAh"/>
+                                <constraint firstItem="OCJ-nf-Qvc" firstAttribute="top" secondItem="o86-CN-uUn" secondAttribute="bottom" constant="15" id="2V9-Fj-GLp"/>
+                                <constraint firstItem="ttk-zV-JDM" firstAttribute="leading" secondItem="Z1Q-2i-jcx" secondAttribute="leading" constant="20" id="4oU-b4-cbK"/>
+                                <constraint firstItem="o86-CN-uUn" firstAttribute="leading" secondItem="Z1Q-2i-jcx" secondAttribute="leading" constant="10" id="E5q-5N-ff8"/>
+                                <constraint firstItem="jow-f9-SSX" firstAttribute="leading" secondItem="Z1Q-2i-jcx" secondAttribute="leading" constant="20" id="NGm-ka-Xuh"/>
+                                <constraint firstAttribute="trailing" secondItem="o86-CN-uUn" secondAttribute="trailing" constant="10" id="Oak-Wg-dp9"/>
+                                <constraint firstAttribute="trailing" secondItem="OCJ-nf-Qvc" secondAttribute="trailing" constant="20" id="Q0r-7H-QNd"/>
+                                <constraint firstItem="ttk-zV-JDM" firstAttribute="top" secondItem="jow-f9-SSX" secondAttribute="bottom" constant="10" id="Yb6-Tm-xc6"/>
+                                <constraint firstItem="OCJ-nf-Qvc" firstAttribute="leading" secondItem="Z1Q-2i-jcx" secondAttribute="leading" constant="20" id="Yl4-eL-Awi"/>
+                                <constraint firstAttribute="trailing" secondItem="jow-f9-SSX" secondAttribute="trailing" constant="20" id="ceb-eo-GGt"/>
+                                <constraint firstItem="jow-f9-SSX" firstAttribute="top" secondItem="OCJ-nf-Qvc" secondAttribute="bottom" id="chB-aE-Lyq"/>
+                                <constraint firstAttribute="bottom" secondItem="ttk-zV-JDM" secondAttribute="bottom" constant="29" id="jtZ-N1-P3d"/>
+                                <constraint firstAttribute="trailing" secondItem="ttk-zV-JDM" secondAttribute="trailing" constant="20" id="s5b-KL-2D6"/>
                             </constraints>
                         </view>
                     </subviews>
@@ -146,6 +150,6 @@
         </view>
     </objects>
     <resources>
-        <image name="addcontent" width="66" height="35"/>
+        <image name="addcontent" width="53" height="23"/>
     </resources>
 </document>

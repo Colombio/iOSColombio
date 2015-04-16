@@ -3,15 +3,22 @@
     {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "contentthumb.png"
+      "filename" : "reject_pressed.png"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "contentthumb@2x.png"
+      "filename" : "reject_pressed@2x.png"
     },
     {
       "idiom" : "universal",
+      "scale" : "3x"
+    },
+    {
+      "idiom" : "universal",
+      "filename" : "reject_pressed-736h@3x.png",
+      "unassigned" : true,
+      "subtype" : "736h",
       "scale" : "3x"
     }
   ],

@@ -13,6 +13,13 @@
     {
       "idiom" : "universal",
       "scale" : "3x"
+    },
+    {
+      "idiom" : "universal",
+      "filename" : "addcontent-736h@3x.png",
+      "unassigned" : true,
+      "subtype" : "736h",
+      "scale" : "3x"
     }
   ],
   "info" : {

@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6751" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="179" id="KGk-i7-Jjw" customClass="NewsDemandCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="166"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="023-nS-3q3">
+                        <rect key="frame" x="13" y="19" width="40" height="40"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="40" id="6I9-FS-Pgj"/>
+                            <constraint firstAttribute="height" constant="40" id="h4T-CU-clI"/>
+                        </constraints>
+                    </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="alerticon" translatesAutoresizingMaskIntoConstraints="NO" id="XbL-Ac-in3">
+                        <rect key="frame" x="10" y="14" width="14" height="14"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="14" id="9Gm-u4-Jm7"/>
+                            <constraint firstAttribute="width" constant="14" id="Dkb-Ea-hKa"/>
+                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="14" id="kk6-YY-Vfz"/>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="14" id="y7h-Xr-qM0"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" misplaced="YES" text="$15" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="83F-4U-41C">
+                        <rect key="frame" x="272" y="16" width="40" height="24"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="24" id="r7S-dt-7sb"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="string" keyPath="configTextColor" value="COLOR_TEXT_NEWS_TITLE"/>
+                        </userDefinedRuntimeAttributes>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" misplaced="YES" text="Media name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FRT-5M-fer">
+                        <rect key="frame" x="65" y="14" width="180" height="24"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="24" id="AY0-8o-jAF"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="string" keyPath="configTextColor" value="COLOR_TEXT_NEWS_TITLE"/>
+                        </userDefinedRuntimeAttributes>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" misplaced="YES" text="Media type" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="mZG-kb-60W">
+                        <rect key="frame" x="65" y="38" width="180" height="24"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="24" id="rfP-Aq-7wz"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="string" keyPath="configTextColor" value="COLOR_TEXT_NEWS_TITLE"/>
+                        </userDefinedRuntimeAttributes>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" misplaced="YES" text="May 19, 2014" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="JWP-X7-GPY">
+                        <rect key="frame" x="65" y="62" width="122" height="24"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="24" id="V8A-2d-aQj"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="string" keyPath="configTextColor" value="COLOR_NEWS_DEMAND_LIGHT_GRAY"/>
+                        </userDefinedRuntimeAttributes>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="News title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EfV-kA-j3m">
+                        <rect key="frame" x="65" y="88" width="247" height="24"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="24" id="0qm-ZT-Sw3"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="string" keyPath="configTextColor" value="COLOR_TEXT_NEWS_TITLE"/>
+                        </userDefinedRuntimeAttributes>
+                    </label>
+                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RAd-DF-PRV">
+                        <rect key="frame" x="65" y="112" width="247" height="40"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="40" id="JXa-mh-eQO"/>
+                        </constraints>
+                        <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
+                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="string" keyPath="configTextColor" value="COLOR_NEWS_DEMAND_DESCRIPTION"/>
+                        </userDefinedRuntimeAttributes>
+                    </textView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="REWARD" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="z86-EN-zm6">
+                        <rect key="frame" x="236" y="38" width="76" height="24"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="24" id="gcd-KE-2Py"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="string" keyPath="configText" value="reward"/>
+                            <userDefinedRuntimeAttribute type="string" keyPath="configTextColor" value="COLOR_NEWS_DEMAND_LIGHT_GRAY"/>
+                        </userDefinedRuntimeAttributes>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="FRT-5M-fer" firstAttribute="leading" secondItem="023-nS-3q3" secondAttribute="trailing" constant="12" id="49J-dN-afM"/>
+                    <constraint firstItem="023-nS-3q3" firstAttribute="top" secondItem="XbL-Ac-in3" secondAttribute="bottom" constant="-9" id="50A-0f-f9Y"/>
+                    <constraint firstItem="RAd-DF-PRV" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="57" id="6vv-my-uWH"/>
+                    <constraint firstItem="mZG-kb-60W" firstAttribute="top" secondItem="FRT-5M-fer" secondAttribute="bottom" id="9ue-Rl-57V"/>
+                    <constraint firstItem="z86-EN-zm6" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="A6W-BM-sDt"/>
+                    <constraint firstItem="mZG-kb-60W" firstAttribute="leading" secondItem="023-nS-3q3" secondAttribute="trailing" constant="12" id="G9g-0b-eas"/>
+                    <constraint firstItem="FRT-5M-fer" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="5" id="Kba-zG-frc"/>
+                    <constraint firstItem="023-nS-3q3" firstAttribute="leading" secondItem="XbL-Ac-in3" secondAttribute="trailing" constant="-11" id="OIX-37-5FW"/>
+                    <constraint firstItem="EfV-kA-j3m" firstAttribute="top" secondItem="JWP-X7-GPY" secondAttribute="bottom" constant="3" id="RbI-Tv-cDx"/>
+                    <constraint firstItem="z86-EN-zm6" firstAttribute="top" secondItem="83F-4U-41C" secondAttribute="bottom" constant="-2" id="Vcl-y1-yWf"/>
+                    <constraint firstItem="023-nS-3q3" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="5" id="VyA-4b-d7P"/>
+                    <constraint firstItem="EfV-kA-j3m" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="cg9-nn-MvF"/>
+                    <constraint firstItem="RAd-DF-PRV" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="hqL-xG-PPK"/>
+                    <constraint firstItem="mZG-kb-60W" firstAttribute="top" secondItem="FRT-5M-fer" secondAttribute="bottom" id="i9o-3e-OXL"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="JWP-X7-GPY" secondAttribute="trailing" constant="125" id="kMH-I3-k1v"/>
+                    <constraint firstItem="EfV-kA-j3m" firstAttribute="leading" secondItem="023-nS-3q3" secondAttribute="trailing" constant="12" id="lGJ-nE-BUl"/>
+                    <constraint firstItem="z86-EN-zm6" firstAttribute="leading" secondItem="mZG-kb-60W" secondAttribute="trailing" constant="-9" id="mGq-ZM-Mby"/>
+                    <constraint firstItem="83F-4U-41C" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="nP3-QC-Oxu"/>
+                    <constraint firstItem="023-nS-3q3" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="11" id="oBg-6A-S9h"/>
+                    <constraint firstItem="JWP-X7-GPY" firstAttribute="leading" secondItem="023-nS-3q3" secondAttribute="trailing" constant="12" id="rig-P7-NKs"/>
+                    <constraint firstItem="83F-4U-41C" firstAttribute="leading" secondItem="FRT-5M-fer" secondAttribute="trailing" constant="27" id="rly-8D-ySQ"/>
+                    <constraint firstItem="JWP-X7-GPY" firstAttribute="top" secondItem="mZG-kb-60W" secondAttribute="bottom" id="rou-6X-5eo"/>
+                    <constraint firstItem="JWP-X7-GPY" firstAttribute="top" secondItem="mZG-kb-60W" secondAttribute="bottom" id="sKF-Nt-mt6"/>
+                    <constraint firstItem="RAd-DF-PRV" firstAttribute="top" secondItem="EfV-kA-j3m" secondAttribute="bottom" id="uuM-2I-HXc"/>
+                    <constraint firstItem="83F-4U-41C" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="8" id="v7U-Sg-ap4"/>
+                    <constraint firstItem="FRT-5M-fer" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="5" id="vAh-cD-eW1"/>
+                    <constraint firstItem="EfV-kA-j3m" firstAttribute="top" secondItem="JWP-X7-GPY" secondAttribute="bottom" constant="3" id="z0b-hc-qHi"/>
+                </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="Kba-zG-frc"/>
+                        <exclude reference="9ue-Rl-57V"/>
+                        <exclude reference="rou-6X-5eo"/>
+                        <exclude reference="z0b-hc-qHi"/>
+                    </mask>
+                </variation>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="imgMediaLogo" destination="023-nS-3q3" id="fNl-bN-8Dd"/>
+                <outlet property="imgUnread" destination="XbL-Ac-in3" id="ahw-TR-zwL"/>
+                <outlet property="lblDate" destination="JWP-X7-GPY" id="csY-Vw-5M5"/>
+                <outlet property="lblDescription" destination="RAd-DF-PRV" id="vp0-Ba-CcY"/>
+                <outlet property="lblMediaName" destination="FRT-5M-fer" id="xyM-Jn-qOu"/>
+                <outlet property="lblMediaType" destination="mZG-kb-60W" id="vjf-js-j0y"/>
+                <outlet property="lblNewsTitle" destination="EfV-kA-j3m" id="JZ9-CP-Pte"/>
+                <outlet property="lblRewardAmount" destination="83F-4U-41C" id="QYp-Vd-OOl"/>
+            </connections>
+            <point key="canvasLocation" x="340" y="231"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="alerticon" width="14" height="14"/>
+    </resources>
+</document>

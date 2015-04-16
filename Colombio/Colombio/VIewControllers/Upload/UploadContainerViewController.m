@@ -10,17 +10,28 @@
 #import "NewsData.h"
 #import "AppDelegate.h"
 #import "UploadNewsViewController.h"
-
+#import "Messages.h"
 
 @interface UploadContainerViewController ()
-
+{
+    NewsData *newsData;
+}
 @property (assign, nonatomic) BOOL isNewsDemand;
+@property (strong, nonatomic) NewsDemandObject *newsDemandData;
 @end
 
 
 
 @implementation UploadContainerViewController
 //@synthesize viewControllersArray=_viewControllersArray;
+
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil forNewsDemandData:(NewsDemandObject*)newsDemandData isNewsDemand:(BOOL)isNewsDemand{
+    self = [self initWithNibName:nibNameOrNil bundle:nibBundleOrNil isNewsDemand:isNewsDemand];
+    if (self) {
+        _newsDemandData = newsDemandData;
+    }
+    return self;
+}
 
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil isNewsDemand:(BOOL)isNewsDemand{
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -30,11 +41,19 @@
         contentVC = [[CreateNewsViewController alloc] init];
         contentVC.delegate = self;
         userInfoVC = [[UserInfoUploadViewController alloc] initWithDemand:_isNewsDemand];
+        newsData = [[NewsData alloc] init];
         NSArray *array;
         if (!isNewsDemand) {
-            mediaVC = [[NewsMediaViewController alloc] init];
+            mediaVC = [[SelectMediaViewController alloc] initForNewsUpload:YES];
             array = [[NSArray alloc] initWithObjects:contentVC, mediaVC, userInfoVC, nil];
         }else{
+            newsData.did = _newsDemandData.req_id;
+            newsData.media = [[NSMutableArray alloc] initWithObjects:@(_newsDemandData.media_id), nil];
+            newsData.longitude = _newsDemandData.longitude;
+            newsData.latitude = _newsDemandData.latitude;
+            contentVC.txtTitle.text = _newsDemandData.title;
+            contentVC.txtDescription.text = _newsDemandData.desc;
+            userInfoVC.txtPrice.text = _newsDemandData.cost;
             array = [[NSArray alloc] initWithObjects:contentVC, userInfoVC, nil];
         }
         super.imgNextBtnNormal = [UIImage imageNamed:@"send_normal"];
@@ -66,16 +85,34 @@
     [self presentViewController:viewController animated:YES completion:nil];
 }
 
+
+- (void)btnBack:(UIButton*)sender{
+    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"" message:[Localized string:@"do_you_really_want_to_exit"] delegate:self cancelButtonTitle:[Localized string:@"no"] otherButtonTitles:[Localized string:@"yes"], nil];
+    [alert show];
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (buttonIndex==1){
+        if ([self isModal])
+            [self dismissViewControllerAnimated:NO completion:nil];
+        else
+            [self.navigationController popViewControllerAnimated:YES];
+    }
+}
+
+
 - (void)navigateNext{
     if ([self validateData]) {
         AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-        NewsData *newsData = [[NewsData alloc] init];
-        newsData.longitude = appDelegate.locationManager.location.coordinate.longitude;
-        newsData.latitude = appDelegate.locationManager.location.coordinate.latitude;
+        if (!_isNewsDemand) {
+            newsData.longitude = appDelegate.locationManager.location.coordinate.longitude;
+            newsData.latitude = appDelegate.locationManager.location.coordinate.latitude;
+        }
         newsData.title = contentVC.txtTitle.text;
         newsData.content = contentVC.txtDescription.text;
         newsData.images = contentVC.selectedImagesArray;
         newsData.tags = contentVC.selectedTags;
+        newsData.content = contentVC.txtDescription.text;
         
         if (_isNewsDemand) {
             //složiti kak se šalje media_id is newsdemand
@@ -91,6 +128,7 @@
         newsData.be_credited = userInfoVC.be_credited;
         newsData.be_contacted = userInfoVC.btnToggleContactMe.isON;
         newsData.phone_number = userInfoVC.txtContactMe.text;
+        newsData.sell = userInfoVC.btnTogglePrice.isON;
         
         newsData.type_id = 1;
         
@@ -136,5 +174,11 @@
 
 - (void)showErrorMessage:(NSString*)errorString{
     [Messages showNormalMsg:errorString];
+}
+
+- (BOOL)isModal {
+    return self.presentingViewController.presentedViewController == self
+    || self.navigationController.presentingViewController.presentedViewController == self.navigationController
+    || [self.tabBarController.presentingViewController isKindOfClass:[UITabBarController class]];
 }
 @end

@@ -9,6 +9,8 @@
 #import "TabBarViewController.h"
 #import "HomeViewController.h"
 #import "Tools.h"
+#import "NewsDemandViewController.h"
+#import "TimelineViewController.h"
 
 #import "DummyViewController.h"
 
@@ -33,9 +35,8 @@
     if (self) {
         self.tabBarController.delegate=self;
         //NewsDemand
-        DummyViewController *newsDemandVC = [[DummyViewController alloc] initWithNibName:@"DummyViewController" bundle:nil];
+        NewsDemandViewController *newsDemandVC = [[NewsDemandViewController alloc] initWithNibName:@"NewsDemandViewController" bundle:nil];
         UINavigationController *newsDemandNavController = [[UINavigationController alloc] initWithRootViewController:newsDemandVC];
-        newsDemandVC.dummyText = @"NEWS DEMAND";
         newsDemandNavController.navigationBar.hidden=YES;
         
         newsDemandVC.tabBarItem.image = [[UIImage imageNamed:@"newsdemand_normal"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
@@ -43,9 +44,8 @@
         [controllers addObject:newsDemandNavController];
         
         //TimeLine
-        DummyViewController *timeLineVC = [[DummyViewController alloc] init];
+        TimelineViewController *timeLineVC = [[TimelineViewController alloc] init];
         UINavigationController *timeLineNavController = [[UINavigationController alloc] initWithRootViewController:timeLineVC];
-        timeLineVC.dummyText = @"TIMELINE";
         timeLineNavController.navigationBar.hidden=YES;
         
         timeLineNavController.tabBarItem.image = [[UIImage imageNamed:@"timeline_normal"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
@@ -96,15 +96,5 @@
     if (self.selectedIndex==2) {
         ((UITabBarItem*)[self.tabBar.items objectAtIndex:2]).selectedImage =  [[UIImage imageNamed:@"home_active" ] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     }}
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

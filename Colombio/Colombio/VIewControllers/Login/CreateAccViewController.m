@@ -20,6 +20,16 @@
 
 @interface CreateAccViewController ()
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *CS_TermsWidth;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *CS_PrivacyWidth;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *CS_AndWidth;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *CS_AlreadyHaveAccWidth;
+
+@property (weak, nonatomic) IBOutlet UIButton *btnTerms;
+@property (weak, nonatomic) IBOutlet UIButton *btnPrivacy;
+@property (weak, nonatomic) IBOutlet UILabel *lblAnd;
+@property (weak, nonatomic) IBOutlet UILabel *lblAlreadyHaveAcc;
+
 @end
 
 @implementation CreateAccViewController
@@ -32,6 +42,8 @@
 @synthesize btnCreate;
 @synthesize imgBackground;
 @synthesize headerViewHolder;
+
+
 
 - (UIStatusBarStyle)preferredStatusBarStyle{
     return UIStatusBarStyleLightContent;
@@ -54,12 +66,42 @@
     
     //Aditional setup of text fields
     [self setupTextFields];
+    [self setLabelsPositions];
     
     //Adding custom event on keyboard hide
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(onKeyboardHide:) name:UIKeyboardWillHideNotification object:nil];
     
     //Adding the custom loading view
     loadingView = [[Loading alloc] init];
+}
+
+- (void)setLabelsPositions{
+    CGFloat maxTermsWidth = _CS_TermsWidth.constant;
+    CGFloat maxPrivacyWidth = _CS_PrivacyWidth.constant;
+    CGFloat maxAndWidth = _CS_AndWidth.constant;
+    
+    CGSize size = [_btnTerms.titleLabel.text sizeWithFont:_btnTerms.titleLabel.font constrainedToSize:CGSizeMake(maxTermsWidth, 20) lineBreakMode:NSLineBreakByWordWrapping];
+    _CS_TermsWidth.constant = size.width;
+    
+    size = [_lblAnd.text sizeWithFont:_lblAnd.font constrainedToSize:CGSizeMake(maxAndWidth, 20) lineBreakMode:NSLineBreakByWordWrapping];
+    _CS_AndWidth.constant = size.width;
+    
+    size = [_btnPrivacy.titleLabel.text sizeWithFont:_btnPrivacy.titleLabel.font constrainedToSize:CGSizeMake(maxPrivacyWidth, 20) lineBreakMode:NSLineBreakByWordWrapping];
+    
+    _btnTerms.titleLabel.numberOfLines = 1;
+    _btnTerms.titleLabel.adjustsFontSizeToFitWidth = YES;
+    
+    _lblAnd.numberOfLines = 1;
+    _lblAnd.adjustsFontSizeToFitWidth = YES;
+    
+    _btnPrivacy.titleLabel.numberOfLines = 1;
+    _btnPrivacy.titleLabel.adjustsFontSizeToFitWidth = YES;
+    
+    size = [_lblAlreadyHaveAcc.text sizeWithFont:_lblAlreadyHaveAcc.font constrainedToSize:CGSizeMake(_lblAlreadyHaveAcc.bounds.size.width, 20) lineBreakMode:NSLineBreakByWordWrapping];
+    _CS_AlreadyHaveAccWidth.constant = size.width;
+
+    
+    
 }
 
 #pragma mark TextFields
@@ -322,6 +364,16 @@
     
     return fieldsOK;
     
+}
+
+#pragma mark Button Action
+
+- (IBAction)btnTermsClicked:(id)sender{
+
+}
+
+- (IBAction)btnPrivacyClicked:(id)sender{
+
 }
 
 @end

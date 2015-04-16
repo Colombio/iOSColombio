@@ -27,7 +27,7 @@
 
 - (void)setTitle:(NSString *)title{
     lblTitle.text = title;
-    [lblTitle setFont:[UIFont  fontWithName:@"HelveticaNeue-Bold" size:19.0f]];
+    [lblTitle setFont:[UIFont  fontWithName:@"HelveticaNeue-Bold" size:21.0f]];
     
     CGFloat width =  ([self.lblTitle.text sizeWithFont:[UIFont  fontWithName:@"HelveticaNeue-Bold" size:21.0f]].width<200.0?[self.lblTitle.text sizeWithFont:[UIFont systemFontOfSize:19.0 ]].width:200.0);
     self.CS_TitleWidth.constant = width+20;
@@ -51,7 +51,7 @@
 
 + (HeaderView *)initHeader:(NSString *)name nextHidden:(BOOL)isNextHidden previousHidden:(BOOL)isPreviousHidden activeVC:(UIViewController *)viewController headerFrame:(CGRect)frame{
     HeaderView *headerView = [[HeaderView alloc]initWithFrame:frame];
-    headerView.backgroundColor =[UIColor colorWithWhite:0 alpha:0];
+    headerView.backgroundColor =[UIColor clearColor];
     headerView.delegate=viewController;
     headerView.title=name;
     headerView.btnNext.hidden=isNextHidden;

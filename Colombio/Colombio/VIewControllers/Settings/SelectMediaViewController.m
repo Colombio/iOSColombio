@@ -23,18 +23,29 @@
 @property (weak, nonatomic) IBOutlet UITextField *txtSearch;
 @property (strong, nonatomic) NSArray *media;
 @property (strong, nonatomic) NSArray *selectedCountries;
-@property (strong, nonatomic) NSMutableArray *filteredMedia;
+@property (strong, nonatomic) NSArray *filteredMedia;
 @property (strong, nonatomic) NSMutableArray *imagesLoaded;
-
+@property (assign, nonatomic) BOOL isForNewsUpload;
+@property (strong, nonatomic) NSArray *favMedia;
 
 @end
 
 @implementation SelectMediaViewController
 
+- (instancetype)initForNewsUpload:(BOOL)newsUpload{
+    self = [super init];
+    if (self) {
+        self.title = [Localized string:@"select_media"];
+        _isForNewsUpload = newsUpload;
+    }
+    return self;
+}
+
 - (instancetype)init{
     self = [super init];
     if (self) {
         self.title = [Localized string:@"select_media"];
+        _isForNewsUpload = NO;
     }
     return self;
 }
@@ -48,7 +59,14 @@
     appdelegate = [[UIApplication sharedApplication] delegate];
     _selectedCountries = [[NSArray alloc] init];
     _selectedCountries = [self loadSelectedCountries];
-    [self loadMedia];
+    spinner = [[Loading alloc] init];
+    [spinner startCustomSpinner:self.view spinMessage:@""];
+    if (_isForNewsUpload) {
+        [self loadFavMedia];
+    }else{
+        [self loadMedia];
+    }
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -72,7 +90,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if ([_selectedMedia containsObject:_filteredMedia[indexPath.row][@"id"] ]) {
+    if ([_selectedMedia containsObject:_filteredMedia[indexPath.row][@"id"]] && !_isForNewsUpload) {
         return ((CGSize)[self getDescriptionHeightForText:_filteredMedia[indexPath.row][@"description"]]).height + 60.0;
     }
     return 60.0;
@@ -89,8 +107,8 @@
         cell.contentView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleRightMargin |UIViewAutoresizingFlexibleTopMargin |UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleBottomMargin;
     }
     cell.lblMediaName.text = _filteredMedia[indexPath.row][@"name"];
-    //cell.lblMediaType.text = _filteredMedia[indexPath.row][@"media_type"];
-    if ([_selectedMedia containsObject:_filteredMedia[indexPath.row][@"id"] ]) {
+    cell.lblMediaType.text = [[Localized string:appdelegate.dicMediaTypes[_filteredMedia[indexPath.row][@"media_type"]]] uppercaseString];
+    if ([_selectedMedia containsObject:_filteredMedia[indexPath.row][@"id"]] && !_isForNewsUpload) {
         cell.lblMediaDescription.text = _filteredMedia[indexPath.row][@"description"];
     }
     if ([_selectedMedia containsObject:_filteredMedia[indexPath.row][@"id"]]) {
@@ -103,8 +121,7 @@
         cell.lblMediaName.alpha = 0.3;
     }
 
-    //TODO dodati da se ne raspetljava kod samog odabira medija (upload)
-    if ([_selectedMedia containsObject:_filteredMedia[indexPath.row][@"status"]]) {
+    if ([_selectedMedia containsObject:_filteredMedia[indexPath.row][@"status"]] && !_isForNewsUpload) {
         cell.CS_DescriptionHeight.constant = ((CGSize)[self getDescriptionHeightForText:_filteredMedia[indexPath.row][@"description"]]).height;
     }
     
@@ -141,7 +158,7 @@
             }
         }
     }else{
-        [_selectedMedia addObject:_media[indexPath.row][@"id"]];
+        [_selectedMedia addObject:_filteredMedia[indexPath.row][@"id"]];
         _filteredMedia[indexPath.row][@"status"] = @1;
         for(NSMutableDictionary *media in _media){
             if ([media[@"id"] integerValue] == [_filteredMedia[indexPath.row][@"id"] integerValue]) {
@@ -152,15 +169,18 @@
     NSArray *indexPaths = [[NSMutableArray alloc]initWithObjects:indexPath, nil];
     [_tblView reloadRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationAutomatic];
     
-    NSMutableDictionary *tDict = [[NSMutableDictionary alloc] init];
-    tDict[@"status"] = _filteredMedia[indexPath.row][@"status"];
-    tDict[@"media_id"] = @([_filteredMedia[indexPath.row][@"id"] integerValue]);
-    NSString *sql = [NSString stringWithFormat:@"SELECT count(*) FROM selected_media WHERE media_id = '%d'", [_filteredMedia[indexPath.row][@"id"] intValue]];
-    if ([[appdelegate.db getColForSQL:sql] integerValue] == 0) {
-        [appdelegate.db insertDictionaryWithoutColumnCheck:tDict forTable:@"SELECTED_MEDIA"];
-    }else{
-        [appdelegate.db updateDictionary:tDict forTable:@"SELECTED_MEDIA" where:[NSString stringWithFormat:@" media_id='%d'", [_filteredMedia[indexPath.row][@"media_id"] intValue]]];
+    if (!_isForNewsUpload) {
+        NSMutableDictionary *tDict = [[NSMutableDictionary alloc] init];
+        tDict[@"status"] = _filteredMedia[indexPath.row][@"status"];
+        tDict[@"media_id"] = @([_filteredMedia[indexPath.row][@"id"] integerValue]);
+        NSString *sql = [NSString stringWithFormat:@"SELECT count(*) FROM selected_media WHERE media_id = '%d'", [_filteredMedia[indexPath.row][@"id"] intValue]];
+        if ([[appdelegate.db getColForSQL:sql] integerValue] == 0) {
+            [appdelegate.db insertDictionaryWithoutColumnCheck:tDict forTable:@"SELECTED_MEDIA"];
+        }else{
+            [appdelegate.db updateDictionary:tDict forTable:@"SELECTED_MEDIA" where:[NSString stringWithFormat:@" media_id='%d'", [_filteredMedia[indexPath.row][@"media_id"] intValue]]];
+        }
     }
+    
 }
 
 - (CGSize)getDescriptionHeightForText:(NSString*)txt{
@@ -171,8 +191,9 @@
 
 #pragma mark TextField
 -(IBAction)textFieldDidChange:(UITextField *)textField{
-    if (textField.text.length>1) {
-        [self filterMedia:textField.text];
+    
+    if (textField.text.length>0) {
+         [self filterMedia:textField.text];
     }else{
         _filteredMedia = [[NSMutableArray alloc] initWithArray:_media];
     }
@@ -202,28 +223,53 @@
     }
 }
 
+- (void)loadFavMedia{
+    NSString *result = [ColombioServiceCommunicator getSignedRequest];
+    ColombioServiceCommunicator *csc = [[ColombioServiceCommunicator alloc] init];
+    [csc sendAsyncHttp:[NSString stringWithFormat:@"%@/api_content/get_fav_media/", BASE_URL] httpBody:[NSString stringWithFormat:@"signed_req=%@",result]cache:NSURLRequestReloadIgnoringCacheData timeoutInterval:TIMEOUT];
+    [NSURLConnection sendAsynchronousRequest:csc.request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if(error==nil&&data!=nil){
+                NSDictionary *dataWsResponse=[NSJSONSerialization JSONObjectWithData:data options:0 error:NULL];
+                _favMedia = (NSArray*)dataWsResponse;
+                [self loadMedia];
+            }
+            else{
+                [Messages showErrorMsg:@"error_web_request"];
+            }
+            //timer = [NSTimer scheduledTimerWithTimeInterval:0.8 target:self selector:@selector(toggleSpinnerOff) userInfo:nil repeats:NO];
+        });
+    }];
+}
+
 
 - (void)loadMedia{
-    [spinner startCustomSpinner:self.view spinMessage:@""];
-    NSString *lastTimestamp = ([[NSUserDefaults standardUserDefaults] stringForKey:MEDIA_TIMESTAMP]!=nil?[[NSUserDefaults standardUserDefaults] stringForKey:MEDIA_TIMESTAMP]:@"0");
+    NSInteger lastTimestamp = ([[NSUserDefaults standardUserDefaults] stringForKey:MEDIA_TIMESTAMP]!=nil?[[NSUserDefaults standardUserDefaults] integerForKey:MEDIA_TIMESTAMP]:0);
     
-    ColombioServiceCommunicator *csc = [[ColombioServiceCommunicator alloc] init];
+    //ColombioServiceCommunicator *csc = [[ColombioServiceCommunicator alloc] init];
+    NSString *url_str;
+    NSURL *url;
     if (_selectedCountries.count>0) {
         NSData *jsonDataMedia = [NSJSONSerialization dataWithJSONObject:_selectedCountries options:NSJSONWritingPrettyPrinted error:nil];
         NSString *selCountries = [[NSString alloc]initWithData:jsonDataMedia encoding:NSUTF8StringEncoding];
-        [csc sendAsyncHttp:[NSString stringWithFormat:@"%@/api_config/get_media/", BASE_URL] httpBody:[NSString stringWithFormat:@"sync_time=%@&cid=%@",lastTimestamp, selCountries]cache:NSURLRequestReloadIgnoringCacheData timeoutInterval:TIMEOUT];
+        url_str = [NSString stringWithFormat:@"%@/api_config/get_media?sync_time=%ld&cid=%@", BASE_URL, (long)lastTimestamp, selCountries];
+        url = [NSURL URLWithString:url_str];
     }else{
-        [csc sendAsyncHttp:[NSString stringWithFormat:@"%@/api_config/get_media/", BASE_URL] httpBody:[NSString stringWithFormat:@"sync_time=%@",lastTimestamp]cache:NSURLRequestReloadIgnoringCacheData timeoutInterval:TIMEOUT];
+        url_str = [NSString stringWithFormat:@"%@/api_config/get_media?sync_time=%ld", BASE_URL, (long)lastTimestamp];
+        url = [NSURL URLWithString:url_str];
     }
-    [NSURLConnection sendAsynchronousRequest:csc.request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+    
+    NSMutableURLRequest *request =[NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:TIMEOUT];
+    [request setHTTPMethod:@"GET"];
+    [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{
             if(error==nil&&data!=nil){
                 [self prepareMedia:data response:response];
             }
             else{
                 [Messages showErrorMsg:@"error_web_request"];
+                [spinner removeCustomSpinner];
             }
-            //timer = [NSTimer scheduledTimerWithTimeInterval:0.8 target:self selector:@selector(toggleSpinnerOff) userInfo:nil repeats:NO];
         });
     }];
 }
@@ -242,43 +288,74 @@
     //Ako je mijenjan popis medija
     if(isDataChanged){
         appdelegate = [[UIApplication sharedApplication] delegate];
-        [appdelegate.db clearTable:@"MEDIA_LIST"];
-        
         NSString *changeTimestamp= [NSString stringWithFormat:@"%@",[dataWsResponse objectForKey:@"change_timestamp"]];
         [[NSUserDefaults standardUserDefaults] setObject:changeTimestamp forKey:MEDIA_TIMESTAMP];
         [[NSUserDefaults standardUserDefaults] synchronize];
         for(NSDictionary *tDict in dataWsResponse[@"data"]){
-            [appdelegate.db insertDictionaryWithoutColumnCheck:tDict forTable:@"MEDIA_LIST"];
-            /*NSString *sql = [NSString stringWithFormat:@"SELECT count(*) FROM media_list WHERE id = '%d'", [tDict[@"id"] intValue]];
+            //[appdelegate.db insertDictionaryWithoutColumnCheck:tDict forTable:@"MEDIA_LIST"];
+            NSString *sql = [NSString stringWithFormat:@"SELECT count(*) FROM media_list WHERE id = '%d'", [tDict[@"id"] intValue]];
             if ([[appdelegate.db getColForSQL:sql] integerValue] == 0) {
                 [appdelegate.db insertDictionaryWithoutColumnCheck:tDict forTable:@"MEDIA_LIST"];
             }else{
                 [appdelegate.db updateDictionary:tDict forTable:@"MEDIA_LIST" where:[NSString stringWithFormat:@" id='%d'", [tDict[@"id"] intValue]]];
-            }*/
+            }
         }
     }
     
     NSString *sql = @"SELECT ml.id as id, country_id, media_icon, description, media_type, name, ifnull(sm.status, 0) as status FROM media_list ml LEFT OUTER JOIN selected_media sm on sm.media_id = ml.id";
     _media = [appdelegate.db getAllForSQL:sql];
-    _filteredMedia = [[NSMutableArray alloc] initWithArray:_media];
-    for(NSDictionary *media in _media){
-        if ([media[@"status"] boolValue]) {
-            [_selectedMedia addObject:media[@"id"]];
+    _filteredMedia = [[NSArray alloc] initWithArray:_media];
+    [self setupMediaData];
+    
+}
+
+- (void)setupMediaData{
+    if (_isForNewsUpload) {
+        NSMutableArray *tempFavMedia = [[NSMutableArray alloc] init];
+        NSMutableArray *tempMedia = [[NSMutableArray alloc] initWithArray:_media];
+        for (NSDictionary *media in _media){
+            if ([_favMedia containsObject:media[@"id"]]) {
+                [tempFavMedia addObject:media];
+                [tempMedia removeObject:media];
+            }
         }
+        NSMutableArray *mergedMedia = [[NSMutableArray alloc] init];
+        if (tempFavMedia.count>0) {
+            [mergedMedia addObjectsFromArray:tempFavMedia];
+        }
+        [mergedMedia addObjectsFromArray:tempMedia];
+        _filteredMedia = mergedMedia;
+        [_selectedMedia addObjectsFromArray:_favMedia];
+    } else{
+        for(NSDictionary *media in _media){
+            if ([media[@"status"] boolValue]) {
+                [_selectedMedia addObject:media[@"id"]];
+            }
+         }
     }
     dispatch_async(dispatch_get_main_queue(), ^{
         [_tblView reloadData];
+        [spinner removeCustomSpinner];
     });
+
+    
+    
+    
+    
+    
 }
 
 #pragma mark Filter Media
 - (void)filterMedia:(NSString*)searchCondition{
-    _filteredMedia=[[NSMutableArray alloc] init];
-    for (NSDictionary *media in _media){
+    _filteredMedia=[[NSArray alloc] init];
+    NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"name beginswith[c] %@", searchCondition];
+    _filteredMedia = [_media filteredArrayUsingPredicate:resultPredicate];
+    
+    /*for (NSDictionary *media in _media){
         if ([[media[@"name"] lowercaseString] containsString:[searchCondition lowercaseString]]) {
             [_filteredMedia addObject:media];
         }
-    }
+    }*/
 }
 
 #pragma mark Validation

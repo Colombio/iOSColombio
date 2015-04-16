@@ -26,9 +26,10 @@
         _txtField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width-45, self.frame.size.height)];
         _txtField.font = [[UIConfiguration sharedInstance] getFont:FONT_HELVETICA_NEUE_LIGHT];
         _txtField.returnKeyType = UIReturnKeyDone;
-        [_txtField setTextColor:[UIColor colorWithWhite:1 alpha:0.65]];
+        [_txtField setTextColor:[UIColor colorWithWhite:1 alpha:1.0]];
+        _txtField.tintColor = [UIColor whiteColor];
         [self addSubview:_txtField];
-        _imgView = [[UIImageView alloc] initWithFrame:CGRectMake(self.frame.size.width-45, 11, 25, 25)];
+        _imgView = [[UIImageView alloc] initWithFrame:CGRectMake(self.frame.size.width-45, 5, 20, 20)];
         _imgView.image = TXT_FIELD_INPUT_IMG;
         [_imgView setHidden:YES];
         [self addSubview:_imgView];
@@ -39,6 +40,8 @@
         _txtField.keyboardAppearance = UIKeyboardAppearanceLight;
         _txtField.spellCheckingType = UITextSpellCheckingTypeNo;
         _txtField.autocorrectionType = UITextAutocorrectionTypeNo;
+        [_txtField addTarget:self action:@selector(txtFieldEditDidEnd) forControlEvents:UIControlEventEditingDidEnd];
+        [_txtField addTarget:self action:@selector(txtFieldEditDidBegin) forControlEvents:UIControlEventEditingDidBegin];
     }
     return self;
 }
@@ -110,11 +113,16 @@
     _txtField.delegate=textFieldDelegate;
 }
 
-#pragma mark TextFieldDelegate
-
-- (void)textFieldDidBeginEditing:(UITextField *)textField{
-    
+- (void)txtFieldEditDidEnd{
+    _txtField.attributedPlaceholder = [[NSAttributedString alloc]initWithString:_placeholderText attributes:@{NSForegroundColorAttributeName:[UIColor colorWithWhite:1 alpha:0.5], NSFontAttributeName:[[UIConfiguration sharedInstance] getFont:FONT_HELVETICA_NEUE_LIGHT]}];
 }
+
+
+- (void)txtFieldEditDidBegin{
+    _txtField.placeholder=nil;
+}
+
+#pragma mark TextFieldDelegate
 
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
     return YES;
@@ -126,5 +134,6 @@
     }
     return YES;
 }
+
 
 @end

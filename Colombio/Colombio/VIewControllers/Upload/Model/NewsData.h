@@ -24,7 +24,8 @@
 @property (assign, nonatomic) NSInteger did;//demand_id
 @property (assign, nonatomic) NSInteger type_id;
 @property (strong, nonatomic) NSString *phone_number;
-
+@property (assign, nonatomic) BOOL sell;
 @property (strong, nonatomic) NSMutableArray *images;
+
 
 @end

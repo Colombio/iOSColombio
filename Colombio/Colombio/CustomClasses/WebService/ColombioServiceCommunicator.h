@@ -16,6 +16,12 @@
 - (void)didFetchNewsDemands:(NSDictionary*)result;
 - (void)didFetchTags:(NSDictionary*)result;
 - (void)fetchingFailedWithError:(NSError*)error;
+- (void)didFetchUserDetails:(NSDictionary*)result;
+- (void)didCheckUserStatus:(NSDictionary*)result;
+- (void)didFetchMedia;
+- (void)didFetchTimeline;
+- (void)didFetchTimeLineCounterOffers:(NSDictionary*)result;
+- (void)didFetchTimeLineCommunication:(NSDictionary*)result;
 
 @end
 
@@ -27,9 +33,15 @@
 
 + (NSString*)getSignedRequest; //conveniance static method for getting data with signed request
 + (id)sharedManager;//singleton call
+- (void)fetchUserProfile;
+- (void)checkUserStatus;
 - (void)fetchTags;
 -(void)sendAsyncHttp:(NSString *)strUrl httpBody:(NSString *)strBody cache:(NSUInteger)cachePolicy timeoutInterval:(double)timeout;
-//- (void)fetchNewsDemands;
+- (void)fetchNewsDemands;
+- (void)fetchMedia;
+- (void)fetchTimeLine;
+- (void)fetchTimeLineCounterOffers:(NSInteger)news_id;
+- (void)fetchTimeLineCommunication:(NSInteger)news_id;
 
 @end
 

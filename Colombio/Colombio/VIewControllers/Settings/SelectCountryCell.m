@@ -19,6 +19,8 @@
                         options:nil];
         self = [nib objectAtIndex:0];
     }
+    _imgFlag.layer.cornerRadius=_imgFlag.frame.size.width/2;
+    _imgFlag.layer.masksToBounds=YES;
     return self;
 }
 

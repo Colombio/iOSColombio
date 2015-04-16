@@ -13,5 +13,6 @@
 
 @property (strong, nonatomic) NSMutableArray *selectedMedia;
 
+- (instancetype)initForNewsUpload:(BOOL)newsUpload;
 - (BOOL)validateMedia;
 @end

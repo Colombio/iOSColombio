@@ -33,6 +33,7 @@
 -(BOOL)insertDictionaryWithoutColumnCheck:(NSDictionary *)dbData forTable:(NSString *)table;
 - (void)checkTableforColumns:(NSDictionary *)dbData forTable:(NSString*)table;
 - (BOOL)updateDictionary:(NSDictionary *)dbData forTable:(NSString *)table where:(NSString *)where;
+- (BOOL)updateDictionary:(NSDictionary *)dbData forTable:(NSString *)table;
 
 -(void)execute:(NSString*)sql;
 @end

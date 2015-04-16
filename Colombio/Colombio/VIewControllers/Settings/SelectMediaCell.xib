@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6751" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
@@ -16,16 +16,16 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="252" verticalHuggingPriority="251" horizontalCompressionResistancePriority="752" translatesAutoresizingMaskIntoConstraints="NO" id="s2W-kb-Iq3">
-                        <rect key="frame" x="8" y="16" width="30" height="20"/>
+                        <rect key="frame" x="8" y="15" width="30" height="30"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="30" id="7GM-eM-jss"/>
-                            <constraint firstAttribute="height" constant="20" id="mmh-0F-0Xh"/>
+                            <constraint firstAttribute="height" constant="30" id="mmh-0F-0Xh"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="opn-1O-gKD">
                         <rect key="frame" x="56" y="8" width="199" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="string" keyPath="configTextFont" value="FONT_HELVETICA_NEUE_LIGHT"/>
@@ -38,19 +38,19 @@
                             <constraint firstAttribute="height" constant="21" id="FDk-52-1sZ"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="string" keyPath="configTextFont" value="FONT_HELVETICA_NEUE_LIGHT_SMALL"/>
                             <userDefinedRuntimeAttribute type="string" keyPath="configTextColor" value="COLOR_TEXT_NAVIGATIONBAR_BUTTON"/>
                         </userDefinedRuntimeAttributes>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="SOB-zo-4LF">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="SOB-zo-4LF">
                         <constraints>
                             <constraint firstAttribute="height" id="YVV-wE-TuD"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="string" keyPath="configTextFont" value="FONT_HELVETICA_NEUE_LIGHT_SMALL"/>
@@ -72,9 +72,8 @@
                     <constraint firstItem="s2W-kb-Iq3" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="TNA-jR-WYD"/>
                     <constraint firstItem="vm2-oe-5lc" firstAttribute="leading" secondItem="Q8A-Tn-Z7y" secondAttribute="trailing" constant="11" id="VVy-b7-L0H"/>
                     <constraint firstItem="vm2-oe-5lc" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="aNN-uu-gDO"/>
-                    <constraint firstItem="SOB-zo-4LF" firstAttribute="top" secondItem="vm2-oe-5lc" secondAttribute="bottom" constant="-2" id="amB-Xv-Lay"/>
                     <constraint firstAttribute="trailingMargin" secondItem="SOB-zo-4LF" secondAttribute="trailing" constant="2" id="dUW-Nq-cQt"/>
-                    <constraint firstItem="s2W-kb-Iq3" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="8" id="diy-2G-veG"/>
+                    <constraint firstItem="s2W-kb-Iq3" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="7" id="diy-2G-veG"/>
                     <constraint firstItem="vm2-oe-5lc" firstAttribute="leading" secondItem="opn-1O-gKD" secondAttribute="trailing" constant="11" id="dkr-vl-y2P"/>
                     <constraint firstItem="Q8A-Tn-Z7y" firstAttribute="leading" secondItem="s2W-kb-Iq3" secondAttribute="trailing" constant="18" id="icS-Hz-lz4"/>
                     <constraint firstItem="opn-1O-gKD" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="mzb-tq-Wlg"/>

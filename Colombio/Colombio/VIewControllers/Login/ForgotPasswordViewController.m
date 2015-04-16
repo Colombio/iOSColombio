@@ -20,6 +20,10 @@
 
 @interface ForgotPasswordViewController ()
 
+@property (weak, nonatomic) IBOutlet UILabel *lblPassSent;
+@property (weak, nonatomic) IBOutlet UILabel *lblCheckEmail;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *CS_lblSentWidth;
+
 @end
 
 @implementation ForgotPasswordViewController
@@ -40,8 +44,8 @@
     
     //Adding custom header
     HeaderView *headerView = [HeaderView initHeader:@"COLOMBIO" nextHidden:YES previousHidden:NO activeVC:self headerFrame:headerViewHolder.frame];
-    [headerView.btnBack setBackgroundImage:[UIImage imageNamed:@"backwhite_normal"] forState:UIControlStateNormal];
-    [headerView.btnBack setBackgroundImage:[UIImage imageNamed:@"backwhite_pressed"] forState:UIControlStateHighlighted];
+    [headerView.btnBack setBackgroundImage:[UIImage imageNamed:@"backgrey_normal"] forState:UIControlStateNormal];
+    [headerView.btnBack setBackgroundImage:[UIImage imageNamed:@"backgrey_pressed"] forState:UIControlStateHighlighted];
     [headerViewHolder addSubview:headerView];
     
     //If tapped anywhere on the scrollbox, keyboard is hidden
@@ -56,6 +60,8 @@
     
     //Add custom loading spiner
     loadingView = [[Loading alloc] init];
+    _lblCheckEmail.hidden=YES;
+    _lblPassSent.hidden=YES;
 }
 
 #pragma mark KeyboardEvents
@@ -92,7 +98,6 @@
 }
 
 -(void)toggleSendOff{
-    [btnSend setTitle:[Localized string:@"forgot_password"] forState:UIControlStateNormal];
     [loadingView removeCustomSpinner];
 }
 
@@ -175,10 +180,12 @@
                 if(!isWrongInput){
                     [txtEmail setOkInput];
                     [loadingView customSpinnerSuccess];
+                    [self successMessage];
                     timer = [NSTimer scheduledTimerWithTimeInterval:3.5 target:self selector:@selector(forgotPasswordSuccessful) userInfo:nil repeats:NO];
                 }
                 else{
                     [loadingView customSpinnerFail];
+                    [btnSend setTitle:[Localized string:@"forgot_password"] forState:UIControlStateNormal];
                 }
             }
             timer = [NSTimer scheduledTimerWithTimeInterval:2.5 target:self selector:@selector(toggleSendOff) userInfo:nil repeats:NO];
@@ -187,8 +194,17 @@
     }];
 }
 
+- (void)successMessage{
+    btnSend.hidden=YES;
+    _lblCheckEmail.hidden=NO;
+    _lblPassSent.hidden=NO;
+    
+    CGSize size = [_lblPassSent.text sizeWithFont:_lblPassSent.font constrainedToSize:CGSizeMake(100, 20) lineBreakMode:NSLineBreakByClipping];
+    _CS_lblSentWidth.constant = size.width;
+}
+
 - (void)forgotPasswordSuccessful{
-    //TODO show message
+    [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

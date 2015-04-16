@@ -11,6 +11,7 @@
 #import "LibraryCell.h"
 #import <AssetsLibrary/AssetsLibrary.h>
 #import "UploadContainerViewController.h"
+#import "Loading.h"
 
 #define MAX_IMAGES 5
 #define MAX_VIDEOS 1
@@ -22,6 +23,8 @@
     NSMutableArray *selectedVideo;
     NSMutableArray *selectedImageURLs;
     NSMutableArray *selectedVideoURLs;
+    ALAssetsLibrary *al;
+    Loading *loadingView;
     
     
 }
@@ -55,10 +58,15 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+    loadingView = [[Loading alloc] init];
     
     [_collectionView registerClass:[LibraryCell class] forCellWithReuseIdentifier:@"cellIdentifier"];
+    [loadingView startCustomSpinner:self.view spinMessage:@""];
     [self loadLibrary];
-    // Do any additional setup after loading the view from its nib.
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    //[self loadLibrary];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -67,12 +75,13 @@
 }
 
 - (void)loadLibrary{
-    ALAssetsLibrary *al = [AppDelegate defaultAssetsLibrary];
+    al = [AppDelegate defaultAssetsLibrary];
     content = [[NSMutableArray alloc]init];
     [al enumerateGroupsWithTypes:ALAssetsGroupAll usingBlock:^(ALAssetsGroup *group, BOOL *stop) {
         if(group==nil){
             content = [[[content reverseObjectEnumerator]allObjects]mutableCopy ];
             [_collectionView reloadData];
+            [loadingView removeCustomSpinner];
         }
         [group enumerateAssetsUsingBlock:^(ALAsset *result, NSUInteger index, BOOL *stop) {
             if(result){
@@ -170,14 +179,32 @@
         cell.img.image=[UIImage imageNamed:@"uploadcamera.png"];
         return cell;
     }
-    if(position==1&&cameraPicked==YES){
-        cameraPicked=NO;
-    }
+    
     
     //Dohvacanje url-a i naziva slike iz polja medija
     ALAsset *asset =[content objectAtIndex:position-1];
     cell.img.image=[UIImage imageWithCGImage:[asset thumbnail]];
-    
+    if(position==1&&cameraPicked==YES){
+        cameraPicked=NO;
+        if ([[(ALAsset*)content[position-1] valueForProperty:ALAssetPropertyType] isEqual:@"ALAssetTypePhoto"]) {
+                if (selectedImage.count<5) {
+                    [selectedImage addObject:content[position-1]];
+                }else{
+                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[Localized string:@"photos_max_num_title"] message:[Localized string:@"photos_max_num"] delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                    [alert show];
+                }
+        }else{
+            if([selectedVideoURLs containsObject:[(ALAsset*)content[position-1] valueForProperty:ALAssetPropertyAssetURL]]){
+                if (selectedVideo.count<1) {
+                    [selectedVideo addObject:content[position-1]];
+                }else{
+                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[Localized string:@"photos_max_num_title"] message:[Localized string:@"photos_max_num"] delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                    [alert show];
+                }
+            }
+        }
+        [self setAssetsURLs];
+    }
     
     if([[asset valueForProperty:ALAssetPropertyType] isEqual:@"ALAssetTypePhoto"]){
         [cell.imgWatermark setHidden:YES];
@@ -268,36 +295,29 @@
 }
 
 #pragma mark Camera Action
-/*- (void) imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
+- (void) imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
     UIImage *image  =[info objectForKey:UIImagePickerControllerOriginalImage];
     cameraPicked=YES;
-    NSMutableArray *temp = [[NSMutableArray alloc] init];
-    
-    [temp addObject:@"0"];
-    for(NSString *pozicija in odabrano){
-        NSInteger poz = [pozicija intValue];
-        poz+=1;
-        [temp addObject:[NSString stringWithFormat:@"%li",(long)poz]];
-    }
-    odabrano=temp;
-    
+
+    //UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil);
     [self dismissViewControllerAnimated:YES completion:NULL];
-    
-    [al writeImageToSavedPhotosAlbum:slika.CGImage orientation:(ALAssetOrientation)slika.imageOrientation completionBlock:^(NSURL *assetURL, NSError *error) {
-        
-        timer = [NSTimer scheduledTimerWithTimeInterval:0.2 target:self selector:@selector(loadLibrary) userInfo:nil repeats:NO];
+    [loadingView startCustomSpinner:self.view spinMessage:@""];
+    [al writeImageToSavedPhotosAlbum:image.CGImage orientation:(ALAssetOrientation)image.imageOrientation completionBlock:^(NSURL *assetURL, NSError *error) {
+        [NSTimer scheduledTimerWithTimeInterval:0.2 target:self selector:@selector(loadLibrary) userInfo:nil repeats:NO];
     }];
     NSString *mediaType = [info objectForKey:UIImagePickerControllerMediaType];
     if([mediaType isEqualToString:@"public.movie"]){
         NSString *sourcePath = [[info objectForKey:@"UIImagePickerControllerMediaURL"]relativePath];
-        UISaveVideoAtPathToSavedPhotosAlbum(sourcePath, nil, @selector(finishVideoSaving:), nil);    }
+        UISaveVideoAtPathToSavedPhotosAlbum(sourcePath, nil, @selector(finishVideoSaving:), nil);
+    }
 }
 
+
 - (IBAction)finishVideoSaving:(id)sender{
-    timer = [NSTimer scheduledTimerWithTimeInterval:0.2 target:self selector:@selector(loadLibrary) userInfo:nil repeats:NO];
+    [NSTimer scheduledTimerWithTimeInterval:0.2 target:self selector:@selector(loadLibrary) userInfo:nil repeats:NO];
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
     [self dismissViewControllerAnimated:YES completion:NULL];
-}*/
+}
 @end

@@ -10,14 +10,22 @@
 #import "CreateNewsViewController.h"
 #import "UploadContainerViewController.h"
 #import "ContainerViewController.h"
-
+#import "Messages.h"
 #import "DummyViewController.h"
+#import "AppDelegate.h"
+#import "LoginViewController.h"
+#import "ColombioServiceCommunicator.h"
+#import "Tools.h"
 
-@interface HomeViewController ()
+@interface HomeViewController ()<ColombioServiceCommunicatorDelegate>
 
 @end
 
 @implementation HomeViewController
+
+- (UIStatusBarStyle)preferredStatusBarStyle{
+    return UIStatusBarStyleLightContent;
+}
 
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil{
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -29,6 +37,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    ColombioServiceCommunicator *colombioSC = [ColombioServiceCommunicator sharedManager];
+    colombioSC.delegate=self;
+    //[colombioSC fetchMedia];
+    [colombioSC fetchNewsDemands];
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -78,6 +90,65 @@
 
 - (void)btnCallClicked:(id)sender{
 
+}
+
+
+#pragma mark Test
+
+- (IBAction)btnLogOff:(id)sender{
+    NSString *result = [ColombioServiceCommunicator getSignedRequest];
+    ColombioServiceCommunicator *csc = [[ColombioServiceCommunicator alloc] init];
+    [csc sendAsyncHttp:[NSString stringWithFormat:@"%@/api_user_managment/mau_logout/", BASE_URL] httpBody:[NSString stringWithFormat:@"signed_req=%@",result]cache:NSURLRequestReloadIgnoringCacheData timeoutInterval:5];
+    [NSURLConnection sendAsynchronousRequest:csc.request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+    
+        if(error){
+            [Messages showErrorMsg:@"error_web_request"];
+        }
+        
+        //Request is successfuly sent
+        else{
+            dispatch_async(dispatch_get_main_queue(), ^{
+                AppDelegate *appdelegate = [[UIApplication sharedApplication] delegate];
+                [appdelegate.db clearTable:@"USER"];
+                [appdelegate.db clearTable:@"USER_CASHOUT"];
+                //[appdelegate.db clearTable:@"NEWSDEMANDLIST"];
+                [appdelegate.db clearTable:@"UPLOAD_DATA"];
+                //[appdelegate.db clearTable:@"MEDIA_LIST"];
+                //[appdelegate.db clearTable:@"SELECTED_MEDIA"];
+                //[appdelegate.db clearTable:@"COUNTRIES_LIST"];
+                //[appdelegate.db clearTable:@"SELECTED_COUNTRIES"];
+                appdelegate.window.rootViewController = [[LoginViewController alloc] init];
+                [appdelegate.window makeKeyAndVisible];
+            });
+            
+        }
+    }];
+    
+}
+
+#pragma mark CSC delegate
+- (void)didFetchMedia{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        ColombioServiceCommunicator *colombioSC = [ColombioServiceCommunicator sharedManager];
+        colombioSC.delegate=self;
+        [colombioSC fetchNewsDemands];
+    });
+    
+}
+
+- (void)didFetchNewsDemands:(NSDictionary *)result{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self setNewsDemandBadge];
+    });
+    
+}
+- (void)setNewsDemandBadge{
+    NSInteger count = [Tools getNumberOfNewDemands];
+    if (count>0) {
+        [[self.tabBarController.tabBar.items objectAtIndex:0] setBadgeValue:[NSString stringWithFormat:@"%d",count]];
+    }else{
+        [[self.tabBarController.tabBar.items objectAtIndex:0] setBadgeValue:nil];
+    }
 }
 
 

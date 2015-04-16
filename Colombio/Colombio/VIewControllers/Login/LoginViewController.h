@@ -13,8 +13,9 @@
 #import "ScrollableHeaderView.h"
 #import "CLTextField.h"
 #import "Loading.h"
+#import "ColombioServiceCommunicator.h"
 
-@interface LoginViewController : BackgroundViewController<UIScrollViewDelegate, UITextFieldDelegate>
+@interface LoginViewController : BackgroundViewController<UIScrollViewDelegate, UITextFieldDelegate, ColombioServiceCommunicatorDelegate>
 {
     NSTimer *timer;
     BOOL loginHidden;
@@ -34,6 +35,7 @@
 @property(weak, nonatomic) IBOutlet UIButton *btnGoogle;
 @property(weak, nonatomic) IBOutlet UIButton *btnEmail;
 @property(weak, nonatomic) IBOutlet UIButton *btnLogin;
+@property(weak, nonatomic) IBOutlet UILabel *lblRegister;
 
 @property(weak, nonatomic) IBOutlet UIView *viewLoginHolder;
 
@@ -50,6 +52,7 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *CS_buttonDistanceFromTop;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *CS_buttonDistanceFromBottom;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *CS_scrollableHeaderHeight;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *CS_lblRegisterWidth;
 
 
 - (IBAction)btnFBSelected:(id)sender;
@@ -59,8 +62,6 @@
 
 - (IBAction)setSign:(id)sender;
 - (IBAction)setForgot:(id)sender;
-- (IBAction)setPassword:(id)sender;
-- (IBAction)goAwayKeyboard:(id)sender;
 - (IBAction)tapBackground:(id)sender;
 
 @end

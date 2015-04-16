@@ -34,6 +34,8 @@
 		BBAE1F291A37B6980008B772 /* CreateAccViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBAE1F271A37B6980008B772 /* CreateAccViewController.m */; };
 		BBAE1F2D1A37B71B0008B772 /* BackgroundViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBAE1F2C1A37B71B0008B772 /* BackgroundViewController.m */; };
 		BBAF777B1A50C914004AAAF9 /* ScrollableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = BBAF777A1A50C914004AAAF9 /* ScrollableHeaderView.m */; };
+		BBAFB2B71ADDC9DA005F8762 /* TimeLineDetailsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BBAFB2B51ADDC9DA005F8762 /* TimeLineDetailsTableViewCell.m */; };
+		BBAFB2B81ADDC9DA005F8762 /* TimeLineDetailsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBAFB2B61ADDC9DA005F8762 /* TimeLineDetailsTableViewCell.xib */; };
 		BBB0BFA91A350F640074B20C /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBB0BFA81A350F640074B20C /* LoginViewController.xib */; };
 		BBB144841A78E66800980BB4 /* UserInfoUploadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB144821A78E66800980BB4 /* UserInfoUploadViewController.m */; };
 		BBB144851A78E66800980BB4 /* UserInfoUploadViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBB144831A78E66800980BB4 /* UserInfoUploadViewController.xib */; };
@@ -86,7 +88,15 @@
 		BBB7F32F1A60A6D30014909B /* ScrollableHeaderContentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBB7F32E1A60A6D30014909B /* ScrollableHeaderContentView.xib */; };
 		BBB7F3321A60B60E0014909B /* CustomHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB7F3311A60B60E0014909B /* CustomHeaderView.m */; };
 		BBB7F33A1A6209560014909B /* NewsData.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB7F3391A6209560014909B /* NewsData.m */; };
+		BBB964A91AC9F23100C1D37E /* Annotation.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB964A81AC9F23100C1D37E /* Annotation.m */; };
 		BBBA31CF1A70772E002ED12A /* ButtonTag.m in Sources */ = {isa = PBXBuildFile; fileRef = BBBA31CE1A70772E002ED12A /* ButtonTag.m */; };
+		BBBB045C1AC4B3F70023DD86 /* NewsDemandCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BBBB04521AC4B3F70023DD86 /* NewsDemandCell.m */; };
+		BBBB045D1AC4B3F70023DD86 /* NewsDemandCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBBB04531AC4B3F70023DD86 /* NewsDemandCell.xib */; };
+		BBBB04651AC4C5C60023DD86 /* NewsDemandViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBBB04631AC4C5C60023DD86 /* NewsDemandViewController.m */; };
+		BBBB04661AC4C5C60023DD86 /* NewsDemandViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBBB04641AC4C5C60023DD86 /* NewsDemandViewController.xib */; };
+		BBBB04691AC4E10B0023DD86 /* NewsDemandObject.m in Sources */ = {isa = PBXBuildFile; fileRef = BBBB04681AC4E10B0023DD86 /* NewsDemandObject.m */; };
+		BBBD6EBD1AD735C20006A57C /* TimeLineTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BBBD6EBB1AD735C20006A57C /* TimeLineTableViewCell.m */; };
+		BBBD6EBE1AD735C20006A57C /* TimeLineTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBBD6EBC1AD735C20006A57C /* TimeLineTableViewCell.xib */; };
 		BBBE0C561A6DB37C00EF5124 /* UploadContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBBE0C551A6DB37C00EF5124 /* UploadContainerViewController.m */; };
 		BBC77C691A6889610069FD9D /* PhotoLibraryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBC77C671A6889610069FD9D /* PhotoLibraryViewController.m */; };
 		BBC77C6A1A6889610069FD9D /* PhotoLibraryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBC77C681A6889610069FD9D /* PhotoLibraryViewController.xib */; };
@@ -105,6 +115,11 @@
 		BBD071571A69C79800C3E84E /* LibraryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BBD071561A69C79800C3E84E /* LibraryCell.m */; };
 		BBD453611A64914A0029CADD /* ContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBD4535F1A64914A0029CADD /* ContainerViewController.m */; };
 		BBD453621A64914A0029CADD /* ContainerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBD453601A64914A0029CADD /* ContainerViewController.xib */; };
+		BBE1725D1AC76337009517A7 /* NewsDemandDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBE1725B1AC76337009517A7 /* NewsDemandDetailsViewController.m */; };
+		BBE1725E1AC76337009517A7 /* NewsDemandDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBE1725C1AC76337009517A7 /* NewsDemandDetailsViewController.xib */; };
+		BBE172641AC89D29009517A7 /* NewsDemandContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBE172631AC89D29009517A7 /* NewsDemandContainerViewController.m */; };
+		BBE70E021ACF3C2400C203C3 /* TimelineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBE70E001ACF3C2400C203C3 /* TimelineViewController.m */; };
+		BBE70E031ACF3C2400C203C3 /* TimelineViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBE70E011ACF3C2400C203C3 /* TimelineViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -155,6 +170,9 @@
 		BBAE1F2C1A37B71B0008B772 /* BackgroundViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackgroundViewController.m; sourceTree = "<group>"; };
 		BBAF77791A50C914004AAAF9 /* ScrollableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollableHeaderView.h; sourceTree = "<group>"; };
 		BBAF777A1A50C914004AAAF9 /* ScrollableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollableHeaderView.m; sourceTree = "<group>"; };
+		BBAFB2B41ADDC9DA005F8762 /* TimeLineDetailsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeLineDetailsTableViewCell.h; sourceTree = "<group>"; };
+		BBAFB2B51ADDC9DA005F8762 /* TimeLineDetailsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeLineDetailsTableViewCell.m; sourceTree = "<group>"; };
+		BBAFB2B61ADDC9DA005F8762 /* TimeLineDetailsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimeLineDetailsTableViewCell.xib; sourceTree = "<group>"; };
 		BBB0BFA81A350F640074B20C /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
 		BBB144811A78E66800980BB4 /* UserInfoUploadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoUploadViewController.h; sourceTree = "<group>"; };
 		BBB144821A78E66800980BB4 /* UserInfoUploadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoUploadViewController.m; sourceTree = "<group>"; };
@@ -232,8 +250,21 @@
 		BBB7F3311A60B60E0014909B /* CustomHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomHeaderView.m; sourceTree = "<group>"; };
 		BBB7F3381A6209560014909B /* NewsData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsData.h; sourceTree = "<group>"; };
 		BBB7F3391A6209560014909B /* NewsData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsData.m; sourceTree = "<group>"; };
+		BBB964A71AC9F23100C1D37E /* Annotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Annotation.h; sourceTree = "<group>"; };
+		BBB964A81AC9F23100C1D37E /* Annotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Annotation.m; sourceTree = "<group>"; };
 		BBBA31CD1A70772E002ED12A /* ButtonTag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ButtonTag.h; sourceTree = "<group>"; };
 		BBBA31CE1A70772E002ED12A /* ButtonTag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ButtonTag.m; sourceTree = "<group>"; };
+		BBBB04511AC4B3F70023DD86 /* NewsDemandCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsDemandCell.h; sourceTree = "<group>"; };
+		BBBB04521AC4B3F70023DD86 /* NewsDemandCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsDemandCell.m; sourceTree = "<group>"; };
+		BBBB04531AC4B3F70023DD86 /* NewsDemandCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewsDemandCell.xib; sourceTree = "<group>"; };
+		BBBB04621AC4C5C60023DD86 /* NewsDemandViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsDemandViewController.h; sourceTree = "<group>"; };
+		BBBB04631AC4C5C60023DD86 /* NewsDemandViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsDemandViewController.m; sourceTree = "<group>"; };
+		BBBB04641AC4C5C60023DD86 /* NewsDemandViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewsDemandViewController.xib; sourceTree = "<group>"; };
+		BBBB04671AC4E10B0023DD86 /* NewsDemandObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsDemandObject.h; sourceTree = "<group>"; };
+		BBBB04681AC4E10B0023DD86 /* NewsDemandObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsDemandObject.m; sourceTree = "<group>"; };
+		BBBD6EBA1AD735C20006A57C /* TimeLineTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeLineTableViewCell.h; sourceTree = "<group>"; };
+		BBBD6EBB1AD735C20006A57C /* TimeLineTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeLineTableViewCell.m; sourceTree = "<group>"; };
+		BBBD6EBC1AD735C20006A57C /* TimeLineTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimeLineTableViewCell.xib; sourceTree = "<group>"; };
 		BBBE0C541A6DB37C00EF5124 /* UploadContainerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadContainerViewController.h; sourceTree = "<group>"; };
 		BBBE0C551A6DB37C00EF5124 /* UploadContainerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadContainerViewController.m; sourceTree = "<group>"; };
 		BBC77C661A6889610069FD9D /* PhotoLibraryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoLibraryViewController.h; sourceTree = "<group>"; };
@@ -269,6 +300,14 @@
 		BBD4535E1A64914A0029CADD /* ContainerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContainerViewController.h; sourceTree = "<group>"; };
 		BBD4535F1A64914A0029CADD /* ContainerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContainerViewController.m; sourceTree = "<group>"; };
 		BBD453601A64914A0029CADD /* ContainerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContainerViewController.xib; sourceTree = "<group>"; };
+		BBE1725A1AC76337009517A7 /* NewsDemandDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsDemandDetailsViewController.h; sourceTree = "<group>"; };
+		BBE1725B1AC76337009517A7 /* NewsDemandDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsDemandDetailsViewController.m; sourceTree = "<group>"; };
+		BBE1725C1AC76337009517A7 /* NewsDemandDetailsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewsDemandDetailsViewController.xib; sourceTree = "<group>"; };
+		BBE172621AC89D29009517A7 /* NewsDemandContainerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsDemandContainerViewController.h; sourceTree = "<group>"; };
+		BBE172631AC89D29009517A7 /* NewsDemandContainerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsDemandContainerViewController.m; sourceTree = "<group>"; };
+		BBE70DFF1ACF3C2400C203C3 /* TimelineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimelineViewController.h; sourceTree = "<group>"; };
+		BBE70E001ACF3C2400C203C3 /* TimelineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimelineViewController.m; sourceTree = "<group>"; };
+		BBE70E011ACF3C2400C203C3 /* TimelineViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimelineViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -497,6 +536,49 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		BBBB044B1AC4AF8C0023DD86 /* NewsTask */ = {
+			isa = PBXGroup;
+			children = (
+				BBBB044E1AC4B3F70023DD86 /* Model */,
+				BBBB04511AC4B3F70023DD86 /* NewsDemandCell.h */,
+				BBBB04521AC4B3F70023DD86 /* NewsDemandCell.m */,
+				BBBB04531AC4B3F70023DD86 /* NewsDemandCell.xib */,
+				BBBB04621AC4C5C60023DD86 /* NewsDemandViewController.h */,
+				BBBB04631AC4C5C60023DD86 /* NewsDemandViewController.m */,
+				BBBB04641AC4C5C60023DD86 /* NewsDemandViewController.xib */,
+				BBE1725A1AC76337009517A7 /* NewsDemandDetailsViewController.h */,
+				BBE1725B1AC76337009517A7 /* NewsDemandDetailsViewController.m */,
+				BBE1725C1AC76337009517A7 /* NewsDemandDetailsViewController.xib */,
+				BBE172621AC89D29009517A7 /* NewsDemandContainerViewController.h */,
+				BBE172631AC89D29009517A7 /* NewsDemandContainerViewController.m */,
+				BBB964A71AC9F23100C1D37E /* Annotation.h */,
+				BBB964A81AC9F23100C1D37E /* Annotation.m */,
+			);
+			path = NewsTask;
+			sourceTree = "<group>";
+		};
+		BBBB044E1AC4B3F70023DD86 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				BBBB04671AC4E10B0023DD86 /* NewsDemandObject.h */,
+				BBBB04681AC4E10B0023DD86 /* NewsDemandObject.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		BBBD6EB91AD7358E0006A57C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				BBBD6EBA1AD735C20006A57C /* TimeLineTableViewCell.h */,
+				BBBD6EBB1AD735C20006A57C /* TimeLineTableViewCell.m */,
+				BBBD6EBC1AD735C20006A57C /* TimeLineTableViewCell.xib */,
+				BBAFB2B41ADDC9DA005F8762 /* TimeLineDetailsTableViewCell.h */,
+				BBAFB2B51ADDC9DA005F8762 /* TimeLineDetailsTableViewCell.m */,
+				BBAFB2B61ADDC9DA005F8762 /* TimeLineDetailsTableViewCell.xib */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		BBCF58811A29357400CE64B4 /* CustomClasses */ = {
 			isa = PBXGroup;
 			children = (
@@ -563,7 +645,9 @@
 		BBCF58831A29357400CE64B4 /* VIewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				BBE70DFE1ACF3BC600C203C3 /* Timeline */,
 				BBD4535D1A64913E0029CADD /* ContainerViewController */,
+				BBBB044B1AC4AF8C0023DD86 /* NewsTask */,
 				58A004FA1A60DBE300E7BA68 /* Settings */,
 				BBB2B1351A5F52A500F4FD38 /* Upload */,
 				583572021A2B4B7400F6EA17 /* Login */,
@@ -625,6 +709,17 @@
 			path = ContainerViewController;
 			sourceTree = "<group>";
 		};
+		BBE70DFE1ACF3BC600C203C3 /* Timeline */ = {
+			isa = PBXGroup;
+			children = (
+				BBBD6EB91AD7358E0006A57C /* Views */,
+				BBE70DFF1ACF3C2400C203C3 /* TimelineViewController.h */,
+				BBE70E001ACF3C2400C203C3 /* TimelineViewController.m */,
+				BBE70E011ACF3C2400C203C3 /* TimelineViewController.xib */,
+			);
+			path = Timeline;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -683,9 +778,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BBBD6EBE1AD735C20006A57C /* TimeLineTableViewCell.xib in Resources */,
 				58ACA0051A530D5B0076D3D8 /* CreateAccViewController.xib in Resources */,
 				BB6EBE4D1A7474AD0066D7D7 /* MediaListViewController.xib in Resources */,
 				BBB144851A78E66800980BB4 /* UserInfoUploadViewController.xib in Resources */,
+				BBBB045D1AC4B3F70023DD86 /* NewsDemandCell.xib in Resources */,
 				BBB4EAEB1AAA6B010075717A /* SelectMediaCell.xib in Resources */,
 				BBB0BFA91A350F640074B20C /* LoginViewController.xib in Resources */,
 				BBB33ACE1A27D9EE008D0E26 /* Images.xcassets in Resources */,
@@ -693,6 +790,7 @@
 				BBCF58E61A293F6700CE64B4 /* Localizable.strings in Resources */,
 				BBAE1F251A37B68E0008B772 /* ForgotPasswordViewController.xib in Resources */,
 				BBB6A0641A48D791006F61B3 /* StartViewController.xib in Resources */,
+				BBE70E031ACF3C2400C203C3 /* TimelineViewController.xib in Resources */,
 				58ACA0031A4EE6B70076D3D8 /* HeaderView.xib in Resources */,
 				BBB2B12F1A5F37E200F4FD38 /* TabBarViewController.xib in Resources */,
 				BBAB600A1AAE5722000493E0 /* UserInfoViewController.xib in Resources */,
@@ -703,11 +801,14 @@
 				BBB7F32F1A60A6D30014909B /* ScrollableHeaderContentView.xib in Resources */,
 				BBB2B1341A5F404E00F4FD38 /* DummyViewController.xib in Resources */,
 				BBB604B81A7EFFB90090F18A /* UploadNewsViewController.xib in Resources */,
+				BBAFB2B81ADDC9DA005F8762 /* TimeLineDetailsTableViewCell.xib in Resources */,
+				BBBB04661AC4C5C60023DD86 /* NewsDemandViewController.xib in Resources */,
 				BBC77C6A1A6889610069FD9D /* PhotoLibraryViewController.xib in Resources */,
 				58A004FF1A60DBE300E7BA68 /* CountriesViewController.xib in Resources */,
 				582352C31A841E2900A03D19 /* GoogleLoginViewController.xib in Resources */,
 				BBD453621A64914A0029CADD /* ContainerViewController.xib in Resources */,
 				BBB5B47F1AABC73A00765861 /* SelectCountriesViewController.xib in Resources */,
+				BBE1725E1AC76337009517A7 /* NewsDemandDetailsViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -726,9 +827,11 @@
 				BBAB60091AAE5722000493E0 /* UserInfoViewController.m in Sources */,
 				BBB214151AA91D17009B43D2 /* LoginSettingsViewController.m in Sources */,
 				BBB6A0561A40E7D1006F61B3 /* VSSwitchButton.m in Sources */,
+				BBB964A91AC9F23100C1D37E /* Annotation.m in Sources */,
 				BBB2B1391A5F534F00F4FD38 /* CreateNewsViewController.m in Sources */,
 				BBAE1F241A37B68E0008B772 /* ForgotPasswordViewController.m in Sources */,
 				BBB79D1C1A5CABF8001A876A /* HomeViewController.m in Sources */,
+				BBBD6EBD1AD735C20006A57C /* TimeLineTableViewCell.m in Sources */,
 				BBAE1F291A37B6980008B772 /* CreateAccViewController.m in Sources */,
 				BBCF58921A2938B400CE64B4 /* CustomField.m in Sources */,
 				BBB2B1331A5F404E00F4FD38 /* DummyViewController.m in Sources */,
@@ -737,13 +840,16 @@
 				BBB2B12E1A5F37E200F4FD38 /* TabBarViewController.m in Sources */,
 				5835720B1A2B705100F6EA17 /* BottomNav.m in Sources */,
 				BBAE1F2D1A37B71B0008B772 /* BackgroundViewController.m in Sources */,
+				BBBB04691AC4E10B0023DD86 /* NewsDemandObject.m in Sources */,
 				BBB6A05B1A44D6B5006F61B3 /* CLTextField.m in Sources */,
 				BBB144841A78E66800980BB4 /* UserInfoUploadViewController.m in Sources */,
+				BBBB045C1AC4B3F70023DD86 /* NewsDemandCell.m in Sources */,
 				58A004FE1A60DBE300E7BA68 /* CountriesViewController.m in Sources */,
 				BBCF58A31A29395400CE64B4 /* YourInfo.m in Sources */,
 				BBAE1F1D1A37B51F0008B772 /* ColombioServiceCommunicator.m in Sources */,
 				583C9EBE1A6357FD00C6131C /* SettingsCollectionView.m in Sources */,
 				58ACA0021A4EE6B70076D3D8 /* HeaderView.m in Sources */,
+				BBE70E021ACF3C2400C203C3 /* TimelineViewController.m in Sources */,
 				BBB5B4831AABCA0E00765861 /* SelectCountryCell.m in Sources */,
 				BBC77C691A6889610069FD9D /* PhotoLibraryViewController.m in Sources */,
 				BB6EBE501A75A4BD0066D7D7 /* NewsMediaViewController.m in Sources */,
@@ -757,20 +863,24 @@
 				583C9EC21A63654500C6131C /* MediaViewController.m in Sources */,
 				5835720E1A2B70C000F6EA17 /* ScrollableHeader.m in Sources */,
 				BBB604B21A7AF4310090F18A /* UITextField+XibAttributes.m in Sources */,
+				BBE1725D1AC76337009517A7 /* NewsDemandDetailsViewController.m in Sources */,
 				BBCF58ED1A29401700CE64B4 /* Localized.m in Sources */,
 				BBCF58A11A29395400CE64B4 /* Reachability.m in Sources */,
 				BBB6A0631A48D791006F61B3 /* StartViewController.m in Sources */,
 				BBBA31CF1A70772E002ED12A /* ButtonTag.m in Sources */,
 				BBB33AC31A27D9EE008D0E26 /* main.m in Sources */,
 				582352C21A841E2900A03D19 /* GoogleLoginViewController.m in Sources */,
+				BBAFB2B71ADDC9DA005F8762 /* TimeLineDetailsTableViewCell.m in Sources */,
 				583572191A2B72BB00F6EA17 /* Tools.m in Sources */,
 				BBB7F3321A60B60E0014909B /* CustomHeaderView.m in Sources */,
+				BBBB04651AC4C5C60023DD86 /* NewsDemandViewController.m in Sources */,
 				BBCF58DC1A293DD200CE64B4 /* Database.m in Sources */,
 				BBCF58911A2938B400CE64B4 /* CountriesCell.m in Sources */,
 				BBB5B47E1AABC73A00765861 /* SelectCountriesViewController.m in Sources */,
 				BBD453611A64914A0029CADD /* ContainerViewController.m in Sources */,
 				BBCF58A01A29395400CE64B4 /* Messages.m in Sources */,
 				BBCF589F1A29395400CE64B4 /* CryptoClass.m in Sources */,
+				BBE172641AC89D29009517A7 /* NewsDemandContainerViewController.m in Sources */,
 				BBB56D451A71BE1F004D3B9A /* CLTextView.m in Sources */,
 				BBB4EAEA1AAA6B010075717A /* SelectMediaCell.m in Sources */,
 				BBCF58F51A2AA47F00CE64B4 /* UIView+XibAttributes.m in Sources */,

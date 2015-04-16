@@ -18,7 +18,6 @@
     IBOutlet UIImageView *imgNotSelected;
     IBOutlet UIImageView *imgWatermark;
     IBOutlet UIImageView *imgSelected;
-    IBOutlet UIImageView *watermark;
     IBOutlet UILabel *lblCellText;
 }
 @property (nonatomic, strong) IBOutlet UILabel *lblCellText;
@@ -26,7 +25,7 @@
 @property (nonatomic, strong) IBOutlet UIImageView *imgNotSelected;
 @property (nonatomic, strong) IBOutlet UIImageView *imgWatermark;
 @property (nonatomic, strong) IBOutlet UIImageView *imgSelected;
-@property (nonatomic, strong) IBOutlet UIImageView *watermark;
+
 
 - (void)hideWaterMark;
 

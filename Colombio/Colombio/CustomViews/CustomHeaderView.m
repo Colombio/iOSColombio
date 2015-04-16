@@ -28,13 +28,15 @@
 
 #pragma mark SetupLabel
 - (void)setHeaderTitle:(NSString *)headerTitle{
-    _lblTitle = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 200, 20)];
-    _lblTitle.center = CGPointMake(self.bounds.size.width/2, self.bounds.size.height/2);
+    _lblTitle = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 150, 20)];
+    _lblTitle.center = CGPointMake(self.bounds.size.width/2, self.bounds.size.height/2+10);
     _lblTitle.text = [Localized string:headerTitle];
     _lblTitle.textAlignment = NSTextAlignmentCenter;
+    _lblTitle.adjustsFontSizeToFitWidth = YES;
+    _lblTitle.minimumScaleFactor=0.5;
     _lblTitle.textColor = [[UIConfiguration sharedInstance] getColor:COLOR_TEXT_NAVIGATIONBAR_TITLE];
     _lblTitle.font = [[UIConfiguration sharedInstance] getFont:FONT_HELVETICA_NEUE_LIGHT];
-    _bottomBorder = [[UIView alloc]initWithFrame:CGRectMake(0, 42, 320, 2)];
+    _bottomBorder = [[UIView alloc]initWithFrame:CGRectMake(0, 62, 320, 2)];
     _bottomBorder.backgroundColor = [UIColor grayColor];
     _bottomBorder.alpha=0.3;
     [self addSubview:_lblTitle];
@@ -51,8 +53,8 @@
         [_btnBack setTitle:[Localized string:backButtonText]  forState:UIControlStateNormal];
         _btnBack.titleLabel.font = [[UIConfiguration sharedInstance] getFont:FONT_HELVETICA_NEUE_LIGHT];
         CGSize stringsize = [[Localized string:backButtonText] sizeWithFont:[[UIConfiguration sharedInstance] getFont:FONT_HELVETICA_NEUE_LIGHT]];
-        _btnBack.frame = CGRectMake(0, 0, stringsize.width, 20);
-        _btnBack.center = CGPointMake(0, self.bounds.size.height/2);
+        _btnBack.frame = CGRectMake(10, 12, stringsize.width, 20);
+        //_btnBack.center = CGPointMake(0, self.bounds.size.height/2);
     }else{
         [_btnBack addTarget:self action:@selector(btnAction:) forControlEvents:UIControlEventTouchUpInside];
         [_btnBack setBackgroundImage:[UIImage imageNamed:@"backgrey_normal"] forState:UIControlStateNormal];
@@ -72,8 +74,8 @@
         [_btnNext setTitle:[Localized string:nextButtonText] forState:UIControlStateNormal];
         _btnNext.titleLabel.font = [[UIConfiguration sharedInstance] getFont:FONT_HELVETICA_NEUE_LIGHT];
         CGSize stringsize = [[Localized string:nextButtonText] sizeWithFont:[[UIConfiguration sharedInstance] getFont:FONT_HELVETICA_NEUE_LIGHT]];
-        _btnNext.frame = CGRectMake(0, 0, stringsize.width, 20);
-        _btnNext.center = CGPointMake(self.bounds.size.width-stringsize.width-10, self.bounds.size.height/2);
+        _btnNext.frame = CGRectMake(self.bounds.size.width-stringsize.width-10, 12, stringsize.width, 20);
+        //_btnNext.center = CGPointMake(self.bounds.size.width-stringsize.width-10, self.bounds.size.height/2);
         [self addSubview:_btnNext];
     }
    

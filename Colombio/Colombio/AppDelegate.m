@@ -35,6 +35,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [self setDictionaries];
     [self applicationDocumentsDirectory];
     [self getLocation];
     self.db = [[Database alloc] init];
@@ -131,6 +132,7 @@
                         /*
                          Testing purposes
                          **/
+                        //self.window.rootViewController = [[LoginSettingsViewController alloc] initWithNibName:@"ContainerViewController" bundle:nil];
                         self.window.rootViewController = [[TabBarViewController alloc] init];
                         return;
                     }
@@ -154,6 +156,15 @@
     @catch(NSException *ex){
         
     }
+}
+
+- (void)setDictionaries{
+    _dicMediaTypes = @{@0:@"internet", @1:@"newspaper", @2:@"tv",@3:@"radio"};
+    _dicTimelineButt = @{@0:@"foto_video",
+                         @1:@"news",
+                         @2:@"story_tip",
+                         @3:@"community_news",
+                         @4:@"announced_event"};
 }
 
 + (ALAssetsLibrary *)defaultAssetsLibrary {

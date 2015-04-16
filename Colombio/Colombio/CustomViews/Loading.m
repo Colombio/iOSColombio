@@ -82,11 +82,11 @@
  */
 - (void)startCustomSpinner:(UIView *)view spinMessage:(NSString*)strMessage{
     viewParent=view;
-    viewDimmed = [[UIView alloc] initWithFrame:CGRectMake(0, 0, viewParent.frame.size.width, viewParent.frame.size.height+500)];
-    imgSpinner = [[UIImageView alloc]initWithFrame:CGRectMake(viewParent.frame.size.width/2-30, viewParent.frame.size.height-150, 60, 60)];
+    viewDimmed = [[UIView alloc] initWithFrame:CGRectMake(0, 0, viewParent.frame.size.width, viewParent.frame.size.height)];
+    imgSpinner = [[UIImageView alloc]initWithFrame:CGRectMake(viewParent.frame.size.width/2-30, viewParent.frame.size.height-200, 60, 60)];
     viewDimmed.backgroundColor = [UIColor clearColor];
     imgSpinner.alpha=0;
-    imgStatus = [[UIImageView alloc]initWithFrame:CGRectMake(15, 15, 30, 30)];
+    imgStatus = [[UIImageView alloc]initWithFrame:CGRectMake(20, 20, 20, 20)];
     imgStatus.alpha=0;
     [imgSpinner addSubview:imgStatus];
     lblInfo = [[UILabel alloc]initWithFrame:CGRectMake(-50, 40, 200, 80)];

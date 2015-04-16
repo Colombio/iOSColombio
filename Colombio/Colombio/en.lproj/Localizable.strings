@@ -6,8 +6,21 @@
   Copyright (c) 2014 Colombio. All rights reserved.
 */
 
+/*media types*/
+"internet" = "Internet";
+"newspaper" = "Newspaper";
+"tv" = "TV";
+"radio" = "Radio";
+
+/*timeline_butt*/
+"foto_video" = "Photo/video";
+"news" = "News";
+"story_tip" = "Story tip";
+"community_news" = "Community news";
+"announced_event" = "Announced event";
+
 /*start*/
-"start_button" = "Start";
+"start_button" = "START";
 "start_message" = "Before you start sharing your news with the world, create your account or sign in, choose country, choose media and enter your info.";
 
 "create_account" = "Create account";
@@ -37,6 +50,8 @@
 
 /*Common*/
 "wait" = "Please wait...";
+"yes" = "Yes";
+"no" = "No";
 
 /*error message global*/
 "error_web_request" = "Error sending request";
@@ -56,17 +71,24 @@
 
 "google_token_error" = "Google account information error";
 
+"check_email" = "Check your email.";
+"pass_sent" = "Password sent.";
+
 /*Settings*/
 "select_country" = "SELECT COUNTRY";
 "select_media" = "SELECT MEDIA";
 "search_media" = "Search media type";
+"search_country" = "Search countries";
 "your_info" = "YOUR INFO";
 "connect_paypay" = "Connect PayPal";
 "paypal_email" = "PayPal Email";
+"sending_news_as" = "Sending news as";
 "info_anonymous_on" = "Anonymous ON";
 "info_anonymous_off" = "Anonymous OFF";
 "info_paypal_on" = "PayPal ON";
 "info_paypal_off" = "PayPal OFF";
+"error_choose_one_country" ="Select at least one country";
+"error_choose_one_media" = "Select at least one media";
 
 /*Home*/
 "btn_takephoto" = "TAKE PHOTO OR VIDEO";
@@ -90,6 +112,7 @@
 "media_may_or_not" = "*Media may or may not publish your news.";
 "media_only_one" = "*Only one media can buy your news";
 "be_signed" = "Be signed as an author";
+"contact_me" = "Contact me";
 "anonymous_sending" = "Anonymous sending";
 "name_price" = "Name your price (max $%@)*";
 "name_and_surname" = "Name and surname";
@@ -97,6 +120,7 @@
 "surname" = "Surname";
 "phone_number" = "Phone number";
 "did_you_know" = "DID YOU KNOW?";
+"do_you_really_want_to_exit" = "Do you really want to exit? Your news will be deleted.";
 
 "error_fill_fields" = "Please fill fields marked in red";
 "error_missing_images" = "Please choose at least one image or video";
@@ -106,3 +130,16 @@
 "send_failed" = "Sending failed. Please wait…";
 /*Spinner message*/
 "logged" ="Logged in, please wait...";
+
+/*News Task*/
+"reward" = "Reward";
+"date" = "DATE";
+
+/*TimeLine**/
+"sent" = "Sent";
+
+/*Header*/
+"header_next" = "NEXT";
+"header_use" = "USE";
+"header_save" = "SAVE";
+"header_send" = "SEND";
