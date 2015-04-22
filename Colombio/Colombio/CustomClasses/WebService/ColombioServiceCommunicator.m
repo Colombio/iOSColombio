@@ -223,8 +223,35 @@
 
 - (void)fetchMedia{
     NSString *lastTimestamp = ([[NSUserDefaults standardUserDefaults] stringForKey:MEDIA_TIMESTAMP]!=nil?[[NSUserDefaults standardUserDefaults] stringForKey:MEDIA_TIMESTAMP]:@"0");
-    [self sendAsyncHttp:[NSString stringWithFormat:@"%@/api_config/get_media/", BASE_URL] httpBody:[NSString stringWithFormat:@"sync_time=%@",lastTimestamp]cache:NSURLRequestReloadIgnoringCacheData timeoutInterval:TIMEOUT];
-    [NSURLConnection sendAsynchronousRequest:self.request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+    
+    AppDelegate *appdelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
+    NSMutableArray *countries = [appdelegate.db getAllForSQL:@"select c_id from selected_countries where status = 1"];
+    NSMutableArray *selectedCountriesID = [[NSMutableArray alloc] init];
+    [selectedCountriesID addObject:@([[NSUserDefaults standardUserDefaults] integerForKey:COUNTRY_ID])];
+    if (countries.count>0) {
+        for(NSDictionary *tDict in countries){
+            [selectedCountriesID addObject:tDict[@"c_id"]];
+        }
+    }
+    NSString *url_str;
+    NSURL *url;
+    if([[NSUserDefaults standardUserDefaults] integerForKey:COUNTRY_ID]!=0){
+        NSData *jsonDataMedia = [NSJSONSerialization dataWithJSONObject:selectedCountriesID options:kNilOptions error:nil];
+        NSString *selCountries = [[NSString alloc]initWithData:jsonDataMedia encoding:NSUTF8StringEncoding];
+        url_str = [NSString stringWithFormat:@"%@/api_config/get_media?sync_time=%ld&cid=%@", BASE_URL, (long)lastTimestamp, selCountries];
+        url = [NSURL URLWithString:url_str];
+    }else{
+        url_str = [NSString stringWithFormat:@"%@/api_config/get_media?sync_time=%ld", BASE_URL, (long)lastTimestamp];
+        url = [NSURL URLWithString:url_str];
+    }
+    
+    NSMutableURLRequest *req =[NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:TIMEOUT];
+    /*if (_selectedCountries.count>0) {
+     [request setHTTPBody:[selCountries dataUsingEncoding:NSUTF8StringEncoding]];
+     }*/
+    [req setHTTPMethod:@"GET"];
+    
+    [NSURLConnection sendAsynchronousRequest:req queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{
             if(error==nil&&data!=nil){
                 Boolean isDataChanged=true;

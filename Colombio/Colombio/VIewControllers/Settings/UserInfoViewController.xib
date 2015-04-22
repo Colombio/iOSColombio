@@ -21,6 +21,8 @@
                 <outlet property="lblAnonymous" destination="DL0-XQ-gQz" id="CgJ-ln-cus"/>
                 <outlet property="lblConnectPayPal" destination="jWB-bO-GqE" id="Po0-U1-pff"/>
                 <outlet property="scrollView" destination="ucU-hw-Ul3" id="FFV-NI-eHr"/>
+                <outlet property="swToggleAnonymoys" destination="esd-Jr-n9W" id="GgS-iU-dnD"/>
+                <outlet property="swTogglePayPal" destination="Bgc-n8-isY" id="xdG-yg-ZEE"/>
                 <outlet property="txtName" destination="ZJG-0a-wxH" id="Z6I-6w-oFm"/>
                 <outlet property="txtPayPalEmail" destination="TE4-PS-1GX" id="WNf-mz-MeY"/>
                 <outlet property="txtSurname" destination="JIX-Ym-Dt0" id="qP5-d2-nrh"/>
@@ -58,7 +60,7 @@
                                                         <userDefinedRuntimeAttribute type="string" keyPath="configText" value="anonymous_sending"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hpe-7x-u2K" customClass="VSSwitchButton">
+                                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hpe-7x-u2K" customClass="VSSwitchButton">
                                                     <rect key="frame" x="243" y="0.0" width="46" height="30"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="46" id="UkN-1w-2dQ"/>
@@ -87,11 +89,20 @@
                                                         <action selector="btnInfo:" destination="-1" eventType="touchUpInside" id="tmd-k9-Wlg"/>
                                                     </connections>
                                                 </button>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="esd-Jr-n9W">
+                                                    <rect key="frame" x="240" y="0.0" width="51" height="31"/>
+                                                    <color key="onTintColor" red="0.7725490196" green="0.27058823529999998" blue="0.1647058824" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <connections>
+                                                        <action selector="btnAction:" destination="-1" eventType="valueChanged" id="pZP-8P-1By"/>
+                                                    </connections>
+                                                </switch>
                                             </subviews>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <constraints>
                                                 <constraint firstAttribute="bottom" secondItem="Hpe-7x-u2K" secondAttribute="bottom" id="6sM-J9-8HL"/>
                                                 <constraint firstItem="Hpe-7x-u2K" firstAttribute="top" secondItem="4V9-3B-mQo" secondAttribute="top" id="90s-s1-wCa"/>
+                                                <constraint firstAttribute="trailing" secondItem="esd-Jr-n9W" secondAttribute="trailing" constant="11" id="Bk4-e1-Rf2"/>
+                                                <constraint firstItem="esd-Jr-n9W" firstAttribute="top" secondItem="4V9-3B-mQo" secondAttribute="top" id="LW2-ul-jkk"/>
                                                 <constraint firstItem="DL0-XQ-gQz" firstAttribute="leading" secondItem="4V9-3B-mQo" secondAttribute="leading" constant="5" id="P35-e0-NRh"/>
                                                 <constraint firstItem="sxo-jP-3wJ" firstAttribute="leading" secondItem="DL0-XQ-gQz" secondAttribute="trailing" constant="3" id="SaH-5W-v73"/>
                                                 <constraint firstAttribute="trailing" secondItem="Hpe-7x-u2K" secondAttribute="trailing" constant="11" id="bKf-rZ-TBl"/>
@@ -99,6 +110,7 @@
                                                 <constraint firstAttribute="bottom" secondItem="DL0-XQ-gQz" secondAttribute="bottom" constant="5" id="rQ6-0n-0At"/>
                                                 <constraint firstItem="sxo-jP-3wJ" firstAttribute="top" secondItem="4V9-3B-mQo" secondAttribute="top" constant="7" id="tiQ-m3-dx4"/>
                                                 <constraint firstAttribute="bottom" secondItem="sxo-jP-3wJ" secondAttribute="bottom" constant="8" id="vPo-Me-awU"/>
+                                                <constraint firstAttribute="bottom" secondItem="esd-Jr-n9W" secondAttribute="bottom" constant="-1" id="wgl-HE-5Sr"/>
                                             </constraints>
                                         </view>
                                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZJG-0a-wxH" userLabel="Name ">
@@ -165,8 +177,15 @@
                                             <rect key="frame" x="0.0" y="0.0" width="300" height="30"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w9t-47-hSv" userLabel="View - PayPal">
-                                                    <rect key="frame" x="0.0" y="8" width="300" height="30"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="300" height="30"/>
                                                     <subviews>
+                                                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Bgc-n8-isY">
+                                                            <rect key="frame" x="240" y="0.0" width="51" height="31"/>
+                                                            <color key="onTintColor" red="0.7725490196" green="0.27058823529999998" blue="0.1647058824" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <connections>
+                                                                <action selector="btnAction:" destination="-1" eventType="valueChanged" id="sCr-sS-EjX"/>
+                                                            </connections>
+                                                        </switch>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jWB-bO-GqE">
                                                             <rect key="frame" x="5" y="4" width="140" height="21"/>
                                                             <constraints>
@@ -193,7 +212,7 @@
                                                                 <action selector="btnInfo:" destination="-1" eventType="touchUpInside" id="w0f-QT-OgW"/>
                                                             </connections>
                                                         </button>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qlI-3Q-Nvv" customClass="VSSwitchButton">
+                                                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qlI-3Q-Nvv" customClass="VSSwitchButton">
                                                             <rect key="frame" x="243" y="0.0" width="46" height="30"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="46" id="V8Z-2S-f7U"/>
@@ -213,10 +232,13 @@
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
                                                         <constraint firstAttribute="bottom" secondItem="qlI-3Q-Nvv" secondAttribute="bottom" id="8fB-nQ-jqp"/>
+                                                        <constraint firstAttribute="trailing" secondItem="Bgc-n8-isY" secondAttribute="trailing" constant="11" id="LnQ-hd-07r"/>
                                                         <constraint firstAttribute="trailing" secondItem="qlI-3Q-Nvv" secondAttribute="trailing" constant="11" id="SAZ-s1-5FH"/>
                                                         <constraint firstItem="uhp-Jv-xOh" firstAttribute="top" secondItem="w9t-47-hSv" secondAttribute="top" constant="7" id="W0F-uH-znB"/>
                                                         <constraint firstItem="uhp-Jv-xOh" firstAttribute="leading" secondItem="jWB-bO-GqE" secondAttribute="trailing" constant="3" id="WfM-x4-qDd"/>
+                                                        <constraint firstAttribute="bottom" secondItem="Bgc-n8-isY" secondAttribute="bottom" constant="-1" id="Wik-M6-24U"/>
                                                         <constraint firstAttribute="bottom" secondItem="jWB-bO-GqE" secondAttribute="bottom" constant="5" id="XgY-cH-EqO"/>
+                                                        <constraint firstItem="Bgc-n8-isY" firstAttribute="top" secondItem="w9t-47-hSv" secondAttribute="top" id="mNT-qP-W4T"/>
                                                         <constraint firstItem="jWB-bO-GqE" firstAttribute="leading" secondItem="w9t-47-hSv" secondAttribute="leading" constant="5" id="mi3-cp-s1c"/>
                                                         <constraint firstItem="jWB-bO-GqE" firstAttribute="top" secondItem="w9t-47-hSv" secondAttribute="top" constant="4" id="plc-dS-AR8"/>
                                                         <constraint firstItem="qlI-3Q-Nvv" firstAttribute="top" secondItem="w9t-47-hSv" secondAttribute="top" id="tzn-Ut-1mG"/>
@@ -245,7 +267,7 @@
                                                 <constraint firstItem="TE4-PS-1GX" firstAttribute="leading" secondItem="h6R-Ph-7vq" secondAttribute="leading" constant="5" id="DRH-Tl-1S4"/>
                                                 <constraint firstAttribute="trailing" secondItem="w9t-47-hSv" secondAttribute="trailing" id="Uvs-Fo-fNo"/>
                                                 <constraint firstItem="TE4-PS-1GX" firstAttribute="top" secondItem="w9t-47-hSv" secondAttribute="bottom" constant="-6" id="aYd-Vl-h4V"/>
-                                                <constraint firstItem="w9t-47-hSv" firstAttribute="top" secondItem="h6R-Ph-7vq" secondAttribute="top" constant="8" id="b8I-uf-cPA"/>
+                                                <constraint firstItem="w9t-47-hSv" firstAttribute="top" secondItem="h6R-Ph-7vq" secondAttribute="top" id="b8I-uf-cPA"/>
                                                 <constraint firstItem="w9t-47-hSv" firstAttribute="leading" secondItem="h6R-Ph-7vq" secondAttribute="leading" id="bAd-0i-NPm"/>
                                                 <constraint firstAttribute="trailing" secondItem="TE4-PS-1GX" secondAttribute="trailing" constant="5" id="rtP-uK-BLy"/>
                                             </constraints>

@@ -18,6 +18,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *txtName;
 @property (weak, nonatomic) IBOutlet UITextField *txtSurname;
 @property (weak, nonatomic) IBOutlet VSSwitchButton *btnToggleAnonymous;
+@property (weak, nonatomic) IBOutlet UISwitch *swToggleAnonymoys;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *CS_AnonynmousHolderHeight;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *CS_NameHeight;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *CS_SurnameHeight;
@@ -25,6 +26,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *btnAnonymousInfo;
 
 @property (weak, nonatomic) IBOutlet VSSwitchButton *btnTogglePayPal;
+@property (weak, nonatomic) IBOutlet UISwitch *swTogglePayPal;
 @property (weak, nonatomic) IBOutlet UIButton *btnPayPalInfo;
 @property (weak, nonatomic) IBOutlet UILabel *lblConnectPayPal;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *CS_lblConnectPayPalWidth;
@@ -32,7 +34,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *txtPayPalEmail;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *CS_PayPalEmailHeight;
 
-- (IBAction)btnAction:(VSSwitchButton*)sender;
+- (IBAction)btnAction:(UISwitch*)sender;
 - (IBAction)btnInfo:(UIButton*)sender;
 - (BOOL)validateFields;
 @end

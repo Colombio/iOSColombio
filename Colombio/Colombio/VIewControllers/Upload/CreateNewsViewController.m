@@ -90,7 +90,7 @@ CGFloat const kImagePadding = 1.0;
         [_viewImageHolder addSubview:thumbnail];
         
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-        btn.frame = CGRectMake(thumbnail.frame.size.width-44, thumbnail.frame.origin.y+22, 22, 22);
+        btn.frame = CGRectMake(thumbnail.frame.size.width-49, thumbnail.frame.origin.y+5, 44, 44);
         [btn setBackgroundImage:[UIImage imageNamed:@"close_normal"] forState:UIControlStateNormal];
         [btn setBackgroundImage:[UIImage imageNamed:@"close_pressed"] forState:UIControlStateHighlighted];
         [btn addTarget:self action:@selector(removeImage:) forControlEvents:UIControlEventTouchUpInside];

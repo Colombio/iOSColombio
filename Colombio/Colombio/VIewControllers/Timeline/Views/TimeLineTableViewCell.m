@@ -20,7 +20,7 @@
         self = [nib objectAtIndex:0];
         _profileImage.layer.cornerRadius=_profileImage.frame.size.width/2;
         _profileImage.layer.masksToBounds=YES;
-        _txtDescription.contentInset = UIEdgeInsetsMake(-8, 0, -4, -4);
+        _txtDescription.contentInset = UIEdgeInsetsMake(-4, 0, -4, -4);
         _txtDescription.userInteractionEnabled = NO;
     }
     return self;

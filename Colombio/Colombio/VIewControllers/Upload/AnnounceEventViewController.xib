@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6751" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AnnounceEventViewController">
+            <connections>
+                <outlet property="CS_tagsHolderHeight" destination="RIh-jI-bYX" id="KBq-Wf-wFD"/>
+                <outlet property="CS_txtDescriptionHeight" destination="OcA-mM-ugR" id="Kqb-b6-WYT"/>
+                <outlet property="CS_txtTitleHeight" destination="u36-Fx-CCk" id="8hC-bk-yKu"/>
+                <outlet property="pkrDate" destination="pRC-zg-2Ri" id="9jJ-Dg-nZl"/>
+                <outlet property="scrollView" destination="sW1-PQ-YRM" id="Fpx-Jp-wvs"/>
+                <outlet property="txtDescription" destination="bfa-MX-d9c" id="FZO-uB-2Oy"/>
+                <outlet property="txtTitle" destination="k3b-tw-Cn8" id="iNJ-4e-yDx"/>
+                <outlet property="view" destination="mcH-0E-VR3" id="3Zi-5k-aN7"/>
+                <outlet property="viewTagsHolder" destination="lO5-2W-dgn" id="9v2-TC-Ef1"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="mcH-0E-VR3">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sW1-PQ-YRM">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VI0-9J-Mtd">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="387"/>
+                            <subviews>
+                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k3b-tw-Cn8" customClass="CLTextView">
+                                    <rect key="frame" x="20" y="15" width="280" height="45"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="45" id="u36-Fx-CCk"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="no" spellCheckingType="no" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="news_title_placeholder"/>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="placeholderColor" value="COLOR_PLACEHOLDER_NEWS_TITLE"/>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="configTextColor" value="COLOR_TEXT_NEWS_TITLE"/>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="configTextFont" value="FONT_HELVETICA_NEUE_MEDIUM_19"/>
+                                    </userDefinedRuntimeAttributes>
+                                    <connections>
+                                        <outlet property="delegate" destination="-1" id="NIq-7P-1iP"/>
+                                        <outlet property="textViewDelegate" destination="-1" id="Vss-Ih-8sx"/>
+                                    </connections>
+                                </textView>
+                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bfa-MX-d9c" customClass="CLTextView">
+                                    <rect key="frame" x="20" y="60" width="280" height="120"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="120" id="OcA-mM-ugR"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="no" spellCheckingType="no"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="news_description_placeholder"/>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="placeholderColor" value="COLOR_TEXT_NAVIGATIONBAR_BUTTON"/>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="configTextColor" value="COLOR_TEXT_NAVIGATIONBAR_BUTTON"/>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="configTextFont" value="FONT_HELVETICA_NEUE_MEDIUM"/>
+                                    </userDefinedRuntimeAttributes>
+                                    <connections>
+                                        <outlet property="delegate" destination="-1" id="I2l-fV-Hx2"/>
+                                        <outlet property="textViewDelegate" destination="-1" id="o2Y-7D-JYN"/>
+                                    </connections>
+                                </textView>
+                                <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="pRC-zg-2Ri">
+                                    <rect key="frame" x="0.0" y="190" width="320" height="162"/>
+                                    <date key="date" timeIntervalSinceReferenceDate="451432377.55677497">
+                                        <!--2015-04-22 21:52:57 +0000-->
+                                    </date>
+                                </datePicker>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lO5-2W-dgn">
+                                    <rect key="frame" x="20" y="357" width="280" height="1"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="1" id="RIh-jI-bYX"/>
+                                    </constraints>
+                                </view>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstItem="pRC-zg-2Ri" firstAttribute="leading" secondItem="VI0-9J-Mtd" secondAttribute="leading" id="00m-kg-Unp"/>
+                                <constraint firstItem="lO5-2W-dgn" firstAttribute="top" secondItem="pRC-zg-2Ri" secondAttribute="bottom" constant="5" id="36S-df-jD8"/>
+                                <constraint firstAttribute="trailing" secondItem="pRC-zg-2Ri" secondAttribute="trailing" id="3NK-Xe-sme"/>
+                                <constraint firstItem="pRC-zg-2Ri" firstAttribute="top" secondItem="bfa-MX-d9c" secondAttribute="bottom" constant="10" id="G6C-vp-eS3"/>
+                                <constraint firstItem="lO5-2W-dgn" firstAttribute="leading" secondItem="VI0-9J-Mtd" secondAttribute="leading" constant="20" id="Hfq-QC-kbN"/>
+                                <constraint firstAttribute="trailing" secondItem="k3b-tw-Cn8" secondAttribute="trailing" constant="20" id="fO3-Dt-6mA"/>
+                                <constraint firstItem="k3b-tw-Cn8" firstAttribute="leading" secondItem="VI0-9J-Mtd" secondAttribute="leading" constant="20" id="jzg-cW-Txa"/>
+                                <constraint firstItem="bfa-MX-d9c" firstAttribute="leading" secondItem="VI0-9J-Mtd" secondAttribute="leading" constant="20" id="kiK-BR-It0"/>
+                                <constraint firstItem="bfa-MX-d9c" firstAttribute="top" secondItem="k3b-tw-Cn8" secondAttribute="bottom" id="mIv-R0-W7z"/>
+                                <constraint firstAttribute="bottom" secondItem="lO5-2W-dgn" secondAttribute="bottom" constant="29" id="onB-rK-wts"/>
+                                <constraint firstAttribute="trailing" secondItem="lO5-2W-dgn" secondAttribute="trailing" constant="20" id="sD4-lp-gJh"/>
+                                <constraint firstAttribute="trailing" secondItem="bfa-MX-d9c" secondAttribute="trailing" constant="20" id="sLE-pC-BsN"/>
+                                <constraint firstItem="k3b-tw-Cn8" firstAttribute="top" secondItem="VI0-9J-Mtd" secondAttribute="top" constant="15" id="uIw-Zu-ZVF"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="VI0-9J-Mtd" secondAttribute="bottom" id="1yp-d1-1Sp"/>
+                        <constraint firstItem="VI0-9J-Mtd" firstAttribute="top" secondItem="sW1-PQ-YRM" secondAttribute="top" id="JPf-cB-3uG"/>
+                        <constraint firstItem="VI0-9J-Mtd" firstAttribute="width" secondItem="sW1-PQ-YRM" secondAttribute="width" id="SES-if-t6A"/>
+                        <constraint firstAttribute="trailing" secondItem="VI0-9J-Mtd" secondAttribute="trailing" id="s31-yk-Moi"/>
+                        <constraint firstItem="VI0-9J-Mtd" firstAttribute="leading" secondItem="sW1-PQ-YRM" secondAttribute="leading" id="uDo-la-MUi"/>
+                    </constraints>
+                </scrollView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="sW1-PQ-YRM" secondAttribute="trailing" id="3Be-7D-RkO"/>
+                <constraint firstItem="sW1-PQ-YRM" firstAttribute="top" secondItem="mcH-0E-VR3" secondAttribute="top" id="YMo-v3-Fif"/>
+                <constraint firstAttribute="bottom" secondItem="sW1-PQ-YRM" secondAttribute="bottom" id="dRr-fh-cxN"/>
+                <constraint firstItem="sW1-PQ-YRM" firstAttribute="leading" secondItem="mcH-0E-VR3" secondAttribute="leading" id="iEG-XU-1e4"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+        </view>
+    </objects>
+</document>

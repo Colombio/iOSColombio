@@ -13,14 +13,16 @@
 
 @property (assign, nonatomic) BOOL isNewsDemand;
 @property (assign, nonatomic) BOOL picExists;
+@property (strong, nonatomic) NSString *newsTaskPrice;
 @end
 
 @implementation UserInfoUploadViewController
 
-- (instancetype)initWithDemand:(BOOL)isNewsDemand{
+- (instancetype)initWithDemand:(BOOL)isNewsDemand withPrice:(NSString*)price{
     self = [super init];
     if (self) {
         _isNewsDemand=isNewsDemand;
+        _newsTaskPrice = price;
         self.title = [Localized string:@"send_news"];
         [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(pictureExists:) name:@"DoestThePictureExist" object:nil];
     }
@@ -38,10 +40,10 @@
     _txtContactMe.inputAccessoryView = [self keyboardToolbarFor:_txtContactMe action:@selector(resignFirstResponder)];
     _txtPrice.inputAccessoryView = [self keyboardToolbarFor:_txtPrice action:@selector(resignFirstResponder)];
     
-    _be_credited=YES;
+    _be_credited=NO;
     if (_isNewsDemand) {
-        _btnTogglePrice.hidden=YES;
-        _lblPrice.text = [NSString stringWithFormat:[Localized string:@"media_price_offer"],_price];
+        _swTogglePrice.hidden=YES;
+        _lblPrice.text = [NSString stringWithFormat:[Localized string:@"media_price_offer"],_newsTaskPrice];
         _lblDisclamer.text = [Localized string:@"media_may_or_not"];
     }else{
         //_txtPrice.placeholder = [NSString stringWithFormat:[Localized string:@"name_price"], maxPrice];
@@ -49,13 +51,14 @@
         _lblDisclamer.text = [Localized string:@"media_only_one"];
     }
     [self setFieldValues];
+    [self switchLogic];
     // Do any additional setup after loading the view from its nib.
 }
 
 - (void)viewWillAppear:(BOOL)animated{
     if(!_isNewsDemand){
         if (_picExists) {
-            _CS_PriceHolderHeight.constant = 60.0;
+            _CS_PriceHolderHeight.constant = 65.0;
             _viewH1.hidden=NO;
             _viewPriceHolder.hidden=NO;
         }else{
@@ -67,7 +70,7 @@
 }
 
 - (void)setTextFields{
-    AppDelegate *appdelegate = [[UIApplication sharedApplication] delegate];
+    AppDelegate *appdelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     [appdelegate.db getRowForSQL:@"SELECT first_name, last_name, phone_number FROM user"];
 }
 
@@ -76,53 +79,67 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark setup;
-- (void)setBeCrediteImage{
-    if (!_be_credited) {
-        _imgSigned.image = [UIImage imageNamed:@"selected"];
-        _be_credited=YES;
+- (void)switchLogic{
+    if (_swToggleAnonymous.isOn) {
+        _swToggleBeSigned.enabled=NO;
+        _swToggleContactMe.enabled=NO;
     }else{
-        _be_credited=NO;
-        _imgSigned.image=nil;
+        _swToggleBeSigned.enabled=YES;
+        _swToggleContactMe.enabled=YES;
     }
+    
+    if (_swToggleBeSigned.isOn || _swToggleContactMe.isOn) {
+        _swToggleAnonymous.enabled=NO;
+    }else{
+        _swToggleAnonymous.enabled=YES;
+    }
+    
 }
 
+#pragma mark setup;
+
 - (void)setFieldValues{
-    AppDelegate *appdelegate = [[UIApplication sharedApplication] delegate];
+    AppDelegate *appdelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     NSDictionary *tDict = [appdelegate.db getRowForSQL:@"Select * from user"];
     
     if (tDict) {
         _txtName.text = tDict[@"first_name"];
         _txtSurname.text = tDict[@"last_name"];
         _txtContactMe.text = tDict[@"phone_number"];
-        _btnToggleAnonymous.isON = [tDict[@"anonymoys"] boolValue];
+        [_swToggleAnonymous setOn:[tDict[@"anonymous"] boolValue]];
+        if (!_swToggleAnonymous.isOn) {
+            _CS_NameHeight.constant +=30;
+            _CS_PhoneNumHeight.constant +=30;
+            _CS_AnonynmousHolderHeight.constant +=60;
+            [self.view layoutIfNeeded];
+        }
     }
 }
 
 #pragma mark Button Action
-- (void)btnAction:(VSSwitchButton*)sender{
-    if (sender==_btnTogglePrice) {
+- (void)btnAction:(UISwitch*)sender{
+    if (sender==_swTogglePrice) {
         [self.view layoutIfNeeded];
-        if(sender.isON){
+        if(sender.isOn){
             //_CS_NameYourPriceHeight.constant +=30;
-            _CS_PriceHolderHeight.constant -=30;
-            _lblDisclamer.hidden=YES;
-        }else{
-            //_CS_NameYourPriceHeight.constant -=30;
             _CS_PriceHolderHeight.constant +=30;
             _lblDisclamer.hidden=NO;
+        }else{
+            //_CS_NameYourPriceHeight.constant -=30;
+            _CS_PriceHolderHeight.constant -=30;
+            _lblDisclamer.hidden=YES;
         }
         [UIView animateWithDuration:0.5
                          animations:^{
                              [self.view layoutIfNeeded];
                          }];
-        [UIView transitionWithView:_lblDisclamer
+        /*[UIView transitionWithView:_lblDisclamer
                           duration:0.5
                            options:UIViewAnimationOptionAllowAnimatedContent
                         animations:NULL
-                        completion:NULL];
-    }else if (sender==_btnToggleAnonymous){
-        if(sender.isON){
+                        completion:NULL];*/
+    }else if (sender==_swToggleAnonymous){
+        if(!sender.isOn){
             _CS_NameHeight.constant +=30;
             _CS_PhoneNumHeight.constant +=30;
             _CS_AnonynmousHolderHeight.constant +=60;
@@ -130,28 +147,37 @@
             _CS_NameHeight.constant -=30;
             _CS_PhoneNumHeight.constant -=30;
             _CS_AnonynmousHolderHeight.constant -=60;
+            if (_txtName.isFirstResponder) {
+                [_txtName resignFirstResponder];
+            }
+            if (_txtSurname.isFirstResponder) {
+                [_txtSurname resignFirstResponder];
+            }
         }
         [UIView animateWithDuration:0.5
                          animations:^{
                              [self.view layoutIfNeeded];
                          }];
-    }else if (sender==_btnToggleContactMe){
-        if(sender.isON){
+    }else if (sender==_swToggleContactMe){
+        if(sender.isOn){
             _CS_ContactMePhoneHeight.constant +=30;
             _CS_ContactMeHeight.constant +=30;
         }else{
             _CS_ContactMePhoneHeight.constant -=30;
             _CS_ContactMeHeight.constant -=30;
+            if (_txtContactMe.isFirstResponder) {
+                [_txtContactMe resignFirstResponder];
+            }
+            
         }
         [UIView animateWithDuration:0.5
                          animations:^{
                              [self.view layoutIfNeeded];
                          }];
+    }else if (sender==_swToggleBeSigned){
+        _be_credited = _swToggleBeSigned.isOn;
     }
-}
-
-- (void)btnBeCredited:(id)sender{
-    [self setBeCrediteImage];
+    [self switchLogic];
 }
 
 #pragma mark TextField
@@ -210,7 +236,7 @@
             dataOK=NO;
         }
     }*/
-    if (_btnToggleAnonymous.isON) {
+    if (_swToggleAnonymous.isOn) {
         if (_txtName.text.length==0) {
             _txtName.attributedPlaceholder = [[NSAttributedString alloc] initWithString:_txtName.placeholder attributes:@{NSForegroundColorAttributeName:[UIColor redColor]}];
             dataOK=NO;
@@ -224,7 +250,7 @@
          dataOK=NO;
          }*/
     }
-    if (_btnToggleContactMe.isON) {
+    if (_swToggleContactMe.isOn) {
         if (_txtContactMe.text.length==0) {
             _txtContactMe.attributedPlaceholder = [[NSAttributedString alloc] initWithString:_txtContactMe.placeholder attributes:@{NSForegroundColorAttributeName:[UIColor redColor]}];
             dataOK=NO;
@@ -236,7 +262,7 @@
 #pragma mark GetDB Data
 
 - (void)setDBData{
-    AppDelegate *appdelegate = [[UIApplication sharedApplication] delegate];
+    AppDelegate *appdelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     NSString *sql = @"select * from user";
     
     NSMutableDictionary *dict = [appdelegate.db getRowForSQL:sql];

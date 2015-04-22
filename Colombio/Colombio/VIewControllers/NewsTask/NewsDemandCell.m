@@ -20,7 +20,7 @@
         self = [nib objectAtIndex:0];
         _imgMediaLogo.layer.cornerRadius=_imgMediaLogo.frame.size.width/2;
         _imgMediaLogo.layer.masksToBounds=YES;
-        _lblDescription.contentInset = UIEdgeInsetsMake(-8, -4, -4, -4);
+        _lblDescription.contentInset = UIEdgeInsetsMake(-4, -4, -4, -4);
         _lblDescription.userInteractionEnabled = NO;
     }
     return self;

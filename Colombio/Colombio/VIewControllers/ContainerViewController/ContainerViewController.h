@@ -18,8 +18,10 @@
 @property (strong, nonatomic) UIButton *btnBack;
 @property (assign, nonatomic) BOOL isSingleTitle;
 @property (strong, nonatomic) NSString *lastNextBtnText;
+@property (assign, nonatomic) BOOL progressBarAnimation;
 
 
 //- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil andControllers:(NSArray*)controllers;
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil focusOnControllerIndex:(NSInteger)index withSingleTitle:(BOOL)singleTitle;
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil focusOnControllerIndex:(NSInteger)index withSingleTitle:(BOOL)singleTitle andProgressBarAnimation:(BOOL)progress;
 @end

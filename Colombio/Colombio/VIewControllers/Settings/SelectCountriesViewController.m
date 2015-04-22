@@ -44,15 +44,6 @@
     spinner = [[Loading alloc] init];
     [self loadCountries];
     
-    UISwipeGestureRecognizer *mSwipeUpRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self.tblView action:@selector(doSomething)];
-    
-    [mSwipeUpRecognizer setDirection:(UISwipeGestureRecognizerDirectionLeft | UISwipeGestureRecognizerDirectionRight)];
-    
-    [self.tblView addGestureRecognizer:mSwipeUpRecognizer];
-}
-
-- (void)doSomething{
-
 }
 
 - (void)didReceiveMemoryWarning {
@@ -75,7 +66,19 @@
         cell=[[SelectCountryCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
     }
     cell.lblCountry.text = _countries[indexPath.row][@"c_name"];
-    cell.imgFlag.image = [UIImage imageNamed:_filteredCountries[indexPath.row][@"c_name"]];
+    dispatch_queue_t concurrentQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_async(concurrentQueue, ^{
+        NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://colomb.io/img/country_icons_128/%@.png", _filteredCountries[indexPath.row][@"abbr"]]];
+        UIImage *image = [[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:url]];
+        if (image!=nil) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                cell.imgFlag.image = image;
+                cell.imgFlag.contentMode = UIViewContentModeScaleAspectFill;
+                cell.imgFlag.clipsToBounds=YES;
+            });
+        }
+    });
+    //cell.imgFlag.image = [UIImage imageNamed:_filteredCountries[indexPath.row][@"c_name"]];
     if ([_selectedCountries containsObject:_filteredCountries[indexPath.row][@"id"]]) {
         cell.imgSelected.hidden = NO;
         cell.imgFlag.alpha = 1;
@@ -121,12 +124,11 @@
 #pragma mark Load Countries
 - (void)loadCountries{
     [spinner startCustomSpinner:self.view spinMessage:@""];
-    NSString *lastTimestamp = ([[NSUserDefaults standardUserDefaults] stringForKey:COUNTRIES_TIMESTAMP]!=nil?[[NSUserDefaults standardUserDefaults] stringForKey:COUNTRIES_TIMESTAMP]:@"0");
-    
-    ColombioServiceCommunicator *csc = [[ColombioServiceCommunicator alloc] init];
-    [csc sendAsyncHttp:[NSString stringWithFormat:@"%@/api_config/get_sys_countries/", BASE_URL] httpBody:[NSString stringWithFormat:@"sync_time=%@",lastTimestamp]cache:NSURLRequestReloadIgnoringCacheData timeoutInterval:50];
-    
-    [NSURLConnection sendAsynchronousRequest:csc.request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+    NSInteger lastTimestamp = ([[NSUserDefaults standardUserDefaults] stringForKey:COUNTRIES_TIMESTAMP]!=nil?[[NSUserDefaults standardUserDefaults] integerForKey:COUNTRIES_TIMESTAMP]:0);
+    lastTimestamp=0;
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/api_config/get_sys_countries?sync_time=%ld", BASE_URL, lastTimestamp]];
+    NSMutableURLRequest *request =[NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:TIMEOUT];
+    [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{
             //If data from server is successfuly fetched
             if(error==nil&&data!=nil){
@@ -173,7 +175,12 @@
         [[NSUserDefaults standardUserDefaults] setObject:changeTimestamp forKey:COUNTRIES_TIMESTAMP];
         [[NSUserDefaults standardUserDefaults] synchronize];
         for(NSDictionary *tDict in dataWsResponse[@"data"]){
-            [appdelegate.db insertDictionaryWithoutColumnCheck:tDict forTable:@"COUNTRIES_LIST"];
+            NSString *sql = [NSString stringWithFormat:@"SELECT count(*) FROM countries_list WHERE c_id = '%d'", [tDict[@"c_id"] intValue]];
+            if ([[appdelegate.db getColForSQL:sql] integerValue] == 0) {
+                [appdelegate.db insertDictionaryWithoutColumnCheck:tDict forTable:@"COUNTRIES_LIST"];
+            }else{
+                [appdelegate.db updateDictionary:tDict forTable:@"COUNTRIES_LIST" where:[NSString stringWithFormat:@" c_id='%d'", [tDict[@"c_id"] intValue]]];
+            }
         }
     }
     NSString *sql = @"SELECT cl.c_id as c_id, abbr, c_name, lang_id, ifnull(sc.status, 0) as status FROM countries_list cl LEFT OUTER JOIN selected_countries sc on sc.c_id = cl.c_id";
@@ -187,8 +194,10 @@
     }
     [[NSUserDefaults standardUserDefaults] setObject:@(_countryId) forKey:COUNTRY_ID];
     [[NSUserDefaults standardUserDefaults] synchronize];
-    [_tblView reloadData];
-    [spinner removeCustomSpinner];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [_tblView reloadData];
+        [spinner removeCustomSpinner];
+    });
 }
 
 - (NSInteger)getCountryId{

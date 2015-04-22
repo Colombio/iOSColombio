@@ -17,7 +17,7 @@
 "news" = "News";
 "story_tip" = "Story tip";
 "community_news" = "Community news";
-"announced_event" = "Announced event";
+"announce_event" = "Announce event";
 
 /*start*/
 "start_button" = "START";
@@ -89,10 +89,11 @@
 "info_paypal_off" = "PayPal OFF";
 "error_choose_one_country" ="Select at least one country";
 "error_choose_one_media" = "Select at least one media";
-
+"select_media_favorites" = "FAVORITES";
+"select_media_othermedia" = "OTHER MEDIA";
 /*Home*/
 "btn_takephoto" = "TAKE PHOTO OR VIDEO";
-"btn_sendnews" = "SEND NEWS";
+"btn_sendnews" = "SEND OPTIONS";
 "btn_alert" = "ALERT MEDIA";
 "btn_community" = "COMMUNITY NEWS";
 "btn_announce" = "ANNOUNCE EVENT";
@@ -120,7 +121,9 @@
 "surname" = "Surname";
 "phone_number" = "Phone number";
 "did_you_know" = "DID YOU KNOW?";
+"use_colombio" = "USE COLOMBIO";
 "do_you_really_want_to_exit" = "Do you really want to exit? Your news will be deleted.";
+"user_colombio_for" = "• for sending story tips to journalists \n• when you whitness something that should be published \n• when you record exclusive photo/video \n• if you want to announce an event";
 
 "error_fill_fields" = "Please fill fields marked in red";
 "error_missing_images" = "Please choose at least one image or video";
@@ -134,6 +137,7 @@
 /*News Task*/
 "reward" = "Reward";
 "date" = "DATE";
+"until" = "UNTIL";
 
 /*TimeLine**/
 "sent" = "Sent";

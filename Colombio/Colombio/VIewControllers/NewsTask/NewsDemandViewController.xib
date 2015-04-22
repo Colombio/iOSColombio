@@ -18,15 +18,16 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aRe-ac-DIe" customClass="CustomHeaderView">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
+                    <rect key="frame" x="0.0" y="20" width="320" height="44"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="64" id="1yk-Uj-LQo"/>
+                        <constraint firstAttribute="height" constant="44" id="1yk-Uj-LQo"/>
                     </constraints>
                 </view>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="165" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="OBq-xy-j5M">
                     <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <inset key="separatorInset" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="DcY-iU-tnR"/>
                         <outlet property="delegate" destination="-1" id="Ijy-9v-AiV"/>
@@ -36,7 +37,7 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="aRe-ac-DIe" secondAttribute="trailing" id="0sv-Ft-LDA"/>
-                <constraint firstItem="aRe-ac-DIe" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="53W-qt-tnP"/>
+                <constraint firstItem="aRe-ac-DIe" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="20" id="53W-qt-tnP"/>
                 <constraint firstItem="aRe-ac-DIe" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="CvY-IU-Q7v"/>
                 <constraint firstAttribute="bottom" secondItem="OBq-xy-j5M" secondAttribute="bottom" constant="49" id="XiV-rv-bOu"/>
                 <constraint firstItem="OBq-xy-j5M" firstAttribute="top" secondItem="aRe-ac-DIe" secondAttribute="bottom" id="eMr-od-lro"/>

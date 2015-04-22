@@ -44,8 +44,8 @@
     
     //Adding custom header
     HeaderView *headerView = [HeaderView initHeader:@"COLOMBIO" nextHidden:YES previousHidden:NO activeVC:self headerFrame:headerViewHolder.frame];
-    [headerView.btnBack setBackgroundImage:[UIImage imageNamed:@"backgrey_normal"] forState:UIControlStateNormal];
-    [headerView.btnBack setBackgroundImage:[UIImage imageNamed:@"backgrey_pressed"] forState:UIControlStateHighlighted];
+    [headerView.btnBack setBackgroundImage:[UIImage imageNamed:@"backwhite_normal"] forState:UIControlStateNormal];
+    [headerView.btnBack setBackgroundImage:[UIImage imageNamed:@"backwhite_pressed"] forState:UIControlStateHighlighted];
     [headerViewHolder addSubview:headerView];
     
     //If tapped anywhere on the scrollbox, keyboard is hidden
@@ -122,12 +122,14 @@
  */
 - (void)sendPassword{
     strEmail =txtEmail.txtField.text;
+    NSString *url_str;
+    NSURL *url;
+    url_str = [NSString stringWithFormat:@"%@/api_user_managment/mau_pass_recovery?user_email=%@", BASE_URL, strEmail];
+    url = [NSURL URLWithString:url_str];
+    NSMutableURLRequest *req =[NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:TIMEOUT];
+    [req setHTTPMethod:@"GET"];
     
-    ColombioServiceCommunicator *csc = [[ColombioServiceCommunicator alloc] init];
-    
-    [csc sendAsyncHttp:[NSString stringWithFormat:@"%@/api_user_managment/mau_pass_recovery/", BASE_URL] httpBody:[NSString stringWithFormat:@"user_email=%@",strEmail]cache:NSURLRequestReloadIgnoringCacheData timeoutInterval:5];
-    
-    [NSURLConnection sendAsynchronousRequest:csc.request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+    [NSURLConnection sendAsynchronousRequest:req queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
         
         dispatch_async(dispatch_get_main_queue(), ^{
             Boolean isWrongInput = false;
@@ -143,6 +145,7 @@
                 [Messages showErrorMsg:@"error_web_request"];
                 [loadingView stopCustomSpinner];
                 [loadingView customSpinnerFail];
+                [btnSend setTitle:[Localized string:@"forgot_password"] forState:UIControlStateNormal];
             }
             
             //Request sent successfuly, check response

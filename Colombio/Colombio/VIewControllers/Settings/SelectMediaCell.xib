@@ -23,58 +23,58 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="opn-1O-gKD">
-                        <rect key="frame" x="56" y="8" width="199" height="21"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                        <nil key="highlightedColor"/>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="string" keyPath="configTextFont" value="FONT_HELVETICA_NEUE_LIGHT"/>
-                            <userDefinedRuntimeAttribute type="string" keyPath="configTextColor" value="COLOR_TEXT_NAVIGATIONBAR_BUTTON"/>
-                        </userDefinedRuntimeAttributes>
-                    </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q8A-Tn-Z7y">
-                        <rect key="frame" x="56" y="29" width="199" height="21"/>
+                        <rect key="frame" x="56" y="8" width="224" height="21"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="21" id="FDk-52-1sZ"/>
+                            <constraint firstAttribute="height" constant="21" id="0ys-kj-TZh"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                         <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="string" keyPath="configTextFont" value="FONT_HELVETICA_NEUE_LIGHT_SMALL"/>
-                            <userDefinedRuntimeAttribute type="string" keyPath="configTextColor" value="COLOR_TEXT_NAVIGATIONBAR_BUTTON"/>
+                            <userDefinedRuntimeAttribute type="string" keyPath="configTextFont" value="FONT_HELVETICA_NEUE_LIGHT"/>
+                        </userDefinedRuntimeAttributes>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q8A-Tn-Z7y">
+                        <rect key="frame" x="56" y="29" width="224" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="FDk-52-1sZ"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="10"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="string" keyPath="configTextColor" value="COLOR_TEXT_NEWS_TITLE"/>
                         </userDefinedRuntimeAttributes>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="SOB-zo-4LF">
                         <constraints>
                             <constraint firstAttribute="height" id="YVV-wE-TuD"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="15"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                         <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="string" keyPath="configTextFont" value="FONT_HELVETICA_NEUE_LIGHT_SMALL"/>
-                            <userDefinedRuntimeAttribute type="string" keyPath="configTextColor" value="COLOR_TEXT_NAVIGATIONBAR_BUTTON"/>
+                            <userDefinedRuntimeAttribute type="string" keyPath="configTextFont" value="FONT_HELVETICA_NEUE_LIGHT_SMALL_15"/>
+                            <userDefinedRuntimeAttribute type="string" keyPath="configTextColor" value="COLOR_TEXT_NEWS_TITLE"/>
                         </userDefinedRuntimeAttributes>
                     </label>
                     <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="selected" translatesAutoresizingMaskIntoConstraints="NO" id="vm2-oe-5lc">
-                        <rect key="frame" x="266" y="8" width="44" height="44"/>
+                        <rect key="frame" x="280" y="22" width="15" height="15"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="44" id="eVH-Pu-G3C"/>
-                            <constraint firstAttribute="height" constant="44" id="svf-7J-pte"/>
+                            <constraint firstAttribute="width" constant="15" id="eVH-Pu-G3C"/>
+                            <constraint firstAttribute="height" constant="15" id="svf-7J-pte"/>
                         </constraints>
                     </imageView>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="SOB-zo-4LF" firstAttribute="top" secondItem="Q8A-Tn-Z7y" secondAttribute="bottom" id="Er3-hv-Xaf"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="vm2-oe-5lc" secondAttribute="trailing" constant="2" id="FYL-36-jjj"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="vm2-oe-5lc" secondAttribute="trailing" constant="17" id="FYL-36-jjj"/>
                     <constraint firstItem="Q8A-Tn-Z7y" firstAttribute="top" secondItem="opn-1O-gKD" secondAttribute="bottom" id="Fha-WS-25Y"/>
                     <constraint firstItem="s2W-kb-Iq3" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="TNA-jR-WYD"/>
-                    <constraint firstItem="vm2-oe-5lc" firstAttribute="leading" secondItem="Q8A-Tn-Z7y" secondAttribute="trailing" constant="11" id="VVy-b7-L0H"/>
-                    <constraint firstItem="vm2-oe-5lc" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="aNN-uu-gDO"/>
+                    <constraint firstItem="vm2-oe-5lc" firstAttribute="leading" secondItem="Q8A-Tn-Z7y" secondAttribute="trailing" id="VVy-b7-L0H"/>
+                    <constraint firstItem="vm2-oe-5lc" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="14" id="aNN-uu-gDO"/>
                     <constraint firstAttribute="trailingMargin" secondItem="SOB-zo-4LF" secondAttribute="trailing" constant="2" id="dUW-Nq-cQt"/>
                     <constraint firstItem="s2W-kb-Iq3" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="7" id="diy-2G-veG"/>
-                    <constraint firstItem="vm2-oe-5lc" firstAttribute="leading" secondItem="opn-1O-gKD" secondAttribute="trailing" constant="11" id="dkr-vl-y2P"/>
+                    <constraint firstItem="vm2-oe-5lc" firstAttribute="leading" secondItem="opn-1O-gKD" secondAttribute="trailing" id="dkr-vl-y2P"/>
                     <constraint firstItem="Q8A-Tn-Z7y" firstAttribute="leading" secondItem="s2W-kb-Iq3" secondAttribute="trailing" constant="18" id="icS-Hz-lz4"/>
                     <constraint firstItem="opn-1O-gKD" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="mzb-tq-Wlg"/>
                     <constraint firstItem="SOB-zo-4LF" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="2" id="o6l-rp-1vV"/>
@@ -94,6 +94,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="selected" width="44" height="44"/>
+        <image name="selected" width="24" height="18"/>
     </resources>
 </document>

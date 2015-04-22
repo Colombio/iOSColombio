@@ -28,7 +28,7 @@
     [super viewDidLoad];
     
     _newsDemandArray = [[NSMutableArray alloc] init];
-    
+    self.tblView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
    
 }
 
@@ -73,10 +73,10 @@
     }else{
         cell.imgUnread.hidden=YES;
     }
-    AppDelegate *appdelegate = [[UIApplication sharedApplication] delegate];
+    AppDelegate *appdelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     NSDictionary *mediaInfo = [self getMediaInfo:newsDemand.media_id];
     cell.lblRewardAmount.text = [NSString stringWithFormat:@"$%@", newsDemand.cost];
-    cell.lblMediaName.text = mediaInfo[@"name"];
+    cell.lblMediaName.text = [mediaInfo[@"name"] uppercaseString];
     newsDemand.mediaName = mediaInfo[@"name"];
     cell.lblMediaType.text = appdelegate.dicMediaTypes[mediaInfo[@"media_type"]];
     cell.lblNewsTitle.text = newsDemand.title;
@@ -87,11 +87,11 @@
     
     NSDateFormatter *formatter=[[NSDateFormatter alloc]init];
     [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss Z"];
-    NSDate *date = [formatter dateFromString:newsDemand.start_timestamp];
+    //NSDate *date = [formatter dateFromString:newsDemand.start_timestamp];
     NSDate *endDate = [formatter dateFromString:newsDemand.end_timestamp];
     [formatter setDateFormat:@"dd/MM/yyyy"];
     //[formatter setDateStyle:NSDateFormatterMediumStyle];
-    cell.lblDate.text = [NSString stringWithFormat:@"%@ - %@",[formatter stringFromDate:date], [formatter stringFromDate:endDate]];
+    cell.lblDate.text = [NSString stringWithFormat:@"%@ %@",[Localized string:@"until"], [formatter stringFromDate:endDate]];
     //NSInteger daysLeft = [_Tools daysDifferenceBetween:[_Tools getDateFromString:newsDemand.start_timestamp] And:[_Tools getDateFromString:newsDemand.end_timestamp]];
     dispatch_queue_t concurrentQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     dispatch_async(concurrentQueue, ^{
@@ -141,7 +141,7 @@
 }
 
 - (NSDictionary*)getMediaInfo:(int)mediaID{
-    AppDelegate *appdelegate = [[UIApplication sharedApplication] delegate];
+    AppDelegate *appdelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     NSString *sql = [NSString stringWithFormat:@"SELECT * FROM media_list where id = %d", mediaID];
     NSArray *result = [appdelegate.db getAllForSQL:sql];
     if (result.count==0) {
@@ -160,8 +160,9 @@
 - (void)getNewsDeamandList{
     [_newsDemandArray removeAllObjects];
     NSMutableString *sql = [[NSMutableString alloc] init];
-    [sql appendFormat:@"SELECT * FROM newsdemandlist WHERE end_timestamp >= '%@'",[NSDate date]];
-    AppDelegate *appdelegate = [[UIApplication sharedApplication] delegate];
+    //[sql appendFormat:@"SELECT * FROM newsdemandlist WHERE end_timestamp >= '%@'",[NSDate date]];
+    [sql appendFormat:@"SELECT * FROM newsdemandlist"];
+    AppDelegate *appdelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     NSMutableArray *tArray = [appdelegate.db getAllForSQL:sql];
     for(NSDictionary *tDict in tArray){
         NewsDemandObject *newsDemand = [[NewsDemandObject alloc] init];

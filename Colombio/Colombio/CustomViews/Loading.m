@@ -100,7 +100,7 @@
         [viewParent addSubview:viewDimmed];
         viewDimmed.alpha=0.6;
         imgSpinner.alpha=1;
-        viewDimmed.backgroundColor = [UIColor blackColor];
+        viewDimmed.backgroundColor = [UIColor clearColor];
         imgSpinner.image = [UIImage imageNamed:@"loading"];
         [viewParent addSubview:imgSpinner];
         [self spinLoading];

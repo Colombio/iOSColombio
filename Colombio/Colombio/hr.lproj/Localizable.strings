@@ -17,7 +17,7 @@
 "news" = "Novost";
 "story_tip" = "Predložena priča";
 "community_news" = "Vijest zajednice";
-"announced_event" = "Najavljeni događaj";
+"announce_event" = "Najavi događaj";
 
 /*start*/
 "start_button" = "START";
@@ -90,10 +90,11 @@
 "info_paypal_off" = "PayPal OFF";
 "error_choose_one_country" ="Odaberi barem jednu državu";
 "error_choose_one_media" = "Odaberi barem jedan medij";
-
+"select_media_favorites" = "OMILJENI MEDIJI";
+"select_media_othermedia" = "DRUGI MEDIJI";
 /*Home*/
 "btn_takephoto" = "TAKE PHOTO OR VIDEO";
-"btn_sendnews" = "SEND NEWS";
+"btn_sendnews" = "SEND OPTIONS";
 "btn_alert" = "ALERT MEDIA";
 "btn_community" = "COMMUNITY NEWS";
 "btn_announce" = "ANNOUNCE EVENT";
@@ -121,7 +122,9 @@
 "surname" = "Prezime";
 "phone_number" = "Broj telefona";
 "did_you_know" = "DA LI STE ZNALI?";
+"use_colombio" = "USE COLOMBIO";
 "do_you_really_want_to_exit" = "Da li stvarno želite izaći? Svi podaci će biti izbrisani";
+"user_colombio_for" = "• for sending story tips to journalists \n• when you whitness something that should be published \n• when you record exclusive photo/video \n• if you want to announce an event";
 
 "error_fill_fields" = "Molimo ispunite polja označena crvenom bojom";
 "error_missing_images" = "Molimo odaberite barem jednu sliku ili video";
@@ -135,6 +138,7 @@
 /*News Task*/
 "reward" = "Nagrada";
 "date" = "DATUM";
+"until" = "DO";
 
 /*TimeLine**/
 "sent" = "Sent";

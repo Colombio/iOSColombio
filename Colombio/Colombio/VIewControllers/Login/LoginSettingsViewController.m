@@ -23,6 +23,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         super.isSingleTitle=YES;
+        super.progressBarAnimation=YES;
         countriesVC = [[SelectCountriesViewController alloc] init];
         mediaVC = [[SelectMediaViewController alloc] initForNewsUpload:NO];
         userInfoVC = [[UserInfoViewController alloc] init];
@@ -31,7 +32,7 @@
         super.imgNextBtnNormal = [UIImage imageNamed:@"save_normal"];
         super.imgNextBtnPressed = [UIImage imageNamed:@"save_pressed"];
         super.viewControllersArray = array;
-        
+        super.lastNextBtnText = [Localized string:@"header_save"];
         
     }
     return  self;
@@ -121,7 +122,7 @@
 }
 
 - (NSDictionary*)getUserInfo{
-    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     return (NSDictionary*)[appDelegate.db getRowForSQL:@"SELECT * from USER"];
 }
 
@@ -155,13 +156,14 @@
 }
 
 - (void)updateUserData{
-    AppDelegate *appdelegate = [[UIApplication sharedApplication] delegate];
+    AppDelegate *appdelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
-    dict[@"anonymous"] = @(userInfoVC.btnToggleAnonymous.isON);
-    dict[@"first_name"] = !userInfoVC.btnToggleAnonymous.isON?userInfoVC.txtName.text:@"";
-    dict[@"last_name"] = !userInfoVC.btnToggleAnonymous.isON?userInfoVC.txtSurname.text:@"";
-    dict[@"paypal_email"] = userInfoVC.btnTogglePayPal.isON?userInfoVC.txtPayPalEmail.text:@"";
+    dict[@"anonymous"] = @(userInfoVC.swToggleAnonymoys.isOn);
+    dict[@"first_name"] = !userInfoVC.swToggleAnonymoys.isOn?userInfoVC.txtName.text:@"";
+    dict[@"last_name"] = !userInfoVC.swToggleAnonymoys.isOn?userInfoVC.txtSurname.text:@"";
+    dict[@"paypal_email"] = userInfoVC.swTogglePayPal.isOn?userInfoVC.txtPayPalEmail.text:@"";
     [appdelegate.db updateDictionary:dict forTable:@"USER" where:NULL];
     
 }
+
 @end

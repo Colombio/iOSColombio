@@ -40,6 +40,8 @@
         colorMap[COLOR_PLACEHOLDER_TXT_FIELD] = [UIColor colorWithRed:74.0/255.0 green:74.0/255.0 blue:74.0/255.0 alpha:0.5];
         colorMap[COLOR_NEWS_DEMAND_DESCRIPTION] = [UIColor colorWithRed:128.0/255.0 green:128.0/255.0 blue:128.0/255.0 alpha:1.0];
         colorMap[COLOR_NEWS_DEMAND_LIGHT_GRAY] = [UIColor colorWithRed:22.0/255.0 green:22.0/255.0 blue:22.0/255.0 alpha:0.3];
+        colorMap[COLOR_NEXT_BUTTON] = [UIColor colorWithRed:228.0/255.0 green:67.0/255.0 blue:36.0/255.0 alpha:1.0];
+        colorMap[COLOR_NEXT_BUTTON_SELECTED] = [UIColor colorWithRed:228.0/255.0 green:67.0/255.0 blue:36.0/255.0 alpha:0.3];
         
         
         fontMap = [[NSMutableDictionary alloc] init];
@@ -47,13 +49,18 @@
         fontMap[FONT_HELVETICA_NEUE_REGULAR_SMALL]          = [UIFont fontWithName:@"HelveticaNeue" size:14];
         fontMap[FONT_HELVETICA_NEUE_BOLD_SMALL]             = [UIFont fontWithName:@"HelveticaNeue-Bold" size:14];
         fontMap[FONT_HELVETICA_NEUE_LIGHT_SMALL]            = [UIFont fontWithName:@"HelveticaNeue-Light" size:14];
+        fontMap[FONT_HELVETICA_NEUE_LIGHT_SMALL_15]            = [UIFont fontWithName:@"HelveticaNeue-Light" size:14];
+        fontMap[FONT_HELVETICA_NEUE_MEDIUM_15]              = [UIFont fontWithName:@"HelveticaNeue-Medium" size:15];
         fontMap[FONT_HELVETICA_NEUE_TAGS_ITALIC]            = [UIFont fontWithName:@"HelveticaNeue-Italic" size:16];
         fontMap[FONT_HELVETICA_NEUE_ULTRALIGHT]             = [UIFont fontWithName:@"HelveticaNeue-Ultralight" size:17];
         fontMap[FONT_HELVETICA_NEUE_BOLD]                   = [UIFont fontWithName:@"HelveticaNeue-Bold" size:17];
-        fontMap[FONT_HELVETICA_NEUE_MEDIUM]                   = [UIFont fontWithName:@"HelveticaNeue-Medium" size:17];
+        fontMap[FONT_HELVETICA_NEUE_MEDIUM]                 = [UIFont fontWithName:@"HelveticaNeue-Medium" size:17];
         fontMap[FONT_HELVETICA_NEUE_LIGHT]                  = [UIFont fontWithName:@"HelveticaNeue-Light" size:17];
         fontMap[FONT_HELVETICA_NEUE_REGULAR]                = [UIFont fontWithName:@"HelveticaNeue" size:17];
-        fontMap[FONT_HELVETICA_NEUE_BOLD_MIDDLE]            = [UIFont fontWithName:@"HelveticaNeue-Bold" size:25];
+        fontMap[FONT_HELVETICA_NEUE_MEDIUM_19]              = [UIFont fontWithName:@"HelveticaNeue-Medium" size:19];
+        fontMap[FONT_HELVETICA_NEUE_NEXT]                   = [UIFont fontWithName:@"HelveticaNeue" size:20];
+        fontMap[FONT_HELVETICA_NEUE_BOLD_MIDDLE]            = [UIFont fontWithName:@"HelveticaNeue" size:25];
+        fontMap[FONT_HELVETICA_NEUE_BOLD_LARGE_OFFER]       = [UIFont fontWithName:@"HelveticaNeue-Bold" size:28];
         fontMap[FONT_HELVETICA_NEUE_BOLD_LARGE]             = [UIFont fontWithName:@"HelveticaNeue-Bold" size:40];
         
         

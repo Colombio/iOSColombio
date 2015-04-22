@@ -160,11 +160,11 @@
 
 - (void)setDictionaries{
     _dicMediaTypes = @{@0:@"internet", @1:@"newspaper", @2:@"tv",@3:@"radio"};
-    _dicTimelineButt = @{@0:@"foto_video",
-                         @1:@"news",
-                         @2:@"story_tip",
-                         @3:@"community_news",
-                         @4:@"announced_event"};
+    _dicTimelineButt = @{@1:@"foto_video",
+                         @2:@"news",
+                         @3:@"story_tip",
+                         @4:@"community_news",
+                         @5:@"announce_event"};
 }
 
 + (ALAssetsLibrary *)defaultAssetsLibrary {

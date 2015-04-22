@@ -33,9 +33,9 @@
     _txtName.tintColor = [[UIConfiguration sharedInstance] getColor:COLOR_TEXT_TXT_FIELD];
     _txtSurname.tintColor = [[UIConfiguration sharedInstance] getColor:COLOR_TEXT_TXT_FIELD];
     _txtPayPalEmail.tintColor = [[UIConfiguration sharedInstance] getColor:COLOR_TEXT_TXT_FIELD];
-    _btnToggleAnonymous.isON = YES;
+    /*_btnToggleAnonymous.isON = YES;
     _btnTogglePayPal.isON = NO;
-    [self setLabelsWidth];
+    [self setLabelsWidth];*/
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -45,16 +45,16 @@
 }
 
 - (void)setLabelsWidth{
-    CGSize size = [_lblAnonymous.text sizeWithFont:_lblAnonymous.font constrainedToSize:CGSizeMake(_viewAnonymousHolder.frame.size.width-_btnToggleAnonymous.frame.size.width-40, MAXFLOAT)
+    CGSize size = [_lblAnonymous.text sizeWithFont:_lblAnonymous.font constrainedToSize:CGSizeMake(_viewAnonymousHolder.frame.size.width-_swToggleAnonymoys.frame.size.width-40, MAXFLOAT)
         lineBreakMode:NSLineBreakByWordWrapping];
     _CS_lblAnonymousWidth.constant = size.width+15;
     
-    size = [_lblConnectPayPal.text sizeWithFont:_lblConnectPayPal.font constrainedToSize:CGSizeMake(_viewAnonymousHolder.frame.size.width-_btnTogglePayPal.frame.size.width-40, MAXFLOAT)
+    size = [_lblConnectPayPal.text sizeWithFont:_lblConnectPayPal.font constrainedToSize:CGSizeMake(_viewAnonymousHolder.frame.size.width-_swTogglePayPal.frame.size.width-40, MAXFLOAT)
                                      lineBreakMode:NSLineBreakByWordWrapping];
     _CS_lblConnectPayPalWidth.constant = size.width+15;
 }
 
-- (void)btnAction:(VSSwitchButton *)sender{
+/*- (void)btnAction:(VSSwitchButton *)sender{
     if (sender==_btnToggleAnonymous) {
         if(!sender.isON){
             _CS_NameHeight.constant +=30;
@@ -94,11 +94,62 @@
                              [self.view layoutIfNeeded];
                          }];
     }
+}*/
+
+- (void)btnAction:(UISwitch *)sender{
+    if (sender==_swToggleAnonymoys) {
+        if(!sender.isOn){
+            _CS_NameHeight.constant +=30;
+            _CS_SurnameHeight.constant +=30;
+            _CS_AnonynmousHolderHeight.constant +=60;
+            //[_btnAnonymousInfo setBackgroundImage:[UIImage imageNamed:@"infoicon"] forState:UIControlStateNormal];
+            _lblAnonymous.text = [Localized string:@"sending_news_as"];
+            _btnAnonymousInfo.hidden=YES;
+        }else{
+            _CS_NameHeight.constant -=30;
+            _CS_SurnameHeight.constant -=30;
+            _CS_AnonynmousHolderHeight.constant -=60;
+            //[_btnAnonymousInfo setBackgroundImage:[UIImage imageNamed:@"infoicon_active"] forState:UIControlStateNormal];
+            _btnAnonymousInfo.hidden=NO;
+            _lblAnonymous.text = [Localized string:@"anonymous_sending"];
+            if (_txtName.isFirstResponder) {
+                [_txtName resignFirstResponder];
+            }
+            if (_txtSurname.isFirstResponder) {
+                [_txtSurname resignFirstResponder];
+            }
+        }
+        [self setLabelsWidth];
+        [UIView animateWithDuration:0.5
+                         animations:^{
+                             [self.view layoutIfNeeded];
+                             
+                         }];
+    }else if (sender == _swTogglePayPal) {
+        if (sender.isOn) {
+            _CS_PayPalEmailHeight.constant +=30;
+            _CS_PayPalViewHeight.constant +=30;
+            //[_btnPayPalInfo setBackgroundImage:[UIImage imageNamed:@"infoicon_active"] forState:UIControlStateNormal];
+            _btnPayPalInfo.hidden=YES;
+        }else{
+            _CS_PayPalEmailHeight.constant -=30;
+            _CS_PayPalViewHeight.constant -=30;
+            //[_btnPayPalInfo setBackgroundImage:[UIImage imageNamed:@"infoicon"] forState:UIControlStateNormal];
+            _btnPayPalInfo.hidden=NO;
+            if (_txtPayPalEmail.isFirstResponder) {
+                [_txtPayPalEmail resignFirstResponder];
+            }
+        }
+        [UIView animateWithDuration:0.5
+                         animations:^{
+                             [self.view layoutIfNeeded];
+                         }];
+    }
 }
 
 - (void)btnInfo:(UIButton *)sender{
     if (sender==_btnAnonymousInfo) {
-        if (_btnToggleAnonymous.isON) {
+        if (_swToggleAnonymoys.isOn) {
             UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"" message:[Localized string:@"info_anonymous_on"] delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
             [alert show];
         }else{
@@ -107,7 +158,7 @@
         }
 
     }else if(sender==_btnPayPalInfo){
-        if (_btnTogglePayPal.isON) {
+        if (_swTogglePayPal.isOn) {
             UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"" message:[Localized string:@"info_paypal_on"] delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
             [alert show];
         }else{
@@ -162,7 +213,7 @@
 
 - (BOOL)validateFields{
     BOOL dataOK = YES;
-    if (!_btnToggleAnonymous.isON) {
+    if (!_swToggleAnonymoys.isOn) {
         if (_txtName.text.length==0) {
             _txtName.attributedPlaceholder = [[NSAttributedString alloc] initWithString:_txtName.placeholder attributes:@{NSForegroundColorAttributeName:[UIColor redColor]}];
             dataOK=NO;
@@ -173,7 +224,7 @@
         }
     }
     
-    if (_btnTogglePayPal.isON) {
+    if (_swTogglePayPal.isOn) {
         if (_txtPayPalEmail.text.length==0) {
             _txtPayPalEmail.attributedPlaceholder = [[NSAttributedString alloc] initWithString:_txtPayPalEmail.placeholder attributes:@{NSForegroundColorAttributeName:[UIColor redColor]}];
             dataOK=NO;

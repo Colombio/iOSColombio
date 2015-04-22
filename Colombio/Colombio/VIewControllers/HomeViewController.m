@@ -17,6 +17,14 @@
 #import "ColombioServiceCommunicator.h"
 #import "Tools.h"
 
+
+enum UploadType{
+    PHOTO_VIDEO = 1,
+    NEWS=2,
+    STORY_TIP=3,
+    COMMUNITY_NEWS=4,
+    ANNOUNCED_EVENT=5
+};
 @interface HomeViewController ()<ColombioServiceCommunicatorDelegate>
 
 @end
@@ -71,21 +79,27 @@
 - (void)btnSendClicked:(id)sender{
     //[self.navigationController pushViewController:[[CreateNewsViewController alloc] init] animated:YES];
     
-    UploadContainerViewController *containerVC = [[UploadContainerViewController alloc] initWithNibName:@"ContainerViewController" bundle:nil isNewsDemand:NO];
+    UploadContainerViewController *containerVC = [[UploadContainerViewController alloc] initWithNibName:@"ContainerViewController" bundle:nil isNewsDemand:NO forType:NEWS];
     [self.navigationController pushViewController:containerVC animated:YES];
     self.navigationController.tabBarItem.selectedImage  = [[UIImage imageNamed:@"home_normal"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
 }
 
 - (void)btnAlertClicked:(id)sender{
-
+    UploadContainerViewController *containerVC = [[UploadContainerViewController alloc] initWithNibName:@"ContainerViewController" bundle:nil isNewsDemand:NO forType:STORY_TIP];
+    [self.navigationController pushViewController:containerVC animated:YES];
+    self.navigationController.tabBarItem.selectedImage  = [[UIImage imageNamed:@"home_normal"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
 }
 
 - (void)btnCommunityClicked:(id)sender{
-
+    UploadContainerViewController *containerVC = [[UploadContainerViewController alloc] initWithNibName:@"ContainerViewController" bundle:nil isNewsDemand:NO forType:COMMUNITY_NEWS];
+    [self.navigationController pushViewController:containerVC animated:YES];
+    self.navigationController.tabBarItem.selectedImage  = [[UIImage imageNamed:@"home_normal"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
 }
 
 - (void)btnAnnounceClicked:(id)sender{
-
+    UploadContainerViewController *containerVC = [[UploadContainerViewController alloc] initWithNibName:@"ContainerViewController" bundle:nil isNewsDemand:NO forType:ANNOUNCED_EVENT];
+    [self.navigationController pushViewController:containerVC animated:YES];
+    self.navigationController.tabBarItem.selectedImage  = [[UIImage imageNamed:@"home_normal"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
 }
 
 - (void)btnCallClicked:(id)sender{
@@ -108,7 +122,7 @@
         //Request is successfuly sent
         else{
             dispatch_async(dispatch_get_main_queue(), ^{
-                AppDelegate *appdelegate = [[UIApplication sharedApplication] delegate];
+                AppDelegate *appdelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
                 [appdelegate.db clearTable:@"USER"];
                 [appdelegate.db clearTable:@"USER_CASHOUT"];
                 //[appdelegate.db clearTable:@"NEWSDEMANDLIST"];

@@ -162,7 +162,7 @@
 
 - (void)toggleLoginOff{
     [btnLogin setTitle:[Localized string:@"login_login"] forState:UIControlStateNormal];
-    [loadingView removeCustomSpinner];
+    timer = [NSTimer scheduledTimerWithTimeInterval:2.0f target:self selector:@selector(removeSpinner) userInfo:nil repeats:NO];
 }
 
 #pragma mark Email Login
@@ -174,7 +174,7 @@
         [btnLogin setTitle:[Localized string:@"wait"] forState:UIControlStateNormal];
     }];
     
-    timer = [NSTimer scheduledTimerWithTimeInterval:0.2f target:self selector:@selector(checkLoginNormal) userInfo:nil repeats:NO];
+    [self checkLoginNormal];
 }
 -(void)checkLoginNormal{
     //Provjera da li su email i lozinka prazni
@@ -188,6 +188,14 @@
     if(txtPassword.txtField.text.length<8){
         wrong=true;
         txtPassword.errorText = @"login_enter_password";
+    }
+    
+    if (wrong==true) {
+        [loadingView stopCustomSpinner];
+        [loadingView customSpinnerFail];
+        timer = [NSTimer scheduledTimerWithTimeInterval:2.0f target:self selector:@selector(removeSpinner) userInfo:nil repeats:NO];
+        [btnLogin setTitle:[Localized string:@"login_login"] forState:UIControlStateNormal];
+        return;
     }
     
     //pocetna konfiguracija za datoteke
@@ -212,6 +220,8 @@
         [Messages showErrorMsg:@"error_web_request"];
         [loadingView stopCustomSpinner];
         [loadingView customSpinnerFail];
+        timer = [NSTimer scheduledTimerWithTimeInterval:2.0f target:self selector:@selector(removeSpinner) userInfo:nil repeats:NO];
+        [btnLogin setTitle:[Localized string:@"login_login"] forState:UIControlStateNormal];
     }
     //Uspjesno je poslan zahtjev
     else{
@@ -243,8 +253,9 @@
         else {
             [loadingView stopCustomSpinner];
             [loadingView customSpinnerFail];
+            timer = [NSTimer scheduledTimerWithTimeInterval:2.0f target:self selector:@selector(removeSpinner) userInfo:nil repeats:NO];
+            [btnLogin setTitle:[Localized string:@"login_login"] forState:UIControlStateNormal];
         }
-        [self toggleLoginOff];
     }
 }
 
@@ -333,18 +344,25 @@
             dispatch_async(dispatch_get_main_queue(), ^{
                 LoginSettingsViewController *containerVC = [[LoginSettingsViewController alloc] initWithNibName:@"ContainerViewController" bundle:nil];
                 [self presentViewController:containerVC animated:YES completion:nil];
+                [loadingView stopCustomSpinner];
+                [loadingView removeCustomSpinner];
                 return;
             });
         }
         //If user already filled the settngs data show home view
         else{
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self presentViewController:[[LoginSettingsViewController alloc] initWithNibName:@"ContainerViewController" bundle:nil] animated:YES completion:nil];
-                //[self presentViewController:[[TabBarViewController alloc] init] animated:YES completion:nil];
-                return;
-            });
+            [csc fetchMedia];
         }
     }
+}
+
+- (void)didFetchMedia{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [loadingView stopCustomSpinner];
+        [loadingView removeCustomSpinner];
+        //[self presentViewController:[[LoginSettingsViewController alloc] initWithNibName:@"ContainerViewController" bundle:nil] animated:YES completion:nil];
+        [self presentViewController:[[TabBarViewController alloc] init] animated:YES completion:nil];
+    });
 }
 
 #pragma mark Google
@@ -478,6 +496,10 @@
 - (IBAction)setForgot:(id)sender {
     ForgotPasswordViewController *forgotPassword = [[ForgotPasswordViewController alloc]init];
     [self presentViewController:forgotPassword animated:YES completion:nil];
+}
+
+- (void)removeSpinner{
+    [loadingView removeCustomSpinner];
 }
 /*
 //Kada korisnik stisne na email, scrollaj view

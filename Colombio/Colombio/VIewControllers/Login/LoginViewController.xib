@@ -156,7 +156,7 @@
                                             </connections>
                                         </view>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xPU-g5-F5b">
-                                            <rect key="frame" x="0.0" y="80" width="80" height="20"/>
+                                            <rect key="frame" x="0.0" y="80" width="200" height="20"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="20" id="hbz-G4-w2q"/>
                                             </constraints>
@@ -205,7 +205,7 @@
                                         <constraint firstAttribute="bottom" secondItem="RRk-G6-BfM" secondAttribute="bottom" constant="5" id="IEM-Ar-Npu"/>
                                         <constraint firstItem="xPU-g5-F5b" firstAttribute="leading" secondItem="Osv-vW-V0r" secondAttribute="leading" id="Iky-k1-sXi"/>
                                         <constraint firstItem="vrq-gy-VE3" firstAttribute="leading" secondItem="Osv-vW-V0r" secondAttribute="leading" id="JLG-HW-N4l"/>
-                                        <constraint firstAttribute="trailing" secondItem="xPU-g5-F5b" secondAttribute="trailing" constant="180" id="KSa-zH-v8Q"/>
+                                        <constraint firstAttribute="trailing" secondItem="xPU-g5-F5b" secondAttribute="trailing" constant="60" id="KSa-zH-v8Q"/>
                                         <constraint firstItem="hJU-4Y-5AL" firstAttribute="leading" secondItem="Osv-vW-V0r" secondAttribute="leading" id="O9T-KZ-C18"/>
                                         <constraint firstItem="zPF-cl-Coj" firstAttribute="top" secondItem="vrq-gy-VE3" secondAttribute="bottom" constant="10" id="ODe-eO-4bN"/>
                                         <constraint firstAttribute="trailing" secondItem="zPF-cl-Coj" secondAttribute="trailing" id="TcF-Bo-Jfw"/>
@@ -220,16 +220,15 @@
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c9B-k4-feG">
                                     <rect key="frame" x="30" y="522" width="260" height="20"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Don't have an account?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="R7A-AV-JAC">
+                                        <label opaque="NO" userInteractionEnabled="NO" alpha="0.69999999999999973" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Don't have an account?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="R7A-AV-JAC">
                                             <rect key="frame" x="0.0" y="0.0" width="161" height="20"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="161" id="MeT-zV-DDz"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="14"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                             <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="string" keyPath="configTextFont" value="FONT_HELVETICA_NEUE_ULTRALIGHT"/>
                                                 <userDefinedRuntimeAttribute type="string" keyPath="configText" value="login_missing_account"/>
                                             </userDefinedRuntimeAttributes>
                                         </label>

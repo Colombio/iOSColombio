@@ -23,6 +23,7 @@
         NSMutableArray *tArray = [[NSMutableArray alloc] init];
         for (NewsDemandObject *object in dataArray) {
             detailsVC = [[NewsDemandDetailsViewController alloc] initWithNibName:@"NewsDemandDetailsViewController" bundle:nil withNewsDemand:object];
+            detailsVC.delegate = self;
             [tArray  addObject:detailsVC];
         }
         super.viewControllersArray =tArray;
@@ -32,10 +33,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    
-    
-    
     // Do any additional setup after loading the view.
 }
 
@@ -48,6 +45,10 @@
 - (void)newsDemandIsSelected:(NewsDemandObject*)newsDemandData{
     UploadContainerViewController *uploadVC = [[UploadContainerViewController alloc] initWithNibName:@"ContainerViewController" bundle:nil forNewsDemandData:newsDemandData isNewsDemand:YES];
     [self.navigationController pushViewController:uploadVC animated:YES];
+}
+
+- (void)btnBack:(UIButton*)sender{
+     [self.navigationController popViewControllerAnimated:YES];
 }
 
 @end

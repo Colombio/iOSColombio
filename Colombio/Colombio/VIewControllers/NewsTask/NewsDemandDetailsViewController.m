@@ -16,7 +16,7 @@
     AppDelegate *appdelegate;
 }
 @property (weak, nonatomic) IBOutlet UIImageView *imgMediaLogo;
-@property (weak, nonatomic) IBOutlet UILabel *lblDate;
+@property (weak, nonatomic) IBOutlet UILabel *lblTaskStatus;
 @property (weak, nonatomic) IBOutlet UILabel *lblReward;
 @property (weak, nonatomic) IBOutlet UILabel *lblNewsTitle;
 @property (weak, nonatomic) IBOutlet UITextView *txtNewsDescription;
@@ -45,7 +45,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    appdelegate = [[UIApplication sharedApplication] delegate];
+    appdelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     _imgMediaLogo.layer.cornerRadius=_imgMediaLogo.frame.size.width/2;
     _imgMediaLogo.layer.masksToBounds=YES;
     
@@ -57,7 +57,7 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated{
-    _txtNewsDescription.contentInset = UIEdgeInsetsMake(0, -4, 0, -4);
+    _txtNewsDescription.contentInset = UIEdgeInsetsMake(-4, -4, 0, -4);
     [self saveToDB];
 }
 
@@ -81,9 +81,9 @@
 - (void)setFields{
     NSDateFormatter *formatter=[[NSDateFormatter alloc]init];
     [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss Z"];
-    NSDate *date = [formatter dateFromString:_data.start_timestamp];
+    //NSDate *date = [formatter dateFromString:_data.start_timestamp];
     [formatter setDateFormat:@"dd/MM/yyyy"];
-    _lblDate.text = [formatter stringFromDate:date];
+    //_lblTaskStatus
     _lblReward.text = [NSString stringWithFormat:@"$%@", _data.cost];
     _lblNewsTitle.text = _data.title;
     _txtNewsDescription.text = _data.desc;

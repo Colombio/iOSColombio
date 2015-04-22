@@ -87,7 +87,7 @@
     NSString *httpBody;
     
     if(_newsData.did == 0){
-        httpBody = [NSString stringWithFormat:@"signed_req=%@&title=%@&content=%@&loc=%@&prot=%@&cost=%f&be_credited=%@&be_contacted=%@&tags=%@&media=%@&type_id=%@&contact_data[contact_phone]=%@&sell=%@",result,_newsData.title,_newsData.description,location,whisperMode,_newsData.price,be_credited,be_contacted,arTagsUpload,arMediaUpload,[NSString stringWithFormat:@"%ld",(long)_newsData.type_id],_newsData.phone_number, sell];
+        httpBody = [NSString stringWithFormat:@"signed_req=%@&title=%@&content=%@&loc=%@&prot=%@&cost=%f&be_credited=%@&be_contacted=%@&tags=%@&media=%@&type_id=%@&contact_data[contact_phone]=%@&sell=%@",result,_newsData.title,_newsData.content,location,whisperMode,_newsData.price,be_credited,be_contacted,arTagsUpload,arMediaUpload,[NSString stringWithFormat:@"%ld",(long)_newsData.type_id],_newsData.phone_number, sell];
     }
     else{
         httpBody = [NSString stringWithFormat:@"signed_req=%@&title=%@&content=%@&loc=%@&prot=%@&cost=%f&be_credited=%@&be_contacted=%@&tags=%@&req_id=%ld&media=%@&type_id=%@&contact_data[contact_phone]=%@&sell=%@",result,_newsData.title,_newsData.content,location,whisperMode,_newsData.price,be_credited,be_contacted,arTagsUpload,(long)_newsData.did,arMediaUpload,[NSString stringWithFormat:@"%ld",(long)_newsData.type_id],_newsData.phone_number, sell];

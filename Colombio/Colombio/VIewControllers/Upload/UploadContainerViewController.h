@@ -12,16 +12,18 @@
 #import "SelectMediaViewController.h"
 #import "UserInfoUploadViewController.h"
 #import "NewsDemandObject.h"
+#import "AnnounceEventViewController.h"
 
 @interface UploadContainerViewController : ContainerViewController<CreateNewsViewControllerDelegate, UIAlertViewDelegate>
 {
     CreateNewsViewController *contentVC;
     SelectMediaViewController *mediaVC;
     UserInfoUploadViewController *userInfoVC;
+    AnnounceEventViewController *announcedVC;
     
 }
 
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil forNewsDemandData:(NewsDemandObject*)newsDemandData isNewsDemand:(BOOL)isNewsDemand;
-- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil isNewsDemand:(BOOL)isNewsDemand; //initialization method.
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil isNewsDemand:(BOOL)isNewsDemand forType:(NSInteger)typeID; //initialization method.
 - (void)selectedImageAction:(NSMutableArray*)selectedImagesArray;
 @end

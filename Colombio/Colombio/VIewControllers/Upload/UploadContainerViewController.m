@@ -12,12 +12,15 @@
 #import "UploadNewsViewController.h"
 #import "Messages.h"
 
+
+
 @interface UploadContainerViewController ()
 {
     NewsData *newsData;
 }
 @property (assign, nonatomic) BOOL isNewsDemand;
 @property (strong, nonatomic) NewsDemandObject *newsDemandData;
+@property (assign, nonatomic) NSInteger typeID;
 @end
 
 
@@ -26,38 +29,48 @@
 //@synthesize viewControllersArray=_viewControllersArray;
 
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil forNewsDemandData:(NewsDemandObject*)newsDemandData isNewsDemand:(BOOL)isNewsDemand{
-    self = [self initWithNibName:nibNameOrNil bundle:nibBundleOrNil isNewsDemand:isNewsDemand];
+    _newsDemandData = newsDemandData;
+    self = [self initWithNibName:nibNameOrNil bundle:nibBundleOrNil isNewsDemand:isNewsDemand forType:0];
     if (self) {
-        _newsDemandData = newsDemandData;
+        
     }
     return self;
 }
 
-- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil isNewsDemand:(BOOL)isNewsDemand{
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil isNewsDemand:(BOOL)isNewsDemand forType:(NSInteger)typeID{
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
+        _typeID=typeID;
         //set child view controllers and their properties
+        super.isSingleTitle=YES;
+        super.progressBarAnimation=YES;
         _isNewsDemand = isNewsDemand;
-        contentVC = [[CreateNewsViewController alloc] init];
-        contentVC.delegate = self;
-        userInfoVC = [[UserInfoUploadViewController alloc] initWithDemand:_isNewsDemand];
+        if (_typeID==5) {
+            announcedVC = [[AnnounceEventViewController alloc] init];
+        }else{
+            contentVC = [[CreateNewsViewController alloc] init];
+            contentVC.delegate = self;
+        }
+        userInfoVC = [[UserInfoUploadViewController alloc] initWithDemand:_isNewsDemand withPrice:_newsDemandData.cost];
         newsData = [[NewsData alloc] init];
         NSArray *array;
         if (!isNewsDemand) {
             mediaVC = [[SelectMediaViewController alloc] initForNewsUpload:YES];
-            array = [[NSArray alloc] initWithObjects:contentVC, mediaVC, userInfoVC, nil];
+            if (_typeID==5) {
+                array = [[NSArray alloc] initWithObjects:announcedVC, mediaVC, userInfoVC, nil];
+            }else{
+                array = [[NSArray alloc] initWithObjects:contentVC,mediaVC, userInfoVC, nil];
+            }
         }else{
             newsData.did = _newsDemandData.req_id;
             newsData.media = [[NSMutableArray alloc] initWithObjects:@(_newsDemandData.media_id), nil];
             newsData.longitude = _newsDemandData.longitude;
             newsData.latitude = _newsDemandData.latitude;
-            contentVC.txtTitle.text = _newsDemandData.title;
-            contentVC.txtDescription.text = _newsDemandData.desc;
-            userInfoVC.txtPrice.text = _newsDemandData.cost;
+            newsData.price = [_newsDemandData.cost longLongValue];
             array = [[NSArray alloc] initWithObjects:contentVC, userInfoVC, nil];
+            
         }
-        super.imgNextBtnNormal = [UIImage imageNamed:@"send_normal"];
-        super.imgNextBtnPressed = [UIImage imageNamed:@"send_pressed"];
+        super.lastNextBtnText = [Localized string:@"header_send"];
         super.viewControllersArray = array;
     }
     
@@ -66,6 +79,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    if (_isNewsDemand) {
+        contentVC.txtTitle.text = _newsDemandData.title;
+        contentVC.txtDescription.text = _newsDemandData.desc;
+    }
     // Do any additional setup after loading the view.
 }
 
@@ -103,34 +120,35 @@
 
 - (void)navigateNext{
     if ([self validateData]) {
-        AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+        AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
         if (!_isNewsDemand) {
             newsData.longitude = appDelegate.locationManager.location.coordinate.longitude;
             newsData.latitude = appDelegate.locationManager.location.coordinate.latitude;
-        }
-        newsData.title = contentVC.txtTitle.text;
-        newsData.content = contentVC.txtDescription.text;
-        newsData.images = contentVC.selectedImagesArray;
-        newsData.tags = contentVC.selectedTags;
-        newsData.content = contentVC.txtDescription.text;
-        
-        if (_isNewsDemand) {
-            //složiti kak se šalje media_id is newsdemand
-            //newsData.did=
-        }else{
             newsData.media = mediaVC.selectedMedia;
             newsData.did=0;
-            newsData.price = [userInfoVC.price floatValue];
         }
-        
-        newsData.prot = userInfoVC.btnToggleAnonymous.isON;
+        if (_typeID==5) {
+            newsData.title = announcedVC.txtTitle.text;
+            newsData.content = announcedVC.txtDescription.text;
+            newsData.images = nil;
+            newsData.tags = announcedVC.selectedTags;
+            newsData.content = announcedVC.txtDescription.text;
+            //DATUM!!!!
+        }else{
+            newsData.title = contentVC.txtTitle.text;
+            newsData.content = contentVC.txtDescription.text;
+            newsData.images = contentVC.selectedImagesArray;
+            newsData.tags = contentVC.selectedTags;
+            newsData.content = contentVC.txtDescription.text;
+        }
+        newsData.prot = userInfoVC.swToggleAnonymous.isOn;
         //ime i prezima??
         newsData.be_credited = userInfoVC.be_credited;
-        newsData.be_contacted = userInfoVC.btnToggleContactMe.isON;
+        newsData.be_contacted = userInfoVC.swToggleContactMe.isOn;
         newsData.phone_number = userInfoVC.txtContactMe.text;
-        newsData.sell = userInfoVC.btnTogglePrice.isON;
+        newsData.sell = userInfoVC.swTogglePrice.isOn;
         
-        newsData.type_id = 1;
+        newsData.type_id = _typeID;
         
         
         UploadNewsViewController *uploadNewsVC = [[UploadNewsViewController alloc] initWithNewsData:newsData];
@@ -158,9 +176,11 @@
         [self showErrorMessage:@"error_missing_images"];
         return NO;
     }
-    if (![contentVC validateTags]) {
-        [self showErrorMessage:@"error_missing_tags"];
-        return NO;
+    if (!_isNewsDemand) {
+        if (![contentVC validateTags]) {
+            [self showErrorMessage:@"error_missing_tags"];
+            return NO;
+        }
     }
     
     if (!_isNewsDemand) {

@@ -68,6 +68,8 @@
 		BBB4EAEA1AAA6B010075717A /* SelectMediaCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB4EAE81AAA6B010075717A /* SelectMediaCell.m */; };
 		BBB4EAEB1AAA6B010075717A /* SelectMediaCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBB4EAE91AAA6B010075717A /* SelectMediaCell.xib */; };
 		BBB56D451A71BE1F004D3B9A /* CLTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB56D441A71BE1F004D3B9A /* CLTextView.m */; };
+		BBB5827E1AE83FD8004C762B /* AnnounceEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB5827C1AE83FD8004C762B /* AnnounceEventViewController.m */; };
+		BBB5827F1AE83FD8004C762B /* AnnounceEventViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBB5827D1AE83FD8004C762B /* AnnounceEventViewController.xib */; };
 		BBB5B47E1AABC73A00765861 /* SelectCountriesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB5B47C1AABC73A00765861 /* SelectCountriesViewController.m */; };
 		BBB5B47F1AABC73A00765861 /* SelectCountriesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBB5B47D1AABC73A00765861 /* SelectCountriesViewController.xib */; };
 		BBB5B4831AABCA0E00765861 /* SelectCountryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB5B4811AABCA0E00765861 /* SelectCountryCell.m */; };
@@ -218,6 +220,9 @@
 		BBB4EAE91AAA6B010075717A /* SelectMediaCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelectMediaCell.xib; sourceTree = "<group>"; };
 		BBB56D431A71BE1F004D3B9A /* CLTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLTextView.h; sourceTree = "<group>"; };
 		BBB56D441A71BE1F004D3B9A /* CLTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLTextView.m; sourceTree = "<group>"; };
+		BBB5827B1AE83FD8004C762B /* AnnounceEventViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnnounceEventViewController.h; sourceTree = "<group>"; };
+		BBB5827C1AE83FD8004C762B /* AnnounceEventViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnnounceEventViewController.m; sourceTree = "<group>"; };
+		BBB5827D1AE83FD8004C762B /* AnnounceEventViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AnnounceEventViewController.xib; sourceTree = "<group>"; };
 		BBB5B47B1AABC73A00765861 /* SelectCountriesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectCountriesViewController.h; sourceTree = "<group>"; };
 		BBB5B47C1AABC73A00765861 /* SelectCountriesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectCountriesViewController.m; sourceTree = "<group>"; };
 		BBB5B47D1AABC73A00765861 /* SelectCountriesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelectCountriesViewController.xib; sourceTree = "<group>"; };
@@ -417,6 +422,9 @@
 				BBB604B41A7EFFB90090F18A /* UploadNewsViewController.h */,
 				BBB604B51A7EFFB90090F18A /* UploadNewsViewController.m */,
 				BBB604B61A7EFFB90090F18A /* UploadNewsViewController.xib */,
+				BBB5827B1AE83FD8004C762B /* AnnounceEventViewController.h */,
+				BBB5827C1AE83FD8004C762B /* AnnounceEventViewController.m */,
+				BBB5827D1AE83FD8004C762B /* AnnounceEventViewController.xib */,
 			);
 			path = Upload;
 			sourceTree = "<group>";
@@ -786,6 +794,7 @@
 				BBB4EAEB1AAA6B010075717A /* SelectMediaCell.xib in Resources */,
 				BBB0BFA91A350F640074B20C /* LoginViewController.xib in Resources */,
 				BBB33ACE1A27D9EE008D0E26 /* Images.xcassets in Resources */,
+				BBB5827F1AE83FD8004C762B /* AnnounceEventViewController.xib in Resources */,
 				BBB5B4841AABCA0E00765861 /* SelectCountryCell.xib in Resources */,
 				BBCF58E61A293F6700CE64B4 /* Localizable.strings in Resources */,
 				BBAE1F251A37B68E0008B772 /* ForgotPasswordViewController.xib in Resources */,
@@ -835,6 +844,7 @@
 				BBAE1F291A37B6980008B772 /* CreateAccViewController.m in Sources */,
 				BBCF58921A2938B400CE64B4 /* CustomField.m in Sources */,
 				BBB2B1331A5F404E00F4FD38 /* DummyViewController.m in Sources */,
+				BBB5827E1AE83FD8004C762B /* AnnounceEventViewController.m in Sources */,
 				BBBE0C561A6DB37C00EF5124 /* UploadContainerViewController.m in Sources */,
 				583572071A2B4B7400F6EA17 /* LoginViewController.m in Sources */,
 				BBB2B12E1A5F37E200F4FD38 /* TabBarViewController.m in Sources */,

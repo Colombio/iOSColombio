@@ -23,6 +23,7 @@ enum HeaderMovement{
     int headerMovement;
     CGFloat xFromCenterLastPosition;
     UILabel *lblHeader;
+    BOOL hideBackButton;
 }
 
 @property (weak, nonatomic) IBOutlet UIView *viewHeader;
@@ -33,6 +34,7 @@ enum HeaderMovement{
 @property (weak,nonatomic) IBOutlet NSLayoutConstraint *CS_progressBarWidth;
 @property (weak,nonatomic) IBOutlet NSLayoutConstraint *CS_containerBottomMargin;
 @property (strong, nonatomic) UIButton *nextButton;
+
 
 @end
 
@@ -48,6 +50,16 @@ enum HeaderMovement{
     return self;
 }
 
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil focusOnControllerIndex:(NSInteger)index withSingleTitle:(BOOL)singleTitle andProgressBarAnimation:(BOOL)progress{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        _isSingleTitle = singleTitle;
+        currentPageIndex = index;
+        _progressBarAnimation = progress;
+    }
+    return self;
+}
+
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil{
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
@@ -57,6 +69,10 @@ enum HeaderMovement{
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
+        self.navigationController.interactivePopGestureRecognizer.enabled = NO;
+    }
     //currentPageIndex = 0;
     headerMovement = dontMove;
     xFromCenterLastPosition= 0.0;
@@ -66,8 +82,8 @@ enum HeaderMovement{
         [self setupSingleHeader];
     }else{
         [self setupHeader];
-        [self setupProgressBar];
     }
+    [self setupProgressBar];
     [self setupPageViewController];
     if ([self.parentViewController.parentViewController isKindOfClass:[UITabBarController class]]) {
         _CS_containerBottomMargin.constant = 49.0;
@@ -77,7 +93,7 @@ enum HeaderMovement{
 }
 
 - (void)viewWillAppear:(BOOL)animated{
-    
+    hideBackButton = _btnBack.isHidden;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -88,7 +104,7 @@ enum HeaderMovement{
 - (void)setupSingleHeader{
     _btnBack = [UIButton buttonWithType:UIButtonTypeCustom];
     _btnBack.tag=0;
-    [_btnBack addTarget:self action:@selector(btnBack:) forControlEvents:UIControlEventTouchUpInside];
+    [_btnBack addTarget:self action:@selector(btnAction:) forControlEvents:UIControlEventTouchUpInside];
     [_btnBack setBackgroundImage:[UIImage imageNamed:@"backgrey_normal"] forState:UIControlStateNormal];
     [_btnBack setBackgroundImage:[UIImage imageNamed:@"backgrey_pressed"] forState:UIControlStateHighlighted];
     _btnBack.frame = CGRectMake(10, 0, 44, 44);
@@ -108,9 +124,9 @@ enum HeaderMovement{
     {
         _nextButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [_nextButton addTarget:self action:@selector(btnAction:) forControlEvents:UIControlEventTouchUpInside];
-        _nextButton.titleLabel.font = [[UIConfiguration sharedInstance] getFont:FONT_HELVETICA_NEUE_LIGHT];
-        [_nextButton setTitleColor:[[UIConfiguration sharedInstance] getColor:COLOR_TEXT_NAVIGATIONBAR_BUTTON] forState:UIControlStateNormal];
-        [_nextButton setTitleColor:[[UIConfiguration sharedInstance] getColor:COLOR_TEXT_NAVIGATIONBAR_BUTTON_HIGHLIGHT] forState:UIControlStateHighlighted];
+        _nextButton.titleLabel.font = [[UIConfiguration sharedInstance] getFont:FONT_HELVETICA_NEUE_NEXT];
+        [_nextButton setTitleColor:[[UIConfiguration sharedInstance] getColor:COLOR_NEXT_BUTTON] forState:UIControlStateNormal];
+        [_nextButton setTitleColor:[[UIConfiguration sharedInstance] getColor:COLOR_NEXT_BUTTON_SELECTED] forState:UIControlStateHighlighted];
         _nextButton.frame = CGRectMake(self.view.bounds.size.width-90, 11, 80, 20);
         _nextButton.titleLabel.textAlignment = NSTextAlignmentRight;
         [self setNextButtonTitle];
@@ -124,6 +140,14 @@ enum HeaderMovement{
         [_nextButton setTitle:_lastNextBtnText  forState:UIControlStateNormal];
     }else{
         [_nextButton setTitle:[Localized string:@"header_next"]  forState:UIControlStateNormal];
+    }
+}
+
+- (void)setBackButton{
+    if (hideBackButton && currentPageIndex==0) {
+        _btnBack.hidden=YES;
+    }else{
+        _btnBack.hidden=NO;
     }
 }
 
@@ -187,7 +211,13 @@ enum HeaderMovement{
 }
 
 - (void)setupProgressBar{
-    _CS_progressBarWidth.constant = self.view.bounds.size.width/numberOfPages;
+    if (!_progressBarAnimation) {
+        _CS_progressBarWidth.constant = self.view.bounds.size.width;
+        _viewProgressBar.backgroundColor = [UIColor lightGrayColor];
+    }else{
+        _CS_progressBarWidth.constant = self.view.bounds.size.width/numberOfPages;
+    }
+    
 }
 
 -(void)setupPageViewController
@@ -221,7 +251,7 @@ enum HeaderMovement{
 {
     CGFloat xFromCenter = self.view.frame.size.width-pageScrollView.contentOffset.x;
     //%%% positive for right swipe, negative for left
-    if (!_isSingleTitle) {
+    if (_progressBarAnimation) {
         [self headerMovementWithScroll:((xFromCenter!=0?xFromCenter-xFromCenterLastPosition:0))/2];
         [self progressBarMovement:((xFromCenter!=0?xFromCenter-xFromCenterLastPosition:0))/numberOfPages];
         xFromCenterLastPosition = xFromCenter;
@@ -256,16 +286,18 @@ enum HeaderMovement{
 }
 
 - (void)headerMovementWithScroll:(CGFloat)xmovement{
-    
-    [UIView animateWithDuration:0.0
-                     animations:^{
+    if (!_isSingleTitle) {
+        [UIView animateWithDuration:0.0
+                         animations:^{
                              for(UIButton *btn in _headerBtnsArray){
                                  CGRect frame = btn.frame;
                                  frame.origin.x += xmovement;
                                  btn.frame = frame;
-                             pageScrollView.scrollEnabled=YES;
-                         }
-                     }];
+                                 pageScrollView.scrollEnabled=YES;
+                             }
+                         }];
+    }
+    
 }
 
 - (void)progressBarMovement:(CGFloat)movement{
@@ -279,7 +311,8 @@ enum HeaderMovement{
 - (void)setHeaderButtonsAfterMovement{
     if (_isSingleTitle) {
         lblHeader.text = ((UIViewController*)_viewControllersArray[currentPageIndex]).title;
-        
+        [self setNextButtonTitle];
+        [self setBackButton];
     }else{
         for(UIButton *btn in _headerBtnsArray){
             if (btn.tag == currentPageIndex+1) {
@@ -364,7 +397,7 @@ enum HeaderMovement{
         if(sender==_nextButton && currentPageIndex+1==_viewControllersArray.count){
             [self navigateNext];
         }else if(sender==_btnBack && currentPageIndex==0){
-            [self btnBack];
+            [self btnBack:sender];
         }else {
             NSInteger tempIndex = currentPageIndex;
             __weak typeof(self) weakSelf = self;
