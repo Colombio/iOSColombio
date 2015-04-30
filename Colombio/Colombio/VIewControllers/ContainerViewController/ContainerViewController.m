@@ -85,11 +85,11 @@ enum HeaderMovement{
     }
     [self setupProgressBar];
     [self setupPageViewController];
-    if ([self.parentViewController.parentViewController isKindOfClass:[UITabBarController class]]) {
+    /*if ([self.parentViewController.parentViewController isKindOfClass:[UITabBarController class]]) {
         _CS_containerBottomMargin.constant = 49.0;
     }else{
         _CS_containerBottomMargin.constant = 0;
-    }
+    }*/
 }
 
 - (void)viewWillAppear:(BOOL)animated{

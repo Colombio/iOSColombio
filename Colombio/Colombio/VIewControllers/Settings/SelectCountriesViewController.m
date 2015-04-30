@@ -31,13 +31,14 @@
 - (instancetype)init{
     self = [super init];
     if (self) {
-        self.title = [Localized string:@"select_country"];
+        self.title = [[Localized string:@"select_country"] uppercaseString];
     }
     return self;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    appdelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     _tblView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     _tblView.alwaysBounceVertical = NO;
     _selectedCountries = [[NSMutableArray alloc] init];
@@ -65,10 +66,10 @@
     if (cell==nil) {
         cell=[[SelectCountryCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
     }
-    cell.lblCountry.text = _countries[indexPath.row][@"c_name"];
+    cell.lblCountry.text = _filteredCountries[indexPath.row][@"c_name"];
     dispatch_queue_t concurrentQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
     dispatch_async(concurrentQueue, ^{
-        NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://colomb.io/img/country_icons_128/%@.png", _filteredCountries[indexPath.row][@"abbr"]]];
+        NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://www.colomb.io/img/country_icons/%@.png", [_filteredCountries[indexPath.row][@"abbr"] uppercaseString]]];
         UIImage *image = [[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:url]];
         if (image!=nil) {
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -78,15 +79,10 @@
             });
         }
     });
-    //cell.imgFlag.image = [UIImage imageNamed:_filteredCountries[indexPath.row][@"c_name"]];
-    if ([_selectedCountries containsObject:_filteredCountries[indexPath.row][@"id"]]) {
+    if ([_selectedCountries containsObject:_filteredCountries[indexPath.row][@"c_id"]]) {
         cell.imgSelected.hidden = NO;
-        cell.imgFlag.alpha = 1;
-        cell.lblCountry.alpha = 1;
     }else{
         cell.imgSelected.hidden = YES;
-        cell.imgFlag.alpha = 0.3;
-        cell.lblCountry.alpha = 0.3;
     }
     return cell;
 }
@@ -112,21 +108,20 @@
     
     NSMutableDictionary *tDict = [[NSMutableDictionary alloc] init];
     tDict[@"status"] = @(status);
-    tDict[@"c_id"] = @([_countries[indexPath.row][@"c_id"] integerValue]);
-    NSString *sql = [NSString stringWithFormat:@"SELECT count(*) FROM selected_countries WHERE c_id = '%d'", [_countries[indexPath.row][@"c_id"] intValue]];
+    tDict[@"c_id"] = @([_filteredCountries[indexPath.row][@"c_id"] integerValue]);
+    NSString *sql = [NSString stringWithFormat:@"SELECT count(*) FROM selected_countries WHERE c_id = '%d'", [_filteredCountries[indexPath.row][@"c_id"] intValue]];
     if ([[appdelegate.db getColForSQL:sql] integerValue] == 0) {
         [appdelegate.db insertDictionaryWithoutColumnCheck:tDict forTable:@"SELECTED_COUNTRIES"];
     }else{
-        [appdelegate.db updateDictionary:tDict forTable:@"SELECTED_COUNTRIES" where:[NSString stringWithFormat:@" c_id='%d'", [_countries[indexPath.row][@"c_id"] intValue]]];
+        [appdelegate.db updateDictionary:tDict forTable:@"SELECTED_COUNTRIES" where:[NSString stringWithFormat:@" c_id='%d'", [_filteredCountries[indexPath.row][@"c_id"] intValue]]];
     }
     
 }
 #pragma mark Load Countries
 - (void)loadCountries{
-    [spinner startCustomSpinner:self.view spinMessage:@""];
-    NSInteger lastTimestamp = ([[NSUserDefaults standardUserDefaults] stringForKey:COUNTRIES_TIMESTAMP]!=nil?[[NSUserDefaults standardUserDefaults] integerForKey:COUNTRIES_TIMESTAMP]:0);
-    lastTimestamp=0;
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/api_config/get_sys_countries?sync_time=%ld", BASE_URL, lastTimestamp]];
+    [spinner startCustomSpinner2:self.view spinMessage:@""];
+    NSInteger lastTimestamp = ([[NSUserDefaults standardUserDefaults] integerForKey:COUNTRIES_TIMESTAMP]?[[NSUserDefaults standardUserDefaults] integerForKey:COUNTRIES_TIMESTAMP]:0);
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/api_config/get_sys_countries?sync_time=%d", BASE_URL, lastTimestamp]];
     NSMutableURLRequest *request =[NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:TIMEOUT];
     [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -168,7 +163,6 @@
         }
     }
     if(isDataChanged){
-        appdelegate = [[UIApplication sharedApplication] delegate];
         [appdelegate.db clearTable:@"COUNTRIES_LIST"];
         
         NSString *changeTimestamp=[dataWsResponse objectForKey:@"change_timestamp"];

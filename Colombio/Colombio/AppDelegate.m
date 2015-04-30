@@ -159,7 +159,7 @@
 }
 
 - (void)setDictionaries{
-    _dicMediaTypes = @{@0:@"internet", @1:@"newspaper", @2:@"tv",@3:@"radio"};
+    _dicMediaTypes = @{@1:@"internet", @2:@"newspaper", @3:@"tv",@4:@"radio"};
     _dicTimelineButt = @{@1:@"foto_video",
                          @2:@"news",
                          @3:@"story_tip",

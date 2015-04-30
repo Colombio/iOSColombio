@@ -236,7 +236,7 @@
             dataOK=NO;
         }
     }*/
-    if (_swToggleAnonymous.isOn) {
+    if (!_swToggleAnonymous.isOn) {
         if (_txtName.text.length==0) {
             _txtName.attributedPlaceholder = [[NSAttributedString alloc] initWithString:_txtName.placeholder attributes:@{NSForegroundColorAttributeName:[UIColor redColor]}];
             dataOK=NO;

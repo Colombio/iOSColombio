@@ -11,9 +11,12 @@
 #import "AppDelegate.h"
 #import "TabBarViewController.h"
 #import "Messages.h"
+#import "Loading.h"
 
 @interface LoginSettingsViewController ()
-
+{
+    Loading *spinner;
+}
 @end
 
 @implementation LoginSettingsViewController
@@ -41,6 +44,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     super.btnBack.hidden=YES;
+    spinner = [[Loading alloc] init];
     
 }
 
@@ -51,6 +55,7 @@
 
 - (void)navigateNext{
     if ([self validateData]) {
+        [spinner startCustomSpinner2:self.view spinMessage:@""];
         [self updateUserData];
         
         NSString *signedRequest = [ColombioServiceCommunicator getSignedRequest];
@@ -79,6 +84,7 @@
                         [self uploadFavMedia];
                     }else{
                         dispatch_async(dispatch_get_main_queue(), ^{
+                            [spinner removeCustomSpinner];
                             UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"" message:dicResponse[@"errors"] delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
                             [alert show];
                         });
@@ -86,6 +92,7 @@
                 }
                 else{
                     dispatch_async(dispatch_get_main_queue(), ^{
+                        [spinner removeCustomSpinner];
                         UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"" message:dicResponse[@"errors"] delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
                         [alert show];
                     });
@@ -112,11 +119,18 @@
             NSDictionary *response=nil;
             response =[NSJSONSerialization JSONObjectWithData:data options:0 error:NULL];
             if(!strcmp("1",((NSString*)[response objectForKey:@"s"]).UTF8String)){
-                [self presentViewController:[[TabBarViewController alloc]  init] animated:YES completion:nil];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [spinner removeCustomSpinner];
+                    [self presentViewController:[[TabBarViewController alloc]  init] animated:YES completion:nil];
+                });
+                
             }
         }
         else{
-            [self presentViewController:[[TabBarViewController alloc]  init] animated:YES completion:nil];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [spinner removeCustomSpinner];
+                [self presentViewController:[[TabBarViewController alloc]  init] animated:YES completion:nil];
+            });
         }
     }];
 }

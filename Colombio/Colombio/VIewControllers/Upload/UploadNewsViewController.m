@@ -43,10 +43,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    appDelegate = [[UIApplication sharedApplication] delegate];
+    appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     uploadCount=1;
     totalUploadFileSize = [self getTotalFileSize];
     bytesSent=0;
+    _txtDidYouKnow.userInteractionEnabled=NO;
     [self spinLoading];
     [self uploadData];
 }
@@ -245,6 +246,8 @@
 }
 
 - (void)fail{
+    [_imgInfo setHidden:NO];
+    _lblUploadPercentage.hidden=YES;
     _imgInfo.image = [UIImage imageNamed:@"failicon.png"];
     _lblUploading.text=[Localized string:@"send_failed"];
     NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(backToHome) userInfo:nil repeats:NO];
@@ -253,6 +256,7 @@
 - (void)success{
     NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(backToHome) userInfo:nil repeats:NO];
     [_imgInfo setHidden:NO];
+    _lblUploadPercentage.hidden=YES;
     _imgInfo.image = [UIImage imageNamed:@"pass.png"];
     _lblUploading.text = [Localized string:@"send_success"];
 }

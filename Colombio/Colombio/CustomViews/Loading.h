@@ -28,6 +28,7 @@
 - (void)startNativeSpinner:(UIView *)view;
 - (void)stopNativeSpinner;
 - (void)startCustomSpinner:(UIView *)view spinMessage:(NSString*)strMessage;
+- (void)startCustomSpinner2:(UIView *)view spinMessage:(NSString*)strMessage;
 - (void)stopCustomSpinner;
 - (void)customSpinnerSuccess;
 - (void)customSpinnerFail;

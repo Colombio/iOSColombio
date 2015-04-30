@@ -16,6 +16,7 @@
 #import "LoginViewController.h"
 #import "ColombioServiceCommunicator.h"
 #import "Tools.h"
+#import "SimpleMediaSelectViewController.h"
 
 
 enum UploadType{
@@ -45,6 +46,7 @@ enum UploadType{
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self setNeedsStatusBarAppearanceUpdate];
     ColombioServiceCommunicator *colombioSC = [ColombioServiceCommunicator sharedManager];
     colombioSC.delegate=self;
     //[colombioSC fetchMedia];
@@ -73,7 +75,10 @@ enum UploadType{
 
 #pragma mark Button Action
 - (void)btnPhotoClicked:(id)sender{
-
+    
+    UploadContainerViewController *containerVC = [[UploadContainerViewController alloc] initWithNibName:@"ContainerViewController" bundle:nil isNewsDemand:NO forType:PHOTO_VIDEO];
+    [self.navigationController pushViewController:containerVC animated:YES];
+    self.navigationController.tabBarItem.selectedImage  = [[UIImage imageNamed:@"home_normal"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
 }
 
 - (void)btnSendClicked:(id)sender{
@@ -103,7 +108,9 @@ enum UploadType{
 }
 
 - (void)btnCallClicked:(id)sender{
-
+    SimpleMediaSelectViewController *simpleMediaVC = [[SimpleMediaSelectViewController alloc] initForCallMedia:YES];
+    [self.navigationController pushViewController:simpleMediaVC animated:YES];
+    self.navigationController.tabBarItem.selectedImage  = [[UIImage imageNamed:@"home_normal"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
 }
 
 
@@ -164,6 +171,4 @@ enum UploadType{
         [[self.tabBarController.tabBar.items objectAtIndex:0] setBadgeValue:nil];
     }
 }
-
-
 @end

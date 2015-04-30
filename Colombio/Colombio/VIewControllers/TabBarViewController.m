@@ -11,6 +11,8 @@
 #import "Tools.h"
 #import "NewsDemandViewController.h"
 #import "TimelineViewController.h"
+#import "SettingsViewController.h"
+#import "UserProfileViewController.h"
 
 #import "DummyViewController.h"
 
@@ -41,6 +43,8 @@
         
         newsDemandVC.tabBarItem.image = [[UIImage imageNamed:@"newsdemand_normal"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
         newsDemandVC.tabBarItem.selectedImage = [[UIImage imageNamed:@"newsdemand_active"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        newsDemandVC.tabBarItem.imageInsets = UIEdgeInsetsMake(6, 0, -6, 0);
+        newsDemandVC.title=nil;
         [controllers addObject:newsDemandNavController];
         
         //TimeLine
@@ -50,6 +54,8 @@
         
         timeLineNavController.tabBarItem.image = [[UIImage imageNamed:@"timeline_normal"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
         timeLineNavController.tabBarItem.selectedImage = [[UIImage imageNamed:@"timeline_active"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        timeLineNavController.tabBarItem.imageInsets = UIEdgeInsetsMake(6, 0, -6, 0);
+        timeLineNavController.title=nil;
         [controllers addObject:timeLineNavController];
         
         //Home
@@ -59,26 +65,30 @@
         
         homeNavController.tabBarItem.image = [[UIImage imageNamed:@"home_normal"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
         homeNavController.tabBarItem.selectedImage = [[UIImage imageNamed:@"home_active"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        homeNavController.tabBarItem.imageInsets = UIEdgeInsetsMake(6, 0, -6, 0);
+        homeNavController.title=nil;
         [controllers addObject:homeNavController];
         
         //MyProfile
-        DummyViewController *myProfileVC = [[DummyViewController alloc] init];
+        UserProfileViewController *myProfileVC = [[UserProfileViewController alloc] init];
         UINavigationController *myProfileNavController = [[UINavigationController alloc] initWithRootViewController:myProfileVC];
-        myProfileVC.dummyText = @"MY PROFILE";
         myProfileNavController.navigationBar.hidden=YES;
         
         myProfileNavController.tabBarItem.image = [[UIImage imageNamed:@"myprofile_normal"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
         myProfileNavController.tabBarItem.selectedImage = [[UIImage imageNamed:@"myprofile_active"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        myProfileNavController.tabBarItem.imageInsets = UIEdgeInsetsMake(6, 0, -6, 0);
+        myProfileNavController.title=nil;
         [controllers addObject:myProfileNavController];
         
         //Settings
-        DummyViewController *settingsVC = [[DummyViewController alloc] init];
+        SettingsViewController *settingsVC = [[SettingsViewController alloc] init];
         UINavigationController *settingsNavController = [[UINavigationController alloc] initWithRootViewController:settingsVC];
-        settingsVC.dummyText= @"SETTINGS";
         settingsNavController.navigationBar.hidden=YES;
         
         settingsNavController.tabBarItem.image = [[UIImage imageNamed:@"settings_normal"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
         settingsNavController.tabBarItem.selectedImage = [[UIImage imageNamed:@"settings_active"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        settingsNavController.tabBarItem.imageInsets = UIEdgeInsetsMake(6, 0, -6, 0);
+        settingsNavController.title=nil;
         [controllers addObject:settingsNavController];
         
         self.viewControllers = controllers;

@@ -22,6 +22,11 @@
 - (void)didFetchTimeline;
 - (void)didFetchTimeLineCounterOffers:(NSDictionary*)result;
 - (void)didFetchTimeLineCommunication:(NSDictionary*)result;
+- (void)didFetchFavoriteMedia:(NSArray*)favMediaId;
+- (void)didFetchMediaNumber:(NSString*)mediaPhoneNumber;
+- (void)didFetchCountries;
+- (void)didSendUserPreferences;
+- (void)didFetchInfoTexts;
 
 @end
 
@@ -42,6 +47,11 @@
 - (void)fetchTimeLine;
 - (void)fetchTimeLineCounterOffers:(NSInteger)news_id;
 - (void)fetchTimeLineCommunication:(NSInteger)news_id;
+- (void)fetchFavoriteMedia;
+- (void)fetchMediaPhoneNumber:(NSInteger)mediaId;
+- (void)fetchCountries;
+- (void)updateUserPreferences:(NSDictionary*)userDict;
+- (void)fetchInfoTexts;
 
 @end
 

@@ -34,6 +34,7 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     _customHeader.headerTitle = @"NEWS TASK";
+    //_customHeader.btnBack.hidden=YES;
     [self getNewsDeamandList];
     
 }

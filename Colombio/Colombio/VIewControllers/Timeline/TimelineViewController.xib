@@ -25,7 +25,6 @@
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="string" keyPath="headerTitle" value="TIMELINE"/>
                         <userDefinedRuntimeAttribute type="string" keyPath="nextButtonText" value=""/>
-                        <userDefinedRuntimeAttribute type="string" keyPath="backButtonText" value=""/>
                     </userDefinedRuntimeAttributes>
                 </view>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="I8w-Tq-HLV">

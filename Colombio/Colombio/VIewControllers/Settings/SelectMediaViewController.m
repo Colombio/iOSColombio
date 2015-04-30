@@ -44,7 +44,7 @@
 - (instancetype)initForNewsUpload:(BOOL)newsUpload{
     self = [super init];
     if (self) {
-        self.title = [Localized string:@"select_media"];
+        self.title = [[Localized string:@"select_media"] uppercaseString];
         _isForNewsUpload = newsUpload;
     }
     return self;
@@ -53,7 +53,7 @@
 - (instancetype)init{
     self = [super init];
     if (self) {
-        self.title = [Localized string:@"select_media"];
+        self.title = [[Localized string:@"select_media"] uppercaseString];
         _isForNewsUpload = NO;
     }
     return self;
@@ -73,14 +73,24 @@
     _selectedCountries = [[NSArray alloc] init];
     _selectedCountries = [self loadSelectedCountries];
     spinner = [[Loading alloc] init];
-    [spinner startCustomSpinner:self.view spinMessage:@""];
+    
     if (_isForNewsUpload) {
+        [spinner startCustomSpinner2:self.view spinMessage:@""];
         [self loadFavMedia];
     }else{
-        [self loadMedia];
+        if (_selectedCountries.count>0) {
+            [spinner startCustomSpinner2:self.view spinMessage:@""];
+            [self loadMedia];
+        }else{
+            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"" message:[Localized string:@"choose_one_country"] delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [alert show];
+        }
+        
     }
     
 }
+
+
 
 - (void)viewWillAppear:(BOOL)animated{
     if ([self selectedCountriesChanged]) {
@@ -131,10 +141,10 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    if (_isForNewsUpload) {
+    if (_isForNewsUpload && _mergedMedia.count>0) {
         return 20.0;
     }else{
-        return 0.01;
+        return 0;
     }
 }
 
@@ -145,7 +155,8 @@
         myLabel.frame = CGRectMake(5, 8, 320, 20);
         myLabel.font = [[UIConfiguration sharedInstance] getFont:FONT_HELVETICA_NEUE_MEDIUM_15];
         myLabel.textColor = [[UIConfiguration sharedInstance] getColor:COLOR_NEXT_BUTTON];
-        UIView *headerView = [[UIView alloc] init];
+        UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 25)];
+        headerView.backgroundColor = [UIColor whiteColor];
         [headerView addSubview:myLabel];
         if (_filteredFavMedia.count>0 && _filteredOtherMedia.count>0) {
             if (section==0) {
@@ -214,10 +225,11 @@
                     });
                 }
                 
+            }else{
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    cell.imgMedia.image = [appdelegate.mediaImages objectForKey:_mergedMedia[indexPath.section][indexPath.row][@"id"]];
+                });
             }
-            dispatch_async(dispatch_get_main_queue(), ^{
-                cell.imgMedia.image = [appdelegate.mediaImages objectForKey:_mergedMedia[indexPath.section][indexPath.row][@"id"]];
-            });
         });
         
     }else{
@@ -489,7 +501,7 @@
         _filteredOtherMedia = _otherMedia;
         _filteredFavMedia = [self addColombioOnTop:_favMedia];
         //[_selectedMedia addObjectsFromArray:_favMediaID];
-        _mergedMedia = [[NSArray alloc] initWithObjects:_filteredFavMedia, _filteredOtherMedia, nil];
+        _mergedMedia = [[NSMutableArray alloc] initWithObjects:_filteredFavMedia, _filteredOtherMedia, nil];
         dispatch_async(dispatch_get_main_queue(), ^{
             [_tblView reloadData];
             [spinner removeCustomSpinner];
@@ -580,7 +592,7 @@
     if(_isForNewsUpload) {
         _filteredFavMedia = [[NSMutableArray alloc] initWithArray:_favMedia];
         _filteredOtherMedia = [[NSMutableArray alloc] initWithArray:_otherMedia];
-        _mergedMedia = [[NSArray alloc] initWithObjects:_filteredFavMedia, _filteredOtherMedia, nil];
+        _mergedMedia = [[NSMutableArray alloc] initWithObjects:_filteredFavMedia, _filteredOtherMedia, nil];
     }else{
         _filteredMedia = [[NSMutableArray alloc] initWithArray:_media];
     }

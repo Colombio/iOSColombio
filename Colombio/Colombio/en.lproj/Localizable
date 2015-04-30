@@ -1,0 +1,158 @@
+/* 
+  Localizable.strings
+  Colombio
+
+  Created by Vlatko Šprem on 29/11/14.
+  Copyright (c) 2014 Colombio. All rights reserved.
+*/
+
+/*media types*/
+"internet" = "Internet";
+"newspaper" = "Newspaper";
+"tv" = "TV";
+"radio" = "Radio";
+
+/*timeline_butt*/
+"foto_video" = "Photo/video";
+"news" = "News";
+"story_tip" = "Story tip";
+"community_news" = "Community news";
+"announce_event" = "Announce event";
+
+/*start*/
+"start_button" = "START";
+"start_message" = "Before you start sharing your news with the world, create your account or sign in, choose country, choose media and enter your info.";
+
+"create_account" = "Create account";
+"register_successful" = "Registration successful";
+
+/*create account*/
+"enter_username" = "Enter your username";
+"enter_email" = "Enter your email";
+"enter_password" = "Enter your password";
+"enter_confirm_password" = "Confirm password";
+"error_username_exists" = "Username already exists";
+"error_username_format" = "Enter your username";
+"error_email_exists" = "Email already exists";
+"error_email_format" = "Wrong email";
+"error_password" = "8 chars, 1 capital, 1 number";
+"error_confirm_password" = "Both passwords must match";
+"acc_terms_of_service_lbl" = "By creating account, you agree to the";
+"acc_terms_of_service" = "Terms of Service";
+"and" = "and";
+"acc_privacy_policy" = "Privacy Policy";
+"acc_already_have_account" = "Already have an account?";
+
+/*forgot password*/
+"forgot_password" = "Send password";
+"email_banned" = "User with this email is banned";
+"email_null" = "Email does not exist";
+
+/*Common*/
+"wait" = "Please wait...";
+"yes" = "Yes";
+"no" = "No";
+"cancel" = "Cancel";
+
+/*error message global*/
+"error_web_request" = "Error sending request";
+
+/*Login*/
+"login_enter_email" = "Enter your email";
+"login_enter_password" = "Enter your password";
+"login_login" = "Log In";
+"login_missing_account" = "Don't have an account?";
+"login_signup" = "Sign up!";
+"login_forget_password" = "Forgot password?";
+"header1_desc" = "The simplest way to share info with news media.";
+"header2_title" = "PHOTO, VIDEO & TEXT";
+"header2_desc" = "Share exclusive news you have witnessed or heard about.";
+"header3_title" = "EARN MONEY";
+"header3_desc" = "Be rewarded for helping media in creating news content";
+
+"google_token_error" = "Google account information error";
+
+"check_email" = "Check your email.";
+"pass_sent" = "Password sent.";
+
+/*Settings*/
+"select_country" = "Select country";
+"select_media" = "Select media";
+"search_media" = "Search media type";
+"search_country" = "Search countries";
+"your_info" = "Your info";
+"connect_paypay" = "Connect PayPal";
+"paypal_email" = "PayPal Email";
+"sending_news_as" = "Sending news as";
+"info_anonymous_on" = "Anonymous ON";
+"info_anonymous_off" = "Anonymous OFF";
+"info_paypal_on" = "PayPal ON";
+"info_paypal_off" = "PayPal OFF";
+"error_choose_one_country" ="Select at least one country";
+"error_choose_one_media" = "Select at least one media";
+"select_media_favorites" = "FAVORITES";
+"select_media_othermedia" = "OTHER MEDIA";
+/*Home*/
+"btn_takephoto" = "TAKE PHOTO OR VIDEO";
+"btn_sendnews" = "SEND OPTIONS";
+"btn_alert" = "ALERT MEDIA";
+"btn_community" = "COMMUNITY NEWS";
+"btn_announce" = "ANNOUNCE EVENT";
+"btn_call" = "CALL MEDIA";
+
+/*create news*/
+"news_title_placeholder" = "Enter your title";
+"news_description_placeholder" = "Enter your description";
+"send_news" = "SEND NEWS";
+"select_content" = "SELECT CONTENT";
+"select_media" = "SELECT MEDIA";
+"use" = "USE";
+"photos_max_num" = "You can upload up to 5 pictures and/or 1 video";
+"photos_max_num_title" = "Number limit of pictures/video exceeded";
+"i_want_sell" = "I want to sell";
+"media_price_offer" = "Media price offer $%@";
+"media_may_or_not" = "*Media may or may not publish your news.";
+"media_only_one" = "*Only one media can buy your news";
+"be_signed" = "Be signed as an author";
+"contact_me" = "Contact me";
+"anonymous_sending" = "Anonymous sending";
+"name_price" = "Name your price (max $%@)*";
+"name_and_surname" = "Name and surname";
+"name" = "Name";
+"surname" = "Surname";
+"phone_number" = "Phone number";
+"did_you_know" = "DID YOU KNOW?";
+"use_colombio" = "USE COLOMBIO";
+"do_you_really_want_to_exit" = "Do you really want to exit? Your news will be deleted.";
+"user_colombio_for" = "• for sending story tips to journalists \n• when you whitness something that should be published \n• when you record exclusive photo/video \n• if you want to announce an event";
+
+"error_fill_fields" = "Please fill fields marked in red";
+"error_missing_images" = "Please choose at least one image or video";
+"error_missing_tags" = "Please choose at least one tag";
+"error_missing_media" = "Please choose at least one media";
+"send_success" = "News sent. Please wait…";
+"send_failed" = "Sending failed. Please wait…";
+/*Spinner message*/
+"logged" ="Logged in, please wait...";
+
+/*News Task*/
+"reward" = "Reward";
+"date" = "DATE";
+"until" = "UNTIL";
+
+/*TimeLine**/
+"sent" = "Sent";
+
+/*Header*/
+"header_next" = "NEXT";
+"header_use" = "USE";
+"header_save" = "SAVE";
+"header_send" = "SEND";
+
+/*Call Media*/
+"call" = "Call";
+
+/*Settings*/
+"settings" = "Settings";
+"select_language" = "Select langauge";
+"alerts" = "Alerts";

@@ -22,9 +22,6 @@
 		58ACA0021A4EE6B70076D3D8 /* HeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 58ACA0001A4EE6B70076D3D8 /* HeaderView.m */; };
 		58ACA0031A4EE6B70076D3D8 /* HeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58ACA0011A4EE6B70076D3D8 /* HeaderView.xib */; };
 		58ACA0051A530D5B0076D3D8 /* CreateAccViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58ACA0041A530D5B0076D3D8 /* CreateAccViewController.xib */; };
-		BB6EBE4C1A7474AD0066D7D7 /* MediaListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6EBE4A1A7474AD0066D7D7 /* MediaListViewController.m */; };
-		BB6EBE4D1A7474AD0066D7D7 /* MediaListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB6EBE4B1A7474AD0066D7D7 /* MediaListViewController.xib */; };
-		BB6EBE501A75A4BD0066D7D7 /* NewsMediaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB6EBE4F1A75A4BD0066D7D7 /* NewsMediaViewController.m */; };
 		BBAB60091AAE5722000493E0 /* UserInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBAB60071AAE5722000493E0 /* UserInfoViewController.m */; };
 		BBAB600A1AAE5722000493E0 /* UserInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBAB60081AAE5722000493E0 /* UserInfoViewController.xib */; };
 		BBAE1F1D1A37B51F0008B772 /* ColombioServiceCommunicator.m in Sources */ = {isa = PBXBuildFile; fileRef = BBAE1F1C1A37B51F0008B772 /* ColombioServiceCommunicator.m */; };
@@ -86,6 +83,21 @@
 		BBB79D1D1A5CABF8001A876A /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBB79D1B1A5CABF8001A876A /* HomeViewController.xib */; };
 		BBB79D201A5CB3DD001A876A /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBB79D1E1A5CB3DD001A876A /* FacebookSDK.framework */; };
 		BBB79D211A5CB3DD001A876A /* FBUserSettingsViewResources.bundle in Frameworks */ = {isa = PBXBuildFile; fileRef = BBB79D1F1A5CB3DD001A876A /* FBUserSettingsViewResources.bundle */; };
+		BBB7B7E41AEAE37C0013A602 /* SimpleMediaSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB7B7E21AEAE37C0013A602 /* SimpleMediaSelectViewController.m */; };
+		BBB7B7E51AEAE37C0013A602 /* SimpleMediaSelectViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBB7B7E31AEAE37C0013A602 /* SimpleMediaSelectViewController.xib */; };
+		BBB7B7E91AEB052D0013A602 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB7B7E71AEB052D0013A602 /* SettingsViewController.m */; };
+		BBB7B7EA1AEB052D0013A602 /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBB7B7E81AEB052D0013A602 /* SettingsViewController.xib */; };
+		BBB7B7ED1AEB0B660013A602 /* Localizable in Resources */ = {isa = PBXBuildFile; fileRef = BBB7B7EB1AEB0B660013A602 /* Localizable */; };
+		BBB7B7F11AEB10A10013A602 /* SettingsInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB7B7EF1AEB10A10013A602 /* SettingsInfoViewController.m */; };
+		BBB7B7F21AEB10A10013A602 /* SettingsInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBB7B7F01AEB10A10013A602 /* SettingsInfoViewController.xib */; };
+		BBB7B7F61AEC29FE0013A602 /* SimpleCountrySelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB7B7F41AEC29FE0013A602 /* SimpleCountrySelectViewController.m */; };
+		BBB7B7F71AEC29FE0013A602 /* SimpleCountrySelectViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBB7B7F51AEC29FE0013A602 /* SimpleCountrySelectViewController.xib */; };
+		BBB7B7FB1AEC5E780013A602 /* SelectLanguageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB7B7F91AEC5E780013A602 /* SelectLanguageViewController.m */; };
+		BBB7B7FC1AEC5E780013A602 /* SelectLanguageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBB7B7FA1AEC5E780013A602 /* SelectLanguageViewController.xib */; };
+		BBB7B8001AEC6EC60013A602 /* AlertsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB7B7FE1AEC6EC60013A602 /* AlertsViewController.m */; };
+		BBB7B8011AEC6EC60013A602 /* AlertsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBB7B7FF1AEC6EC60013A602 /* AlertsViewController.xib */; };
+		BBB7B8061AED81D10013A602 /* UserProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB7B8041AED81D10013A602 /* UserProfileViewController.m */; };
+		BBB7B8071AED81D10013A602 /* UserProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBB7B8051AED81D10013A602 /* UserProfileViewController.xib */; };
 		BBB7F32D1A60A6C20014909B /* ScrollableHeaderContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB7F32C1A60A6C20014909B /* ScrollableHeaderContentView.m */; };
 		BBB7F32F1A60A6D30014909B /* ScrollableHeaderContentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBB7F32E1A60A6D30014909B /* ScrollableHeaderContentView.xib */; };
 		BBB7F3321A60B60E0014909B /* CustomHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB7F3311A60B60E0014909B /* CustomHeaderView.m */; };
@@ -150,11 +162,6 @@
 		58ACA0001A4EE6B70076D3D8 /* HeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeaderView.m; sourceTree = "<group>"; };
 		58ACA0011A4EE6B70076D3D8 /* HeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HeaderView.xib; sourceTree = "<group>"; };
 		58ACA0041A530D5B0076D3D8 /* CreateAccViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreateAccViewController.xib; sourceTree = "<group>"; };
-		BB6EBE491A7474AD0066D7D7 /* MediaListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaListViewController.h; sourceTree = "<group>"; };
-		BB6EBE4A1A7474AD0066D7D7 /* MediaListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaListViewController.m; sourceTree = "<group>"; };
-		BB6EBE4B1A7474AD0066D7D7 /* MediaListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MediaListViewController.xib; sourceTree = "<group>"; };
-		BB6EBE4E1A75A4BD0066D7D7 /* NewsMediaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsMediaViewController.h; sourceTree = "<group>"; };
-		BB6EBE4F1A75A4BD0066D7D7 /* NewsMediaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsMediaViewController.m; sourceTree = "<group>"; };
 		BBAB60061AAE5722000493E0 /* UserInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoViewController.h; sourceTree = "<group>"; };
 		BBAB60071AAE5722000493E0 /* UserInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoViewController.m; sourceTree = "<group>"; };
 		BBAB60081AAE5722000493E0 /* UserInfoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserInfoViewController.xib; sourceTree = "<group>"; };
@@ -248,6 +255,28 @@
 		BBB79D1B1A5CABF8001A876A /* HomeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeViewController.xib; sourceTree = "<group>"; };
 		BBB79D1E1A5CB3DD001A876A /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
 		BBB79D1F1A5CB3DD001A876A /* FBUserSettingsViewResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = FBUserSettingsViewResources.bundle; sourceTree = "<group>"; };
+		BBB7B7E11AEAE37C0013A602 /* SimpleMediaSelectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleMediaSelectViewController.h; sourceTree = "<group>"; };
+		BBB7B7E21AEAE37C0013A602 /* SimpleMediaSelectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleMediaSelectViewController.m; sourceTree = "<group>"; };
+		BBB7B7E31AEAE37C0013A602 /* SimpleMediaSelectViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SimpleMediaSelectViewController.xib; sourceTree = "<group>"; };
+		BBB7B7E61AEB052D0013A602 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
+		BBB7B7E71AEB052D0013A602 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
+		BBB7B7E81AEB052D0013A602 /* SettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsViewController.xib; sourceTree = "<group>"; };
+		BBB7B7EC1AEB0B660013A602 /* en */ = {isa = PBXFileReference; lastKnownFileType = text; name = en; path = en.lproj/Localizable; sourceTree = "<group>"; };
+		BBB7B7EE1AEB10A10013A602 /* SettingsInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsInfoViewController.h; sourceTree = "<group>"; };
+		BBB7B7EF1AEB10A10013A602 /* SettingsInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsInfoViewController.m; sourceTree = "<group>"; };
+		BBB7B7F01AEB10A10013A602 /* SettingsInfoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsInfoViewController.xib; sourceTree = "<group>"; };
+		BBB7B7F31AEC29FE0013A602 /* SimpleCountrySelectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleCountrySelectViewController.h; sourceTree = "<group>"; };
+		BBB7B7F41AEC29FE0013A602 /* SimpleCountrySelectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleCountrySelectViewController.m; sourceTree = "<group>"; };
+		BBB7B7F51AEC29FE0013A602 /* SimpleCountrySelectViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SimpleCountrySelectViewController.xib; sourceTree = "<group>"; };
+		BBB7B7F81AEC5E780013A602 /* SelectLanguageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectLanguageViewController.h; sourceTree = "<group>"; };
+		BBB7B7F91AEC5E780013A602 /* SelectLanguageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectLanguageViewController.m; sourceTree = "<group>"; };
+		BBB7B7FA1AEC5E780013A602 /* SelectLanguageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelectLanguageViewController.xib; sourceTree = "<group>"; };
+		BBB7B7FD1AEC6EC60013A602 /* AlertsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertsViewController.h; sourceTree = "<group>"; };
+		BBB7B7FE1AEC6EC60013A602 /* AlertsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertsViewController.m; sourceTree = "<group>"; };
+		BBB7B7FF1AEC6EC60013A602 /* AlertsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AlertsViewController.xib; sourceTree = "<group>"; };
+		BBB7B8031AED81D10013A602 /* UserProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserProfileViewController.h; sourceTree = "<group>"; };
+		BBB7B8041AED81D10013A602 /* UserProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserProfileViewController.m; sourceTree = "<group>"; };
+		BBB7B8051AED81D10013A602 /* UserProfileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserProfileViewController.xib; sourceTree = "<group>"; };
 		BBB7F32B1A60A6C20014909B /* ScrollableHeaderContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollableHeaderContentView.h; sourceTree = "<group>"; };
 		BBB7F32C1A60A6C20014909B /* ScrollableHeaderContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollableHeaderContentView.m; sourceTree = "<group>"; };
 		BBB7F32E1A60A6D30014909B /* ScrollableHeaderContentView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ScrollableHeaderContentView.xib; sourceTree = "<group>"; };
@@ -386,9 +415,6 @@
 				58A004FB1A60DBE300E7BA68 /* CountriesViewController.h */,
 				58A004FC1A60DBE300E7BA68 /* CountriesViewController.m */,
 				58A004FD1A60DBE300E7BA68 /* CountriesViewController.xib */,
-				BB6EBE491A7474AD0066D7D7 /* MediaListViewController.h */,
-				BB6EBE4A1A7474AD0066D7D7 /* MediaListViewController.m */,
-				BB6EBE4B1A7474AD0066D7D7 /* MediaListViewController.xib */,
 				BBB4EADC1AAA67290075717A /* SelectMediaViewController.h */,
 				BBB4EADD1AAA67290075717A /* SelectMediaViewController.m */,
 				BBB4EADE1AAA67290075717A /* SelectMediaViewController.xib */,
@@ -398,6 +424,24 @@
 				BBAB60061AAE5722000493E0 /* UserInfoViewController.h */,
 				BBAB60071AAE5722000493E0 /* UserInfoViewController.m */,
 				BBAB60081AAE5722000493E0 /* UserInfoViewController.xib */,
+				BBB7B7E11AEAE37C0013A602 /* SimpleMediaSelectViewController.h */,
+				BBB7B7E21AEAE37C0013A602 /* SimpleMediaSelectViewController.m */,
+				BBB7B7E31AEAE37C0013A602 /* SimpleMediaSelectViewController.xib */,
+				BBB7B7E61AEB052D0013A602 /* SettingsViewController.h */,
+				BBB7B7E71AEB052D0013A602 /* SettingsViewController.m */,
+				BBB7B7E81AEB052D0013A602 /* SettingsViewController.xib */,
+				BBB7B7EE1AEB10A10013A602 /* SettingsInfoViewController.h */,
+				BBB7B7EF1AEB10A10013A602 /* SettingsInfoViewController.m */,
+				BBB7B7F01AEB10A10013A602 /* SettingsInfoViewController.xib */,
+				BBB7B7F31AEC29FE0013A602 /* SimpleCountrySelectViewController.h */,
+				BBB7B7F41AEC29FE0013A602 /* SimpleCountrySelectViewController.m */,
+				BBB7B7F51AEC29FE0013A602 /* SimpleCountrySelectViewController.xib */,
+				BBB7B7F81AEC5E780013A602 /* SelectLanguageViewController.h */,
+				BBB7B7F91AEC5E780013A602 /* SelectLanguageViewController.m */,
+				BBB7B7FA1AEC5E780013A602 /* SelectLanguageViewController.xib */,
+				BBB7B7FD1AEC6EC60013A602 /* AlertsViewController.h */,
+				BBB7B7FE1AEC6EC60013A602 /* AlertsViewController.m */,
+				BBB7B7FF1AEC6EC60013A602 /* AlertsViewController.xib */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -414,8 +458,6 @@
 				BBC77C681A6889610069FD9D /* PhotoLibraryViewController.xib */,
 				BBBE0C541A6DB37C00EF5124 /* UploadContainerViewController.h */,
 				BBBE0C551A6DB37C00EF5124 /* UploadContainerViewController.m */,
-				BB6EBE4E1A75A4BD0066D7D7 /* NewsMediaViewController.h */,
-				BB6EBE4F1A75A4BD0066D7D7 /* NewsMediaViewController.m */,
 				BBB144811A78E66800980BB4 /* UserInfoUploadViewController.h */,
 				BBB144821A78E66800980BB4 /* UserInfoUploadViewController.m */,
 				BBB144831A78E66800980BB4 /* UserInfoUploadViewController.xib */,
@@ -468,6 +510,7 @@
 				BBB33AC21A27D9EE008D0E26 /* main.m */,
 				BBCF58D81A293C0A00CE64B4 /* colombio-Prefix.pch */,
 				BBCF58E81A293F6700CE64B4 /* Localizable.strings */,
+				BBB7B7EB1AEB0B660013A602 /* Localizable */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -533,6 +576,16 @@
 				BBB6A05E1A44FB2D006F61B3 /* UIConfiguration.m */,
 			);
 			path = UIConfiguration;
+			sourceTree = "<group>";
+		};
+		BBB7B8021AED81B80013A602 /* UserProfile */ = {
+			isa = PBXGroup;
+			children = (
+				BBB7B8031AED81D10013A602 /* UserProfileViewController.h */,
+				BBB7B8041AED81D10013A602 /* UserProfileViewController.m */,
+				BBB7B8051AED81D10013A602 /* UserProfileViewController.xib */,
+			);
+			path = UserProfile;
 			sourceTree = "<group>";
 		};
 		BBB7F3371A6209560014909B /* Model */ = {
@@ -653,6 +706,7 @@
 		BBCF58831A29357400CE64B4 /* VIewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				BBB7B8021AED81B80013A602 /* UserProfile */,
 				BBE70DFE1ACF3BC600C203C3 /* Timeline */,
 				BBD4535D1A64913E0029CADD /* ContainerViewController */,
 				BBBB044B1AC4AF8C0023DD86 /* NewsTask */,
@@ -788,10 +842,11 @@
 			files = (
 				BBBD6EBE1AD735C20006A57C /* TimeLineTableViewCell.xib in Resources */,
 				58ACA0051A530D5B0076D3D8 /* CreateAccViewController.xib in Resources */,
-				BB6EBE4D1A7474AD0066D7D7 /* MediaListViewController.xib in Resources */,
 				BBB144851A78E66800980BB4 /* UserInfoUploadViewController.xib in Resources */,
+				BBB7B7F71AEC29FE0013A602 /* SimpleCountrySelectViewController.xib in Resources */,
 				BBBB045D1AC4B3F70023DD86 /* NewsDemandCell.xib in Resources */,
 				BBB4EAEB1AAA6B010075717A /* SelectMediaCell.xib in Resources */,
+				BBB7B8071AED81D10013A602 /* UserProfileViewController.xib in Resources */,
 				BBB0BFA91A350F640074B20C /* LoginViewController.xib in Resources */,
 				BBB33ACE1A27D9EE008D0E26 /* Images.xcassets in Resources */,
 				BBB5827F1AE83FD8004C762B /* AnnounceEventViewController.xib in Resources */,
@@ -800,6 +855,7 @@
 				BBAE1F251A37B68E0008B772 /* ForgotPasswordViewController.xib in Resources */,
 				BBB6A0641A48D791006F61B3 /* StartViewController.xib in Resources */,
 				BBE70E031ACF3C2400C203C3 /* TimelineViewController.xib in Resources */,
+				BBB7B7EA1AEB052D0013A602 /* SettingsViewController.xib in Resources */,
 				58ACA0031A4EE6B70076D3D8 /* HeaderView.xib in Resources */,
 				BBB2B12F1A5F37E200F4FD38 /* TabBarViewController.xib in Resources */,
 				BBAB600A1AAE5722000493E0 /* UserInfoViewController.xib in Resources */,
@@ -810,12 +866,17 @@
 				BBB7F32F1A60A6D30014909B /* ScrollableHeaderContentView.xib in Resources */,
 				BBB2B1341A5F404E00F4FD38 /* DummyViewController.xib in Resources */,
 				BBB604B81A7EFFB90090F18A /* UploadNewsViewController.xib in Resources */,
+				BBB7B8011AEC6EC60013A602 /* AlertsViewController.xib in Resources */,
 				BBAFB2B81ADDC9DA005F8762 /* TimeLineDetailsTableViewCell.xib in Resources */,
 				BBBB04661AC4C5C60023DD86 /* NewsDemandViewController.xib in Resources */,
 				BBC77C6A1A6889610069FD9D /* PhotoLibraryViewController.xib in Resources */,
+				BBB7B7E51AEAE37C0013A602 /* SimpleMediaSelectViewController.xib in Resources */,
 				58A004FF1A60DBE300E7BA68 /* CountriesViewController.xib in Resources */,
 				582352C31A841E2900A03D19 /* GoogleLoginViewController.xib in Resources */,
 				BBD453621A64914A0029CADD /* ContainerViewController.xib in Resources */,
+				BBB7B7ED1AEB0B660013A602 /* Localizable in Resources */,
+				BBB7B7FC1AEC5E780013A602 /* SelectLanguageViewController.xib in Resources */,
+				BBB7B7F21AEB10A10013A602 /* SettingsInfoViewController.xib in Resources */,
 				BBB5B47F1AABC73A00765861 /* SelectCountriesViewController.xib in Resources */,
 				BBE1725E1AC76337009517A7 /* NewsDemandDetailsViewController.xib in Resources */,
 			);
@@ -831,7 +892,6 @@
 				BBCF58A21A29395400CE64B4 /* Validation.m in Sources */,
 				BBAE1F201A37B5A80008B772 /* NSDate+DateHandler.m in Sources */,
 				5836A1CD1A55F98300C509F1 /* Loading.m in Sources */,
-				BB6EBE4C1A7474AD0066D7D7 /* MediaListViewController.m in Sources */,
 				BBB6A05F1A44FB2D006F61B3 /* UIConfiguration.m in Sources */,
 				BBAB60091AAE5722000493E0 /* UserInfoViewController.m in Sources */,
 				BBB214151AA91D17009B43D2 /* LoginSettingsViewController.m in Sources */,
@@ -839,6 +899,8 @@
 				BBB964A91AC9F23100C1D37E /* Annotation.m in Sources */,
 				BBB2B1391A5F534F00F4FD38 /* CreateNewsViewController.m in Sources */,
 				BBAE1F241A37B68E0008B772 /* ForgotPasswordViewController.m in Sources */,
+				BBB7B7FB1AEC5E780013A602 /* SelectLanguageViewController.m in Sources */,
+				BBB7B7E91AEB052D0013A602 /* SettingsViewController.m in Sources */,
 				BBB79D1C1A5CABF8001A876A /* HomeViewController.m in Sources */,
 				BBBD6EBD1AD735C20006A57C /* TimeLineTableViewCell.m in Sources */,
 				BBAE1F291A37B6980008B772 /* CreateAccViewController.m in Sources */,
@@ -846,6 +908,7 @@
 				BBB2B1331A5F404E00F4FD38 /* DummyViewController.m in Sources */,
 				BBB5827E1AE83FD8004C762B /* AnnounceEventViewController.m in Sources */,
 				BBBE0C561A6DB37C00EF5124 /* UploadContainerViewController.m in Sources */,
+				BBB7B8001AEC6EC60013A602 /* AlertsViewController.m in Sources */,
 				583572071A2B4B7400F6EA17 /* LoginViewController.m in Sources */,
 				BBB2B12E1A5F37E200F4FD38 /* TabBarViewController.m in Sources */,
 				5835720B1A2B705100F6EA17 /* BottomNav.m in Sources */,
@@ -862,11 +925,12 @@
 				BBE70E021ACF3C2400C203C3 /* TimelineViewController.m in Sources */,
 				BBB5B4831AABCA0E00765861 /* SelectCountryCell.m in Sources */,
 				BBC77C691A6889610069FD9D /* PhotoLibraryViewController.m in Sources */,
-				BB6EBE501A75A4BD0066D7D7 /* NewsMediaViewController.m in Sources */,
 				BBB7F33A1A6209560014909B /* NewsData.m in Sources */,
+				BBB7B7F61AEC29FE0013A602 /* SimpleCountrySelectViewController.m in Sources */,
 				BBAF777B1A50C914004AAAF9 /* ScrollableHeaderView.m in Sources */,
 				BBB7F32D1A60A6C20014909B /* ScrollableHeaderContentView.m in Sources */,
 				BBB4EADF1AAA67290075717A /* SelectMediaViewController.m in Sources */,
+				BBB7B7F11AEB10A10013A602 /* SettingsInfoViewController.m in Sources */,
 				BBD071571A69C79800C3E84E /* LibraryCell.m in Sources */,
 				BBB604B71A7EFFB90090F18A /* UploadNewsViewController.m in Sources */,
 				BBB33AC61A27D9EE008D0E26 /* AppDelegate.m in Sources */,
@@ -877,10 +941,12 @@
 				BBCF58ED1A29401700CE64B4 /* Localized.m in Sources */,
 				BBCF58A11A29395400CE64B4 /* Reachability.m in Sources */,
 				BBB6A0631A48D791006F61B3 /* StartViewController.m in Sources */,
+				BBB7B7E41AEAE37C0013A602 /* SimpleMediaSelectViewController.m in Sources */,
 				BBBA31CF1A70772E002ED12A /* ButtonTag.m in Sources */,
 				BBB33AC31A27D9EE008D0E26 /* main.m in Sources */,
 				582352C21A841E2900A03D19 /* GoogleLoginViewController.m in Sources */,
 				BBAFB2B71ADDC9DA005F8762 /* TimeLineDetailsTableViewCell.m in Sources */,
+				BBB7B8061AED81D10013A602 /* UserProfileViewController.m in Sources */,
 				583572191A2B72BB00F6EA17 /* Tools.m in Sources */,
 				BBB7F3321A60B60E0014909B /* CustomHeaderView.m in Sources */,
 				BBBB04651AC4C5C60023DD86 /* NewsDemandViewController.m in Sources */,
@@ -900,6 +966,14 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		BBB7B7EB1AEB0B660013A602 /* Localizable */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BBB7B7EC1AEB0B660013A602 /* en */,
+			);
+			name = Localizable;
+			sourceTree = "<group>";
+		};
 		BBCF58E81A293F6700CE64B4 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (

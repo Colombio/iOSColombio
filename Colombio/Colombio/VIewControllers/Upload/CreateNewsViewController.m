@@ -11,9 +11,15 @@
 #import "PhotoLibraryViewController.h"
 #import "ButtonTag.h"
 #import <AssetsLibrary/AssetsLibrary.h>
+#import "AppDelegate.h"
+#import "Loading.h"
 
 @interface CreateNewsViewController ()
-
+{
+    ALAssetsLibrary *al;
+    NSMutableArray *content;
+    Loading *loadingView;
+}
 @property (weak,nonatomic) IBOutlet CustomHeaderView *customHeader;
 @property (weak,nonatomic) IBOutlet UIView *viewHolder;
 @property (weak,nonatomic) IBOutlet UIView *viewImageHolder;
@@ -28,6 +34,8 @@
 @property (weak,nonatomic) IBOutlet NSLayoutConstraint *CS_tagsHolderHeight;
 @property (weak,nonatomic) IBOutlet NSLayoutConstraint *CS_txtTitleHeight;
 @property (weak,nonatomic) IBOutlet NSLayoutConstraint *CS_txtDescriptionHeight;
+
+@property (strong, nonatomic) UIImagePickerController *camera;
 
 - (IBAction)btnAddImageTapped:(id)sender;
 @end
@@ -48,6 +56,11 @@ CGFloat const kImagePadding = 1.0;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    if (_openCamera) {
+        loadingView = [[Loading alloc] init];
+        al = [AppDelegate defaultAssetsLibrary];
+        [self openCameraVC];
+    }
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(keyboardUp:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(keyboardDown:) name:UIKeyboardWillHideNotification object:nil];
     
@@ -256,4 +269,65 @@ CGFloat const kImagePadding = 1.0;
     _scrollView.contentInset = contentInsets;
     _scrollView.scrollIndicatorInsets = contentInsets;
 }
+
+#pragma mark Camera Action
+- (void)openCameraVC{
+    _camera = [[UIImagePickerController alloc]init];
+    _camera.mediaTypes = [UIImagePickerController availableMediaTypesForSourceType:UIImagePickerControllerSourceTypeCamera];
+    
+    _camera.delegate = self;
+    
+    [_camera setSourceType:UIImagePickerControllerSourceTypeCamera];
+    [self presentViewController:_camera animated:YES completion:NULL];
+}
+
+- (void) imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
+     UIImage *image  =[info objectForKey:UIImagePickerControllerOriginalImage];
+     [self dismissViewControllerAnimated:YES completion:NULL];
+     [loadingView startCustomSpinner:self.view spinMessage:@""];
+     [al writeImageToSavedPhotosAlbum:image.CGImage orientation:(ALAssetOrientation)image.imageOrientation completionBlock:^(NSURL *assetURL, NSError *error) {
+         [NSTimer scheduledTimerWithTimeInterval:0.2 target:self selector:@selector(loadLibrary) userInfo:nil repeats:NO];
+     }];
+     NSString *mediaType = [info objectForKey:UIImagePickerControllerMediaType];
+     if([mediaType isEqualToString:@"public.movie"]){
+     NSString *sourcePath = [[info objectForKey:@"UIImagePickerControllerMediaURL"]relativePath];
+     UISaveVideoAtPathToSavedPhotosAlbum(sourcePath, nil, @selector(finishVideoSaving:), nil);
+     }
+}
+
+
+- (IBAction)finishVideoSaving:(id)sender{
+    [NSTimer scheduledTimerWithTimeInterval:0.2 target:self selector:@selector(loadLibrary) userInfo:nil repeats:NO];
+}
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
+    [self dismissViewControllerAnimated:YES completion:NULL];
+}
+
+- (void)loadLibrary{
+    _selectedImagesArray = [[NSMutableArray alloc] init];
+    content = [[NSMutableArray alloc]init];
+    [al enumerateGroupsWithTypes:ALAssetsGroupSavedPhotos usingBlock:^(ALAssetsGroup *group, BOOL *stop) {
+        
+        [group setAssetsFilter:[ALAssetsFilter allAssets]];
+        
+        // Chooses the photo at the last index
+        [group enumerateAssetsWithOptions:NSEnumerationReverse usingBlock:^(ALAsset *alAsset, NSUInteger index, BOOL *innerStop) {
+            // The end of the enumeration is signaled by asset == nil.
+            if (alAsset) {
+                [content addObject:alAsset];
+                *stop=YES;
+                *innerStop=YES;
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [_selectedImagesArray addObject:content[0]];
+                    [self loadImages];
+                    [loadingView removeCustomSpinner];
+                });
+            }
+        }];
+    } failureBlock: ^(NSError *error) {
+        NSLog(@"No groups");
+    }];
+}
+
 @end

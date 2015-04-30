@@ -61,7 +61,7 @@
     loadingView = [[Loading alloc] init];
     
     [_collectionView registerClass:[LibraryCell class] forCellWithReuseIdentifier:@"cellIdentifier"];
-    [loadingView startCustomSpinner:self.view spinMessage:@""];
+    [loadingView startCustomSpinner2:self.view spinMessage:@""];
     [self loadLibrary];
 }
 
@@ -301,7 +301,7 @@
 
     //UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil);
     [self dismissViewControllerAnimated:YES completion:NULL];
-    [loadingView startCustomSpinner:self.view spinMessage:@""];
+    [loadingView startCustomSpinner2:self.view spinMessage:@""];
     [al writeImageToSavedPhotosAlbum:image.CGImage orientation:(ALAssetOrientation)image.imageOrientation completionBlock:^(NSURL *assetURL, NSError *error) {
         [NSTimer scheduledTimerWithTimeInterval:0.2 target:self selector:@selector(loadLibrary) userInfo:nil repeats:NO];
     }];

@@ -30,7 +30,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     spinner = [[Loading alloc] init];
-    [spinner startCustomSpinner:self.view spinMessage:@""];
+    [spinner startCustomSpinner2:self.view spinMessage:@""];
     ColombioServiceCommunicator *csc = [ColombioServiceCommunicator sharedManager];
     csc.delegate=self;
     [csc fetchTimeLine];
@@ -96,7 +96,7 @@
 - (void)didFetchTimeline{
     
     NSString *sql = @"Select tl.*, tli.medium_image as img from timeline as tl left join timeline_image as tli on tli.news_id = tl.news_id order by news_timestamp desc";
-    AppDelegate *appdelegate = [UIApplication sharedApplication].delegate;
+    AppDelegate *appdelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
     _timelineArray = [appdelegate.db getAllForSQL:sql];
     dispatch_async(dispatch_get_main_queue(), ^{
         [spinner removeCustomSpinner];

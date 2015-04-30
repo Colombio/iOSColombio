@@ -252,7 +252,6 @@
         }
         else {
             [loadingView stopCustomSpinner];
-            [loadingView customSpinnerFail];
             timer = [NSTimer scheduledTimerWithTimeInterval:2.0f target:self selector:@selector(removeSpinner) userInfo:nil repeats:NO];
             [btnLogin setTitle:[Localized string:@"login_login"] forState:UIControlStateNormal];
         }
@@ -344,7 +343,6 @@
             dispatch_async(dispatch_get_main_queue(), ^{
                 LoginSettingsViewController *containerVC = [[LoginSettingsViewController alloc] initWithNibName:@"ContainerViewController" bundle:nil];
                 [self presentViewController:containerVC animated:YES completion:nil];
-                [loadingView stopCustomSpinner];
                 [loadingView removeCustomSpinner];
                 return;
             });
@@ -358,7 +356,6 @@
 
 - (void)didFetchMedia{
     dispatch_async(dispatch_get_main_queue(), ^{
-        [loadingView stopCustomSpinner];
         [loadingView removeCustomSpinner];
         //[self presentViewController:[[LoginSettingsViewController alloc] initWithNibName:@"ContainerViewController" bundle:nil] animated:YES completion:nil];
         [self presentViewController:[[TabBarViewController alloc] init] animated:YES completion:nil];

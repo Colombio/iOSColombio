@@ -75,7 +75,7 @@
                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="no" spellCheckingType="no" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="news_title_placeholder"/>
-                                        <userDefinedRuntimeAttribute type="string" keyPath="placeholderColor" value="COLOR_PLACEHOLDER_NEWS_TITLE"/>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="placeholderColor" value="COLOR_TEXT_NEWS_TITLE"/>
                                         <userDefinedRuntimeAttribute type="string" keyPath="configTextColor" value="COLOR_TEXT_NEWS_TITLE"/>
                                         <userDefinedRuntimeAttribute type="string" keyPath="configTextFont" value="FONT_HELVETICA_NEUE_MEDIUM_19"/>
                                     </userDefinedRuntimeAttributes>

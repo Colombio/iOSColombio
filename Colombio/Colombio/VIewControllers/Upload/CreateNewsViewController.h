@@ -17,13 +17,14 @@
 
 @end
 
-@interface CreateNewsViewController : UIViewController<UITextViewDelegate, ColombioServiceCommunicatorDelegate>
+@interface CreateNewsViewController : UIViewController<UITextViewDelegate, ColombioServiceCommunicatorDelegate, UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 
 @property (nonatomic, strong) id<CreateNewsViewControllerDelegate> delegate;
 @property (strong, nonatomic) NSMutableArray *selectedImagesArray;
 @property (strong, nonatomic) NSMutableArray *selectedTags;
 @property (weak,nonatomic) IBOutlet CLTextView *txtTitle;
 @property (weak,nonatomic) IBOutlet CLTextView *txtDescription;
+@property (assign, nonatomic) BOOL openCamera;
 
 - (void)loadImages;
 - (BOOL)validateFields;

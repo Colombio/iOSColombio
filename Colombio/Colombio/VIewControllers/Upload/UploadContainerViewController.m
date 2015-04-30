@@ -59,6 +59,11 @@
             if (_typeID==5) {
                 array = [[NSArray alloc] initWithObjects:announcedVC, mediaVC, userInfoVC, nil];
             }else{
+                if(_typeID==1){
+                    contentVC.openCamera=YES;
+                }else{
+                    contentVC.openCamera=NO;
+                }
                 array = [[NSArray alloc] initWithObjects:contentVC,mediaVC, userInfoVC, nil];
             }
         }else{
@@ -128,15 +133,15 @@
             newsData.did=0;
         }
         if (_typeID==5) {
-            newsData.title = announcedVC.txtTitle.text;
-            newsData.content = announcedVC.txtDescription.text;
+            newsData.title = announcedVC.txtTitle.text.length>0?announcedVC.txtTitle.text:[Localized string:@"no_title"];
+            newsData.content = announcedVC.txtDescription.text.length>0?announcedVC.txtDescription.text:[Localized string:@"no_title"];
             newsData.images = nil;
             newsData.tags = announcedVC.selectedTags;
             newsData.content = announcedVC.txtDescription.text;
             //DATUM!!!!
         }else{
-            newsData.title = contentVC.txtTitle.text;
-            newsData.content = contentVC.txtDescription.text;
+            newsData.title = contentVC.txtTitle.text.length>0?contentVC.txtTitle.text:[Localized string:@"no_title"];
+            newsData.content = contentVC.txtDescription.text.length>0?contentVC.txtDescription.text:[Localized string:@"no_title"];
             newsData.images = contentVC.selectedImagesArray;
             newsData.tags = contentVC.selectedTags;
             newsData.content = contentVC.txtDescription.text;
@@ -172,10 +177,10 @@
         [self showErrorMessage:@"error_fill_fields"];
         return NO;
     }
-    if (![contentVC validateImages]) {
+    /*if (![contentVC validateImages]) {
         [self showErrorMessage:@"error_missing_images"];
         return NO;
-    }
+    }*/
     if (!_isNewsDemand) {
         if (![contentVC validateTags]) {
             [self showErrorMessage:@"error_missing_tags"];

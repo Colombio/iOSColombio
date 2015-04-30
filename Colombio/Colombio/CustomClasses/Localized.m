@@ -18,7 +18,7 @@ static Localized *localized = nil;
 - (id)init {
     if ((self = [super init])) {
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        self.pathAttribute = [defaults stringForKey:@"language_preference"];
+        self.pathAttribute = [defaults stringForKey:SELECTED_LANGUAGE];
         
         NSString *bundlePath = [[NSBundle mainBundle] bundlePath];
         NSString *dataPath;
@@ -78,7 +78,7 @@ static Localized *localized = nil;
 
 + (void)save:(NSString *)languageKey {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setObject:[NSString stringWithFormat:@"%@.lproj",languageKey] forKey:@"language_preference"];
+    [defaults setObject:[NSString stringWithFormat:@"%@.lproj",languageKey] forKey:SELECTED_LANGUAGE];
     @synchronized(localized) {
         if (localized != nil) {
             localized = nil;
@@ -89,7 +89,7 @@ static Localized *localized = nil;
 
 + (void)reset {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults removeObjectForKey:@"language_preference"];
+    [defaults removeObjectForKey:SELECTED_LANGUAGE];
     @synchronized(localized) {
         if (localized != nil) {
             localized = nil;

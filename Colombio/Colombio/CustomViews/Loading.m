@@ -109,6 +109,35 @@
     }];
 }
 
+- (void)startCustomSpinner2:(UIView *)view spinMessage:(NSString*)strMessage{
+    viewParent=view;
+    viewDimmed = [[UIView alloc] initWithFrame:CGRectMake(0, 0, viewParent.frame.size.width, viewParent.frame.size.height)];
+    imgSpinner = [[UIImageView alloc]initWithFrame:CGRectMake(viewParent.frame.size.width/2-30, viewParent.frame.size.height-200, 60, 60)];
+    viewDimmed.backgroundColor = [UIColor clearColor];
+    imgSpinner.alpha=0;
+    imgStatus = [[UIImageView alloc]initWithFrame:CGRectMake(20, 20, 20, 20)];
+    imgStatus.alpha=0;
+    [imgSpinner addSubview:imgStatus];
+    lblInfo = [[UILabel alloc]initWithFrame:CGRectMake(-50, 40, 200, 80)];
+    lblInfo.text = [Localized string:strMessage];
+    lblInfo.font = [[UIConfiguration sharedInstance] getFont:FONT_HELVETICA_NEUE_LIGHT];
+    lblInfo.textColor = [UIColor whiteColor];
+    lblInfo.alpha=0;
+    [imgSpinner addSubview:lblInfo];
+    
+    [UIView animateWithDuration:0.8 animations:^(void) {
+        [viewParent addSubview:viewDimmed];
+        viewDimmed.alpha=0.6;
+        imgSpinner.alpha=1;
+        viewDimmed.backgroundColor = [UIColor clearColor];
+        imgSpinner.image = [UIImage imageNamed:@"loading2"];
+        [viewParent addSubview:imgSpinner];
+        [self spinLoading];
+        [viewParent setUserInteractionEnabled:NO];
+        isLoading=YES;
+    }];
+}
+
 /**
  *  Stop custom made spinner
  *
@@ -123,6 +152,7 @@
  *
  */
 - (void)removeCustomSpinner{
+    //[self stopCustomSpinner];
     [UIView animateWithDuration:0.8  animations:^(void) {
         [imgSpinner.layer removeAllAnimations];
         imgSpinner.alpha=0.0;
