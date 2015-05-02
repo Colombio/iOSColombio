@@ -366,22 +366,24 @@
 
 #pragma mark TextField
 -(IBAction)textFieldDidChange:(UITextField *)textField{
-    
-    if (textField.text.length>0) {
-        [self filterMedia:textField.text];
-    }else{
-        _filteredFavMedia = [[NSMutableArray alloc] initWithArray:_favMedia];
-        _filteredOtherMedia = [[NSMutableArray alloc] initWithArray:_otherMedia];
-        
-        _mergedMedia = [[NSMutableArray alloc] init];
-        if (_filteredFavMedia.count>0) {
-            [_mergedMedia addObject:_filteredFavMedia];
+    @synchronized(self) {
+        if (textField.text.length>0) {
+            [self filterMedia:textField.text];
+        }else{
+            _filteredFavMedia = [[NSMutableArray alloc] initWithArray:_favMedia];
+            _filteredOtherMedia = [[NSMutableArray alloc] initWithArray:_otherMedia];
+            
+            _mergedMedia = [[NSMutableArray alloc] init];
+            if (_filteredFavMedia.count>0) {
+                [_mergedMedia addObject:_filteredFavMedia];
+            }
+            if (_filteredOtherMedia.count>0) {
+                [_mergedMedia addObject:_filteredOtherMedia];
+            }
         }
-        if (_filteredOtherMedia.count>0) {
-            [_mergedMedia addObject:_filteredOtherMedia];
-        }
+        [_tblView reloadData];
     }
-    [_tblView reloadData];
+    
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
@@ -406,11 +408,13 @@
 }
 
 - (IBAction)btnDismissSearchSelected:(id)sender{
-    _txtSearch.text=@"";
+    @synchronized(self){
+        _txtSearch.text=@"";
         _filteredFavMedia = [[NSMutableArray alloc] initWithArray:_favMedia];
         _filteredOtherMedia = [[NSMutableArray alloc] initWithArray:_otherMedia];
         _mergedMedia = [[NSMutableArray alloc] initWithObjects:_filteredFavMedia, _filteredOtherMedia, nil];
-    [_tblView reloadData];
+        [_tblView reloadData];
+    }
 }
 
 

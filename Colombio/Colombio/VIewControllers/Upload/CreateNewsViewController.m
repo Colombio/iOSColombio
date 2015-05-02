@@ -213,9 +213,9 @@ CGFloat const kImagePadding = 1.0;
 }
 
 - (BOOL)validateTags{
-    if (_selectedTags.count==0) {
+    /*if (_selectedTags.count==0) {
         return NO;
-    }
+    }*/
     return YES;
 }
 

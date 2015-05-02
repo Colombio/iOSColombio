@@ -60,7 +60,7 @@
     locationManager = [[CLLocationManager alloc]init];
     if([self.locationManager respondsToSelector:@selector(requestAlwaysAuthorization)]){
         [locationManager requestWhenInUseAuthorization];
-        [locationManager requestAlwaysAuthorization];
+        //[locationManager requestAlwaysAuthorization];
     }
     locationManager.distanceFilter = kCLDistanceFilterNone;
     locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters;

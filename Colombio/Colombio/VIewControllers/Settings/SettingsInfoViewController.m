@@ -55,7 +55,7 @@ enum Types{
             _customHeaderView.headerTitle = [[Localized string:@"privacy_policy"] uppercaseString];
             break;
         case ABOUT:
-            _customHeaderView.headerTitle = [[Localized string:@"about"] uppercaseString];
+            _customHeaderView.headerTitle = [[Localized string:@"contact_us"] uppercaseString];
             break;
         default:
             break;
@@ -78,7 +78,12 @@ enum Types{
 }
 
 -(void)btnBackClicked{
-    [self.navigationController popToRootViewControllerAnimated:YES];
+    if ([self isModal]) {
+        [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+    }else{
+        [self.navigationController popToRootViewControllerAnimated:YES];
+    }
+    
 }
 
 #pragma mark CSC
@@ -88,19 +93,19 @@ enum Types{
     switch (_type) {
         case FAQ:
             txtId = @"faq";
-            sql = [NSString stringWithFormat:@"SELECT * FROM INTO_TEXTS WHERE text_id = '%@' and lang_id=%d", txtId, 1];
+            sql = [NSString stringWithFormat:@"SELECT * FROM INTO_TEXTS WHERE text_id = '%@' and lang_id=%d", txtId, 2];
             break;
         case TERMS_OF_SERVICE:
             txtId = @"tos";
-            sql = [NSString stringWithFormat:@"SELECT * FROM INTO_TEXTS WHERE text_id = '%@' and lang_id=%d", txtId, 1];
+            sql = [NSString stringWithFormat:@"SELECT * FROM INTO_TEXTS WHERE text_id = '%@' and lang_id=%d", txtId, 2];
             break;
         case PRIVACY_POLICY:
             txtId = @"privacy";
-            sql = [NSString stringWithFormat:@"SELECT * FROM INTO_TEXTS WHERE text_id = '%@' and lang_id=%d", txtId, 1];
+            sql = [NSString stringWithFormat:@"SELECT * FROM INTO_TEXTS WHERE text_id = '%@' and lang_id=%d", txtId, 2];
             break;
         case ABOUT:
             txtId = @"about";
-            sql = [NSString stringWithFormat:@"SELECT * FROM INTO_TEXTS WHERE text_id = '%@' and lang_id=%d", txtId, 1];
+            sql = [NSString stringWithFormat:@"SELECT * FROM INTO_TEXTS WHERE text_id = '%@' and lang_id=%d", txtId, 2];
             break;
         default:
             break;
@@ -112,11 +117,12 @@ enum Types{
     dispatch_async(dispatch_get_main_queue(), ^{
         if (txtDict.count>0) {
             _txtView.text = txtDict[@"content"];
-            if (_type==FAQ) {
+            /*if (_type==FAQ) {
                 [_webView loadHTMLString:[Localized string:@"faq_desc"] baseURL:nil];
             }else{
                 [_webView loadHTMLString:txtDict[@"content"] baseURL:nil];
-            }
+            }*/
+            [_webView loadHTMLString:txtDict[@"content"] baseURL:nil];
             
         }
         [spinner removeCustomSpinner];
@@ -127,6 +133,13 @@ enum Types{
 
 - (void)fetchingFailedWithError:(NSError *)error{
     [spinner removeCustomSpinner];
+}
+
+- (BOOL)isModal{
+    BOOL modal = self.presentingViewController.presentedViewController == self
+    || (self.navigationController != nil && self.navigationController.presentingViewController.presentedViewController == self.navigationController)
+    || [self.tabBarController.presentingViewController isKindOfClass:[UITabBarController class]];
+    return modal;
 }
 
 

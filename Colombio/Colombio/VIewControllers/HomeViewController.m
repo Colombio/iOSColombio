@@ -119,7 +119,7 @@ enum UploadType{
 - (IBAction)btnLogOff:(id)sender{
     NSString *result = [ColombioServiceCommunicator getSignedRequest];
     ColombioServiceCommunicator *csc = [[ColombioServiceCommunicator alloc] init];
-    [csc sendAsyncHttp:[NSString stringWithFormat:@"%@/api_user_managment/mau_logout/", BASE_URL] httpBody:[NSString stringWithFormat:@"signed_req=%@",result]cache:NSURLRequestReloadIgnoringCacheData timeoutInterval:5];
+    [csc sendAsyncHttp:[NSString stringWithFormat:@"%@/api_user_managment/mau_logout/", BASE_URL] httpBody:[NSString stringWithFormat:@"signed_req=%@",result]cache:NSURLRequestReloadIgnoringCacheData timeoutInterval:TIMEOUT];
     [NSURLConnection sendAsynchronousRequest:csc.request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
     
         if(error){

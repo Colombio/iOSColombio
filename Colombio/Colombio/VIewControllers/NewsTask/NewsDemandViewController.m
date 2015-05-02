@@ -20,6 +20,7 @@
 @property (weak, nonatomic) IBOutlet CustomHeaderView *customHeader;
 @property (weak, nonatomic) IBOutlet UITableView *tblView;
 @property (strong,nonatomic) NSMutableArray *newsDemandArray;
+@property (weak, nonatomic) IBOutlet UITextView *txtNoTask;
 @end
 
 @implementation NewsDemandViewController
@@ -34,12 +35,13 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     _customHeader.headerTitle = @"NEWS TASK";
+   _txtNoTask.text = [Localized string:@"no_task"];
     //_customHeader.btnBack.hidden=YES;
     [self getNewsDeamandList];
     
 }
 
-- (void)didReceiveMemoryWarning {
+- (void)didReceiveMemoryWarning { 
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
@@ -161,10 +163,17 @@
 - (void)getNewsDeamandList{
     [_newsDemandArray removeAllObjects];
     NSMutableString *sql = [[NSMutableString alloc] init];
-    //[sql appendFormat:@"SELECT * FROM newsdemandlist WHERE end_timestamp >= '%@'",[NSDate date]];
-    [sql appendFormat:@"SELECT * FROM newsdemandlist"];
+    [sql appendFormat:@"SELECT * FROM newsdemandlist WHERE end_timestamp >= '%@'",[NSDate date]];
+    //[sql appendFormat:@"SELECT * FROM newsdemandlist"];
     AppDelegate *appdelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     NSMutableArray *tArray = [appdelegate.db getAllForSQL:sql];
+    if (tArray.count>0) {
+        _txtNoTask.hidden=YES;
+        _tblView.hidden=NO;
+    }else{
+        _tblView.hidden=YES;
+        _txtNoTask.hidden=NO;
+    }
     for(NSDictionary *tDict in tArray){
         NewsDemandObject *newsDemand = [[NewsDemandObject alloc] init];
         newsDemand.cost = [tDict[@"cost"] stringByReplacingOccurrencesOfString:@".00" withString:@""];

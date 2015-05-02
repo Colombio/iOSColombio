@@ -142,7 +142,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     if (_isForNewsUpload && _mergedMedia.count>0) {
-        return 20.0;
+        return 25.0;
     }else{
         return 0;
     }
@@ -150,7 +150,6 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     if (_isForNewsUpload) {
-        
         UILabel *myLabel = [[UILabel alloc] init];
         myLabel.frame = CGRectMake(5, 8, 320, 20);
         myLabel.font = [[UIConfiguration sharedInstance] getFont:FONT_HELVETICA_NEUE_MEDIUM_15];
@@ -330,26 +329,28 @@
 
 #pragma mark TextField
 -(IBAction)textFieldDidChange:(UITextField *)textField{
-    
-    if (textField.text.length>0) {
-         [self filterMedia:textField.text];
-    }else{
-        if (_isForNewsUpload) {
-            _filteredFavMedia = [[NSMutableArray alloc] initWithArray:_favMedia];
-            _filteredOtherMedia = [[NSMutableArray alloc] initWithArray:_otherMedia];
-
-            _mergedMedia = [[NSMutableArray alloc] init];
-            if (_filteredFavMedia.count>0) {
-                [_mergedMedia addObject:_filteredFavMedia];
-            }
-            if (_filteredOtherMedia.count>0) {
-                [_mergedMedia addObject:_filteredOtherMedia];
-            }
+    @synchronized(self){
+        if (textField.text.length>0) {
+            [self filterMedia:textField.text];
         }else{
-            _filteredMedia = [[NSMutableArray alloc] initWithArray:_media];
+            if (_isForNewsUpload) {
+                _filteredFavMedia = [[NSMutableArray alloc] initWithArray:_favMedia];
+                _filteredOtherMedia = [[NSMutableArray alloc] initWithArray:_otherMedia];
+                
+                _mergedMedia = [[NSMutableArray alloc] init];
+                if (_filteredFavMedia.count>0) {
+                    [_mergedMedia addObject:_filteredFavMedia];
+                }
+                if (_filteredOtherMedia.count>0) {
+                    [_mergedMedia addObject:_filteredOtherMedia];
+                }
+            }else{
+                _filteredMedia = [[NSMutableArray alloc] initWithArray:_media];
+            }
         }
+        [_tblView reloadData];
     }
-    [_tblView reloadData];
+    
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
@@ -588,15 +589,18 @@
 }
 
 - (void)btnDismissSearchSelected:(id)sender{
-     _txtSearch.text=@"";
-    if(_isForNewsUpload) {
-        _filteredFavMedia = [[NSMutableArray alloc] initWithArray:_favMedia];
-        _filteredOtherMedia = [[NSMutableArray alloc] initWithArray:_otherMedia];
-        _mergedMedia = [[NSMutableArray alloc] initWithObjects:_filteredFavMedia, _filteredOtherMedia, nil];
-    }else{
-        _filteredMedia = [[NSMutableArray alloc] initWithArray:_media];
+    @synchronized(self){
+        _txtSearch.text=@"";
+        if(_isForNewsUpload) {
+            _filteredFavMedia = [[NSMutableArray alloc] initWithArray:_favMedia];
+            _filteredOtherMedia = [[NSMutableArray alloc] initWithArray:_otherMedia];
+            _mergedMedia = [[NSMutableArray alloc] initWithObjects:_filteredFavMedia, _filteredOtherMedia, nil];
+        }else{
+            _filteredMedia = [[NSMutableArray alloc] initWithArray:_media];
+        }
+        [_tblView reloadData];
     }
-     [_tblView reloadData];
+    
 }
 
 #pragma mark Validation

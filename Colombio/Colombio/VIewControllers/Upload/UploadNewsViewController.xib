@@ -32,7 +32,6 @@
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                     <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="configTextFont" value="FONT_HELVETICA_NEUE_BOLD_MIDDLE"/>
                         <userDefinedRuntimeAttribute type="string" keyPath="configText" value="use_colombio"/>
                     </userDefinedRuntimeAttributes>
                 </label>
@@ -49,7 +48,6 @@
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="string" keyPath="configText" value="user_colombio_for"/>
-                        <userDefinedRuntimeAttribute type="string" keyPath="configTextColor" value="COLOR_WHITE_TRANSPARENT"/>
                     </userDefinedRuntimeAttributes>
                 </textView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="loading" translatesAutoresizingMaskIntoConstraints="NO" id="uxp-go-bd4">

@@ -153,7 +153,7 @@
  */
 - (void)removeCustomSpinner{
     //[self stopCustomSpinner];
-    [UIView animateWithDuration:0.8  animations:^(void) {
+    [UIView animateWithDuration:0.1  animations:^(void) {
         [imgSpinner.layer removeAllAnimations];
         imgSpinner.alpha=0.0;
         viewDimmed.alpha=0.0;

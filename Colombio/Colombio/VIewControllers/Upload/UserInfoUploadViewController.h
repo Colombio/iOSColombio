@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "VSSwitchButton.h"
 
-@interface UserInfoUploadViewController : UIViewController<UITextFieldDelegate>
+@interface UserInfoUploadViewController : UIViewController<UITextFieldDelegate, UIAlertViewDelegate>
 
 @property (strong, nonatomic) NSString *price;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
@@ -36,6 +36,7 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *CS_PhoneNumHeight;
 
 @property (assign, nonatomic) BOOL be_credited;
+@property (weak, nonatomic) IBOutlet UILabel *lblBeSigned;
 @property (weak, nonatomic) IBOutlet UISwitch *swToggleBeSigned;
 
 @property (weak, nonatomic) IBOutlet UIView *viewContactMe;
@@ -45,6 +46,15 @@
 @property (weak, nonatomic) IBOutlet UITextField *txtContactMe;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *CS_ContactMeHeight;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *CS_ContactMePhoneHeight;
+
+@property (weak, nonatomic) IBOutlet UIButton *btnAnonymousInfo;
+@property (weak, nonatomic) IBOutlet UIButton *btnSellInfo;
+@property (weak, nonatomic) IBOutlet UIButton *btnContactMeInfo;
+@property (weak, nonatomic) IBOutlet UIButton *btnBeSignedInfo;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *CS_lblSellWidth;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *CS_lblAnonymousWidth;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *CS_lblBeSignedWidth;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *CS_lblContactMeWidth;
 
 - (instancetype)initWithDemand:(BOOL)isNewsDemand withPrice:(NSString*)price;
 - (IBAction)btnAction:(UISwitch*)sender;

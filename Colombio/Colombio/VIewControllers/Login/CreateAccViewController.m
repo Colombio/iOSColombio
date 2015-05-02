@@ -17,6 +17,7 @@
 #import "CountriesViewController.h"
 #import "Localized.h"
 #import "AppDelegate.h"
+#import "SettingsInfoViewController.h"
 
 @interface CreateAccViewController ()
 
@@ -272,7 +273,7 @@
             if(error){
                 [Messages showErrorMsg:@"error_web_request"];
                 [loadingView stopCustomSpinner];
-                [loadingView customSpinnerFail];
+                //[loadingView customSpinnerFail];
             }
             
             //Request is successfuly sent
@@ -369,11 +370,13 @@
 #pragma mark Button Action
 
 - (IBAction)btnTermsClicked:(id)sender{
-
+    SettingsInfoViewController *vc = [[SettingsInfoViewController alloc] initForType:5];
+    [self presentViewController:vc animated:YES completion:nil];
 }
 
 - (IBAction)btnPrivacyClicked:(id)sender{
-
+    SettingsInfoViewController *vc = [[SettingsInfoViewController alloc] initForType:6];
+    [self presentViewController:vc animated:YES completion:nil];
 }
 
 @end

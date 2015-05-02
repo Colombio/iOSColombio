@@ -130,12 +130,12 @@
             _CS_PayPalEmailHeight.constant +=30;
             _CS_PayPalViewHeight.constant +=30;
             //[_btnPayPalInfo setBackgroundImage:[UIImage imageNamed:@"infoicon_active"] forState:UIControlStateNormal];
-            _btnPayPalInfo.hidden=YES;
+            //_btnPayPalInfo.hidden=YES;
         }else{
             _CS_PayPalEmailHeight.constant -=30;
             _CS_PayPalViewHeight.constant -=30;
             //[_btnPayPalInfo setBackgroundImage:[UIImage imageNamed:@"infoicon"] forState:UIControlStateNormal];
-            _btnPayPalInfo.hidden=NO;
+            //_btnPayPalInfo.hidden=NO;
             if (_txtPayPalEmail.isFirstResponder) {
                 [_txtPayPalEmail resignFirstResponder];
             }
@@ -149,24 +149,21 @@
 
 - (void)btnInfo:(UIButton *)sender{
     if (sender==_btnAnonymousInfo) {
-        if (_swToggleAnonymoys.isOn) {
-            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"" message:[Localized string:@"info_anonymous_on"] delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-            [alert show];
-        }else{
-            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"" message:[Localized string:@"info_anonymous_off"] delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-            [alert show];
-        }
+        [_btnAnonymousInfo setBackgroundImage:[UIImage imageNamed:@"infoicon_active"] forState:UIControlStateNormal];
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"" message:[Localized string:@"anonymous_info"] delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
 
     }else if(sender==_btnPayPalInfo){
-        if (_swTogglePayPal.isOn) {
-            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"" message:[Localized string:@"info_paypal_on"] delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-            [alert show];
-        }else{
-            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"" message:[Localized string:@"info_paypal_off"] delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-            [alert show];
-        }
+        [_btnPayPalInfo setBackgroundImage:[UIImage imageNamed:@"infoicon_active"] forState:UIControlStateNormal];
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"" message:[Localized string:@"connect_paypal_info"] delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
         
     }
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    [_btnPayPalInfo setBackgroundImage:[UIImage imageNamed:@"infoicon"] forState:UIControlStateNormal];
+    [_btnAnonymousInfo setBackgroundImage:[UIImage imageNamed:@"infoicon"] forState:UIControlStateNormal];
 }
 #pragma mark Keyboard
 

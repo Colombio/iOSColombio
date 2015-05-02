@@ -23,7 +23,7 @@
     if (self) {
         _isNewsDemand=isNewsDemand;
         _newsTaskPrice = price;
-        self.title = [Localized string:@"send_news"];
+        self.title = [Localized string:@"send_options"];
         [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(pictureExists:) name:@"DoestThePictureExist" object:nil];
     }
     return self;
@@ -50,6 +50,7 @@
         _lblPrice.text = [Localized string:@"i_want_sell"];
         _lblDisclamer.text = [Localized string:@"media_only_one"];
     }
+    [self setLabelsWidth];
     [self setFieldValues];
     [self switchLogic];
     // Do any additional setup after loading the view from its nib.
@@ -57,16 +58,41 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     if(!_isNewsDemand){
+        _viewPriceHolder.hidden=NO;
+        _viewH1.hidden=NO;
         if (_picExists) {
-            _CS_PriceHolderHeight.constant = 65.0;
-            _viewH1.hidden=NO;
-            _viewPriceHolder.hidden=NO;
+            if (_swTogglePrice.isOn) {
+                _CS_PriceHolderHeight.constant = 65.0;
+            }else{
+                _CS_PriceHolderHeight.constant = 35.0;
+                
+            }
+            
+            
         }else{
             _CS_PriceHolderHeight.constant = 0.0;
             _viewH1.hidden=YES;
             _viewPriceHolder.hidden=YES;
         }
     }
+}
+
+- (void)setLabelsWidth{
+    CGSize size = [_lblPrice.text sizeWithFont:_lblPrice.font constrainedToSize:CGSizeMake(_viewPriceHolder.frame.size.width-_swTogglePrice.frame.size.width-40, MAXFLOAT)
+                                     lineBreakMode:NSLineBreakByWordWrapping];
+    _CS_lblSellWidth.constant = size.width+15;
+    
+    size = [_lblAnonymoys.text sizeWithFont:_lblAnonymoys.font constrainedToSize:CGSizeMake(_viewAnonymousHolder.frame.size.width-_swToggleAnonymous.frame.size.width-40, MAXFLOAT)
+                                  lineBreakMode:NSLineBreakByWordWrapping];
+    _CS_lblAnonymousWidth.constant = size.width+15;
+    
+    size = [_lblBeSigned.text sizeWithFont:_lblBeSigned.font constrainedToSize:CGSizeMake(_viewAnonymousHolder.frame.size.width-_swToggleBeSigned.frame.size.width-40, MAXFLOAT)
+                              lineBreakMode:NSLineBreakByWordWrapping];
+    _CS_lblBeSignedWidth.constant = size.width+15;
+    
+    size = [_lblContactMe.text sizeWithFont:_lblContactMe.font constrainedToSize:CGSizeMake(_viewContactMe.frame.size.width-_swToggleContactMe.frame.size.width-40, MAXFLOAT)
+                              lineBreakMode:NSLineBreakByWordWrapping];
+    _CS_lblContactMeWidth.constant = size.width+15;
 }
 
 - (void)setTextFields{
@@ -121,6 +147,11 @@
     if (sender==_swTogglePrice) {
         [self.view layoutIfNeeded];
         if(sender.isOn){
+            [UIView transitionWithView:_lblDisclamer
+                              duration:0.8
+                               options:UIViewAnimationOptionTransitionCrossDissolve
+                            animations:NULL
+                            completion:NULL];
             //_CS_NameYourPriceHeight.constant +=30;
             _CS_PriceHolderHeight.constant +=30;
             _lblDisclamer.hidden=NO;
@@ -133,17 +164,15 @@
                          animations:^{
                              [self.view layoutIfNeeded];
                          }];
-        /*[UIView transitionWithView:_lblDisclamer
-                          duration:0.5
-                           options:UIViewAnimationOptionAllowAnimatedContent
-                        animations:NULL
-                        completion:NULL];*/
     }else if (sender==_swToggleAnonymous){
         if(!sender.isOn){
+            _lblAnonymoys.text = [Localized string:@"sending_news_as"];
             _CS_NameHeight.constant +=30;
             _CS_PhoneNumHeight.constant +=30;
             _CS_AnonynmousHolderHeight.constant +=60;
+            
         }else{
+            _lblAnonymoys.text = [Localized string:@"anonymous_sending"];
             _CS_NameHeight.constant -=30;
             _CS_PhoneNumHeight.constant -=30;
             _CS_AnonynmousHolderHeight.constant -=60;
@@ -154,6 +183,7 @@
                 [_txtSurname resignFirstResponder];
             }
         }
+        [self setLabelsWidth];
         [UIView animateWithDuration:0.5
                          animations:^{
                              [self.view layoutIfNeeded];
@@ -281,5 +311,33 @@
 
 - (void)pictureExists:(NSNotification*)notification{
     _picExists = [notification.userInfo[@"picexistance"] boolValue];
+}
+
+#pragma mark Info Button Action
+- (IBAction)infoBtnAction:(UIButton*)sender{
+    if (sender==_btnAnonymousInfo) {
+        [_btnAnonymousInfo setBackgroundImage:[UIImage imageNamed:@"infoicon_active"] forState:UIControlStateNormal];
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"" message:[Localized string:@"anonymous_info"] delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
+    }else if(sender==_btnBeSignedInfo){
+        [_btnBeSignedInfo setBackgroundImage:[UIImage imageNamed:@"infoicon_active"] forState:UIControlStateNormal];
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"" message:[Localized string:@"be_signed_info"] delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
+    }else if(sender==_btnContactMeInfo){
+        [_btnContactMeInfo setBackgroundImage:[UIImage imageNamed:@"infoicon_active"] forState:UIControlStateNormal];
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"" message:[Localized string:@"contact_me_info"] delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
+    }else if(sender==_btnSellInfo){
+        [_btnContactMeInfo setBackgroundImage:[UIImage imageNamed:@"infoicon_active"] forState:UIControlStateNormal];
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"" message:[Localized string:@"sell_info_tip"] delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
+    }
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    [_btnBeSignedInfo setBackgroundImage:[UIImage imageNamed:@"infoicon"] forState:UIControlStateNormal];
+    [_btnAnonymousInfo setBackgroundImage:[UIImage imageNamed:@"infoicon"] forState:UIControlStateNormal];
+    [_btnContactMeInfo setBackgroundImage:[UIImage imageNamed:@"infoicon"] forState:UIControlStateNormal];
+    [_btnContactMeInfo setBackgroundImage:[UIImage imageNamed:@"infoicon"] forState:UIControlStateNormal];
 }
 @end

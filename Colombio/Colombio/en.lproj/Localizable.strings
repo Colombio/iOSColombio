@@ -96,9 +96,9 @@
 "select_media_othermedia" = "OTHER MEDIA";
 "choose_one_country" = "Select at least one country";
 /*Home*/
-"btn_takephoto" = "TAKE PHOTO OR VIDEO";
-"btn_sendnews" = "SEND OPTIONS";
-"btn_alert" = "ALERT MEDIA";
+"btn_takephoto" = "TAKE PHOTO/VIDEO";
+"btn_sendnews" = "SEND NEWS";
+"btn_alert" = "I HAVE STORY TIP";
 "btn_community" = "COMMUNITY NEWS";
 "btn_announce" = "ANNOUNCE EVENT";
 "btn_call" = "CALL MEDIA";
@@ -106,7 +106,8 @@
 /*create news*/
 "news_title_placeholder" = "Enter your title";
 "news_description_placeholder" = "Enter your description";
-"send_news" = "SEND OPTIONS";
+"send_news" = "SEND NEWS";
+"send_options" = "SEND OPTIONS";
 "select_content" = "SELECT CONTENT";
 "use" = "USE";
 "photos_max_num" = "You can upload up to 5 pictures and/or 1 video";
@@ -126,7 +127,7 @@
 "did_you_know" = "DID YOU KNOW?";
 "use_colombio" = "USE COLOMBIO";
 "do_you_really_want_to_exit" = "Do you really want to exit? Your news will be deleted.";
-"user_colombio_for" = "• for sending story tips to journalists \n\n• when you whitness something that should be published \n\n• when you record exclusive photo/video \n\n• if you want to announce an event";
+"user_colombio_for" = "• for sending story tips to journalists\n• when you whitness something that should be published\n• when you record exclusive photo/video\n• if you want to announce an event";
 
 "error_fill_fields" = "Please fill fields marked in red";
 "error_missing_images" = "Please choose at least one image or video";
@@ -143,6 +144,7 @@
 "reward" = "Reward";
 "date" = "DATE";
 "until" = "UNTIL";
+"no_task" = "Colombio can't show News tasks<\n\nNo News tasks in your Location or Location is OFF. \nTurn it ON in Settings>Privacy>Location Services.";
 
 /*TimeLine**/
 "sent" = "Sent";
@@ -161,14 +163,13 @@
 "select_language" = "Select langauge";
 "alerts" = "Alerts";
 "faq" = "FAQ";
-"about" = "About";
+"contact_us" = "Contact us";
 "log_off" = "Log off";
 "privacy_policy" = "Privacy policy";
 "terms_of_service" = "Terms of service";
 "notify_alerts" = "Notify me when COLOMBIO sends info and media sends news demand and replies via:";
 "push" = "Push";
 "email" = "Email";
-"faq_desc" = "&lt;h2&gt;Colombio FAQ&lt;/h2&gt;This is a short list of most frequently asked questions. For more information about Colombio, or if you need support, please contact us at &lt;a href=\"io.colomb://support_mail\"&gt;support@colomb.io&lt;/a&gt;\n&lt;h2&gt;What is Colombio?&lt;/h2&gt;Colombio is a free communication channel aimed to news media companies and journalists, through which you can send story tips, photo and video directly to your favourite news media e-mail, without knowing the contact.\n&lt;h2&gt;When to use Colombio?&lt;/h2&gt;Use Colombio whenever you think you have something important for the public to be informed, and with the help of journalist. You can make an impact on your community by participating in news production, whether it’s about breaking news, or some problems in the community, good things or people that should be publicly rewarded, etc. News media companies can rate you or reward you with real money for your contribution, or if they want to buy your photo or video.\n&lt;h2&gt;Why do I have to register?&lt;/h2&gt;Registration ensures that the money you earn through Colombio stays secure. The registration information is used only for managing Colombio service and it is never transferred to third parties or media.\n&lt;h2&gt;How to send news with Colombio?&lt;/h2&gt;You can send the news in 4 simple steps:&lt;br/&gt;\t\t1. On the Home screen choose button for topic or direct photo/video recording&lt;br/&gt;\t\t2. On the Upload screen fill in Title &amp; Description (mandatory), upload picture or video and select tag (optional). We recommend tags because media can find your news more quickly. Swipe to the next screen.&lt;br/&gt;\t\t3. On the Select media screen select one or more of your favourite media and swipe.&lt;br/&gt;\t\t4. Choose one of the sending options and click Send button\nApp will send the news and put it on your timeline. If media buy or publish your news you will be notified on the timeline.\nYou can also see all these steps in &lt;a href=\"io.colomb://reset_tutorial\"&gt;Tutorial&lt;/a&gt; screens.\n&lt;h2&gt;Who can see the information I sent?&lt;/h2&gt;Information which is sent can be only viewed by those you sent them to and it’s not public. Everything you have sent can be found in Colombio mobile app on &lt;a href=\"io.colomb://open_timeline\"&gt;Timeline&lt;/a&gt; screen. If the message is inappropriate we will not receive it and news media will not see it.\n&lt;h2&gt;Can I be contacted by journalists?&lt;/h2&gt;Yes, we created a messaging system, through which news media or their journalist can communicate directly with you for more information. The communication is private and seen only by you and the news media.\n&lt;h2&gt;How does privacy work?&lt;/h2&gt;It is recommended that you identify yourself when selling news, photos or videos or your own texts and managing payments. It increases your credibility. If you want to be credited or contacted after sending the news, photos or videos, select these options, so the media can contact you.\n&lt;h2&gt;Sending as Anonymous&lt;/h2&gt;You can also send information as Anonymous, and be registered at the same time. This option makes sure you are anonymous and the media doesn\'t have or get any of your private data. News media receive the message from \"Anonymous user\", and can’t access your private data in any way.\n&lt;h2&gt;Who owns the rights to the news I send to Colombio?&lt;/h2&gt;When you send news to Colombio, you provide Colombio with rights of use in the Colombio service. All news can be transferred to media and must not be published without appropriate rights and permissions.\n&lt;h2&gt;Can I submit news, photos or video from others?&lt;/h2&gt;No. You must own all rights to news, photos or video sent to Colombio. Sending downloaded news, photos or video may result in you being banned from the system and subject of lawsuit.\n&lt;h2&gt;Can my name be published with the news?&lt;/h2&gt;You can be credited for your news if you choose this option. This privacy configuration is on the Send screen and in the Colombio mobile app settings (&lt;a href=\"io.colomb://open_myprofile\"&gt;My Profile&lt;/a&gt; screen).\n&lt;h2&gt;How does awarding work?&lt;/h2&gt;News media companies can pay you for your contribution, for any information sent, if they choose to. They might see you as a valuable source in the future, and make commitment to you in this way.\n&lt;h2&gt;How does selling work?&lt;/h2&gt;You can offer to sell your photo or video to one or multiple news media companies at the same time. Activate \"I want to sell\" option on the sending screen and name your price. News media companies can accept, reject or send you an offer on how much they are willing to pay for copyrights for your photo/video. If they offer back, you can accept, or reject.\n&lt;h2&gt;Is the content I want to sell secure?&lt;/h2&gt;Until the content is bought from news media company, it can be downloaded and the picture or video is watermarked. It can’t be used by any news media for publishing. By selling photo/video, you give away copyrights to publish or sell the photo again. You always remain the author of the photo/video, but they become the buyer’s property.\n&lt;h2&gt;How do I earn money with Colombio?&lt;/h2&gt;You earn money with every information or content that is purchased or rewarded. When you submit content, it becomes available for publishing. Content submitted on Colombio is instantly available to Colombio media partners around the world. This content can be used by the media and it can be bought or rewarded if the media find it appropriate. Colombio does not resell your news or content – we are a service provider between you as the owner of rights and the news media companies as potential buyers.\n&lt;h2&gt;What is news task?&lt;/h2&gt;News media companies can order services from you. The fee for this task depends on the media decision and it is always paid if the media use your content. Whenever your content is purchased or rewarded, you receive a notification directly on your smartphone. However, some content may not sell. Submitting information quickly and in the right place increases the possibility of your news being purchased.\n&lt;h2&gt;How can I cash out my earnings?&lt;/h2&gt;Compensation for sold content is paid to your Colombio account, visible in the Colombio mobile app (&lt;a href=\"io.colomb://open_myprofile\"&gt;My Profile&lt;/a&gt; balance). You can transfer money to your PayPal account by tapping Cash Out. Simply complete the required details in PayPal email account details in the mobile app. Transfers may take anywhere from a few days to a few weeks. If you cannot access the Colombio mobile app or you have difficulties with Cash out, you can contact us on &lt;a href=\"io.colomb://support_mail\"&gt;support@colomb.io&lt;/a&gt;!Tip: accumulate a larger sum in your Colombio account and cash it all out at once.\n&lt;h2&gt;Must I pay tax on Colombio earnings?&lt;/h2&gt;You are solely responsible for all tax returns and payments required by any federal, state, or local tax authority in any nation. For details on this topic consider contacting your local tax authorities.\n&lt;h2&gt;Who to contact if I have a technical problem or support issue I need resolved?&lt;/h2&gt;The best way to get in touch with us is to contact us at &lt;a href=\"io.colomb://support_mail\"&gt;support@colomb.io&lt;/a&gt;";
 
 /*USER INFO*/
 "user_rating" = "My rating";
@@ -185,3 +186,12 @@
 "user_pp_info" = "Don't have PayPal account? Please create one before cashout";
 "user_anonymous" = "Send news as anonymoys";
 "user_placeholder_phonenumber" = "Phone number";
+
+/*Info buttons*/
+"anonymous_info" = "Choose this option to send as anonymous sender. News media will get your message, with the name of sender as “Anonymous”, and no one can detect your identity.";
+"connect_paypal_info" = "You can get rewards and payments from media to your Paypal account. If you don\'t have Paypal account, don\'t worry. You can always set it up later and fill into My Profile.";
+"contact_me_info" = "Choose this option if you want to be available for journalists receiving your information, and reachable by phone. News media can call you for more information.";
+"be_signed_info" = "Choose this option if you are sending free photo/video, and you would like to be credited as author of photo/video.";
+"sell_info_basic" = "In case of selling your photo/video to news media, you do not have right to sell it again. By selling photo/video, you are transfering copyrights to buyer, and he has all rights to publish it and distribute it.";
+"sell_info_prefix" = "By choosing this option you are offering your photo/video for sale to news media. Notification on eventual offer will be delivered into your timeline, and you can accept or reject.";
+"sell_info_tip" = "Do you have exclusive photo/video you made, and want to sell? By choosing this option, you will offer to sell it to news media. Notification on potential offer will be delivered through the app. You can accept the offer or reject it. In case you accept - you are not allowed to offer or sell the same photo/video again, and you may get sued by the buyer for doing that. Your photo/video is watermarked, and can not be used or downloaded until you accept an offer. If there is no offer, your content will not be published. \n\n *Notice: Do not choose this option if photo/video is attached to community or social news you already wrote to (education/public events/sports etc.)";

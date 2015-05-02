@@ -80,7 +80,7 @@
             cell.textLabel.text = [Localized string:@"privacy_policy"];
             break;
         case 7:
-            cell.textLabel.text = [Localized string:@"about"];
+            cell.textLabel.text = [Localized string:@"contact_us"];
             break;
         case 8:
             cell.textLabel.text = [Localized string:@"log_off"];
@@ -152,15 +152,17 @@
             break;
         case 7:
         {
-            SettingsInfoViewController *vc = [[SettingsInfoViewController alloc] initForType:(indexPath.row)];
-            [self.navigationController pushViewController:vc animated:YES];
+            NSString *subject = @"Colombio - iOS App";
+            NSString *mailto = [NSString stringWithFormat:@"mailto:support@colomb.io?subject=%@", subject];
+            mailto = [mailto stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:mailto]];
         }
 
             break;
         case 8:{
             NSString *result = [ColombioServiceCommunicator getSignedRequest];
             ColombioServiceCommunicator *csc = [[ColombioServiceCommunicator alloc] init];
-            [csc sendAsyncHttp:[NSString stringWithFormat:@"%@/api_user_managment/mau_logout/", BASE_URL] httpBody:[NSString stringWithFormat:@"signed_req=%@",result]cache:NSURLRequestReloadIgnoringCacheData timeoutInterval:5];
+            [csc sendAsyncHttp:[NSString stringWithFormat:@"%@/api_user_managment/mau_logout/", BASE_URL] httpBody:[NSString stringWithFormat:@"signed_req=%@",result]cache:NSURLRequestReloadIgnoringCacheData timeoutInterval:TIMEOUT];
             [NSURLConnection sendAsynchronousRequest:csc.request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
                 
                 if(error){
@@ -173,12 +175,16 @@
                         AppDelegate *appdelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
                         [appdelegate.db clearTable:@"USER"];
                         [appdelegate.db clearTable:@"USER_CASHOUT"];
-                        //[appdelegate.db clearTable:@"NEWSDEMANDLIST"];
+                        [appdelegate.db clearTable:@"NEWSDEMANDLIST"];
                         [appdelegate.db clearTable:@"UPLOAD_DATA"];
+                        [[NSUserDefaults standardUserDefaults] setObject:@"0" forKey:TIMELINE_TIMESTAMP];
+                        [[NSUserDefaults standardUserDefaults] setObject:@"0" forKey:NEWSDEMAND_TIMESTAMP];
+                        [[NSUserDefaults standardUserDefaults] synchronize];
                         //[appdelegate.db clearTable:@"MEDIA_LIST"];
                         //[appdelegate.db clearTable:@"SELECTED_MEDIA"];
                         //[appdelegate.db clearTable:@"COUNTRIES_LIST"];
                         //[appdelegate.db clearTable:@"SELECTED_COUNTRIES"];
+                        
                         appdelegate.window.rootViewController = [[LoginViewController alloc] init];
                         [appdelegate.window makeKeyAndVisible];
                     });

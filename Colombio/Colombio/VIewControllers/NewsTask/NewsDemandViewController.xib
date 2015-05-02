@@ -9,6 +9,7 @@
             <connections>
                 <outlet property="customHeader" destination="aRe-ac-DIe" id="bnF-vQ-bMD"/>
                 <outlet property="tblView" destination="OBq-xy-j5M" id="gXC-qT-Tbs"/>
+                <outlet property="txtNoTask" destination="kuP-z3-StD" id="dCr-z8-Cz9"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -24,6 +25,18 @@
                         <constraint firstAttribute="height" constant="44" id="1yk-Uj-LQo"/>
                     </constraints>
                 </view>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="kuP-z3-StD">
+                    <rect key="frame" x="20" y="64" width="280" height="200"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="200" id="p21-Dc-Si9"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="configTextColor" value="COLOR_NEWS_DEMAND_DESCRIPTION"/>
+                    </userDefinedRuntimeAttributes>
+                </textView>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="165" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="OBq-xy-j5M">
                     <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -38,8 +51,11 @@
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="aRe-ac-DIe" secondAttribute="trailing" id="0sv-Ft-LDA"/>
                 <constraint firstItem="aRe-ac-DIe" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="20" id="53W-qt-tnP"/>
+                <constraint firstItem="kuP-z3-StD" firstAttribute="top" secondItem="aRe-ac-DIe" secondAttribute="bottom" id="Bsv-cH-cbl"/>
                 <constraint firstItem="aRe-ac-DIe" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="CvY-IU-Q7v"/>
+                <constraint firstItem="kuP-z3-StD" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="MzE-Pg-ryr"/>
                 <constraint firstAttribute="bottom" secondItem="OBq-xy-j5M" secondAttribute="bottom" constant="49" id="XiV-rv-bOu"/>
+                <constraint firstAttribute="trailing" secondItem="kuP-z3-StD" secondAttribute="trailing" constant="20" id="eM1-hW-3gy"/>
                 <constraint firstItem="OBq-xy-j5M" firstAttribute="top" secondItem="aRe-ac-DIe" secondAttribute="bottom" id="eMr-od-lro"/>
                 <constraint firstAttribute="trailing" secondItem="OBq-xy-j5M" secondAttribute="trailing" id="hI9-9X-ARF"/>
                 <constraint firstItem="OBq-xy-j5M" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="hZ2-34-Mck"/>

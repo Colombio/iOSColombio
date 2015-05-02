@@ -52,7 +52,6 @@
     [super viewDidLoad];
     //Skrivanje slicica da li su pogresni inputi
     csc = [ColombioServiceCommunicator sharedManager];
-    csc.delegate = self;
     loginHidden=YES;
     imgPassEmail.hidden = YES;
     imgFailEmail.hidden = YES;
@@ -82,7 +81,7 @@
 - (void)viewDidAppear:(BOOL)animated{
     //Dodavanje sličica za swipe
     scrollBox.scrollEnabled=YES;
-   
+    csc.delegate = self;
     timer=nil;
     //[scrollBox setDelegate:self];
     
@@ -192,7 +191,7 @@
     
     if (wrong==true) {
         [loadingView stopCustomSpinner];
-        [loadingView customSpinnerFail];
+        //[loadingView customSpinnerFail];
         timer = [NSTimer scheduledTimerWithTimeInterval:2.0f target:self selector:@selector(removeSpinner) userInfo:nil repeats:NO];
         [btnLogin setTitle:[Localized string:@"login_login"] forState:UIControlStateNormal];
         return;
@@ -219,7 +218,7 @@
     if(err){
         [Messages showErrorMsg:@"error_web_request"];
         [loadingView stopCustomSpinner];
-        [loadingView customSpinnerFail];
+        //[loadingView customSpinnerFail];
         timer = [NSTimer scheduledTimerWithTimeInterval:2.0f target:self selector:@selector(removeSpinner) userInfo:nil repeats:NO];
         [btnLogin setTitle:[Localized string:@"login_login"] forState:UIControlStateNormal];
     }
@@ -292,8 +291,8 @@
             //Dogodila se pogreska prilikom dohvacanja zahtjeva
             if(err){
                 [Messages showErrorMsg:@"error_web_request"];
-                [loadingView stopCustomSpinner];
-                [loadingView customSpinnerFail];
+                //[loadingView stopCustomSpinner];
+                //[loadingView customSpinnerFail];
             }
             
             //Uspjesno je poslan zahtjev

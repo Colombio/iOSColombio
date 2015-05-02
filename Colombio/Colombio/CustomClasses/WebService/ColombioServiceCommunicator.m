@@ -494,23 +494,33 @@
 #pragma mark User Action
 - (void)updateUserPreferences:(NSDictionary*)userDict{
     NSString *signedRequest = [ColombioServiceCommunicator getSignedRequest];
-    NSString *url = [NSString stringWithFormat:@"%@/api_user_managment/mau_update_preferences/", BASE_URL];
+    NSString *url_str = [NSString stringWithFormat:@"%@/api_user_managment/mau_update_preferences/", BASE_URL];
+    NSDictionary *tDict = @{@"alertSettings[push]":@0,
+                        @"alertSettings[in_app]":@0,
+                        @"alertSettings[email]":@1};
     
-    NSData *jsonDataMedia = [NSJSONSerialization dataWithJSONObject:userDict options:kNilOptions error:nil];
-    NSString *userPrefs = [[NSString alloc]initWithData:jsonDataMedia encoding:NSUTF8StringEncoding];
+    NSString *httpBody = [NSString stringWithFormat:@"signed_req=%@&alertSettings[push]=%@&alertSettings[in_app]=%@&alertSettings[email]=%@",signedRequest, userDict[@"ntf_push"], userDict[@"ntf_in_app"], userDict[@"ntf_email"]];
+    NSURL * url = [NSURL URLWithString:url_str];
     
-    NSString *httpBody = [NSString stringWithFormat:@"signed_req=%@&allertSettings=%@",signedRequest, userPrefs];
     
-    NSMutableURLRequest *req = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:url]];
-    [req setHTTPMethod:@"POST"];
-    [req setHTTPBody:[httpBody dataUsingEncoding:NSUTF8StringEncoding]];
     
-    req = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url] cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:TIMEOUT];
-    [NSURLConnection sendAsynchronousRequest:req queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+    
+    request =[NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:TIMEOUT];
+    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+    [request setHTTPBody:[httpBody dataUsingEncoding:NSUTF8StringEncoding]];
+    [request setHTTPMethod:@"POST"];
+    
+    [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
         
         if(error==nil&&data!=nil){
             NSDictionary *result =[NSJSONSerialization JSONObjectWithData:data options:0 error:NULL];
-            if(!strcmp("1",((NSString*)[result objectForKey:@"s"]).UTF8String)){
+            if(result!=nil && result[@"s"] && !strcmp("1",((NSString*)[result objectForKey:@"s"]).UTF8String)){
+                AppDelegate *appdelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
+                NSMutableDictionary *tDict = [[NSMutableDictionary alloc] init];
+                tDict[@"ntf_push"] = userDict[@"ntf_push"];
+                tDict[@"ntf_in_app"] = userDict[@"ntf_in_app"];
+                tDict[@"ntf_email"] = userDict[@"ntf_email"];
+                [appdelegate.db updateDictionary:tDict forTable:@"USER"];
                 [self.delegate didSendUserPreferences];
             }else{
                 dispatch_async(dispatch_get_main_queue(), ^{
@@ -531,7 +541,7 @@
 #pragma mark Info Text
 - (void)fetchInfoTexts{
     NSInteger timestamp = [[NSUserDefaults standardUserDefaults] integerForKey:INFO_TEXTS_TIMESTAMP];
-    NSInteger langId = 1;
+    NSInteger langId = 2;
     NSString *url_str = [NSString stringWithFormat:@"%@/api_config/get_texts?signed_req=%@&sync_time=%ld&lang_id=%ld", BASE_URL, [[self class] getSignedRequest],(long)timestamp, (long)langId];
     NSURL * url = [NSURL URLWithString:url_str];
     request =[NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:TIMEOUT];

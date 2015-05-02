@@ -64,7 +64,7 @@
         fontMap[FONT_HELVETICA_NEUE_NEXT]                   = [UIFont fontWithName:@"HelveticaNeue" size:20];
         fontMap[FONT_HELVETICA_NEUE_BOLD_MIDDLE]            = [UIFont fontWithName:@"HelveticaNeue" size:25];
         fontMap[FONT_HELVETICA_NEUE_BOLD_LARGE_OFFER]       = [UIFont fontWithName:@"HelveticaNeue-Bold" size:28];
-        fontMap[FONT_HELVETICA_NEUE_BOLD_LARGE]             = [UIFont fontWithName:@"HelveticaNeue-Bold" size:40];
+        fontMap[FONT_HELVETICA_NEUE_BOLD_LARGE]             = [UIFont fontWithName:@"HelveticaNeue-Bold" size:26];
         
         
    

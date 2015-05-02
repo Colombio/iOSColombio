@@ -144,7 +144,7 @@
             if(error){
                 [Messages showErrorMsg:@"error_web_request"];
                 [loadingView stopCustomSpinner];
-                [loadingView customSpinnerFail];
+                //[loadingView customSpinnerFail];
                 [btnSend setTitle:[Localized string:@"forgot_password"] forState:UIControlStateNormal];
             }
             
@@ -187,7 +187,7 @@
                     timer = [NSTimer scheduledTimerWithTimeInterval:3.5 target:self selector:@selector(forgotPasswordSuccessful) userInfo:nil repeats:NO];
                 }
                 else{
-                    [loadingView customSpinnerFail];
+                    //[loadingView customSpinnerFail];
                     [btnSend setTitle:[Localized string:@"forgot_password"] forState:UIControlStateNormal];
                 }
             }

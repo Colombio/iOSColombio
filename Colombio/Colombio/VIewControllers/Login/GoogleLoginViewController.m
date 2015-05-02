@@ -36,7 +36,7 @@ NSString *scope = @"https://www.googleapis.com/auth/userinfo.email+https://www.g
 NSString *visibleactions = @"http://schemas.google.com/AddActivity";
 
 
-@interface GoogleLoginViewController ()
+@interface GoogleLoginViewController ()<CustomHeaderViewDelegate>
 {
     ColombioServiceCommunicator *csc;
 }
@@ -53,11 +53,11 @@ NSString *visibleactions = @"http://schemas.google.com/AddActivity";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    customHeaderView.backButtonText=@"";
     csc = [ColombioServiceCommunicator sharedManager];
     csc.delegate = self;
     
     loadingView = [[Loading alloc] init];
-    [headerViewHolder addSubview:[HeaderView initHeader:@"COLOMBIO" nextHidden:YES previousHidden:NO activeVC:self headerFrame:headerViewHolder.frame]];
     // Do any additional setup after loading the view from its nib.
     NSString *url = [NSString stringWithFormat:@"https://accounts.google.com/o/oauth2/auth?response_type=code&client_id=%@&redirect_uri=%@&scope=%@&data-requestvisibleactions=%@",client_id,callbakc,scope,visibleactions];
     webView.delegate=self;
@@ -77,7 +77,7 @@ NSString *visibleactions = @"http://schemas.google.com/AddActivity";
 
 - (void)dismiss{
     [loadingView stopCustomSpinner];
-    [loadingView customSpinnerFail];
+    //[loadingView customSpinnerFail];
     [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -270,6 +270,9 @@ NSString *visibleactions = @"http://schemas.google.com/AddActivity";
 
 - (void)backButtonTapped{
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+- (void)btnBackClicked{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 @end

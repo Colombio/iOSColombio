@@ -67,13 +67,17 @@
 
 - (void)btnNextClicked{
     spinner = [[Loading alloc] init];
-    [spinner startCustomSpinner:self.view spinMessage:@""];
+    [spinner startCustomSpinner2:self.view spinMessage:@""];
     
     ColombioServiceCommunicator *csc = [ColombioServiceCommunicator sharedManager];
     csc.delegate = self;
-    NSDictionary *dict = @{@"push":@(_swPush.isOn),
-                       @"email":@(_swEmail.isOn),
-                           @"in_app":@0};
+    /*NSArray *array = @[@{@"ntf_push":(_swPush.isOn?@1:@0)},
+                       @{@"ntf_in_app":@0},
+                       @{@"ntf_email":(_swEmail.isOn?@1:@0)}];*/
+    
+    NSDictionary *dict = @{@"ntf_push":(_swPush.isOn?@1:@0),
+                           @"ntf_in_app":@0,
+                           @"ntf_email":(_swEmail.isOn?@1:@0)};
     [csc updateUserPreferences:dict];
 }
 
@@ -84,11 +88,15 @@
 
 #pragma mark CSC Delegate
 - (void)didSendUserPreferences{
-    [spinner removeCustomSpinner];
-    [self.navigationController popViewControllerAnimated:YES];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [spinner removeCustomSpinner];
+        [self.navigationController popViewControllerAnimated:YES];
+    });
 }
 
 - (void)fetchingFailedWithError:(NSError *)error{
-    [spinner removeCustomSpinner];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [spinner removeCustomSpinner];
+    });
 }
 @end
