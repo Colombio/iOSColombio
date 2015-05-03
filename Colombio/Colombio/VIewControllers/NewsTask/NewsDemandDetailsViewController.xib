@@ -27,7 +27,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3fv-Gp-aFF">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="399"/>
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="373"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ZG2-Dv-ZLz">
                                     <rect key="frame" x="15" y="15" width="40" height="40"/>
@@ -153,7 +153,7 @@ kraj</string>
                                 <constraint firstAttribute="trailing" secondItem="ixQ-6t-bA1" secondAttribute="trailing" constant="111" id="YQ1-7b-pWl"/>
                                 <constraint firstItem="ZNE-kS-bUv" firstAttribute="top" secondItem="75T-6y-5tw" secondAttribute="bottom" id="ZYt-LA-VZk"/>
                                 <constraint firstItem="NnV-Lx-xrr" firstAttribute="top" secondItem="3fv-Gp-aFF" secondAttribute="top" constant="15" id="awl-wz-jEc"/>
-                                <constraint firstAttribute="bottom" secondItem="ErS-MD-ZKT" secondAttribute="bottom" constant="26" id="ePB-y2-4xL"/>
+                                <constraint firstAttribute="bottom" secondItem="ErS-MD-ZKT" secondAttribute="bottom" id="ePB-y2-4xL"/>
                                 <constraint firstItem="YeX-wO-tOj" firstAttribute="top" secondItem="ixQ-6t-bA1" secondAttribute="bottom" constant="1" id="fLV-4q-0BE"/>
                                 <constraint firstItem="kvn-Z1-bqi" firstAttribute="top" secondItem="ZNE-kS-bUv" secondAttribute="bottom" id="iIA-5q-iOw"/>
                                 <constraint firstItem="ZNE-kS-bUv" firstAttribute="leading" secondItem="ZG2-Dv-ZLz" secondAttribute="trailing" constant="8" id="mTq-3M-DhP"/>
@@ -166,7 +166,7 @@ kraj</string>
                         </view>
                     </subviews>
                     <constraints>
-                        <constraint firstAttribute="bottom" secondItem="3fv-Gp-aFF" secondAttribute="bottom" constant="85" id="5hY-88-nFY"/>
+                        <constraint firstAttribute="bottom" secondItem="3fv-Gp-aFF" secondAttribute="bottom" id="5hY-88-nFY"/>
                         <constraint firstItem="3fv-Gp-aFF" firstAttribute="top" secondItem="fAD-2t-03Q" secondAttribute="top" id="OOE-A0-rXj"/>
                         <constraint firstAttribute="trailing" secondItem="3fv-Gp-aFF" secondAttribute="trailing" id="PJO-dg-nBT"/>
                         <constraint firstItem="3fv-Gp-aFF" firstAttribute="leading" secondItem="fAD-2t-03Q" secondAttribute="leading" id="Vab-rE-wqo"/>

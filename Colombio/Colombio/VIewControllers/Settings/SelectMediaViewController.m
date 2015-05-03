@@ -218,10 +218,12 @@
                 NSURL *url = [NSURL URLWithString:_mergedMedia[indexPath.section][indexPath.row][@"media_icon"]];
                 UIImage *image = [[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:url]];
                 if (image!=nil) {
-                    [appdelegate.mediaImages setObject:image forKey:_mergedMedia[indexPath.section][indexPath.row][@"id"]];
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        cell.imgMedia.image = [appdelegate.mediaImages objectForKey:_mergedMedia[indexPath.section][indexPath.row][@"id"]];
-                    });
+                    if (_mergedMedia.count>indexPath.section && ((NSArray*)_mergedMedia[indexPath.section]).count > indexPath.row) {
+                        [appdelegate.mediaImages setObject:image forKey:_mergedMedia[indexPath.section][indexPath.row][@"id"]];
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            cell.imgMedia.image = [appdelegate.mediaImages objectForKey:_mergedMedia[indexPath.section][indexPath.row][@"id"]];
+                        });
+                    }
                 }
                 
             }else{
@@ -259,16 +261,19 @@
                 NSURL *url = [NSURL URLWithString:_filteredMedia[indexPath.row][@"media_icon"]];
                 UIImage *image = [[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:url]];
                 if (image!=nil) {
-                    [appdelegate.mediaImages setObject:image forKey:_filteredMedia[indexPath.row][@"id"]];
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        cell.imgMedia.image = [appdelegate.mediaImages objectForKey:_filteredMedia[indexPath.row][@"id"]];
-                    });
+                    if (_filteredMedia.count>indexPath.section && ((NSArray*)_filteredMedia[indexPath.section]).count > indexPath.row) {
+                        [appdelegate.mediaImages setObject:image forKey:_filteredMedia[indexPath.row][@"id"]];
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            cell.imgMedia.image = [appdelegate.mediaImages objectForKey:_filteredMedia[indexPath.row][@"id"]];
+                        });
+                    }
                 }
                 
+            }else{
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    cell.imgMedia.image = [appdelegate.mediaImages objectForKey:_filteredMedia[indexPath.row][@"id"]];
+                });
             }
-            dispatch_async(dispatch_get_main_queue(), ^{
-                cell.imgMedia.image = [appdelegate.mediaImages objectForKey:_filteredMedia[indexPath.row][@"id"]];
-            });
         });
     }
     
@@ -503,10 +508,13 @@
         _filteredFavMedia = [self addColombioOnTop:_favMedia];
         //[_selectedMedia addObjectsFromArray:_favMediaID];
         _mergedMedia = [[NSMutableArray alloc] initWithObjects:_filteredFavMedia, _filteredOtherMedia, nil];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [_tblView reloadData];
-            [spinner removeCustomSpinner];
-        });
+        @synchronized(self){
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [_tblView reloadData];
+                [spinner removeCustomSpinner];
+            });
+        }
+        
         
     } else{
         NSMutableArray *tArray = [[NSMutableArray alloc] initWithArray:_media];
@@ -537,10 +545,12 @@
          }
     }
     _filteredMedia = [[NSArray alloc] initWithArray:_media];
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [_tblView reloadData];
-        [spinner removeCustomSpinner];
-    });
+    @synchronized(self){
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [_tblView reloadData];
+            [spinner removeCustomSpinner];
+        });
+    }
 }
 
 - (NSArray*)addColombioOnTop:(NSMutableArray*)originalArray{

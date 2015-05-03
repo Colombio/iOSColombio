@@ -22,6 +22,7 @@
         _imgMediaLogo.layer.masksToBounds=YES;
         _lblDescription.contentInset = UIEdgeInsetsMake(-4, -4, -4, -4);
         _lblDescription.userInteractionEnabled = NO;
+        [_lblDescription setContentOffset:CGPointZero animated:YES];
     }
     return self;
 }

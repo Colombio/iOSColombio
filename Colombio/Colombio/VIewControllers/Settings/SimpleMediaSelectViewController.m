@@ -71,11 +71,12 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated{
-    _customHeader.headerTitle = [Localized string:@"btn_call"];
     if (!_isCallMedia) {
+        _customHeader.headerTitle = [[Localized string:@"select_media"] uppercaseString];
         _customHeader.nextButtonText = [Localized string:@"header_save"];
         _customHeader.btnBack.hidden=NO;
     }else{
+        _customHeader.headerTitle = [Localized string:@"btn_call"];
         _customHeader.btnBack.hidden=YES;
     }
 }
@@ -121,7 +122,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     if (_mergedMedia.count) {
-        return 20.0;
+        return 25.0;
     }else{
         return 0;
     }
@@ -187,10 +188,12 @@
                 NSURL *url = [NSURL URLWithString:_mergedMedia[indexPath.section][indexPath.row][@"media_icon"]];
                 UIImage *image = [[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:url]];
                 if (image!=nil) {
-                    [appdelegate.mediaImages setObject:image forKey:_mergedMedia[indexPath.section][indexPath.row][@"id"]];
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        cell.imgMedia.image = [appdelegate.mediaImages objectForKey:_mergedMedia[indexPath.section][indexPath.row][@"id"]];
-                    });
+                    if (_mergedMedia.count>indexPath.section && ((NSArray*)_mergedMedia[indexPath.section]).count > indexPath.row) {
+                        [appdelegate.mediaImages setObject:image forKey:_mergedMedia[indexPath.section][indexPath.row][@"id"]];
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            cell.imgMedia.image = [appdelegate.mediaImages objectForKey:_mergedMedia[indexPath.section][indexPath.row][@"id"]];
+                        });
+                    }
                 }
             }else{
                 dispatch_async(dispatch_get_main_queue(), ^{
@@ -221,15 +224,18 @@
                 NSURL *url = [NSURL URLWithString:_mergedMedia[indexPath.section][indexPath.row][@"media_icon"]];
                 UIImage *image = [[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:url]];
                 if (image!=nil) {
-                    [appdelegate.mediaImages setObject:image forKey:_mergedMedia[indexPath.section][indexPath.row][@"id"]];
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        cell.imgMedia.image = [appdelegate.mediaImages objectForKey:_mergedMedia[indexPath.section][indexPath.row][@"id"]];
-                    });
+                    if (_mergedMedia.count>indexPath.section && ((NSArray*)_mergedMedia[indexPath.section]).count > indexPath.row) {
+                        [appdelegate.mediaImages setObject:image forKey:_mergedMedia[indexPath.section][indexPath.row][@"id"]];
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                                cell.imgMedia.image = [appdelegate.mediaImages objectForKey:_mergedMedia[indexPath.section][indexPath.row][@"id"]];
+                        });
+                    }
                 }
+            }else{
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    cell.imgMedia.image = [appdelegate.mediaImages objectForKey:_mergedMedia[indexPath.section][indexPath.row][@"id"]];
+                });
             }
-            dispatch_async(dispatch_get_main_queue(), ^{
-                cell.imgMedia.image = [appdelegate.mediaImages objectForKey:_mergedMedia[indexPath.section][indexPath.row][@"id"]];
-            });
         });
     }
     
@@ -310,10 +316,13 @@
     _filteredFavMedia = [self addColombioOnTop:_favMedia];
     //[_selectedMedia addObjectsFromArray:_favMediaID];
     _mergedMedia = [[NSMutableArray alloc] initWithObjects:_filteredFavMedia, _filteredOtherMedia, nil];
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [_tblView reloadData];
-        [spinner removeCustomSpinner];
-    });
+    @synchronized(self){
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [_tblView reloadData];
+            [spinner removeCustomSpinner];
+        });
+    }
+    
 }
 
 - (NSArray*)addColombioOnTop:(NSMutableArray*)originalArray{

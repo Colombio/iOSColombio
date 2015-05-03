@@ -250,7 +250,7 @@
             [csc fetchUserProfile];
         }
         else {
-            [loadingView stopCustomSpinner];
+            //[loadingView stopCustomSpinner];
             timer = [NSTimer scheduledTimerWithTimeInterval:2.0f target:self selector:@selector(removeSpinner) userInfo:nil repeats:NO];
             [btnLogin setTitle:[Localized string:@"login_login"] forState:UIControlStateNormal];
         }

@@ -23,13 +23,13 @@
     self = [super initWithCoder:aDecoder];
     if (self) {
         _isNumber=NO;
-        _txtField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width-45, self.frame.size.height)];
+        _txtField = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width-20, self.frame.size.height)];
         _txtField.font = [[UIConfiguration sharedInstance] getFont:FONT_HELVETICA_NEUE_LIGHT];
         _txtField.returnKeyType = UIReturnKeyDone;
         [_txtField setTextColor:[UIColor colorWithWhite:1 alpha:1.0]];
         _txtField.tintColor = [UIColor whiteColor];
         [self addSubview:_txtField];
-        _imgView = [[UIImageView alloc] initWithFrame:CGRectMake(self.frame.size.width-45, 5, 20, 20)];
+        _imgView = [[UIImageView alloc] initWithFrame:CGRectMake(self.frame.size.width-20, 5, 20, 20)];
         _imgView.image = TXT_FIELD_INPUT_IMG;
         [_imgView setHidden:YES];
         [self addSubview:_imgView];

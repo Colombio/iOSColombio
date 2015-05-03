@@ -35,14 +35,18 @@
                 <outlet property="lblPendingAmount" destination="iXq-rH-CVf" id="zIm-FB-eJ0"/>
                 <outlet property="lblPendingKey" destination="KTq-4B-Bck" id="CY1-kH-t6r"/>
                 <outlet property="lblSendAnonymousKey" destination="VRK-gt-mHN" id="Uyo-dj-5xG"/>
+                <outlet property="scrollView" destination="iM5-xY-oA3" id="jj7-pi-Aea"/>
                 <outlet property="swAnonymous" destination="701-UQ-ejq" id="Hht-y6-kCa"/>
                 <outlet property="swConnetPayPal" destination="6bg-kW-daa" id="v9Q-az-hdS"/>
                 <outlet property="txtCity" destination="fsi-JF-HVg" id="Ljv-DU-Y5N"/>
                 <outlet property="txtCountry" destination="eDJ-Gg-dTI" id="HQT-6b-dsQ"/>
                 <outlet property="txtInfo" destination="mXm-pS-eLG" id="lGo-Fv-Fn7"/>
                 <outlet property="txtLastName1" destination="OOf-qJ-wUR" id="6Xs-mO-QEj"/>
+                <outlet property="txtLastName2" destination="wYg-8W-xxZ" id="VTw-mT-UM7"/>
                 <outlet property="txtName1" destination="jHk-Fh-4NK" id="Mm0-Qc-xzs"/>
+                <outlet property="txtName2" destination="tcj-wV-DMY" id="y5I-ok-o1v"/>
                 <outlet property="txtPayPalEmail" destination="a6S-Rg-s4o" id="qBt-OS-wmM"/>
+                <outlet property="txtPhoneNumber" destination="UvZ-D0-sgX" id="zDg-3M-hrK"/>
                 <outlet property="txtStreet" destination="u6g-xH-qkX" id="qqh-Zq-I9x"/>
                 <outlet property="txtZIP" destination="71J-hi-QUc" id="XON-fq-MqB"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -67,7 +71,7 @@
                     <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hg3-h4-gmA">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="367"/>
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="236"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pXk-pa-NgA">
                                     <rect key="frame" x="10" y="0.0" width="300" height="35"/>
@@ -280,7 +284,7 @@
                                                 <constraint firstItem="6bg-kW-daa" firstAttribute="top" secondItem="hcL-xp-3uh" secondAttribute="top" id="hlm-eQ-E1i"/>
                                             </constraints>
                                         </view>
-                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Your PayPal email account" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="a6S-Rg-s4o">
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Your PayPal email account" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="a6S-Rg-s4o">
                                             <constraints>
                                                 <constraint firstAttribute="height" id="LdS-fj-hwy"/>
                                             </constraints>
@@ -478,7 +482,7 @@
                                                 <constraint firstItem="701-UQ-ejq" firstAttribute="leading" secondItem="VRK-gt-mHN" secondAttribute="trailing" constant="5" id="ueY-Cj-P0h"/>
                                             </constraints>
                                         </view>
-                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Your PayPal email account" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tcj-wV-DMY" userLabel="First name">
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Your PayPal email account" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tcj-wV-DMY" userLabel="First name">
                                             <constraints>
                                                 <constraint firstAttribute="height" id="r3X-2R-HmO"/>
                                             </constraints>
@@ -494,7 +498,7 @@
                                                 <outlet property="delegate" destination="-1" id="ZqE-Dc-T2X"/>
                                             </connections>
                                         </textField>
-                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Your PayPal email account" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wYg-8W-xxZ" userLabel="Last name">
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Your PayPal email account" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wYg-8W-xxZ" userLabel="Last name">
                                             <constraints>
                                                 <constraint firstAttribute="height" id="Xdg-Xb-uoF"/>
                                             </constraints>
@@ -510,13 +514,13 @@
                                                 <outlet property="delegate" destination="-1" id="FJu-TA-Rtw"/>
                                             </connections>
                                         </textField>
-                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Your PayPal email account" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UvZ-D0-sgX" userLabel="Phone number">
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Your PayPal email account" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UvZ-D0-sgX" userLabel="Phone number">
                                             <constraints>
                                                 <constraint firstAttribute="height" id="8Ze-6P-8Ry"/>
                                             </constraints>
                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                             <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
-                                            <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done"/>
+                                            <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="phonePad" returnKeyType="done"/>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="string" keyPath="configPlaceholder" value="user_placeholder_phonenumber"/>
                                                 <userDefinedRuntimeAttribute type="string" keyPath="configTextColor" value="COLOR_TEXT_NAVIGATIONBAR_BUTTON"/>
@@ -568,7 +572,7 @@
                                 <constraint firstAttribute="trailing" secondItem="4TK-9t-Ehp" secondAttribute="trailing" constant="10" id="mwY-eQ-Ias"/>
                                 <constraint firstAttribute="trailing" secondItem="1ux-II-SGR" secondAttribute="trailing" constant="10" id="n7G-ex-imC"/>
                                 <constraint firstItem="pXk-pa-NgA" firstAttribute="leading" secondItem="Hg3-h4-gmA" secondAttribute="leading" constant="10" id="sVi-o6-UWq"/>
-                                <constraint firstAttribute="bottom" secondItem="8nc-MY-BMc" secondAttribute="bottom" constant="151" id="zpt-Gc-iuj"/>
+                                <constraint firstAttribute="bottom" secondItem="8nc-MY-BMc" secondAttribute="bottom" constant="20" id="zpt-Gc-iuj"/>
                             </constraints>
                         </view>
                     </subviews>

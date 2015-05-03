@@ -29,16 +29,17 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    
+    // Do any additional setup after loading the view from its nib.
+}
+
+- (void)viewWillAppear:(BOOL)animated{
     spinner = [[Loading alloc] init];
     [spinner startCustomSpinner2:self.view spinMessage:@""];
     ColombioServiceCommunicator *csc = [ColombioServiceCommunicator sharedManager];
     csc.delegate=self;
     [csc fetchTimeLine];
-    // Do any additional setup after loading the view from its nib.
-}
-
-- (void)viewDidAppear:(BOOL)animated{
-
 }
 
 - (void)didReceiveMemoryWarning {

@@ -36,7 +36,7 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated{
-    _customHeader.headerTitle = [Localized string:@"alerts"];
+    _customHeader.headerTitle = [[Localized string:@"alerts"] uppercaseString];
     _customHeader.backButtonText = @"";
     _customHeader.nextButtonText = [Localized string:@"header_save"];
     [self setLabelHeights];

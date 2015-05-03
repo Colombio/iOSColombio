@@ -15,15 +15,15 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="023-nS-3q3">
-                        <rect key="frame" x="13" y="19" width="40" height="40"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="023-nS-3q3">
+                        <rect key="frame" x="13" y="20" width="40" height="40"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="40" id="6I9-FS-Pgj"/>
                             <constraint firstAttribute="height" constant="40" id="h4T-CU-clI"/>
                         </constraints>
                     </imageView>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="alerticon" translatesAutoresizingMaskIntoConstraints="NO" id="XbL-Ac-in3">
-                        <rect key="frame" x="10" y="14" width="14" height="14"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="alerticon" translatesAutoresizingMaskIntoConstraints="NO" id="XbL-Ac-in3">
+                        <rect key="frame" x="10" y="15" width="14" height="14"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="14" id="9Gm-u4-Jm7"/>
                             <constraint firstAttribute="width" constant="14" id="Dkb-Ea-hKa"/>
@@ -31,8 +31,8 @@
                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="14" id="y7h-Xr-qM0"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" text="$15" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="83F-4U-41C">
-                        <rect key="frame" x="253" y="21" width="59" height="45"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" misplaced="YES" text="$15" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="83F-4U-41C">
+                        <rect key="frame" x="253" y="22" width="59" height="45"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="59" id="T4W-5Z-Fbe"/>
                             <constraint firstAttribute="height" constant="45" id="r7S-dt-7sb"/>
@@ -44,8 +44,8 @@
                             <userDefinedRuntimeAttribute type="string" keyPath="configTextColor" value="COLOR_NEXT_BUTTON"/>
                         </userDefinedRuntimeAttributes>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Media name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FRT-5M-fer">
-                        <rect key="frame" x="65" y="19" width="180" height="24"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" misplaced="YES" text="Media name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FRT-5M-fer">
+                        <rect key="frame" x="65" y="20" width="180" height="24"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="24" id="AY0-8o-jAF"/>
                         </constraints>
@@ -56,8 +56,8 @@
                             <userDefinedRuntimeAttribute type="string" keyPath="configTextColor" value="COLOR_TEXT_NEWS_TITLE"/>
                         </userDefinedRuntimeAttributes>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Media type" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="mZG-kb-60W">
-                        <rect key="frame" x="65" y="43" width="180" height="24"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" misplaced="YES" text="Media type" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="mZG-kb-60W">
+                        <rect key="frame" x="65" y="44" width="180" height="24"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="24" id="rfP-Aq-7wz"/>
                         </constraints>
@@ -68,8 +68,8 @@
                             <userDefinedRuntimeAttribute type="string" keyPath="configTextColor" value="COLOR_TEXT_NEWS_TITLE"/>
                         </userDefinedRuntimeAttributes>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="May 19, 2014" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="JWP-X7-GPY">
-                        <rect key="frame" x="65" y="67" width="122" height="24"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" misplaced="YES" text="May 19, 2014" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="JWP-X7-GPY">
+                        <rect key="frame" x="65" y="68" width="122" height="24"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="24" id="V8A-2d-aQj"/>
                         </constraints>
@@ -80,8 +80,8 @@
                             <userDefinedRuntimeAttribute type="string" keyPath="configTextColor" value="COLOR_NEWS_DEMAND_LIGHT_GRAY"/>
                         </userDefinedRuntimeAttributes>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="News title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EfV-kA-j3m">
-                        <rect key="frame" x="65" y="88" width="247" height="24"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" misplaced="YES" text="News title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EfV-kA-j3m">
+                        <rect key="frame" x="65" y="89" width="247" height="24"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="24" id="0qm-ZT-Sw3"/>
                         </constraints>
@@ -92,11 +92,11 @@
                             <userDefinedRuntimeAttribute type="string" keyPath="configTextColor" value="COLOR_TEXT_NEWS_TITLE"/>
                         </userDefinedRuntimeAttributes>
                     </label>
-                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RAd-DF-PRV">
-                        <rect key="frame" x="65" y="112" width="247" height="40"/>
+                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RAd-DF-PRV">
+                        <rect key="frame" x="65" y="113" width="247" height="45"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="40" id="JXa-mh-eQO"/>
+                            <constraint firstAttribute="height" constant="45" id="JXa-mh-eQO"/>
                         </constraints>
                         <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
@@ -105,8 +105,8 @@
                             <userDefinedRuntimeAttribute type="string" keyPath="configTextColor" value="COLOR_NEWS_DEMAND_DESCRIPTION"/>
                         </userDefinedRuntimeAttributes>
                     </textView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="REWARD" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="z86-EN-zm6">
-                        <rect key="frame" x="217" y="67" width="95" height="24"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="REWARD" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="z86-EN-zm6">
+                        <rect key="frame" x="217" y="68" width="95" height="24"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="24" id="gcd-KE-2Py"/>
                         </constraints>
@@ -168,7 +168,7 @@
                 <outlet property="lblNewsTitle" destination="EfV-kA-j3m" id="JZ9-CP-Pte"/>
                 <outlet property="lblRewardAmount" destination="83F-4U-41C" id="QYp-Vd-OOl"/>
             </connections>
-            <point key="canvasLocation" x="340" y="226"/>
+            <point key="canvasLocation" x="340" y="225"/>
         </tableViewCell>
     </objects>
     <resources>

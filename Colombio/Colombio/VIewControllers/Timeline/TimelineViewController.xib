@@ -13,7 +13,7 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="431"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aCv-dJ-QdZ" customClass="CustomHeaderView">
@@ -42,13 +42,13 @@
             <constraints>
                 <constraint firstItem="aCv-dJ-QdZ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="0PP-cy-sFw"/>
                 <constraint firstItem="I8w-Tq-HLV" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="7Y1-vM-tY5"/>
-                <constraint firstAttribute="bottom" secondItem="I8w-Tq-HLV" secondAttribute="bottom" id="Pu1-tT-oMw"/>
+                <constraint firstAttribute="bottom" secondItem="I8w-Tq-HLV" secondAttribute="bottom" constant="49" id="Pu1-tT-oMw"/>
                 <constraint firstAttribute="trailing" secondItem="aCv-dJ-QdZ" secondAttribute="trailing" id="QLm-MG-TxZ"/>
                 <constraint firstItem="aCv-dJ-QdZ" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="20" id="Ucc-jF-IWr"/>
                 <constraint firstAttribute="trailing" secondItem="I8w-Tq-HLV" secondAttribute="trailing" id="abt-Wx-LuB"/>
                 <constraint firstItem="I8w-Tq-HLV" firstAttribute="top" secondItem="aCv-dJ-QdZ" secondAttribute="bottom" id="lrO-AY-J4k"/>
             </constraints>
-            <simulatedTabBarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
+            <nil key="simulatedBottomBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
         </view>
     </objects>

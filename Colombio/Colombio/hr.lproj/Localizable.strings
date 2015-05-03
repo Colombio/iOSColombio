@@ -171,6 +171,7 @@
 "notify_alerts" = "Obavijesti me kad COLOMBIO pošalje obavijest i medij pošalje zahtjev ili odgovor putem:";
 "push" = "Push";
 "email" = "Email";
+"my_profile" = "MOJI PODACI";
 
 /*USER INFO*/
 "user_rating" = "My rating";

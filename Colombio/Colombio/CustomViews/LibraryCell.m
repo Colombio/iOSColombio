@@ -32,7 +32,7 @@
         img = [[UIImageView alloc] initWithFrame:CGRectMake(0,0,99,99)];
         imgWatermark = [[UIImageView alloc] initWithFrame:CGRectMake(28,28,44,44)];
         imgNotSelected = [[UIImageView alloc] initWithFrame:CGRectMake(76, 5, 20, 20)];
-        imgSelected = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
+        imgSelected = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 99, 99)];
         imgSelected.center = CGPointMake(self.frame.size.width/2, self.frame.size.height/2);
         imgNotSelected.image=[UIImage imageNamed:@"unselected.png"];
         imgSelected.image=[UIImage imageNamed:@"selectedcontent"];

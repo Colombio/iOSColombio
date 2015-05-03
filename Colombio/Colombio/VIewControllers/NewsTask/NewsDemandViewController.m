@@ -84,7 +84,6 @@
     cell.lblMediaType.text = appdelegate.dicMediaTypes[mediaInfo[@"media_type"]];
     cell.lblNewsTitle.text = newsDemand.title;
     cell.lblDescription.text = [NSString stringWithFormat:@"%@",newsDemand.desc];
-    [cell.lblDescription sizeToFit];
     
     newsDemand.media_icon = mediaInfo[@"media_icon"];
     

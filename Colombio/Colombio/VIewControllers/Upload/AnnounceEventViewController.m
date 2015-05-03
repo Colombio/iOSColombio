@@ -26,7 +26,7 @@
 - (instancetype)init{
     self = [super init];
     if (self) {
-        self.title = [Localized string:@"announce_event"];
+        self.title = [Localized string:@"send_news"];
     }
     return self;
 }

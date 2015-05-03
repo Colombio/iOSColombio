@@ -27,6 +27,8 @@
 - (void)didFetchCountries;
 - (void)didSendUserPreferences;
 - (void)didFetchInfoTexts;
+- (void)didSendUserDataForPayPal:(NSDictionary*)result;
+- (void)didFailSendingUserDataForPayPal:(NSError*)error;
 
 @end
 
@@ -52,6 +54,7 @@
 - (void)fetchCountries;
 - (void)updateUserPreferences:(NSDictionary*)userDict;
 - (void)fetchInfoTexts;
+- (void)payoutRequest:(NSDictionary*)dictUserData;
 
 @end
 

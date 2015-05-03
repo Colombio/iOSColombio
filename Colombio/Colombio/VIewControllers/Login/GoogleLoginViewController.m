@@ -272,7 +272,7 @@ NSString *visibleactions = @"http://schemas.google.com/AddActivity";
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 - (void)btnBackClicked{
-    [self.navigationController popViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end
