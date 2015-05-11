@@ -26,6 +26,9 @@
 @property (strong, nonatomic) NSString *phone_number;
 @property (assign, nonatomic) BOOL sell;
 @property (strong, nonatomic) NSMutableArray *images;
+//Announce event params
+@property (strong, nonatomic) NSString *eventDate;
+@property (strong, nonatomic) NSString *eventTime;
 
 
 @end

@@ -175,7 +175,8 @@
     dict[@"anonymous"] = @(userInfoVC.swToggleAnonymoys.isOn);
     dict[@"first_name"] = !userInfoVC.swToggleAnonymoys.isOn?userInfoVC.txtName.text:@"";
     dict[@"last_name"] = !userInfoVC.swToggleAnonymoys.isOn?userInfoVC.txtSurname.text:@"";
-    dict[@"paypal_email"] = userInfoVC.swTogglePayPal.isOn?userInfoVC.txtPayPalEmail.text:@"";
+    dict[@"paypal_email"] = userInfoVC.txtPayPalEmail.text;
+    dict[@"paypal"] = userInfoVC.swTogglePayPal.isOn?@1:@0;
     [appdelegate.db updateDictionary:dict forTable:@"USER" where:NULL];
     
 }

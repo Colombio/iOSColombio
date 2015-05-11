@@ -108,7 +108,8 @@
     coordinate.latitude = _data.latitude;
     coordinate.longitude= _data.longitude;
     MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(coordinate, _data.radius,_data.radius);
-    
+    MKCircle *circle = [MKCircle circleWithCenterCoordinate:coordinate radius:_data.radius];
+    [_mapView addOverlay:circle];
     Annotation *annotation = [[Annotation alloc] initWithCoordinate:coordinate title:_data.title];
     [_mapView addAnnotation:annotation];
     [_mapView setRegion:viewRegion animated:YES];
@@ -140,6 +141,14 @@
     }
     annotationView.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
     return annotationView;
+}
+
+- (MKOverlayView *)mapView:(MKMapView *)map viewForOverlay:(id <MKOverlay>)overlay
+{
+    MKCircleView *circleView = [[MKCircleView alloc] initWithOverlay:overlay];
+    circleView.strokeColor = [UIColor redColor];
+    circleView.fillColor = [[UIColor redColor] colorWithAlphaComponent:0.4];
+    return circleView;
 }
 
 - (void)btnSelectTapped:(id)sender{

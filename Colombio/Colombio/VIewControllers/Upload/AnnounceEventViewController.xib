@@ -72,6 +72,9 @@
                                     <date key="date" timeIntervalSinceReferenceDate="451432377.55677497">
                                         <!--2015-04-22 21:52:57 +0000-->
                                     </date>
+                                    <connections>
+                                        <action selector="pickerAction:" destination="-1" eventType="valueChanged" id="SwJ-ib-GmR"/>
+                                    </connections>
                                 </datePicker>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lO5-2W-dgn">
                                     <rect key="frame" x="20" y="357" width="280" height="1"/>

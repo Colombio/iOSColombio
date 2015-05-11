@@ -26,7 +26,7 @@
 - (instancetype)init{
     self = [super init];
     if (self) {
-        self.title = [Localized string:@"send_news"];
+        self.title = [[Localized string:@"announce_event"] uppercaseString];
     }
     return self;
 }
@@ -155,5 +155,10 @@
     UIEdgeInsets contentInsets = UIEdgeInsetsZero;
     _scrollView.contentInset = contentInsets;
     _scrollView.scrollIndicatorInsets = contentInsets;
+}
+
+#pragma mark PickerAction
+- (IBAction)pickerAction:(UIPickerView*)sender{
+    _dateEvent=_pkrDate.date;
 }
 @end

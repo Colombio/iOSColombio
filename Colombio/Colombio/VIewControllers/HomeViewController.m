@@ -17,6 +17,7 @@
 #import "ColombioServiceCommunicator.h"
 #import "Tools.h"
 #import "SimpleMediaSelectViewController.h"
+#import "NewsDemandServiceCommunicator.h"
 
 
 enum UploadType{
@@ -47,15 +48,15 @@ enum UploadType{
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setNeedsStatusBarAppearanceUpdate];
-    ColombioServiceCommunicator *colombioSC = [ColombioServiceCommunicator sharedManager];
-    colombioSC.delegate=self;
-    //[colombioSC fetchMedia];
-    [colombioSC fetchNewsDemands];
+    
     // Do any additional setup after loading the view from its nib.
 }
 
 - (void)viewWillAppear:(BOOL)animated{
     self.navigationController.tabBarItem.selectedImage  = [[UIImage imageNamed:@"home_active"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    NewsDemandServiceCommunicator *newsSC = [NewsDemandServiceCommunicator sharedManager];
+    newsSC.delegate=self;
+    [newsSC fetchNewsDemands];
 }
 
 - (void)didReceiveMemoryWarning {

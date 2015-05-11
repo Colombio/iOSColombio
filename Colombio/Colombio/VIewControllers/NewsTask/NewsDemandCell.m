@@ -20,9 +20,12 @@
         self = [nib objectAtIndex:0];
         _imgMediaLogo.layer.cornerRadius=_imgMediaLogo.frame.size.width/2;
         _imgMediaLogo.layer.masksToBounds=YES;
-        _lblDescription.contentInset = UIEdgeInsetsMake(-4, -4, -4, -4);
+        _lblDescription.contentInset = UIEdgeInsetsMake(-4, -4, 0, -4);
         _lblDescription.userInteractionEnabled = NO;
-        [_lblDescription setContentOffset:CGPointZero animated:YES];
+        //[_lblDescription setContentOffset:CGPointZero animated:YES];
+        _lblDescription.scrollEnabled = NO;
+        _lblDescription.textContainer.maximumNumberOfLines = 0;
+        _lblDescription.textContainer.lineBreakMode = NSLineBreakByTruncatingTail;
     }
     return self;
 }

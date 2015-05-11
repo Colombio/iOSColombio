@@ -41,7 +41,7 @@
     self.db = [[Database alloc] init];
     [db UpgradeDB];
     mediaImages = [[NSCache alloc] init];
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    //[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
     [[NSUserDefaults standardUserDefaults] setObject:@0 forKey:COUNTRY_ID];
@@ -60,7 +60,7 @@
     locationManager = [[CLLocationManager alloc]init];
     if([self.locationManager respondsToSelector:@selector(requestAlwaysAuthorization)]){
         [locationManager requestWhenInUseAuthorization];
-        //[locationManager requestAlwaysAuthorization];
+        [locationManager requestAlwaysAuthorization];
     }
     locationManager.distanceFilter = kCLDistanceFilterNone;
     locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters;

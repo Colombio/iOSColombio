@@ -149,12 +149,12 @@
 
 - (void)btnInfo:(UIButton *)sender{
     if (sender==_btnAnonymousInfo) {
-        [_btnAnonymousInfo setBackgroundImage:[UIImage imageNamed:@"infoicon_active"] forState:UIControlStateNormal];
+        [_btnAnonymousInfo setImage:[UIImage imageNamed:@"infoicon_active"] forState:UIControlStateNormal];
         UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"" message:[Localized string:@"anonymous_info"] delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alert show];
 
     }else if(sender==_btnPayPalInfo){
-        [_btnPayPalInfo setBackgroundImage:[UIImage imageNamed:@"infoicon_active"] forState:UIControlStateNormal];
+        [_btnPayPalInfo setImage:[UIImage imageNamed:@"infoicon_active"] forState:UIControlStateNormal];
         UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"" message:[Localized string:@"connect_paypal_info"] delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alert show];
         
@@ -162,8 +162,8 @@
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-    [_btnPayPalInfo setBackgroundImage:[UIImage imageNamed:@"infoicon"] forState:UIControlStateNormal];
-    [_btnAnonymousInfo setBackgroundImage:[UIImage imageNamed:@"infoicon"] forState:UIControlStateNormal];
+    [_btnPayPalInfo setImage:[UIImage imageNamed:@"infoicon"] forState:UIControlStateNormal];
+    [_btnAnonymousInfo setImage:[UIImage imageNamed:@"infoicon"] forState:UIControlStateNormal];
 }
 #pragma mark Keyboard
 

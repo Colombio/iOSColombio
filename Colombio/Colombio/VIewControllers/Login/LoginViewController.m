@@ -319,8 +319,21 @@
                     [token writeToFile:filePathToken atomically:YES encoding:NSUTF8StringEncoding error:nil];
                     [[NSUserDefaults standardUserDefaults] setObject:@0 forKey:COUNTRY_ID];
                     [[NSUserDefaults standardUserDefaults] synchronize];
+                    
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [loadingView removeCustomSpinner];
+                        loadingView = [[Loading alloc] init];
+                        [loadingView startCustomSpinner:self.view spinMessage:@""];
+                        return;
+                    });
                     [csc fetchUserProfile];
                     
+                }else{
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [Messages showErrorMsg:@"error_web_request"];
+                        [loadingView removeCustomSpinner];
+                        return;
+                    });
                 }
             }
         }];

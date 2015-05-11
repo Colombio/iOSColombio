@@ -21,6 +21,8 @@
 }
 @property (weak, nonatomic) IBOutlet UITableView *tblView;
 @property (weak, nonatomic) IBOutlet UITextField *txtSearch;
+@property (weak, nonatomic) IBOutlet UITextView *txtView;
+@property (weak, nonatomic) IBOutlet UIView *viewSearchHolder;
 @property (strong, nonatomic) NSArray *media;
 @property (strong, nonatomic) NSArray *selectedCountries;
 @property (strong, nonatomic) NSArray *filteredMedia;
@@ -79,22 +81,38 @@
         [self loadFavMedia];
     }else{
         if (_selectedCountries.count>0) {
+            _tblView.hidden=NO;
+            _txtView.hidden=YES;
+            _viewSearchHolder.hidden=NO;
             [spinner startCustomSpinner2:self.view spinMessage:@""];
             [self loadMedia];
         }else{
-            UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"" message:[Localized string:@"choose_one_country"] delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-            [alert show];
+            _tblView.hidden=YES;
+            _txtView.hidden=NO;
+            _viewSearchHolder.hidden=YES;
+            _txtView.text = [Localized string:@"choose_country"];
+            /*UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"" message:[Localized string:@"choose_one_country"] delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [alert show];*/
         }
-        
     }
-    
 }
-
-
 
 - (void)viewWillAppear:(BOOL)animated{
     if ([self selectedCountriesChanged]) {
-        [self loadMedia];
+        if (_selectedCountries.count>0) {
+            _tblView.hidden=NO;
+            _txtView.hidden=YES;
+            _viewSearchHolder.hidden=NO;
+            [spinner startCustomSpinner2:self.view spinMessage:@""];
+            [self loadMedia];
+        }else{
+            _txtView.text = [Localized string:@"choose_country"];
+            _tblView.hidden=YES;
+            _txtView.hidden=NO;
+            _viewSearchHolder.hidden=YES;
+            /*UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"" message:[Localized string:@"choose_one_country"] delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [alert show];*/
+        }
     }
     _txtSearch.layer.cornerRadius = 5;
     _txtSearch.clipsToBounds=YES;
@@ -224,6 +242,10 @@
                             cell.imgMedia.image = [appdelegate.mediaImages objectForKey:_mergedMedia[indexPath.section][indexPath.row][@"id"]];
                         });
                     }
+                }else{
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        cell.imgMedia.image = [UIImage imageNamed:@"uploadphoto"];
+                    });
                 }
                 
             }else{
@@ -253,7 +275,6 @@
             cell.CS_DescriptionHeight.constant = ((CGSize)[self getDescriptionHeightForText:_filteredMedia[indexPath.row][@"description"]]).height;
         }
         
-        
         dispatch_queue_t concurrentQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
         //this will start the image loading in bg
         dispatch_async(concurrentQueue, ^{
@@ -261,12 +282,16 @@
                 NSURL *url = [NSURL URLWithString:_filteredMedia[indexPath.row][@"media_icon"]];
                 UIImage *image = [[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:url]];
                 if (image!=nil) {
-                    if (_filteredMedia.count>indexPath.section && ((NSArray*)_filteredMedia[indexPath.section]).count > indexPath.row) {
+                    if (((NSArray*)_filteredMedia).count > indexPath.row) {
                         [appdelegate.mediaImages setObject:image forKey:_filteredMedia[indexPath.row][@"id"]];
                         dispatch_async(dispatch_get_main_queue(), ^{
                             cell.imgMedia.image = [appdelegate.mediaImages objectForKey:_filteredMedia[indexPath.row][@"id"]];
                         });
                     }
+                }else{
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        cell.imgMedia.image = [UIImage imageNamed:@"uploadphoto"];
+                    });
                 }
                 
             }else{
@@ -504,6 +529,8 @@
             }
         }
         _otherMedia = [self addColombioOnTop:tempArray];
+        [self addMediaTypeTextForFiltering:_otherMedia];
+        [self addMediaTypeTextForFiltering:_favMedia];
         _filteredOtherMedia = _otherMedia;
         _filteredFavMedia = [self addColombioOnTop:_favMedia];
         //[_selectedMedia addObjectsFromArray:_favMediaID];
@@ -544,6 +571,7 @@
             }*/
          }
     }
+     [self addMediaTypeTextForFiltering:_media];
     _filteredMedia = [[NSArray alloc] initWithArray:_media];
     @synchronized(self){
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -575,7 +603,7 @@
     if (_isForNewsUpload){
         _filteredFavMedia=[[NSArray alloc] init];
         _filteredOtherMedia = [[NSArray alloc] init];
-        NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"name contains[c] %@", searchCondition];
+        NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"name contains[c] %@ OR mediatypetext contains[c] %@", searchCondition, searchCondition];
         _filteredFavMedia = [_favMedia filteredArrayUsingPredicate:resultPredicate];
         _filteredOtherMedia = [_otherMedia filteredArrayUsingPredicate:resultPredicate];
         _mergedMedia = [[NSMutableArray alloc] init];
@@ -588,7 +616,7 @@
         
     }else{
         _filteredMedia=[[NSArray alloc] init];
-        NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"name contains[c] %@", searchCondition];
+        NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"name contains[c] %@ OR mediatypetext contains[c] %@", searchCondition, searchCondition];
         _filteredMedia = [_media filteredArrayUsingPredicate:resultPredicate];
     }
     /*for (NSDictionary *media in _media){
@@ -596,6 +624,12 @@
             [_filteredMedia addObject:media];
         }
     }*/
+}
+
+- (void)addMediaTypeTextForFiltering:(NSArray*)array{
+    for (NSMutableDictionary *tDict in array) {
+        tDict[@"mediatypetext"] = [[Localized string:appdelegate.dicMediaTypes[tDict[@"media_type"]]] uppercaseString];
+    }
 }
 
 - (void)btnDismissSearchSelected:(id)sender{

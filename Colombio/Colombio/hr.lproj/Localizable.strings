@@ -96,6 +96,8 @@
 "select_media_favorites" = "OMILJENI MEDIJI";
 "select_media_othermedia" = "DRUGI MEDIJI";
 "choose_one_country" = "Odaberi barem jednu državu";
+"choose_country" = "Odaberi zemlju za prikaz liste medija";
+
 /*Home*/
 "btn_takephoto" = "TAKE PHOTO/VIDEO";
 "btn_sendnews" = "SEND NEWS";
@@ -115,8 +117,9 @@
 "photos_max_num_title" = "Premašen broj slika/videa";
 "i_want_sell" = "Želim prodati";
 "media_price_offer" = "Ponuđena cijena $%@";
-"media_may_or_not" = "Mediji nisu dužni objaviti tvoju vijest";
+"media_may_or_not" = "*Mediji nisu dužni objaviti tvoju vijest";
 "media_only_one" = "*Samo jedan medij može kupiti tvoju vijest";
+"media_buy_option" = "*Mediji nisu obvezni otkupiti vašu fotografiju ili video";
 "be_signed" = "Želim biti autor";
 "contact_me" = "Moj kontakt broj";
 "anonymous_sending" = "Anonimno slanje";
@@ -197,3 +200,8 @@
 "sell_info_basic" = "U slučaju da medij otkupi vašu sliku/video nemte više pravo nuditi ili prodavati sliku trećoj strani. Prodajom slike/videa prenosite vlasnička prava na objavu i daljnju distribuciju kupcu, odnosno mediju koji otkupi.";
 "sell_info_prefix" = "Ovom opcijom nudite svoju sliku/video na prodaju mediju. Obavijest o eventualnoj ponudi s cijenom dobit ćete unutar aplikacije, te je možete prihvatiti ili odbiti.";
 "sell_info_tip" = "Imate li ekskluzivnu sliku/video za medije koja je vaše autorsko djelo? Uključivanjem ove opcije ponudit ćete medijima na prodaju svoju sliku/video. Obavijest o eventualnoj ponudi s cijenom dobit ćete unutar aplikacije. U slučaju prodaje, nemate više pravo nuditi ili prodavati istu sliku/video, te možete biti tuženi od strane kupca. Vaša slika/video zaštićeni su vodenim žigom i ne mogu se preuzeti bez kupnje.\n\n*Napomena: Nemojte odabrati ovu opciju ukoliko šaljete slike/video vezane uz vijest od općeg društvenog interesa(udruge/najave/sport/edukacija/društveni događaji itd.)";
+
+/*Cashout*/
+"cashout_request" = "ZATRAŽENA ISPLATA";
+"cashout_info" = "INFORMACIJE O ZATRAŽENOJ ISPLATI";
+"cash_out_confirmation" = "Zahtjev za isplatom je poslan. Za više informacija provijeri email %@.";

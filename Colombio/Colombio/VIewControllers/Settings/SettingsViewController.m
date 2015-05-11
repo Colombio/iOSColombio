@@ -27,16 +27,23 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    _tblView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    _tblView.alwaysBounceVertical = NO;
     // Do any additional setup after loading the view from its nib.
 }
 
 - (void)viewWillAppear:(BOOL)animated{
     _customHeader.headerTitle = [[Localized string:@"settings"] uppercaseString];
+    _customHeader.backButtonText=@"";
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)btnBackClicked{
+    [self.tabBarController setSelectedIndex:2];
 }
 
 #pragma mark TableView Delegates
@@ -53,7 +60,7 @@
     if (cell==nil) {
         cell=[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
     }
-    cell.textLabel.font = [[UIConfiguration sharedInstance] getFont:FONT_HELVETICA_NEUE_REGULAR_19];
+    cell.textLabel.font = [[UIConfiguration sharedInstance] getFont:FONT_HELVETICA_NEUE_LIGHT];
     cell.textLabel.textColor = [[UIConfiguration sharedInstance] getColor:COLOR_TEXT_NEWS_TITLE];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -83,6 +90,7 @@
             cell.textLabel.text = [Localized string:@"contact_us"];
             break;
         case 8:
+            cell.textLabel.font = [[UIConfiguration sharedInstance] getFont:FONT_HELVETICA_NEUE_BOLD];
             cell.textLabel.text = [Localized string:@"log_off"];
             cell.accessoryType = UITableViewCellAccessoryNone;
             break;

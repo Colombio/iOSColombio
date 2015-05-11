@@ -20,6 +20,7 @@
     NSTimer *timer;
     BOOL loginHidden;
     Loading *loadingView;
+    Loading *loadingView2;//FB purpose only
 }
 
 

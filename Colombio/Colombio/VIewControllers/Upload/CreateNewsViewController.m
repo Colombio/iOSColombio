@@ -46,10 +46,10 @@ CGFloat const kImagePadding = 1.0;
 
 @implementation CreateNewsViewController
 
-- (instancetype)init{
+- (instancetype)initWithTitle:(NSString*)title{
     self = [super init];
     if (self) {
-        self.title = [Localized string:@"send_news"];
+        self.title = title;
     }
     return self;
 }

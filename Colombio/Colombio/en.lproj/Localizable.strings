@@ -95,6 +95,8 @@
 "select_media_favorites" = "FAVORITES";
 "select_media_othermedia" = "OTHER MEDIA";
 "choose_one_country" = "Select at least one country";
+"choose_country" = "Choose country for media list";
+
 /*Home*/
 "btn_takephoto" = "TAKE PHOTO/VIDEO";
 "btn_sendnews" = "SEND NEWS";
@@ -116,6 +118,7 @@
 "media_price_offer" = "Media price offer $%@";
 "media_may_or_not" = "*Media may or may not publish your news.";
 "media_only_one" = "*Only one media can buy your news";
+"media_buy_option" = "*Media are not obligated to buy your photo or video";
 "be_signed" = "Be signed as an author";
 "contact_me" = "Contact me";
 "anonymous_sending" = "Anonymous sending";
@@ -196,3 +199,8 @@
 "sell_info_basic" = "In case of selling your photo/video to news media, you do not have right to sell it again. By selling photo/video, you are transfering copyrights to buyer, and he has all rights to publish it and distribute it.";
 "sell_info_prefix" = "By choosing this option you are offering your photo/video for sale to news media. Notification on eventual offer will be delivered into your timeline, and you can accept or reject.";
 "sell_info_tip" = "Do you have exclusive photo/video you made, and want to sell? By choosing this option, you will offer to sell it to news media. Notification on potential offer will be delivered through the app. You can accept the offer or reject it. In case you accept - you are not allowed to offer or sell the same photo/video again, and you may get sued by the buyer for doing that. Your photo/video is watermarked, and can not be used or downloaded until you accept an offer. If there is no offer, your content will not be published. \n\n *Notice: Do not choose this option if photo/video is attached to community or social news you already wrote to (education/public events/sports etc.)";
+
+/*Cashout*/
+"cashout_request" = "CASHOUT REQUEST";
+"cashout_info" = "CASHOUT REQUEST INFO";
+"cash_out_confirmation" = "Cash out request sent. For more details check %@. Thank you!";

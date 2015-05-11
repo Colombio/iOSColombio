@@ -26,6 +26,7 @@
 @property (weak,nonatomic) IBOutlet CLTextView *txtDescription;
 @property (assign, nonatomic) BOOL openCamera;
 
+- (instancetype)initWithTitle:(NSString*)title;
 - (void)loadImages;
 - (BOOL)validateFields;
 - (BOOL)validateImages;

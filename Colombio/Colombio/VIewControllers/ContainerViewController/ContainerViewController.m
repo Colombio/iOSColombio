@@ -127,7 +127,7 @@ enum HeaderMovement{
         _nextButton.titleLabel.font = [[UIConfiguration sharedInstance] getFont:FONT_HELVETICA_NEUE_NEXT];
         [_nextButton setTitleColor:[[UIConfiguration sharedInstance] getColor:COLOR_NEXT_BUTTON] forState:UIControlStateNormal];
         [_nextButton setTitleColor:[[UIConfiguration sharedInstance] getColor:COLOR_NEXT_BUTTON_SELECTED] forState:UIControlStateHighlighted];
-        _nextButton.frame = CGRectMake(self.view.bounds.size.width-90, 11, 80, 20);
+        _nextButton.frame = CGRectMake(self.view.bounds.size.width-80, 11, 80, 20);
         _nextButton.titleLabel.textAlignment = NSTextAlignmentRight;
         [self setNextButtonTitle];
         [_viewHeader addSubview:_nextButton];

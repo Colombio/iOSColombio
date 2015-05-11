@@ -25,7 +25,11 @@
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="string" keyPath="headerTitle" value="TIMELINE"/>
                         <userDefinedRuntimeAttribute type="string" keyPath="nextButtonText" value=""/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="backButtonText" value=""/>
                     </userDefinedRuntimeAttributes>
+                    <connections>
+                        <outlet property="customHeaderDelegate" destination="-1" id="rf1-na-3mV"/>
+                    </connections>
                 </view>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="I8w-Tq-HLV">
                     <rect key="frame" x="0.0" y="64" width="320" height="367"/>

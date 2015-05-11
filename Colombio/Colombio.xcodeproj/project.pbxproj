@@ -79,10 +79,14 @@
 		BBB6A05F1A44FB2D006F61B3 /* UIConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB6A05E1A44FB2D006F61B3 /* UIConfiguration.m */; };
 		BBB6A0631A48D791006F61B3 /* StartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB6A0611A48D791006F61B3 /* StartViewController.m */; };
 		BBB6A0641A48D791006F61B3 /* StartViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBB6A0621A48D791006F61B3 /* StartViewController.xib */; };
+		BBB6B17D1AFD58FA004111F3 /* NewsDemandServiceCommunicator.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB6B17C1AFD58FA004111F3 /* NewsDemandServiceCommunicator.m */; };
+		BBB6B1801AFD693C004111F3 /* UINavigationController+statusbar.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB6B17F1AFD693C004111F3 /* UINavigationController+statusbar.m */; };
 		BBB79D1C1A5CABF8001A876A /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB79D1A1A5CABF8001A876A /* HomeViewController.m */; };
 		BBB79D1D1A5CABF8001A876A /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBB79D1B1A5CABF8001A876A /* HomeViewController.xib */; };
 		BBB79D201A5CB3DD001A876A /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBB79D1E1A5CB3DD001A876A /* FacebookSDK.framework */; };
 		BBB79D211A5CB3DD001A876A /* FBUserSettingsViewResources.bundle in Frameworks */ = {isa = PBXBuildFile; fileRef = BBB79D1F1A5CB3DD001A876A /* FBUserSettingsViewResources.bundle */; };
+		BBB7A4151B016B77000F92ED /* TimelineDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB7A4131B016B77000F92ED /* TimelineDetailsViewController.m */; };
+		BBB7A4161B016B77000F92ED /* TimelineDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBB7A4141B016B77000F92ED /* TimelineDetailsViewController.xib */; };
 		BBB7B7E41AEAE37C0013A602 /* SimpleMediaSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB7B7E21AEAE37C0013A602 /* SimpleMediaSelectViewController.m */; };
 		BBB7B7E51AEAE37C0013A602 /* SimpleMediaSelectViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBB7B7E31AEAE37C0013A602 /* SimpleMediaSelectViewController.xib */; };
 		BBB7B7E91AEB052D0013A602 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBB7B7E71AEB052D0013A602 /* SettingsViewController.m */; };
@@ -109,6 +113,8 @@
 		BBBB04651AC4C5C60023DD86 /* NewsDemandViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBBB04631AC4C5C60023DD86 /* NewsDemandViewController.m */; };
 		BBBB04661AC4C5C60023DD86 /* NewsDemandViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBBB04641AC4C5C60023DD86 /* NewsDemandViewController.xib */; };
 		BBBB04691AC4E10B0023DD86 /* NewsDemandObject.m in Sources */ = {isa = PBXBuildFile; fileRef = BBBB04681AC4E10B0023DD86 /* NewsDemandObject.m */; };
+		BBBCF70C1AFADD4100EF8B9D /* CashoutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBBCF70A1AFADD4100EF8B9D /* CashoutViewController.m */; };
+		BBBCF70D1AFADD4100EF8B9D /* CashoutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBBCF70B1AFADD4100EF8B9D /* CashoutViewController.xib */; };
 		BBBD6EBD1AD735C20006A57C /* TimeLineTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BBBD6EBB1AD735C20006A57C /* TimeLineTableViewCell.m */; };
 		BBBD6EBE1AD735C20006A57C /* TimeLineTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBBD6EBC1AD735C20006A57C /* TimeLineTableViewCell.xib */; };
 		BBBE0C561A6DB37C00EF5124 /* UploadContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBBE0C551A6DB37C00EF5124 /* UploadContainerViewController.m */; };
@@ -250,11 +256,18 @@
 		BBB6A0601A48D791006F61B3 /* StartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartViewController.h; sourceTree = "<group>"; };
 		BBB6A0611A48D791006F61B3 /* StartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StartViewController.m; sourceTree = "<group>"; };
 		BBB6A0621A48D791006F61B3 /* StartViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StartViewController.xib; sourceTree = "<group>"; };
+		BBB6B17B1AFD58FA004111F3 /* NewsDemandServiceCommunicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsDemandServiceCommunicator.h; sourceTree = "<group>"; };
+		BBB6B17C1AFD58FA004111F3 /* NewsDemandServiceCommunicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsDemandServiceCommunicator.m; sourceTree = "<group>"; };
+		BBB6B17E1AFD693C004111F3 /* UINavigationController+statusbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+statusbar.h"; sourceTree = "<group>"; };
+		BBB6B17F1AFD693C004111F3 /* UINavigationController+statusbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+statusbar.m"; sourceTree = "<group>"; };
 		BBB79D191A5CABF8001A876A /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
 		BBB79D1A1A5CABF8001A876A /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 		BBB79D1B1A5CABF8001A876A /* HomeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeViewController.xib; sourceTree = "<group>"; };
 		BBB79D1E1A5CB3DD001A876A /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
 		BBB79D1F1A5CB3DD001A876A /* FBUserSettingsViewResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = FBUserSettingsViewResources.bundle; sourceTree = "<group>"; };
+		BBB7A4121B016B77000F92ED /* TimelineDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimelineDetailsViewController.h; sourceTree = "<group>"; };
+		BBB7A4131B016B77000F92ED /* TimelineDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimelineDetailsViewController.m; sourceTree = "<group>"; };
+		BBB7A4141B016B77000F92ED /* TimelineDetailsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimelineDetailsViewController.xib; sourceTree = "<group>"; };
 		BBB7B7E11AEAE37C0013A602 /* SimpleMediaSelectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleMediaSelectViewController.h; sourceTree = "<group>"; };
 		BBB7B7E21AEAE37C0013A602 /* SimpleMediaSelectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleMediaSelectViewController.m; sourceTree = "<group>"; };
 		BBB7B7E31AEAE37C0013A602 /* SimpleMediaSelectViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SimpleMediaSelectViewController.xib; sourceTree = "<group>"; };
@@ -296,6 +309,9 @@
 		BBBB04641AC4C5C60023DD86 /* NewsDemandViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewsDemandViewController.xib; sourceTree = "<group>"; };
 		BBBB04671AC4E10B0023DD86 /* NewsDemandObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsDemandObject.h; sourceTree = "<group>"; };
 		BBBB04681AC4E10B0023DD86 /* NewsDemandObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsDemandObject.m; sourceTree = "<group>"; };
+		BBBCF7091AFADD4100EF8B9D /* CashoutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CashoutViewController.h; sourceTree = "<group>"; };
+		BBBCF70A1AFADD4100EF8B9D /* CashoutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CashoutViewController.m; sourceTree = "<group>"; };
+		BBBCF70B1AFADD4100EF8B9D /* CashoutViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CashoutViewController.xib; sourceTree = "<group>"; };
 		BBBD6EBA1AD735C20006A57C /* TimeLineTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeLineTableViewCell.h; sourceTree = "<group>"; };
 		BBBD6EBB1AD735C20006A57C /* TimeLineTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeLineTableViewCell.m; sourceTree = "<group>"; };
 		BBBD6EBC1AD735C20006A57C /* TimeLineTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimeLineTableViewCell.xib; sourceTree = "<group>"; };
@@ -401,6 +417,8 @@
 			children = (
 				BBAE1F1B1A37B51E0008B772 /* ColombioServiceCommunicator.h */,
 				BBAE1F1C1A37B51F0008B772 /* ColombioServiceCommunicator.m */,
+				BBB6B17B1AFD58FA004111F3 /* NewsDemandServiceCommunicator.h */,
+				BBB6B17C1AFD58FA004111F3 /* NewsDemandServiceCommunicator.m */,
 			);
 			path = WebService;
 			sourceTree = "<group>";
@@ -584,6 +602,9 @@
 				BBB7B8031AED81D10013A602 /* UserProfileViewController.h */,
 				BBB7B8041AED81D10013A602 /* UserProfileViewController.m */,
 				BBB7B8051AED81D10013A602 /* UserProfileViewController.xib */,
+				BBBCF7091AFADD4100EF8B9D /* CashoutViewController.h */,
+				BBBCF70A1AFADD4100EF8B9D /* CashoutViewController.m */,
+				BBBCF70B1AFADD4100EF8B9D /* CashoutViewController.xib */,
 			);
 			path = UserProfile;
 			sourceTree = "<group>";
@@ -757,6 +778,8 @@
 				BBAE1F1F1A37B5A80008B772 /* NSDate+DateHandler.m */,
 				BBB604B01A7AF4310090F18A /* UITextField+XibAttributes.h */,
 				BBB604B11A7AF4310090F18A /* UITextField+XibAttributes.m */,
+				BBB6B17E1AFD693C004111F3 /* UINavigationController+statusbar.h */,
+				BBB6B17F1AFD693C004111F3 /* UINavigationController+statusbar.m */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -778,6 +801,9 @@
 				BBE70DFF1ACF3C2400C203C3 /* TimelineViewController.h */,
 				BBE70E001ACF3C2400C203C3 /* TimelineViewController.m */,
 				BBE70E011ACF3C2400C203C3 /* TimelineViewController.xib */,
+				BBB7A4121B016B77000F92ED /* TimelineDetailsViewController.h */,
+				BBB7A4131B016B77000F92ED /* TimelineDetailsViewController.m */,
+				BBB7A4141B016B77000F92ED /* TimelineDetailsViewController.xib */,
 			);
 			path = Timeline;
 			sourceTree = "<group>";
@@ -853,9 +879,11 @@
 				BBB5B4841AABCA0E00765861 /* SelectCountryCell.xib in Resources */,
 				BBCF58E61A293F6700CE64B4 /* Localizable.strings in Resources */,
 				BBAE1F251A37B68E0008B772 /* ForgotPasswordViewController.xib in Resources */,
+				BBB7A4161B016B77000F92ED /* TimelineDetailsViewController.xib in Resources */,
 				BBB6A0641A48D791006F61B3 /* StartViewController.xib in Resources */,
 				BBE70E031ACF3C2400C203C3 /* TimelineViewController.xib in Resources */,
 				BBB7B7EA1AEB052D0013A602 /* SettingsViewController.xib in Resources */,
+				BBBCF70D1AFADD4100EF8B9D /* CashoutViewController.xib in Resources */,
 				58ACA0031A4EE6B70076D3D8 /* HeaderView.xib in Resources */,
 				BBB2B12F1A5F37E200F4FD38 /* TabBarViewController.xib in Resources */,
 				BBAB600A1AAE5722000493E0 /* UserInfoViewController.xib in Resources */,
@@ -889,6 +917,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BBB7A4151B016B77000F92ED /* TimelineDetailsViewController.m in Sources */,
 				BBCF58A21A29395400CE64B4 /* Validation.m in Sources */,
 				BBAE1F201A37B5A80008B772 /* NSDate+DateHandler.m in Sources */,
 				5836A1CD1A55F98300C509F1 /* Loading.m in Sources */,
@@ -913,6 +942,7 @@
 				BBB2B12E1A5F37E200F4FD38 /* TabBarViewController.m in Sources */,
 				5835720B1A2B705100F6EA17 /* BottomNav.m in Sources */,
 				BBAE1F2D1A37B71B0008B772 /* BackgroundViewController.m in Sources */,
+				BBBCF70C1AFADD4100EF8B9D /* CashoutViewController.m in Sources */,
 				BBBB04691AC4E10B0023DD86 /* NewsDemandObject.m in Sources */,
 				BBB6A05B1A44D6B5006F61B3 /* CLTextField.m in Sources */,
 				BBB144841A78E66800980BB4 /* UserInfoUploadViewController.m in Sources */,
@@ -921,6 +951,7 @@
 				BBCF58A31A29395400CE64B4 /* YourInfo.m in Sources */,
 				BBAE1F1D1A37B51F0008B772 /* ColombioServiceCommunicator.m in Sources */,
 				583C9EBE1A6357FD00C6131C /* SettingsCollectionView.m in Sources */,
+				BBB6B1801AFD693C004111F3 /* UINavigationController+statusbar.m in Sources */,
 				58ACA0021A4EE6B70076D3D8 /* HeaderView.m in Sources */,
 				BBE70E021ACF3C2400C203C3 /* TimelineViewController.m in Sources */,
 				BBB5B4831AABCA0E00765861 /* SelectCountryCell.m in Sources */,
@@ -949,6 +980,7 @@
 				BBB7B8061AED81D10013A602 /* UserProfileViewController.m in Sources */,
 				583572191A2B72BB00F6EA17 /* Tools.m in Sources */,
 				BBB7F3321A60B60E0014909B /* CustomHeaderView.m in Sources */,
+				BBB6B17D1AFD58FA004111F3 /* NewsDemandServiceCommunicator.m in Sources */,
 				BBBB04651AC4C5C60023DD86 /* NewsDemandViewController.m in Sources */,
 				BBCF58DC1A293DD200CE64B4 /* Database.m in Sources */,
 				BBCF58911A2938B400CE64B4 /* CountriesCell.m in Sources */,
@@ -1045,8 +1077,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Zvonimir Juranko (9ULYX2KK4N)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Zvonimir Juranko (9ULYX2KK4N)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: COLOMBIO OOD (TQL4A6NBU3)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: COLOMBIO OOD (TQL4A6NBU3)";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -1059,6 +1091,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				PROVISIONING_PROFILE = "e0373c5c-fcaf-4e13-af20-82b8504c4132";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1070,7 +1103,7 @@
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Zvonimir Juranko (MYSJ6HWKEM)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Vlatko /prem (46N4VMKQV8)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/**",
@@ -1079,14 +1112,14 @@
 				);
 				GCC_PREFIX_HEADER = "colombio/colombio-Prefix.pch";
 				INFOPLIST_FILE = "Colombio/Colombio-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)FacebookSDK.framework/Versions/A",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "F260053E-ABE2-4130-AD0A-B0B11078B853";
+				PROVISIONING_PROFILE = "e8fa635e-c3a8-4596-8667-5aeec1183b5e";
 			};
 			name = Debug;
 		};
@@ -1096,8 +1129,8 @@
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Zvonimir Juranko (MYSJ6HWKEM)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Zvonimir Juranko (9ULYX2KK4N)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: COLOMBIO OOD (TQL4A6NBU3)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: COLOMBIO OOD (TQL4A6NBU3)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/**",
@@ -1106,14 +1139,14 @@
 				);
 				GCC_PREFIX_HEADER = "colombio/colombio-Prefix.pch";
 				INFOPLIST_FILE = "Colombio/Colombio-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)FacebookSDK.framework/Versions/A",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "ccc8cb4f-bdcf-41f7-9182-cebdefb4d939";
+				PROVISIONING_PROFILE = "20dfea46-d7b4-4d89-8193-92248b58c967";
 			};
 			name = Release;
 		};

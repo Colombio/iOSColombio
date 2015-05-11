@@ -35,6 +35,7 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     _customHeader.headerTitle = @"NEWS TASK";
+    _customHeader.backButtonText=@"";
    _txtNoTask.text = [Localized string:@"no_task"];
     //_customHeader.btnBack.hidden=YES;
     [self getNewsDeamandList];
@@ -46,16 +47,9 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)btnBackClicked{
+    [self.tabBarController setSelectedIndex:2];
 }
-*/
-
 #pragma mark TableView Delegates
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 1;
@@ -81,7 +75,7 @@
     cell.lblRewardAmount.text = [NSString stringWithFormat:@"$%@", newsDemand.cost];
     cell.lblMediaName.text = [mediaInfo[@"name"] uppercaseString];
     newsDemand.mediaName = mediaInfo[@"name"];
-    cell.lblMediaType.text = appdelegate.dicMediaTypes[mediaInfo[@"media_type"]];
+    cell.lblMediaType.text = [appdelegate.dicMediaTypes[mediaInfo[@"media_type"]] uppercaseString];
     cell.lblNewsTitle.text = newsDemand.title;
     cell.lblDescription.text = [NSString stringWithFormat:@"%@",newsDemand.desc];
     
@@ -123,7 +117,7 @@
 
 #pragma mark DB
 - (void)saveToDB:(NSInteger)index{
-    AppDelegate *appdelegate = [[UIApplication sharedApplication] delegate];
+    AppDelegate *appdelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     NSDictionary *tDict = @{@"isread":@TRUE};
     [appdelegate.db updateDictionary:tDict forTable:@"NEWSDEMANDLIST" where:[NSString stringWithFormat:@" req_id='%d'", ((NewsDemandObject*)_newsDemandArray[index]).req_id]];
     /*if (![self checkDemandInDB:((NewsDemandObject*)_newsDemandArray[index]).req_id]) {
@@ -133,7 +127,7 @@
 }
 
 - (BOOL)checkDemandInDB:(NSInteger)demand_id{
-    AppDelegate *appdelegate = [[UIApplication sharedApplication] delegate];
+    AppDelegate *appdelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     NSString *sql = [NSString stringWithFormat:@"SELECT isread FROM NEWSDEMANDLIST WHERE req_id = %ld", (long)demand_id];
     if ([[appdelegate.db getColForSQL:sql] boolValue] == TRUE) {
         return YES;

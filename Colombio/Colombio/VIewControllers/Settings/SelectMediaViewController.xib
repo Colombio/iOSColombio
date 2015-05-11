@@ -9,7 +9,9 @@
             <connections>
                 <outlet property="tblView" destination="Jcc-2N-JSp" id="l0C-5H-zGM"/>
                 <outlet property="txtSearch" destination="Ik9-Cu-GJ8" id="e8e-GQ-uP3"/>
+                <outlet property="txtView" destination="5wa-UY-hh9" id="E2I-NP-MJT"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="viewSearchHolder" destination="UL1-j9-4cb" id="ObD-Bf-hAe"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -17,6 +19,18 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <textView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="5wa-UY-hh9">
+                    <rect key="frame" x="20" y="10" width="280" height="200"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="200" id="XOd-JV-WOM"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="configTextColor" value="COLOR_NEWS_DEMAND_DESCRIPTION"/>
+                    </userDefinedRuntimeAttributes>
+                </textView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UL1-j9-4cb">
                     <rect key="frame" x="10" y="5" width="300" height="30"/>
                     <subviews>
@@ -100,6 +114,9 @@
                 <constraint firstItem="Jcc-2N-JSp" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="cdi-st-HC3"/>
                 <constraint firstItem="UL1-j9-4cb" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="fYR-MQ-z2X"/>
                 <constraint firstItem="UL1-j9-4cb" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="5" id="hGW-th-T97"/>
+                <constraint firstItem="5wa-UY-hh9" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="kiS-qg-QLh"/>
+                <constraint firstItem="5wa-UY-hh9" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="10" id="pCJ-Nj-qTa"/>
+                <constraint firstAttribute="trailing" secondItem="5wa-UY-hh9" secondAttribute="trailing" constant="20" id="uaN-zd-ZId"/>
                 <constraint firstAttribute="bottom" secondItem="Jcc-2N-JSp" secondAttribute="bottom" id="x8a-90-1qY"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>

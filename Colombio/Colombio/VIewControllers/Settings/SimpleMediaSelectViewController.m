@@ -77,7 +77,7 @@
         _customHeader.btnBack.hidden=NO;
     }else{
         _customHeader.headerTitle = [Localized string:@"btn_call"];
-        _customHeader.btnBack.hidden=YES;
+        _customHeader.btnBack.hidden=NO;
     }
 }
 
@@ -194,6 +194,10 @@
                             cell.imgMedia.image = [appdelegate.mediaImages objectForKey:_mergedMedia[indexPath.section][indexPath.row][@"id"]];
                         });
                     }
+                }else{
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        cell.imgMedia.image = [UIImage imageNamed:@"uploadphoto"];
+                    });
                 }
             }else{
                 dispatch_async(dispatch_get_main_queue(), ^{
@@ -230,6 +234,10 @@
                                 cell.imgMedia.image = [appdelegate.mediaImages objectForKey:_mergedMedia[indexPath.section][indexPath.row][@"id"]];
                         });
                     }
+                }else{
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        cell.imgMedia.image = [UIImage imageNamed:@"uploadphoto"];
+                    });
                 }
             }else{
                 dispatch_async(dispatch_get_main_queue(), ^{
@@ -312,6 +320,8 @@
         }
     }
     _otherMedia = [self addColombioOnTop:tempArray];
+    [self addMediaTypeTextForFiltering:_otherMedia];
+    [self addMediaTypeTextForFiltering:_favMedia];
     _filteredOtherMedia = _otherMedia;
     _filteredFavMedia = [self addColombioOnTop:_favMedia];
     //[_selectedMedia addObjectsFromArray:_favMediaID];
@@ -404,7 +414,7 @@
 - (void)filterMedia:(NSString*)searchCondition{
     _filteredFavMedia=[[NSArray alloc] init];
     _filteredOtherMedia = [[NSArray alloc] init];
-    NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"name contains[c] %@", searchCondition];
+    NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"name contains[c] %@ OR mediatypetext contains[c] %@", searchCondition, searchCondition];
     _filteredFavMedia = [_favMedia filteredArrayUsingPredicate:resultPredicate];
     _filteredOtherMedia = [_otherMedia filteredArrayUsingPredicate:resultPredicate];
     _mergedMedia = [[NSMutableArray alloc] init];
@@ -413,6 +423,12 @@
     }
     if (_filteredOtherMedia.count>0) {
         [_mergedMedia addObject:_filteredOtherMedia];
+    }
+}
+
+- (void)addMediaTypeTextForFiltering:(NSArray*)array{
+    for (NSMutableDictionary *tDict in array) {
+        tDict[@"mediatypetext"] = [[Localized string:appdelegate.dicMediaTypes[tDict[@"media_type"]]] uppercaseString];
     }
 }
 

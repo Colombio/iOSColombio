@@ -42,9 +42,11 @@
     
     _be_credited=NO;
     if (_isNewsDemand) {
+        _CS_PriceHolderHeight.constant +=30;
         _swTogglePrice.hidden=YES;
         _lblPrice.text = [NSString stringWithFormat:[Localized string:@"media_price_offer"],_newsTaskPrice];
-        _lblDisclamer.text = [Localized string:@"media_may_or_not"];
+        _lblDisclamer.text = [Localized string:@"media_buy_option"];
+        _lblDisclamer.hidden=NO;
     }else{
         //_txtPrice.placeholder = [NSString stringWithFormat:[Localized string:@"name_price"], maxPrice];
         _lblPrice.text = [Localized string:@"i_want_sell"];
@@ -78,19 +80,19 @@
 }
 
 - (void)setLabelsWidth{
-    CGSize size = [_lblPrice.text sizeWithFont:_lblPrice.font constrainedToSize:CGSizeMake(_viewPriceHolder.frame.size.width-_swTogglePrice.frame.size.width-40, MAXFLOAT)
+    CGSize size = [_lblPrice.text sizeWithFont:_lblPrice.font constrainedToSize:CGSizeMake(_viewPriceHolder.frame.size.width-_swTogglePrice.frame.size.width-50, MAXFLOAT)
                                      lineBreakMode:NSLineBreakByWordWrapping];
     _CS_lblSellWidth.constant = size.width+15;
     
-    size = [_lblAnonymoys.text sizeWithFont:_lblAnonymoys.font constrainedToSize:CGSizeMake(_viewAnonymousHolder.frame.size.width-_swToggleAnonymous.frame.size.width-40, MAXFLOAT)
+    size = [_lblAnonymoys.text sizeWithFont:_lblAnonymoys.font constrainedToSize:CGSizeMake(_viewAnonymousHolder.frame.size.width-_swToggleAnonymous.frame.size.width-50, MAXFLOAT)
                                   lineBreakMode:NSLineBreakByWordWrapping];
     _CS_lblAnonymousWidth.constant = size.width+15;
     
-    size = [_lblBeSigned.text sizeWithFont:_lblBeSigned.font constrainedToSize:CGSizeMake(_viewAnonymousHolder.frame.size.width-_swToggleBeSigned.frame.size.width-40, MAXFLOAT)
+    size = [_lblBeSigned.text sizeWithFont:_lblBeSigned.font constrainedToSize:CGSizeMake(_viewAnonymousHolder.frame.size.width-_swToggleBeSigned.frame.size.width-50, MAXFLOAT)
                               lineBreakMode:NSLineBreakByWordWrapping];
     _CS_lblBeSignedWidth.constant = size.width+15;
     
-    size = [_lblContactMe.text sizeWithFont:_lblContactMe.font constrainedToSize:CGSizeMake(_viewContactMe.frame.size.width-_swToggleContactMe.frame.size.width-40, MAXFLOAT)
+    size = [_lblContactMe.text sizeWithFont:_lblContactMe.font constrainedToSize:CGSizeMake(_viewContactMe.frame.size.width-_swToggleContactMe.frame.size.width-50, MAXFLOAT)
                               lineBreakMode:NSLineBreakByWordWrapping];
     _CS_lblContactMeWidth.constant = size.width+15;
 }
@@ -316,28 +318,28 @@
 #pragma mark Info Button Action
 - (IBAction)infoBtnAction:(UIButton*)sender{
     if (sender==_btnAnonymousInfo) {
-        [_btnAnonymousInfo setBackgroundImage:[UIImage imageNamed:@"infoicon_active"] forState:UIControlStateNormal];
+        [_btnAnonymousInfo setImage:[UIImage imageNamed:@"infoicon_active"] forState:UIControlStateNormal];
         UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"" message:[Localized string:@"anonymous_info"] delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alert show];
     }else if(sender==_btnBeSignedInfo){
-        [_btnBeSignedInfo setBackgroundImage:[UIImage imageNamed:@"infoicon_active"] forState:UIControlStateNormal];
+        [_btnBeSignedInfo setImage:[UIImage imageNamed:@"infoicon_active"] forState:UIControlStateNormal];
         UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"" message:[Localized string:@"be_signed_info"] delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alert show];
     }else if(sender==_btnContactMeInfo){
-        [_btnContactMeInfo setBackgroundImage:[UIImage imageNamed:@"infoicon_active"] forState:UIControlStateNormal];
+        [_btnContactMeInfo setImage:[UIImage imageNamed:@"infoicon_active"] forState:UIControlStateNormal];
         UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"" message:[Localized string:@"contact_me_info"] delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alert show];
     }else if(sender==_btnSellInfo){
-        [_btnContactMeInfo setBackgroundImage:[UIImage imageNamed:@"infoicon_active"] forState:UIControlStateNormal];
+        [_btnContactMeInfo setImage:[UIImage imageNamed:@"infoicon_active"] forState:UIControlStateNormal];
         UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"" message:[Localized string:@"sell_info_tip"] delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alert show];
     }
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-    [_btnBeSignedInfo setBackgroundImage:[UIImage imageNamed:@"infoicon"] forState:UIControlStateNormal];
-    [_btnAnonymousInfo setBackgroundImage:[UIImage imageNamed:@"infoicon"] forState:UIControlStateNormal];
-    [_btnContactMeInfo setBackgroundImage:[UIImage imageNamed:@"infoicon"] forState:UIControlStateNormal];
-    [_btnContactMeInfo setBackgroundImage:[UIImage imageNamed:@"infoicon"] forState:UIControlStateNormal];
+    [_btnBeSignedInfo setImage:[UIImage imageNamed:@"infoicon"] forState:UIControlStateNormal];
+    [_btnAnonymousInfo setImage:[UIImage imageNamed:@"infoicon"] forState:UIControlStateNormal];
+    [_btnContactMeInfo setImage:[UIImage imageNamed:@"infoicon"] forState:UIControlStateNormal];
+    [_btnContactMeInfo setImage:[UIImage imageNamed:@"infoicon"] forState:UIControlStateNormal];
 }
 @end

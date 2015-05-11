@@ -27,7 +27,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3fv-Gp-aFF">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="373"/>
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="385"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ZG2-Dv-ZLz">
                                     <rect key="frame" x="15" y="15" width="40" height="40"/>
@@ -75,7 +75,7 @@
                                     </userDefinedRuntimeAttributes>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="News title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZNE-kS-bUv">
-                                    <rect key="frame" x="63" y="57" width="247" height="21"/>
+                                    <rect key="frame" x="63" y="62" width="247" height="21"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="21" id="HVH-Nm-rj7"/>
                                     </constraints>
@@ -87,13 +87,16 @@
                                     </userDefinedRuntimeAttributes>
                                 </label>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ErS-MD-ZKT">
-                                    <rect key="frame" x="0.0" y="213" width="320" height="160"/>
+                                    <rect key="frame" x="0.0" y="225" width="320" height="160"/>
                                     <subviews>
                                         <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="YeX-wO-tOj">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="160"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="160" id="niu-VF-MTd"/>
                                             </constraints>
+                                            <connections>
+                                                <outlet property="delegate" destination="-1" id="Zlz-jH-Krf"/>
+                                            </connections>
                                         </mapView>
                                     </subviews>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -105,7 +108,7 @@
                                     </constraints>
                                 </view>
                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kvn-Z1-bqi">
-                                    <rect key="frame" x="63" y="78" width="247" height="90"/>
+                                    <rect key="frame" x="63" y="83" width="247" height="90"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="90" id="4a6-A1-YhD"/>
@@ -124,7 +127,7 @@ kraj</string>
                                     </userDefinedRuntimeAttributes>
                                 </textView>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ixQ-6t-bA1">
-                                    <rect key="frame" x="112" y="178" width="97" height="34"/>
+                                    <rect key="frame" x="112" y="183" width="97" height="34"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="34" id="hym-iQ-a7j"/>
                                     </constraints>
@@ -147,14 +150,14 @@ kraj</string>
                                 <constraint firstAttribute="trailing" secondItem="ErS-MD-ZKT" secondAttribute="trailing" id="IND-Nc-acJ"/>
                                 <constraint firstAttribute="trailing" secondItem="kvn-Z1-bqi" secondAttribute="trailing" constant="10" id="JHx-bQ-pPi"/>
                                 <constraint firstItem="ZG2-Dv-ZLz" firstAttribute="leading" secondItem="3fv-Gp-aFF" secondAttribute="leading" constant="15" id="Jjm-aA-f0m"/>
+                                <constraint firstItem="ErS-MD-ZKT" firstAttribute="top" secondItem="ixQ-6t-bA1" secondAttribute="bottom" constant="8" id="Koj-2B-6sI"/>
                                 <constraint firstItem="YYk-XE-Cxa" firstAttribute="top" secondItem="3fv-Gp-aFF" secondAttribute="top" constant="15" id="M8j-q3-znA"/>
                                 <constraint firstItem="ixQ-6t-bA1" firstAttribute="leading" secondItem="3fv-Gp-aFF" secondAttribute="leading" constant="112" id="Q1B-Es-a27"/>
                                 <constraint firstItem="ZG2-Dv-ZLz" firstAttribute="top" secondItem="3fv-Gp-aFF" secondAttribute="top" constant="15" id="VjB-IZ-p7c"/>
                                 <constraint firstAttribute="trailing" secondItem="ixQ-6t-bA1" secondAttribute="trailing" constant="111" id="YQ1-7b-pWl"/>
-                                <constraint firstItem="ZNE-kS-bUv" firstAttribute="top" secondItem="75T-6y-5tw" secondAttribute="bottom" id="ZYt-LA-VZk"/>
+                                <constraint firstItem="ZNE-kS-bUv" firstAttribute="top" secondItem="75T-6y-5tw" secondAttribute="bottom" constant="5" id="ZYt-LA-VZk"/>
                                 <constraint firstItem="NnV-Lx-xrr" firstAttribute="top" secondItem="3fv-Gp-aFF" secondAttribute="top" constant="15" id="awl-wz-jEc"/>
                                 <constraint firstAttribute="bottom" secondItem="ErS-MD-ZKT" secondAttribute="bottom" id="ePB-y2-4xL"/>
-                                <constraint firstItem="YeX-wO-tOj" firstAttribute="top" secondItem="ixQ-6t-bA1" secondAttribute="bottom" constant="1" id="fLV-4q-0BE"/>
                                 <constraint firstItem="kvn-Z1-bqi" firstAttribute="top" secondItem="ZNE-kS-bUv" secondAttribute="bottom" id="iIA-5q-iOw"/>
                                 <constraint firstItem="ZNE-kS-bUv" firstAttribute="leading" secondItem="ZG2-Dv-ZLz" secondAttribute="trailing" constant="8" id="mTq-3M-DhP"/>
                                 <constraint firstItem="ixQ-6t-bA1" firstAttribute="top" secondItem="kvn-Z1-bqi" secondAttribute="bottom" constant="10" id="sc8-4q-Oi9"/>

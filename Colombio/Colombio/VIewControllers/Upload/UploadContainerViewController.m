@@ -48,7 +48,25 @@
         if (_typeID==5) {
             announcedVC = [[AnnounceEventViewController alloc] init];
         }else{
-            contentVC = [[CreateNewsViewController alloc] init];
+            NSString *vcTitle;
+            switch (_typeID) {
+                case 1:
+                    vcTitle = [[Localized string:@"foto_video"] uppercaseString];
+                    break;
+                case 2:
+                    vcTitle = [[Localized string:@"news"] uppercaseString];
+                    break;
+                case 3:
+                    vcTitle = [[Localized string:@"story_tip"] uppercaseString];
+                    break;
+                case 4:
+                    vcTitle = [[Localized string:@"community_news"] uppercaseString];
+                    break;
+                default:
+                    vcTitle = [[Localized string:@"send_news"] uppercaseString];
+                    break;
+            }
+            contentVC = [[CreateNewsViewController alloc] initWithTitle:vcTitle];
             contentVC.delegate = self;
         }
         userInfoVC = [[UserInfoUploadViewController alloc] initWithDemand:_isNewsDemand withPrice:_newsDemandData.cost];
@@ -86,7 +104,6 @@
     [super viewDidLoad];
     if (_isNewsDemand) {
         contentVC.txtTitle.text = _newsDemandData.title;
-        contentVC.txtDescription.text = _newsDemandData.desc;
     }
     // Do any additional setup after loading the view.
 }
@@ -109,8 +126,18 @@
 
 
 - (void)btnBack:(UIButton*)sender{
-    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"" message:[Localized string:@"do_you_really_want_to_exit"] delegate:self cancelButtonTitle:[Localized string:@"no"] otherButtonTitles:[Localized string:@"yes"], nil];
-    [alert show];
+    [self collectData];
+    if ((newsData.title.length==0 || [newsData.title isEqualToString:[Localized string:@"no_title"]]) && (newsData.content.length==0 || [newsData.content isEqualToString:[Localized string:@"no_description"]]) && newsData.images.count==0 && newsData.tags.count==0 && newsData.media.count==0) {
+        if ([self isModal]){
+            [self dismissViewControllerAnimated:NO completion:nil];
+        }else{
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+    }else{
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"" message:[Localized string:@"do_you_really_want_to_exit"] delegate:self cancelButtonTitle:[Localized string:@"no"] otherButtonTitles:[Localized string:@"yes"], nil];
+        [alert show];
+    }
+    
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
@@ -125,35 +152,7 @@
 
 - (void)navigateNext{
     if ([self validateData]) {
-        AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-        if (!_isNewsDemand) {
-            newsData.longitude = appDelegate.locationManager.location.coordinate.longitude;
-            newsData.latitude = appDelegate.locationManager.location.coordinate.latitude;
-            newsData.media = mediaVC.selectedMedia;
-            newsData.did=0;
-        }
-        if (_typeID==5) {
-            newsData.title = announcedVC.txtTitle.text.length>0?announcedVC.txtTitle.text:[Localized string:@"no_title"];
-            newsData.content = announcedVC.txtDescription.text.length>0?announcedVC.txtDescription.text:[Localized string:@"no_title"];
-            newsData.images = nil;
-            newsData.tags = announcedVC.selectedTags;
-            newsData.content = announcedVC.txtDescription.text;
-            //DATUM!!!!
-        }else{
-            newsData.title = contentVC.txtTitle.text.length>0?contentVC.txtTitle.text:[Localized string:@"no_title"];
-            newsData.content = contentVC.txtDescription.text.length>0?contentVC.txtDescription.text:[Localized string:@"no_title"];
-            newsData.images = contentVC.selectedImagesArray;
-            newsData.tags = contentVC.selectedTags;
-            newsData.content = contentVC.txtDescription.text;
-        }
-        newsData.prot = userInfoVC.swToggleAnonymous.isOn;
-        //ime i prezima??
-        newsData.be_credited = userInfoVC.be_credited;
-        newsData.be_contacted = userInfoVC.swToggleContactMe.isOn;
-        newsData.phone_number = userInfoVC.txtContactMe.text;
-        newsData.sell = userInfoVC.swTogglePrice.isOn;
-        
-        newsData.type_id = _typeID;
+        [self collectData];
         
         
         UploadNewsViewController *uploadNewsVC = [[UploadNewsViewController alloc] initWithNewsData:newsData];
@@ -163,13 +162,47 @@
     }
 }
 
+- (void)collectData{
+    AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    if (!_isNewsDemand) {
+        newsData.longitude = appDelegate.locationManager.location.coordinate.longitude;
+        newsData.latitude = appDelegate.locationManager.location.coordinate.latitude;
+        newsData.media = mediaVC.selectedMedia;
+        newsData.did=0;
+    }
+    if (_typeID==5) {
+        newsData.title = announcedVC.txtTitle.text.length>0?announcedVC.txtTitle.text:[Localized string:@"no_title"];
+        newsData.content = announcedVC.txtDescription.text.length>0?announcedVC.txtDescription.text:[Localized string:@"no_description"];
+        newsData.images = nil;
+        newsData.tags = announcedVC.selectedTags;
+        
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+        newsData.eventDate = [dateFormatter stringFromDate:announcedVC.dateEvent];
+        [dateFormatter setDateFormat:@"HH:mm"];
+        newsData.eventTime = [dateFormatter stringFromDate:announcedVC.dateEvent];
+    }else{
+        newsData.title = contentVC.txtTitle.text.length>0?contentVC.txtTitle.text:[Localized string:@"no_title"];
+        newsData.content = contentVC.txtDescription.text.length>0?contentVC.txtDescription.text:[Localized string:@"no_description"];
+        newsData.images = contentVC.selectedImagesArray;
+        newsData.tags = contentVC.selectedTags;
+    }
+    newsData.prot = userInfoVC.swToggleAnonymous.isOn;
+    //ime i prezima??
+    newsData.be_credited = userInfoVC.be_credited;
+    newsData.be_contacted = userInfoVC.swToggleContactMe.isOn;
+    newsData.phone_number = userInfoVC.txtContactMe.text;
+    newsData.sell = userInfoVC.swTogglePrice.isOn;
+    
+    newsData.type_id = _typeID;
+}
 #pragma mark Validate Data
 
 - (BOOL)validateData{
     BOOL dataOK  = YES;
-    /*if (![contentVC validateFields]) {
+    if (![contentVC validateFields]) {
         dataOK=NO;
-    }*/
+    }
     if (![userInfoVC validateFields]) {
         dataOK=NO;
     }
@@ -181,12 +214,12 @@
         [self showErrorMessage:@"error_missing_images"];
         return NO;
     }*/
-    if (!_isNewsDemand) {
+    /*if (!_isNewsDemand) {
         if (![contentVC validateTags]) {
             [self showErrorMessage:@"error_missing_tags"];
             return NO;
         }
-    }
+    }*/
     
     if (!_isNewsDemand) {
         if (![mediaVC validateMedia]) {

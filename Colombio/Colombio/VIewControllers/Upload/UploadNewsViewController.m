@@ -87,10 +87,16 @@
     
     NSString *httpBody;
     
-    if(_newsData.did == 0){
+    if (_newsData.type_id==5 && _newsData.eventTime.length>0 && _newsData.eventDate.length>0) {
+        
+        httpBody = [NSString stringWithFormat:@"signed_req=%@&title=%@&content=%@&loc=%@&prot=%@&cost=%f&be_credited=%@&be_contacted=%@&tags=%@&req_id=%ld&media=%@&type_id=%@&contact_data[contact_phone]=%@&sell=%@&ext_data[date]=%@&ext_data[time]=%@",result,_newsData.title,_newsData.content,location,whisperMode,_newsData.price,be_credited,be_contacted,arTagsUpload,(long)_newsData.did,arMediaUpload,[NSString stringWithFormat:@"%ld",(long)_newsData.type_id],_newsData.phone_number, sell,_newsData.eventDate, _newsData.eventTime];
+        
+    }else if(_newsData.did == 0){
+        
         httpBody = [NSString stringWithFormat:@"signed_req=%@&title=%@&content=%@&loc=%@&prot=%@&cost=%f&be_credited=%@&be_contacted=%@&tags=%@&media=%@&type_id=%@&contact_data[contact_phone]=%@&sell=%@",result,_newsData.title,_newsData.content,location,whisperMode,_newsData.price,be_credited,be_contacted,arTagsUpload,arMediaUpload,[NSString stringWithFormat:@"%ld",(long)_newsData.type_id],_newsData.phone_number, sell];
     }
     else{
+        
         httpBody = [NSString stringWithFormat:@"signed_req=%@&title=%@&content=%@&loc=%@&prot=%@&cost=%f&be_credited=%@&be_contacted=%@&tags=%@&req_id=%ld&media=%@&type_id=%@&contact_data[contact_phone]=%@&sell=%@",result,_newsData.title,_newsData.content,location,whisperMode,_newsData.price,be_credited,be_contacted,arTagsUpload,(long)_newsData.did,arMediaUpload,[NSString stringWithFormat:@"%ld",(long)_newsData.type_id],_newsData.phone_number, sell];
     }
     
@@ -246,19 +252,23 @@
 }
 
 - (void)fail{
-    [_imgInfo setHidden:NO];
-    _lblUploadPercentage.hidden=YES;
-    _imgInfo.image = [UIImage imageNamed:@"failicon.png"];
-    _lblUploading.text=[Localized string:@"send_failed"];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        _imgInfo.hidden=NO;
+        _lblUploadPercentage.hidden=YES;
+        _imgInfo.image = [UIImage imageNamed:@"failicon.png"];
+        _lblUploading.text=[Localized string:@"send_failed"];
+    });
     NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(backToHome) userInfo:nil repeats:NO];
 }
 
 - (void)success{
-    NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(backToHome) userInfo:nil repeats:NO];
-    [_imgInfo setHidden:NO];
-    _lblUploadPercentage.hidden=YES;
-    _imgInfo.image = [UIImage imageNamed:@"pass.png"];
-    _lblUploading.text = [Localized string:@"send_success"];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        _imgInfo.hidden=NO;
+        _lblUploadPercentage.hidden=YES;
+        _imgInfo.image = [UIImage imageNamed:@"pass.png"];
+        _lblUploading.text = [Localized string:@"send_success"];
+    });
+     NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(backToHome) userInfo:nil repeats:NO];
 }
 
 - (void)navigateBack{

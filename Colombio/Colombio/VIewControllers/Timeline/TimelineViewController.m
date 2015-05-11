@@ -14,7 +14,7 @@
 #import "TimeLineTableViewCell.h"
 #import "Tools.h"
 
-@interface TimelineViewController () <UITableViewDataSource, UITableViewDelegate, ColombioServiceCommunicatorDelegate>
+@interface TimelineViewController () <UITableViewDataSource, UITableViewDelegate, ColombioServiceCommunicatorDelegate, CustomHeaderViewDelegate>
 {
     Loading *spinner;
 }
@@ -45,6 +45,10 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)btnBackClicked{
+    [self.tabBarController setSelectedIndex:2];
 }
 
 #pragma mark TableView Delegates

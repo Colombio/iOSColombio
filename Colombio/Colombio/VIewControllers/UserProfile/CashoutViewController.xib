@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6751" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CashoutViewController">
+            <connections>
+                <outlet property="CS_lblInfoHeight" destination="sui-BH-c67" id="tJU-hi-uMV"/>
+                <outlet property="customHeader" destination="wBm-Gf-4o3" id="phL-Fx-5HC"/>
+                <outlet property="lblInfo" destination="Ld1-rr-CDT" id="hK5-qF-ICG"/>
+                <outlet property="tblView" destination="WfD-zu-Tgr" id="WCq-kn-EBv"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wBm-Gf-4o3" customClass="CustomHeaderView">
+                    <rect key="frame" x="0.0" y="20" width="320" height="44"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="8Hv-Db-3yH"/>
+                    </constraints>
+                    <connections>
+                        <outlet property="customHeaderDelegate" destination="-1" id="k5d-UH-cNO"/>
+                    </connections>
+                </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ld1-rr-CDT">
+                    <constraints>
+                        <constraint firstAttribute="height" id="sui-BH-c67"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-LightItalic" family="Helvetica Neue" pointSize="14"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="WfD-zu-Tgr">
+                    <rect key="frame" x="0.0" y="65" width="320" height="366"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <inset key="separatorInset" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="vt3-1J-Zia"/>
+                        <outlet property="delegate" destination="-1" id="Xkg-eJ-Nb6"/>
+                    </connections>
+                </tableView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="wBm-Gf-4o3" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="20" id="3Ty-jF-EdI"/>
+                <constraint firstItem="Ld1-rr-CDT" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="RHB-Eb-WmV"/>
+                <constraint firstAttribute="bottom" secondItem="WfD-zu-Tgr" secondAttribute="bottom" constant="49" id="Spw-uU-8Fs"/>
+                <constraint firstAttribute="trailing" secondItem="wBm-Gf-4o3" secondAttribute="trailing" id="T1e-Eb-ynK"/>
+                <constraint firstItem="Ld1-rr-CDT" firstAttribute="top" secondItem="wBm-Gf-4o3" secondAttribute="bottom" id="dHc-iP-2K9"/>
+                <constraint firstItem="wBm-Gf-4o3" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="ddf-k0-6Tf"/>
+                <constraint firstItem="WfD-zu-Tgr" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="hZf-is-DPG"/>
+                <constraint firstItem="WfD-zu-Tgr" firstAttribute="top" secondItem="Ld1-rr-CDT" secondAttribute="bottom" constant="1" id="k1H-HT-43t"/>
+                <constraint firstAttribute="trailing" secondItem="Ld1-rr-CDT" secondAttribute="trailing" constant="20" id="mrG-GI-Gyb"/>
+                <constraint firstAttribute="trailing" secondItem="WfD-zu-Tgr" secondAttribute="trailing" id="sKj-T6-QMu"/>
+            </constraints>
+            <nil key="simulatedBottomBarMetrics"/>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
+        </view>
+    </objects>
+</document>

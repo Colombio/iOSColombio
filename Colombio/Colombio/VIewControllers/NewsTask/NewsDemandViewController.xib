@@ -24,6 +24,9 @@
                     <constraints>
                         <constraint firstAttribute="height" constant="44" id="1yk-Uj-LQo"/>
                     </constraints>
+                    <connections>
+                        <outlet property="customHeaderDelegate" destination="-1" id="e8e-9B-EfQ"/>
+                    </connections>
                 </view>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="kuP-z3-StD">
                     <rect key="frame" x="20" y="64" width="280" height="200"/>
@@ -37,7 +40,7 @@
                         <userDefinedRuntimeAttribute type="string" keyPath="configTextColor" value="COLOR_NEWS_DEMAND_DESCRIPTION"/>
                     </userDefinedRuntimeAttributes>
                 </textView>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="165" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="OBq-xy-j5M">
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="196" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="OBq-xy-j5M">
                     <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <inset key="separatorInset" minX="15" minY="0.0" maxX="15" maxY="0.0"/>

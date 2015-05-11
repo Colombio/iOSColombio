@@ -71,7 +71,7 @@
                     <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hg3-h4-gmA">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="236"/>
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="203"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pXk-pa-NgA">
                                     <rect key="frame" x="10" y="0.0" width="300" height="35"/>
@@ -157,14 +157,14 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DGF-R1-0AU" userLabel="View HL1">
-                                    <rect key="frame" x="10" y="36" width="300" height="2"/>
+                                    <rect key="frame" x="10" y="36" width="300" height="1"/>
                                     <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="2" id="GAU-tR-tX6"/>
+                                        <constraint firstAttribute="height" constant="1" id="GAU-tR-tX6"/>
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SUD-mH-Gig">
-                                    <rect key="frame" x="10" y="39" width="300" height="70"/>
+                                    <rect key="frame" x="10" y="38" width="300" height="40"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My balance" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="B1M-An-dBi">
                                             <rect key="frame" x="5" y="10" width="141" height="21"/>
@@ -200,9 +200,12 @@
                                             <state key="normal" backgroundImage="cashout_normal">
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
-                                            <state key="highlighted" image="cashout_pressed"/>
+                                            <state key="highlighted" backgroundImage="cashout_pressed"/>
+                                            <connections>
+                                                <action selector="btnCashoutSelected:" destination="-1" eventType="touchUpInside" id="I2p-6n-2xO"/>
+                                            </connections>
                                         </button>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="$199" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="RQT-tf-qgx">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="RQT-tf-qgx">
                                             <rect key="frame" x="145" y="4" width="57" height="34"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="34" id="a0t-r3-zcg"/>
@@ -212,7 +215,7 @@
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="$100" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iXq-rH-CVf">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iXq-rH-CVf">
                                             <rect key="frame" x="210" y="46" width="90" height="21"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="21" id="uwa-jV-usg"/>
@@ -230,7 +233,7 @@
                                         <constraint firstAttribute="trailing" secondItem="iXq-rH-CVf" secondAttribute="trailing" id="3xK-5j-9Oe"/>
                                         <constraint firstItem="iXq-rH-CVf" firstAttribute="leading" secondItem="KTq-4B-Bck" secondAttribute="trailing" constant="13" id="CdB-cG-Jdj"/>
                                         <constraint firstItem="RQT-tf-qgx" firstAttribute="leading" secondItem="B1M-An-dBi" secondAttribute="trailing" constant="-1" id="Jsd-IK-Hxj"/>
-                                        <constraint firstAttribute="height" constant="70" id="KT6-oN-aAv"/>
+                                        <constraint firstAttribute="height" constant="40" id="KT6-oN-aAv"/>
                                         <constraint firstItem="KTq-4B-Bck" firstAttribute="leading" secondItem="SUD-mH-Gig" secondAttribute="leading" constant="5" id="Lcn-nv-F64"/>
                                         <constraint firstAttribute="trailing" secondItem="RPi-jw-eA9" secondAttribute="trailing" id="Pro-Q6-Si0"/>
                                         <constraint firstItem="iXq-rH-CVf" firstAttribute="top" secondItem="RPi-jw-eA9" secondAttribute="bottom" constant="8" id="Vnw-Dv-LDV"/>
@@ -243,14 +246,14 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="14V-rC-abJ" userLabel="View HL1">
-                                    <rect key="frame" x="10" y="120" width="300" height="2"/>
+                                    <rect key="frame" x="10" y="89" width="300" height="1"/>
                                     <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="2" id="RkR-w7-pwU"/>
+                                        <constraint firstAttribute="height" constant="1" id="RkR-w7-pwU"/>
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1ux-II-SGR">
-                                    <rect key="frame" x="10" y="128" width="300" height="35"/>
+                                    <rect key="frame" x="10" y="96" width="300" height="35"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hcL-xp-3uh" userLabel="View - Anonymous">
                                             <rect key="frame" x="0.0" y="0.0" width="300" height="30"/>
@@ -290,7 +293,7 @@
                                             </constraints>
                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                             <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
-                                            <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done"/>
+                                            <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" returnKeyType="done"/>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="string" keyPath="configPlaceholder" value="user_placeholder_paypalemail"/>
                                                 <userDefinedRuntimeAttribute type="string" keyPath="configTextColor" value="COLOR_TEXT_NAVIGATIONBAR_BUTTON"/>
@@ -370,7 +373,7 @@
                                             </constraints>
                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                             <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
-                                            <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done"/>
+                                            <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad" returnKeyType="done"/>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="string" keyPath="configPlaceholder" value="user_placeholder_zip"/>
                                                 <userDefinedRuntimeAttribute type="string" keyPath="configTextColor" value="COLOR_TEXT_NAVIGATIONBAR_BUTTON"/>
@@ -442,14 +445,14 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4TK-9t-Ehp" userLabel="View HL1">
-                                    <rect key="frame" x="10" y="171" width="300" height="2"/>
+                                    <rect key="frame" x="10" y="139" width="300" height="1"/>
                                     <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="2" id="mA1-JD-0d8"/>
+                                        <constraint firstAttribute="height" constant="1" id="mA1-JD-0d8"/>
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8nc-MY-BMc">
-                                    <rect key="frame" x="10" y="181" width="300" height="35"/>
+                                    <rect key="frame" x="10" y="148" width="300" height="35"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Zo-Zb-Sss" userLabel="View - Anonymous">
                                             <rect key="frame" x="0.0" y="0.0" width="300" height="30"/>
@@ -602,6 +605,6 @@
     <resources>
         <image name="cashout_normal" width="90" height="34"/>
         <image name="cashout_pressed" width="90" height="34"/>
-        <image name="zvijezda_off" width="44" height="44"/>
+        <image name="zvijezda_off" width="22" height="22"/>
     </resources>
 </document>
