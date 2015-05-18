@@ -56,9 +56,11 @@
     sqlite3_exec(db, "CREATE TABLE COUNTRIES_LIST(c_id NUMBER UNIQUE PRIMARY KEY, lang_id INTEGER, abbr TEXT, c_name TEXT)", NULL, NULL, NULL);
     sqlite3_exec(db, "CREATE TABLE SELECTED_COUNTRIES(c_id NUMBER UNIQUE PRIMARY KEY, status INTEGER)", NULL, NULL, NULL);
     //TIMELINE
-    sqlite3_exec(db, "CREATE TABLE TIMELINE(news_id NUMBER UNIQUE PRIMARY KEY, news_title TEXT, news_text TEXT, lat NUMERIC, lng NUMERIC, news_timestamp DATETIME, media_list TEXT, anonymous INTEGER, type_id INTEGER, cost TEXT)", NULL, NULL, NULL);
+    sqlite3_exec(db, "CREATE TABLE TIMELINE(news_id NUMBER UNIQUE PRIMARY KEY, news_title TEXT, news_text TEXT, lat NUMERIC, lng NUMERIC, timestamp DATETIME, media_list TEXT, anonymous INTEGER, type_id INTEGER, cost TEXT)", NULL, NULL, NULL);
     sqlite3_exec(db, "CREATE TABLE TIMELINE_IMAGE(news_id NUMBER UNIQUE PRIMARY KEY, large_image TEXT, medium_image TEXT, small_image TEXT, wmarked_image TEXT, wmarked_image_mid TEXT, original TEXT)", NULL, NULL, NULL);
-    sqlite3_exec(db, "CREATE TABLE TIMELINE_NOTIFICATIONS(id NUMBER UNIQUE PRIMARY KEY, nid NUMBER, user_id NUMBER, notif_timestamp DATETIME, type_id NUMBER, mid NUMBER, title TEXT, msg TEXT, is_read NUMBER)", NULL, NULL, NULL);
+    sqlite3_exec(db, "CREATE TABLE TIMELINE_NOTIFICATIONS(id NUMBER UNIQUE PRIMARY KEY, nid NUMBER, user_id NUMBER, timestamp DATETIME, type_id NUMBER, mid NUMBER, title TEXT, msg TEXT, is_read NUMBER)", NULL, NULL, NULL);
+    sqlite3_exec(db, "CREATE TABLE TIMELINE_OFFERS(c_offer_id NUMBER UNIQUE PRIMARY KEY, nid NUMBER, timestamp DATETIME, action_timestamp DATETIME, mpu_id NUMBER, mid NUMBER, offer TEXT, offer_status NUMBER, is_read NUMBER)", NULL, NULL, NULL);
+    sqlite3_exec(db, "CREATE TABLE TIMELINE_MESSAGES(msg_id NUMBER UNIQUE PRIMARY KEY, nid NUMBER, timestamp DATETIME, message TEXT, name TEXT, mid NUMBER, is_read NUMBER, pic TEXT, type TEXT)", NULL, NULL, NULL);
     //INFO TEXTS
     sqlite3_exec(db, "CREATE TABLE INTO_TEXTS(text_id TEXT UNIQUE PRIMARY KEY, content TEXT, lang_id TEXT, title TEXT, edit_timestamp DATETIME)", NULL, NULL, NULL);
 

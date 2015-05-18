@@ -10,4 +10,8 @@
 
 @interface TimelineDetailsViewController : UIViewController
 
+
+- (instancetype)init __attribute__((unavailable("use initWithTimelineDetails:")));
+- (instancetype)initWithTimelineDetails:(NSArray*)timelineArray;
+
 @end

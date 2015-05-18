@@ -36,7 +36,6 @@
                     <state key="normal" title="Next">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
-                    <state key="highlighted" image="back_pressed.png"/>
                     <connections>
                         <action selector="btnNextClicked:" destination="iN0-l3-epB" eventType="touchUpInside" id="rk0-8z-njI"/>
                     </connections>
@@ -88,7 +87,6 @@
         </view>
     </objects>
     <resources>
-        <image name="back_pressed.png" width="44" height="44"/>
         <image name="backgrey_normal" width="44" height="44"/>
     </resources>
 </document>

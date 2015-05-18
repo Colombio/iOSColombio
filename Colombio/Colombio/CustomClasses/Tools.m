@@ -124,4 +124,12 @@
                                                          options:0];
     return [components day]+1;
 }
+
++ (NSString*)getStringFromDateString:(NSString*)strDate withFormat:(NSString*)strFormat{
+    NSDateFormatter *formatter=[[NSDateFormatter alloc]init];
+    [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss Z"];
+    NSDate *date = [formatter dateFromString:strDate];
+    [formatter setDateFormat:strFormat];
+    return [formatter stringFromDate:date];
+}
 @end

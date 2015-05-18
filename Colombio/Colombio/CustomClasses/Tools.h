@@ -22,4 +22,5 @@
 + (NSDate*)getDateFromAPIString:(NSString*)date;
 + (NSDate*)getDateFromString:(NSString*)date;
 + (NSInteger)daysDifferenceBetween:(NSDate*)startDate And:(NSDate*)endDate;
++ (NSString*)getStringFromDateString:(NSString*)strDate withFormat:(NSString*)strFormat;
 @end

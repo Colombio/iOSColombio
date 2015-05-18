@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="103" id="Qrf-Wc-gHd" customClass="TimelineMediaReplyCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="103"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Qrf-Wc-gHd" id="xM9-0v-g5E">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="usericon" translatesAutoresizingMaskIntoConstraints="NO" id="ubk-Ce-0UC">
+                        <rect key="frame" x="13" y="21" width="40" height="40"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="40" id="Ypa-U3-1YN"/>
+                            <constraint firstAttribute="height" constant="40" id="trw-PD-rLg"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="meL-EA-XjA">
+                        <rect key="frame" x="68" y="21" width="236" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="Zbk-oX-7ki"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Type" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="NMA-eA-WDW">
+                        <rect key="frame" x="68" y="41" width="236" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="TI8-VV-qAJ"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Ns-WL-6MM">
+                        <rect key="frame" x="68" y="70" width="236" height="22"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QTS-ng-amw">
+                                <rect key="frame" x="5" y="3" width="236" height="15"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="15" id="Or3-q8-E7K"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="configTextColor" value="COLOR_NEWS_DEMAND_DESCRIPTION"/>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lsj-Wx-5e9">
+                                <rect key="frame" x="5" y="21" width="223" height="0.0"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" id="Do0-fi-ixX"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="configTextColor" value="COLOR_NEWS_DEMAND_DESCRIPTION"/>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="QTS-ng-amw" secondAttribute="trailing" constant="-5" id="F5R-8Q-8At"/>
+                            <constraint firstItem="QTS-ng-amw" firstAttribute="leading" secondItem="2Ns-WL-6MM" secondAttribute="leading" constant="5" id="O4m-XP-2hi"/>
+                            <constraint firstItem="QTS-ng-amw" firstAttribute="top" secondItem="2Ns-WL-6MM" secondAttribute="top" constant="3" id="OoC-3a-IGT"/>
+                            <constraint firstItem="lsj-Wx-5e9" firstAttribute="leading" secondItem="2Ns-WL-6MM" secondAttribute="leading" constant="5" id="Wzd-pH-yEN"/>
+                            <constraint firstAttribute="trailing" secondItem="lsj-Wx-5e9" secondAttribute="trailing" constant="8" id="XYJ-ik-hlN"/>
+                            <constraint firstAttribute="height" constant="22" id="qMs-3J-MQa"/>
+                            <constraint firstItem="lsj-Wx-5e9" firstAttribute="top" secondItem="QTS-ng-amw" secondAttribute="bottom" constant="3" id="zcD-gN-N1P"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="meL-EA-XjA" firstAttribute="top" secondItem="xM9-0v-g5E" secondAttribute="topMargin" constant="13" id="9N3-Cb-vh0"/>
+                    <constraint firstItem="NMA-eA-WDW" firstAttribute="top" secondItem="meL-EA-XjA" secondAttribute="bottom" id="JCx-US-Jx9"/>
+                    <constraint firstItem="meL-EA-XjA" firstAttribute="leading" secondItem="ubk-Ce-0UC" secondAttribute="trailing" constant="15" id="NOp-cA-OCQ"/>
+                    <constraint firstItem="ubk-Ce-0UC" firstAttribute="top" secondItem="xM9-0v-g5E" secondAttribute="topMargin" constant="13" id="TVq-If-FPz"/>
+                    <constraint firstItem="ubk-Ce-0UC" firstAttribute="leading" secondItem="xM9-0v-g5E" secondAttribute="leadingMargin" constant="5" id="VgL-3g-INK"/>
+                    <constraint firstItem="2Ns-WL-6MM" firstAttribute="top" secondItem="NMA-eA-WDW" secondAttribute="bottom" constant="9" id="XiQ-xC-rZ6"/>
+                    <constraint firstItem="NMA-eA-WDW" firstAttribute="leading" secondItem="ubk-Ce-0UC" secondAttribute="trailing" constant="15" id="i0S-C8-vlM"/>
+                    <constraint firstItem="2Ns-WL-6MM" firstAttribute="leading" secondItem="xM9-0v-g5E" secondAttribute="leadingMargin" constant="60" id="j6M-uD-p4B"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="2Ns-WL-6MM" secondAttribute="trailing" constant="8" id="lu2-G6-cyf"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="meL-EA-XjA" secondAttribute="trailing" constant="8" id="piM-ox-NQI"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="NMA-eA-WDW" secondAttribute="trailing" constant="8" id="rLC-Fh-tej"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="CS_lblMessageHeight" destination="Do0-fi-ixX" id="893-QZ-FJe"/>
+                <outlet property="CS_lblViewContainerHeight" destination="qMs-3J-MQa" id="EU4-sh-EQc"/>
+                <outlet property="imgLogo" destination="ubk-Ce-0UC" id="WGo-Yx-MPU"/>
+                <outlet property="lblDate" destination="QTS-ng-amw" id="8Zh-qF-rVv"/>
+                <outlet property="lblMessage" destination="lsj-Wx-5e9" id="6LO-EB-4gH"/>
+                <outlet property="lblName" destination="meL-EA-XjA" id="a7W-GP-qZm"/>
+                <outlet property="lblTypeName" destination="NMA-eA-WDW" id="iLV-ox-VAH"/>
+                <outlet property="lblViewContainer" destination="2Ns-WL-6MM" id="1vK-v3-7OV"/>
+            </connections>
+            <point key="canvasLocation" x="411" y="149.5"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="usericon" width="36" height="36"/>
+    </resources>
+</document>

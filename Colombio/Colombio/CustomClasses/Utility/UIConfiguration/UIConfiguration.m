@@ -54,6 +54,7 @@
         fontMap[FONT_HELVETICA_NEUE_LIGHT_SMALL_15]            = [UIFont fontWithName:@"HelveticaNeue-Light" size:14];
         fontMap[FONT_HELVETICA_NEUE_MEDIUM_15]              = [UIFont fontWithName:@"HelveticaNeue-Medium" size:15];
         fontMap[FONT_HELVETICA_NEUE_TAGS_ITALIC]            = [UIFont fontWithName:@"HelveticaNeue-Italic" size:16];
+        fontMap[FONT_HELVETICA_NEUE_REGULAR_16]            = [UIFont fontWithName:@"HelveticaNeue" size:16];
         fontMap[FONT_HELVETICA_NEUE_ULTRALIGHT]             = [UIFont fontWithName:@"HelveticaNeue-Ultralight" size:17];
         fontMap[FONT_HELVETICA_NEUE_BOLD]                   = [UIFont fontWithName:@"HelveticaNeue-Bold" size:17];
         fontMap[FONT_HELVETICA_NEUE_MEDIUM]                 = [UIFont fontWithName:@"HelveticaNeue-Medium" size:17];

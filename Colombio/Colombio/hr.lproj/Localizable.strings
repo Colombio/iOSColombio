@@ -152,6 +152,12 @@
 
 /*TimeLine**/
 "sent" = "Sent";
+"offer_accepted" = "Prihvatili ste ponudu medija od $%@.";
+"accepted_offer" = "Prihvaćena ponuda $%@";
+"rejected_offer" = "Odbijena ponuda $%@";
+"price_offer" = "Ponuđeni iznos $%@";
+"reply" = "Odgovori...";
+"cannot_sell" = "!Napomena: medij je otkupio tvoju sliku/video i nemaš više pravo nuditi ili prodavati isti sadržaj trećoj strani. Prodajom slike/videa prenosiš vlasnička prava na objavu i daljnju distribuciju kupcu, odnosno mediju koji otkupi.";
 
 /*Header*/
 "header_next" = "DALJE";

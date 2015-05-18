@@ -42,7 +42,7 @@
         newsDemandNavController.navigationBar.hidden=YES;
         
         newsDemandVC.tabBarItem.image = [[UIImage imageNamed:@"newsdemand_normal"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-        newsDemandVC.tabBarItem.selectedImage = [[UIImage imageNamed:@"newsdemand_active"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        newsDemandVC.tabBarItem.selectedImage = [[UIImage imageNamed:@"newsdemandtransp_active"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
         newsDemandVC.tabBarItem.imageInsets = UIEdgeInsetsMake(6, 0, -6, 0);
         newsDemandVC.title=nil;
         [controllers addObject:newsDemandNavController];

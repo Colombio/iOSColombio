@@ -2,11 +2,13 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6751" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6751"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TimelineDetailsViewController">
             <connections>
+                <outlet property="customHeader" destination="xhY-d7-vJx" id="DsN-Cn-5FI"/>
+                <outlet property="tblView" destination="yce-jy-oEB" id="nRr-rh-dyd"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -25,13 +27,26 @@
                         <outlet property="customHeaderDelegate" destination="-1" id="jvD-FP-aS2"/>
                     </connections>
                 </view>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="yce-jy-oEB">
+                    <rect key="frame" x="0.0" y="64" width="320" height="367"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="leS-63-ZyF"/>
+                        <outlet property="delegate" destination="-1" id="9jb-iT-S7i"/>
+                    </connections>
+                </tableView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="xhY-d7-vJx" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="20" id="3I6-Rl-N6r"/>
+                <constraint firstAttribute="trailing" secondItem="yce-jy-oEB" secondAttribute="trailing" id="ECC-6Q-Dni"/>
                 <constraint firstItem="xhY-d7-vJx" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="G41-iY-ZV0"/>
+                <constraint firstAttribute="bottom" secondItem="yce-jy-oEB" secondAttribute="bottom" constant="49" id="Y5U-ow-5g8"/>
+                <constraint firstItem="yce-jy-oEB" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="aRc-1f-qJm"/>
+                <constraint firstItem="yce-jy-oEB" firstAttribute="top" secondItem="xhY-d7-vJx" secondAttribute="bottom" id="iHH-iH-Kps"/>
                 <constraint firstAttribute="trailing" secondItem="xhY-d7-vJx" secondAttribute="trailing" id="nyn-Sq-Eww"/>
             </constraints>
+            <nil key="simulatedBottomBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics"/>
         </view>
     </objects>

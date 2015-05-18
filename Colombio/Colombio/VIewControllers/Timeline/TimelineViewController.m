@@ -13,6 +13,7 @@
 #import "AppDelegate.h"
 #import "TimeLineTableViewCell.h"
 #import "Tools.h"
+#import "TimelineDetailsViewController.h"
 
 @interface TimelineViewController () <UITableViewDataSource, UITableViewDelegate, ColombioServiceCommunicatorDelegate, CustomHeaderViewDelegate>
 {
@@ -74,39 +75,63 @@
     if (cell==nil) {
         cell=[[TimeLineTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
     }
-    cell.lblTitle.text = _timelineArray[indexPath.row][@"news_title"];
-    NSDateFormatter *formatter=[[NSDateFormatter alloc]init];
-    [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss Z"];
-    NSDate *date = [formatter dateFromString:_timelineArray[indexPath.row][@"news_timestamp"]];
-    [formatter setDateFormat:@"dd/MM/yyyy"];
-    cell.lblHeader.text = [NSString stringWithFormat:@"%@: %@ %@", [Localized string:@"sent"], [Localized string:((AppDelegate*)[UIApplication sharedApplication].delegate).dicTimelineButt[_timelineArray[indexPath.row][@"type_id"]]], [formatter stringFromDate:date]];
-    cell.txtDescription.text = [NSString stringWithFormat:@"%@",_timelineArray[indexPath.row][@"news_text"]];
-    [cell.txtDescription sizeToFit];
-    if (((NSString*)_timelineArray[indexPath.row][@"img"]).length>0) {
-        dispatch_queue_t concurrentQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-        dispatch_async(concurrentQueue, ^{
-            NSURL *url = [NSURL URLWithString:_timelineArray[indexPath.row][@"img"]];
-            UIImage *image = [[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:url]];
-            if (image!=nil) {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    cell.imgSample.image = image;
-                    cell.imgSample.contentMode = UIViewContentModeScaleAspectFill;
-                    cell.imgSample.clipsToBounds=YES;
-                });
-            }
-        });
+    
+    if (_timelineArray[indexPath.row][@"news_id"]) {
+        cell.lblTitle.text = _timelineArray[indexPath.row][@"news_title"];
+        NSDateFormatter *formatter=[[NSDateFormatter alloc]init];
+        [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss Z"];
+        NSDate *date = [formatter dateFromString:_timelineArray[indexPath.row][@"timestamp"]];
+        [formatter setDateFormat:@"dd/MM/yyyy"];
+        cell.lblHeader.text = [NSString stringWithFormat:@"%@: %@ %@", [Localized string:@"sent"], [Localized string:((AppDelegate*)[UIApplication sharedApplication].delegate).dicTimelineButt[_timelineArray[indexPath.row][@"type_id"]]], [formatter stringFromDate:date]];
+        cell.txtDescription.text = [NSString stringWithFormat:@"%@",_timelineArray[indexPath.row][@"news_text"]];
+        [cell.txtDescription sizeToFit];
+        if (((NSString*)_timelineArray[indexPath.row][@"img"]).length>0) {
+            dispatch_queue_t concurrentQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+            dispatch_async(concurrentQueue, ^{
+                NSURL *url = [NSURL URLWithString:_timelineArray[indexPath.row][@"img"]];
+                UIImage *image = [[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:url]];
+                if (image!=nil) {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        cell.imgSample.image = image;
+                        cell.imgSample.contentMode = UIViewContentModeScaleAspectFill;
+                        cell.imgSample.clipsToBounds=YES;
+                    });
+                }
+            });
+        }else{
+            [cell.imgSample removeFromSuperview];
+        }
     }else{
+        cell.lblTitle.text = _timelineArray[indexPath.row][@"title"];
+        cell.lblHeader.text = [Tools getStringFromDateString:_timelineArray[indexPath.row][@"timestamp"] withFormat:@"dd/MM/yyyy"];
+        cell.txtDescription.text = [NSString stringWithFormat:@"%@",_timelineArray[indexPath.row][@"msg"]];
         [cell.imgSample removeFromSuperview];
+        
     }
+    
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    TimelineDetailsViewController *vc = [[TimelineDetailsViewController alloc] initWithTimelineDetails:_timelineArray[indexPath.row]];
+    [self.navigationController pushViewController:vc animated:YES];
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 #pragma mark CSC Delegate
 - (void)didFetchTimeline{
     
-    NSString *sql = @"Select tl.*, tli.medium_image as img from timeline as tl left join timeline_image as tli on tli.news_id = tl.news_id order by news_timestamp desc";
+    NSString *sql = @"Select tl.*, tli.medium_image as img, 1 as type from timeline as tl left join timeline_image as tli on tli.news_id = tl.news_id order by timestamp desc";
     AppDelegate *appdelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
     _timelineArray = [appdelegate.db getAllForSQL:sql];
+    
+    sql = @"Select *, 2 as type from TIMELINE_NOTIFICATIONS where type_id = 2";
+    _timelineArray = [_timelineArray arrayByAddingObjectsFromArray:[appdelegate.db getAllForSQL:sql]];
+    
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey: @"timestamp" ascending: NO];
+    NSArray *sortedArray = [_timelineArray sortedArrayUsingDescriptors:[NSArray arrayWithObject:sortDescriptor]];
+    _timelineArray = [[NSMutableArray alloc] initWithArray:sortedArray];
+    
     dispatch_async(dispatch_get_main_queue(), ^{
         [spinner removeCustomSpinner];
         [_tableView reloadData];

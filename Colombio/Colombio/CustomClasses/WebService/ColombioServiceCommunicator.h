@@ -21,7 +21,7 @@
 - (void)didFetchMedia;
 - (void)didFetchTimeline;
 - (void)didFetchTimeLineCounterOffers:(NSDictionary*)result;
-- (void)didFetchTimeLineCommunication:(NSDictionary*)result;
+- (void)didFetchTimeLineCommunication;
 - (void)didFetchFavoriteMedia:(NSArray*)favMediaId;
 - (void)didFetchMediaNumber:(NSString*)mediaPhoneNumber;
 - (void)didFetchCountries;

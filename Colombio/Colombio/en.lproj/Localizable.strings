@@ -151,6 +151,12 @@
 
 /*TimeLine**/
 "sent" = "Sent";
+"offer_accepted" = "You have accepted %@ media offer";
+"accepted_offer" = "Accepted offer %@€";
+"rejected_offer" = "Rejected offer %@€";
+"price_offer" = "Offered amount %@€";
+"cannot_sell" = "!Note: you sold your photo/video to news media, you do not have right to sell it again. By selling photo/video, you are transfering copyrights to buyer, and he has all rights to publish it and distribute it.";
+"reply" = "Reply...";
 
 /*Header*/
 "header_next" = "NEXT";

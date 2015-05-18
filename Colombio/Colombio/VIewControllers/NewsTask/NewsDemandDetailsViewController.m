@@ -124,7 +124,7 @@
 }
 
 #pragma mark MapView Delegate
-- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id)annotation {
+/*- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id)annotation {
     if([annotation isKindOfClass:[MKUserLocation class]])
         return nil;
     static NSString *identifier = @"myAnnotation";
@@ -141,13 +141,13 @@
     }
     annotationView.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
     return annotationView;
-}
+}*/
 
 - (MKOverlayView *)mapView:(MKMapView *)map viewForOverlay:(id <MKOverlay>)overlay
 {
     MKCircleView *circleView = [[MKCircleView alloc] initWithOverlay:overlay];
-    circleView.strokeColor = [UIColor redColor];
-    circleView.fillColor = [[UIColor redColor] colorWithAlphaComponent:0.4];
+    circleView.strokeColor = [[UIColor blueColor] colorWithAlphaComponent:0.5];
+    circleView.fillColor = [[UIColor blueColor] colorWithAlphaComponent:0.2];
     return circleView;
 }
 

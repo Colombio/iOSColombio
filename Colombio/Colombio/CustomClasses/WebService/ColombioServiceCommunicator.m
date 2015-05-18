@@ -312,7 +312,7 @@
 }
 
 - (void)fetchMediaPhoneNumber:(NSInteger)mediaId{
-    NSString *url_str = [NSString stringWithFormat:@"%@/api_config/call_media?signed_req=%@&mid=%d", BASE_URL,[[self class] getSignedRequest], mediaId];
+    NSString *url_str = [NSString stringWithFormat:@"%@/api_config/call_media?signed_req=%@&mid=%ld", BASE_URL,[[self class] getSignedRequest], (long)mediaId];
     NSURL *url = [NSURL URLWithString:url_str];
     NSMutableURLRequest *req =[NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:TIMEOUT];
     [req setHTTPMethod:@"GET"];
@@ -389,23 +389,23 @@
                     tDBDict[@"news_title"]=tDict[@"news_title"];
                     tDBDict[@"news_text"]=tDict[@"news_text"];
                     tDBDict[@"cost"]=tDict[@"cost"];
-                    tDBDict[@"news_timestamp"]=[Tools getDateFromAPIString:tDict[@"news_timestamp"]];
+                    tDBDict[@"timestamp"]=[Tools getDateFromAPIString:tDict[@"news_timestamp"]];
                     tDBDict[@"lat"]= (tDict[@"lat"]!=[NSNull null]?@([tDict[@"lat"] floatValue]):[NSNull null]);
                     tDBDict[@"lng"]= (tDict[@"lng"]!=[NSNull null]?@([tDict[@"lng"] floatValue]):[NSNull null]);
                     tDBDict[@"media_list"]=@([tDict[@"media_list"] intValue]);
                     tDBDict[@"anonymous"]=@([tDict[@"anonymous"] intValue]);
                     tDBDict[@"type_id"]=@([tDict[@"type_id"] intValue]);
-                    NSString *sql = [NSString stringWithFormat:@"SELECT count(*) FROM timeline WHERE news_id = '%d'", [tDBDict[@"news_id"] intValue]];
+                    NSString *sql = [NSString stringWithFormat:@"SELECT count(*) FROM timeline WHERE news_id = '%@'", tDBDict[@"news_id"]];
                     if ([[appdelegate.db getColForSQL:sql] integerValue] == 0) {
                         //tDBDict[@"isread"]=@0;
                         [appdelegate.db insertDictionaryWithoutColumnCheck:tDBDict forTable:@"TIMELINE"];
                     }else{
-                        [appdelegate.db updateDictionary:tDBDict forTable:@"TIMELINE" where:[NSString stringWithFormat:@" news_id='%d'", [tDict[@"news_id"] intValue]]];
+                        [appdelegate.db updateDictionary:tDBDict forTable:@"TIMELINE" where:[NSString stringWithFormat:@" news_id='%@'", tDBDict[@"news_id"]]];
                     }
                     
                     tDBDict = [[NSMutableDictionary alloc] init];
                     if (tDict[@"image_data"] != [NSNull null]) {
-                        NSArray *arrayImages = [(NSString*)tDict[@"image_data"] componentsSeparatedByString:@","];
+                        NSArray *arrayImages = [(NSString*)tDict[@"image_data"] componentsSeparatedByString:@"\",\""];
                         for(NSString *tString in arrayImages){
                             NSCharacterSet* charSet = [NSCharacterSet characterSetWithCharactersInString:@"\"\\ {}"];
                             NSString *strippedString = [[tString componentsSeparatedByCharactersInSet:charSet] componentsJoinedByString:@""];
@@ -413,11 +413,11 @@
                             tDBDict[arrImage[0]]= [NSString stringWithFormat:@"https://afs.colomb.io/%@",arrImage[1]];
                         }
                         tDBDict[@"news_id"]=@([tDict[@"news_id"] intValue]);
-                        sql = [NSString stringWithFormat:@"SELECT count(*) FROM timeline_image WHERE news_id = '%d'", [tDBDict[@"news_id"] intValue]];
+                        sql = [NSString stringWithFormat:@"SELECT count(*) FROM timeline_image WHERE news_id = '%@'", tDBDict[@"news_id"]];
                         if ([[appdelegate.db getColForSQL:sql] integerValue] == 0) {
                             [appdelegate.db insertDictionaryWithoutColumnCheck:tDBDict forTable:@"TIMELINE_IMAGE"];
                         }else{
-                            [appdelegate.db updateDictionary:tDBDict forTable:@"TIMELINE_IMAGE" where:[NSString stringWithFormat:@" news_id='%d'", [tDict[@"news_id"] intValue]]];
+                            [appdelegate.db updateDictionary:tDBDict forTable:@"TIMELINE_IMAGE" where:[NSString stringWithFormat:@" news_id='%@'", tDBDict[@"news_id"]]];
                         }
                     }
                     
@@ -427,10 +427,31 @@
                     NSMutableDictionary *tDBDict = [[NSMutableDictionary alloc] init];
                     tDBDict[@"id"] = tDict[@"id"];
                     tDBDict[@"user_id"] = tDict[@"user_id"];
-                    tDBDict[@"notif_timestamp"] = [Tools getDateFromAPIString:tDict[@"notif_timestamp"]];
+                    tDBDict[@"timestamp"] = [Tools getDateFromAPIString:tDict[@"notif_timestamp"]];
                     tDBDict[@"type_id"] = tDict[@"type_id"];
                     tDBDict[@"is_read"] = tDict[@"is_read"];
-                    NSArray *arrayNotifs = [(NSString*)tDict[@"content"] componentsSeparatedByString:@","];
+                    NSArray *arrayNotifs = [(NSString*)tDict[@"content"] componentsSeparatedByString:@"\",\""];
+                    for(NSString *tString in arrayNotifs){
+                        NSCharacterSet* charSet = [NSCharacterSet characterSetWithCharactersInString:@"\"\\{}"];
+                        NSString *strippedString = [[tString componentsSeparatedByCharactersInSet:charSet] componentsJoinedByString:@""];
+                        NSArray *arrNotif =[strippedString componentsSeparatedByString:@":"];
+                        tDBDict[arrNotif[0]]= arrNotif[1];
+                    }
+                    NSString *sql = [NSString stringWithFormat:@"SELECT count(*) FROM timeline_notifications WHERE id = '%@'", tDBDict[@"id"]];
+                    if ([[appdelegate.db getColForSQL:sql] integerValue] == 0) {
+                        [appdelegate.db insertDictionaryWithoutColumnCheck:tDBDict forTable:@"TIMELINE_NOTIFICATIONS"];
+                    }else{
+                        [appdelegate.db updateDictionary:tDBDict forTable:@"TIMELINE_NOTIFICATIONS" where:[NSString stringWithFormat:@" id='%@'", tDBDict[@"id"]]];
+                    }
+                }
+                for(NSDictionary *tDict in result[@"data"][@"alerts"]){
+                    /*NSMutableDictionary *tDBDict = [[NSMutableDictionary alloc] init];
+                    tDBDict[@"id"] = tDict[@"id"];
+                    tDBDict[@"user_id"] = tDict[@"user_id"];
+                    tDBDict[@"timestamp"] = [Tools getDateFromAPIString:tDict[@"notif_timestamp"]];
+                    tDBDict[@"type_id"] = tDict[@"type_id"];
+                    tDBDict[@"is_read"] = tDict[@"is_read"];
+                    NSArray *arrayNotifs = [(NSString*)tDict[@"content"] componentsSeparatedByString:@"\",\""];
                     for(NSString *tString in arrayNotifs){
                         NSCharacterSet* charSet = [NSCharacterSet characterSetWithCharactersInString:@"\"\\{}"];
                         NSString *strippedString = [[tString componentsSeparatedByCharactersInSet:charSet] componentsJoinedByString:@""];
@@ -442,8 +463,9 @@
                         [appdelegate.db insertDictionaryWithoutColumnCheck:tDBDict forTable:@"TIMELINE_NOTIFICATIONS"];
                     }else{
                         [appdelegate.db updateDictionary:tDBDict forTable:@"TIMELINE_NOTIFICATIONS" where:[NSString stringWithFormat:@" id='%d'", [tDict[@"id"] intValue]]];
-                    }
+                    }*/
                 }
+                
                 [self.delegate didFetchTimeline];
             }else{
                 dispatch_async(dispatch_get_main_queue(), ^{
@@ -465,12 +487,35 @@
 }
 
 - (void)fetchTimeLineCounterOffers:(NSInteger)news_id{
-    NSString *url_str = [NSString stringWithFormat:@"%@/api_content/get_news_counteroffers?signed_req=%@&nid=%d", BASE_URL, [[self class] getSignedRequest],news_id];
+    NSString *url_str = [NSString stringWithFormat:@"%@/api_content/get_news_counteroffers?signed_req=%@&nid=%ld", BASE_URL, [[self class] getSignedRequest],(long)news_id];
     NSURL * url = [NSURL URLWithString:url_str];
     request =[NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:TIMEOUT];
     [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
         if(error==nil && data!=nil){
             NSDictionary *result =[NSJSONSerialization JSONObjectWithData:data options:0 error:NULL];
+            if(result!=nil && result[@"s"] && !strcmp("1",((NSString*)[result objectForKey:@"s"]).UTF8String)){
+                AppDelegate *appdelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
+                for(NSDictionary *tDict in result[@"data"]){
+                    NSMutableDictionary *tDBDict = [[NSMutableDictionary alloc] init];
+                    tDBDict[@"c_offer_id"] = tDict[@"c_offer_id"];
+                    tDBDict[@"mid"] = tDict[@"media_id"];
+                    tDBDict[@"nid"] = tDict[@"news_id"];
+                    tDBDict[@"mpu_id"] = tDict[@"mpu_id"];
+                    tDBDict[@"timestamp"] = [Tools getDateFromAPIString:tDict[@"offer_timestamp"]];
+                    tDBDict[@"offer"] = tDict[@"offer"];
+                    tDBDict[@"offer_status"] = tDict[@"offer_status"];
+                    tDBDict[@"action_timestamp"] = tDict[@"action_timestamp"];
+                    tDBDict[@"is_read"] = @0;
+                    NSString *sql = [NSString stringWithFormat:@"SELECT count(*) FROM timeline_offers WHERE c_offer_id = '%@'", tDBDict[@"c_offer_id"]];
+                    if ([[appdelegate.db getColForSQL:sql] integerValue] == 0) {
+                        [appdelegate.db insertDictionaryWithoutColumnCheck:tDBDict forTable:@"TIMELINE_OFFERS"];
+                    }else{
+                        [appdelegate.db updateDictionary:tDBDict forTable:@"TIMELINE_OFFERS" where:[NSString stringWithFormat:@" c_offer_id='%@'", tDBDict[@"c_offer_id"]]];
+                    }
+                }
+            }else{
+                [Messages showErrorMsg:@"error_web_request"];
+            }
             [self.delegate didFetchTimeLineCounterOffers:result];
         }else{
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -483,16 +528,39 @@
 }
 
 - (void)fetchTimeLineCommunication:(NSInteger)news_id{
-    NSString *url_str = [NSString stringWithFormat:@"%@/api_content/get_news_communication?signed_req=%@&nid=%d", BASE_URL, [[self class] getSignedRequest],news_id];
+    NSString *url_str = [NSString stringWithFormat:@"%@/api_content/get_news_communication?signed_req=%@&nid=%ld", BASE_URL, [[self class] getSignedRequest],(long)news_id];
     NSURL * url = [NSURL URLWithString:url_str];
     request =[NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:TIMEOUT];
     [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
         if(error==nil && data!=nil){
             NSDictionary *result =[NSJSONSerialization JSONObjectWithData:data options:0 error:NULL];
-            [self.delegate didFetchTimeLineCommunication:result];
+            if(result!=nil && result[@"s"] && !strcmp("1",((NSString*)[result objectForKey:@"s"]).UTF8String)){
+                AppDelegate *appdelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
+                for(NSDictionary *tDict in result[@"data"]){
+                    NSMutableDictionary *tDBDict = [[NSMutableDictionary alloc] init];
+                    tDBDict[@"msg_id"] = tDict[@"msg_id"];
+                    tDBDict[@"mid"] = tDict[@"media_id"];
+                    tDBDict[@"nid"] = tDict[@"news_id"];
+                    tDBDict[@"message"] = tDict[@"message"];
+                    tDBDict[@"timestamp"] = [Tools getDateFromAPIString:tDict[@"msg_timestamp"]];
+                    tDBDict[@"pic"] = tDict[@"pic"];
+                    tDBDict[@"type"] = tDict[@"type"];
+                    tDBDict[@"is_read"] = tDict[@"is_read"];
+                    NSString *sql = [NSString stringWithFormat:@"SELECT count(*) FROM timeline_messages WHERE msg_id = '%@'", tDBDict[@"msg_id"]];
+                    if ([[appdelegate.db getColForSQL:sql] integerValue] == 0) {
+                        [appdelegate.db insertDictionaryWithoutColumnCheck:tDBDict forTable:@"TIMELINE_MESSAGES"];
+                    }else{
+                        [appdelegate.db updateDictionary:tDBDict forTable:@"TIMELINE_MESSAGES" where:[NSString stringWithFormat:@" msg_id='%@'", tDBDict[@"msg_id"]]];
+                    }
+                }
+            }else{
+                [Messages showErrorMsg:@"error_web_request"];
+            }
+            [self.delegate didFetchTimeLineCommunication];
+            
         }else{
             dispatch_async(dispatch_get_main_queue(), ^{
-                [self.delegate didFetchTimeline];
+                [self.delegate didFetchTimeLineCommunication];
                 [Messages showErrorMsg:@"error_web_request"];
             });
             return;
@@ -504,9 +572,9 @@
 - (void)updateUserPreferences:(NSDictionary*)userDict{
     NSString *signedRequest = [ColombioServiceCommunicator getSignedRequest];
     NSString *url_str = [NSString stringWithFormat:@"%@/api_user_managment/mau_update_preferences/", BASE_URL];
-    NSDictionary *tDict = @{@"alertSettings[push]":@0,
+   /* NSDictionary *tDict = @{@"alertSettings[push]":@0,
                         @"alertSettings[in_app]":@0,
-                        @"alertSettings[email]":@1};
+                        @"alertSettings[email]":@1};*/
     
     NSString *httpBody = [NSString stringWithFormat:@"signed_req=%@&alertSettings[push]=%@&alertSettings[in_app]=%@&alertSettings[email]=%@",signedRequest, userDict[@"ntf_push"], userDict[@"ntf_in_app"], userDict[@"ntf_email"]];
     NSURL * url = [NSURL URLWithString:url_str];
