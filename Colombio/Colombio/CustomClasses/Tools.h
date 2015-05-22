@@ -12,6 +12,8 @@
 @interface Tools : NSObject
 
 + (NSInteger)getNumberOfNewDemands;
++ (BOOL)checkForNewNotification;
++ (BOOL)checkForNewNotificationWithID:(NSInteger)nid;
 + (UILabel*)getBadgeObject:(long )count frame:(CGRect)frame;
 + (UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)newSize;
 + (UIImage *)imageWithColor:(UIColor *)color;

@@ -122,9 +122,9 @@
     
     [self setRating:(int)round([tDict[@"rating"] floatValue])];
     balanceAmount = [tDict[@"balance"] floatValue];
-    _lblBalanceAmount.text =  [NSString stringWithFormat:@"$%.2f", [tDict[@"balance"] floatValue]];
+    _lblBalanceAmount.text =  [NSString stringWithFormat:@"%.2f€", [tDict[@"balance"] floatValue]];
     pendingCashoutAmount = [tDict[@"pending_cashout"] floatValue];
-    _lblPendingAmount.text =  [NSString stringWithFormat:@"$%.2f", [tDict[@"pending_cashout"] floatValue]];
+    _lblPendingAmount.text =  [NSString stringWithFormat:@"%.2f€", [tDict[@"pending_cashout"] floatValue]];
     _txtPayPalEmail.text = tDict[@"paypal_email"];
     _txtName1.text = tDict[@"first_name"];
     _txtLastName1.text = tDict[@"last_name"];
@@ -367,7 +367,7 @@
             _txtPayPalEmail.attributedPlaceholder = [[NSAttributedString alloc] initWithString:_txtPayPalEmail.placeholder attributes:@{NSForegroundColorAttributeName:[UIColor redColor]}];
         }
     }
-    if (_swAnonymous.isOn) {
+    if (!_swAnonymous.isOn) {
         if (_txtName2.text.length==0) {
             result=NO;
             _txtName2.attributedPlaceholder = [[NSAttributedString alloc] initWithString:_txtName2.placeholder attributes:@{NSForegroundColorAttributeName:[UIColor redColor]}];
@@ -395,7 +395,7 @@
         NSString *url_str = [NSString stringWithFormat:@"%@/api_user_managment/mau_update_profile/", BASE_URL];
         NSDictionary *userInfo = [self getUserInfo];
         
-        NSString *httpBody = [NSString stringWithFormat:@"signed_req=%@&user_email=%@&paypal_email=%@&user_pass=%@&user_pass_confirm=%@&first_name=%@&last_name=%@&phone_number=%@&anonymous=%d&country_id=%ld&first_login=0&current_id=%@",
+        NSString *httpBody = [NSString stringWithFormat:@"signed_req=%@&user_email=%@&paypal_email=%@&user_pass=%@&user_pass_confirm=%@&first_name=%@&last_name=%@&phone_number=%@&anonymous=%d&country_id=%ld&first_login=0&current_id=%@&installationID=%@",
                               signedRequest,
                               userInfo[@"user_email"],
                               userInfo[@"paypal_email"],
@@ -406,7 +406,8 @@
                               (userInfo[@"phone_number"]?userInfo[@"phone_number"]:@""),
                               [userInfo[@"anonymous"] intValue],
                               (long)[[NSUserDefaults standardUserDefaults] integerForKey:COUNTRY_ID],
-                              userInfo[@"user_id"]];
+                              userInfo[@"user_id"],
+                              ([[NSUserDefaults standardUserDefaults] objectForKey:PARSE_INSTALLATIONID]!=nil?[[NSUserDefaults standardUserDefaults] objectForKey:PARSE_INSTALLATIONID]:@"")];
         [csc sendAsyncHttp:url_str httpBody:httpBody cache:NSURLRequestReloadIgnoringCacheData timeoutInterval:TIMEOUT];
         [NSURLConnection sendAsynchronousRequest:csc.request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
             NSDictionary *dicResponse = [NSJSONSerialization JSONObjectWithData:data options:0 error:NULL];

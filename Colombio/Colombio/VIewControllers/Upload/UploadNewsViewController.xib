@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6751" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UploadNewsViewController">
             <connections>
+                <outlet property="imgInfo" destination="5ug-hZ-nNg" id="HYQ-yb-FYi"/>
                 <outlet property="imgLoading" destination="uxp-go-bd4" id="Ma2-6x-kbP"/>
                 <outlet property="lblUploadCount" destination="d0X-Zh-zEi" id="yKf-C6-feK"/>
                 <outlet property="lblUploadPercentage" destination="CN0-kn-eWn" id="394-Aw-Etu"/>

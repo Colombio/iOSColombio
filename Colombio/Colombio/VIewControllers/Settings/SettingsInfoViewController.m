@@ -18,7 +18,7 @@ enum Types{
     PRIVACY_POLICY=6,
     ABOUT=7
 };
-@interface SettingsInfoViewController ()<CustomHeaderViewDelegate, ColombioServiceCommunicatorDelegate>
+@interface SettingsInfoViewController ()<CustomHeaderViewDelegate, ColombioServiceCommunicatorDelegate, UIWebViewDelegate>
 {
     Loading *spinner;
 }

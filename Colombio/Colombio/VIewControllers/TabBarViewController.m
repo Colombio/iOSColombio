@@ -18,6 +18,7 @@
 
 @interface TabBarViewController ()
 
+@property (strong, nonatomic) NSDictionary *userInfo;
 @end
 
 @implementation TabBarViewController
@@ -31,7 +32,7 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-- (instancetype)init{
+- (instancetype)initWithUserInfo:(NSDictionary*)userInfo{
     self = [super init];
     NSMutableArray *controllers = [[NSMutableArray alloc] init];
     if (self) {
@@ -48,7 +49,7 @@
         [controllers addObject:newsDemandNavController];
         
         //TimeLine
-        TimelineViewController *timeLineVC = [[TimelineViewController alloc] init];
+        TimelineViewController *timeLineVC = [[TimelineViewController alloc] initWithNotification:userInfo];
         UINavigationController *timeLineNavController = [[UINavigationController alloc] initWithRootViewController:timeLineVC];
         timeLineNavController.navigationBar.hidden=YES;
         
@@ -93,7 +94,12 @@
         
         self.viewControllers = controllers;
         self.customizableViewControllers = controllers;
-        [self setSelectedIndex:2];
+        if (userInfo) {
+            [self setSelectedIndex:1];
+        }else{
+            [self setSelectedIndex:2];
+        }
+        
         
         [[UITabBar appearance] setTintColor:[UIColor blackColor]];
         [[UITabBar appearance] setBarTintColor:[UIColor blackColor]];

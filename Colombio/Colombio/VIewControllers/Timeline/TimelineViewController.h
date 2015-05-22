@@ -10,4 +10,5 @@
 
 @interface TimelineViewController : UIViewController
 
+- (instancetype)initWithNotification:(NSDictionary*)userInfo;
 @end

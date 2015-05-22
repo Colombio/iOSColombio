@@ -72,7 +72,7 @@
     }
     AppDelegate *appdelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     NSDictionary *mediaInfo = [self getMediaInfo:newsDemand.media_id];
-    cell.lblRewardAmount.text = [NSString stringWithFormat:@"$%@", newsDemand.cost];
+    cell.lblRewardAmount.text = [NSString stringWithFormat:@"%@€", newsDemand.cost];
     cell.lblMediaName.text = [mediaInfo[@"name"] uppercaseString];
     newsDemand.mediaName = mediaInfo[@"name"];
     cell.lblMediaType.text = [appdelegate.dicMediaTypes[mediaInfo[@"media_type"]] uppercaseString];

@@ -19,9 +19,10 @@
 #import "CountriesViewController.h"
 #import "MediaViewController.h"
 #import "LoginSettingsViewController.h"
+#import <Parse/Parse.h>
 
 @implementation AppDelegate
-@synthesize db, locationManager, mediaImages;
+@synthesize db, locationManager, mediaImages, appIsActive;
 
 - (BOOL)application:(UIApplication *)application
             openURL:(NSURL *)url
@@ -35,6 +36,18 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [Parse setApplicationId:@"DSJAACaoeuvbqrjj9XqYkMsAh47LbUKQybc09h3q"
+                  clientKey:@"vFOzh6nLUXAExa5fulRLm5J2EsagHHxN9sEApxs9"];
+    
+    // Register for Push Notitications
+    UIUserNotificationType userNotificationTypes = (UIUserNotificationTypeAlert);
+    UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:userNotificationTypes
+                                                                             categories:nil];
+    [application registerUserNotificationSettings:settings];
+    [application registerForRemoteNotifications];
+    
+    appIsActive=YES;
+    
     [self setDictionaries];
     [self applicationDocumentsDirectory];
     [self getLocation];
@@ -47,7 +60,7 @@
     [[NSUserDefaults standardUserDefaults] setObject:@0 forKey:COUNTRY_ID];
     [[NSUserDefaults standardUserDefaults] synchronize];
     if([[NSUserDefaults standardUserDefaults] boolForKey:@"SKIP_START"]){
-        [self checkToken];
+        [self checkToken:nil];
     }else{
         self.window.rootViewController = [[StartViewController alloc] init];
     }
@@ -77,11 +90,40 @@
 {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    appIsActive=NO;
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
     
+}
+
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken{
+    // Store the deviceToken in the current installation and save it to Parse.
+    PFInstallation *currentInstallation = [PFInstallation currentInstallation];
+    [[NSUserDefaults standardUserDefaults] setObject:currentInstallation.installationId forKey:PARSE_INSTALLATIONID];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    [currentInstallation setDeviceTokenFromData:deviceToken];
+    
+    currentInstallation.channels = [self getChannels];
+    
+    [currentInstallation saveInBackground];
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
+    [PFPush handlePush:userInfo];
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler{
+    if ( application.applicationState == UIApplicationStateInactive)
+    {
+         [self checkToken:userInfo];
+    }else if (application.applicationState == UIApplicationStateBackground){
+        [self checkToken:userInfo];
+    }else{
+        [PFPush handlePush:userInfo];
+    }
+    completionHandler(UIBackgroundFetchResultNewData);
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
@@ -101,7 +143,7 @@
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
 }
 
-- (void)checkToken{
+- (void)checkToken:(NSDictionary*)userInfo{
     @try {
         NSString *result = [ColombioServiceCommunicator getSignedRequest];
         if(result.length>0){
@@ -133,7 +175,7 @@
                          Testing purposes
                          **/
                         //self.window.rootViewController = [[LoginSettingsViewController alloc] initWithNibName:@"ContainerViewController" bundle:nil];
-                        self.window.rootViewController = [[TabBarViewController alloc] init];
+                        self.window.rootViewController = [[TabBarViewController alloc] initWithUserInfo:userInfo];
                         return;
                     }
                 }else{
@@ -174,6 +216,31 @@
         library = [[ALAssetsLibrary alloc] init];
     });
     return library;
+}
+
+- (NSArray*)getChannels{
+    NSString *sql = @"select media_id from selected_media where status=1";
+    NSMutableArray *mediaArray = [self.db getAllForSQL:sql];
+    
+    sql = @"select c_id from selected_countries where status=1";
+    NSMutableArray *countriesArray = [self.db getAllForSQL:sql];
+    
+    NSMutableArray *tArray = [[NSMutableArray alloc] init];
+    
+    for(NSDictionary *mediaid in mediaArray){
+        [tArray addObject:[NSString stringWithFormat:@"m%d", [mediaid[@"media_id"] intValue]]];
+    }
+    
+    if ([[NSUserDefaults standardUserDefaults] objectForKey:COUNTRY_ID]!=nil && [[[NSUserDefaults standardUserDefaults] objectForKey:COUNTRY_ID] integerValue]!=0) {
+        [tArray addObject:[NSString stringWithFormat:@"c%d", [[[NSUserDefaults standardUserDefaults] objectForKey:COUNTRY_ID] intValue]]];
+    }
+    
+    for(NSDictionary *cid in countriesArray){
+        [tArray addObject:[NSString stringWithFormat:@"c%d", [cid[@"c_id"] intValue]]];
+    }
+    
+    return (NSArray*)tArray;
+    
 }
 
 

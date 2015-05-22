@@ -84,7 +84,7 @@
     //NSDate *date = [formatter dateFromString:_data.start_timestamp];
     [formatter setDateFormat:@"dd/MM/yyyy"];
     //_lblTaskStatus
-    _lblReward.text = [NSString stringWithFormat:@"$%@", _data.cost];
+    _lblReward.text = [NSString stringWithFormat:@"%@€", _data.cost];
     _lblNewsTitle.text = _data.title;
     _txtNewsDescription.text = _data.desc;
     dispatch_queue_t concurrentQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);

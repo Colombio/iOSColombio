@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@protocol ColombioServiceCommunicatorDelegate
+@protocol NewsDemandServiceCommunicatorDelegate
 @optional
 - (void)didFetchNewsDemands:(NSDictionary*)result;
 - (void)fetchingNewsDemandsFailedWithError:(NSError*)error;
@@ -16,7 +16,7 @@
 
 @interface NewsDemandServiceCommunicator : NSObject
 
-@property (strong, nonatomic) id<ColombioServiceCommunicatorDelegate> delegate;
+@property (strong, nonatomic) id<NewsDemandServiceCommunicatorDelegate> delegate;
 
 + (NSString*)getSignedRequest; //conveniance static method for getting data with signed request
 + (id)sharedManager;//singleton call

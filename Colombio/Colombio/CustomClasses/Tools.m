@@ -13,8 +13,30 @@
 
 + (NSInteger)getNumberOfNewDemands{
     NSMutableString *sql = [NSMutableString stringWithFormat:@"SELECT count(*) FROM newsdemandlist where isread = 0 AND end_timestamp >= '%@'",[NSDate date]];
-    AppDelegate *appdelegate = [[UIApplication sharedApplication] delegate];
+    AppDelegate *appdelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     return [[appdelegate.db getColForSQL:sql] integerValue];
+}
+
++ (BOOL)checkForNewNotification{
+    NSMutableString *sql = [NSMutableString stringWithFormat:@"SELECT count(*) FROM timeline_notifications where is_read = 0"];
+    AppDelegate *appdelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    NSInteger count = [[appdelegate.db getColForSQL:sql] integerValue];
+    if (count==0) {
+        return NO;
+    }else{
+        return YES;
+    }
+}
+
++ (BOOL)checkForNewNotificationWithID:(NSInteger)nid{
+    NSMutableString *sql = [NSMutableString stringWithFormat:@"SELECT count(*) FROM timeline_notifications where is_read = 0 and nid = %ld", (long)nid];
+    AppDelegate *appdelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    NSInteger count = [[appdelegate.db getColForSQL:sql] integerValue];
+    if (count==0) {
+        return NO;
+    }else{
+        return YES;
+    }
 }
 
 + (UILabel*)getBadgeObject:(long )count frame:(CGRect)frame{

@@ -198,7 +198,7 @@
     NSLocale *currentLocale = [NSLocale currentLocale];  // get the current locale.
     NSString *countryCode = [currentLocale objectForKey:NSLocaleCountryCode];
     for (NSDictionary *dict in _countries){
-        if ([dict[@"abbr"] isEqualToString:countryCode]) {
+        if ([[dict[@"abbr"] uppercaseString] isEqualToString:countryCode]) {
             return [dict[@"c_id"] integerValue];
         }
     }

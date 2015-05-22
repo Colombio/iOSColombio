@@ -16,6 +16,8 @@
 #import "TimelineUserReplyCell.h"
 #import "TimelineOfferCell.h"
 #import "TImelineWriteReplyCell.h"
+#import "TimelineSentNewsCell.h"
+#import "SelectMediaCell.h"
 #import "Loading.h"
 #import "Messages.h"
 
@@ -101,181 +103,196 @@ enum TimelineDetailsType{
     }
 }
 
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    if (section==0) {
+        UILabel *myLabel = [[UILabel alloc] init];
+        myLabel.frame = CGRectMake(5, 8, 320,15);
+        myLabel.font = [[UIConfiguration sharedInstance] getFont:FONT_HELVETICA_NEUE_MEDIUM_15];
+        myLabel.textColor = [[UIConfiguration sharedInstance] getColor:COLOR_NEXT_BUTTON];
+        myLabel.text  = [[Localized string:@"media_communication"] uppercaseString];
+        UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 30)];
+        headerView.backgroundColor = [UIColor whiteColor];
+        [headerView addSubview:myLabel];
+        return headerView;
+    }else if(section==_tableDataArray.count-1){
+        UILabel *myLabel = [[UILabel alloc] init];
+        myLabel.frame = CGRectMake(5, 8, 320, 15);
+        myLabel.font = [[UIConfiguration sharedInstance] getFont:FONT_HELVETICA_NEUE_MEDIUM_15];
+        myLabel.textColor = [[UIConfiguration sharedInstance] getColor:COLOR_NEXT_BUTTON];
+        myLabel.text  = [[Localized string:@"sent_news"] uppercaseString];
+        UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 30)];
+        headerView.backgroundColor = [UIColor whiteColor];
+        [headerView addSubview:myLabel];
+        return headerView;
+    }else{
+        UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 1)];
+        headerView.backgroundColor = [UIColor grayColor];
+        return headerView;
+    }
+    return nil;
+    
+}
+
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     NSDictionary *tDict = _tableDataArray[indexPath.section][indexPath.row];
-    if ([tDict[@"detailtype"] integerValue] == 1) {
-        
-        return ((CGSize)[self getHeightForText:tDict[@"msg"]]).height + 102.0;
-
-    }else if ([tDict[@"detailtype"] integerValue] == 2) {
-        
-        if ([tDict[@"offer_status"] integerValue]==0) {
+    
+    if (_tableDataArray.count-1 == indexPath.section) {
+        if (indexPath.row==0) {
+            CGSize size = [tDict[@"news_text"] sizeWithFont:[[UIConfiguration sharedInstance] getFont:FONT_HELVETICA_NEUE_REGULAR]
+                                          constrainedToSize:CGSizeMake(236, MAXFLOAT)
+                                              lineBreakMode:NSLineBreakByWordWrapping];
             
-            return ((CGSize)[self getHeightForText:[NSString stringWithFormat:[Localized string:@"price_offer"], tDict[@"offer"]]]).height + 156.0;
-            
-        }else if ([tDict[@"offer_status"] integerValue]==2) {
-            
-            CGFloat height =[self getHeightForText:[NSString stringWithFormat:[Localized string:@"accepted_offer"], tDict[@"offer"]]].height;
-            height += [self getHeightForText:[Localized string:@"cannot_sell"]].height;
-            
-            return height + 102.0;
-            
-        }else {
-            
-            return ((CGSize)[self getHeightForText:[NSString stringWithFormat:[Localized string:@"rejected_offer"], tDict[@"offer"]]]).height + 102.0;
-            
-        }
-        
-    }else if ([tDict[@"detailtype"] integerValue] == 3) {
-        if ([tDict[@"type"] isEqualToString:@"m"]) {
-            return ((CGSize)[self getHeightForText:tDict[@"message"]]).height + 102.0;
+            if (((NSString*)tDict[@"img"]).length>0) {
+                return 217+size.height;
+            }else{
+                return 97+size.height;
+            }
         }else{
-            return ((CGSize)[self getHeightForText:tDict[@"message"]]).height + 76.0;
-        }
-    }else if ([tDict[@"detailtype"] integerValue] == 4) {
-        
-        CGFloat height = [self textViewHeightForRowAtIndexPath:@(indexPath.section+indexPath.row)];
-        //((CLTextView*)_textViewsDict[indexPath]).frame.size.width
-        if (height>20.0) {
-            return height;
-        }else{
-            return 20.0;
+            return 60.0;
         }
         
+        
+    }else{
+        if ([tDict[@"detailtype"] integerValue] == 1) {
+            
+            return ((CGSize)[self getHeightForText:tDict[@"msg"]]).height + 102.0;
+            
+        }else if ([tDict[@"detailtype"] integerValue] == 2) {
+            
+            if ([tDict[@"offer_status"] integerValue]==0) {
+                
+                return ((CGSize)[self getHeightForText:[NSString stringWithFormat:[Localized string:@"price_offer"], tDict[@"offer"]]]).height + 156.0;
+                
+            }else if ([tDict[@"offer_status"] integerValue]==2) {
+                
+                CGFloat height =[self getHeightForText:[NSString stringWithFormat:[Localized string:@"accepted_offer"], tDict[@"offer"]]].height;
+                height += [self getHeightForText:[Localized string:@"cannot_sell"]].height;
+                
+                return height + 102.0;
+                
+            }else {
+                
+                return ((CGSize)[self getHeightForText:[NSString stringWithFormat:[Localized string:@"rejected_offer"], tDict[@"offer"]]]).height + 102.0;
+                
+            }
+            
+        }else if ([tDict[@"detailtype"] integerValue] == 3) {
+            if ([tDict[@"type"] isEqualToString:@"m"]) {
+                return ((CGSize)[self getHeightForText:tDict[@"message"]]).height + 102.0;
+            }else{
+                return ((CGSize)[self getHeightForText:tDict[@"message"]]).height + 76.0;
+            }
+        }else if ([tDict[@"detailtype"] integerValue] == 4) {
+            
+            CGFloat height = [self textViewHeightForRowAtIndexPath:@(indexPath.section+indexPath.row)];
+            //((CLTextView*)_textViewsDict[indexPath]).frame.size.width
+            if (height>30.0) {
+                return height;
+            }else{
+                return 35.0;
+            }
+            
+        }
     }
+    
     return 44.0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     NSDictionary *tDict = _tableDataArray[indexPath.section][indexPath.row];
-    switch ([tDict[@"detailtype"] integerValue]) {
-        case 1:
-        {
-            TimelineMediaReplyCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ratecell"];
+    if (_tableDataArray.count-1 == indexPath.section) {
+        if (indexPath.row==0) {
+            TimelineSentNewsCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
             if (cell==nil) {
-                cell=[[TimelineMediaReplyCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"ratecell"];
+                cell=[[TimelineSentNewsCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
             }
-            cell.lblName.text = tDict[@"medianame"];
-            cell.lblTypeName.text = [[Localized string:appdelegate.dicMediaTypes[tDict[@"media_type"]]] uppercaseString];
-            cell.lblDate.text =  [Tools getStringFromDateString:tDict[@"timestamp"] withFormat:@"dd/MM/yyyy"];
-            cell.lblMessage.text = tDict[@"msg"];
-            cell.CS_lblMessageHeight.constant = ((CGSize)[self getHeightForText:tDict[@"msg"]]).height;
-            cell.CS_lblViewContainerHeight.constant += cell.CS_lblMessageHeight.constant;
+            
+            cell.lblName.text = @"dsds";
+            cell.lblTitle.text = tDict[@"news_title"];
+            NSDateFormatter *formatter=[[NSDateFormatter alloc]init];
+            [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss Z"];
+            NSDate *date = [formatter dateFromString:tDict[@"timestamp"]];
+            [formatter setDateFormat:@"dd/MM/yyyy"];
+            cell.lblDate.text = [NSString stringWithFormat:@"%@: %@ %@", [Localized string:@"sent"], [Localized string:((AppDelegate*)[UIApplication sharedApplication].delegate).dicTimelineButt[tDict[@"type_id"]]], [formatter stringFromDate:date]];
+            
+            cell.lblDescription.text = tDict[@"news_text"];
+            
+            CGSize size = [tDict[@"news_text"] sizeWithFont:[[UIConfiguration sharedInstance] getFont:FONT_HELVETICA_NEUE_REGULAR] constrainedToSize:CGSizeMake(236, MAXFLOAT) lineBreakMode:NSLineBreakByWordWrapping];
+            
+            cell.CS_lblDescriptionHeight.constant = size.height;
+            
+            if (((NSString*)tDict[@"img"]).length>0) {
+                dispatch_queue_t concurrentQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+                dispatch_async(concurrentQueue, ^{
+                    NSURL *url = [NSURL URLWithString:tDict[@"img"]];
+                    UIImage *image = [[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:url]];
+                    if (image!=nil) {
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            cell.imgSample.image = image;
+                            cell.imgSample.contentMode = UIViewContentModeScaleAspectFill;
+                            cell.imgSample.clipsToBounds=YES;
+                        });
+                    }
+                });
+            }else{
+                [cell.imgSample removeFromSuperview];
+            }
+            return cell;
+        }else{
+            SelectMediaCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+            if (cell==nil) {
+                cell=[[SelectMediaCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+            }
+            if (NSFoundationVersionNumber <= NSFoundationVersionNumber_iOS_7_1)
+            {
+                cell.contentView.frame = cell.bounds;
+                cell.contentView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleRightMargin |UIViewAutoresizingFlexibleTopMargin |UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleBottomMargin;
+            }
+            
+            cell.lblMediaName.text = tDict[@"medianame"];
+            cell.lblMediaType.text = [[Localized string:appdelegate.dicMediaTypes[tDict[@"media_type"]]] uppercaseString];
             
             dispatch_queue_t concurrentQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
             //this will start the image loading in bg
             dispatch_async(concurrentQueue, ^{
-                if ([appdelegate.mediaImages objectForKey:tDict[@"mid"]]==nil) {
+                if ([appdelegate.mediaImages objectForKey:tDict[@"id"]]==nil) {
                     NSURL *url = [NSURL URLWithString:tDict[@"media_icon"]];
                     UIImage *image = [[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:url]];
                     if (image!=nil) {
-                        [appdelegate.mediaImages setObject:image forKey:tDict[@"mid"]];
+                        [appdelegate.mediaImages setObject:image forKey:tDict[@"id"]];
                         dispatch_async(dispatch_get_main_queue(), ^{
-                            cell.imgLogo.image = [appdelegate.mediaImages objectForKey:tDict[@"mid"]];
+                            cell.imgMedia.image = [appdelegate.mediaImages objectForKey:tDict[@"id"]];
                         });
                     }else{
                         dispatch_async(dispatch_get_main_queue(), ^{
-                            cell.imgLogo.image = [UIImage imageNamed:@"uploadphoto"];
+                            cell.imgMedia.image = [UIImage imageNamed:@"uploadphoto"];
                         });
                     }
-                    
                 }else{
                     dispatch_async(dispatch_get_main_queue(), ^{
-                        cell.imgLogo.image = [appdelegate.mediaImages objectForKey:tDict[@"mid"]];
+                        cell.imgMedia.image = [appdelegate.mediaImages objectForKey:tDict[@"id"]];
                     });
                 }
             });
-            
             return cell;
         }
-            break;
-            
-        case 2:
-        {
-            TimelineOfferCell *cell = [tableView dequeueReusableCellWithIdentifier:@"offercell"];
-            if (cell==nil) {
-                cell=[[TimelineOfferCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"offercell"];
-            }
-            cell.delegate = self;
-            cell.lblName.text = tDict[@"medianame"];
-            cell.lblTypeName.text = [[Localized string:appdelegate.dicMediaTypes[tDict[@"media_type"]]] uppercaseString];
-            cell.lblDate.text =  [Tools getStringFromDateString:tDict[@"timestamp"] withFormat:@"dd/MM/yyyy"];
-            cell.offerID = [tDict[@"c_offer_id"] integerValue];
-            cell.CS_lblViewContainerHeight.constant -= cell.CS_lblMessageHeight.constant;
-            
-            if ([tDict[@"offer_status"] integerValue]==0) {
-                
-                cell.lblMessage.text = [NSString stringWithFormat:[Localized string:@"price_offer"], tDict[@"offer"]];
-                
-            }else if ([tDict[@"offer_status"] integerValue]==2) {
-                
-                cell.btnAccept.hidden=YES;
-                cell.btnReject.hidden=YES;
-                
-                cell.lblMessage.text = [NSString stringWithFormat:[Localized string:@"accepted_offer"], tDict[@"offer"]];
-                cell.lblDisclaimer.text = [Localized string:@"cannot_sell"];
-                
-                cell.CS_lblDisclaimerHeight.constant =  [self getHeightForText:cell.lblDisclaimer.text].height;
-                cell.CS_lblMessageHeight.constant = ((CGSize)[self getHeightForText:cell.lblMessage.text]).height;
-                cell.CS_lblViewContainerHeight.constant += cell.CS_lblMessageHeight.constant;
-                cell.CS_lblViewContainerHeight.constant += cell.CS_lblDisclaimerHeight.constant +5;
-                
-                
-                return cell;
-                
-            }else {
-                
-                cell.lblMessage.text = [NSString stringWithFormat:[Localized string:@"rejected_offer"], tDict[@"offer"]];
-                cell.btnAccept.hidden=YES;
-                cell.btnReject.hidden=YES;
-            }
-            
-            dispatch_queue_t concurrentQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-            //this will start the image loading in bg
-            dispatch_async(concurrentQueue, ^{
-                if ([appdelegate.mediaImages objectForKey:tDict[@"mid"]]==nil) {
-                    NSURL *url = [NSURL URLWithString:tDict[@"media_icon"]];
-                    UIImage *image = [[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:url]];
-                    if (image!=nil) {
-                        [appdelegate.mediaImages setObject:image forKey:tDict[@"mid"]];
-                        dispatch_async(dispatch_get_main_queue(), ^{
-                            cell.imgLogo.image = [appdelegate.mediaImages objectForKey:tDict[@"mid"]];
-                        });
-                    }else{
-                        dispatch_async(dispatch_get_main_queue(), ^{
-                            cell.imgLogo.image = [UIImage imageNamed:@"uploadphoto"];
-                        });
-                    }
-                    
-                }else{
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        cell.imgLogo.image = [appdelegate.mediaImages objectForKey:tDict[@"mid"]];
-                    });
-                }
-            });
-            
-            
-            cell.CS_lblMessageHeight.constant = ((CGSize)[self getHeightForText:cell.lblMessage.text]).height;
-            cell.CS_lblViewContainerHeight.constant += cell.CS_lblMessageHeight.constant+3;
-            return cell;
-        }
-            break;
-            
-        case 3:
-        {
-            if ([tDict[@"type"] isEqualToString:@"m"]) {
-                TimelineMediaReplyCell *cell = [tableView dequeueReusableCellWithIdentifier:@"replycell"];
+    }else{
+        switch ([tDict[@"detailtype"] integerValue]) {
+            case 1:
+            {
+                TimelineMediaReplyCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ratecell"];
                 if (cell==nil) {
-                    cell=[[TimelineMediaReplyCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"replycell"];
+                    cell=[[TimelineMediaReplyCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"ratecell"];
                 }
                 cell.lblName.text = tDict[@"medianame"];
                 cell.lblTypeName.text = [[Localized string:appdelegate.dicMediaTypes[tDict[@"media_type"]]] uppercaseString];
                 cell.lblDate.text =  [Tools getStringFromDateString:tDict[@"timestamp"] withFormat:@"dd/MM/yyyy"];
-                cell.lblMessage.text = tDict[@"message"];
-                cell.CS_lblMessageHeight.constant = ((CGSize)[self getHeightForText:tDict[@"message"]]).height;
-                cell.CS_lblViewContainerHeight.constant += cell.CS_lblMessageHeight.constant+3;
+                cell.lblMessage.text = tDict[@"msg"];
+                cell.CS_lblMessageHeight.constant = ((CGSize)[self getHeightForText:tDict[@"msg"]]).height;
+                cell.CS_lblViewContainerHeight.constant += cell.CS_lblMessageHeight.constant;
                 
                 dispatch_queue_t concurrentQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
                 //this will start the image loading in bg
@@ -302,47 +319,184 @@ enum TimelineDetailsType{
                 });
                 
                 return cell;
+            }
+                break;
                 
-            }else{
-                
-                TimelineUserReplyCell *cell = [tableView dequeueReusableCellWithIdentifier:@"userreplycell"];
+            case 2:
+            {
+                TimelineOfferCell *cell = [tableView dequeueReusableCellWithIdentifier:@"offercell"];
                 if (cell==nil) {
-                    cell=[[TimelineUserReplyCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"userreplycell"];
+                    cell=[[TimelineOfferCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"offercell"];
                 }
-                cell.lblName.text = ((NSString*)tDict[@"name"]).length>0?tDict[@"name"]:@"N/A";
+                cell.delegate = self;
+                cell.lblName.text = tDict[@"medianame"];
+                cell.lblTypeName.text = [[Localized string:appdelegate.dicMediaTypes[tDict[@"media_type"]]] uppercaseString];
                 cell.lblDate.text =  [Tools getStringFromDateString:tDict[@"timestamp"] withFormat:@"dd/MM/yyyy"];
-                cell.lblMessage.text = tDict[@"message"];
-                cell.CS_lblMessageHeight.constant = ((CGSize)[self getHeightForText:tDict[@"message"]]).height;
+                cell.offerID = [tDict[@"c_offer_id"] integerValue];
+                cell.CS_lblViewContainerHeight.constant -= cell.CS_lblMessageHeight.constant;
+                
+                if ([tDict[@"offer_status"] integerValue]==0) {
+                    
+                    cell.lblMessage.text = [NSString stringWithFormat:[Localized string:@"price_offer"], tDict[@"offer"]];
+                    
+                }else if ([tDict[@"offer_status"] integerValue]==2) {
+                    
+                    cell.btnAccept.hidden=YES;
+                    cell.btnReject.hidden=YES;
+                    
+                    cell.lblMessage.text = [NSString stringWithFormat:[Localized string:@"accepted_offer"], tDict[@"offer"]];
+                    cell.lblDisclaimer.text = [Localized string:@"cannot_sell"];
+                    
+                    cell.CS_lblDisclaimerHeight.constant =  [self getHeightForText:cell.lblDisclaimer.text].height;
+                    cell.CS_lblMessageHeight.constant = ((CGSize)[self getHeightForText:cell.lblMessage.text]).height;
+                    cell.CS_lblViewContainerHeight.constant += cell.CS_lblMessageHeight.constant;
+                    cell.CS_lblViewContainerHeight.constant += cell.CS_lblDisclaimerHeight.constant +3;
+                    
+                    dispatch_queue_t concurrentQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+                    //this will start the image loading in bg
+                    dispatch_async(concurrentQueue, ^{
+                        if ([appdelegate.mediaImages objectForKey:tDict[@"mid"]]==nil) {
+                            NSURL *url = [NSURL URLWithString:tDict[@"media_icon"]];
+                            UIImage *image = [[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:url]];
+                            if (image!=nil) {
+                                [appdelegate.mediaImages setObject:image forKey:tDict[@"mid"]];
+                                dispatch_async(dispatch_get_main_queue(), ^{
+                                    cell.imgLogo.image = [appdelegate.mediaImages objectForKey:tDict[@"mid"]];
+                                });
+                            }else{
+                                dispatch_async(dispatch_get_main_queue(), ^{
+                                    cell.imgLogo.image = [UIImage imageNamed:@"uploadphoto"];
+                                });
+                            }
+                            
+                        }else{
+                            dispatch_async(dispatch_get_main_queue(), ^{
+                                cell.imgLogo.image = [appdelegate.mediaImages objectForKey:tDict[@"mid"]];
+                            });
+                        }
+                    });
+                    
+                    return cell;
+                    
+                }else {
+                    
+                    cell.lblMessage.text = [NSString stringWithFormat:[Localized string:@"rejected_offer"], tDict[@"offer"]];
+                    cell.btnAccept.hidden=YES;
+                    cell.btnReject.hidden=YES;
+                }
+                
+                dispatch_queue_t concurrentQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+                //this will start the image loading in bg
+                dispatch_async(concurrentQueue, ^{
+                    if ([appdelegate.mediaImages objectForKey:tDict[@"mid"]]==nil) {
+                        NSURL *url = [NSURL URLWithString:tDict[@"media_icon"]];
+                        UIImage *image = [[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:url]];
+                        if (image!=nil) {
+                            [appdelegate.mediaImages setObject:image forKey:tDict[@"mid"]];
+                            dispatch_async(dispatch_get_main_queue(), ^{
+                                cell.imgLogo.image = [appdelegate.mediaImages objectForKey:tDict[@"mid"]];
+                            });
+                        }else{
+                            dispatch_async(dispatch_get_main_queue(), ^{
+                                cell.imgLogo.image = [UIImage imageNamed:@"uploadphoto"];
+                            });
+                        }
+                        
+                    }else{
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            cell.imgLogo.image = [appdelegate.mediaImages objectForKey:tDict[@"mid"]];
+                        });
+                    }
+                });
+                
+                
+                cell.CS_lblMessageHeight.constant = ((CGSize)[self getHeightForText:cell.lblMessage.text]).height;
                 cell.CS_lblViewContainerHeight.constant += cell.CS_lblMessageHeight.constant+3;
                 return cell;
             }
-        }
-            break;
-        case 4:{
-            TImelineWriteReplyCell *cell = [tableView dequeueReusableCellWithIdentifier:@"writereplycell"];
-            if (cell==nil) {
-                cell=[[TImelineWriteReplyCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"writereplycell"];
+                break;
+                
+            case 3:
+            {
+                if ([tDict[@"type"] isEqualToString:@"m"]) {
+                    TimelineMediaReplyCell *cell = [tableView dequeueReusableCellWithIdentifier:@"replycell"];
+                    if (cell==nil) {
+                        cell=[[TimelineMediaReplyCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"replycell"];
+                    }
+                    cell.lblName.text = tDict[@"medianame"];
+                    cell.lblTypeName.text = [[Localized string:appdelegate.dicMediaTypes[tDict[@"media_type"]]] uppercaseString];
+                    cell.lblDate.text =  [Tools getStringFromDateString:tDict[@"timestamp"] withFormat:@"dd/MM/yyyy"];
+                    cell.lblMessage.text = tDict[@"message"];
+                    cell.CS_lblMessageHeight.constant = ((CGSize)[self getHeightForText:tDict[@"message"]]).height;
+                    cell.CS_lblViewContainerHeight.constant += cell.CS_lblMessageHeight.constant+3;
+                    
+                    dispatch_queue_t concurrentQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+                    //this will start the image loading in bg
+                    dispatch_async(concurrentQueue, ^{
+                        if ([appdelegate.mediaImages objectForKey:tDict[@"mid"]]==nil) {
+                            NSURL *url = [NSURL URLWithString:tDict[@"media_icon"]];
+                            UIImage *image = [[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:url]];
+                            if (image!=nil) {
+                                [appdelegate.mediaImages setObject:image forKey:tDict[@"mid"]];
+                                dispatch_async(dispatch_get_main_queue(), ^{
+                                    cell.imgLogo.image = [appdelegate.mediaImages objectForKey:tDict[@"mid"]];
+                                });
+                            }else{
+                                dispatch_async(dispatch_get_main_queue(), ^{
+                                    cell.imgLogo.image = [UIImage imageNamed:@"uploadphoto"];
+                                });
+                            }
+                            
+                        }else{
+                            dispatch_async(dispatch_get_main_queue(), ^{
+                                cell.imgLogo.image = [appdelegate.mediaImages objectForKey:tDict[@"mid"]];
+                            });
+                        }
+                    });
+                    
+                    return cell;
+                    
+                }else{
+                    
+                    TimelineUserReplyCell *cell = [tableView dequeueReusableCellWithIdentifier:@"userreplycell"];
+                    if (cell==nil) {
+                        cell=[[TimelineUserReplyCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"userreplycell"];
+                    }
+                    cell.lblName.text = ((NSString*)tDict[@"name"]).length>0?tDict[@"name"]:@"N/A";
+                    cell.lblDate.text =  [Tools getStringFromDateString:tDict[@"timestamp"] withFormat:@"dd/MM/yyyy"];
+                    cell.lblMessage.text = tDict[@"message"];
+                    cell.CS_lblMessageHeight.constant = ((CGSize)[self getHeightForText:tDict[@"message"]]).height;
+                    cell.CS_lblViewContainerHeight.constant += cell.CS_lblMessageHeight.constant+3;
+                    return cell;
+                }
             }
-            cell.delegate = self;
-            _textViewsDict[@(indexPath.section+indexPath.row)] = cell.txtView;
-            
-            cell.nid = [tDict[@"nid"] longValue];
-            cell.mid = [tDict[@"mid"] longValue];
-            cell.txtView.delegate = self;
-        
-            return cell;
-            
-        }
-            break;
-        default:{
-            
-            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
-            if (cell==nil) {
-                cell=[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+                break;
+            case 4:{
+                TImelineWriteReplyCell *cell = [tableView dequeueReusableCellWithIdentifier:@"writereplycell"];
+                if (cell==nil) {
+                    cell=[[TImelineWriteReplyCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"writereplycell"];
+                }
+                cell.delegate = self;
+                _textViewsDict[@(indexPath.section+indexPath.row)] = cell.txtView;
+                
+                cell.nid = [tDict[@"nid"] longValue];
+                cell.mid = [tDict[@"mid"] longValue];
+                cell.txtView.delegate = self;
+                
+                return cell;
+                
             }
-            return cell;
+                break;
+            default:{
+                
+                UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+                if (cell==nil) {
+                    cell=[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+                }
+                return cell;
+            }
+                break;
         }
-            break;
     }
 }
 
@@ -356,7 +510,7 @@ enum TimelineDetailsType{
     CLTextView *calculationView = [_textViewsDict objectForKey:indexPath];
     CGFloat textViewWidth = calculationView.frame.size.width;
     CGSize size = [calculationView sizeThatFits:CGSizeMake(textViewWidth, MAXFLOAT)];
-    return size.height+2;
+    return size.height+5;
 }
 
 #pragma mark TextView delegate
@@ -465,7 +619,20 @@ enum TimelineDetailsType{
         [_tableDataArray addObject:tArray];
     }
     
+    //add sent news
+    NSMutableArray *tArray = [[NSMutableArray alloc] init];
+    [tArray addObject:_timelineDict];
     
+    
+    //add media
+    AppDelegate *appdelegte = (AppDelegate*)[UIApplication sharedApplication].delegate;
+    for (NSString *mediaid in mediaList) {
+       NSString *sql = [NSString stringWithFormat:@"select id, name as medianame, media_type, media_icon from media_list where id = %ld ", [mediaid integerValue]];
+       [tArray  addObject:[appdelegte.db getRowForSQL:sql]];
+    }
+    
+    
+    [_tableDataArray addObject:tArray];
     [spinner removeCustomSpinner];
     [_tblView reloadData];
 }

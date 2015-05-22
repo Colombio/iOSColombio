@@ -122,7 +122,6 @@
     }else{
         [appdelegate.db updateDictionary:tDict forTable:@"SELECTED_COUNTRIES" where:[NSString stringWithFormat:@" c_id='%d'", [_filteredCountries[indexPath.row][@"c_id"] intValue]]];
     }
-    
 }
 
 #pragma mark Load countries
@@ -152,7 +151,7 @@
     NSLocale *currentLocale = [NSLocale currentLocale];  // get the current locale.
     NSString *countryCode = [currentLocale objectForKey:NSLocaleCountryCode];
     for (NSDictionary *dict in _countries){
-        if ([dict[@"abbr"] isEqualToString:countryCode]) {
+        if ([[dict[@"abbr"] uppercaseString] isEqualToString:countryCode]) {
             return [dict[@"c_id"] integerValue];
         }
     }

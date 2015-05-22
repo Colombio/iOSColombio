@@ -64,7 +64,7 @@
         NSString *url_str = [NSString stringWithFormat:@"%@/api_user_managment/mau_update_profile/", BASE_URL];
         NSDictionary *userInfo = [self getUserInfo];
         
-        NSString *httpBody = [NSString stringWithFormat:@"signed_req=%@&user_email=%@&paypal_email=%@&user_pass=%@&user_pass_confirm=%@&first_name=%@&last_name=%@&phone_number=%@&anonymous=%d&country_id=%ld&first_login=0&current_id=%@",
+        NSString *httpBody = [NSString stringWithFormat:@"signed_req=%@&user_email=%@&paypal_email=%@&user_pass=%@&user_pass_confirm=%@&first_name=%@&last_name=%@&phone_number=%@&anonymous=%d&country_id=%ld&first_login=0&current_id=%@&installationID=%@",
                               signedRequest,
                               userInfo[@"user_email"],
                               userInfo[@"paypal_email"],
@@ -75,7 +75,8 @@
                               (userInfo[@"phone_number"]?userInfo[@"phone_number"]:@""),
                               [userInfo[@"anonymous"] intValue],
                               (long)[[NSUserDefaults standardUserDefaults] integerForKey:COUNTRY_ID],
-                              userInfo[@"user_id"]];
+                              userInfo[@"user_id"],
+                              ([[NSUserDefaults standardUserDefaults] objectForKey:PARSE_INSTALLATIONID]!=nil?[[NSUserDefaults standardUserDefaults] objectForKey:PARSE_INSTALLATIONID]:@"")];
         [csc sendAsyncHttp:url_str httpBody:httpBody cache:NSURLRequestReloadIgnoringCacheData timeoutInterval:TIMEOUT];
         [NSURLConnection sendAsynchronousRequest:csc.request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
                 NSDictionary *dicResponse = [NSJSONSerialization JSONObjectWithData:data options:0 error:NULL];
@@ -111,6 +112,7 @@
     NSError *error;
     NSData *jsonData = [NSJSONSerialization dataWithJSONObject:mediaVC.selectedMedia options:NSJSONWritingPrettyPrinted error:&error];
     NSString *selectedMedia = [[NSString alloc]initWithData:jsonData encoding:NSUTF8StringEncoding];
+    selectedMedia = [selectedMedia stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     NSString *httpBody = [NSString stringWithFormat:@"signed_req=%@&media=%@",signedRequest, selectedMedia];
     [csc sendAsyncHttp:url_str httpBody:httpBody cache:NSURLRequestReloadIgnoringCacheData timeoutInterval:TIMEOUT];
     [NSURLConnection sendAsynchronousRequest:csc.request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
@@ -118,12 +120,17 @@
         if(error==nil&&data!=nil){
             NSDictionary *response=nil;
             response =[NSJSONSerialization JSONObjectWithData:data options:0 error:NULL];
-            if(!strcmp("1",((NSString*)[response objectForKey:@"s"]).UTF8String)){
+            if(response!=nil && !strcmp("1",((NSString*)[response objectForKey:@"s"]).UTF8String)){
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [spinner removeCustomSpinner];
                     [self presentViewController:[[TabBarViewController alloc]  init] animated:YES completion:nil];
                 });
                 
+            }else{
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [spinner removeCustomSpinner];
+                    [self presentViewController:[[TabBarViewController alloc]  init] animated:YES completion:nil];
+                });
             }
         }
         else{

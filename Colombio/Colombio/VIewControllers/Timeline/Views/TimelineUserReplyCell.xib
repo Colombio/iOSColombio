@@ -35,7 +35,7 @@
                         <rect key="frame" x="68" y="45" width="236" height="22"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zzn-rH-sM1">
-                                <rect key="frame" x="5" y="0.0" width="236" height="15"/>
+                                <rect key="frame" x="5" y="3" width="236" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="15" id="DSy-9g-V5T"/>
                                 </constraints>
@@ -47,7 +47,7 @@
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LYi-RD-n7T">
-                                <rect key="frame" x="5" y="16" width="223" height="0.0"/>
+                                <rect key="frame" x="5" y="19" width="223" height="0.0"/>
                                 <constraints>
                                     <constraint firstAttribute="height" id="4qr-a9-B1v"/>
                                 </constraints>
@@ -65,7 +65,7 @@
                             <constraint firstItem="zzn-rH-sM1" firstAttribute="leading" secondItem="GjL-jw-PE1" secondAttribute="leading" constant="5" id="GDn-Ve-QJS"/>
                             <constraint firstItem="LYi-RD-n7T" firstAttribute="top" secondItem="zzn-rH-sM1" secondAttribute="top" constant="16" id="IMm-Uy-MZd"/>
                             <constraint firstAttribute="height" constant="22" id="Qpu-kv-sTS"/>
-                            <constraint firstItem="zzn-rH-sM1" firstAttribute="top" secondItem="GjL-jw-PE1" secondAttribute="top" id="Scd-1f-Zbh"/>
+                            <constraint firstItem="zzn-rH-sM1" firstAttribute="top" secondItem="GjL-jw-PE1" secondAttribute="top" constant="3" id="Scd-1f-Zbh"/>
                             <constraint firstAttribute="trailing" secondItem="LYi-RD-n7T" secondAttribute="trailing" constant="8" id="bav-EV-InJ"/>
                             <constraint firstAttribute="trailing" secondItem="zzn-rH-sM1" secondAttribute="trailing" constant="-5" id="wrj-f5-hLk"/>
                         </constraints>

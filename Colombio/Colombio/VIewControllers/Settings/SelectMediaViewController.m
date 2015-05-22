@@ -317,9 +317,10 @@
         NSArray *indexPaths = [[NSMutableArray alloc]initWithObjects:indexPath, nil];
         [_tblView reloadRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationAutomatic];
     }else{
+        NSMutableDictionary *tDict = [[NSMutableDictionary alloc] init];
         if ([_selectedMedia containsObject:_filteredMedia[indexPath.row][@"id"] ]) {
             [_selectedMedia removeObject:_filteredMedia[indexPath.row][@"id"]];
-            _filteredMedia[indexPath.row][@"status"] = @0;
+            tDict[@"status"] = @0;
             for(NSMutableDictionary *media in _media){
                 if ([media[@"id"] integerValue] == [_filteredMedia[indexPath.row][@"id"] integerValue]) {
                     media[@"status"] = @0;
@@ -327,7 +328,7 @@
             }
         }else{
             [_selectedMedia addObject:_filteredMedia[indexPath.row][@"id"]];
-            _filteredMedia[indexPath.row][@"status"] = @1;
+            tDict[@"status"] = @1;
             for(NSMutableDictionary *media in _media){
                 if ([media[@"id"] integerValue] == [_filteredMedia[indexPath.row][@"id"] integerValue]) {
                     media[@"status"] = @1;
@@ -338,8 +339,6 @@
         [_tblView reloadRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationAutomatic];
         
         if (!_isForNewsUpload) {
-            NSMutableDictionary *tDict = [[NSMutableDictionary alloc] init];
-            tDict[@"status"] = _filteredMedia[indexPath.row][@"status"];
             tDict[@"media_id"] = @([_filteredMedia[indexPath.row][@"id"] integerValue]);
             NSString *sql = [NSString stringWithFormat:@"SELECT count(*) FROM selected_media WHERE media_id = '%d'", [_filteredMedia[indexPath.row][@"id"] intValue]];
             if ([[appdelegate.db getColForSQL:sql] integerValue] == 0) {

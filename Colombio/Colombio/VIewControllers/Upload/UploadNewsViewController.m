@@ -268,7 +268,7 @@
         _imgInfo.image = [UIImage imageNamed:@"pass.png"];
         _lblUploading.text = [Localized string:@"send_success"];
     });
-     NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(backToHome) userInfo:nil repeats:NO];
+    NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(backToHome) userInfo:nil repeats:NO];
 }
 
 - (void)navigateBack{

@@ -258,24 +258,23 @@
         mediaName = _mergedMedia[indexPath.section][indexPath.row][@"name"];
         [csc fetchMediaPhoneNumber:[_mergedMedia[indexPath.section][indexPath.row][@"id"] integerValue]];
     }else{
+         NSMutableDictionary *tDict = [[NSMutableDictionary alloc] init];
         if ([_selectedMedia containsObject:_mergedMedia[indexPath.section][indexPath.row][@"id"] ]) {
-         [_selectedMedia removeObject:_mergedMedia[indexPath.section][indexPath.row][@"id"]];
-         _mergedMedia[indexPath.section][indexPath.row][@"status"] = @0;
+             [_selectedMedia removeObject:_mergedMedia[indexPath.section][indexPath.row][@"id"]];
+             tDict[@"status"] = @0;
          }else{
              [_selectedMedia addObject:_mergedMedia[indexPath.section][indexPath.row][@"id"]];
-             _mergedMedia[indexPath.section][indexPath.row][@"status"] = @1;
+             tDict[@"status"] = @1;
          }
          NSArray *indexPaths = [[NSMutableArray alloc]initWithObjects:indexPath, nil];
          [_tblView reloadRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationAutomatic];
         
-         NSMutableDictionary *tDict = [[NSMutableDictionary alloc] init];
-         //tDict[@"status"] = _filteredMedia[indexPath.row][@"status"];
          tDict[@"media_id"] = @([_mergedMedia[indexPath.section][indexPath.row][@"id"] integerValue]);
          NSString *sql = [NSString stringWithFormat:@"SELECT count(*) FROM selected_media WHERE media_id = '%d'", [_mergedMedia[indexPath.section][indexPath.row][@"id"] intValue]];
          if ([[appdelegate.db getColForSQL:sql] integerValue] == 0) {
              [appdelegate.db insertDictionaryWithoutColumnCheck:tDict forTable:@"SELECTED_MEDIA"];
          }else{
-             [appdelegate.db updateDictionary:tDict forTable:@"SELECTED_MEDIA" where:[NSString stringWithFormat:@" media_id='%d'", [_mergedMedia[indexPath.section][indexPath.row][@"media_id"] intValue]]];
+             [appdelegate.db updateDictionary:tDict forTable:@"SELECTED_MEDIA" where:[NSString stringWithFormat:@" media_id='%d'", [tDict[@"media_id"] intValue]]];
          }
     }
 }
@@ -324,7 +323,7 @@
     [self addMediaTypeTextForFiltering:_favMedia];
     _filteredOtherMedia = _otherMedia;
     _filteredFavMedia = [self addColombioOnTop:_favMedia];
-    //[_selectedMedia addObjectsFromArray:_favMediaID];
+    [_selectedMedia addObjectsFromArray:_favMediaID];
     _mergedMedia = [[NSMutableArray alloc] initWithObjects:_filteredFavMedia, _filteredOtherMedia, nil];
     @synchronized(self){
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -360,12 +359,14 @@
 
 #pragma mark Save Media
 - (void)uploadFavMedia{
+    [spinner startCustomSpinner2:self.view spinMessage:@""];
     NSString *signedRequest = [ColombioServiceCommunicator getSignedRequest];
     NSString *url_str = [NSString stringWithFormat:@"%@/api_content/update_fav_media/", BASE_URL];
     
     NSError *error;
     NSData *jsonData = [NSJSONSerialization dataWithJSONObject:_selectedMedia options:NSJSONWritingPrettyPrinted error:&error];
     NSString *selectedMedia = [[NSString alloc]initWithData:jsonData encoding:NSUTF8StringEncoding];
+    selectedMedia = [selectedMedia stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     NSString *httpBody = [NSString stringWithFormat:@"signed_req=%@&media=%@",signedRequest, selectedMedia];
     [csc sendAsyncHttp:url_str httpBody:httpBody cache:NSURLRequestReloadIgnoringCacheData timeoutInterval:TIMEOUT];
     [NSURLConnection sendAsynchronousRequest:csc.request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
@@ -373,12 +374,23 @@
         if(error==nil&&data!=nil){
             NSDictionary *response=nil;
             response =[NSJSONSerialization JSONObjectWithData:data options:0 error:NULL];
-            if(!strcmp("1",((NSString*)[response objectForKey:@"s"]).UTF8String)){
-                [self.navigationController popViewControllerAnimated:YES];
+            if(response!=nil && !strcmp("1",((NSString*)[response objectForKey:@"s"]).UTF8String)){
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [spinner removeCustomSpinner];
+                    [self.navigationController popViewControllerAnimated:YES];
+                });
+            }else{
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [spinner removeCustomSpinner];
+                    [Messages showErrorMsg:@"error_web_request"];
+                });
             }
         }
         else{
-            [Messages showErrorMsg:@"error_web_request"];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [spinner removeCustomSpinner];
+                [Messages showErrorMsg:@"error_web_request"];
+            });
         }
     }];
 }

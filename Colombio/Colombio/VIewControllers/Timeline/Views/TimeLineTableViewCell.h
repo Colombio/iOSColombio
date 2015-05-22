@@ -16,5 +16,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblTitle;
 @property (weak, nonatomic) IBOutlet UITextView *txtDescription;
 @property (weak, nonatomic) IBOutlet UIImageView *imgSample;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *CS_txtViewHeight;
+
 
 @end

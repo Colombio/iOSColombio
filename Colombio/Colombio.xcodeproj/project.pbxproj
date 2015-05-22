@@ -148,6 +148,14 @@
 		BBE172641AC89D29009517A7 /* NewsDemandContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBE172631AC89D29009517A7 /* NewsDemandContainerViewController.m */; };
 		BBE70E021ACF3C2400C203C3 /* TimelineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBE70E001ACF3C2400C203C3 /* TimelineViewController.m */; };
 		BBE70E031ACF3C2400C203C3 /* TimelineViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBE70E011ACF3C2400C203C3 /* TimelineViewController.xib */; };
+		BBE8F92A1B0E99EC0021DD00 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBE8F9291B0E99EC0021DD00 /* Bolts.framework */; };
+		BBE929111B0D2C9900BCDB3F /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBE9290F1B0D2C9900BCDB3F /* Parse.framework */; };
+		BBE929131B0D2CC300BCDB3F /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBE929121B0D2CC300BCDB3F /* AudioToolbox.framework */; };
+		BBE929151B0D2CE100BCDB3F /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBE929141B0D2CE100BCDB3F /* Security.framework */; };
+		BBE929171B0D2CEC00BCDB3F /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBE929161B0D2CEC00BCDB3F /* StoreKit.framework */; };
+		BBEB696D1B0BEA7C00533001 /* TimelineSentNewsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BBEB696B1B0BEA7C00533001 /* TimelineSentNewsCell.m */; };
+		BBEB696E1B0BEA7C00533001 /* TimelineSentNewsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBEB696C1B0BEA7C00533001 /* TimelineSentNewsCell.xib */; };
+		BBEB69711B0C023400533001 /* TimelineServiceCommunicator.m in Sources */ = {isa = PBXBuildFile; fileRef = BBEB69701B0C023400533001 /* TimelineServiceCommunicator.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -378,6 +386,16 @@
 		BBE70DFF1ACF3C2400C203C3 /* TimelineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimelineViewController.h; sourceTree = "<group>"; };
 		BBE70E001ACF3C2400C203C3 /* TimelineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimelineViewController.m; sourceTree = "<group>"; };
 		BBE70E011ACF3C2400C203C3 /* TimelineViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimelineViewController.xib; sourceTree = "<group>"; };
+		BBE8F9291B0E99EC0021DD00 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
+		BBE9290F1B0D2C9900BCDB3F /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
+		BBE929121B0D2CC300BCDB3F /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		BBE929141B0D2CE100BCDB3F /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		BBE929161B0D2CEC00BCDB3F /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		BBEB696A1B0BEA7C00533001 /* TimelineSentNewsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimelineSentNewsCell.h; sourceTree = "<group>"; };
+		BBEB696B1B0BEA7C00533001 /* TimelineSentNewsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimelineSentNewsCell.m; sourceTree = "<group>"; };
+		BBEB696C1B0BEA7C00533001 /* TimelineSentNewsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimelineSentNewsCell.xib; sourceTree = "<group>"; };
+		BBEB696F1B0C023400533001 /* TimelineServiceCommunicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimelineServiceCommunicator.h; sourceTree = "<group>"; };
+		BBEB69701B0C023400533001 /* TimelineServiceCommunicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimelineServiceCommunicator.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -385,6 +403,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BBE929171B0D2CEC00BCDB3F /* StoreKit.framework in Frameworks */,
+				BBE929151B0D2CE100BCDB3F /* Security.framework in Frameworks */,
+				BBE929131B0D2CC300BCDB3F /* AudioToolbox.framework in Frameworks */,
 				BBB79D201A5CB3DD001A876A /* FacebookSDK.framework in Frameworks */,
 				BBB79D211A5CB3DD001A876A /* FBUserSettingsViewResources.bundle in Frameworks */,
 				BBCF58EF1A29412100CE64B4 /* libsqlite3.dylib in Frameworks */,
@@ -398,8 +419,10 @@
 				BBB33AF61A27DFCE008D0E26 /* SystemConfiguration.framework in Frameworks */,
 				BBB33AF41A27DFC5008D0E26 /* CoreGraphics.framework in Frameworks */,
 				BBB33AF21A27DFBE008D0E26 /* MobileCoreServices.framework in Frameworks */,
+				BBE929111B0D2C9900BCDB3F /* Parse.framework in Frameworks */,
 				BBB33AF01A27DFA8008D0E26 /* libz.dylib in Frameworks */,
 				BBB33AEE1A27DF9B008D0E26 /* AssetsLibrary.framework in Frameworks */,
+				BBE8F92A1B0E99EC0021DD00 /* Bolts.framework in Frameworks */,
 				BBB33AEB1A27DF6D008D0E26 /* CoreLocation.framework in Frameworks */,
 				BBB33AEC1A27DF6D008D0E26 /* QuartzCore.framework in Frameworks */,
 			);
@@ -439,6 +462,8 @@
 				BBAE1F1C1A37B51F0008B772 /* ColombioServiceCommunicator.m */,
 				BBB6B17B1AFD58FA004111F3 /* NewsDemandServiceCommunicator.h */,
 				BBB6B17C1AFD58FA004111F3 /* NewsDemandServiceCommunicator.m */,
+				BBEB696F1B0C023400533001 /* TimelineServiceCommunicator.h */,
+				BBEB69701B0C023400533001 /* TimelineServiceCommunicator.m */,
 			);
 			path = WebService;
 			sourceTree = "<group>";
@@ -573,6 +598,11 @@
 		BBB33AE81A27DF13008D0E26 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BBE929161B0D2CEC00BCDB3F /* StoreKit.framework */,
+				BBE929141B0D2CE100BCDB3F /* Security.framework */,
+				BBE929121B0D2CC300BCDB3F /* AudioToolbox.framework */,
+				BBE8F9291B0E99EC0021DD00 /* Bolts.framework */,
+				BBE9290F1B0D2C9900BCDB3F /* Parse.framework */,
 				BBB79D1E1A5CB3DD001A876A /* FacebookSDK.framework */,
 				BBB79D1F1A5CB3DD001A876A /* FBUserSettingsViewResources.bundle */,
 				BBCF58EE1A29412100CE64B4 /* libsqlite3.dylib */,
@@ -689,6 +719,9 @@
 				BBBA2F8B1B06A22300F8D384 /* TImelineWriteReplyCell.h */,
 				BBBA2F8C1B06A22300F8D384 /* TImelineWriteReplyCell.m */,
 				BBBA2F8D1B06A22300F8D384 /* TImelineWriteReplyCell.xib */,
+				BBEB696A1B0BEA7C00533001 /* TimelineSentNewsCell.h */,
+				BBEB696B1B0BEA7C00533001 /* TimelineSentNewsCell.m */,
+				BBEB696C1B0BEA7C00533001 /* TimelineSentNewsCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -913,6 +946,7 @@
 				BBCF58E61A293F6700CE64B4 /* Localizable.strings in Resources */,
 				BBAE1F251A37B68E0008B772 /* ForgotPasswordViewController.xib in Resources */,
 				BBB7A4161B016B77000F92ED /* TimelineDetailsViewController.xib in Resources */,
+				BBEB696E1B0BEA7C00533001 /* TimelineSentNewsCell.xib in Resources */,
 				BBB6A0641A48D791006F61B3 /* StartViewController.xib in Resources */,
 				BBE70E031ACF3C2400C203C3 /* TimelineViewController.xib in Resources */,
 				BBB7B7EA1AEB052D0013A602 /* SettingsViewController.xib in Resources */,
@@ -984,6 +1018,7 @@
 				BBBA2F8E1B06A22300F8D384 /* TImelineWriteReplyCell.m in Sources */,
 				BBB144841A78E66800980BB4 /* UserInfoUploadViewController.m in Sources */,
 				BBBB045C1AC4B3F70023DD86 /* NewsDemandCell.m in Sources */,
+				BBEB696D1B0BEA7C00533001 /* TimelineSentNewsCell.m in Sources */,
 				58A004FE1A60DBE300E7BA68 /* CountriesViewController.m in Sources */,
 				BBCF58A31A29395400CE64B4 /* YourInfo.m in Sources */,
 				BBAE1F1D1A37B51F0008B772 /* ColombioServiceCommunicator.m in Sources */,
@@ -993,6 +1028,7 @@
 				BBE70E021ACF3C2400C203C3 /* TimelineViewController.m in Sources */,
 				BBB5B4831AABCA0E00765861 /* SelectCountryCell.m in Sources */,
 				BBC77C691A6889610069FD9D /* PhotoLibraryViewController.m in Sources */,
+				BBEB69711B0C023400533001 /* TimelineServiceCommunicator.m in Sources */,
 				BBB7F33A1A6209560014909B /* NewsData.m in Sources */,
 				BBB7B7F61AEC29FE0013A602 /* SimpleCountrySelectViewController.m in Sources */,
 				BBAF777B1A50C914004AAAF9 /* ScrollableHeaderView.m in Sources */,

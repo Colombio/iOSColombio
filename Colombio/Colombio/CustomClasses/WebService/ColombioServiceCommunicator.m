@@ -372,7 +372,6 @@
 #pragma mark TimeLine
 - (void)fetchTimeLine{
     NSInteger lastTimestamp = ([[NSUserDefaults standardUserDefaults] integerForKey:TIMELINE_TIMESTAMP]?[[NSUserDefaults standardUserDefaults] integerForKey:TIMELINE_TIMESTAMP]:0);
-    lastTimestamp=0;
     NSString *url_str = [NSString stringWithFormat:@"%@/api_content/get_full_timeline?signed_req=%@&sync_time=%ld", BASE_URL, [[self class] getSignedRequest],(long)lastTimestamp];
     NSURL * url = [NSURL URLWithString:url_str];
     request =[NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:TIMEOUT];
@@ -619,7 +618,7 @@
 - (void)fetchInfoTexts{
     NSInteger timestamp = [[NSUserDefaults standardUserDefaults] integerForKey:INFO_TEXTS_TIMESTAMP];
     NSInteger langId = 2;
-    NSString *url_str = [NSString stringWithFormat:@"%@/api_config/get_texts?signed_req=%@&sync_time=%ld&lang_id=%ld", BASE_URL, [[self class] getSignedRequest],(long)timestamp, (long)langId];
+    NSString *url_str = [NSString stringWithFormat:@"%@/api_config/get_texts?signed_req=%@&sync_time=%ld&lang_id=%ld&os=ios", BASE_URL, [[self class] getSignedRequest],(long)timestamp, (long)langId];
     NSURL * url = [NSURL URLWithString:url_str];
     request =[NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:TIMEOUT];
     [NSURLConnection sendAsynchronousRequest:request queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {

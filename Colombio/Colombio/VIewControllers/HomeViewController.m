@@ -18,6 +18,7 @@
 #import "Tools.h"
 #import "SimpleMediaSelectViewController.h"
 #import "NewsDemandServiceCommunicator.h"
+#import "TimelineServiceCommunicator.h"
 
 
 enum UploadType{
@@ -27,7 +28,7 @@ enum UploadType{
     COMMUNITY_NEWS=4,
     ANNOUNCED_EVENT=5
 };
-@interface HomeViewController ()<ColombioServiceCommunicatorDelegate>
+@interface HomeViewController ()<ColombioServiceCommunicatorDelegate, NewsDemandServiceCommunicatorDelegate, TimelineServiceCommunicatorDelegate>
 
 @end
 
@@ -57,6 +58,11 @@ enum UploadType{
     NewsDemandServiceCommunicator *newsSC = [NewsDemandServiceCommunicator sharedManager];
     newsSC.delegate=self;
     [newsSC fetchNewsDemands];
+    
+    TimelineServiceCommunicator *timeSC = [TimelineServiceCommunicator sharedManager];
+    timeSC.timelineDelegate = self;
+    [timeSC fetchTimeLine];
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -167,9 +173,23 @@ enum UploadType{
 - (void)setNewsDemandBadge{
     NSInteger count = [Tools getNumberOfNewDemands];
     if (count>0) {
-        [[self.tabBarController.tabBar.items objectAtIndex:0] setBadgeValue:[NSString stringWithFormat:@"%d",count]];
+        [[self.tabBarController.tabBar.items objectAtIndex:0] setBadgeValue:[NSString stringWithFormat:@"%ld",(long)count]];
     }else{
         [[self.tabBarController.tabBar.items objectAtIndex:0] setBadgeValue:nil];
+    }
+}
+
+- (void)didFetchTimeline{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self setTimelineBadge];
+    });
+}
+
+- (void)setTimelineBadge{
+    if ([Tools checkForNewNotification]) {
+        [[self.tabBarController.tabBar.items objectAtIndex:1] setBadgeValue:@"!"];
+    }else{
+        [[self.tabBarController.tabBar.items objectAtIndex:1] setBadgeValue:nil];
     }
 }
 @end

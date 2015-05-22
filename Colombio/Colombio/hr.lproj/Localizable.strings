@@ -116,14 +116,14 @@
 "photos_max_num" = "Možeš slati do 5 slika i/ili 1 video";
 "photos_max_num_title" = "Premašen broj slika/videa";
 "i_want_sell" = "Želim prodati";
-"media_price_offer" = "Ponuđena cijena $%@";
+"media_price_offer" = "Ponuđena cijena %@€";
 "media_may_or_not" = "*Mediji nisu dužni objaviti tvoju vijest";
 "media_only_one" = "*Samo jedan medij može kupiti tvoju vijest";
 "media_buy_option" = "*Mediji nisu obvezni otkupiti vašu fotografiju ili video";
 "be_signed" = "Želim biti autor";
 "contact_me" = "Moj kontakt broj";
 "anonymous_sending" = "Anonimno slanje";
-"name_price" = "Navedi cijenu (max $%@)*";
+"name_price" = "Navedi cijenu (max %@€)*";
 "name_and_surname" = "Ime i prezime";
 "name" = "Ime";
 "surname" = "Prezime";
@@ -152,12 +152,14 @@
 
 /*TimeLine**/
 "sent" = "Sent";
-"offer_accepted" = "Prihvatili ste ponudu medija od $%@.";
-"accepted_offer" = "Prihvaćena ponuda $%@";
-"rejected_offer" = "Odbijena ponuda $%@";
-"price_offer" = "Ponuđeni iznos $%@";
+"offer_accepted" = "Prihvatili ste ponudu medija od %@€.";
+"accepted_offer" = "Prihvaćena ponuda %@€";
+"rejected_offer" = "Odbijena ponuda %@€";
+"price_offer" = "Ponuđeni iznos %@€";
 "reply" = "Odgovori...";
 "cannot_sell" = "!Napomena: medij je otkupio tvoju sliku/video i nemaš više pravo nuditi ili prodavati isti sadržaj trećoj strani. Prodajom slike/videa prenosiš vlasnička prava na objavu i daljnju distribuciju kupcu, odnosno mediju koji otkupi.";
+"media_communication" = "Komunikacija s medijima";
+"sent_news" = "Poslana vijest";
 
 /*Header*/
 "header_next" = "DALJE";

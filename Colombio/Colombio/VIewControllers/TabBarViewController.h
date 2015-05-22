@@ -10,4 +10,5 @@
 
 @interface TabBarViewController : UITabBarController<UITabBarControllerDelegate>
 
+- (instancetype)initWithUserInfo:(NSDictionary*)userInfo;
 @end

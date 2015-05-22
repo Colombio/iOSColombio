@@ -14,8 +14,9 @@
 #import "TimeLineTableViewCell.h"
 #import "Tools.h"
 #import "TimelineDetailsViewController.h"
+#import "TimelineServiceCommunicator.h"
 
-@interface TimelineViewController () <UITableViewDataSource, UITableViewDelegate, ColombioServiceCommunicatorDelegate, CustomHeaderViewDelegate>
+@interface TimelineViewController () <UITableViewDataSource, UITableViewDelegate, TimelineServiceCommunicatorDelegate, CustomHeaderViewDelegate>
 {
     Loading *spinner;
 }
@@ -23,24 +24,36 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSArray *timelineArray;
 @property (strong, nonatomic) NSArray *timelineImagesArray;
+@property (strong, nonatomic) NSDictionary *userInfo;
 
 @end
 
 @implementation TimelineViewController
 
+- (instancetype)initWithNotification:(NSDictionary*)userInfo{
+    self = [super init];
+    if (self) {
+        _userInfo = userInfo;
+    }
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    spinner = [[Loading alloc] init];
     
     // Do any additional setup after loading the view from its nib.
 }
 
 - (void)viewWillAppear:(BOOL)animated{
-    spinner = [[Loading alloc] init];
     [spinner startCustomSpinner2:self.view spinMessage:@""];
-    ColombioServiceCommunicator *csc = [ColombioServiceCommunicator sharedManager];
-    csc.delegate=self;
+    TimelineServiceCommunicator *csc = [TimelineServiceCommunicator sharedManager];
+    csc.timelineDelegate=self;
     [csc fetchTimeLine];
+}
+
+- (void)viewWillDisappear:(BOOL)animated{
+    [spinner removeCustomSpinner];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -63,7 +76,7 @@
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (((NSString*)_timelineArray[indexPath.row][@"img"]).length>0) {
+    if (((NSString*)_timelineArray[indexPath.row][@"img"]).length>0 || [_timelineArray[indexPath.row][@"type"] integerValue]==2 ) {
         return 231;
     }else{
         return 111;
@@ -78,6 +91,9 @@
     
     if (_timelineArray[indexPath.row][@"news_id"]) {
         cell.lblTitle.text = _timelineArray[indexPath.row][@"news_title"];
+        
+        cell.alertImage.hidden = ![Tools checkForNewNotificationWithID:[_timelineArray[indexPath.row][@"news_id"] integerValue]];
+        
         NSDateFormatter *formatter=[[NSDateFormatter alloc]init];
         [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss Z"];
         NSDate *date = [formatter dateFromString:_timelineArray[indexPath.row][@"timestamp"]];
@@ -105,7 +121,7 @@
         cell.lblTitle.text = _timelineArray[indexPath.row][@"title"];
         cell.lblHeader.text = [Tools getStringFromDateString:_timelineArray[indexPath.row][@"timestamp"] withFormat:@"dd/MM/yyyy"];
         cell.txtDescription.text = [NSString stringWithFormat:@"%@",_timelineArray[indexPath.row][@"msg"]];
-        [cell.imgSample removeFromSuperview];
+        cell.imgSample.image = [UIImage imageNamed:@"colombiotimeline"];
         
     }
     
@@ -116,6 +132,7 @@
     TimelineDetailsViewController *vc = [[TimelineDetailsViewController alloc] initWithTimelineDetails:_timelineArray[indexPath.row]];
     [self.navigationController pushViewController:vc animated:YES];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    [self setNotificationsToRead:[_timelineArray[indexPath.row][@"news_id"] longValue]];
 }
 
 #pragma mark CSC Delegate
@@ -134,10 +151,37 @@
     
     dispatch_async(dispatch_get_main_queue(), ^{
         [spinner removeCustomSpinner];
+        if (_userInfo) {
+            int index = -1;
+            for(int i=0;i<_timelineArray.count;i++){
+                if ([_userInfo[@"payload"][@"nid"] integerValue] == [_timelineArray[i][@"news_id"] integerValue]) {
+                    index=i;
+                }
+            }
+            if (index>-1) {
+                TimelineDetailsViewController *vc = [[TimelineDetailsViewController alloc] initWithTimelineDetails:_timelineArray[index]];
+                [self.navigationController pushViewController:vc animated:YES];
+            }
+            [self setNotificationsToRead:[_userInfo[@"payload"][@"nid"] integerValue]];
+            _userInfo=nil;
+        }
+        [self setNotificationBadge];
         [_tableView reloadData];
     });
-
-    
 }
 
+- (void)setNotificationsToRead:(NSInteger)timelineid{
+    NSDictionary *tDict = @{@"is_read":@TRUE};
+    AppDelegate *appdelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
+    [appdelegate.db updateDictionary:tDict forTable:@"TIMELINE_NOTIFICATIONS" where:[NSString stringWithFormat:@" nid='%ld'", (long)timelineid]];
+    [self setNotificationBadge];
+}
+
+- (void)setNotificationBadge{
+    if ([Tools checkForNewNotification]) {
+        [[self.tabBarController.tabBar.items objectAtIndex:1] setBadgeValue:@"!"];
+    }else{
+        [[self.tabBarController.tabBar.items objectAtIndex:1] setBadgeValue:nil];
+    }
+}
 @end

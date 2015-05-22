@@ -25,6 +25,8 @@
 @property (strong, nonatomic) NSDictionary *dicMediaTypes;
 @property (strong, nonatomic) NSDictionary *dicTimelineButt;
 
+@property (assign, nonatomic) BOOL appIsActive;
+
 
 
 + (ALAssetsLibrary *)defaultAssetsLibrary;

@@ -115,14 +115,14 @@
 "photos_max_num" = "You can upload up to 5 pictures and/or 1 video";
 "photos_max_num_title" = "Number limit of pictures/video exceeded";
 "i_want_sell" = "I want to sell";
-"media_price_offer" = "Media price offer $%@";
+"media_price_offer" = "Media price offer %@€";
 "media_may_or_not" = "*Media may or may not publish your news.";
 "media_only_one" = "*Only one media can buy your news";
 "media_buy_option" = "*Media are not obligated to buy your photo or video";
 "be_signed" = "Be signed as an author";
 "contact_me" = "Contact me";
 "anonymous_sending" = "Anonymous sending";
-"name_price" = "Name your price (max $%@)*";
+"name_price" = "Name your price (max %@€)*";
 "name_and_surname" = "Name and surname";
 "name" = "Name";
 "surname" = "Surname";
@@ -157,6 +157,8 @@
 "price_offer" = "Offered amount %@€";
 "cannot_sell" = "!Note: you sold your photo/video to news media, you do not have right to sell it again. By selling photo/video, you are transfering copyrights to buyer, and he has all rights to publish it and distribute it.";
 "reply" = "Reply...";
+"media_communication" = "Media communication";
+"sent_news" = "Sent news";
 
 /*Header*/
 "header_next" = "NEXT";
