@@ -209,7 +209,7 @@
     NSError *err=nil;
     NSMutableURLRequest *request =[NSMutableURLRequest requestWithURL:url];
     [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
-    [request setHTTPBody:[[NSString stringWithFormat:@"login_string=%@&login_pass=%@",txtEmail.txtField.text,txtPassword.txtField.text]dataUsingEncoding:NSUTF8StringEncoding]];
+    [request setHTTPBody:[[NSString stringWithFormat:@"login_string=%@&login_pass=%@&os=ios&installationID=%@",txtEmail.txtField.text,txtPassword.txtField.text,([[NSUserDefaults standardUserDefaults] objectForKey:PARSE_INSTALLATIONID]!=nil?[[NSUserDefaults standardUserDefaults] objectForKey:PARSE_INSTALLATIONID]:@"")]dataUsingEncoding:NSUTF8StringEncoding]];
     [request setHTTPMethod:@"POST"];
     NSURLResponse *response = nil;
     NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&err];
@@ -282,7 +282,7 @@
             NSString *filePathToken =[documentsDirectory stringByAppendingPathComponent:@"token.out"];
             
             //Slanje podataka za prijavu i dohvacanje odgovora
-            NSString *url_str = [NSString stringWithFormat:@"%@/api_user_managment/mau_social_login?type=fb&token=%@",BASE_URL,token];
+            NSString *url_str = [NSString stringWithFormat:@"%@/api_user_managment/mau_social_login?type=fb&token=%@&os=ios&installationID=%@",BASE_URL,token, ([[NSUserDefaults standardUserDefaults] objectForKey:PARSE_INSTALLATIONID]!=nil?[[NSUserDefaults standardUserDefaults] objectForKey:PARSE_INSTALLATIONID]:@"")];
             NSURL * url = [NSURL URLWithString:url_str];
             NSError *err=nil;
             NSMutableURLRequest *request =[NSMutableURLRequest requestWithURL:url];
@@ -370,7 +370,7 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         [loadingView removeCustomSpinner];
         //[self presentViewController:[[LoginSettingsViewController alloc] initWithNibName:@"ContainerViewController" bundle:nil] animated:YES completion:nil];
-        [self presentViewController:[[TabBarViewController alloc] init] animated:YES completion:nil];
+        [self presentViewController:[[TabBarViewController alloc] initWithUserInfo:nil] animated:YES completion:nil];
     });
 }
 

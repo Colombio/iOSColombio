@@ -33,6 +33,10 @@
 
 @implementation UploadNewsViewController
 
+- (UIStatusBarStyle)preferredStatusBarStyle{
+    return UIStatusBarStyleLightContent;
+}
+
 - (instancetype)initWithNewsData:(NewsData*)data{
     self = [super init];
     if (self) {

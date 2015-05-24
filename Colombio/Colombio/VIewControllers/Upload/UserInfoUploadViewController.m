@@ -39,6 +39,8 @@
     //_txtPhoneNum.inputAccessoryView = [self keyboardToolbarFor:_txtPhoneNum action:@selector(resignFirstResponder)];
     _txtContactMe.inputAccessoryView = [self keyboardToolbarFor:_txtContactMe action:@selector(resignFirstResponder)];
     _txtPrice.inputAccessoryView = [self keyboardToolbarFor:_txtPrice action:@selector(resignFirstResponder)];
+    _txtName.autocapitalizationType = UITextAutocapitalizationTypeSentences;
+    _txtSurname.autocapitalizationType = UITextAutocapitalizationTypeSentences;
     
     _be_credited=NO;
     if (_isNewsDemand) {

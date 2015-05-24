@@ -11,6 +11,14 @@
 #import "Annotation.h"
 #import "Tools.h"
 
+enum TastType{
+    TASK_DISTANCE = 0,
+    TASK_COUNTRY = 1,
+    TASK_MEDIA = 2
+    
+};
+
+
 @interface NewsDemandDetailsViewController ()
 {
     AppDelegate *appdelegate;
@@ -22,6 +30,9 @@
 @property (weak, nonatomic) IBOutlet UITextView *txtNewsDescription;
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 @property (weak, nonatomic) IBOutlet UIButton *btnSelect;
+@property (weak, nonatomic) IBOutlet UIView *viewMapHolder;
+@property (weak, nonatomic) IBOutlet UIView *viewMediaHolder;
+@property (weak, nonatomic) IBOutlet UIImageView *imgMediaView;
 
 @property (strong, nonatomic) NewsDemandObject *data;
 
@@ -50,6 +61,14 @@
     _imgMediaLogo.layer.masksToBounds=YES;
     
     _txtNewsDescription.userInteractionEnabled = NO;
+    
+    if (_data.location_type==TASK_MEDIA) {
+        _viewMapHolder.hidden=YES;
+        _viewMediaHolder.hidden=NO;
+    }else{
+        _viewMapHolder.hidden=NO;
+        _viewMediaHolder.hidden=YES;
+    }
     
     [self setFields];
     [self setLabelHeights];
@@ -96,23 +115,34 @@
                 [appdelegate.mediaImages setObject:image forKey:@(_data.media_id)];
                 dispatch_async(dispatch_get_main_queue(), ^{
                     _imgMediaLogo.image = [appdelegate.mediaImages objectForKey:@(_data.media_id)];
+                    _imgMediaView.image = [appdelegate.mediaImages objectForKey:@(_data.media_id)];
                 });
             }
         }
         dispatch_async(dispatch_get_main_queue(), ^{
             _imgMediaLogo.image = [appdelegate.mediaImages objectForKey:@(_data.media_id)];
+            _imgMediaView.image = [appdelegate.mediaImages objectForKey:@(_data.media_id)];
         });
     });
     
-    CLLocationCoordinate2D coordinate;
-    coordinate.latitude = _data.latitude;
-    coordinate.longitude= _data.longitude;
-    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(coordinate, _data.radius,_data.radius);
-    MKCircle *circle = [MKCircle circleWithCenterCoordinate:coordinate radius:_data.radius];
-    [_mapView addOverlay:circle];
-    Annotation *annotation = [[Annotation alloc] initWithCoordinate:coordinate title:_data.title];
-    [_mapView addAnnotation:annotation];
-    [_mapView setRegion:viewRegion animated:YES];
+    if (_data.location_type==TASK_DISTANCE) {
+        CLLocationCoordinate2D coordinate;
+        coordinate.latitude = _data.latitude;
+        coordinate.longitude= _data.longitude;
+        MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(coordinate, _data.radius,_data.radius);
+        MKCircle *circle = [MKCircle circleWithCenterCoordinate:coordinate radius:_data.radius];
+        [_mapView addOverlay:circle];
+        Annotation *annotation = [[Annotation alloc] initWithCoordinate:coordinate title:_data.title];
+        [_mapView addAnnotation:annotation];
+        [_mapView setRegion:viewRegion animated:YES];
+    }else if(_data.location_type==TASK_COUNTRY){
+        CLLocationCoordinate2D coordinate;
+        coordinate.latitude = 45.166666666666664;
+        coordinate.longitude= 15.5;
+        MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(coordinate, 500000,500000);
+        [_mapView setRegion:viewRegion animated:YES];
+    }
+    
 }
 
 - (void)setLabelHeights{

@@ -44,6 +44,11 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
+}
+
 - (void)setLabelsWidth{
     CGSize size = [_lblAnonymous.text sizeWithFont:_lblAnonymous.font constrainedToSize:CGSizeMake(_viewAnonymousHolder.frame.size.width-_swToggleAnonymoys.frame.size.width-40, MAXFLOAT)
         lineBreakMode:NSLineBreakByWordWrapping];

@@ -123,20 +123,20 @@
             if(response!=nil && !strcmp("1",((NSString*)[response objectForKey:@"s"]).UTF8String)){
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [spinner removeCustomSpinner];
-                    [self presentViewController:[[TabBarViewController alloc]  init] animated:YES completion:nil];
+                    [self presentViewController:[[TabBarViewController alloc]  initWithUserInfo:nil] animated:YES completion:nil];
                 });
                 
             }else{
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [spinner removeCustomSpinner];
-                    [self presentViewController:[[TabBarViewController alloc]  init] animated:YES completion:nil];
+                    [self presentViewController:[[TabBarViewController alloc]  initWithUserInfo:nil] animated:YES completion:nil];
                 });
             }
         }
         else{
             dispatch_async(dispatch_get_main_queue(), ^{
                 [spinner removeCustomSpinner];
-                [self presentViewController:[[TabBarViewController alloc]  init] animated:YES completion:nil];
+                [self presentViewController:[[TabBarViewController alloc]  initWithUserInfo:nil] animated:YES completion:nil];
             });
         }
     }];

@@ -148,6 +148,7 @@
 "date" = "DATE";
 "until" = "UNTIL";
 "no_task" = "Colombio can't show News tasks\n\nNo News tasks in your Location or Location is OFF. \nTurn it ON in Settings>Privacy>Location Services.";
+"task_created_by"="Task created by:";
 
 /*TimeLine**/
 "sent" = "Sent";
@@ -159,6 +160,7 @@
 "reply" = "Reply...";
 "media_communication" = "Media communication";
 "sent_news" = "Sent news";
+"anonymous" = "Anonymous";
 
 /*Header*/
 "header_next" = "NEXT";
@@ -196,7 +198,7 @@
 "user_placeholder_zip" = "Postal code";
 "user_placeholder_country" = "Country";
 "user_pp_info" = "Don't have PayPal account? Please create one before cashout";
-"user_anonymous" = "Send news as anonymoys";
+"user_anonymous" = "Send news as anonymous";
 "user_placeholder_phonenumber" = "Phone number";
 
 /*Info buttons*/

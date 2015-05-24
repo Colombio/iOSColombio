@@ -156,6 +156,8 @@
 		BBEB696D1B0BEA7C00533001 /* TimelineSentNewsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BBEB696B1B0BEA7C00533001 /* TimelineSentNewsCell.m */; };
 		BBEB696E1B0BEA7C00533001 /* TimelineSentNewsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBEB696C1B0BEA7C00533001 /* TimelineSentNewsCell.xib */; };
 		BBEB69711B0C023400533001 /* TimelineServiceCommunicator.m in Sources */ = {isa = PBXBuildFile; fileRef = BBEB69701B0C023400533001 /* TimelineServiceCommunicator.m */; };
+		BBEC7C9D1B114171008BE143 /* TimelineContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBEC7C9C1B114171008BE143 /* TimelineContainerViewController.m */; };
+		BBEC7C9F1B121378008BE143 /* TImelineDetailsSubviewViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBEC7C9E1B121378008BE143 /* TImelineDetailsSubviewViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -396,6 +398,9 @@
 		BBEB696C1B0BEA7C00533001 /* TimelineSentNewsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimelineSentNewsCell.xib; sourceTree = "<group>"; };
 		BBEB696F1B0C023400533001 /* TimelineServiceCommunicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimelineServiceCommunicator.h; sourceTree = "<group>"; };
 		BBEB69701B0C023400533001 /* TimelineServiceCommunicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimelineServiceCommunicator.m; sourceTree = "<group>"; };
+		BBEC7C9B1B114171008BE143 /* TimelineContainerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimelineContainerViewController.h; sourceTree = "<group>"; };
+		BBEC7C9C1B114171008BE143 /* TimelineContainerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimelineContainerViewController.m; sourceTree = "<group>"; };
+		BBEC7C9E1B121378008BE143 /* TImelineDetailsSubviewViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TImelineDetailsSubviewViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -869,6 +874,9 @@
 				BBB7A4121B016B77000F92ED /* TimelineDetailsViewController.h */,
 				BBB7A4131B016B77000F92ED /* TimelineDetailsViewController.m */,
 				BBB7A4141B016B77000F92ED /* TimelineDetailsViewController.xib */,
+				BBEC7C9B1B114171008BE143 /* TimelineContainerViewController.h */,
+				BBEC7C9C1B114171008BE143 /* TimelineContainerViewController.m */,
+				BBEC7C9E1B121378008BE143 /* TImelineDetailsSubviewViewController.xib */,
 			);
 			path = Timeline;
 			sourceTree = "<group>";
@@ -945,6 +953,7 @@
 				BBB5B4841AABCA0E00765861 /* SelectCountryCell.xib in Resources */,
 				BBCF58E61A293F6700CE64B4 /* Localizable.strings in Resources */,
 				BBAE1F251A37B68E0008B772 /* ForgotPasswordViewController.xib in Resources */,
+				BBEC7C9F1B121378008BE143 /* TImelineDetailsSubviewViewController.xib in Resources */,
 				BBB7A4161B016B77000F92ED /* TimelineDetailsViewController.xib in Resources */,
 				BBEB696E1B0BEA7C00533001 /* TimelineSentNewsCell.xib in Resources */,
 				BBB6A0641A48D791006F61B3 /* StartViewController.xib in Resources */,
@@ -1024,6 +1033,7 @@
 				BBAE1F1D1A37B51F0008B772 /* ColombioServiceCommunicator.m in Sources */,
 				583C9EBE1A6357FD00C6131C /* SettingsCollectionView.m in Sources */,
 				BBB6B1801AFD693C004111F3 /* UINavigationController+statusbar.m in Sources */,
+				BBEC7C9D1B114171008BE143 /* TimelineContainerViewController.m in Sources */,
 				58ACA0021A4EE6B70076D3D8 /* HeaderView.m in Sources */,
 				BBE70E021ACF3C2400C203C3 /* TimelineViewController.m in Sources */,
 				BBB5B4831AABCA0E00765861 /* SelectCountryCell.m in Sources */,

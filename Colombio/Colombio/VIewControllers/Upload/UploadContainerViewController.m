@@ -199,13 +199,25 @@
 #pragma mark Validate Data
 
 - (BOOL)validateData{
+    
+    
+    
     BOOL dataOK  = YES;
-    if (![contentVC validateFields]) {
-        dataOK=NO;
+    if (_typeID==5) {
+        if (![announcedVC validateFields]) {
+            dataOK=NO;
+        }
+    }else{
+        if (![contentVC validateFields]) {
+            dataOK=NO;
+        }
+        
+        if (![userInfoVC validateFields]) {
+            dataOK=NO;
+        }
     }
-    if (![userInfoVC validateFields]) {
-        dataOK=NO;
-    }
+    
+    
     if (!dataOK) {
         [self showErrorMessage:@"error_fill_fields"];
         return NO;

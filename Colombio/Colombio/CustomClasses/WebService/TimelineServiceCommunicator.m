@@ -59,6 +59,7 @@
 
 - (void)fetchTimeLine{
     NSInteger lastTimestamp = ([[NSUserDefaults standardUserDefaults] integerForKey:TIMELINE_TIMESTAMP]?[[NSUserDefaults standardUserDefaults] integerForKey:TIMELINE_TIMESTAMP]:0);
+   // lastTimestamp=0;
     NSString *url_str = [NSString stringWithFormat:@"%@/api_content/get_full_timeline?signed_req=%@&sync_time=%ld", BASE_URL, [[self class] getSignedRequest],(long)lastTimestamp];
     NSURL * url = [NSURL URLWithString:url_str];
     NSMutableURLRequest *request =[NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:TIMEOUT];
@@ -105,6 +106,21 @@
                         }else{
                             [appdelegate.db updateDictionary:tDBDict forTable:@"TIMELINE_IMAGE" where:[NSString stringWithFormat:@" news_id='%@'", tDBDict[@"news_id"]]];
                         }
+                    }else if(tDict[@"video_thumb"] != [NSNull null]) {
+                        NSArray *arrayImages = [(NSString*)tDict[@"video_thumb"] componentsSeparatedByString:@"\",\""];
+                        for(NSString *tString in arrayImages){
+                            NSCharacterSet* charSet = [NSCharacterSet characterSetWithCharactersInString:@"\"\\ {}"];
+                            NSString *strippedString = [[tString componentsSeparatedByCharactersInSet:charSet] componentsJoinedByString:@""];
+                            NSArray *arrImage =[strippedString componentsSeparatedByString:@":"];
+                            tDBDict[arrImage[0]]= [NSString stringWithFormat:@"https://afs.colomb.io/%@",arrImage[1]];
+                        }
+                        tDBDict[@"news_id"]=@([tDict[@"news_id"] intValue]);
+                        sql = [NSString stringWithFormat:@"SELECT count(*) FROM timeline_image WHERE news_id = '%@'", tDBDict[@"news_id"]];
+                        if ([[appdelegate.db getColForSQL:sql] integerValue] == 0) {
+                            [appdelegate.db insertDictionaryWithoutColumnCheck:tDBDict forTable:@"TIMELINE_IMAGE"];
+                        }else{
+                            [appdelegate.db updateDictionary:tDBDict forTable:@"TIMELINE_IMAGE" where:[NSString stringWithFormat:@" news_id='%@'", tDBDict[@"news_id"]]];
+                        }
                     }
                     
                     //VIDEO THUMB!!!!!!!
@@ -118,10 +134,13 @@
                     tDBDict[@"is_read"] = tDict[@"is_read"];
                     NSArray *arrayNotifs = [(NSString*)tDict[@"content"] componentsSeparatedByString:@"\",\""];
                     for(NSString *tString in arrayNotifs){
+                        //NSCharacterSet* charSet = [NSCharacterSet characterSetWithCharactersInString:@"\"\\{}"];
+                        //NSString *strippedString = [[tString componentsSeparatedByCharactersInSet:charSet] componentsJoinedByString:@""];
+                        //NSArray *arrNotif =[strippedString componentsSeparatedByString:@":"];
+                        NSArray *arrNotif =[tString componentsSeparatedByString:@"\":\""];
                         NSCharacterSet* charSet = [NSCharacterSet characterSetWithCharactersInString:@"\"\\{}"];
-                        NSString *strippedString = [[tString componentsSeparatedByCharactersInSet:charSet] componentsJoinedByString:@""];
-                        NSArray *arrNotif =[strippedString componentsSeparatedByString:@":"];
-                        tDBDict[arrNotif[0]]= arrNotif[1];
+                        tDBDict[[[arrNotif[0] componentsSeparatedByCharactersInSet:charSet] componentsJoinedByString:@""]]= [[arrNotif[1] componentsSeparatedByCharactersInSet:charSet] componentsJoinedByString:@""];
+                        
                     }
                     NSString *sql = [NSString stringWithFormat:@"SELECT count(*) FROM timeline_notifications WHERE id = '%@'", tDBDict[@"id"]];
                     if ([[appdelegate.db getColForSQL:sql] integerValue] == 0) {

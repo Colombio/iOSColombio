@@ -62,7 +62,7 @@
     if (cell==nil) {
         cell=[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
     }
-    cell.textLabel.font = [[UIConfiguration sharedInstance] getFont:FONT_HELVETICA_NEUE_REGULAR_19];
+    cell.textLabel.font = [[UIConfiguration sharedInstance] getFont:FONT_HELVETICA_NEUE_LIGHT];
     cell.textLabel.textColor = [[UIConfiguration sharedInstance] getColor:COLOR_TEXT_NEWS_TITLE];
     cell.accessoryType = UITableViewCellAccessoryNone;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -71,7 +71,19 @@
     
     if([self.languageArray[indexPath.row] isEqualToString:[Localized prefferedLocalization]]){
         UIImageView *checkmark = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"selected"]];
-        cell.accessoryView = checkmark;
+       
+        UIImage *image = [UIImage imageNamed:@"selected"];
+        
+        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+        CGRect frame = CGRectMake(0.0, 0.0, 15, 15);
+        button.frame = frame;
+        [button setBackgroundImage:image forState:UIControlStateNormal];
+        [button setBackgroundImage:image forState:UIControlStateHighlighted];
+        
+        button.backgroundColor = [UIColor clearColor];
+        cell.accessoryView = button;
+        
+        //cell.accessoryView = checkmark;
     }else{
         cell.accessoryView = nil;
     }

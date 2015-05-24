@@ -14,6 +14,7 @@
 + (NSInteger)getNumberOfNewDemands;
 + (BOOL)checkForNewNotification;
 + (BOOL)checkForNewNotificationWithID:(NSInteger)nid;
++ (BOOL)checkIfSystemNotificationIsRead:(NSInteger)id;
 + (UILabel*)getBadgeObject:(long )count frame:(CGRect)frame;
 + (UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)newSize;
 + (UIImage *)imageWithColor:(UIColor *)color;
@@ -25,4 +26,5 @@
 + (NSDate*)getDateFromString:(NSString*)date;
 + (NSInteger)daysDifferenceBetween:(NSDate*)startDate And:(NSDate*)endDate;
 + (NSString*)getStringFromDateString:(NSString*)strDate withFormat:(NSString*)strFormat;
++ (NSString*)getUserName;
 @end

@@ -35,6 +35,7 @@
 - (void)viewWillAppear:(BOOL)animated{
     _customHeader.headerTitle = [[Localized string:@"settings"] uppercaseString];
     _customHeader.backButtonText=@"";
+    [_tblView reloadData];
 }
 
 - (void)didReceiveMemoryWarning {

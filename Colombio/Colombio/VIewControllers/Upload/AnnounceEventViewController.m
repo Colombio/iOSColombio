@@ -161,4 +161,17 @@
 - (IBAction)pickerAction:(UIPickerView*)sender{
     _dateEvent=_pkrDate.date;
 }
+
+- (BOOL)validateFields{
+    BOOL dataOK = YES;
+    if (_txtTitle.text.length==0) {
+        [_txtTitle setPlaceholderColor:COLOR_CUSTOM_RED];
+        dataOK = NO;
+    }
+    if (_txtDescription.text.length==0) {
+        [_txtDescription setPlaceholderColor:COLOR_CUSTOM_RED];
+        dataOK = NO;
+    }
+    return dataOK;
+}
 @end

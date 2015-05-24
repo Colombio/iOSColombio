@@ -32,6 +32,7 @@
 }
 
 - (void)viewDidLoad {
+    super.staticHeader=YES;
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 }

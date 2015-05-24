@@ -19,6 +19,8 @@
 @property (assign, nonatomic) BOOL isSingleTitle;
 @property (strong, nonatomic) NSString *lastNextBtnText;
 @property (assign, nonatomic) BOOL progressBarAnimation;
+@property (assign, nonatomic) BOOL flexibleHeader;
+@property (assign, nonatomic) BOOL staticHeader;
 
 
 //- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil andControllers:(NSArray*)controllers;

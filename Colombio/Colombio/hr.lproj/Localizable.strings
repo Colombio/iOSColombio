@@ -149,6 +149,7 @@
 "date" = "DATUM";
 "until" = "DO";
 "no_task" = "Colombio ne može prikazati dostupne zadatke. \n\nNema dostupnih zadataka u tvojoj blizini ili je tvoja lokacija isključena. \nUključi u Postavke>Privatnost>Lokacijske Usluge.";
+"task_created_by"="Zadatak kreirao:";
 
 /*TimeLine**/
 "sent" = "Sent";
@@ -160,6 +161,7 @@
 "cannot_sell" = "!Napomena: medij je otkupio tvoju sliku/video i nemaš više pravo nuditi ili prodavati isti sadržaj trećoj strani. Prodajom slike/videa prenosiš vlasnička prava na objavu i daljnju distribuciju kupcu, odnosno mediju koji otkupi.";
 "media_communication" = "Komunikacija s medijima";
 "sent_news" = "Poslana vijest";
+"anonymous" = "Anonimno";
 
 /*Header*/
 "header_next" = "DALJE";
@@ -185,7 +187,7 @@
 "my_profile" = "MOJI PODACI";
 
 /*USER INFO*/
-"user_rating" = "My rating";
+"user_rating" = "Moja ocjena";
 "user_balance" = "Saldo";
 "user_pending_cash_out" = "Isplata u tijeku";
 "user_connectpp" = "PayPal podaci";

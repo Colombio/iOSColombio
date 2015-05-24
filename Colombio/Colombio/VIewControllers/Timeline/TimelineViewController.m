@@ -16,6 +16,8 @@
 #import "TimelineDetailsViewController.h"
 #import "TimelineServiceCommunicator.h"
 
+#import "TimelineContainerViewController.h"
+
 @interface TimelineViewController () <UITableViewDataSource, UITableViewDelegate, TimelineServiceCommunicatorDelegate, CustomHeaderViewDelegate>
 {
     Loading *spinner;
@@ -76,10 +78,28 @@
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (((NSString*)_timelineArray[indexPath.row][@"img"]).length>0 || [_timelineArray[indexPath.row][@"type"] integerValue]==2 ) {
-        return 231;
+    
+    if ([_timelineArray[indexPath.row][@"type"] integerValue]==2){
+        return 253;
+    }else if (((NSString*)_timelineArray[indexPath.row][@"img"]).length>0 ) {
+        CGFloat startSize = 193;
+        CGSize size = [_timelineArray[indexPath.row][@"news_text"] sizeWithFont:[[UIConfiguration sharedInstance] getFont:FONT_HELVETICA_NEUE_REGULAR_16]
+                                          constrainedToSize:CGSizeMake(236, MAXFLOAT) lineBreakMode:NSLineBreakByWordWrapping];
+        if (size.height>60) {
+            return 253;
+        }else{
+            return startSize+size.height;
+        }
     }else{
-        return 111;
+        CGFloat startSize = 73;
+        CGSize size = [_timelineArray[indexPath.row][@"news_text"] sizeWithFont:[[UIConfiguration sharedInstance] getFont:FONT_HELVETICA_NEUE_REGULAR_16]
+                                                              constrainedToSize:CGSizeMake(236, MAXFLOAT) lineBreakMode:NSLineBreakByWordWrapping];
+        if (size.height>60) {
+            return 133;
+        }else{
+            return startSize+size.height;
+        }
+        return 133;
     }
 }
 
@@ -98,9 +118,16 @@
         [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss Z"];
         NSDate *date = [formatter dateFromString:_timelineArray[indexPath.row][@"timestamp"]];
         [formatter setDateFormat:@"dd/MM/yyyy"];
-        cell.lblHeader.text = [NSString stringWithFormat:@"%@: %@ %@", [Localized string:@"sent"], [Localized string:((AppDelegate*)[UIApplication sharedApplication].delegate).dicTimelineButt[_timelineArray[indexPath.row][@"type_id"]]], [formatter stringFromDate:date]];
-        cell.txtDescription.text = [NSString stringWithFormat:@"%@",_timelineArray[indexPath.row][@"news_text"]];
-        [cell.txtDescription sizeToFit];
+        cell.lblHeader.text = [NSString stringWithFormat:@"%@ %@", [Localized string:((AppDelegate*)[UIApplication sharedApplication].delegate).dicTimelineButt[_timelineArray[indexPath.row][@"type_id"]]], [formatter stringFromDate:date]];
+        //cell.lblDescription.text = [NSString stringWithFormat:@"%@",_timelineArray[indexPath.row][@"news_text"]];
+        cell.lblDescription.text = _timelineArray[indexPath.row][@"news_text"];
+        CGSize size = [cell.lblDescription.text sizeWithFont:[[UIConfiguration sharedInstance] getFont:FONT_HELVETICA_NEUE_REGULAR_16] constrainedToSize:CGSizeMake(236, MAXFLOAT) lineBreakMode:NSLineBreakByWordWrapping];
+        if (size.height>60) {
+            cell.CS_lblDescriptionHeight.constant = 60;
+        }else{
+            cell.CS_lblDescriptionHeight.constant = size.height;
+        }
+        
         if (((NSString*)_timelineArray[indexPath.row][@"img"]).length>0) {
             dispatch_queue_t concurrentQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
             dispatch_async(concurrentQueue, ^{
@@ -118,10 +145,21 @@
             [cell.imgSample removeFromSuperview];
         }
     }else{
-        cell.lblTitle.text = _timelineArray[indexPath.row][@"title"];
-        cell.lblHeader.text = [Tools getStringFromDateString:_timelineArray[indexPath.row][@"timestamp"] withFormat:@"dd/MM/yyyy"];
-        cell.txtDescription.text = [NSString stringWithFormat:@"%@",_timelineArray[indexPath.row][@"msg"]];
-        cell.imgSample.image = [UIImage imageNamed:@"colombiotimeline"];
+         cell.alertImage.hidden = ![Tools checkIfSystemNotificationIsRead:[_timelineArray[indexPath.row][@"id"] integerValue]];
+        if ([_timelineArray[indexPath.row][@"title"] isEqualToString:@""]){
+            cell.lblTitle.hidden=YES;
+            cell.txtDescription.hidden=YES;
+            cell.webView.hidden=NO;
+            [cell.webView loadHTMLString:_timelineArray[indexPath.row][@"msg"] baseURL:nil];
+            cell.lblHeader.text = [Tools getStringFromDateString:_timelineArray[indexPath.row][@"timestamp"] withFormat:@"dd/MM/yyyy"];
+            cell.imgSample.image = [UIImage imageNamed:@"colombiotimeline"];
+        }else{
+            cell.lblTitle.text = _timelineArray[indexPath.row][@"title"];
+            cell.lblHeader.text = [Tools getStringFromDateString:_timelineArray[indexPath.row][@"timestamp"] withFormat:@"dd/MM/yyyy"];
+            cell.txtDescription.text = [NSString stringWithFormat:@"%@",_timelineArray[indexPath.row][@"msg"]];
+            cell.imgSample.image = [UIImage imageNamed:@"colombiotimeline"];
+        }
+        
         
     }
     
@@ -129,10 +167,16 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    TimelineDetailsViewController *vc = [[TimelineDetailsViewController alloc] initWithTimelineDetails:_timelineArray[indexPath.row]];
+    //TimelineDetailsViewController *vc = [[TimelineDetailsViewController alloc] initWithTimelineDetails:_timelineArray[indexPath.row]];
+    TimelineContainerViewController *vc = [[TimelineContainerViewController alloc] initWithNibName:@"ContainerViewController" bundle:nil focusOnControllerIndex:indexPath.row withDataArray:_timelineArray];
     [self.navigationController pushViewController:vc animated:YES];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    [self setNotificationsToRead:[_timelineArray[indexPath.row][@"news_id"] longValue]];
+    /*if ([_timelineArray[indexPath.row][@"type"] longLongValue] == 1) {
+        [self setNotificationsToRead:[_timelineArray[indexPath.row][@"news_id"] longValue]];
+    }else if ([_timelineArray[indexPath.row][@"type"] longLongValue] == 2){
+        [self setSystemNotificationToRead:[_timelineArray[indexPath.row][@"id"] longValue]];
+    }*/
+    
 }
 
 #pragma mark CSC Delegate
@@ -174,6 +218,13 @@
     NSDictionary *tDict = @{@"is_read":@TRUE};
     AppDelegate *appdelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
     [appdelegate.db updateDictionary:tDict forTable:@"TIMELINE_NOTIFICATIONS" where:[NSString stringWithFormat:@" nid='%ld'", (long)timelineid]];
+    [self setNotificationBadge];
+}
+
+- (void)setSystemNotificationToRead:(NSInteger)id{
+    NSDictionary *tDict = @{@"is_read":@TRUE};
+    AppDelegate *appdelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
+    [appdelegate.db updateDictionary:tDict forTable:@"TIMELINE_NOTIFICATIONS" where:[NSString stringWithFormat:@" id='%ld'", (long)id]];
     [self setNotificationBadge];
 }
 

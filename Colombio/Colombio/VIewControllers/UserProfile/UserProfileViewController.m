@@ -99,9 +99,30 @@
     _customHeader.headerTitle = [Localized string:@"my_profile"];
     _customHeader.backButtonText = @"";
     _customHeader.nextButtonText = [Localized string:@"header_save"];
+    
+    _lblMyRatingKey.text = [Localized string:@"user_rating"];
+    _lblMyBalanceKey.text = [Localized string:@"user_balance"];
+    _lblPendingKey.text = [Localized string:@"user_pending_cash_out"];
+    _lblConnectPayPalKey.text = [Localized string:@"user_connectpp"];
+    
+    _txtPayPalEmail.placeholder = [Localized string:@"user_placeholder_paypalemail"];
+    _txtName1.placeholder = [Localized string:@"user_placeholder_name"];
+    _txtName2.placeholder = [Localized string:@"user_placeholder_name"];
+    _txtLastName1.placeholder = [Localized string:@"user_placeholder_lastname"];
+    _txtStreet.placeholder = [Localized string:@"user_placeholder_street"];
+    _txtCity.placeholder = [Localized string:@"user_placeholder_city"];
+    _txtZIP.placeholder = [Localized string:@"user_placeholder_zip"];
+    _txtCountry.placeholder = [Localized string:@"user_placeholder_country"];
+    _txtInfo.text = [Localized string:@"user_pp_info"];
+    _txtPhoneNumber.placeholder = [Localized string:@"user_placeholder_phonenumber"];
     [self loadData];
     
 }
+
+- (void)viewWillDisappear:(BOOL)animated{
+    [spinner removeCustomSpinner];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -386,6 +407,18 @@
 }
 
 - (void)btnNextClicked{
+    [_txtCity resignFirstResponder];
+    [_txtCountry resignFirstResponder];
+    [_txtInfo resignFirstResponder];
+    [_txtLastName1 resignFirstResponder];
+    [_txtLastName2  resignFirstResponder];
+    [_txtName1 resignFirstResponder];
+    [_txtName2  resignFirstResponder];
+    [_txtPayPalEmail resignFirstResponder];
+    [_txtPhoneNumber resignFirstResponder];
+    [_txtStreet resignFirstResponder];
+    [_txtZIP resignFirstResponder];
+    
     if ([self validateData]) {
         [spinner startCustomSpinner2:self.view spinMessage:@""];
         [self updateUserData];

@@ -518,7 +518,7 @@
             [self.delegate didFetchTimeLineCounterOffers:result];
         }else{
             dispatch_async(dispatch_get_main_queue(), ^{
-                [self.delegate didFetchTimeline];
+                [self.delegate didFetchTimeLineCounterOffers:nil];
                 [Messages showErrorMsg:@"error_web_request"];
             });
             return;

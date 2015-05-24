@@ -140,7 +140,7 @@ NSString *visibleactions = @"http://schemas.google.com/AddActivity";
     NSString *filePathToken =[documentsDirectory stringByAppendingPathComponent:@"token.out"];
     
     //Sending login data and accepting answer
-    NSString *url_str = [NSString stringWithFormat:@"%@/api_user_managment/mau_social_login?type=gg&token=%@", BASE_URL,token];
+    NSString *url_str = [NSString stringWithFormat:@"%@/api_user_managment/mau_social_login?type=gg&token=%@&os=ios&installationID=%@", BASE_URL,token, ([[NSUserDefaults standardUserDefaults] objectForKey:PARSE_INSTALLATIONID]!=nil?[[NSUserDefaults standardUserDefaults] objectForKey:PARSE_INSTALLATIONID]:@"")];
     
     NSURL * url = [NSURL URLWithString:url_str];
     NSError *err=nil;

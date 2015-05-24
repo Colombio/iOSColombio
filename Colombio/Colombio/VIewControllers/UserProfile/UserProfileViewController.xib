@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6751" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UserProfileViewController">
@@ -71,7 +71,7 @@
                     <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hg3-h4-gmA">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="203"/>
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="214"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pXk-pa-NgA">
                                     <rect key="frame" x="10" y="0.0" width="300" height="35"/>
@@ -157,14 +157,14 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DGF-R1-0AU" userLabel="View HL1">
-                                    <rect key="frame" x="10" y="36" width="300" height="1"/>
+                                    <rect key="frame" x="10" y="47" width="300" height="1"/>
                                     <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="1" id="GAU-tR-tX6"/>
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SUD-mH-Gig">
-                                    <rect key="frame" x="10" y="38" width="300" height="40"/>
+                                    <rect key="frame" x="10" y="49" width="300" height="40"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My balance" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="B1M-An-dBi">
                                             <rect key="frame" x="5" y="10" width="141" height="21"/>
@@ -246,14 +246,14 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="14V-rC-abJ" userLabel="View HL1">
-                                    <rect key="frame" x="10" y="89" width="300" height="1"/>
+                                    <rect key="frame" x="10" y="100" width="300" height="1"/>
                                     <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="1" id="RkR-w7-pwU"/>
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1ux-II-SGR">
-                                    <rect key="frame" x="10" y="96" width="300" height="35"/>
+                                    <rect key="frame" x="10" y="107" width="300" height="35"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hcL-xp-3uh" userLabel="View - Anonymous">
                                             <rect key="frame" x="0.0" y="0.0" width="300" height="30"/>
@@ -445,14 +445,14 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4TK-9t-Ehp" userLabel="View HL1">
-                                    <rect key="frame" x="10" y="139" width="300" height="1"/>
+                                    <rect key="frame" x="10" y="150" width="300" height="1"/>
                                     <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="1" id="mA1-JD-0d8"/>
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8nc-MY-BMc">
-                                    <rect key="frame" x="10" y="148" width="300" height="35"/>
+                                    <rect key="frame" x="10" y="159" width="300" height="35"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Zo-Zb-Sss" userLabel="View - Anonymous">
                                             <rect key="frame" x="0.0" y="0.0" width="300" height="30"/>
@@ -563,7 +563,7 @@
                                 <constraint firstItem="8nc-MY-BMc" firstAttribute="leading" secondItem="Hg3-h4-gmA" secondAttribute="leading" constant="10" id="BsK-jZ-gdL"/>
                                 <constraint firstItem="SUD-mH-Gig" firstAttribute="leading" secondItem="Hg3-h4-gmA" secondAttribute="leading" constant="10" id="DJh-4O-ISF"/>
                                 <constraint firstItem="4TK-9t-Ehp" firstAttribute="top" secondItem="1ux-II-SGR" secondAttribute="bottom" constant="8" id="F99-Hf-j0a"/>
-                                <constraint firstItem="DGF-R1-0AU" firstAttribute="top" secondItem="pXk-pa-NgA" secondAttribute="bottom" constant="1" id="KVm-pl-79H"/>
+                                <constraint firstItem="DGF-R1-0AU" firstAttribute="top" secondItem="pXk-pa-NgA" secondAttribute="bottom" constant="12" id="KVm-pl-79H"/>
                                 <constraint firstItem="14V-rC-abJ" firstAttribute="leading" secondItem="Hg3-h4-gmA" secondAttribute="leading" constant="10" id="RkB-dw-WaL"/>
                                 <constraint firstItem="1ux-II-SGR" firstAttribute="top" secondItem="14V-rC-abJ" secondAttribute="bottom" constant="6" id="Xac-OM-ROV"/>
                                 <constraint firstAttribute="trailing" secondItem="14V-rC-abJ" secondAttribute="trailing" constant="10" id="a0s-QR-dio"/>

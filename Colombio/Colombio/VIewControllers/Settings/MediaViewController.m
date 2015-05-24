@@ -61,7 +61,7 @@
 }
 
 - (void)btnNextClicked{
-    [self presentViewController:[[TabBarViewController alloc] init] animated:NO completion:nil];
+    [self presentViewController:[[TabBarViewController alloc] initWithUserInfo:nil] animated:NO completion:nil];
 }
 
 #pragma mark WebServiceCommunication

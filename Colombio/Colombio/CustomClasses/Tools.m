@@ -39,6 +39,17 @@
     }
 }
 
++ (BOOL)checkIfSystemNotificationIsRead:(NSInteger)id{
+    NSMutableString *sql = [NSMutableString stringWithFormat:@"SELECT count(*) FROM timeline_notifications where is_read = 0 and id = %ld", (long)id];
+    AppDelegate *appdelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    NSInteger count = [[appdelegate.db getColForSQL:sql] integerValue];
+    if (count==0) {
+        return NO;
+    }else{
+        return YES;
+    }
+}
+
 + (UILabel*)getBadgeObject:(long )count frame:(CGRect)frame{
     UILabel *lblBadge = [[UILabel alloc] init];
     lblBadge.textAlignment = NSTextAlignmentCenter;
@@ -153,5 +164,12 @@
     NSDate *date = [formatter dateFromString:strDate];
     [formatter setDateFormat:strFormat];
     return [formatter stringFromDate:date];
+}
+
++ (NSString *)getUserName{
+    NSMutableString *sql = [NSMutableString stringWithFormat:@"SELECT first_name, last_name FROM user"];
+    AppDelegate *appdelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    NSDictionary *tDict= [appdelegate.db getRowForSQL:sql];
+    return [NSString stringWithFormat:@"%@ %@", tDict[@"first_name"],tDict[@"last_name"]];
 }
 @end

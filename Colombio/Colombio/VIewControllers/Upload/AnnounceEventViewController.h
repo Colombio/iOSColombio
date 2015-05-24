@@ -18,4 +18,6 @@
 @property (weak, nonatomic) IBOutlet UIDatePicker *pkrDate;
 @property (strong, nonatomic) NSDate *dateEvent;
 
+- (BOOL)validateFields;
+
 @end
