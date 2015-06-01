@@ -246,6 +246,8 @@
             NSString *userId=[user objectForKey:@"user_id"];
             [userId writeToFile:filePathUser atomically:YES encoding:NSUTF8StringEncoding error:nil];
             [token writeToFile:filePathToken atomically:YES encoding:NSUTF8StringEncoding error:nil];
+            [[NSUserDefaults standardUserDefaults] setObject:userId forKey:USERID];
+            [[NSUserDefaults standardUserDefaults] synchronize];
             
             [csc fetchUserProfile];
         }
@@ -290,7 +292,12 @@
             NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&URLresponse error:&err];
             //Dogodila se pogreska prilikom dohvacanja zahtjeva
             if(err){
-                [Messages showErrorMsg:@"error_web_request"];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [loadingView removeCustomSpinner];
+                    [Messages showErrorMsg:@"error_web_request"];
+                    return;
+                });
+                
                 //[loadingView stopCustomSpinner];
                 //[loadingView customSpinnerFail];
             }
@@ -317,6 +324,7 @@
                     NSString *userId=[user objectForKey:@"user_id"];
                     [userId writeToFile:filePathUser atomically:YES encoding:NSUTF8StringEncoding error:nil];
                     [token writeToFile:filePathToken atomically:YES encoding:NSUTF8StringEncoding error:nil];
+                    [[NSUserDefaults standardUserDefaults] setObject:userId forKey:USERID];
                     [[NSUserDefaults standardUserDefaults] setObject:@0 forKey:COUNTRY_ID];
                     [[NSUserDefaults standardUserDefaults] synchronize];
                     

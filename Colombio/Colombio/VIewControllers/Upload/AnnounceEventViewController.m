@@ -38,6 +38,7 @@
     
     _tagsButtons = [[NSMutableArray alloc] init];
     _selectedTags = [[NSMutableArray alloc] init];
+    _dateEvent = _pkrDate.date;
     ColombioServiceCommunicator *colombioSC = [ColombioServiceCommunicator sharedManager];
     colombioSC.delegate=self;
     [colombioSC fetchTags];

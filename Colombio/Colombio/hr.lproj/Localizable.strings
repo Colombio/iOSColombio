@@ -201,6 +201,7 @@
 "user_pp_info" = "Nemaš Paypal račun? Izradi ga prije isplate.";
 "user_anonymous" = "Šalji anonimno";
 "user_placeholder_phonenumber" = "Broj telefona";
+"user_saved" = "Korisničke postavke spremljene";
 
 /*Info buttons*/
 "anonymous_info" = "U slučaju da ne želite da se zna vaš identitet kao pošiljatelja informacije, odaberite ovu opciju. Mediji će primiti informaciju, a kao ime pošiljatelja bit će navedeno “Anoniman” te nikako ne mogu saznati vaš identitet.";

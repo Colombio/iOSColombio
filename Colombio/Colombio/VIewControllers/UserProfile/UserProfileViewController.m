@@ -448,6 +448,8 @@
                 if(!strcmp("1",((NSString*)[dicResponse objectForKey:@"s"]).UTF8String)){
                     dispatch_async(dispatch_get_main_queue(), ^{
                         [spinner removeCustomSpinner];
+                        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"" message:[Localized string:@"user_saved"] delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                        [alert show];
                     });
                 }else{
                     dispatch_async(dispatch_get_main_queue(), ^{

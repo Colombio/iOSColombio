@@ -545,6 +545,7 @@
                     tDBDict[@"pic"] = tDict[@"pic"];
                     tDBDict[@"type"] = tDict[@"type"];
                     tDBDict[@"is_read"] = tDict[@"is_read"];
+                    tDBDict[@"name"] = tDict[@"name"];
                     NSString *sql = [NSString stringWithFormat:@"SELECT count(*) FROM timeline_messages WHERE msg_id = '%@'", tDBDict[@"msg_id"]];
                     if ([[appdelegate.db getColForSQL:sql] integerValue] == 0) {
                         [appdelegate.db insertDictionaryWithoutColumnCheck:tDBDict forTable:@"TIMELINE_MESSAGES"];

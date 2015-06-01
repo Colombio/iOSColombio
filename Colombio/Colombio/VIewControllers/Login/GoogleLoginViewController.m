@@ -173,6 +173,8 @@ NSString *visibleactions = @"http://schemas.google.com/AddActivity";
                 NSString *userId=[user objectForKey:@"user_id"];
                 [userId writeToFile:filePathUser atomically:YES encoding:NSUTF8StringEncoding error:nil];
                 [token writeToFile:filePathToken atomically:YES encoding:NSUTF8StringEncoding error:nil];
+                [[NSUserDefaults standardUserDefaults] setObject:userId forKey:USERID];
+                [[NSUserDefaults standardUserDefaults] synchronize];
                 
                 //spremanje u bazu
                 [csc fetchUserProfile];
@@ -261,7 +263,7 @@ NSString *visibleactions = @"http://schemas.google.com/AddActivity";
         //If user already filled the settngs data show home view
         else{
             dispatch_async(dispatch_get_main_queue(), ^{
-                [self presentViewController:[[TabBarViewController alloc] init] animated:YES completion:nil];
+                [self presentViewController:[[TabBarViewController alloc] initWithUserInfo:nil] animated:YES completion:nil];
                 return;
             });
         }

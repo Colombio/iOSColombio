@@ -90,6 +90,7 @@
                 tDBDict[@"status"]=@([tDict[@"status"] intValue]);
                 tDBDict[@"distance"]=@([tDict[@"distance"] intValue]);
                 tDBDict[@"location_type"]=@([tDict[@"location_type"] intValue]);
+                tDBDict[@"user_id"] = [[NSUserDefaults standardUserDefaults] objectForKey:USERID];
                 NSString *sql = [NSString stringWithFormat:@"SELECT count(*) FROM newsdemandlist WHERE req_id = '%d'", [tDBDict[@"req_id"] intValue]];
                 if ([[appdelegate.db getColForSQL:sql] integerValue] == 0) {
                     tDBDict[@"isread"]=@0;

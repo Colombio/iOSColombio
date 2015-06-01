@@ -200,6 +200,7 @@
 "user_pp_info" = "Don't have PayPal account? Please create one before cashout";
 "user_anonymous" = "Send news as anonymous";
 "user_placeholder_phonenumber" = "Phone number";
+"user_saved" = "User data saved";
 
 /*Info buttons*/
 "anonymous_info" = "Choose this option to send as anonymous sender. News media will get your message, with the name of sender as “Anonymous”, and no one can detect your identity.";

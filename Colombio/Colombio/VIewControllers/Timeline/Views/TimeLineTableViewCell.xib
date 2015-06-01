@@ -61,7 +61,7 @@
                             <constraint firstAttribute="height" id="8jd-Ak-v1O"/>
                         </constraints>
                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="string" keyPath="configTextColor" value="COLOR_NEWS_DEMAND_DESCRIPTION"/>
@@ -87,10 +87,10 @@
                         </constraints>
                     </imageView>
                     <webView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CPT-7m-6ZS">
-                        <rect key="frame" x="68" y="40" width="236" height="60"/>
+                        <rect key="frame" x="68" y="40" width="236" height="65"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="60" id="u8l-Vl-OzL"/>
+                            <constraint firstAttribute="height" constant="65" id="u8l-Vl-OzL"/>
                         </constraints>
                     </webView>
                 </subviews>

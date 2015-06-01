@@ -42,6 +42,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     spinner = [[Loading alloc] init];
     
     // Do any additional setup after loading the view from its nib.
@@ -138,6 +139,12 @@
                         cell.imgSample.image = image;
                         cell.imgSample.contentMode = UIViewContentModeScaleAspectFill;
                         cell.imgSample.clipsToBounds=YES;
+                        if ([_timelineArray[indexPath.row][@"videoimg"] boolValue]) {
+                            UIImageView *imgVideo = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"watermark.png"]];
+                            imgVideo.frame = CGRectMake(0, 0, 44, 44);
+                            imgVideo.center = CGPointMake(cell.imgSample.frame.size.width  / 2,  cell.imgSample.frame.size.height / 2);
+                            [cell.imgSample addSubview:imgVideo];
+                        }
                     });
                 }
             });
@@ -150,7 +157,13 @@
             cell.lblTitle.hidden=YES;
             cell.txtDescription.hidden=YES;
             cell.webView.hidden=NO;
-            [cell.webView loadHTMLString:_timelineArray[indexPath.row][@"msg"] baseURL:nil];
+            
+            [cell.webView loadData:[_timelineArray[indexPath.row][@"msg"] dataUsingEncoding:NSUTF8StringEncoding]
+                     MIMEType:@"text/html"
+             textEncodingName:@"UTF-8"
+                      baseURL:nil];
+
+            //[cell.webView loadHTMLString:_timelineArray[indexPath.row][@"msg"] baseURL:nil];
             cell.lblHeader.text = [Tools getStringFromDateString:_timelineArray[indexPath.row][@"timestamp"] withFormat:@"dd/MM/yyyy"];
             cell.imgSample.image = [UIImage imageNamed:@"colombiotimeline"];
         }else{
@@ -182,11 +195,11 @@
 #pragma mark CSC Delegate
 - (void)didFetchTimeline{
     
-    NSString *sql = @"Select tl.*, tli.medium_image as img, 1 as type from timeline as tl left join timeline_image as tli on tli.news_id = tl.news_id order by timestamp desc";
+    NSString *sql = [NSString stringWithFormat:@"Select tl.*, tli.medium_image as img, tli.is_video as videoimg, 1 as type from timeline as tl left join timeline_image as tli on tli.news_id = tl.news_id where tl.user_id = '%@' order by timestamp desc", [[NSUserDefaults standardUserDefaults] objectForKey:USERID]];
     AppDelegate *appdelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
     _timelineArray = [appdelegate.db getAllForSQL:sql];
     
-    sql = @"Select *, 2 as type from TIMELINE_NOTIFICATIONS where type_id = 2";
+    sql = [NSString stringWithFormat:@"Select *, 2 as type from TIMELINE_NOTIFICATIONS where type_id = 2 and user_id = '%@'", [[NSUserDefaults standardUserDefaults] objectForKey:USERID]];
     _timelineArray = [_timelineArray arrayByAddingObjectsFromArray:[appdelegate.db getAllForSQL:sql]];
     
     NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey: @"timestamp" ascending: NO];

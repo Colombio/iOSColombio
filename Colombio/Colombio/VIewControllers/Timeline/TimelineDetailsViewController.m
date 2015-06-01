@@ -147,7 +147,7 @@ enum TimelineDetailsType{
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     if (timelineType==TIMELINE_NEWS) {
-        if (section==0) {
+        if (section==0 && section!=_tableDataArray.count-1) {
             UILabel *myLabel = [[UILabel alloc] init];
             myLabel.frame = CGRectMake(5, 8, 320,15);
             myLabel.font = [[UIConfiguration sharedInstance] getFont:FONT_HELVETICA_NEUE_MEDIUM_15];
@@ -197,9 +197,9 @@ enum TimelineDetailsType{
                                                   lineBreakMode:NSLineBreakByWordWrapping];
                 
                 if (((NSString*)tDict[@"img"]).length>0) {
-                    return 217+size.height;
+                    return 217+size.height+5;
                 }else{
-                    return 97+size.height;
+                    return 97+size.height+5;
                 }
             }else{
                 return 60.0;
@@ -295,7 +295,7 @@ enum TimelineDetailsType{
                 
                 CGSize size = [tDict[@"news_text"] sizeWithFont:[[UIConfiguration sharedInstance] getFont:FONT_HELVETICA_NEUE_REGULAR] constrainedToSize:CGSizeMake(236, MAXFLOAT) lineBreakMode:NSLineBreakByWordWrapping];
                 
-                cell.CS_lblDescriptionHeight.constant = size.height;
+                cell.CS_lblDescriptionHeight.constant = size.height+5;
                 
                 if (((NSString*)tDict[@"img"]).length>0) {
                     dispatch_queue_t concurrentQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
@@ -307,6 +307,12 @@ enum TimelineDetailsType{
                                 cell.imgSample.image = image;
                                 cell.imgSample.contentMode = UIViewContentModeScaleAspectFill;
                                 cell.imgSample.clipsToBounds=YES;
+                                if ([tDict[@"videoimg"] boolValue]) {
+                                    UIImageView *imgVideo = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"watermark.png"]];
+                                    imgVideo.frame = CGRectMake(0, 0, 44, 44);
+                                    imgVideo.center = CGPointMake(cell.imgSample.frame.size.width  / 2,  cell.imgSample.frame.size.height / 2);
+                                    [cell.imgSample addSubview:imgVideo];
+                                }
                             });
                         }
                     });
@@ -586,7 +592,16 @@ enum TimelineDetailsType{
             cell.lblTitle.hidden=YES;
             cell.txtDescription.hidden=YES;
             cell.webView.hidden=NO;
-            [cell.webView loadHTMLString:_timelineDict[@"msg"] baseURL:nil];
+            
+            NSData *data = [_timelineDict[@"msg"] dataUsingEncoding:NSUTF8StringEncoding];
+            NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:NSJSONWritingPrettyPrinted error:NULL];
+            
+            
+            [cell.webView loadData:[_timelineDict[@"msg"] dataUsingEncoding:NSUTF8StringEncoding]
+                          MIMEType:@"text/html"
+                  textEncodingName:@"UTF-8"
+                           baseURL:nil];
+           // [cell.webView loadHTMLString:_timelineDict[@"msg"] baseURL:nil];
             cell.lblHeader.text = [Tools getStringFromDateString:_timelineDict[@"timestamp"] withFormat:@"dd/MM/yyyy"];
             cell.imgSample.image = [UIImage imageNamed:@"colombiotimeline"];
             cell.CS_webViewHeight.constant=webViewHeight+2;
@@ -728,7 +743,10 @@ enum TimelineDetailsType{
             NSDictionary *dict = @{@"detailtype":@4, @"mid":@(mediaid), @"nid":_timelineDict[@"news_id"]};
             [tArray addObject:dict];
         }
-        [_tableDataArray addObject:tArray];
+        if (tArray.count>0) {
+            [_tableDataArray addObject:tArray];
+        }
+        
     }
     
     //add sent news
@@ -861,12 +879,36 @@ enum TimelineDetailsType{
 
 #pragma mark Update DB
 - (void)setNotificationsToRead:(NSInteger)timelineid{
+    /*NSString *sql =[NSString stringWithFormat:@"SELECT id from TIMELINE_NOTIFICATIONS where nid = ='%ld'", (long)timelineid];
+    NSArray *tArray = [appdelegate.db getColForSQL:sql];
+    for(NSNumber *tID in tArray){
+        NSString *sql = [NSString stringWithFormat:@"SELECT count(*) FROM TIMELINE_NOTIFICATIONS WHERE id = '%ld'", (long)[tID integerValue]];
+        NSMutableDictionary *tDBDict = [[NSMutableDictionary alloc] init];
+        tDBDict[@"is_read"]=@1;
+        if ([[appdelegate.db getColForSQL:sql] integerValue] == 0) {
+            tDBDict[@"id"]=tID;
+            [appdelegate.db insertDictionaryWithoutColumnCheck:tDBDict forTable:@"TIMELINE_NOTIFICATIONS"];
+        }else{
+            [appdelegate.db updateDictionary:tDBDict forTable:@"TIMELINE_NOTIFICATIONS" where:[NSString stringWithFormat:@" id='%ld'", (long)[tID integerValue]]];
+        }
+    }*/
+
     NSDictionary *tDict = @{@"is_read":@TRUE};
     [appdelegate.db updateDictionary:tDict forTable:@"TIMELINE_NOTIFICATIONS" where:[NSString stringWithFormat:@" nid='%ld'", (long)timelineid]];
     [self setNotificationBadge];
 }
 
 - (void)setSystemNotificationToRead:(NSInteger)id{
+        /*NSString *sql = [NSString stringWithFormat:@"SELECT count(*) FROM TIMELINE_NOTIFICATIONS WHERE id = '%ld'", (long)id];
+        NSMutableDictionary *tDBDict = [[NSMutableDictionary alloc] init];
+        tDBDict[@"is_read"]=@1;
+        if ([[appdelegate.db getColForSQL:sql] integerValue] == 0) {
+            tDBDict[@"id"]=@(id);
+            [appdelegate.db insertDictionaryWithoutColumnCheck:tDBDict forTable:@"TIMELINE_NOTIFICATIONS"];
+        }else{
+            [appdelegate.db updateDictionary:tDBDict forTable:@"TIMELINE_NOTIFICATIONS" where:[NSString stringWithFormat:@" id='%ld'", (long)id]];
+        }*/ 
+    
     NSDictionary *tDict = @{@"is_read":@TRUE};
     [appdelegate.db updateDictionary:tDict forTable:@"TIMELINE_NOTIFICATIONS" where:[NSString stringWithFormat:@" id='%ld'", (long)id]];
     [self setNotificationBadge];

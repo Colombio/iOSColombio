@@ -12,13 +12,13 @@
 @implementation Tools
 
 + (NSInteger)getNumberOfNewDemands{
-    NSMutableString *sql = [NSMutableString stringWithFormat:@"SELECT count(*) FROM newsdemandlist where isread = 0 AND end_timestamp >= '%@'",[NSDate date]];
+    NSMutableString *sql = [NSMutableString stringWithFormat:@"SELECT count(*) FROM newsdemandlist where isread = 0 AND end_timestamp >= '%@' and user_id = '%@'",[NSDate date], [[NSUserDefaults standardUserDefaults] objectForKey:USERID]];
     AppDelegate *appdelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     return [[appdelegate.db getColForSQL:sql] integerValue];
 }
 
 + (BOOL)checkForNewNotification{
-    NSMutableString *sql = [NSMutableString stringWithFormat:@"SELECT count(*) FROM timeline_notifications where is_read = 0"];
+    NSMutableString *sql = [NSMutableString stringWithFormat:@"SELECT count(*) FROM timeline_notifications where is_read = 0 and user_id = '%@'", [[NSUserDefaults standardUserDefaults] objectForKey:USERID]];
     AppDelegate *appdelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     NSInteger count = [[appdelegate.db getColForSQL:sql] integerValue];
     if (count==0) {

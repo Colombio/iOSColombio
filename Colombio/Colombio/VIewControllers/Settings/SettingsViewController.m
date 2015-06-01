@@ -184,11 +184,11 @@
                         AppDelegate *appdelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
                         [appdelegate.db clearTable:@"USER"];
                         [appdelegate.db clearTable:@"USER_CASHOUT"];
-                        [appdelegate.db clearTable:@"NEWSDEMANDLIST"];
+                        //[appdelegate.db clearTable:@"NEWSDEMANDLIST"];
                         [appdelegate.db clearTable:@"UPLOAD_DATA"];
-                        [[NSUserDefaults standardUserDefaults] setObject:@"0" forKey:TIMELINE_TIMESTAMP];
-                        [[NSUserDefaults standardUserDefaults] setObject:@"0" forKey:NEWSDEMAND_TIMESTAMP];
-                        [[NSUserDefaults standardUserDefaults] synchronize];
+                        //[[NSUserDefaults standardUserDefaults] setObject:@"0" forKey:TIMELINE_TIMESTAMP];
+                        //[[NSUserDefaults standardUserDefaults] setObject:@"0" forKey:NEWSDEMAND_TIMESTAMP];
+                        //[[NSUserDefaults standardUserDefaults] synchronize];
                         //[appdelegate.db clearTable:@"MEDIA_LIST"];
                         //[appdelegate.db clearTable:@"SELECTED_MEDIA"];
                         //[appdelegate.db clearTable:@"COUNTRIES_LIST"];

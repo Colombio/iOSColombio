@@ -119,7 +119,7 @@
 - (void)saveToDB:(NSInteger)index{
     AppDelegate *appdelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     NSDictionary *tDict = @{@"isread":@TRUE};
-    [appdelegate.db updateDictionary:tDict forTable:@"NEWSDEMANDLIST" where:[NSString stringWithFormat:@" req_id='%d'", ((NewsDemandObject*)_newsDemandArray[index]).req_id]];
+    [appdelegate.db updateDictionary:tDict forTable:@"NEWSDEMANDLIST" where:[NSString stringWithFormat:@" req_id='%d' and user_id = '%@'", ((NewsDemandObject*)_newsDemandArray[index]).req_id, [[NSUserDefaults standardUserDefaults] objectForKey:USERID]]];
     /*if (![self checkDemandInDB:((NewsDemandObject*)_newsDemandArray[index]).req_id]) {
         NSDictionary *tDict = @{@"req_id":@(((NewsDemandObject*)_newsDemandArray[index]).req_id), @"title":((NewsDemandObject*)_newsDemandArray[index]).title, @"isread":@TRUE};
         [appdelegate.db insertDictionaryWithoutColumnCheck:tDict forTable:@"NEWSDEMANDLIST"];
@@ -128,7 +128,7 @@
 
 - (BOOL)checkDemandInDB:(NSInteger)demand_id{
     AppDelegate *appdelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-    NSString *sql = [NSString stringWithFormat:@"SELECT isread FROM NEWSDEMANDLIST WHERE req_id = %ld", (long)demand_id];
+    NSString *sql = [NSString stringWithFormat:@"SELECT isread FROM NEWSDEMANDLIST WHERE req_id = %ld and user_id = '%@'", (long)demand_id, [[NSUserDefaults standardUserDefaults] objectForKey:USERID]];
     if ([[appdelegate.db getColForSQL:sql] boolValue] == TRUE) {
         return YES;
     }else{
@@ -156,7 +156,7 @@
 - (void)getNewsDeamandList{
     [_newsDemandArray removeAllObjects];
     NSMutableString *sql = [[NSMutableString alloc] init];
-    [sql appendFormat:@"SELECT * FROM newsdemandlist WHERE end_timestamp >= '%@'",[NSDate date]];
+    [sql appendFormat:@"SELECT * FROM newsdemandlist WHERE end_timestamp >= '%@' and user_id = '%@'",[NSDate date], [[NSUserDefaults standardUserDefaults] objectForKey:USERID]];
     //[sql appendFormat:@"SELECT * FROM newsdemandlist"];
     AppDelegate *appdelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     NSMutableArray *tArray = [appdelegate.db getAllForSQL:sql];
