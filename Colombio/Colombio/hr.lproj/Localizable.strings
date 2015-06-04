@@ -162,6 +162,7 @@
 "media_communication" = "Komunikacija s medijima";
 "sent_news" = "Poslana vijest";
 "anonymous" = "Anonimno";
+"sent_to" = "Poslano medijima";
 
 /*Header*/
 "header_next" = "DALJE";

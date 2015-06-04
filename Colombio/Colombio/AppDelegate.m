@@ -57,11 +57,27 @@
     //[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
-    [[NSUserDefaults standardUserDefaults] setObject:@0 forKey:COUNTRY_ID];
-    [[NSUserDefaults standardUserDefaults] synchronize];
+    if ([[NSUserDefaults standardUserDefaults] objectForKey:COUNTRY_ID]==nil){
+        [[NSUserDefaults standardUserDefaults] setObject:@0 forKey:COUNTRY_ID];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }
+    
     if([[NSUserDefaults standardUserDefaults] boolForKey:@"SKIP_START"]){
+        [[NSUserDefaults standardUserDefaults] setObject:@0 forKey:SHOW_TUTORIAL];
+        [[NSUserDefaults standardUserDefaults] synchronize];
         [self checkToken:nil];
     }else{
+        [[NSUserDefaults standardUserDefaults] setObject:@1 forKey:SHOW_TUTORIAL];
+        [[NSUserDefaults standardUserDefaults] setObject:@1 forKey:TUTORIAL1];
+        [[NSUserDefaults standardUserDefaults] setObject:@1 forKey:TUTORIAL2];
+        [[NSUserDefaults standardUserDefaults] setObject:@1 forKey:TUTORIAL3];
+        [[NSUserDefaults standardUserDefaults] setObject:@1 forKey:TUTORIAL4];
+        [[NSUserDefaults standardUserDefaults] setObject:@1 forKey:TUTORIAL5];
+        [[NSUserDefaults standardUserDefaults] setObject:@1 forKey:TUTORIAL6];
+        [[NSUserDefaults standardUserDefaults] setObject:@1 forKey:TUTORIAL7];
+        [[NSUserDefaults standardUserDefaults] setObject:@1 forKey:TUTORIAL8];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+
         self.window.rootViewController = [[StartViewController alloc] init];
     }
     //LoginViewController *loginVC = [[LoginViewController alloc] init];

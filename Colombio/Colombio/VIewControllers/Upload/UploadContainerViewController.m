@@ -11,12 +11,15 @@
 #import "AppDelegate.h"
 #import "UploadNewsViewController.h"
 #import "Messages.h"
+#import "TutorialView.h"
 
 
 
-@interface UploadContainerViewController ()
+@interface UploadContainerViewController ()<TutorialViewDelegate>
 {
     NewsData *newsData;
+    TutorialView *tutorialView;
+    NSInteger tutorialCounter;
 }
 @property (assign, nonatomic) BOOL isNewsDemand;
 @property (strong, nonatomic) NewsDemandObject *newsDemandData;
@@ -102,10 +105,22 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    tutorialCounter=1;
     if (_isNewsDemand) {
         contentVC.txtTitle.text = _newsDemandData.title;
     }
     // Do any additional setup after loading the view.
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    if ([[[NSUserDefaults standardUserDefaults] objectForKey:SHOW_TUTORIAL] boolValue] && [[[NSUserDefaults standardUserDefaults] objectForKey:TUTORIAL3] boolValue]) {        
+        
+        self.tabBarController.tabBar.userInteractionEnabled=NO;
+        tutorialView = [[TutorialView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height) andTutorialSet:3];
+        tutorialView.imgTutorial.image = [UIImage imageNamed:@"tut3"];
+        tutorialView.delegate = self;
+        [self.view addSubview:tutorialView];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -160,6 +175,32 @@
         [self.navigationController pushViewController:uploadNewsVC animated:YES];
         
     }
+}
+
+- (void)currentPageIndexShown:(NSInteger)currentPageIndex{
+    if (currentPageIndex==0) {
+        if ([[[NSUserDefaults standardUserDefaults] objectForKey:SHOW_TUTORIAL] boolValue] && [[[NSUserDefaults standardUserDefaults] objectForKey:TUTORIAL3] boolValue]) {
+            tutorialView = [[TutorialView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height) andTutorialSet:3];
+            tutorialView.imgTutorial.image = [UIImage imageNamed:@"tut3"];
+            tutorialView.delegate = self;
+            [self.view addSubview:tutorialView];
+        }
+    }else if (currentPageIndex==1) {
+        if ([[[NSUserDefaults standardUserDefaults] objectForKey:SHOW_TUTORIAL] boolValue] && [[[NSUserDefaults standardUserDefaults] objectForKey:TUTORIAL6] boolValue]) {
+            tutorialView = [[TutorialView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height) andTutorialSet:4];
+            tutorialView.imgTutorial.image = [UIImage imageNamed:@"tut6"];
+            tutorialView.delegate = self;
+            [self.view addSubview:tutorialView];
+        }
+    }else if (currentPageIndex==2) {
+        if ([[[NSUserDefaults standardUserDefaults] objectForKey:SHOW_TUTORIAL] boolValue] && [[[NSUserDefaults standardUserDefaults] objectForKey:TUTORIAL7] boolValue]) {
+            tutorialView = [[TutorialView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height) andTutorialSet:5];
+            tutorialView.imgTutorial.image = [UIImage imageNamed:@"tut7"];
+            tutorialView.delegate = self;
+            [self.view addSubview:tutorialView];
+        }
+    }
+    
 }
 
 - (void)collectData{
@@ -250,5 +291,10 @@
     return self.presentingViewController.presentedViewController == self
     || self.navigationController.presentingViewController.presentedViewController == self.navigationController
     || [self.tabBarController.presentingViewController isKindOfClass:[UITabBarController class]];
+}
+
+#pragma mark TutorialView
+- (void)tutorialTapped{
+    self.tabBarController.tabBar.userInteractionEnabled=YES;
 }
 @end

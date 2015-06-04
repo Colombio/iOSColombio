@@ -157,12 +157,22 @@ enum TimelineDetailsType{
             headerView.backgroundColor = [UIColor whiteColor];
             [headerView addSubview:myLabel];
             return headerView;
-        }else if(section==_tableDataArray.count-1){
+        }else if(section==_tableDataArray.count-2){
             UILabel *myLabel = [[UILabel alloc] init];
             myLabel.frame = CGRectMake(5, 8, 320, 15);
             myLabel.font = [[UIConfiguration sharedInstance] getFont:FONT_HELVETICA_NEUE_MEDIUM_15];
             myLabel.textColor = [[UIConfiguration sharedInstance] getColor:COLOR_NEXT_BUTTON];
             myLabel.text  = [[Localized string:@"sent_news"] uppercaseString];
+            UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 30)];
+            headerView.backgroundColor = [UIColor whiteColor];
+            [headerView addSubview:myLabel];
+            return headerView;
+        }else if(section==_tableDataArray.count-1){
+            UILabel *myLabel = [[UILabel alloc] init];
+            myLabel.frame = CGRectMake(5, 8, 320, 15);
+            myLabel.font = [[UIConfiguration sharedInstance] getFont:FONT_HELVETICA_NEUE_MEDIUM_15];
+            myLabel.textColor = [[UIConfiguration sharedInstance] getColor:COLOR_NEXT_BUTTON];
+            myLabel.text  = [[Localized string:@"sent_to"] uppercaseString];
             UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 30)];
             headerView.backgroundColor = [UIColor whiteColor];
             [headerView addSubview:myLabel];
@@ -190,7 +200,7 @@ enum TimelineDetailsType{
     if (timelineType == TIMELINE_NEWS) {
         NSDictionary *tDict = _tableDataArray[indexPath.section][indexPath.row];
         
-        if (_tableDataArray.count-1 == indexPath.section) {
+        if (_tableDataArray.count-2 == indexPath.section) {
             if (indexPath.row==0) {
                 CGSize size = [tDict[@"news_text"] sizeWithFont:[[UIConfiguration sharedInstance] getFont:FONT_HELVETICA_NEUE_REGULAR]
                                               constrainedToSize:CGSizeMake(236, MAXFLOAT)
@@ -206,6 +216,8 @@ enum TimelineDetailsType{
             }
             
             
+        }if (_tableDataArray.count-1 == indexPath.section) {
+            return 60.0;
         }else{
             if ([tDict[@"detailtype"] integerValue] == 1) {
                 
@@ -240,10 +252,10 @@ enum TimelineDetailsType{
                 
                 CGFloat height = [self textViewHeightForRowAtIndexPath:@(indexPath.section+indexPath.row)];
                 //((CLTextView*)_textViewsDict[indexPath]).frame.size.width
-                if (height>30.0) {
-                    return height;
+                if (height>50.0) {
+                    return height+5.0;
                 }else{
-                    return 35.0;
+                    return 50.0;
                 }
                 
             }
@@ -276,8 +288,7 @@ enum TimelineDetailsType{
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (timelineType == TIMELINE_NEWS) {
         NSDictionary *tDict = _tableDataArray[indexPath.section][indexPath.row];
-        if (_tableDataArray.count-1 == indexPath.section) {
-            if (indexPath.row==0) {
+        if (_tableDataArray.count-2 == indexPath.section) {
                 TimelineSentNewsCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
                 if (cell==nil) {
                     cell=[[TimelineSentNewsCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
@@ -321,45 +332,47 @@ enum TimelineDetailsType{
                 }
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
                 return cell;
-            }else{
-                SelectMediaCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
-                if (cell==nil) {
-                    cell=[[SelectMediaCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
-                }
-                if (NSFoundationVersionNumber <= NSFoundationVersionNumber_iOS_7_1)
-                {
-                    cell.contentView.frame = cell.bounds;
-                    cell.contentView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleRightMargin |UIViewAutoresizingFlexibleTopMargin |UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleBottomMargin;
-                }
-                
-                cell.lblMediaName.text = tDict[@"medianame"];
-                cell.lblMediaType.text = [[Localized string:appdelegate.dicMediaTypes[tDict[@"media_type"]]] uppercaseString];
-                
-                dispatch_queue_t concurrentQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-                //this will start the image loading in bg
-                dispatch_async(concurrentQueue, ^{
-                    if ([appdelegate.mediaImages objectForKey:tDict[@"id"]]==nil) {
-                        NSURL *url = [NSURL URLWithString:tDict[@"media_icon"]];
-                        UIImage *image = [[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:url]];
-                        if (image!=nil) {
-                            [appdelegate.mediaImages setObject:image forKey:tDict[@"id"]];
-                            dispatch_async(dispatch_get_main_queue(), ^{
-                                cell.imgMedia.image = [appdelegate.mediaImages objectForKey:tDict[@"id"]];
-                            });
-                        }else{
-                            dispatch_async(dispatch_get_main_queue(), ^{
-                                cell.imgMedia.image = [UIImage imageNamed:@"uploadphoto"];
-                            });
-                        }
-                    }else{
+        }else if(_tableDataArray.count-1 == indexPath.section){
+            SelectMediaCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+            if (cell==nil) {
+                cell=[[SelectMediaCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+            }
+            if (NSFoundationVersionNumber <= NSFoundationVersionNumber_iOS_7_1)
+            {
+                cell.contentView.frame = cell.bounds;
+                cell.contentView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleRightMargin |UIViewAutoresizingFlexibleTopMargin |UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleBottomMargin;
+            }
+            
+            cell.lblMediaName.font = [[UIConfiguration sharedInstance] getFont:FONT_HELVETICA_NEUE_REGULAR];
+            cell.lblMediaType.font = [[UIConfiguration sharedInstance] getFont:FONT_HELVETICA_NEUE_REGULAR_15];
+            
+            cell.lblMediaName.text = tDict[@"medianame"];
+            cell.lblMediaType.text = [[Localized string:appdelegate.dicMediaTypes[tDict[@"media_type"]]] uppercaseString];
+            
+            dispatch_queue_t concurrentQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+            //this will start the image loading in bg
+            dispatch_async(concurrentQueue, ^{
+                if ([appdelegate.mediaImages objectForKey:tDict[@"id"]]==nil) {
+                    NSURL *url = [NSURL URLWithString:tDict[@"media_icon"]];
+                    UIImage *image = [[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:url]];
+                    if (image!=nil) {
+                        [appdelegate.mediaImages setObject:image forKey:tDict[@"id"]];
                         dispatch_async(dispatch_get_main_queue(), ^{
                             cell.imgMedia.image = [appdelegate.mediaImages objectForKey:tDict[@"id"]];
                         });
+                    }else{
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            cell.imgMedia.image = [UIImage imageNamed:@"uploadphoto"];
+                        });
                     }
-                });
-                cell.selectionStyle = UITableViewCellSelectionStyleNone;
-                return cell;
-            }
+                }else{
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        cell.imgMedia.image = [appdelegate.mediaImages objectForKey:tDict[@"id"]];
+                    });
+                }
+            });
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            return cell;
         }else{
             switch ([tDict[@"detailtype"] integerValue]) {
                 case 1:
@@ -623,7 +636,6 @@ enum TimelineDetailsType{
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     }
-    
 }
 
 - (CGSize)getHeightForText:(NSString*)txt{
@@ -752,8 +764,10 @@ enum TimelineDetailsType{
     //add sent news
     NSMutableArray *tArray = [[NSMutableArray alloc] init];
     [tArray addObject:_timelineDict];
+    [_tableDataArray addObject:tArray];
 
     //add media
+    tArray = [[NSMutableArray alloc] init];
     AppDelegate *appdelegte = (AppDelegate*)[UIApplication sharedApplication].delegate;
     for (NSString *mediaid in mediaList) {
        NSString *sql = [NSString stringWithFormat:@"select id, name as medianame, media_type, media_icon from media_list where id = %ld ", (long)[mediaid integerValue]];

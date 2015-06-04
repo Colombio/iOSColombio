@@ -19,6 +19,7 @@
 #import "SimpleMediaSelectViewController.h"
 #import "NewsDemandServiceCommunicator.h"
 #import "TimelineServiceCommunicator.h"
+#import "TutorialView.h"
 
 
 enum UploadType{
@@ -28,8 +29,10 @@ enum UploadType{
     COMMUNITY_NEWS=4,
     ANNOUNCED_EVENT=5
 };
-@interface HomeViewController ()<ColombioServiceCommunicatorDelegate, NewsDemandServiceCommunicatorDelegate, TimelineServiceCommunicatorDelegate>
-
+@interface HomeViewController ()<ColombioServiceCommunicatorDelegate, NewsDemandServiceCommunicatorDelegate, TimelineServiceCommunicatorDelegate, TutorialViewDelegate>
+{
+    TutorialView *tutorialView;
+}
 @end
 
 @implementation HomeViewController
@@ -53,7 +56,15 @@ enum UploadType{
     // Do any additional setup after loading the view from its nib.
 }
 
+
 - (void)viewWillAppear:(BOOL)animated{
+    if ([[[NSUserDefaults standardUserDefaults] objectForKey:SHOW_TUTORIAL] boolValue] && [[[NSUserDefaults standardUserDefaults] objectForKey:TUTORIAL2] boolValue]) {
+        tutorialView = [[TutorialView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height) andTutorialSet:2];
+        tutorialView.imgTutorial.image = [UIImage imageNamed:@"tut2"];
+        tutorialView.delegate = self;
+        [self.view addSubview:tutorialView];
+    }
+    
     self.navigationController.tabBarItem.selectedImage  = [[UIImage imageNamed:@"home_active"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     NewsDemandServiceCommunicator *newsSC = [NewsDemandServiceCommunicator sharedManager];
     newsSC.delegate=self;

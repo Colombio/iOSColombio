@@ -21,7 +21,8 @@
 @property (assign, nonatomic) BOOL progressBarAnimation;
 @property (assign, nonatomic) BOOL flexibleHeader;
 @property (assign, nonatomic) BOOL staticHeader;
-
+@property (strong, nonatomic) UIPageViewController *pageViewController;
+@property (assign, nonatomic) NSInteger currentPageIndex;
 
 //- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil andControllers:(NSArray*)controllers;
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil focusOnControllerIndex:(NSInteger)index withSingleTitle:(BOOL)singleTitle;

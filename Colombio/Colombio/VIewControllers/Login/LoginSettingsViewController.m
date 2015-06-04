@@ -12,10 +12,12 @@
 #import "TabBarViewController.h"
 #import "Messages.h"
 #import "Loading.h"
+#import "TutorialView.h"
 
-@interface LoginSettingsViewController ()
+@interface LoginSettingsViewController ()<TutorialViewDelegate>
 {
     Loading *spinner;
+    TutorialView *tutorialView;
 }
 @end
 
@@ -43,9 +45,20 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     super.btnBack.hidden=YES;
     spinner = [[Loading alloc] init];
     
+}
+
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    if ([[[NSUserDefaults standardUserDefaults] objectForKey:SHOW_TUTORIAL] boolValue] && [[[NSUserDefaults standardUserDefaults] objectForKey:TUTORIAL1] boolValue]) {
+        tutorialView = [[TutorialView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height) andTutorialSet:1];
+        tutorialView.imgTutorial.image = [UIImage imageNamed:@"tut1"];
+        tutorialView.delegate = self;
+        [self.view addSubview:tutorialView];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -186,6 +199,13 @@
     dict[@"paypal"] = userInfoVC.swTogglePayPal.isOn?@1:@0;
     [appdelegate.db updateDictionary:dict forTable:@"USER" where:NULL];
     
+}
+
+#pragma mark Tutorial
+- (void)tutorialTapped{
+    [[NSUserDefaults standardUserDefaults] setObject:@0 forKey:TUTORIAL1];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    [tutorialView removeFromSuperview];
 }
 
 @end

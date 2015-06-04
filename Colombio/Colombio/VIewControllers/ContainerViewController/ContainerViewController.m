@@ -30,7 +30,7 @@ enum HeaderMovement{
 @property (weak, nonatomic) IBOutlet UIView *viewContainer;
 @property (weak, nonatomic) IBOutlet UIView *viewProgressBar;
 @property (strong, nonatomic) NSMutableArray *headerBtnsArray;
-@property (strong, nonatomic) UIPageViewController *pageViewController;
+
 @property (weak,nonatomic) IBOutlet NSLayoutConstraint *CS_progressBarWidth;
 @property (weak,nonatomic) IBOutlet NSLayoutConstraint *CS_containerBottomMargin;
 @property (strong, nonatomic) UIButton *nextButton;
@@ -39,7 +39,7 @@ enum HeaderMovement{
 @end
 
 @implementation ContainerViewController
-@synthesize viewControllersArray=_viewControllersArray, nextButtonTitle=_nextButtonTitle;
+@synthesize viewControllersArray=_viewControllersArray, nextButtonTitle=_nextButtonTitle, currentPageIndex;
 
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil focusOnControllerIndex:(NSInteger)index withSingleTitle:(BOOL)singleTitle{
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -362,6 +362,7 @@ enum HeaderMovement{
     if (completed) {
         currentPageIndex = [self indexOfController:[pageViewController.viewControllers lastObject]];
         [self setHeaderButtonsAfterMovement];
+        [self currentPageIndexShown:currentPageIndex];
         /* NSInteger tempIndex = [self indexOfController:[previousViewControllers lastObject]];
         if (tempIndex<currentPageIndex) {
             [self headerMovement:toRight];
@@ -418,6 +419,7 @@ enum HeaderMovement{
                         if (complete) {
                             [weakSelf updateCurrentPageIndex:(int)tempIndex+1];
                             [weakSelf setHeaderButtonsAfterMovement];
+                            [weakSelf currentPageIndexShown:(int)tempIndex+1];
                         }
                     }];
                 }else if (sender==_btnBack) {
@@ -425,6 +427,7 @@ enum HeaderMovement{
                         if (complete) {
                             [weakSelf updateCurrentPageIndex:(int)tempIndex-1];
                             [weakSelf setHeaderButtonsAfterMovement];
+                            [weakSelf currentPageIndexShown:(int)tempIndex-1];
                         }
                     }];
                     
@@ -444,6 +447,7 @@ enum HeaderMovement{
                         if (complete) {
                             [weakSelf updateCurrentPageIndex:(int)tempIndex+1];
                             [weakSelf setHeaderButtonsAfterMovement];
+                            [weakSelf currentPageIndexShown:(int)tempIndex+1];
                         }
                     }];
                 }else if (sender.tag < tempIndex) {
@@ -451,6 +455,7 @@ enum HeaderMovement{
                         if (complete) {
                             [weakSelf updateCurrentPageIndex:(int)tempIndex-1];
                             [weakSelf setHeaderButtonsAfterMovement];
+                            [weakSelf currentPageIndexShown:(int)tempIndex-1];
                         }
                     }];
                     
@@ -464,6 +469,13 @@ enum HeaderMovement{
     /**
     *****Override in subclass!!!
     **/
+}
+
+- (void)currentPageIndexShown:(NSInteger)currentPageIndex{
+    /**
+     *****Override in subclass!!!
+     *****For Tutorial purpose only!!!
+     **/
 }
 
 -(void)updateCurrentPageIndex:(int)newIndex

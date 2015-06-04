@@ -161,6 +161,7 @@
 "media_communication" = "Media communication";
 "sent_news" = "Sent news";
 "anonymous" = "Anonymous";
+"sent_to" = "Sent to";
 
 /*Header*/
 "header_next" = "NEXT";
