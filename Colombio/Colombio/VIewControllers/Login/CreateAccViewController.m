@@ -14,7 +14,6 @@
 #import "LoginViewController.h"
 #import "Messages.h"
 #import "Validation.h"
-#import "CountriesViewController.h"
 #import "Localized.h"
 #import "AppDelegate.h"
 #import "SettingsInfoViewController.h"

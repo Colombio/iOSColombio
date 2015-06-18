@@ -71,9 +71,6 @@
     
     ColombioServiceCommunicator *csc = [ColombioServiceCommunicator sharedManager];
     csc.delegate = self;
-    /*NSArray *array = @[@{@"ntf_push":(_swPush.isOn?@1:@0)},
-                       @{@"ntf_in_app":@0},
-                       @{@"ntf_email":(_swEmail.isOn?@1:@0)}];*/
     
     NSDictionary *dict = @{@"ntf_push":(_swPush.isOn?@1:@0),
                            @"ntf_in_app":@0,

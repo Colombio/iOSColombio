@@ -61,6 +61,7 @@ enum UploadType{
     if ([[[NSUserDefaults standardUserDefaults] objectForKey:SHOW_TUTORIAL] boolValue] && [[[NSUserDefaults standardUserDefaults] objectForKey:TUTORIAL2] boolValue]) {
         tutorialView = [[TutorialView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height) andTutorialSet:2];
         tutorialView.imgTutorial.image = [UIImage imageNamed:@"tut2"];
+        self.tabBarController.tabBar.userInteractionEnabled=NO;
         tutorialView.delegate = self;
         [self.view addSubview:tutorialView];
     }
@@ -201,6 +202,13 @@ enum UploadType{
         [[self.tabBarController.tabBar.items objectAtIndex:1] setBadgeValue:@"!"];
     }else{
         [[self.tabBarController.tabBar.items objectAtIndex:1] setBadgeValue:nil];
+    }
+}
+
+#pragma mark TutorialView
+- (void)tutorialTapped{
+    if(![[[NSUserDefaults standardUserDefaults] objectForKey:SHOW_TUTORIAL] boolValue]){
+        self.tabBarController.tabBar.userInteractionEnabled=YES;
     }
 }
 @end

@@ -15,10 +15,6 @@
 		583572191A2B72BB00F6EA17 /* Tools.m in Sources */ = {isa = PBXBuildFile; fileRef = 583572181A2B72BB00F6EA17 /* Tools.m */; };
 		5836A1CD1A55F98300C509F1 /* Loading.m in Sources */ = {isa = PBXBuildFile; fileRef = 5836A1CC1A55F98300C509F1 /* Loading.m */; };
 		583C9EBE1A6357FD00C6131C /* SettingsCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 583C9EBD1A6357FD00C6131C /* SettingsCollectionView.m */; };
-		583C9EC21A63654500C6131C /* MediaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 583C9EC01A63654500C6131C /* MediaViewController.m */; };
-		583C9EC31A63654500C6131C /* MediaViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 583C9EC11A63654500C6131C /* MediaViewController.xib */; };
-		58A004FE1A60DBE300E7BA68 /* CountriesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58A004FC1A60DBE300E7BA68 /* CountriesViewController.m */; };
-		58A004FF1A60DBE300E7BA68 /* CountriesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58A004FD1A60DBE300E7BA68 /* CountriesViewController.xib */; };
 		58ACA0021A4EE6B70076D3D8 /* HeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 58ACA0001A4EE6B70076D3D8 /* HeaderView.m */; };
 		58ACA0031A4EE6B70076D3D8 /* HeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58ACA0011A4EE6B70076D3D8 /* HeaderView.xib */; };
 		58ACA0051A530D5B0076D3D8 /* CreateAccViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58ACA0041A530D5B0076D3D8 /* CreateAccViewController.xib */; };
@@ -178,12 +174,6 @@
 		5836A1CC1A55F98300C509F1 /* Loading.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Loading.m; sourceTree = "<group>"; };
 		583C9EBC1A6357FD00C6131C /* SettingsCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsCollectionView.h; sourceTree = "<group>"; };
 		583C9EBD1A6357FD00C6131C /* SettingsCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsCollectionView.m; sourceTree = "<group>"; };
-		583C9EBF1A63654500C6131C /* MediaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaViewController.h; sourceTree = "<group>"; };
-		583C9EC01A63654500C6131C /* MediaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaViewController.m; sourceTree = "<group>"; };
-		583C9EC11A63654500C6131C /* MediaViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MediaViewController.xib; sourceTree = "<group>"; };
-		58A004FB1A60DBE300E7BA68 /* CountriesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CountriesViewController.h; sourceTree = "<group>"; };
-		58A004FC1A60DBE300E7BA68 /* CountriesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CountriesViewController.m; sourceTree = "<group>"; };
-		58A004FD1A60DBE300E7BA68 /* CountriesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CountriesViewController.xib; sourceTree = "<group>"; };
 		58AC9FFF1A4EE6B70076D3D8 /* HeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeaderView.h; sourceTree = "<group>"; };
 		58ACA0001A4EE6B70076D3D8 /* HeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeaderView.m; sourceTree = "<group>"; };
 		58ACA0011A4EE6B70076D3D8 /* HeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HeaderView.xib; sourceTree = "<group>"; };
@@ -482,12 +472,6 @@
 			isa = PBXGroup;
 			children = (
 				BBB4EAE11AAA698D0075717A /* Views */,
-				583C9EBF1A63654500C6131C /* MediaViewController.h */,
-				583C9EC01A63654500C6131C /* MediaViewController.m */,
-				583C9EC11A63654500C6131C /* MediaViewController.xib */,
-				58A004FB1A60DBE300E7BA68 /* CountriesViewController.h */,
-				58A004FC1A60DBE300E7BA68 /* CountriesViewController.m */,
-				58A004FD1A60DBE300E7BA68 /* CountriesViewController.xib */,
 				BBB4EADC1AAA67290075717A /* SelectMediaViewController.h */,
 				BBB4EADD1AAA67290075717A /* SelectMediaViewController.m */,
 				BBB4EADE1AAA67290075717A /* SelectMediaViewController.xib */,
@@ -982,7 +966,6 @@
 				BBAB600A1AAE5722000493E0 /* UserInfoViewController.xib in Resources */,
 				BBB79D1D1A5CABF8001A876A /* HomeViewController.xib in Resources */,
 				BBB2B13A1A5F534F00F4FD38 /* CreateNewsViewController.xib in Resources */,
-				583C9EC31A63654500C6131C /* MediaViewController.xib in Resources */,
 				BBB4EAE01AAA67290075717A /* SelectMediaViewController.xib in Resources */,
 				BBB7F32F1A60A6D30014909B /* ScrollableHeaderContentView.xib in Resources */,
 				BBB2B1341A5F404E00F4FD38 /* DummyViewController.xib in Resources */,
@@ -995,7 +978,6 @@
 				BBBB04661AC4C5C60023DD86 /* NewsDemandViewController.xib in Resources */,
 				BBC77C6A1A6889610069FD9D /* PhotoLibraryViewController.xib in Resources */,
 				BBB7B7E51AEAE37C0013A602 /* SimpleMediaSelectViewController.xib in Resources */,
-				58A004FF1A60DBE300E7BA68 /* CountriesViewController.xib in Resources */,
 				582352C31A841E2900A03D19 /* GoogleLoginViewController.xib in Resources */,
 				BBD453621A64914A0029CADD /* ContainerViewController.xib in Resources */,
 				BBB7B7ED1AEB0B660013A602 /* Localizable in Resources */,
@@ -1046,7 +1028,6 @@
 				BBB144841A78E66800980BB4 /* UserInfoUploadViewController.m in Sources */,
 				BBBB045C1AC4B3F70023DD86 /* NewsDemandCell.m in Sources */,
 				BBEB696D1B0BEA7C00533001 /* TimelineSentNewsCell.m in Sources */,
-				58A004FE1A60DBE300E7BA68 /* CountriesViewController.m in Sources */,
 				BBCF58A31A29395400CE64B4 /* YourInfo.m in Sources */,
 				BBAE1F1D1A37B51F0008B772 /* ColombioServiceCommunicator.m in Sources */,
 				583C9EBE1A6357FD00C6131C /* SettingsCollectionView.m in Sources */,
@@ -1067,7 +1048,6 @@
 				BBBA2F891B06999200F8D384 /* TimelineUserReplyCell.m in Sources */,
 				BBB604B71A7EFFB90090F18A /* UploadNewsViewController.m in Sources */,
 				BBB33AC61A27D9EE008D0E26 /* AppDelegate.m in Sources */,
-				583C9EC21A63654500C6131C /* MediaViewController.m in Sources */,
 				5835720E1A2B70C000F6EA17 /* ScrollableHeader.m in Sources */,
 				BBB604B21A7AF4310090F18A /* UITextField+XibAttributes.m in Sources */,
 				BBBA2F7F1B06935C00F8D384 /* TimelineOfferCell.m in Sources */,

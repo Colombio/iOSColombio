@@ -109,8 +109,6 @@
         UITableViewCell *cell = (UITableViewCell*)[tableView cellForRowAtIndexPath:indexpath];
         cell.textLabel.textColor = [[UIConfiguration sharedInstance] getColor:COLOR_TEXT_NEWS_TITLE];
     }
-    /*UITableViewCell *cell = (UITableViewCell*)[tableView cellForRowAtIndexPath:indexPath];
-    cell.textLabel.textColor = [UIColor colorWithRed:155.0/255.0 green:155.0/255.0 blue:155.0/255.0 alpha:1.0];*/
     
     
     switch (indexPath.row) {

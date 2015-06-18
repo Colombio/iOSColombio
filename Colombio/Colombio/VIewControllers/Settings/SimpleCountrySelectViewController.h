@@ -6,6 +6,8 @@
 //  Copyright (c) 2015 Colombio. All rights reserved.
 //
 
+//Select countries in user settings
+
 #import "BackgroundViewController.h"
 
 @interface SimpleCountrySelectViewController : BackgroundViewController

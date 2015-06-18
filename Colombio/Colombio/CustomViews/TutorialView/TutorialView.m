@@ -53,6 +53,9 @@
         [[NSUserDefaults standardUserDefaults] setObject:@0 forKey:TUTORIAL2];
         [[NSUserDefaults standardUserDefaults] synchronize];
         [self removeFromSuperview];
+        if ([self.delegate respondsToSelector:@selector(tutorialTapped)]) {
+            [self.delegate tutorialTapped];
+        }
         
     }else if(_tutorialSet==3){
         if (currentImage==1) {

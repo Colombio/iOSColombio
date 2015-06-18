@@ -16,8 +16,6 @@
 #import "CreateAccViewController.h"
 #import "TabBarViewController.h"
 #import "ForgotPasswordViewController.h"
-#import "CountriesViewController.h"
-#import "MediaViewController.h"
 #import "LoginSettingsViewController.h"
 #import <Parse/Parse.h>
 
@@ -65,6 +63,20 @@
     if([[NSUserDefaults standardUserDefaults] boolForKey:@"SKIP_START"]){
         [[NSUserDefaults standardUserDefaults] setObject:@0 forKey:SHOW_TUTORIAL];
         [[NSUserDefaults standardUserDefaults] synchronize];
+        
+        //Testin purpose only
+        /*[[NSUserDefaults standardUserDefaults] setObject:@1 forKey:SHOW_TUTORIAL];
+        [[NSUserDefaults standardUserDefaults] setObject:@1 forKey:TUTORIAL1];
+        [[NSUserDefaults standardUserDefaults] setObject:@1 forKey:TUTORIAL2];
+        [[NSUserDefaults standardUserDefaults] setObject:@1 forKey:TUTORIAL3];
+        [[NSUserDefaults standardUserDefaults] setObject:@1 forKey:TUTORIAL4];
+        [[NSUserDefaults standardUserDefaults] setObject:@1 forKey:TUTORIAL5];
+        [[NSUserDefaults standardUserDefaults] setObject:@1 forKey:TUTORIAL6];
+        [[NSUserDefaults standardUserDefaults] setObject:@1 forKey:TUTORIAL7];
+        [[NSUserDefaults standardUserDefaults] setObject:@1 forKey:TUTORIAL8];
+        [[NSUserDefaults standardUserDefaults] synchronize];*/
+        
+        
         [self checkToken:nil];
     }else{
         [[NSUserDefaults standardUserDefaults] setObject:@1 forKey:SHOW_TUTORIAL];

@@ -91,8 +91,6 @@
             _txtView.hidden=NO;
             _viewSearchHolder.hidden=YES;
             _txtView.text = [Localized string:@"choose_country"];
-            /*UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"" message:[Localized string:@"choose_one_country"] delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-            [alert show];*/
         }
     }
 }
@@ -110,8 +108,6 @@
             _tblView.hidden=YES;
             _txtView.hidden=NO;
             _viewSearchHolder.hidden=YES;
-            /*UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"" message:[Localized string:@"choose_one_country"] delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-            [alert show];*/
         }
     }
     _txtSearch.layer.cornerRadius = 5;
@@ -392,6 +388,7 @@
     return (NSArray*)[appdelegate.db getAllForSQL:sql];
 }
 
+//this is for first login if user changes countries in step 1
 - (BOOL)selectedCountriesChanged{
     NSArray *tempArray = [self loadSelectedCountries];
     tempArray = [tempArray sortedArrayUsingSelector:@selector(compare:)];
@@ -503,22 +500,6 @@
 - (void)setupMediaData{
     
     if (_isForNewsUpload) {
-        //logika za merganje favorite medija i ostalih s tim da su fav mediji na vrhu popisa
-        /*NSMutableArray *tempFavMedia = [[NSMutableArray alloc] init];
-        NSMutableArray *tempMedia = [[NSMutableArray alloc] initWithArray:_media];
-        for (NSDictionary *media in _media){
-            if ([_favMediaID containsObject:media[@"id"]]) {
-                [tempFavMedia addObject:media];
-                [tempMedia removeObject:media];
-            }
-        }
-        NSMutableArray *mergedMedia = [[NSMutableArray alloc] init];
-        if (tempFavMedia.count>0) {
-            [mergedMedia addObjectsFromArray:tempFavMedia];
-        }
-        [mergedMedia addObjectsFromArray:tempMedia];
-        _filteredMedia = mergedMedia;
-        [_selectedMedia addObjectsFromArray:_favMediaID];*/
         _favMedia = [[NSMutableArray alloc] init];
         NSMutableArray *tempArray = [[NSMutableArray alloc] initWithArray:_media];
         for(NSDictionary *media in _media){
@@ -618,11 +599,6 @@
         NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"name contains[c] %@ OR mediatypetext contains[c] %@", searchCondition, searchCondition];
         _filteredMedia = [_media filteredArrayUsingPredicate:resultPredicate];
     }
-    /*for (NSDictionary *media in _media){
-        if ([[media[@"name"] lowercaseString] containsString:[searchCondition lowercaseString]]) {
-            [_filteredMedia addObject:media];
-        }
-    }*/
 }
 
 - (void)addMediaTypeTextForFiltering:(NSArray*)array{

@@ -117,11 +117,6 @@ enum Types{
     dispatch_async(dispatch_get_main_queue(), ^{
         if (txtDict.count>0) {
             _txtView.text = txtDict[@"content"];
-            /*if (_type==FAQ) {
-                [_webView loadHTMLString:[Localized string:@"faq_desc"] baseURL:nil];
-            }else{
-                [_webView loadHTMLString:txtDict[@"content"] baseURL:nil];
-            }*/
             [_webView loadHTMLString:txtDict[@"content"] baseURL:nil];
             
         }

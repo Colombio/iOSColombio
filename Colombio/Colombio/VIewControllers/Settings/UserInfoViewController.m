@@ -33,10 +33,6 @@
     _txtName.tintColor = [[UIConfiguration sharedInstance] getColor:COLOR_TEXT_TXT_FIELD];
     _txtSurname.tintColor = [[UIConfiguration sharedInstance] getColor:COLOR_TEXT_TXT_FIELD];
     _txtPayPalEmail.tintColor = [[UIConfiguration sharedInstance] getColor:COLOR_TEXT_TXT_FIELD];
-    /*_btnToggleAnonymous.isON = YES;
-    _btnTogglePayPal.isON = NO;
-    [self setLabelsWidth];*/
-    // Do any additional setup after loading the view from its nib.
 }
 
 - (void)didReceiveMemoryWarning {
@@ -58,48 +54,6 @@
                                      lineBreakMode:NSLineBreakByWordWrapping];
     _CS_lblConnectPayPalWidth.constant = size.width+15;
 }
-
-/*- (void)btnAction:(VSSwitchButton *)sender{
-    if (sender==_btnToggleAnonymous) {
-        if(!sender.isON){
-            _CS_NameHeight.constant +=30;
-            _CS_SurnameHeight.constant +=30;
-            _CS_AnonynmousHolderHeight.constant +=60;
-            //[_btnAnonymousInfo setBackgroundImage:[UIImage imageNamed:@"infoicon"] forState:UIControlStateNormal];
-            _lblAnonymous.text = [Localized string:@"sending_news_as"];
-            _btnAnonymousInfo.hidden=YES;
-        }else{
-            _CS_NameHeight.constant -=30;
-            _CS_SurnameHeight.constant -=30;
-            _CS_AnonynmousHolderHeight.constant -=60;
-            //[_btnAnonymousInfo setBackgroundImage:[UIImage imageNamed:@"infoicon_active"] forState:UIControlStateNormal];
-            _btnAnonymousInfo.hidden=NO;
-            _lblAnonymous.text = [Localized string:@"anonymous_sending"];
-        }
-        [self setLabelsWidth];
-        [UIView animateWithDuration:0.5
-                         animations:^{
-                             [self.view layoutIfNeeded];
-                             
-                         }];
-    }else if (sender == _btnTogglePayPal) {
-        if (sender.isON) {
-            _CS_PayPalEmailHeight.constant +=30;
-            _CS_PayPalViewHeight.constant +=30;
-            //[_btnPayPalInfo setBackgroundImage:[UIImage imageNamed:@"infoicon_active"] forState:UIControlStateNormal];
-            _btnPayPalInfo.hidden=YES;
-        }else{
-            _CS_PayPalEmailHeight.constant -=30;
-            _CS_PayPalViewHeight.constant -=30;
-            //[_btnPayPalInfo setBackgroundImage:[UIImage imageNamed:@"infoicon"] forState:UIControlStateNormal];
-            _btnPayPalInfo.hidden=NO;
-        }
-        [UIView animateWithDuration:0.5
-                         animations:^{
-                             [self.view layoutIfNeeded];
-                         }];
-    }
-}*/
 
 - (void)btnAction:(UISwitch *)sender{
     if (sender==_swToggleAnonymoys) {

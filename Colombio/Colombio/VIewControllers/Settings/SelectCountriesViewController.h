@@ -6,6 +6,8 @@
 //  Copyright (c) 2015 Colombio. All rights reserved.
 //
 
+//For 1st login only
+
 #import <UIKit/UIKit.h>
 
 @interface SelectCountriesViewController : UIViewController<UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>
