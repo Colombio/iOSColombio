@@ -38,11 +38,20 @@
                   clientKey:@"vFOzh6nLUXAExa5fulRLm5J2EsagHHxN9sEApxs9"];
     
     // Register for Push Notitications
-    UIUserNotificationType userNotificationTypes = (UIUserNotificationTypeAlert);
-    UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:userNotificationTypes
-                                                                             categories:nil];
-    [application registerUserNotificationSettings:settings];
-    [application registerForRemoteNotifications];
+    if (SYSTEM_VERSION_LESS_THAN(@"8.0")) {
+        [application registerForRemoteNotificationTypes:
+         //UIRemoteNotificationTypeBadge |
+         UIRemoteNotificationTypeAlert ];
+         //|UIRemoteNotificationTypeSound];
+    }else{
+        UIUserNotificationType userNotificationTypes = (UIUserNotificationTypeAlert);
+        UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:userNotificationTypes
+                                                                                 categories:nil];
+        [application registerUserNotificationSettings:settings];
+        [application registerForRemoteNotifications];
+    }
+    
+    
     
     appIsActive=YES;
     
