@@ -111,7 +111,7 @@ enum HeaderMovement{
     [_headerBtnsArray addObject:_btnBack];
     [_viewHeader addSubview:_btnBack];
     
-    lblHeader = [[UILabel alloc] initWithFrame:CGRectMake(100, 0, 250, 20)];
+    lblHeader = [[UILabel alloc] initWithFrame:CGRectMake(100, 0, 200, 20)];
     lblHeader.center = CGPointMake(_viewHeader.frame.size.width/2, _viewHeader.frame.size.height/2);
     lblHeader.font = [[UIConfiguration sharedInstance] getFont:FONT_HELVETICA_NEUE_LIGHT];
     lblHeader.textColor = [[UIConfiguration sharedInstance] getColor:COLOR_TEXT_NAVIGATIONBAR_BUTTONLABEL];

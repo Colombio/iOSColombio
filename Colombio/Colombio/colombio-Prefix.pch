@@ -20,7 +20,7 @@
     #import "UIConfiguration.h"
 #endif
 
-#define BASE_URL @"https://colomb.io"
+#define BASE_URL @"https://colomb.io"   //@"http://testing.colomb.io/" @"https://colomb.io"
 #define BASE_URL_IMAGES @"https://afs.colomb.io"
 
 #define maxPrice @"100"

@@ -79,7 +79,7 @@
                     tDBDict[@"timestamp"]=[Tools getDateFromAPIString:tDict[@"news_timestamp"]];
                     tDBDict[@"lat"]= (tDict[@"lat"]!=[NSNull null]?@([tDict[@"lat"] floatValue]):[NSNull null]);
                     tDBDict[@"lng"]= (tDict[@"lng"]!=[NSNull null]?@([tDict[@"lng"] floatValue]):[NSNull null]);
-                    tDBDict[@"media_list"]=@([tDict[@"media_list"] intValue]);
+                    tDBDict[@"media_list"]=tDict[@"media_list"];
                     tDBDict[@"anonymous"]=@([tDict[@"anonymous"] intValue]);
                     tDBDict[@"type_id"]=@([tDict[@"type_id"] intValue]);
                     tDBDict[@"user_id"] = [[NSUserDefaults standardUserDefaults] objectForKey:USERID];
@@ -88,7 +88,7 @@
                         //tDBDict[@"isread"]=@0;
                         [appdelegate.db insertDictionaryWithoutColumnCheck:tDBDict forTable:@"TIMELINE"];
                     }else{
-                        [appdelegate.db updateDictionary:tDBDict forTable:@"TIMELINE" where:[NSString stringWithFormat:@" news_id='%@'", tDBDict[@"news_id"]]];
+                        [appdelegate.db updateDictionary:tDBDict forTable:@"TIMELINE" where:[NSString stringWithFormat:@" news_id='%lld'", [tDBDict[@"news_id"] longLongValue]]];
                     }
                     
                     tDBDict = [[NSMutableDictionary alloc] init];

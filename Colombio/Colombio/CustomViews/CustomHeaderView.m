@@ -10,6 +10,12 @@
 
 @implementation CustomHeaderView
 
+
+- (void)awakeFromNib
+{
+    
+}
+
 - (id)initWithCoder:(NSCoder *)aDecoder{
     self = [super initWithCoder:aDecoder];
     if (self) {
@@ -34,6 +40,7 @@
         _lblTitle.textAlignment = NSTextAlignmentCenter;
         _lblTitle.adjustsFontSizeToFitWidth = YES;
         _lblTitle.minimumScaleFactor=0.5;
+        _lblTitle.lineBreakMode = NSLineBreakByTruncatingTail;
         _lblTitle.textColor = [[UIConfiguration sharedInstance] getColor:COLOR_TEXT_NAVIGATIONBAR_TITLE];
         _lblTitle.font = [[UIConfiguration sharedInstance] getFont:FONT_HELVETICA_NEUE_LIGHT];
         _bottomBorder = [[UIView alloc]initWithFrame:CGRectMake(0, 42, 320, 2)];

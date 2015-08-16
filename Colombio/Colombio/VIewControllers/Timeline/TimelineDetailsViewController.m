@@ -92,6 +92,16 @@ enum TimelineDetailsType{
     
 }
 
+-(BOOL) webView:(UIWebView *)inWeb shouldStartLoadWithRequest:(NSURLRequest *)inRequest navigationType:(UIWebViewNavigationType)inType {
+    if ( inType == UIWebViewNavigationTypeLinkClicked ) {
+        [[UIApplication sharedApplication] openURL:[inRequest URL]];
+        return NO;
+    }
+    
+    return YES;
+}
+
+
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     if (timelineType==TIMELINE_NEWS) {
@@ -113,9 +123,9 @@ enum TimelineDetailsType{
         
     }
     /*if (timelineType==TIMELINE_NEWS) {
-        _customHeader.headerTitle = _timelineDict[@"news_title"];
+        [self.customHeader setHeaderTitle:_timelineDict[@"news_title"]];
     }else if (timelineType==TIMELINE_NOTIFICATION){
-        _customHeader.headerTitle = @"COLOMBIO";
+        [self.customHeader setHeaderTitle:@"COLOMBIO"];
     }
     _customHeader.backButtonText=@"";
     _customHeader.lblTitle.lineBreakMode=NSLineBreakByTruncatingTail;

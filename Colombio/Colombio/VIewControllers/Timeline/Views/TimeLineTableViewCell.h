@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TimeLineTableViewCell : UITableViewCell
+@interface TimeLineTableViewCell : UITableViewCell<UIWebViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIImageView *profileImage;
 @property (weak, nonatomic) IBOutlet UIImageView *alertImage;

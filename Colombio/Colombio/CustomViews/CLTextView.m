@@ -40,6 +40,7 @@ CGFloat const UI_PLACEHOLDER_TEXT_CHANGED_ANIMATION_DURATION = 0.25;
         [l setTextColor:[[UIConfiguration sharedInstance] getColor:_placeholderColor]];
         [l setText:self.placeholder];
         [l setAlpha:0];
+        [self viewWithTag:999].hidden=YES;
         [l setTag:999];
         [self addSubview:l];
         [l sizeToFit];
@@ -47,6 +48,7 @@ CGFloat const UI_PLACEHOLDER_TEXT_CHANGED_ANIMATION_DURATION = 0.25;
     }
     if ([[self text] length]==0 && [[self placeholder] length]>0) {
         [[self viewWithTag:999] setAlpha:1];
+        [self viewWithTag:999].hidden=NO;
     }
     [super drawRect:rect];
 }
@@ -63,6 +65,7 @@ CGFloat const UI_PLACEHOLDER_TEXT_CHANGED_ANIMATION_DURATION = 0.25;
             return;
         }else{
             [self viewWithTag:999].alpha=0.0;
+            [self viewWithTag:999].hidden=YES;
         }
     }
 }
@@ -70,6 +73,7 @@ CGFloat const UI_PLACEHOLDER_TEXT_CHANGED_ANIMATION_DURATION = 0.25;
 - (void)textEndEditing:(NSNotification*)notification{
     if (((CLTextView*)notification.object).text.length<1 && notification.object == self) {
         [self viewWithTag:999].alpha=1.0;
+        [self viewWithTag:999].hidden=NO;
     }
 }
 - (void)textChanged:(NSNotification *)notification
@@ -83,10 +87,12 @@ CGFloat const UI_PLACEHOLDER_TEXT_CHANGED_ANIMATION_DURATION = 0.25;
         if([[self text] length] == 0)
         {
             [[self viewWithTag:999] setAlpha:1];
+            [self viewWithTag:999].hidden=NO;
         }
         else
         {
             [[self viewWithTag:999] setAlpha:0];
+            [self viewWithTag:999].hidden=YES;
         }
     }];
 }

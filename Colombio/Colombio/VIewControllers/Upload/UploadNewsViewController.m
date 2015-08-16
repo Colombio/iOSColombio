@@ -93,7 +93,7 @@
     
     if (_newsData.type_id==5 && _newsData.eventTime.length>0 && _newsData.eventDate.length>0) {
         
-        httpBody = [NSString stringWithFormat:@"signed_req=%@&title=%@&content=%@&loc=%@&prot=%@&cost=%f&be_credited=%@&be_contacted=%@&tags=%@&req_id=%ld&media=%@&type_id=%@&contact_data[contact_phone]=%@&sell=%@&ext_data[date]=%@&ext_data[time]=%@",result,_newsData.title,_newsData.content,location,whisperMode,_newsData.price,be_credited,be_contacted,arTagsUpload,(long)_newsData.did,arMediaUpload,[NSString stringWithFormat:@"%ld",(long)_newsData.type_id],_newsData.phone_number, sell,_newsData.eventDate, _newsData.eventTime];
+        httpBody = [NSString stringWithFormat:@"signed_req=%@&title=%@&content=%@&loc=%@&prot=%@&cost=%f&be_credited=%@&be_contacted=%@&tags=%@&did=%ld&media=%@&type_id=%@&contact_data[contact_phone]=%@&sell=%@&ext_data[date]=%@&ext_data[time]=%@",result,_newsData.title,_newsData.content,location,whisperMode,_newsData.price,be_credited,be_contacted,arTagsUpload,(long)_newsData.did,arMediaUpload,[NSString stringWithFormat:@"%ld",(long)_newsData.type_id],_newsData.phone_number, sell,_newsData.eventDate, _newsData.eventTime];
         
     }else if(_newsData.did == 0){
         
@@ -101,7 +101,7 @@
     }
     else{
         
-        httpBody = [NSString stringWithFormat:@"signed_req=%@&title=%@&content=%@&loc=%@&prot=%@&cost=%f&be_credited=%@&be_contacted=%@&tags=%@&req_id=%ld&media=%@&type_id=%@&contact_data[contact_phone]=%@&sell=%@",result,_newsData.title,_newsData.content,location,whisperMode,_newsData.price,be_credited,be_contacted,arTagsUpload,(long)_newsData.did,arMediaUpload,[NSString stringWithFormat:@"%ld",(long)_newsData.type_id],_newsData.phone_number, sell];
+        httpBody = [NSString stringWithFormat:@"signed_req=%@&title=%@&content=%@&loc=%@&prot=%@&cost=%f&be_credited=%@&be_contacted=%@&tags=%@&did=%ld&media=%@&type_id=%@&contact_data[contact_phone]=%@&sell=%@",result,_newsData.title,_newsData.content,location,whisperMode,_newsData.price,be_credited,be_contacted,arTagsUpload,(long)_newsData.did,arMediaUpload,[NSString stringWithFormat:@"%ld",(long)_newsData.type_id],_newsData.phone_number, sell];
     }
     
     [csc sendAsyncHttp:url_str httpBody:httpBody cache:NSURLRequestReloadIgnoringCacheData timeoutInterval:TIMEOUT];

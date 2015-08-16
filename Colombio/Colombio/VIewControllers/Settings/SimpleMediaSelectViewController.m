@@ -288,7 +288,7 @@
 }
 
 - (void)didFetchMedia{
-    NSString *sql = @"SELECT ml.id as id, country_id, media_icon, description, media_type, name, ifnull(sm.status, 0) as status FROM media_list ml LEFT OUTER JOIN selected_media sm on sm.media_id = ml.id";
+    NSString *sql = @"SELECT ml.id as id, country_id, media_icon, description, media_type, name, ifnull(sm.status, 0) as status FROM media_list ml LEFT OUTER JOIN selected_media sm on sm.media_id = ml.id INNER JOIN selected_countries as sc on sc.c_id = ml.country_id where sc.status = 1";
     _media = [appdelegate.db getAllForSQL:sql];
     [self setupMediaData];
 }
@@ -324,7 +324,17 @@
     _filteredOtherMedia = _otherMedia;
     _filteredFavMedia = [self addColombioOnTop:_favMedia];
     [_selectedMedia addObjectsFromArray:_favMediaID];
-    _mergedMedia = [[NSMutableArray alloc] initWithObjects:_filteredFavMedia, _filteredOtherMedia, nil];
+    
+    _mergedMedia = [[NSMutableArray alloc] init];
+    
+    if (_filteredFavMedia.count>0) {
+        [_mergedMedia addObject:_filteredFavMedia];
+    }
+    
+    if (_filteredOtherMedia.count>0) {
+        [_mergedMedia addObject:_filteredOtherMedia];
+    }
+    
     @synchronized(self){
         dispatch_async(dispatch_get_main_queue(), ^{
             [_tblView reloadData];
@@ -476,7 +486,7 @@
 #pragma mark UIAlertView Delegate
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (buttonIndex==1) {
-        NSString *phoneNumber = [@"tell://" stringByAppendingString:alertView.message];
+        NSString *phoneNumber = [@"tel:" stringByAppendingString:alertView.message];
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:phoneNumber]];
     }
 }
