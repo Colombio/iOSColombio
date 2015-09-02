@@ -38,7 +38,17 @@
     if (self) {
         self.tabBarController.delegate=self;
         //NewsDemand
-        NewsDemandViewController *newsDemandVC = [[NewsDemandViewController alloc] initWithNibName:@"NewsDemandViewController" bundle:nil];
+        //NewsDemandViewController *newsDemandVC = [[NewsDemandViewController alloc] initWithNibName:@"NewsDemandViewController" bundle:nil];
+        NewsDemandViewController *newsDemandVC;
+        if (userInfo[@"payload"][@"did"])
+        {
+            newsDemandVC = [[NewsDemandViewController alloc] initWithNotification:userInfo];
+            
+        }else
+        {
+            newsDemandVC = [[NewsDemandViewController alloc] initWithNotification:nil];
+        }
+        
         UINavigationController *newsDemandNavController = [[UINavigationController alloc] initWithRootViewController:newsDemandVC];
         newsDemandNavController.navigationBar.hidden=YES;
         
@@ -49,7 +59,16 @@
         [controllers addObject:newsDemandNavController];
         
         //TimeLine
-        TimelineViewController *timeLineVC = [[TimelineViewController alloc] initWithNotification:userInfo];
+        TimelineViewController *timeLineVC;
+        if (userInfo[@"payload"][@"nid"])
+        {
+            timeLineVC = [[TimelineViewController alloc] initWithNotification:userInfo];
+            
+        }else
+        {
+            timeLineVC = [[TimelineViewController alloc] initWithNotification:nil];
+        }
+    
         UINavigationController *timeLineNavController = [[UINavigationController alloc] initWithRootViewController:timeLineVC];
         timeLineNavController.navigationBar.hidden=YES;
         
@@ -95,7 +114,13 @@
         self.viewControllers = controllers;
         self.customizableViewControllers = controllers;
         if (userInfo) {
-            [self setSelectedIndex:1];
+            if (userInfo[@"payload"][@"did"])
+            {
+                [self setSelectedIndex:0];
+            }else{
+                [self setSelectedIndex:1];
+            }
+            
         }else{
             [self setSelectedIndex:2];
         }

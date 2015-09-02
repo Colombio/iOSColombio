@@ -391,8 +391,16 @@
 //this is for first login if user changes countries in step 1
 - (BOOL)selectedCountriesChanged{
     NSArray *tempArray = [self loadSelectedCountries];
-    tempArray = [tempArray sortedArrayUsingSelector:@selector(compare:)];
-    _selectedCountries = [_selectedCountries sortedArrayUsingSelector:@selector(compare:)];
+    
+    NSSortDescriptor *countryDescriptor = [[NSSortDescriptor alloc] initWithKey:@"c_id" ascending:YES];
+    NSArray *sortDescriptor = [NSArray arrayWithObject:countryDescriptor];
+    
+    tempArray = [tempArray sortedArrayUsingDescriptors:sortDescriptor];
+    _selectedCountries = [_selectedCountries sortedArrayUsingDescriptors:sortDescriptor];
+    
+    
+    /*tempArray = [tempArray sortedArrayUsingSelector:@selector(compare:)];
+    _selectedCountries = [_selectedCountries sortedArrayUsingSelector:@selector(compare:)];*/
     
     if([_selectedCountries isEqualToArray:tempArray]){
         return NO;

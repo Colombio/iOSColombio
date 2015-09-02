@@ -14,16 +14,29 @@
 #import "Tools.h"
 #import "ColombioServiceCommunicator.h"
 #import "NewsDemandContainerViewController.h"
+#import "NewsDemandServiceCommunicator.h"
+#import "Loading.h"
 
-@interface NewsDemandViewController ()<UITableViewDataSource, UITableViewDelegate, CustomHeaderViewDelegate, ColombioServiceCommunicatorDelegate>
-
+@interface NewsDemandViewController ()<UITableViewDataSource, UITableViewDelegate, CustomHeaderViewDelegate, ColombioServiceCommunicatorDelegate, NewsDemandServiceCommunicatorDelegate>
+{
+    Loading *spinner;
+}
 @property (weak, nonatomic) IBOutlet CustomHeaderView *customHeader;
 @property (weak, nonatomic) IBOutlet UITableView *tblView;
 @property (strong,nonatomic) NSMutableArray *newsDemandArray;
 @property (weak, nonatomic) IBOutlet UITextView *txtNoTask;
+@property (strong, nonatomic) NSDictionary *userInfo;
 @end
 
 @implementation NewsDemandViewController
+
+- (instancetype)initWithNotification:(NSDictionary*)userInfo{
+    self = [super init];
+    if (self) {
+        _userInfo = userInfo;
+    }
+    return self;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -38,7 +51,17 @@
     _customHeader.backButtonText=@"";
    _txtNoTask.text = [Localized string:@"no_task"];
     //_customHeader.btnBack.hidden=YES;
-    [self getNewsDeamandList];
+    if (_userInfo) {
+        spinner = [[Loading alloc] init];
+        [spinner startCustomSpinner2:self.view spinMessage:@""];
+        NewsDemandServiceCommunicator *newsSC = [NewsDemandServiceCommunicator sharedManager];
+        newsSC.delegate=self;
+        [newsSC fetchNewsDemands];
+    }else
+    {
+        [self getNewsDeamandList];
+    }
+    
     
 }
 
@@ -50,6 +73,16 @@
 - (void)btnBackClicked{
     [self.tabBarController setSelectedIndex:2];
 }
+
+#pragma mark NewsDemandServiceCommnunicator
+
+- (void)didFetchNewsDemands:(NSDictionary *)result{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self getNewsDeamandList];
+    });
+    
+}
+
 #pragma mark TableView Delegates
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 1;
@@ -190,7 +223,27 @@
         [loading removeFromSuperview];
         [loadingView removeFromSuperview];
         [self.view setUserInteractionEnabled:YES];*/
-        [_tblView reloadData];
+        if (_userInfo) {
+            [spinner removeCustomSpinner];
+            int index = -1;
+            for(int i=0;i<_newsDemandArray.count;i++){
+                if ([_userInfo[@"payload"][@"nid"] integerValue] == [_newsDemandArray[i][@"news_id"] integerValue]) {
+                    index=i;
+                }
+            }
+            if (index>-1) {
+                NewsDemandContainerViewController *vc = [[NewsDemandContainerViewController alloc] initWithNibName:@"ContainerViewController" bundle:nil focusOnControllerIndex:index withDataArray:_newsDemandArray];
+                [self saveToDB:index];
+                [self.navigationController pushViewController:vc animated:YES];
+            }
+            _userInfo=nil;
+        }
+        else
+        {
+            [_tblView reloadData];
+        }
+        
+        
     });
 }
 

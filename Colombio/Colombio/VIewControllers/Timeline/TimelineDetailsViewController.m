@@ -272,8 +272,8 @@ enum TimelineDetailsType{
         }
     }else if(timelineType == TIMELINE_NOTIFICATION){
         if ([_timelineDict[@"title"] isEqualToString:@""]) {
-            if (webViewHeight>60) {
-                return webViewHeight+173;
+            if (webViewHeight+25>60) {
+                return webViewHeight+25+173;
             }else{
                 return 233.0;
             }
@@ -615,6 +615,15 @@ enum TimelineDetailsType{
             cell.lblTitle.hidden=YES;
             cell.txtDescription.hidden=YES;
             cell.webView.hidden=NO;
+            cell.webView.delegate = self;
+            
+            if ([cell.webView respondsToSelector:@selector(scrollView)]) {
+                cell.webView.scrollView.scrollEnabled = NO;
+            } else {
+                for (id subview in cell.webView.subviews)
+                    if ([[subview class] isSubclassOfClass: [UIScrollView class]])
+                        ((UIScrollView *)subview).scrollEnabled = NO;
+            }
             
             NSData *data = [_timelineDict[@"msg"] dataUsingEncoding:NSUTF8StringEncoding];
             NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:NSJSONWritingPrettyPrinted error:NULL];
@@ -627,7 +636,7 @@ enum TimelineDetailsType{
            // [cell.webView loadHTMLString:_timelineDict[@"msg"] baseURL:nil];
             cell.lblHeader.text = [Tools getStringFromDateString:_timelineDict[@"timestamp"] withFormat:@"dd/MM/yyyy"];
             cell.imgSample.image = [UIImage imageNamed:@"colombiotimeline"];
-            cell.CS_webViewHeight.constant=webViewHeight+2;
+            cell.CS_webViewHeight.constant=webViewHeight+25;
         }else{
             cell.lblTitle.text = _timelineDict[@"title"];
             cell.lblHeader.text = [Tools getStringFromDateString:_timelineDict[@"timestamp"] withFormat:@"dd/MM/yyyy"];

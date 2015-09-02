@@ -207,7 +207,7 @@ enum UploadType{
 
 #pragma mark TutorialView
 - (void)tutorialTapped{
-    if(![[[NSUserDefaults standardUserDefaults] objectForKey:SHOW_TUTORIAL] boolValue]){
+    if(![[[NSUserDefaults standardUserDefaults] objectForKey:SHOW_TUTORIAL] boolValue] || ![[[NSUserDefaults standardUserDefaults] objectForKey:@"TUTORIAL2"] boolValue]){
         self.tabBarController.tabBar.userInteractionEnabled=YES;
     }
 }

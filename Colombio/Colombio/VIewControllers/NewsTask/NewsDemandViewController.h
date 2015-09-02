@@ -10,4 +10,6 @@
 
 @interface NewsDemandViewController : UIViewController
 
+- (instancetype)initWithNotification:(NSDictionary*)userInfo;
+
 @end
