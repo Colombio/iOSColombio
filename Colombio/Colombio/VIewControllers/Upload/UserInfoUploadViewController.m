@@ -62,15 +62,16 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     if(!_isNewsDemand){
-        _viewPriceHolder.hidden=NO;
-        _viewH1.hidden=NO;
+        _CS_PriceHolderHeight.constant = 0.0;
+        _viewPriceHolder.hidden=YES;
+        _viewH1.hidden=YES;
         if (_picExists) {
-            if (_swTogglePrice.isOn) {
+            /*if (_swTogglePrice.isOn) {
                 _CS_PriceHolderHeight.constant = 65.0;
             }else{
                 _CS_PriceHolderHeight.constant = 35.0;
                 
-            }
+            }*/
             
             
         }else{

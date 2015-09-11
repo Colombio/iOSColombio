@@ -117,7 +117,7 @@
         
         NSDateFormatter *formatter=[[NSDateFormatter alloc]init];
         [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss Z"];
-        NSDate *date = [formatter dateFromString:_timelineArray[indexPath.row][@"timestamp"]];
+        NSDate *date = [formatter dateFromString:_timelineArray[indexPath.row][@"date"]];
         [formatter setDateFormat:@"dd/MM/yyyy"];
         cell.lblHeader.text = [NSString stringWithFormat:@"%@ %@", [Localized string:((AppDelegate*)[UIApplication sharedApplication].delegate).dicTimelineButt[_timelineArray[indexPath.row][@"type_id"]]], [formatter stringFromDate:date]];
         //cell.lblDescription.text = [NSString stringWithFormat:@"%@",_timelineArray[indexPath.row][@"news_text"]];
@@ -164,11 +164,11 @@
                       baseURL:nil];
 
             //[cell.webView loadHTMLString:_timelineArray[indexPath.row][@"msg"] baseURL:nil];
-            cell.lblHeader.text = [Tools getStringFromDateString:_timelineArray[indexPath.row][@"timestamp"] withFormat:@"dd/MM/yyyy"];
+            cell.lblHeader.text = [Tools getStringFromDateString:_timelineArray[indexPath.row][@"date"] withFormat:@"dd/MM/yyyy"];
             cell.imgSample.image = [UIImage imageNamed:@"colombiotimeline"];
         }else{
             cell.lblTitle.text = _timelineArray[indexPath.row][@"title"];
-            cell.lblHeader.text = [Tools getStringFromDateString:_timelineArray[indexPath.row][@"timestamp"] withFormat:@"dd/MM/yyyy"];
+            cell.lblHeader.text = [Tools getStringFromDateString:_timelineArray[indexPath.row][@"date"] withFormat:@"dd/MM/yyyy"];
             cell.txtDescription.text = [NSString stringWithFormat:@"%@",_timelineArray[indexPath.row][@"msg"]];
             cell.imgSample.image = [UIImage imageNamed:@"colombiotimeline"];
         }
@@ -216,7 +216,7 @@
                 }
             }
             if (index>-1) {
-                TimelineDetailsViewController *vc = [[TimelineDetailsViewController alloc] initWithTimelineDetails:_timelineArray[index]];
+                TimelineContainerViewController *vc = [[TimelineContainerViewController alloc] initWithNibName:@"ContainerViewController" bundle:nil focusOnControllerIndex:index withDataArray:_timelineArray];
                 [self.navigationController pushViewController:vc animated:YES];
             }
             [self setNotificationsToRead:[_userInfo[@"payload"][@"nid"] integerValue]];

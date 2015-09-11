@@ -112,12 +112,13 @@
 }
 
 - (IBAction)btnSkipSelected:(id)sender{
-    if ([self.delegate respondsToSelector:@selector(tutorialTapped)]) {
-        [self.delegate tutorialTapped];
-    }
+    
     [[NSUserDefaults standardUserDefaults] setObject:@0 forKey:SHOW_TUTORIAL];
     [[NSUserDefaults standardUserDefaults] synchronize];
     [self removeFromSuperview];
+    if ([self.delegate respondsToSelector:@selector(tutorialTapped)]) {
+        [self.delegate tutorialTapped];
+    }
 }
 
 

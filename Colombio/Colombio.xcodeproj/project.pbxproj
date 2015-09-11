@@ -1230,7 +1230,7 @@
 					"$(PROJECT_DIR)FacebookSDK.framework/Versions/A",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "e0373c5c-fcaf-4e13-af20-82b8504c4132";
+				PROVISIONING_PROFILE = "64c416ae-45d0-4a98-91f1-e3201cd05dc0";
 			};
 			name = Release;
 		};

@@ -12,7 +12,7 @@
 @implementation Tools
 
 + (NSInteger)getNumberOfNewDemands{
-    NSMutableString *sql = [NSMutableString stringWithFormat:@"SELECT count(*) FROM newsdemandlist where isread = 0 AND end_timestamp >= '%@' and user_id = '%@'",[NSDate date], [[NSUserDefaults standardUserDefaults] objectForKey:USERID]];
+    NSMutableString *sql = [NSMutableString stringWithFormat:@"SELECT count(*) FROM newsdemandlist where isread = 0 AND end_timestamp >= '%@' and user_id = '%@' and status <> 2",[NSDate date], [[NSUserDefaults standardUserDefaults] objectForKey:USERID]];
     AppDelegate *appdelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     return [[appdelegate.db getColForSQL:sql] integerValue];
 }

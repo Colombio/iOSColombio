@@ -101,10 +101,12 @@
 	{
 		case 0:
 			[self CreateEmptyDB];
+        case 1:
+            sqlite3_exec(db, "ALTER TABLE TIMELINE ADD date DATETIME", NULL, NULL, NULL);
         default:
             break;
     }
-	sqlite3_exec(db, "PRAGMA user_version=1", NULL, NULL, NULL);
+	sqlite3_exec(db, "PRAGMA user_version=2", NULL, NULL, NULL);
 	//sqlite3_close(db);
     
 }

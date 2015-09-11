@@ -189,7 +189,7 @@
 - (void)getNewsDeamandList{
     [_newsDemandArray removeAllObjects];
     NSMutableString *sql = [[NSMutableString alloc] init];
-    [sql appendFormat:@"SELECT * FROM newsdemandlist WHERE end_timestamp >= '%@' and user_id = '%@'",[NSDate date], [[NSUserDefaults standardUserDefaults] objectForKey:USERID]];
+    [sql appendFormat:@"SELECT * FROM newsdemandlist WHERE end_timestamp >= '%@' and user_id = '%@' and status <> 2",[NSDate date], [[NSUserDefaults standardUserDefaults] objectForKey:USERID]];
     //[sql appendFormat:@"SELECT * FROM newsdemandlist"];
     AppDelegate *appdelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     NSMutableArray *tArray = [appdelegate.db getAllForSQL:sql];
@@ -227,7 +227,7 @@
             [spinner removeCustomSpinner];
             int index = -1;
             for(int i=0;i<_newsDemandArray.count;i++){
-                if ([_userInfo[@"payload"][@"nid"] integerValue] == [_newsDemandArray[i][@"news_id"] integerValue]) {
+                if ([_userInfo[@"payload"][@"did"] integerValue] == [_newsDemandArray[i][@"news_id"] integerValue]) {
                     index=i;
                 }
             }
