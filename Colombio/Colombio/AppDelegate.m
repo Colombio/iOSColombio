@@ -34,11 +34,11 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    //[Parse setApplicationId:@"DSJAACaoeuvbqrjj9XqYkMsAh47LbUKQybc09h3q"
-      //            clientKey:@"vFOzh6nLUXAExa5fulRLm5J2EsagHHxN9sEApxs9"];
+    [Parse setApplicationId:@"DSJAACaoeuvbqrjj9XqYkMsAh47LbUKQybc09h3q"
+                  clientKey:@"vFOzh6nLUXAExa5fulRLm5J2EsagHHxN9sEApxs9"];
     
-    [Parse setApplicationId:@"arZTb872qjiyyDRTNDD6bXDv4ZqNzn0T4dMh57UM"
-                  clientKey:@"Dnh4R2ieU8rB9ht427SpwdAHmsM5WVdPVSQHe1kB"];
+//    [Parse setApplicationId:@"arZTb872qjiyyDRTNDD6bXDv4ZqNzn0T4dMh57UM"
+//                  clientKey:@"Dnh4R2ieU8rB9ht427SpwdAHmsM5WVdPVSQHe1kB"];
     
     // Register for Push Notitications
     if (SYSTEM_VERSION_LESS_THAN(@"8.0")) {
@@ -77,16 +77,16 @@
         [[NSUserDefaults standardUserDefaults] synchronize];
         
         //Testin purpose only
-        /*[[NSUserDefaults standardUserDefaults] setObject:@1 forKey:SHOW_TUTORIAL];
-        [[NSUserDefaults standardUserDefaults] setObject:@1 forKey:TUTORIAL1];
-        [[NSUserDefaults standardUserDefaults] setObject:@1 forKey:TUTORIAL2];
-        [[NSUserDefaults standardUserDefaults] setObject:@1 forKey:TUTORIAL3];
-        [[NSUserDefaults standardUserDefaults] setObject:@1 forKey:TUTORIAL4];
-        [[NSUserDefaults standardUserDefaults] setObject:@1 forKey:TUTORIAL5];
-        [[NSUserDefaults standardUserDefaults] setObject:@1 forKey:TUTORIAL6];
-        [[NSUserDefaults standardUserDefaults] setObject:@1 forKey:TUTORIAL7];
-        [[NSUserDefaults standardUserDefaults] setObject:@1 forKey:TUTORIAL8];
-        [[NSUserDefaults standardUserDefaults] synchronize];*/
+//        [[NSUserDefaults standardUserDefaults] setObject:@1 forKey:SHOW_TUTORIAL];
+//        [[NSUserDefaults standardUserDefaults] setObject:@1 forKey:TUTORIAL1];
+//        [[NSUserDefaults standardUserDefaults] setObject:@1 forKey:TUTORIAL2];
+//        [[NSUserDefaults standardUserDefaults] setObject:@1 forKey:TUTORIAL3];
+//        [[NSUserDefaults standardUserDefaults] setObject:@1 forKey:TUTORIAL4];
+//        [[NSUserDefaults standardUserDefaults] setObject:@1 forKey:TUTORIAL5];
+//        [[NSUserDefaults standardUserDefaults] setObject:@1 forKey:TUTORIAL6];
+//        [[NSUserDefaults standardUserDefaults] setObject:@1 forKey:TUTORIAL7];
+//        [[NSUserDefaults standardUserDefaults] setObject:@1 forKey:TUTORIAL8];
+//        [[NSUserDefaults standardUserDefaults] synchronize];
         
         
         [self checkToken:nil];

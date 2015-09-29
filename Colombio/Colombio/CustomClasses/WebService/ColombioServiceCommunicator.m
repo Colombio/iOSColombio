@@ -132,6 +132,7 @@
                     [[NSUserDefaults standardUserDefaults] setObject:result[@"user_data"][@"country_id"] forKey:COUNTRY_ID];
                     [[NSUserDefaults standardUserDefaults] synchronize];
                     
+                    
                     [self.delegate didFetchUserDetails:result];
                 }else{
                     [Messages showErrorMsg:@"error_web_request"];

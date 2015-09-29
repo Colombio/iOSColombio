@@ -176,7 +176,7 @@
         // create the connection
         NSMutableURLRequest *wigiRequest = [NSMutableURLRequest requestWithURL:wigiURL
                                                                    cachePolicy:NSURLRequestUseProtocolCachePolicy
-                                                               timeoutInterval:60.0];
+                                                               timeoutInterval:1200];
         
         // change type to POST (default is GET)
         [wigiRequest setHTTPMethod:@"POST"];
@@ -245,6 +245,7 @@
 
 - (void)uploadMedia:(NSURLRequest*)wigiRequest{
     NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:wigiRequest delegate:self];
+
 }
 
 #pragma mark Action

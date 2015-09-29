@@ -117,8 +117,17 @@
         
         NSDateFormatter *formatter=[[NSDateFormatter alloc]init];
         [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss Z"];
-        NSDate *date = [formatter dateFromString:_timelineArray[indexPath.row][@"date"]];
-        [formatter setDateFormat:@"dd/MM/yyyy"];
+        NSDate *date;
+        if (((NSString*)_timelineArray[indexPath.row][@"date"]).length==0) {
+            date = [formatter dateFromString:_timelineArray[indexPath.row][@"timestamp"]];
+            [formatter setDateFormat:@"dd/MM/yyyy"];
+        }
+        else{
+            date = [formatter dateFromString:_timelineArray[indexPath.row][@"date"]];
+            [formatter setDateFormat:@"dd/MM/yyyy HH:mm"];
+        }
+        
+        
         cell.lblHeader.text = [NSString stringWithFormat:@"%@ %@", [Localized string:((AppDelegate*)[UIApplication sharedApplication].delegate).dicTimelineButt[_timelineArray[indexPath.row][@"type_id"]]], [formatter stringFromDate:date]];
         //cell.lblDescription.text = [NSString stringWithFormat:@"%@",_timelineArray[indexPath.row][@"news_text"]];
         cell.lblDescription.text = _timelineArray[indexPath.row][@"news_text"];

@@ -84,15 +84,17 @@
                     tDBDict[@"type_id"]=@([tDict[@"type_id"] intValue]);
                     tDBDict[@"user_id"] = [[NSUserDefaults standardUserDefaults] objectForKey:USERID];
                     
-                    NSData *extDataJson = [tDict[@"ext_data"] dataUsingEncoding:NSUTF8StringEncoding];
-                    NSError *e;
-                    NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:extDataJson options:NSJSONReadingMutableContainers error:&e];
-                    
-                    NSString *strDate = [NSString stringWithFormat:@"%@ %@", dict[@"date"], dict[@"time"]];
-                    NSDateFormatter *formatter=[[NSDateFormatter alloc]init];
-                    [formatter setDateFormat:@"yyyy-MM-dd HH:mm"];
-                    tDBDict[@"date"] = [formatter dateFromString:strDate];
-                    
+                    if (tDict[@"ext_data"] && tDict[@"ext_data"] != [NSNull null])
+                    {
+                        NSData *extDataJson = [tDict[@"ext_data"] dataUsingEncoding:NSUTF8StringEncoding];
+                        NSError *e;
+                        NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:extDataJson options:NSJSONReadingMutableContainers error:&e];
+                        
+                        NSString *strDate = [NSString stringWithFormat:@"%@ %@", dict[@"date"], dict[@"time"]];
+                        NSDateFormatter *formatter=[[NSDateFormatter alloc]init];
+                        [formatter setDateFormat:@"yyyy-MM-dd HH:mm"];
+                        tDBDict[@"date"] = [formatter dateFromString:strDate];
+                    }
                     
                     NSString *sql = [NSString stringWithFormat:@"SELECT count(*) FROM timeline WHERE news_id = '%@'", tDBDict[@"news_id"]];
                     if ([[appdelegate.db getColForSQL:sql] integerValue] == 0) {

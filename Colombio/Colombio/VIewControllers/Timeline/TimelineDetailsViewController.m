@@ -308,8 +308,15 @@ enum TimelineDetailsType{
                 cell.lblTitle.text = tDict[@"news_title"];
                 NSDateFormatter *formatter=[[NSDateFormatter alloc]init];
                 [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss Z"];
-                NSDate *date = [formatter dateFromString:tDict[@"timestamp"]];
-                [formatter setDateFormat:@"dd/MM/yyyy"];
+                NSDate *date;
+                if (((NSString*)_timelineDict[@"date"]).length==0) {
+                    date = [formatter dateFromString:_timelineDict[@"timestamp"]];
+                    [formatter setDateFormat:@"dd/MM/yyyy"];
+                }
+                else{
+                    date = [formatter dateFromString:_timelineDict[@"date"]];
+                    [formatter setDateFormat:@"dd/MM/yyyy HH:mm"];
+                }
                 cell.lblDate.text = [NSString stringWithFormat:@"%@ %@", [Localized string:((AppDelegate*)[UIApplication sharedApplication].delegate).dicTimelineButt[tDict[@"type_id"]]], [formatter stringFromDate:date]];
                 
                 cell.lblDescription.text = tDict[@"news_text"];

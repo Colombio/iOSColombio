@@ -17,7 +17,7 @@
 "news" = "Novost";
 "story_tip" = "Predložena priča";
 "community_news" = "Vijest zajednice";
-"announce_event" = "Najavi događaj";
+"announce_event" = "Novost";
 
 /*start*/
 "start_button" = "START";
